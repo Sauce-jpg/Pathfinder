@@ -92,13 +92,13 @@
     <p>Drow Noble • Oracle-Wizard • Necromancer</p>
   </header>
   <nav>
-    <button onclick="openTab('overview')" class="active">Overview</button>
-    <button onclick="openTab('combat')">Combat</button>
-    <button onclick="openTab('spells')">Spells</button>
-    <button onclick="openTab('inventory')">Inventory</button>
-    <button onclick="openTab('allies')">Allies</button>
-    <button onclick="openTab('story')">Story</button>
-    <button onclick="openTab('resources')">Resources</button>
+    <button onclick="openTab('overview', this)" class="active">Overview</button>
+    <button onclick="openTab('combat', this)">Combat</button>
+    <button onclick="openTab('spells', this)">Spells</button>
+    <button onclick="openTab('inventory', this)">Inventory</button>
+    <button onclick="openTab('allies', this)">Allies</button>
+    <button onclick="openTab('story', this)">Story</button>
+    <button onclick="openTab('resources', this)">Resources</button>
   </nav>
   <main>
     <section id="overview" class="active">
@@ -205,37 +205,40 @@
         document.body.classList.add('dark-mode');
       }
     }
-     // Tab switching function
-  function openTab(evt, tabName) {
-    // Hide all tab content
-    const tabcontent = document.getElementsByClassName("tabcontent");
-    for (let i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
+    // Open tab by id
+  function openTab(tabId, btn) {
+    // Hide all sections
+    document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+    // Remove "active" from all buttons
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
 
-    // Remove "active" class from all buttons
-    const tablinks = document.getElementsByClassName("tablinks");
-    for (let i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+    // Show the chosen section
+    const section = document.getElementById(tabId);
+    if (section) section.classList.add('active');
 
-    // Show selected tab
-    document.getElementById(tabName).style.display = "block";
-    if (evt) evt.currentTarget.className += " active";
+    // Mark button active
+    if (btn) btn.classList.add('active');
   }
 
-  // On page load, check if there's a hash (#story, #biography, etc.)
-  window.onload = function() {
-    const hash = window.location.hash.substring(1); // remove the "#"
-    if (hash) {
-      openTab(null, hash); // open that tab
-      // also mark the right button active
-      const btn = document.querySelector(`.tablinks[onclick*="${hash}"]`);
-      if (btn) btn.classList.add("active");
-    } else {
-      // default tab if no hash in URL
-      document.querySelector(".tablinks").click();
+  // On page load
+  window.onload = () => {
+    // Default tab
+    let tabToOpen = 'overview';
+    let buttonToActivate = document.querySelector('nav button');
+
+    // If URL has hash, use it
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1); // remove #
+      const sectionExists = document.getElementById(hash);
+      if (sectionExists) {
+        tabToOpen = hash;
+        // Find corresponding nav button
+        buttonToActivate = document.querySelector(`nav button[onclick*="${hash}"]`);
+      }
     }
+
+    // Open the tab
+    openTab(tabToOpen, buttonToActivate);
   }
   </script>
 </body>
