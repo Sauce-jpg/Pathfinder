@@ -326,8 +326,12 @@
 
   // CLOSE MODAL
   function closeModal() {
-    if (modal) modal.style.display = 'none';
-    toggleBackToTop();
+    if (modal) {
+      modal.style.display = 'none';
+      if (modalContent) modalContent.scrollTop = 0; // reset modal scroll
+      modal.scrollTop = 0; // reset overlay scroll just in case
+    }
+    toggleBackToTop(); // re-check after closing
   }
 
   // BACK-TO-TOP VISIBILITY
