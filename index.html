@@ -269,39 +269,42 @@
     </div>
   </div>
   
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
-      if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-      } else {
-        localStorage.setItem('theme', 'light');
-      }
+<script>
+  // THEME TOGGLE
+  function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
     }
+  }
 
-    // Open tab by id
+  // TABS
   function openTab(tabId, btn) {
-    // Hide all sections
     document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
-    // Remove "active" from all buttons
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-
-    // Show the chosen section
     const section = document.getElementById(tabId);
     if (section) section.classList.add('active');
-
-    // Mark button active
     if (btn) btn.classList.add('active');
   }
-    
-  function openModal() {
-    const modal = document.getElementById('backstoryModal');
-    const backstoryDiv = document.getElementById('backstoryText');
-  
-    modal.style.display = 'block';
-    backstoryDiv.innerHTML = '<p>Loading...</p>';
 
-    // Fetch the backstory HTML
+  // ELEMENT REFERENCES (DOM is already loaded because script is at page bottom)
+  const backToTopBtn = document.getElementById("backToTop");
+  const modal = document.getElementById("backstoryModal");
+  const modalContent = document.querySelector("#backstoryModal .modal-content");
+
+  // OPEN MODAL + LOAD BACKSTORY
+  function openModal() {
+    const backstoryDiv = document.getElementById('backstoryText');
+    // show modal
+    modal.style.display = 'block';
+    // reset scrolls and show loading
+    backstoryDiv.innerHTML = '<p>Loading...</p>';
+    if (modal) modal.scrollTop = 0;
+    if (modalContent) modalContent.scrollTop = 0;
+    toggleBackToTop();
+
     fetch('backstory.html')
       .then(response => {
         if (!response.ok) throw new Error('Could not load backstory.');
@@ -309,90 +312,88 @@
       })
       .then(data => {
         backstoryDiv.innerHTML = data;
+        // ensure scroll position reset after content inserted
+        if (modalContent) modalContent.scrollTop = 0;
+        if (modal) modal.scrollTop = 0;
+        // update visibility of back-to-top
+        toggleBackToTop();
       })
       .catch(err => {
         backstoryDiv.innerHTML = `<p>Error loading backstory: ${err.message}</p>`;
+        toggleBackToTop();
       });
   }
-  
+
+  // CLOSE MODAL
   function closeModal() {
-    document.getElementById('backstoryModal').style.display = 'none';
-  }
-  // Click outside to close
-  window.onclick = function(event) {
-    const modal = document.getElementById('backstoryModal');
-    if (event.target === modal) closeModal();
+    if (modal) modal.style.display = 'none';
+    toggleBackToTop();
   }
 
-    
-  const backToTopBtn = document.getElementById("backToTop");
-  const modal = document.getElementById("backstoryModal");
-  const modalContent = document.querySelector("#backstoryModal .modal-content");
-
-  // Show/hide button depending on scroll position
+  // BACK-TO-TOP VISIBILITY
   function toggleBackToTop() {
     let show = false;
 
-    // Check main page scroll
-    if (window.scrollY > 200) {
-      show = true;
+    // page scroll
+    const pageScroll = window.scrollY || document.documentElement.scrollTop || 0;
+    if (pageScroll > 200) show = true;
+
+    // if modal is open, check modal overlay and inner content scrolls
+    if (modal && getComputedStyle(modal).display !== 'none') {
+      if (modal.scrollTop && modal.scrollTop > 200) show = true;
+      if (modalContent && modalContent.scrollTop && modalContent.scrollTop > 200) show = true;
     }
 
-    // Check modal scroll (only if modal is open)
-    if (modal && modal.style.display === "block" && modalContent.scrollTop > 200) {
-      show = true;
-    }
-
-    if (show) {
-      backToTopBtn.classList.add("show");
-    } else {
-      backToTopBtn.classList.remove("show");
-    }
+    if (show) backToTopBtn.classList.add('show');
+    else backToTopBtn.classList.remove('show');
   }
 
-  // Scroll to top function
+  // SCROLL TO TOP (either page or modal content)
   function scrollToTop() {
-    if (modal && modal.style.display === "block") {
-      // Scroll modal content
-      modalContent.scrollTo({ top: 0, behavior: "smooth" });
+    if (modal && getComputedStyle(modal).display !== 'none') {
+      if (modalContent) modalContent.scrollTo({ top: 0, behavior: 'smooth' });
+      else modal.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      // Scroll main page
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
-  // Watch scroll events
-  window.addEventListener("scroll", toggleBackToTop);
-  if (modalContent) {
-    modalContent.addEventListener("scroll", toggleBackToTop);
-  }
+  // GLOBAL LISTENERS
+  window.addEventListener('scroll', toggleBackToTop);
 
-    
-  // On page load
+  // observe overlay and content scrolling (if they exist)
+  if (modal) modal.addEventListener('scroll', toggleBackToTop);
+  if (modalContent) modalContent.addEventListener('scroll', toggleBackToTop);
+
+  // clicking outside modal closes it
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  // INITIAL PAGE LOAD: theme + open tab based on hash
   window.onload = () => {
-     // Load stored theme preference
-          const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
-    // Default tab
+    // theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+
+    // default tab or hash
     let tabToOpen = 'overview';
     let buttonToActivate = document.querySelector('nav button');
 
-    // If URL has hash, use it
     if (window.location.hash) {
-      const hash = window.location.hash.substring(1); // remove #
-      const sectionExists = document.getElementById(hash);
-      if (sectionExists) {
+      const hash = window.location.hash.substring(1);
+      if (document.getElementById(hash)) {
         tabToOpen = hash;
-        // Find corresponding nav button
-        buttonToActivate = document.querySelector(`nav button[onclick*="${hash}"]`);
+        const btn = document.querySelector(`nav button[onclick*="${hash}"]`);
+        if (btn) buttonToActivate = btn;
       }
     }
 
-    // Open the tab
     openTab(tabToOpen, buttonToActivate);
-  }
-  </script>
+
+    // initial back-to-top state
+    toggleBackToTop();
+  };
+</script>
 </body>
 </html>
