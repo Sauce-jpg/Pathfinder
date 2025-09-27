@@ -118,10 +118,46 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+
+    #backToTop {
+      display: none; /* Hidden by default */
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2000;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #ddd;
+      transition: background 0.3s, opacity 0.3s;
+    }
+    
+    #backToTop.show {
+      display: block;
+      opacity: 1;
+    }
+    
+    #backToTop:hover {
+      background: #bbb;
+    }
+
+    .dark-mode #backToTop {
+      background: #555;
+      color: #fff;
+    }
+
+    .dark-mode #backToTop:hover {
+      background: #666;
+    }
+    
   </style>
 </head>
 <body>
   <button class="toggle" onclick="toggleTheme()">Toggle Theme</button>
+  <button id="backToTop" onclick="scrollToTop()">↑ Back to Top</button>
   <header>
     <h1>Vaelin Duskryn</h1>
     <p>Drow Noble • Oracle-Wizard • Necromancer</p>
@@ -283,6 +319,50 @@
     const modal = document.getElementById('backstoryModal');
     if (event.target === modal) closeModal();
   }
+
+    
+  const backToTopBtn = document.getElementById("backToTop");
+  const modal = document.getElementById("backstoryModal");
+  const modalContent = document.querySelector("#backstoryModal .modal-content");
+
+  // Show/hide button depending on scroll position
+  function toggleBackToTop() {
+    let show = false;
+
+    // Check main page scroll
+    if (window.scrollY > 200) {
+      show = true;
+    }
+
+    // Check modal scroll (only if modal is open)
+    if (modal && modal.style.display === "block" && modalContent.scrollTop > 200) {
+      show = true;
+    }
+
+    if (show) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  }
+
+  // Scroll to top function
+  function scrollToTop() {
+    if (modal && modal.style.display === "block") {
+      // Scroll modal content
+      modalContent.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Scroll main page
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  // Watch scroll events
+  window.addEventListener("scroll", toggleBackToTop);
+  if (modalContent) {
+    modalContent.addEventListener("scroll", toggleBackToTop);
+  }
+
     
   // On page load
   window.onload = () => {
