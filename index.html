@@ -168,7 +168,9 @@
     <section id="story">
       <h2>Story & Notes</h2>
       <h3>Backstory</h3>
-      <p><a href="backstory.html" target="_blank">Read Full Backstory</a></p>
+      <button onclick="openModal()">Read Full Backstory (Popup)</button>
+      <p>Or <a href="backstory.html" target="_blank">open in a separate page</a></p>
+
       <h3>Session Log</h3>
       <ul id="log">
         <li>Session 1: ...</li>
@@ -180,7 +182,18 @@
       <p>Links to spell lists, rulebooks, reference sheets, etc.</p>
     </section>
   </main>
-
+  
+  <!-- Modal overlay -->
+  <div id="backstoryModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="backstoryText">
+        <!-- Content will be loaded from backstory.html -->
+        <p>Loading...</p>
+      </div>
+    </div>
+  </div>
+  
   <script>
     function toggleTheme() {
       document.body.classList.toggle('dark-mode');
@@ -205,7 +218,37 @@
     // Mark button active
     if (btn) btn.classList.add('active');
   }
+    
+  function openModal() {
+    const modal = document.getElementById('backstoryModal');
+    const backstoryDiv = document.getElementById('backstoryText');
+  
+    modal.style.display = 'block';
+    backstoryDiv.innerHTML = '<p>Loading...</p>';
 
+    // Fetch the backstory HTML
+    fetch('backstory.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Could not load backstory.');
+        return response.text();
+      })
+      .then(data => {
+        backstoryDiv.innerHTML = data;
+      })
+      .catch(err => {
+        backstoryDiv.innerHTML = `<p>Error loading backstory: ${err.message}</p>`;
+      });
+  }
+  
+  function closeModal() {
+    document.getElementById('backstoryModal').style.display = 'none';
+  }
+  // Click outside to close
+  window.onclick = function(event) {
+    const modal = document.getElementById('backstoryModal');
+    if (event.target === modal) closeModal();
+  }
+    
   // On page load
   window.onload = () => {
      // Load stored theme preference
