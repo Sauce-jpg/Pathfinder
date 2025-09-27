@@ -191,20 +191,6 @@
       }
     }
 
-    function openTab(tabId) {
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
-    }
-
-    // Load stored theme preference
-    window.onload = () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-      }
-    }
     // Open tab by id
   function openTab(tabId, btn) {
     // Hide all sections
@@ -222,6 +208,11 @@
 
   // On page load
   window.onload = () => {
+     // Load stored theme preference
+          const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
     // Default tab
     let tabToOpen = 'overview';
     let buttonToActivate = document.querySelector('nav button');
