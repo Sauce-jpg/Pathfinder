@@ -103,14 +103,15 @@
       max-width: 900px;
       color: #222;
       position: relative;
+      max-height: calc(100vh - 8%); /* keep some vertical margin */
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch; /* smoother scrolling on mobile */
     }
 
     .dark-mode .modal-content {
       background-color: #222;
       color: #f5f5f5;
-      max-height: calc(100vh - 8%); /* keep some vertical margin */
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch; /* smoother scrolling on mobile */
+
     }
 
     .close {
