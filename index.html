@@ -205,6 +205,38 @@
         document.body.classList.add('dark-mode');
       }
     }
+     // Tab switching function
+  function openTab(evt, tabName) {
+    // Hide all tab content
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Remove "active" class from all buttons
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show selected tab
+    document.getElementById(tabName).style.display = "block";
+    if (evt) evt.currentTarget.className += " active";
+  }
+
+  // On page load, check if there's a hash (#story, #biography, etc.)
+  window.onload = function() {
+    const hash = window.location.hash.substring(1); // remove the "#"
+    if (hash) {
+      openTab(null, hash); // open that tab
+      // also mark the right button active
+      const btn = document.querySelector(`.tablinks[onclick*="${hash}"]`);
+      if (btn) btn.classList.add("active");
+    } else {
+      // default tab if no hash in URL
+      document.querySelector(".tablinks").click();
+    }
+  }
   </script>
 </body>
 </html>
