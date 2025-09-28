@@ -209,60 +209,71 @@
 
     <section id="spells">
 
-      <h2>Spell Manager</h2>
+     <h2>Spells & Powers</h2>
 
-       <div>
-          <label for="classFilter">Class:</label>
-          <select id="classFilter">
-            <option value="">All</option>
-            <option value="Wizard">Wizard</option>
-            <option value="Oracle">Oracle</option>
-            <!-- Add more classes if needed -->
-          </select>
+  <!-- Prepared Spells -->
+  <h3>Prepared Spells</h3>
+  <ul id="preparedList"></ul>
 
-          <label for="levelFilter">Level:</label>
-          <select id="levelFilter">
-            <option value="">All</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-          </select>
+  <!-- Known Spells -->
+  <h3>Known Spells</h3>
+  <div style="display: flex; gap: 2rem;">
+    <div style="flex:1;">
+      <h4>Oracle Known</h4>
+      <ul id="oracleKnownList"></ul>
+    </div>
+    <div style="flex:1;">
+      <h4>Wizard Spellbook</h4>
+      <ul id="wizardKnownList"></ul>
+    </div>
+  </div>
 
-          <label for="schoolFilter">School:</label>
-          <select id="schoolFilter">
-            <option value="">All</option>
-            <option value="Abjuration">Abjuration</option>
-            <option value="Conjuration">Conjuration</option>
-            <option value="Divination">Divination</option>
-            <option value="Enchantment">Enchantment</option>
-            <option value="Evocation">Evocation</option>
-            <option value="Illusion">Illusion</option>
-            <option value="Necromancy">Necromancy</option>
-            <option value="Transmutation">Transmutation</option>
-            <option value="Universal">Universal</option>
-          </select>
+  <!-- Spell Manager (filters & search) -->
+  <h3>Spell Manager</h3>
+  <div>
+    <label for="classFilter">Class:</label>
+    <select id="classFilter">
+      <option value="">All</option>
+      <option value="Wizard">Wizard</option>
+      <option value="Oracle">Oracle</option>
+    </select>
 
-          <label for="searchFilter">Search:</label>
-          <input type="text" id="searchFilter" placeholder="Spell name...">
-         
-          <button id="resetFilters">Reset Filters</button>
-        </div>
+    <label for="levelFilter">Level:</label>
+    <select id="levelFilter">
+      <option value="">All</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
 
-        <h3>Available Spells</h3>
-        <ul id="spellList"></ul>
+    <label for="schoolFilter">School:</label>
+    <select id="schoolFilter">
+      <option value="">All</option>
+      <option value="Abjuration">Abjuration</option>
+      <option value="Conjuration">Conjuration</option>
+      <option value="Divination">Divination</option>
+      <option value="Enchantment">Enchantment</option>
+      <option value="Evocation">Evocation</option>
+      <option value="Illusion">Illusion</option>
+      <option value="Necromancy">Necromancy</option>
+      <option value="Transmutation">Transmutation</option>
+      <option value="Universal">Universal</option>
+    </select>
 
-        <h3>Known Spells</h3>
-        <ul id="knownSpells"></ul>
+    <label for="searchFilter">Search:</label>
+    <input type="text" id="searchFilter" placeholder="Spell name...">
 
-        <h3>Prepared Spells</h3>
-        <ul id="preparedSpells"></ul>
+    <button id="resetFilters">Reset Filters</button>
+  </div>
+
+  <ul id="spellList"></ul>
 
   
     </section>
@@ -448,7 +459,8 @@
   
 
   let allSpells = [];
-let knownSpells = JSON.parse(localStorage.getItem("knownSpells")) || [];
+let oracleKnown = JSON.parse(localStorage.getItem("oracleKnown")) || [];
+let wizardKnown = JSON.parse(localStorage.getItem("wizardKnown")) || [];
 let preparedSpells = JSON.parse(localStorage.getItem("preparedSpells")) || [];
 
 // Load ALL spells
@@ -491,8 +503,8 @@ function loadSpells() {
       <strong>${spell.name}</strong> 
       (Lv ${spellLevel}, ${spell.school})
       <a href="${spell.url}" target="_blank">📖</a>
-      <button onclick="addKnown('${spell.name}')">+ Known</button>
-    `;
+      <button onclick="chooseKnown('${spell.name}')">+ Known</button>
+     `;
     list.appendChild(li);
   });
 }
@@ -506,20 +518,43 @@ function addKnown(name) {
   }
 }
 
+function chooseKnown(spellName) {
+  const choice = prompt(`Add "${spellName}" to:\n1 = Oracle Known\n2 = Wizard Spellbook`);
+  if (choice === "1") {
+    oracleKnown.push(spellName);
+    localStorage.setItem("oracleKnown", JSON.stringify(oracleKnown));
+  } else if (choice === "2") {
+    wizardKnown.push(spellName);
+    localStorage.setItem("wizardKnown", JSON.stringify(wizardKnown));
+  }
+  renderKnown();
+}
+  
 // Show Known Spells
 function renderKnown() {
-  const list = document.getElementById("knownSpells");
-  list.innerHTML = "";
-  knownSpells.forEach(name => {
-    const spell = allSpells.find(s => s.name === name);
-    if (!spell) return;
+  const oracleList = document.getElementById("oracleKnownList");
+  const wizardList = document.getElementById("wizardKnownList");
+  oracleList.innerHTML = "";
+  wizardList.innerHTML = "";
+
+  oracleKnown.forEach((spell, i) => {
     const li = document.createElement("li");
     li.innerHTML = `
-      ${spell.name} 
-      <a href="${spell.url}" target="_blank">📖</a>
-      <button onclick="addPrepared('${spell.name}')">+ Prepare</button>
+      ${spell}
+      <button onclick="removeKnown('oracle', ${i})">✖</button>
+      <button onclick="prepareSpell('${spell}')">Prepare</button>
     `;
-    list.appendChild(li);
+    oracleList.appendChild(li);
+  });
+
+  wizardKnown.forEach((spell, i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${spell}
+      <button onclick="removeKnown('wizard', ${i})">✖</button>
+      <button onclick="prepareSpell('${spell}')">Prepare</button>
+    `;
+    wizardList.appendChild(li);
   });
 }
 
@@ -556,6 +591,18 @@ function toggleUsed(index) {
   localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
 }
 
+//   Remove known function:
+function removeKnown(type, index) {
+  if (type === "oracle") {
+    oracleKnown.splice(index, 1);
+    localStorage.setItem("oracleKnown", JSON.stringify(oracleKnown));
+  } else {
+    wizardKnown.splice(index, 1);
+    localStorage.setItem("wizardKnown", JSON.stringify(wizardKnown));
+  }
+  renderKnown();
+}
+  
 // Remove prepared spell
 function removePrepared(index) {
   preparedSpells.splice(index, 1);
