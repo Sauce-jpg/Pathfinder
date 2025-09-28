@@ -249,7 +249,10 @@
             <option value="Universal">Universal</option>
           </select>
 
-          <button onclick="loadSpells()">Show Spells</button>
+          <label for="searchFilter">Search:</label>
+          <input type="text" id="searchFilter" placeholder="Spell name...">
+         
+          <button id="resetFilters">Reset Filters</button>
         </div>
 
         <h3>Available Spells</h3>
@@ -463,15 +466,22 @@ function loadSpells() {
   const classFilter = document.getElementById("classFilter").value;
   const levelFilter = document.getElementById("levelFilter").value;
   const schoolFilter = document.getElementById("schoolFilter").value;
+  const searchFilter = document.getElementById("searchFilter").value.toLowerCase();
   const list = document.getElementById("spellList");
   list.innerHTML = "";
 
+ // ✅ Hide all spells if no filters are used
+  if (!classFilter && !levelFilter && !schoolFilter && !searchFilter) {
+    return; // Exit without showing anything
+  }
+  
   const filtered = allSpells.filter(spell => {
     const matchesClass = classFilter === "" || spell.level[classFilter] !== undefined;
     const matchesLevel = levelFilter === "" || (spell.level[classFilter] == levelFilter);
     const matchesSchool = schoolFilter === "" || spell.school === schoolFilter;
+    const matchesSearch = searchFilter === "" || spell.name.toLowerCase().includes(searchFilter);
 
-    return matchesClass && matchesLevel && matchesSchool;
+    return matchesClass && matchesLevel && matchesSchool && matchesSearch;
   });
 
   filtered.forEach(spell => {
@@ -552,6 +562,22 @@ function removePrepared(index) {
   localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
   renderPrepared();
 }
+
+// Auto-refresh on search  
+document.getElementById("searchFilter").addEventListener("input", loadSpells);  
+// Auto-refresh on dropdown changes
+document.getElementById("classFilter").addEventListener("change", loadSpells);
+document.getElementById("levelFilter").addEventListener("change", loadSpells);
+document.getElementById("schoolFilter").addEventListener("change", loadSpells);
+
+// Reset filters button
+document.getElementById("resetFilters").addEventListener("click", () => {
+  document.getElementById("classFilter").value = "";
+  document.getElementById("levelFilter").value = "";
+  document.getElementById("schoolFilter").value = "";
+  document.getElementById("searchFilter").value = "";
+  loadSpells(); // Clears list
+});  
   
 </script>
 </body>
