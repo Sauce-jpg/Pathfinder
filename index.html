@@ -294,7 +294,45 @@
        <label><input type="checkbox"> Finger of Death (Nec)</label><br>
        <label><input type="checkbox"> Greater Teleport</label><br>
        <label><input type="checkbox"> Ethereal Jaunt</label><br>
-     </form>
+      </form>
+
+      <h2>Spell Manager</h2>
+
+        <div>
+          <label for="classFilter">Class:</label>
+          <select id="classFilter">
+            <option value="Wizard">Wizard</option>
+            <option value="Oracle">Oracle</option>
+          </select>
+
+          <label for="levelFilter">Level:</label>
+          <select id="levelFilter">
+            <option value="">All</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
+
+          <button onclick="loadSpells()">Show Spells</button>
+        </div>
+
+        <h3>Available Spells</h3>
+        <ul id="spellList"></ul>
+
+        <h3>Known Spells</h3>
+        <ul id="knownSpells"></ul>
+
+        <h3>Prepared Spells</h3>
+        <ul id="preparedSpells"></ul>
+
+  
     </section>
 
     <section id="inventory">
@@ -474,6 +512,112 @@
     // initial back-to-top state
     toggleBackToTop();
   };
+
+  
+
+  let allSpells = [];
+let knownSpells = JSON.parse(localStorage.getItem("knownSpells")) || [];
+let preparedSpells = JSON.parse(localStorage.getItem("preparedSpells")) || [];
+
+// Load ALL spells
+fetch("spells-all.json")
+  .then(res => res.json())
+  .then(data => {
+    allSpells = data;
+    loadSpells();
+    renderKnown();
+    renderPrepared();
+  });
+
+// Show spells from DB based on filter
+function loadSpells() {
+  const classFilter = document.getElementById("classFilter").value;
+  const levelFilter = document.getElementById("levelFilter").value;
+  const list = document.getElementById("spellList");
+  list.innerHTML = "";
+
+  const filtered = allSpells.filter(spell =>
+    spell.level[classFilter] !== undefined &&
+    (levelFilter === "" || spell.level[classFilter] == levelFilter)
+  );
+
+  filtered.forEach(spell => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${spell.name}</strong> (Lv ${spell.level[classFilter]}, ${spell.school})
+      <a href="${spell.url}" target="_blank">📖</a>
+      <button onclick="addKnown('${spell.name}')">+ Known</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+// Add spell to Known
+function addKnown(name) {
+  if (!knownSpells.includes(name)) {
+    knownSpells.push(name);
+    localStorage.setItem("knownSpells", JSON.stringify(knownSpells));
+    renderKnown();
+  }
+}
+
+// Show Known Spells
+function renderKnown() {
+  const list = document.getElementById("knownSpells");
+  list.innerHTML = "";
+  knownSpells.forEach(name => {
+    const spell = allSpells.find(s => s.name === name);
+    if (!spell) return;
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${spell.name} 
+      <a href="${spell.url}" target="_blank">📖</a>
+      <button onclick="addPrepared('${spell.name}')">+ Prepare</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+// Add to Prepared
+function addPrepared(name) {
+  preparedSpells.push({ name, used: false });
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
+}
+
+// Show Prepared Spells
+function renderPrepared() {
+  const list = document.getElementById("preparedSpells");
+  list.innerHTML = "";
+  preparedSpells.forEach((p, index) => {
+    const spell = allSpells.find(s => s.name === p.name);
+    if (!spell) return;
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <label>
+        <input type="checkbox" ${p.used ? "checked" : ""} 
+          onchange="toggleUsed(${index})"> ${spell.name}
+      </label>
+      <a href="${spell.url}" target="_blank">📖</a>
+      <button onclick="removePrepared(${index})">✖</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+// Toggle prepared spell usage
+function toggleUsed(index) {
+  preparedSpells[index].used = !preparedSpells[index].used;
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+}
+
+// Remove prepared spell
+function removePrepared(index) {
+  preparedSpells.splice(index, 1);
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
+}
+  
 </script>
 </body>
 </html>
