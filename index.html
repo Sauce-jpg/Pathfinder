@@ -211,11 +211,13 @@
 
       <h2>Spell Manager</h2>
 
-        <div>
+       <div>
           <label for="classFilter">Class:</label>
           <select id="classFilter">
+            <option value="">All</option>
             <option value="Wizard">Wizard</option>
             <option value="Oracle">Oracle</option>
+            <!-- Add more classes if needed -->
           </select>
 
           <label for="levelFilter">Level:</label>
@@ -231,6 +233,20 @@
             <option value="7">7</option>
             <option value="8">8</option>
             <option value="9">9</option>
+          </select>
+
+          <label for="schoolFilter">School:</label>
+          <select id="schoolFilter">
+            <option value="">All</option>
+            <option value="Abjuration">Abjuration</option>
+            <option value="Conjuration">Conjuration</option>
+            <option value="Divination">Divination</option>
+            <option value="Enchantment">Enchantment</option>
+            <option value="Evocation">Evocation</option>
+            <option value="Illusion">Illusion</option>
+            <option value="Necromancy">Necromancy</option>
+            <option value="Transmutation">Transmutation</option>
+            <option value="Universal">Universal</option>
           </select>
 
           <button onclick="loadSpells()">Show Spells</button>
@@ -446,18 +462,24 @@ fetch("spells-all.json")
 function loadSpells() {
   const classFilter = document.getElementById("classFilter").value;
   const levelFilter = document.getElementById("levelFilter").value;
+  const schoolFilter = document.getElementById("schoolFilter").value;
   const list = document.getElementById("spellList");
   list.innerHTML = "";
 
-  const filtered = allSpells.filter(spell =>
-    spell.level[classFilter] !== undefined &&
-    (levelFilter === "" || spell.level[classFilter] == levelFilter)
-  );
+  const filtered = allSpells.filter(spell => {
+    const matchesClass = classFilter === "" || spell.level[classFilter] !== undefined;
+    const matchesLevel = levelFilter === "" || (spell.level[classFilter] == levelFilter);
+    const matchesSchool = schoolFilter === "" || spell.school === schoolFilter;
+
+    return matchesClass && matchesLevel && matchesSchool;
+  });
 
   filtered.forEach(spell => {
     const li = document.createElement("li");
+    const spellLevel = classFilter ? spell.level[classFilter] : Object.values(spell.level)[0];
     li.innerHTML = `
-      <strong>${spell.name}</strong> (Lv ${spell.level[classFilter]}, ${spell.school})
+      <strong>${spell.name}</strong> 
+      (Lv ${spellLevel}, ${spell.school})
       <a href="${spell.url}" target="_blank">📖</a>
       <button onclick="addKnown('${spell.name}')">+ Known</button>
     `;
