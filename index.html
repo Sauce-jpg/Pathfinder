@@ -222,6 +222,7 @@
 <div>
   <h4>Oracle Spell Slots</h4>
   <ul id="oracleSlots"></ul>
+  <button onclick="resetAllOracleSlots()">Reset All Oracle Slots</button>
 </div>
 
   <!-- Known Spells -->
@@ -632,7 +633,6 @@ function renderPrepared() {
   }
 }
 
-  <button onclick="Object.keys(oracleMaxSlots).forEach(l => oracleSlots[l]=oracleMaxSlots[l]); localStorage.setItem('oracleSlots', JSON.stringify(oracleSlots)); renderOracleSlots();">Reset All Oracle Slots</button>
 
 function useOracleSlot(level) {
   if (oracleSlots[level] > 0) {
@@ -645,6 +645,12 @@ function useOracleSlot(level) {
 function resetOracleSlot(level) {
   oracleSlots[level] = oracleMaxSlots[level];
   localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
+  renderOracleSlots();
+}
+
+  function resetAllOracleSlots() {
+  Object.keys(oracleMaxSlots).forEach(l => oracleSlots[l] = oracleMaxSlots[l]);
+  localStorage.setItem('oracleSlots', JSON.stringify(oracleSlots));
   renderOracleSlots();
 }
   
