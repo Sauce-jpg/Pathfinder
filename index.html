@@ -489,6 +489,7 @@ fetch("spells-all.json")
     loadSpells();
     renderKnown();
     renderPrepared();
+    renderOracleSlots(); // <-- show oracle counters on load
   });
 
 // Show spells from DB based on filter
@@ -527,14 +528,7 @@ function loadSpells() {
   });
 }
 
-// Add spell to Known
-function addKnown(name) {
-  if (!knownSpells.includes(name)) {
-    knownSpells.push(name);
-    localStorage.setItem("knownSpells", JSON.stringify(knownSpells));
-    renderKnown();
-  }
-}
+
 
 function chooseKnown(spellName) {
   const choice = prompt(`Add "${spellName}" to:\n1 = Oracle Known\n2 = Wizard Spellbook`);
@@ -555,27 +549,37 @@ function renderKnown() {
   oracleList.innerHTML = "";
   wizardList.innerHTML = "";
 
-  oracleKnown.forEach((spell, i) => {
+  oracleKnown.forEach((name, i) => {
+    const spell = allSpells.find(s => s.name === name);
+    const url = spell ? spell.url : "#";
     const li = document.createElement("li");
     li.innerHTML = `
-      ${spell}
+      ${name} <a href="${url}" target="_blank">📖</a>
       <button onclick="removeKnown('oracle', ${i})">✖</button>
-      <button onclick="prepareSpell('${spell}')">Prepare</button>
+      <!-- no Prepare button for Oracle -->
     `;
     oracleList.appendChild(li);
   });
 
-  wizardKnown.forEach((spell, i) => {
+  wizardKnown.forEach((name, i) => {
+    const spell = allSpells.find(s => s.name === name);
+    const url = spell ? spell.url : "#";
     const li = document.createElement("li");
     li.innerHTML = `
-      ${spell}
+      ${name} <a href="${url}" target="_blank">📖</a>
       <button onclick="removeKnown('wizard', ${i})">✖</button>
-      <button onclick="prepareSpell('${spell}')">Prepare</button>
+      <button onclick="prepareSpell('${name}')">Prepare</button>
     `;
     wizardList.appendChild(li);
   });
 }
 
+
+  function prepareSpell(name) {
+  addPrepared(name);
+}
+  
+  
 // Add to Prepared
 function addPrepared(name) {
   preparedSpells.push({ name, used: false });
@@ -585,7 +589,7 @@ function addPrepared(name) {
 
 // Show Prepared Spells
 function renderPrepared() {
-  const list = document.getElementById("preparedSpells");
+  const list = document.getElementById("preparedList");
   list.innerHTML = "";
   preparedSpells.forEach((p, index) => {
     const spell = allSpells.find(s => s.name === p.name);
@@ -617,6 +621,8 @@ function renderPrepared() {
     list.appendChild(li);
   }
 }
+
+  <button onclick="Object.keys(oracleMaxSlots).forEach(l => oracleSlots[l]=oracleMaxSlots[l]); localStorage.setItem('oracleSlots', JSON.stringify(oracleSlots)); renderOracleSlots();">Reset All Oracle Slots</button>
 
 function useOracleSlot(level) {
   if (oracleSlots[level] > 0) {
