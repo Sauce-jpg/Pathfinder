@@ -17638,7 +17638,7 @@
   {
     "name": "Keen Edge",
     "school": "Transmutation",
-    "level": { "Sorcerer/Wizard": 3, "Magus": 3 },
+    "level": { "Sorcerer": 3, "Wizard": 3, "Magus": 3 },
     "casting_time": "1 standard action",
     "components": { "verbal": true, "somatic": true, "material": "Powdered glass" },
     "range": "Close (25 ft. + 5 ft./2 levels)",
@@ -17651,7 +17651,7 @@
   {
     "name": "Keen Senses",
     "school": "Divination",
-    "level": { "Druid": 2, "Ranger": 1, "Sorcerer/Wizard": 2 },
+    "level": { "Druid": 2, "Ranger": 1, "Sorcerer": 2, "Wizard": 2 },
     "casting_time": "1 standard action",
     "components": { "verbal": true, "somatic": true },
     "range": "Touch",
@@ -17664,7 +17664,7 @@
   {
     "name": "Keep Watch",
     "school": "Abjuration",
-    "level": { "Bard": 1, "Cleric": 1, "Paladin": 1, "Sorcerer/Wizard": 1 },
+    "level": { "Bard": 1, "Cleric": 1, "Paladin": 1, "Sorcerer": 1, "Wizard": 1 },
     "casting_time": "1 standard action",
     "components": { "verbal": true, "somatic": true },
     "range": "Touch",
@@ -17677,7 +17677,7 @@
   {
     "name": "Keif Addiction",
     "school": "Enchantment (Compulsion) [Mind-Affecting]",
-    "level": { "Sorcerer/Wizard": 2, "Witch": 2 },
+    "level": { "Sorcerer": 2, "Wizard": 2, "Witch": 2 },
     "casting_time": "1 standard action",
     "components": { "verbal": true, "somatic": true, "material": "Special keif powder" },
     "range": "Close (25 ft. + 5 ft./2 levels)",
@@ -17703,7 +17703,7 @@
   {
     "name": "Keyhole",
     "school": "Divination",
-    "level": { "Sorcerer/Wizard": 2, "Bard": 2 },
+    "level": { "Sorcerer": 2, "Wizard": 2, "Bard": 2 },
     "casting_time": "1 standard action",
     "components": { "verbal": true, "somatic": true },
     "range": "Personal",
@@ -17820,7 +17820,7 @@
   {
     "name": "Knock",
     "school": "Transmutation",
-    "level": { "Sorcerer/Wizard": 2, "Bard": 2 },
+    "level": { "Sorcerer": 2, "Wizard": 2, "Bard": 2 },
     "casting_time": "1 standard action",
     "components": { "verbal": true },
     "range": "Medium (100 ft. + 10 ft./level)",
@@ -17833,7 +17833,7 @@
   {
     "name": "Know Direction",
     "school": "Divination",
-    "level": { "Bard": 0, "Druid": 0, "Ranger": 0, "Sorcerer/Wizard": 0 },
+    "level": { "Bard": 0, "Druid": 0, "Ranger": 0, "Sorcerer": 0, "Wizard": 0, },
     "casting_time": "1 standard action",
     "components": { "verbal": true },
     "range": "Personal",
@@ -29614,6 +29614,7 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/z/zone-of-truth/"
   }  
 ]
+
 
 
 
