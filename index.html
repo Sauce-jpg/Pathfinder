@@ -212,8 +212,17 @@
      <h2>Spells & Powers</h2>
 
   <!-- Prepared Spells -->
-  <h3>Prepared Spells</h3>
+<h3>Prepared Spells</h3>
+
+<div>
+  <h4>Wizard Prepared Spells</h4>
   <ul id="preparedList"></ul>
+</div>
+
+<div>
+  <h4>Oracle Spell Slots</h4>
+  <ul id="oracleSlots"></ul>
+</div>
 
   <!-- Known Spells -->
   <h3>Known Spells</h3>
@@ -462,6 +471,15 @@
 let oracleKnown = JSON.parse(localStorage.getItem("oracleKnown")) || [];
 let wizardKnown = JSON.parse(localStorage.getItem("wizardKnown")) || [];
 let preparedSpells = JSON.parse(localStorage.getItem("preparedSpells")) || [];
+  // Example Oracle slots by level (you’ll adjust these numbers to match your level)
+let oracleSlots = JSON.parse(localStorage.getItem("oracleSlots")) || {
+  1: 5, // Level 1: 5 slots
+  2: 4, // Level 2: 4 slots
+  3: 3, // Level 3: 3 slots
+  4: 2, // etc...
+};
+  // Store the *max slots* too so you can reset daily
+let oracleMaxSlots = { 1: 5, 2: 4, 3: 3, 4: 2 };
 
 // Load ALL spells
 fetch("spells-all.json")
@@ -585,6 +603,35 @@ function renderPrepared() {
   });
 }
 
+
+  function renderOracleSlots() {
+  const list = document.getElementById("oracleSlots");
+  list.innerHTML = "";
+  for (const lvl in oracleSlots) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      L${lvl}: ${oracleSlots[lvl]}/${oracleMaxSlots[lvl]}
+      <button onclick="useOracleSlot(${lvl})">Use</button>
+      <button onclick="resetOracleSlot(${lvl})">Reset</button>
+    `;
+    list.appendChild(li);
+  }
+}
+
+function useOracleSlot(level) {
+  if (oracleSlots[level] > 0) {
+    oracleSlots[level]--;
+    localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
+    renderOracleSlots();
+  }
+}
+
+function resetOracleSlot(level) {
+  oracleSlots[level] = oracleMaxSlots[level];
+  localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
+  renderOracleSlots();
+}
+  
 // Toggle prepared spell usage
 function toggleUsed(index) {
   preparedSpells[index].used = !preparedSpells[index].used;
