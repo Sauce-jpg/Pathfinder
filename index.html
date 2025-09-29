@@ -491,6 +491,13 @@ fetch("spells-all.json")
     renderOracleSlots(); // <-- show oracle counters on load
   });
 
+
+
+
+
+
+
+  
 // Show spells from DB based on filter
 function loadSpells() {
   const classFilter = document.getElementById("classFilter").value;
@@ -501,24 +508,47 @@ function loadSpells() {
   list.innerHTML = "";
 
   if (!classFilter && !levelFilter && !schoolFilter && !searchFilter) {
-    return; // default: empty
+    return; // empty by default
   }
 
   const filtered = allSpells.filter(spell => {
+    // --- Class ---
     const matchesClass = !classFilter || spell.level[classFilter] !== undefined;
-    const matchesLevel = !levelFilter || (
-      classFilter && spell.level[classFilter] == levelFilter
-    );
+
+    // --- Level ---
+    let matchesLevel = true;
+    if (levelFilter) {
+      if (classFilter) {
+        // check only chosen class level
+        matchesLevel = spell.level[classFilter] == levelFilter;
+      } else {
+        // no class chosen → check ANY class level
+        matchesLevel = Object.values(spell.level).some(lv => lv == levelFilter);
+      }
+    }
+
+    // --- School ---
     const matchesSchool = !schoolFilter || spell.school === schoolFilter;
+
+    // --- Search ---
     const matchesSearch = !searchFilter || spell.name.toLowerCase().includes(searchFilter);
+
     return matchesClass && matchesLevel && matchesSchool && matchesSearch;
   });
 
+  // show results
+  if (filtered.length === 0) {
+    list.innerHTML = `<li><em>No results found</em></li>`;
+    return;
+  }
+
   filtered.forEach(spell => {
-    const spellLevel = classFilter ? spell.level[classFilter] : Object.values(spell.level)[0];
+    const spellLevel = classFilter
+      ? spell.level[classFilter]
+      : Object.values(spell.level)[0];
     const li = document.createElement("li");
     li.innerHTML = `
-      <strong>${spell.name}</strong> 
+      <strong>${spell.name}</strong>
       (Lv ${spellLevel}, ${spell.school})
       <a href="${spell.url}" target="_blank">📖</a>
       <button onclick="chooseKnown('${spell.name}')">+ Known</button>
@@ -527,6 +557,11 @@ function loadSpells() {
   });
 }
 
+
+
+
+  
+  
 
 
 function chooseKnown(spellName) {
