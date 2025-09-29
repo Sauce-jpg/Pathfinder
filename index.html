@@ -574,6 +574,12 @@ function renderKnown() {
   });
 }
 
+  
+function prepareSpell(name) {
+  preparedSpells.push({ name, used: false });
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
+}
 
   function prepareSpell(name) {
   addPrepared(name);
@@ -589,18 +595,22 @@ function addPrepared(name) {
 
 // Show Prepared Spells
 function renderPrepared() {
-  const list = document.getElementById("preparedList");
+  const list = document.getElementById("preparedList"); // correct id
   list.innerHTML = "";
   preparedSpells.forEach((p, index) => {
+    // find spell info in database
     const spell = allSpells.find(s => s.name === p.name);
-    if (!spell) return;
+    const name = spell ? spell.name : p.name;
+    const url = spell ? spell.url : "#";
+
     const li = document.createElement("li");
     li.innerHTML = `
       <label>
         <input type="checkbox" ${p.used ? "checked" : ""} 
-          onchange="toggleUsed(${index})"> ${spell.name}
+          onchange="toggleUsed(${index})">
+        ${name}
       </label>
-      <a href="${spell.url}" target="_blank">📖</a>
+      <a href="${url}" target="_blank">📖</a>
       <button onclick="removePrepared(${index})">✖</button>
     `;
     list.appendChild(li);
