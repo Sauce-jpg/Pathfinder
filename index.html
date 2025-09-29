@@ -528,7 +528,8 @@ function loadSpells() {
     }
 
     // --- School ---
-    const matchesSchool = !schoolFilter || spell.school === schoolFilter;
+    const matchesSchool =
+  !schoolFilter || spell.school.toLowerCase().includes(schoolFilter.toLowerCase());
 
     // --- Search ---
     const matchesSearch = !searchFilter || spell.name.toLowerCase().includes(searchFilter);
