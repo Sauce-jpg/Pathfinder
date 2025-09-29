@@ -500,29 +500,29 @@ function loadSpells() {
   const list = document.getElementById("spellList");
   list.innerHTML = "";
 
- // ✅ Hide all spells if no filters are used
   if (!classFilter && !levelFilter && !schoolFilter && !searchFilter) {
-    return; // Exit without showing anything
+    return; // default: empty
   }
-  
-  const filtered = allSpells.filter(spell => {
-    const matchesClass = classFilter === "" || spell.level[classFilter] !== undefined;
-    const matchesLevel = levelFilter === "" || (spell.level[classFilter] == levelFilter);
-    const matchesSchool = schoolFilter === "" || spell.school === schoolFilter;
-    const matchesSearch = searchFilter === "" || spell.name.toLowerCase().includes(searchFilter);
 
+  const filtered = allSpells.filter(spell => {
+    const matchesClass = !classFilter || spell.level[classFilter] !== undefined;
+    const matchesLevel = !levelFilter || (
+      classFilter && spell.level[classFilter] == levelFilter
+    );
+    const matchesSchool = !schoolFilter || spell.school === schoolFilter;
+    const matchesSearch = !searchFilter || spell.name.toLowerCase().includes(searchFilter);
     return matchesClass && matchesLevel && matchesSchool && matchesSearch;
   });
 
   filtered.forEach(spell => {
-    const li = document.createElement("li");
     const spellLevel = classFilter ? spell.level[classFilter] : Object.values(spell.level)[0];
+    const li = document.createElement("li");
     li.innerHTML = `
       <strong>${spell.name}</strong> 
       (Lv ${spellLevel}, ${spell.school})
       <a href="${spell.url}" target="_blank">📖</a>
       <button onclick="chooseKnown('${spell.name}')">+ Known</button>
-     `;
+    `;
     list.appendChild(li);
   });
 }
@@ -548,31 +548,62 @@ function renderKnown() {
   oracleList.innerHTML = "";
   wizardList.innerHTML = "";
 
-  oracleKnown.forEach((name, i) => {
+  const oracleGrouped = {};
+  oracleKnown.forEach(name => {
     const spell = allSpells.find(s => s.name === name);
-    const url = spell ? spell.url : "#";
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${name} <a href="${url}" target="_blank">📖</a>
-      <button onclick="removeKnown('oracle', ${i})">✖</button>
-      <!-- no Prepare button for Oracle -->
-    `;
-    oracleList.appendChild(li);
+    if (!spell) return;
+    for (const cls in spell.level) {
+      if (cls === "Oracle") {
+        const lvl = spell.level[cls];
+        if (!oracleGrouped[lvl]) oracleGrouped[lvl] = [];
+        oracleGrouped[lvl].push(spell);
+      }
+    }
+  });
+   Object.keys(oracleGrouped).sort((a,b)=>a-b).forEach(lvl => {
+    const header = document.createElement("li");
+    header.innerHTML = `<strong>Level ${lvl}</strong>`;
+    oracleList.appendChild(header);
+    oracleGrouped[lvl].forEach(spell => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${spell.name} <a href="${spell.url}" target="_blank">📖</a>
+        <button onclick="removeKnown('oracle', oracleKnown.indexOf('${spell.name}'))">✖</button>
+      `;
+      oracleList.appendChild(li);
+    });
   });
 
-  wizardKnown.forEach((name, i) => {
+  const wizardGrouped = {};
+  wizardKnown.forEach(name => {
     const spell = allSpells.find(s => s.name === name);
-    const url = spell ? spell.url : "#";
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${name} <a href="${url}" target="_blank">📖</a>
-      <button onclick="removeKnown('wizard', ${i})">✖</button>
-      <button onclick="prepareSpell('${name}')">Prepare</button>
-    `;
-    wizardList.appendChild(li);
+    if (!spell) return;
+    for (const cls in spell.level) {
+      if (cls === "Wizard") {
+        const lvl = spell.level[cls];
+        if (!wizardGrouped[lvl]) wizardGrouped[lvl] = [];
+        wizardGrouped[lvl].push(spell);
+      }
+    }
+  });
+  Object.keys(wizardGrouped).sort((a,b)=>a-b).forEach(lvl => {
+    const header = document.createElement("li");
+    header.innerHTML = `<strong>Level ${lvl}</strong>`;
+    wizardList.appendChild(header);
+    wizardGrouped[lvl].forEach(spell => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${spell.name} <a href="${spell.url}" target="_blank">📖</a>
+        <button onclick="removeKnown('wizard', wizardKnown.indexOf('${spell.name}'))">✖</button>
+        <button onclick="prepareSpell('${spell.name}')">Prepare</button>
+      `;
+      wizardList.appendChild(li);
+    });
   });
 }
 
+
+  
   
 function prepareSpell(name) {
   preparedSpells.push({ name, used: false });
@@ -592,25 +623,34 @@ function addPrepared(name) {
 
 // Show Prepared Spells
 function renderPrepared() {
-  const list = document.getElementById("preparedList"); // correct id
+  const list = document.getElementById("preparedList");
   list.innerHTML = "";
-  preparedSpells.forEach((p, index) => {
-    // find spell info in database
-    const spell = allSpells.find(s => s.name === p.name);
-    const name = spell ? spell.name : p.name;
-    const url = spell ? spell.url : "#";
 
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <label>
-        <input type="checkbox" ${p.used ? "checked" : ""} 
-          onchange="toggleUsed(${index})">
-        ${name}
-      </label>
-      <a href="${url}" target="_blank">📖</a>
-      <button onclick="removePrepared(${index})">✖</button>
-    `;
-    list.appendChild(li);
+  const grouped = {};
+  preparedSpells.forEach((p, index) => {
+    const spell = allSpells.find(s => s.name === p.name);
+    if (!spell) return;
+    const lvl = spell.level.Wizard ?? "?";
+    if (!grouped[lvl]) grouped[lvl] = [];
+    grouped[lvl].push({ spell, index, used: p.used });
+  });
+
+  Object.keys(grouped).sort((a,b)=>a-b).forEach(lvl => {
+    const header = document.createElement("li");
+    header.innerHTML = `<strong>Level ${lvl}</strong>`;
+    list.appendChild(header);
+    grouped[lvl].forEach(({spell, index, used}) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <label>
+          <input type="checkbox" ${used ? "checked" : ""} onchange="toggleUsed(${index})">
+          ${spell.name}
+        </label>
+        <a href="${spell.url}" target="_blank">📖</a>
+        <button onclick="removePrepared(${index})">✖</button>
+      `;
+      list.appendChild(li);
+    });
   });
 }
 
