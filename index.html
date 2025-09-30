@@ -156,6 +156,62 @@
     .dark-mode #backToTop:hover {
       background: #666;
     }
+
+
+    
+
+
+    .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+}
+
+.dark-mode .dropbtn {
+  background: #555;
+  color: #fff;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content button,
+.dropdown-content a {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover,
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}
+
+
+
+
     
   </style>
 </head>
@@ -464,6 +520,22 @@
     toggleBackToTop();
   };
 
+
+
+  function toggleDropdown(id) {
+  document.querySelectorAll(".dropdown").forEach(d => {
+    if (d.id !== id) d.classList.remove("show"); // close others
+  });
+  document.getElementById(id).classList.toggle("show");
+}
+
+// close dropdowns if clicking outside
+window.addEventListener("click", function(e) {
+  if (!e.target.matches(".dropbtn")) {
+    document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
+  }
+});
+
   
 
   let allSpells = [];
@@ -588,23 +660,26 @@ function renderKnown() {
   oracleKnown.forEach(name => {
     const spell = allSpells.find(s => s.name === name);
     if (!spell) return;
-    for (const cls in spell.level) {
-      if (cls === "Oracle") {
-        const lvl = spell.level[cls];
-        if (!oracleGrouped[lvl]) oracleGrouped[lvl] = [];
-        oracleGrouped[lvl].push(spell);
-      }
-    }
+    const lvl = spell.level.Oracle ?? "?";
+    if (!oracleGrouped[lvl]) oracleGrouped[lvl] = [];
+    oracleGrouped[lvl].push(spell);
   });
-   Object.keys(oracleGrouped).sort((a,b)=>a-b).forEach(lvl => {
+
+  Object.keys(oracleGrouped).sort((a,b)=>a-b).forEach(lvl => {
     const header = document.createElement("li");
     header.innerHTML = `<strong>Level ${lvl}</strong>`;
     oracleList.appendChild(header);
-    oracleGrouped[lvl].forEach(spell => {
+    oracleGrouped[lvl].forEach((spell, i) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        ${spell.name} <a href="${spell.url}" target="_blank">📖</a>
-        <button onclick="removeKnown('oracle', oracleKnown.indexOf('${spell.name}'))">✖</button>
+        ${spell.name}
+        <div class="dropdown" id="dd-oracle-${lvl}-${i}">
+          <button class="dropbtn" onclick="toggleDropdown('dd-oracle-${lvl}-${i}')">⋮ Options</button>
+          <div class="dropdown-content">
+            <a href="${spell.url}" target="_blank">📖 Open</a>
+            <button onclick="removeKnown('oracle', oracleKnown.indexOf('${spell.name}'))">Remove</button>
+          </div>
+        </div>
       `;
       oracleList.appendChild(li);
     });
@@ -614,24 +689,27 @@ function renderKnown() {
   wizardKnown.forEach(name => {
     const spell = allSpells.find(s => s.name === name);
     if (!spell) return;
-    for (const cls in spell.level) {
-      if (cls === "Wizard") {
-        const lvl = spell.level[cls];
-        if (!wizardGrouped[lvl]) wizardGrouped[lvl] = [];
-        wizardGrouped[lvl].push(spell);
-      }
-    }
+    const lvl = spell.level.Wizard ?? "?";
+    if (!wizardGrouped[lvl]) wizardGrouped[lvl] = [];
+    wizardGrouped[lvl].push(spell);
   });
+
   Object.keys(wizardGrouped).sort((a,b)=>a-b).forEach(lvl => {
     const header = document.createElement("li");
     header.innerHTML = `<strong>Level ${lvl}</strong>`;
     wizardList.appendChild(header);
-    wizardGrouped[lvl].forEach(spell => {
+    wizardGrouped[lvl].forEach((spell, i) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        ${spell.name} <a href="${spell.url}" target="_blank">📖</a>
-        <button onclick="removeKnown('wizard', wizardKnown.indexOf('${spell.name}'))">✖</button>
-        <button onclick="prepareSpell('${spell.name}')">Prepare</button>
+        ${spell.name}
+        <div class="dropdown" id="dd-wizard-${lvl}-${i}">
+          <button class="dropbtn" onclick="toggleDropdown('dd-wizard-${lvl}-${i}')">⋮ Options</button>
+          <div class="dropdown-content">
+            <a href="${spell.url}" target="_blank">📖 Open</a>
+            <button onclick="prepareSpell('${spell.name}')">Prepare</button>
+            <button onclick="removeKnown('wizard', wizardKnown.indexOf('${spell.name}'))">Remove</button>
+          </div>
+        </div>
       `;
       wizardList.appendChild(li);
     });
@@ -678,12 +756,15 @@ function renderPrepared() {
     grouped[lvl].forEach(({spell, index, used}) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        <label>
-          <input type="checkbox" ${used ? "checked" : ""} onchange="toggleUsed(${index})">
-          ${spell.name}
-        </label>
-        <a href="${spell.url}" target="_blank">📖</a>
-        <button onclick="removePrepared(${index})">✖</button>
+        ${spell.name}
+        <div class="dropdown" id="dd-prepared-${lvl}-${index}">
+          <button class="dropbtn" onclick="toggleDropdown('dd-prepared-${lvl}-${index}')">⋮ Options</button>
+          <div class="dropdown-content">
+            <a href="${spell.url}" target="_blank">📖 Open</a>
+            <button onclick="toggleUsed(${index})">${used ? "Unmark Used" : "Mark Used"}</button>
+            <button onclick="removePrepared(${index})">Remove</button>
+          </div>
+        </div>
       `;
       list.appendChild(li);
     });
