@@ -1578,6 +1578,28 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/a/apocalypse-from-the-sky/"
   },
   {
+    "name": "Appearance of Life",
+    "school": "Illusion (Glamer)",
+    "level": {
+      "Sorcerer": 2,
+      "Wizard": 2,
+      "Cleric": 2,
+      "Oracle": 2
+    },
+    "domain": null,
+    "casting_time": "1 standard action",
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "range": "Personal",
+    "targets": "You",
+    "duration": "10 min/level (D)",
+    "saving_throw": "None",
+    "spell_resistance": "No",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/a/appearance-of-life/"
+  },
+  {
     "name": "Apport Object",
     "school": "Conjuration (Teleportation)",
     "level": {
@@ -13443,6 +13465,29 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/e/enervation-greater/"
   },
   {
+    "name": "Enhance Diplomacy",
+    "school": "Enchantment (Compulsion) [Mind-Affecting]",
+    "level": {
+      "Bard": 1,
+      "Cleric": 1,
+      "Oracle": 1,
+      "Paladin": 1,
+      "Inquisitor": 1
+    },
+    "domain": "Charm 1",
+    "casting_time": "1 standard action",
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "range": "Touch",
+    "targets": "Creature touched",
+    "duration": "1 minute or until discharged",
+    "saving_throw": "Will negates (harmless)",
+    "spell_resistance": "Yes (harmless)",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/e/enhance-diplomacy/"
+  },
+  {
     "name": "Enshroud Thoughts",
     "school": "Abjuration",
     "level": {
@@ -19255,6 +19300,31 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/m/magic-vestment"
   },
   {
+    "name": "Magic Weapon",
+    "school": "Transmutation",
+    "level": {
+      "Cleric": 1,
+      "Oracle": 1,
+      "Paladin": 1,
+      "Sorcerer": 1,
+      "Wizard": 1
+    },
+    "domain": "War 1",
+    "casting_time": "1 standard action",
+    "components": {
+      "verbal": true,
+      "somatic": true,
+      "focus": true,
+      "focus_text": "A weapon"
+    },
+    "range": "Touch",
+    "targets": "Weapon touched",
+    "duration": "1 min/level",
+    "saving_throw": "Will negates (harmless, object)",
+    "spell_resistance": "Yes (harmless, object)",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/m/magic-weapon/"
+  },
+  {
     "name": "Magnetize",
     "school": "Transmutation",
     "level": {
@@ -23559,6 +23629,32 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/r/resinous-skin/"
   },
   {
+    "name": "Resist Energy",
+    "school": "Abjuration",
+    "level": {
+      "Cleric": 2,
+      "Oracle": 2,
+      "Druid": 2,
+      "Paladin": 2,
+      "Sorcerer": 2,
+      "Wizard": 2,
+      "Inquisitor": 2,
+      "Ranger": 2
+    },
+    "domain": "Protection 2",
+    "casting_time": "1 standard action",
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "range": "Touch",
+    "targets": "Creature touched",
+    "duration": "10 min/level",
+    "saving_throw": "Fortitude negates (harmless)",
+    "spell_resistance": "Yes (harmless)",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/r/resist-energy/"
+  },
+  {
     "name": "Resistance",
     "school": "Abjuration",
     "level": {
@@ -25709,6 +25805,27 @@
     "saving_throw": "Fortitude partial",
     "spell_resistance": "Yes",
     "url": "https://www.d20pfsrd.com/magic/all-spells/s/sound-burst/"
+  },
+  {
+    "name": "Spark",
+    "school": "Evocation [Fire]",
+    "level": {
+      "Druid": 0,
+      "Sorcerer": 0,
+      "Wizard": 0
+    },
+    "domain": "Fire 0",
+    "casting_time": "1 standard action",
+    "components": {
+      "verbal": true,
+      "somatic": true
+    },
+    "range": "Close (25 ft. + 5 ft./2 levels)",
+    "targets": "One Fine object of a flammable substance",
+    "duration": "Instantaneous",
+    "saving_throw": "Will negates (object)",
+    "spell_resistance": "Yes (object)",
+    "url": "https://www.d20pfsrd.com/magic/all-spells/s/spark/"
   },
   {
     "name": "Speak with Animals",
@@ -29614,6 +29731,7 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/z/zone-of-truth/"
   }  
 ]
+
 
 
 
