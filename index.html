@@ -674,7 +674,7 @@ function renderKnown() {
       li.innerHTML = `
         ${spell.name}
         <div class="dropdown" id="dd-oracle-${lvl}-${i}">
-          <button class="dropbtn" onclick="toggleDropdown('dd-oracle-${lvl}-${i}')">⋮ Options</button>
+          <button class="dropbtn" onclick="toggleDropdown('dd-oracle-${lvl}-${i}')">⋮</button>
           <div class="dropdown-content">
             <a href="${spell.url}" target="_blank">📖 Open</a>
             <button onclick="removeKnown('oracle', oracleKnown.indexOf('${spell.name}'))">Remove</button>
@@ -703,7 +703,7 @@ function renderKnown() {
       li.innerHTML = `
         ${spell.name}
         <div class="dropdown" id="dd-wizard-${lvl}-${i}">
-          <button class="dropbtn" onclick="toggleDropdown('dd-wizard-${lvl}-${i}')">⋮ Options</button>
+          <button class="dropbtn" onclick="toggleDropdown('dd-wizard-${lvl}-${i}')">⋮</button>
           <div class="dropdown-content">
             <a href="${spell.url}" target="_blank">📖 Open</a>
             <button onclick="prepareSpell('${spell.name}')">Prepare</button>
@@ -756,12 +756,14 @@ function renderPrepared() {
     grouped[lvl].forEach(({spell, index, used}) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        ${spell.name}
+        <label>
+          <input type="checkbox" ${used ? "checked" : ""} onchange="toggleUsed(${index})">
+          ${spell.name}
+        </label>
         <div class="dropdown" id="dd-prepared-${lvl}-${index}">
-          <button class="dropbtn" onclick="toggleDropdown('dd-prepared-${lvl}-${index}')">⋮ Options</button>
+          <button class="dropbtn" onclick="toggleDropdown('dd-prepared-${lvl}-${index}')">⋮</button>
           <div class="dropdown-content">
             <a href="${spell.url}" target="_blank">📖 Open</a>
-            <button onclick="toggleUsed(${index})">${used ? "Unmark Used" : "Mark Used"}</button>
             <button onclick="removePrepared(${index})">Remove</button>
           </div>
         </div>
