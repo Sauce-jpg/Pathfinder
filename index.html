@@ -268,7 +268,9 @@
      <h2>Spells & Powers</h2>
 
 
-
+<div>
+  <button onclick="rest()">Rest</button>
+</div>
 <div>
   <h4>Wizard Prepared Spells</h4>
   <ul id="preparedList"></ul>
@@ -277,7 +279,6 @@
 <div>
   <h4>Oracle Spell Slots</h4>
   <ul id="oracleSlots"></ul>
-  <button onclick="resetAllOracleSlots()">Reset All Oracle Slots</button>
 </div>
 
 
@@ -781,13 +782,32 @@ function renderPrepared() {
     const li = document.createElement("li");
     li.innerHTML = `
       L${lvl}: ${oracleSlots[lvl]}/${oracleMaxSlots[lvl]}
-      <button onclick="useOracleSlot(${lvl})">Use</button>
-      <button onclick="resetOracleSlot(${lvl})">Reset</button>
+      <div class="dropdown" id="dd-oracleSlot-${lvl}">
+        <button class="dropbtn" onclick="toggleDropdown('dd-oracleSlot-${lvl}')">⋮</button>
+        <div class="dropdown-content">
+          <button onclick="useOracleSlot(${lvl})">Use</button>
+          <button onclick="adjustOracleSlot(${lvl})">Adjust</button>
+        </div>
+      </div>
     `;
     list.appendChild(li);
   }
 }
 
+
+function adjustOracleSlot(level) {
+  const newVal = prompt(`Set slots for Level ${level}:`, oracleSlots[level]);
+  if (newVal !== null) {
+    const parsed = parseInt(newVal, 10);
+    if (!isNaN(parsed) && parsed >= 0) {
+      oracleSlots[level] = parsed;
+      localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
+      renderOracleSlots();
+    }
+  }
+}
+  
+  
 
 function useOracleSlot(level) {
   if (oracleSlots[level] > 0) {
@@ -797,17 +817,24 @@ function useOracleSlot(level) {
   }
 }
 
-function resetOracleSlot(level) {
-  oracleSlots[level] = oracleMaxSlots[level];
+
+
+
+
+  function rest() {
+  // Reset all oracle slots to max
+  Object.keys(oracleMaxSlots).forEach(l => oracleSlots[l] = oracleMaxSlots[l]);
   localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
   renderOracleSlots();
+
+  // Uncheck all wizard prepared spells
+  preparedSpells.forEach(p => p.used = false);
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
 }
 
-  function resetAllOracleSlots() {
-  Object.keys(oracleMaxSlots).forEach(l => oracleSlots[l] = oracleMaxSlots[l]);
-  localStorage.setItem('oracleSlots', JSON.stringify(oracleSlots));
-  renderOracleSlots();
-}
+  
+
   
 // Toggle prepared spell usage
 function toggleUsed(index) {
