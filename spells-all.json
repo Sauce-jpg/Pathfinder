@@ -18615,7 +18615,7 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/l/lighten-object"
   },
   {
-    "name": "Lights",
+    "name": "Light",
     "school": "Evocation [Light]",
     "level": {
       "Cleric": 0,
@@ -22453,27 +22453,6 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/p/prayer/"
   },
   {
-    "name": "Prestidigitation",
-    "school": "Universal",
-    "level": {
-      "Sorcerer": 0,
-      "Wizard": 0,
-      "Bard": 0
-    },
-    "domain": null,
-    "casting_time": "1 standard action",
-    "components": {
-      "verbal": true,
-      "somatic": true
-    },
-    "range": "10 ft.",
-    "targets": "See text",
-    "duration": "1 hour",
-    "saving_throw": "See text",
-    "spell_resistance": "No",
-    "url": "https://www.d20pfsrd.com/magic/all-spells/p/prestidigitation/"
-  },
-  {
     "name": "Produce Flame",
     "school": "Evocation [Fire]",
     "level": {
@@ -22721,6 +22700,7 @@
     "school": "Transmutation",
     "level": {
       "Cleric": 0,
+      "Oracle": 0,
       "Druid": 0,
       "Paladin": 1
     },
@@ -23051,6 +23031,7 @@
     "school": "Divination",
     "level": {
       "Cleric": 0,
+      "Oracle": 0,
       "Druid": 0,
       "Paladin": 1,
       "Sorcerer": 0,
@@ -23659,6 +23640,7 @@
     "school": "Abjuration",
     "level": {
       "Cleric": 0,
+      "Oracle": 0,
       "Druid": 0,
       "Paladin": 1,
       "Sorcerer": 0,
@@ -29731,6 +29713,7 @@
     "url": "https://www.d20pfsrd.com/magic/all-spells/z/zone-of-truth/"
   }  
 ]
+
 
 
 
