@@ -28,6 +28,13 @@ header {
   box-shadow: 0 2px 5px rgba(0,0,0,0.4);
 }
 
+header h1, 
+header p, 
+header a {
+  position: relative;
+  z-index: 1; /* makes sure text sits above gradient */
+}
+
 /* Fantasy font + glowing effect */
 header h1 {
   font-family: 'Cinzel Decorative', serif;
@@ -63,7 +70,7 @@ header::after {
   z-index: 0;
 }
 
-/* Dark Mode Adjustment /* 
+/* Dark Mode Adjustment */ 
 .dark-mode header {
   background-blend-mode: multiply;
   background-color: rgba(0,0,0,0.4);
