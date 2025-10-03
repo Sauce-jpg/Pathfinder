@@ -77,6 +77,25 @@ header::after {
 }
 
 
+/* =====  Styling for Tables  ===== */ 
+.char-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+.char-table th, .char-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
+.char-table th {
+  background: #eee;
+  text-align: left;
+  width: 200px;
+}
+.dark-mode .char-table th { background: #333; }
+
+
+
 
 /* ===== Top Nav (Pathfinder tabs) ===== */
 nav {
