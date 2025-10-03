@@ -4,17 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pathfinder Character Hub</title>
-    <link rel="stylesheet" href="../style.css"> <!-- shared -->
+  
+  <!-- Shared theme + styles -->
+  <link rel="stylesheet" href="../style.css"> <!-- shared -->
   <script src="../theme.js" defer></script>   <!-- shared -->
-  <script src="pathfinder.js" defer></script> <!-- new -->
+
+  <!-- Pathfinder-specific logic -->
+  <script src="pathfinder.js" defer></script> <!-- new --> 
 </head>
+  
 <body>
   <button class="toggle" onclick="toggleTheme()">Toggle Theme</button>
   <button id="backToTop" onclick="scrollToTop()">↑ Back to Top</button>
+  
   <header>
+    <a href="../index.html">← Back to Hub</a>
     <h1>Vaelin Duskryn</h1>
     <p>Drow Noble • Oracle-Wizard • Necromancer</p>
   </header>
+  
   <nav>
     <button onclick="openTab('overview', this)" class="active">Overview</button>
     <button onclick="openTab('combat', this)">Combat</button>
@@ -24,7 +32,9 @@
     <button onclick="openTab('story', this)">Story</button>
     <button onclick="openTab('resources', this)">Resources</button>
   </nav>
+  
   <main>
+    <!-- Overview -->
     <section id="overview" class="active">
       <h2>Character Overview</h2>
       <img class="icon" src="VaelinDuskryn.png" alt="Character Icon">
@@ -36,6 +46,7 @@
       <p><strong>Background:</strong> Betrayed noble, seeks revenge</p>
     </section>
 
+    <!-- Combat -->
     <section id="combat">
       <h2>Combat & Stats</h2>
       <ul>
@@ -56,10 +67,9 @@
       <p>Hand Crossbow, Rapier (Silver, Finesse), Dagger (Silver), Quarterstaff, Rapier (+1, Finesse), Wendifisa Spear, etc.</p>
     </section>
 
+    <!-- Spells -->
     <section id="spells">
-
      <h2>Spells & Powers</h2>
-
 
 <div>
   <button onclick="rest()">Rest</button>
@@ -92,8 +102,14 @@
     <label for="classFilter">Class:</label>
     <select id="classFilter">
       <option value="">All</option>
+      <option value="Bard">Bard</option>
       <option value="Wizard">Wizard</option>
+      <option value="Sorcerer">Sorcerer</option>
+      <option value="Cleric">Cleric</option>
       <option value="Oracle">Oracle</option>
+      <option value="Magus">Magus</option>
+      <option value="Ranger">Ranger</option>
+      <option value="Paladin">Paladin</option>
     </select>
 
     <label for="levelFilter">Level:</label>
@@ -132,10 +148,9 @@
   </div>
 
   <ul id="spellList"></ul>
-
-  
     </section>
 
+    <!-- Inventory -->
     <section id="inventory">
       <h2>Inventory</h2>
       <ul>
@@ -146,6 +161,7 @@
       </ul>
     </section>
 
+    <!-- Allies -->
     <section id="allies">
       <h2>Allies & Contacts</h2>
       <ul>
@@ -155,6 +171,7 @@
       </ul>
     </section>
 
+    <!-- Story -->
     <section id="story">
       <h2>Story & Notes</h2>
       <h3>Backstory</h3>
@@ -167,6 +184,7 @@
       </ul>
     </section>
 
+    <!-- Resources -->
     <section id="resources">
       <h2>Resources</h2>
       <p>Links to spell lists, rulebooks, reference sheets, etc.</p>
