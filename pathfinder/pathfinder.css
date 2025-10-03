@@ -129,7 +129,6 @@ button.toggle {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  cursor: pointer;
   z-index: 2000; /* sits above header + gradient */
 }
 .dark-mode button.toggle {
