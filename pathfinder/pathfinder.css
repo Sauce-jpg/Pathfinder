@@ -129,6 +129,46 @@ nav .dropdown:hover .dropdown-content {
 }
 
 
+/* =====  Collapsible  ===== */ 
+.collapsible {
+  margin-bottom: 1rem;
+}
+
+.collapse-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+}
+
+.collapse-btn:hover {
+  background: #bbb;
+}
+
+.dark-mode .collapse-btn {
+  background: #444;
+  color: #f5f5f5;
+}
+.dark-mode .collapse-btn:hover {
+  background: #666;
+}
+
+.collapse-content {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.collapse-content.show {
+  display: block;
+}
+
+
+
 
 /* =====  Styling for Tables  ===== */ 
 .char-table {
