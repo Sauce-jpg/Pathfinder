@@ -2,7 +2,7 @@
    Pathfinder Character JS
    ======================= */
 
-// THEME + TABS are handled in ../theme.js
+// THEME are handled in ../theme.js
 
 // --- DOM References ---
 const backToTopBtn = document.getElementById("backToTop");
