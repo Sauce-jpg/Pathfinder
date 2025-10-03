@@ -167,36 +167,30 @@
     </tr>
 
     <!-- Example skill rows -->
-    <tr>
-      <td>Acrobatics</td>
-      <td>Dex</td>
-      <td><input type="number" value="0"></td>
-      <td><input type="checkbox"></td>
-      <td><input type="number" value="0"></td>
-      <td class="total">+0</td>
-      <td>—</td>
-    </tr>
+  <!-- Example collapsible -->
+  <div class="collapsible">
+    <button class="collapse-btn">Core Skills ▾</button>
+    <div class="collapse-content">
+      <table class="skills-table">
+        <tr><th>Skill</th><th>Ability</th><th>Ranks</th><th>Class?</th><th>Misc</th><th>Total</th><th>Conditional</th></tr>
+        <tr><td>Acrobatics</td><td>Dex</td><td><input type="number"></td><td><input type="checkbox"></td><td><input type="number"></td><td>+0</td><td>—</td></tr>
+        <tr><td>Appraise</td><td>Int</td><td><input type="number"></td><td><input type="checkbox"></td><td><input type="number"></td><td>+0</td><td>—</td></tr>
+        <tr><td>Bluff</td><td>Cha</td><td><input type="number"></td><td><input type="checkbox"></td><td><input type="number"></td><td>+0</td><td>—</td></tr>
+      </table>
+    </div>
+  </div>
 
-    <tr>
-      <td>Appraise</td>
-      <td>Int</td>
-      <td><input type="number" value="0"></td>
-      <td><input type="checkbox"></td>
-      <td><input type="number" value="0"></td>
-      <td class="total">+0</td>
-      <td>—</td>
-    </tr>
-
-    <tr>
-      <td>Bluff</td>
-      <td>Cha</td>
-      <td><input type="number" value="0"></td>
-      <td><input type="checkbox"></td>
-      <td><input type="number" value="0"></td>
-      <td class="total">+0</td>
-      <td>—</td>
-    </tr>
-
+    <div class="collapsible">
+    <button class="collapse-btn">Knowledge Skills ▾</button>
+    <div class="collapse-content">
+      <table class="skills-table">
+        <tr><td>Knowledge (Arcana)</td><td>Int</td> … </tr>
+        <tr><td>Knowledge (Dungeoneering)</td><td>Int</td> … </tr>
+        <tr><td>Knowledge (Religion)</td><td>Int</td> … </tr>
+      </table>
+    </div>
+  </div>
+    
     <!-- continue for all Pathfinder skills... -->
   </table>
 
@@ -216,49 +210,34 @@
   <h2>Feats & Abilities</h2>
 
   <h3>Feats</h3>
-  <table class="char-table">
-    <tr><th>Name</th><th>Description</th><th>Source</th></tr>
-    <tr>
-      <td>Combat Casting</td>
-      <td>+4 bonus on concentration checks when casting defensively.</td>
-      <td>Core Rulebook</td>
-    </tr>
-    <tr>
-      <td>Spell Focus (Necromancy)</td>
-      <td>+1 DC for all necromancy spells.</td>
-      <td>Core Rulebook</td>
-    </tr>
-  </table>
+<div class="collapsible">
+    <button class="collapse-btn">Feats ▾</button>
+    <div class="collapse-content">
+      <table class="char-table">
+        <tr><th>Name</th><th>Description</th><th>Source</th></tr>
+        <tr><td>Combat Casting</td><td>+4 to concentration checks when casting defensively.</td><td>CRB</td></tr>
+        <tr><td>Spell Focus (Necromancy)</td><td>+1 DC on necromancy spells.</td><td>CRB</td></tr>
+      </table>
+    </div>
+  </div>
 
-  <h3>Special Abilities</h3>
-  <table class="char-table">
-    <tr><th>Name</th><th>Description</th><th>Source</th></tr>
-    <tr>
-      <td>Drow Nobility</td>
-      <td>Innate spell-like abilities such as darkness, dancing lights, and faerie fire.</td>
-      <td>Racial</td>
-    </tr>
-    <tr>
-      <td>Necromancer’s Bond</td>
-      <td>Bonded object: Black obsidian amulet. Allows additional casting.</td>
-      <td>Class Feature</td>
-    </tr>
-  </table>
+  <div class="collapsible">
+    <button class="collapse-btn">Special Abilities ▾</button>
+    <div class="collapse-content">
+      <table class="char-table">
+        <tr><td>Drow Nobility</td><td>Innate spell-like abilities.</td><td>Racial</td></tr>
+      </table>
+    </div>
+  </div>
 
-  <h3>Character Traits</h3>
-  <table class="char-table">
-    <tr><th>Name</th><th>Description</th><th>Source</th></tr>
-    <tr>
-      <td>Magical Knack</td>
-      <td>+2 caster level for one class, up to your character level.</td>
-      <td>Trait</td>
-    </tr>
-    <tr>
-      <td>Focused Mind</td>
-      <td>+2 bonus on concentration checks.</td>
-      <td>Trait</td>
-    </tr>
-  </table>
+  <div class="collapsible">
+    <button class="collapse-btn">Traits ▾</button>
+    <div class="collapse-content">
+      <table class="char-table">
+        <tr><td>Magical Knack</td><td>+2 caster level, max = character level.</td><td>Trait</td></tr>
+      </table>
+    </div>
+  </div>
 </section>
     
 
@@ -418,6 +397,17 @@
 </section>
 
 
+    
+
+    <!-- Allies -->
+<section id="allies">
+      <h2>Allies & Contacts</h2>
+      <ul>
+        <li>Shermit Ribba - Grippli Gunslinger – Party ally</li>
+        <li>Carol – Cleric Queen</li>
+        <li>Glenda – Witch, Blood Queen supporter</li>
+      </ul>
+    </section>
     
     <!-- Story -->
     <section id="story">
