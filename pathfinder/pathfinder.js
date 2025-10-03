@@ -9,6 +9,34 @@ const backToTopBtn = document.getElementById("backToTop");
 const modal = document.getElementById("backstoryModal");
 const modalContent = document.querySelector("#backstoryModal .modal-content");
 
+// --- TABS ---
+function openTab(tabId, btn) {
+  document.querySelectorAll("main section").forEach(sec => sec.classList.remove("active"));
+  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+  
+  const section = document.getElementById(tabId);
+  if (section) section.classList.add("active");
+  if (btn) btn.classList.add("active");
+}
+
+// --- On page load: restore tab based on hash ---
+window.addEventListener("load", () => {
+  let tabToOpen = "overview";
+  let buttonToActivate = document.querySelector("nav button");
+
+  if (window.location.hash) {
+    const hash = window.location.hash.substring(1);
+    if (document.getElementById(hash)) {
+      tabToOpen = hash;
+      const btn = document.querySelector(`nav button[onclick*="${hash}"]`);
+      if (btn) buttonToActivate = btn;
+    }
+  }
+
+  openTab(tabToOpen, buttonToActivate);
+  toggleBackToTop();
+});
+
 // --- MODAL (Backstory) ---
 function openModal() {
   const backstoryDiv = document.getElementById("backstoryText");
