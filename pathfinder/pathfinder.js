@@ -17,14 +17,13 @@ const modalContent = document.querySelector("#backstoryModal .modal-content");
 
 // --- TABS ---
 function openTab(tabId, btn) {
-  debugLog("Switching tab:", tabId);
-
   document.querySelectorAll("main section").forEach(sec => sec.classList.remove("active"));
-  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-
+  document.querySelectorAll("nav > button").forEach(b => b.classList.remove("active")); // only main nav
   const section = document.getElementById(tabId);
   if (section) section.classList.add("active");
-  if (btn) btn.classList.add("active");
+  if (btn && btn.tagName === "BUTTON" && btn.closest("nav") && !btn.closest(".dropdown")) {
+    btn.classList.add("active");
+  }
 }
 
 // On page load restore tab based on hash
