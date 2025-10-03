@@ -39,37 +39,109 @@
   <main>
     <!-- Overview -->
     <section id="overview" class="active">
-      <h2>Character Overview</h2>
-      <img class="icon" src="VaelinDuskryn.png" alt="Character Icon">
-      <p><strong>Name:</strong> Vaelin Duskryn</p>
-      <p><strong>Ancestry/Race:</strong> Drow Noble</p>
-      <p><strong>Class:</strong> Necromancer</p>
-      <p><strong>Alignment:</strong> N/E</p>
-      <p><strong>Level:</strong> 13</p>
-      <p><strong>Background:</strong> Betrayed noble, seeks revenge</p>
-    </section>
+  <h2>Character Overview</h2>
+  <img class="icon" src="VaelinDuskryn.png" alt="Character Icon">
 
+  <table class="char-table">
+    <tr><th>Name</th><td>Vaelin Duskryn</td></tr>
+    <tr><th>Race</th><td>Drow Noble</td></tr>
+    <tr><th>Classes</th><td>Wizard (Necromancer) 10 / Oracle 3</td></tr>
+    <tr><th>Deity</th><td>Pharasma</td></tr>
+    <tr><th>Age</th><td>134</td></tr>
+    <tr><th>Height</th><td>5’9”</td></tr>
+    <tr><th>Weight</th><td>165 lbs</td></tr>
+    <tr><th>Size</th><td>Medium</td></tr>
+    <tr><th>Speed</th>
+      <td>30 ft (6 squares), 20 ft w/ armor<br>
+          Fly 40 ft (Good), Swim 20 ft, Climb 15 ft, Burrow —</td>
+    </tr>
+    <tr><th>Experience</th><td>87,430 / 105,000</td></tr>
+    <tr><th>Luck Modifier</th><td>+1</td></tr>
+    <tr><th>Hero Points</th><td>2 / 3</td></tr>
+  </table>
+</section>
+
+
+
+
+    
     <!-- Combat -->
     <section id="combat">
-      <h2>Combat & Stats</h2>
-      <ul>
-        <li>HP: 175</li>
-        <li>AC: 28</li>
-        <li>Initiative: +5</li>
-        <li>Fortitude: +12</li>
-        <li>Reflex: +16</li>
-        <li>Will: +22</li>
-        <li>Strength: 17</li>
-        <li>Dexterity: 19</li>
-        <li>Constitution: 15</li>
-        <li>Intelligence: 26</li>
-        <li>Wisdom: 22</li>
-        <li>Charisma: 28</li>
-      </ul>
-      <h3>Weapons & Attacks</h3>
-      <p>Hand Crossbow, Rapier (Silver, Finesse), Dagger (Silver), Quarterstaff, Rapier (+1, Finesse), Wendifisa Spear, etc.</p>
-    </section>
+  <h2>Combat & Stats</h2>
 
+  <!-- Initiative -->
+  <h3>Initiative</h3>
+  <table class="char-table">
+    <tr><th>Total</th><td>+5</td></tr>
+    <tr><th>Dex Modifier</th><td>+4</td></tr>
+    <tr><th>Misc</th><td>+1</td></tr>
+  </table>
+
+  <!-- HP / Damage -->
+  <h3>Health</h3>
+  <table class="char-table">
+    <tr><th>Hit Points</th><td>175</td></tr>
+    <tr><th>Wounds</th><td>12</td></tr>
+    <tr><th>Non-Lethal</th><td>4</td></tr>
+    <tr><th>Conditions</th><td>
+      <ul id="conditions">
+        <li>Poisoned (3 rounds)</li>
+        <li>Shaken (2 rounds)</li>
+      </ul>
+      <button onclick="advanceRound()">Next Round</button>
+    </td></tr>
+  </table>
+
+  <!-- AC -->
+  <h3>Armor Class</h3>
+  <table class="char-table">
+    <tr><th>Total AC</th><td>28 = 10 + 6 Armor + 2 Shield + 4 Dex + 2 Dodge + 0 Size + 2 Natural + 1 Deflection + 1 Misc</td></tr>
+    <tr><th>Touch AC</th><td>16</td></tr>
+    <tr><th>Flat-Footed AC</th><td>24</td></tr>
+  </table>
+
+  <!-- Saves -->
+  <h3>Saves</h3>
+  <table class="char-table">
+    <tr><th>Fortitude</th><td>+12 = 6 Base + 2 Con + 2 Magic + 2 Misc</td></tr>
+    <tr><th>Reflex</th><td>+16 = 8 Base + 4 Dex + 2 Misc + 2 Temp</td></tr>
+    <tr><th>Will</th><td>+22 = 9 Base + 6 Wis + 5 Magic + 2 Misc</td></tr>
+  </table>
+  <p><strong>Resistances / Immunities:</strong> Cold Resist 10, Poison Immunity, DR 5/—, Spell Resistance 19</p>
+
+  <!-- Attack -->
+  <h3>Attacks</h3>
+  <table class="char-table">
+    <tr>
+      <th>Weapon</th><th>Atk Bonus</th><th>Crit</th><th>Type</th>
+      <th>Range</th><th>Ammunition</th><th>Damage</th><th>Ench.</th><th>Special</th>
+    </tr>
+    <tr>
+      <td>Rapier +1 (Silver)</td><td>+14</td><td>18–20/x2</td><td>P</td>
+      <td>Melee</td><td>—</td><td>1d6+5</td><td>+1</td><td>Finesse</td>
+    </tr>
+    <tr>
+      <td>Hand Crossbow</td><td>+12</td><td>19–20/x2</td><td>P</td>
+      <td>30 ft</td><td>20 bolts</td><td>1d4+3</td><td>—</td><td>Reload Move</td>
+    </tr>
+  </table>
+
+  <!-- BAB / CMB / CMD -->
+  <h3>Combat Maneuvers</h3>
+  <table class="char-table">
+    <tr><th>Base Attack Bonus</th><td>+10</td></tr>
+    <tr><th>CMB</th><td>+13 = 10 BAB + 3 Str + 0 Size</td></tr>
+    <tr><th>CMD</th><td>25 = 10 + BAB 10 + Str 3 + Dex 4 + Dodge 2</td></tr>
+  </table>
+
+  <!-- Proficiencies -->
+  <h3>Proficiencies</h3>
+  <p>Simple Weapons, Rapier, Hand Crossbow, Quarterstaff, Light Armor, Shields (except Tower)</p>
+</section>
+
+
+
+    
     <!-- Spells -->
     <section id="spells">
      <h2>Spells & Powers</h2>
