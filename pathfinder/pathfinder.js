@@ -166,6 +166,58 @@ function advanceRound() {
 
 
 
+
+
+// Update modifiers based on ability scores
+function updateAbilityMods() {
+  const mods = {};
+  document.querySelectorAll(".ability-table tr[data-ability]").forEach(row => {
+    const ability = row.dataset.ability;
+    const score = parseInt(row.querySelector(".score").value) || 10;
+    const temp = parseInt(row.querySelector(".temp").value) || 0;
+    const totalScore = score + temp;
+    const mod = Math.floor((totalScore - 10) / 2);
+
+    row.querySelector(".mod").textContent = (mod >= 0 ? "+" : "") + mod;
+    mods[ability] = mod;
+  });
+  return mods;
+}
+
+// Recalculate skills with live ability mods
+function updateSkills() {
+  const abilityMods = updateAbilityMods(); // fetch current mods
+
+  document.querySelectorAll("#skills table tr[data-ability]").forEach(row => {
+    const ability = row.dataset.ability;
+    const ranks = parseInt(row.querySelector(".ranks").value) || 0;
+    const misc = parseInt(row.querySelector(".misc").value) || 0;
+    const classSkill = row.querySelector(".class-skill").checked;
+
+    let total = abilityMods[ability] + ranks + misc;
+    if (classSkill && ranks > 0) total += 3;
+
+    row.querySelector(".total").textContent = (total >= 0 ? "+" : "") + total;
+  });
+}
+
+// Listen for any changes to scores, temps, or skills
+document.addEventListener("input", e => {
+  if (e.target.closest(".ability-table") || e.target.closest("#skills")) {
+    updateSkills();
+  }
+});
+
+// Run once on page load
+document.addEventListener("DOMContentLoaded", updateSkills);
+
+
+
+
+
+
+
+
 // --- SPELL SYSTEM ---
 let allSpells = [];
 let oracleKnown = JSON.parse(localStorage.getItem("oracleKnown")) || [];
