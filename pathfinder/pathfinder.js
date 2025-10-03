@@ -131,6 +131,25 @@ window.addEventListener("click", function (e) {
   }
 });
 
+
+// --- Round Counter Script ---
+function advanceRound() {
+  const items = document.querySelectorAll("#conditions li");
+  items.forEach(li => {
+    const match = li.textContent.match(/\((\d+) rounds?\)/);
+    if (match) {
+      let num = parseInt(match[1]) - 1;
+      if (num <= 0) {
+        li.remove();
+      } else {
+        li.textContent = li.textContent.replace(/\(\d+ rounds?\)/, `(${num} rounds)`);
+      }
+    }
+  });
+}
+
+
+
 // --- SPELL SYSTEM ---
 let allSpells = [];
 let oracleKnown = JSON.parse(localStorage.getItem("oracleKnown")) || [];
