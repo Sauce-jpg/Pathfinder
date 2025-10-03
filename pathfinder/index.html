@@ -26,15 +26,23 @@
     <p>Drow Noble • Oracle-Wizard • Necromancer</p>
   </header>
   
-  <nav>
-    <button onclick="openTab('overview', this)" class="active">Overview</button>
-    <button onclick="openTab('combat', this)">Combat</button>
-    <button onclick="openTab('spells', this)">Spells</button>
-    <button onclick="openTab('inventory', this)">Inventory</button>
-    <button onclick="openTab('allies', this)">Allies</button>
-    <button onclick="openTab('story', this)">Story</button>
-    <button onclick="openTab('resources', this)">Resources</button>
-  </nav>
+ <nav>
+  <button onclick="openTab('overview', this)" class="active">Overview</button>
+  <button onclick="openTab('combat', this)">Combat</button>
+  <button onclick="openTab('spells', this)">Spells</button>
+  <button onclick="openTab('inventory', this)">Inventory</button>
+
+  <div class="dropdown" id="moreNav">
+    <button class="dropbtn">More ▾</button>
+    <div class="dropdown-content">
+      <button onclick="openTab('skills', this)">Skills</button>
+      <button onclick="openTab('feats', this)">Feats & Abilities</button>
+      <button onclick="openTab('allies', this)">Allies</button>
+      <button onclick="openTab('story', this)">Story</button>
+      <button onclick="openTab('resources', this)">Resources</button>
+    </div>
+  </div>
+</nav>
   
   <main>
     <!-- Overview -->
