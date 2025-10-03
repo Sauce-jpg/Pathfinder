@@ -15,14 +15,23 @@ body {
 
 /* ===== Header ===== */
 header {
-  background-color: #e0e0e0;
-  padding: 1rem;
+  background: url("images/header.png") center/cover no-repeat;
+  color: #fff;
+  padding: 2rem 1rem;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+header h1, 
+header p, 
+header a {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .dark-mode header {
-  background-color: #333;
+  background-blend-mode: multiply;
+  background-color: rgba(0,0,0,0.4);
 }
 
 /* Optional: back-to-hub link inside headers */
