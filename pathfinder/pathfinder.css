@@ -118,6 +118,24 @@ header::after {
 .dark-mode .skills-table th { background: #333; }
 
 
+/* For nested lists in inventory */
+#inventory ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+#inventory ul li {
+  margin: 0.3rem 0;
+}
+#inventory ul ul {
+  margin-left: 1.5rem;
+  border-left: 2px solid #ccc;
+  padding-left: 1rem;
+}
+.dark-mode #inventory ul ul {
+  border-color: #555;
+}
+
+
 /* ===== Top Nav (Pathfinder tabs) ===== */
 nav {
   display: flex;
