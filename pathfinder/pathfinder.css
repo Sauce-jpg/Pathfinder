@@ -15,7 +15,7 @@ body {
 
 /* ===== Header ===== */
 header {
-  background: url("images/header.png") center/cover no-repeat;
+  background: url("images/pathfinder_header.png") center/cover no-repeat;
   color: #fff;
   padding: 2rem 1rem;
   text-align: center;
