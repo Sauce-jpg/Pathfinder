@@ -130,6 +130,12 @@ button.toggle {
   top: 1rem;
   right: 1rem;
   z-index: 2000; /* sits above header + gradient */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #ddd; 
+  color: #222; 
 }
 .dark-mode button.toggle {
   background: #555;
