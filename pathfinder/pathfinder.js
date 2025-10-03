@@ -131,6 +131,23 @@ window.addEventListener("click", function (e) {
 });
 
 
+
+// --- Collapsible ---
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".collapse-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const content = btn.nextElementSibling;
+      content.classList.toggle("show");
+      btn.textContent = btn.textContent.includes("▾")
+        ? btn.textContent.replace("▾", "▸")
+        : btn.textContent.replace("▸", "▾");
+    });
+  });
+});
+
+
+
+
 // --- Round Counter Script ---
 function advanceRound() {
   const items = document.querySelectorAll("#conditions li");
