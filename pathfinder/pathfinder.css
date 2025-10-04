@@ -15,7 +15,7 @@ body {
 
 /* ===== Background ===== */
 body {
-  background: url("pathfinder_background.png") center top repeat-y fixed;
+  background: url("images/pathfinder_background.png") center top repeat-y fixed;
   background-size: cover;
   background-attachment: fixed;
 }
