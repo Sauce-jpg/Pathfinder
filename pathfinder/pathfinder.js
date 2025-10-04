@@ -214,6 +214,82 @@ document.addEventListener("DOMContentLoaded", updateSkills);
 
 
 
+// --- Combat Auto-Calculate ---
+function updateCombat() {
+  const mods = updateAbilityMods(); // get latest ability modifiers
+
+  // Initiative
+  const initMisc = parseInt(document.getElementById("init-misc").value) || 0;
+  const initTotal = mods.Dex + initMisc;
+  document.getElementById("init-dex").textContent = (mods.Dex >= 0 ? "+" : "") + mods.Dex;
+  document.getElementById("initiative-total").textContent = (initTotal >= 0 ? "+" : "") + initTotal;
+
+  // Armor Class
+  const base = 10;
+  const armor = parseInt(document.getElementById("ac-armor").value) || 0;
+  const shield = parseInt(document.getElementById("ac-shield").value) || 0;
+  const dex = mods.Dex;
+  const dodge = parseInt(document.getElementById("ac-dodge").value) || 0;
+  const size = parseInt(document.getElementById("ac-size").value) || 0;
+  const natural = parseInt(document.getElementById("ac-natural").value) || 0;
+  const deflect = parseInt(document.getElementById("ac-deflection").value) || 0;
+  const misc = parseInt(document.getElementById("ac-misc").value) || 0;
+
+  const acTotal = base + armor + shield + dex + dodge + size + natural + deflect + misc;
+  const acTouch = base + dex + dodge + size + deflect + misc;
+  const acFlat = base + armor + shield + size + natural + deflect + misc;
+
+  document.getElementById("ac-dex").textContent = (dex >= 0 ? "+" : "") + dex;
+  document.getElementById("ac-total").textContent = acTotal;
+  document.getElementById("ac-touch").textContent = acTouch;
+  document.getElementById("ac-flat").textContent = acFlat;
+
+  // Saves
+  document.querySelectorAll("#combat tr[data-save]").forEach(row => {
+    const saveType = row.dataset.save;
+    let abilityMod = 0;
+    if (saveType === "Fort") abilityMod = mods.Con;
+    if (saveType === "Ref") abilityMod = mods.Dex;
+    if (saveType === "Will") abilityMod = mods.Wis;
+
+    row.querySelector(".ability").textContent = (abilityMod >= 0 ? "+" : "") + abilityMod;
+
+    const base = parseInt(row.querySelector(".base").value) || 0;
+    const magic = parseInt(row.querySelector(".magic").value) || 0;
+    const misc = parseInt(row.querySelector(".misc").value) || 0;
+    const temp = parseInt(row.querySelector(".temp").value) || 0;
+
+    const total = base + abilityMod + magic + misc + temp;
+    row.querySelector(".total").textContent = (total >= 0 ? "+" : "") + total;
+  });
+
+  // CMB / CMD
+  const bab = parseInt(document.getElementById("bab").value) || 0;
+  const cmbMisc = 0; // could add an input for misc later
+  const sizeMod = parseInt(document.getElementById("ac-size").value) || 0;
+  const cmb = bab + mods.Str + sizeMod + cmbMisc;
+  const cmd = 10 + bab + mods.Str + mods.Dex + dodge + deflect + sizeMod + misc;
+
+  document.getElementById("cmb-total").textContent = (cmb >= 0 ? "+" : "") + cmb;
+  document.getElementById("cmd-total").textContent = cmd;
+}
+
+// Conditions countdown
+function advanceRound() {
+  let condInput = document.getElementById("conditions");
+  let text = condInput.value;
+  condInput.value = text.replace(/(\d+)/, (m) => Math.max(0, parseInt(m) - 1));
+}
+
+// Auto-update combat when inputs change
+document.addEventListener("input", e => {
+  if (e.target.closest("#combat") || e.target.closest(".ability-table")) {
+    updateCombat();
+  }
+});
+document.addEventListener("DOMContentLoaded", updateCombat);
+
+
 
 
 
