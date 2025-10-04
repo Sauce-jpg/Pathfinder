@@ -168,25 +168,30 @@ function advanceRound() {
 
 
 
-// Update modifiers based on ability scores
+// --- Global ability modifiers ---
+let abilityMods = {
+  Str: 0, Dex: 0, Con: 0, Int: 0, Wis: 0, Cha: 0
+};
+
+// Update modifiers from ability cards
 function updateAbilityMods() {
-  const mods = {};
-  document.querySelectorAll(".ability-table tr[data-ability]").forEach(row => {
-    const ability = row.dataset.ability;
-    const score = parseInt(row.querySelector(".score").value) || 10;
-    const temp = parseInt(row.querySelector(".temp").value) || 0;
-    const totalScore = score + temp;
+  document.querySelectorAll(".ability-card").forEach(card => {
+    const ability = card.dataset.ability;
+    const baseScore = parseInt(card.querySelector(".score").textContent) || 10;
+    const temp = parseInt(card.querySelector(".temp").value) || 0;
+    const totalScore = baseScore + temp;
     const mod = Math.floor((totalScore - 10) / 2);
 
-    row.querySelector(".mod").textContent = (mod >= 0 ? "+" : "") + mod;
-    mods[ability] = mod;
+    card.querySelector(".mod").textContent = (mod >= 0 ? "+" : "") + mod;
+    abilityMods[ability] = mod;
   });
-  return mods;
+
+  return abilityMods;
 }
 
 // Recalculate skills with live ability mods
 function updateSkills() {
-  const abilityMods = updateAbilityMods(); // fetch current mods
+  const mods = updateAbilityMods();
 
   document.querySelectorAll("#skills table tr[data-ability]").forEach(row => {
     const ability = row.dataset.ability;
@@ -194,29 +199,16 @@ function updateSkills() {
     const misc = parseInt(row.querySelector(".misc").value) || 0;
     const classSkill = row.querySelector(".class-skill").checked;
 
-    let total = abilityMods[ability] + ranks + misc;
+    let total = (mods[ability] || 0) + ranks + misc;
     if (classSkill && ranks > 0) total += 3;
 
     row.querySelector(".total").textContent = (total >= 0 ? "+" : "") + total;
   });
 }
 
-// Listen for any changes to scores, temps, or skills
-document.addEventListener("input", e => {
-  if (e.target.closest(".ability-table") || e.target.closest("#skills")) {
-    updateSkills();
-  }
-});
-
-// Run once on page load
-document.addEventListener("DOMContentLoaded", updateSkills);
-
-
-
-
 // --- Combat Auto-Calculate ---
 function updateCombat() {
-  const mods = updateAbilityMods(); // get latest ability modifiers
+  const mods = updateAbilityMods();
 
   // Initiative
   const initMisc = parseInt(document.getElementById("init-misc").value) || 0;
@@ -265,29 +257,41 @@ function updateCombat() {
 
   // CMB / CMD
   const bab = parseInt(document.getElementById("bab").value) || 0;
-  const cmbMisc = 0; // could add an input for misc later
   const sizeMod = parseInt(document.getElementById("ac-size").value) || 0;
-  const cmb = bab + mods.Str + sizeMod + cmbMisc;
-  const cmd = 10 + bab + mods.Str + mods.Dex + dodge + deflect + sizeMod + misc;
+  const dodge = parseInt(document.getElementById("ac-dodge").value) || 0;
+  const deflect = parseInt(document.getElementById("ac-deflection").value) || 0;
+  const misc = parseInt(document.getElementById("ac-misc").value) || 0;
+
+  const cmb = bab + (mods.Str || 0) + sizeMod;
+  const cmd = 10 + bab + (mods.Str || 0) + (mods.Dex || 0) + dodge + deflect + sizeMod + misc;
 
   document.getElementById("cmb-total").textContent = (cmb >= 0 ? "+" : "") + cmb;
   document.getElementById("cmd-total").textContent = cmd;
 }
 
-// Conditions countdown
+// --- Conditions countdown ---
 function advanceRound() {
   let condInput = document.getElementById("conditions");
   let text = condInput.value;
   condInput.value = text.replace(/(\d+)/, (m) => Math.max(0, parseInt(m) - 1));
 }
 
-// Auto-update combat when inputs change
+// --- Event listeners ---
 document.addEventListener("input", e => {
-  if (e.target.closest("#combat") || e.target.closest(".ability-table")) {
+  if (e.target.closest(".ability-card") || e.target.closest("#skills")) {
+    updateSkills();
+    updateCombat();
+  }
+  if (e.target.closest("#combat")) {
     updateCombat();
   }
 });
-document.addEventListener("DOMContentLoaded", updateCombat);
+
+// Run once on load
+document.addEventListener("DOMContentLoaded", () => {
+  updateSkills();
+  updateCombat();
+});
 
 
 
