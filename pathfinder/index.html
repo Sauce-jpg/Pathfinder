@@ -126,43 +126,80 @@
 
   <!-- Initiative -->
   <h3>Initiative</h3>
-  <table class="char-table">
-    <tr><th>Total</th><td>+5</td></tr>
-    <tr><th>Dex Modifier</th><td>+4</td></tr>
-    <tr><th>Misc</th><td>+1</td></tr>
-  </table>
+  <p>
+    Dex Mod: <span id="init-dex">+0</span> + 
+    Misc: <input type="number" id="init-misc" value="0"> = 
+    <strong id="initiative-total">+0</strong>
+  </p>
 
   <!-- HP / Damage -->
-  <h3>Health</h3>
-  <table class="char-table">
-    <tr><th>Hit Points</th><td>175</td></tr>
-    <tr><th>Wounds</th><td>12</td></tr>
-    <tr><th>Non-Lethal</th><td>4</td></tr>
-    <tr><th>Conditions</th><td>
-      <ul id="conditions">
-        <li>Poisoned (3 rounds)</li>
-        <li>Shaken (2 rounds)</li>
-      </ul>
-      <button onclick="advanceRound()">Next Round</button>
-    </td></tr>
-  </table>
+  <h3>Hit Points</h3>
+  <p>
+    HP: <input type="number" id="hp-current" value="20"> /
+    <input type="number" id="hp-max" value="20">
+  </p>
+  <p>
+    Wounds: <input type="number" id="wounds" value="0"> |
+    Non-lethal: <input type="number" id="nonlethal" value="0">
+  </p>
+  <p>Conditions: <input type="text" id="conditions" placeholder="e.g. poisoned (3 rounds)"></p>
+  <button onclick="advanceRound()">Advance Round</button>
 
   <!-- AC -->
-  <h3>Armor Class</h3>
   <table class="char-table">
-    <tr><th>Total AC</th><td>28 = 10 + 6 Armor + 2 Shield + 4 Dex + 2 Dodge + 0 Size + 2 Natural + 1 Deflection + 1 Misc</td></tr>
-    <tr><th>Touch AC</th><td>16</td></tr>
-    <tr><th>Flat-Footed AC</th><td>24</td></tr>
+    <tr><td>Base 10</td><td>10</td></tr>
+    <tr><td>Armor Bonus</td><td><input type="number" id="ac-armor" value="0"></td></tr>
+    <tr><td>Shield Bonus</td><td><input type="number" id="ac-shield" value="0"></td></tr>
+    <tr><td>Dex Modifier</td><td><span id="ac-dex">+0</span></td></tr>
+    <tr><td>Dodge</td><td><input type="number" id="ac-dodge" value="0"></td></tr>
+    <tr><td>Size Modifier</td><td><input type="number" id="ac-size" value="0"></td></tr>
+    <tr><td>Natural Armor</td><td><input type="number" id="ac-natural" value="0"></td></tr>
+    <tr><td>Deflection</td><td><input type="number" id="ac-deflection" value="0"></td></tr>
+    <tr><td>Misc</td><td><input type="number" id="ac-misc" value="0"></td></tr>
+    <tr><th>Total AC</th><th id="ac-total">10</th></tr>
+    <tr><th>Touch AC</th><th id="ac-touch">10</th></tr>
+    <tr><th>Flat-Footed AC</th><th id="ac-flat">10</th></tr>
   </table>
 
   <!-- Saves -->
   <h3>Saves</h3>
   <table class="char-table">
-    <tr><th>Fortitude</th><td>+12 = 6 Base + 2 Con + 2 Magic + 2 Misc</td></tr>
-    <tr><th>Reflex</th><td>+16 = 8 Base + 4 Dex + 2 Misc + 2 Temp</td></tr>
-    <tr><th>Will</th><td>+22 = 9 Base + 6 Wis + 5 Magic + 2 Misc</td></tr>
+    <tr><th>Save</th><th>Base</th><th>Ability</th><th>Magic</th><th>Misc</th><th>Temp</th><th>Total</th></tr>
+    <tr data-save="Fort">
+      <td>Fortitude</td>
+      <td><input type="number" class="base" value="2"></td>
+      <td><span class="ability">+0</span></td>
+      <td><input type="number" class="magic" value="0"></td>
+      <td><input type="number" class="misc" value="0"></td>
+      <td><input type="number" class="temp" value="0"></td>
+      <td class="total">+0</td>
+    </tr>
+    <tr data-save="Ref">
+      <td>Reflex</td>
+      <td><input type="number" class="base" value="2"></td>
+      <td><span class="ability">+0</span></td>
+      <td><input type="number" class="magic" value="0"></td>
+      <td><input type="number" class="misc" value="0"></td>
+      <td><input type="number" class="temp" value="0"></td>
+      <td class="total">+0</td>
+    </tr>
+    <tr data-save="Will">
+      <td>Will</td>
+      <td><input type="number" class="base" value="2"></td>
+      <td><span class="ability">+0</span></td>
+      <td><input type="number" class="magic" value="0"></td>
+      <td><input type="number" class="misc" value="0"></td>
+      <td><input type="number" class="temp" value="0"></td>
+      <td class="total">+0</td>
+    </tr>
   </table>
-  <p><strong>Resistances / Immunities:</strong> Cold Resist 10, Poison Immunity, DR 5/—, Spell Resistance 19</p>
+      
+  <h3>Defenses</h3>
+  <p>Resistances: <input type="text" id="resistances"></p>
+  <p>Immunities: <input type="text" id="immunities"></p>
+  <p>DR: <input type="text" id="dr"></p>
+  <p>Spell Resistance: <input type="number" id="sr" value="0"></p>
+</section>
 
   <!-- Attack -->
   <h3>Attacks</h3>
@@ -183,11 +220,11 @@
 
   <!-- BAB / CMB / CMD -->
   <h3>Combat Maneuvers</h3>
-  <table class="char-table">
-    <tr><th>Base Attack Bonus</th><td>+10</td></tr>
-    <tr><th>CMB</th><td>+13 = 10 BAB + 3 Str + 0 Size</td></tr>
-    <tr><th>CMD</th><td>25 = 10 + BAB 10 + Str 3 + Dex 4 + Dodge 2</td></tr>
-  </table>
+  <p>
+    BAB: <input type="number" id="bab" value="1"><br>
+    CMB = BAB + Str Mod + Size + Misc → <strong id="cmb-total">+0</strong><br>
+    CMD = 10 + BAB + Str Mod + Dex Mod + Dodge + Deflect + Size + Misc → <strong id="cmd-total">10</strong>
+  </p>
 
   <!-- Proficiencies -->
   <h3>Proficiencies</h3>
