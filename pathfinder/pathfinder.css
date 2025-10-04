@@ -360,6 +360,35 @@ img.icon {
   margin: 1rem auto;
 }
 
+
+/* ===== Pathfinder-style Panels ===== */
+section {
+  background: #fdfaf6;
+  border: 2px solid #5a3d2b;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+}
+
+h2, h3 {
+  font-family: 'Cinzel Decorative', serif;
+  border-bottom: 2px solid #5a3d2b;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Attack block cards */
+.attack-block {
+  border: 2px solid #5a3d2b;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  background: #fffdf8;
+}
+
+
+
 /* ===== Theme Toggle Button ===== */
 button.toggle {
   position: fixed;
