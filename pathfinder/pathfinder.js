@@ -168,122 +168,149 @@ function advanceRound() {
 
 
 
-// --- Global ability modifiers ---
-let abilityMods = {
-  Str: 0, Dex: 0, Con: 0, Int: 0, Wis: 0, Cha: 0
-};
+// ===== Ability Mods Global =====
+const abilityMods = { Str:0, Dex:0, Con:0, Int:0, Wis:0, Cha:0 };
 
-// Update modifiers from ability cards
+// Helpers
+function toInt(el) {
+  if (!el) return 0;
+  const v = parseInt(el.value, 10);
+  return isNaN(v) ? 0 : v;
+}
+function toIntById(id) {
+  const el = document.getElementById(id);
+  return toInt(el);
+}
+function signNum(n){ return (n>=0? "+" : "") + n; }
+
+// ===== Recompute ability modifiers from cards =====
 function updateAbilityMods() {
   document.querySelectorAll(".ability-card").forEach(card => {
     const ability = card.dataset.ability;
-    const baseScore = parseInt(card.querySelector(".score").textContent) || 10;
-    const temp = parseInt(card.querySelector(".temp").value) || 0;
+    const scoreEl = card.querySelector(".score");
+    const tempEl  = card.querySelector(".temp");
+    const modEl   = card.querySelector(".mod");
+
+    if (!ability || !scoreEl || !tempEl || !modEl) return;
+
+    const baseScore = toInt(scoreEl) || 10;
+    const temp      = toInt(tempEl);
     const totalScore = baseScore + temp;
     const mod = Math.floor((totalScore - 10) / 2);
 
-    card.querySelector(".mod").textContent = (mod >= 0 ? "+" : "") + mod;
+    modEl.textContent = signNum(mod);
     abilityMods[ability] = mod;
   });
-
   return abilityMods;
 }
 
-// Recalculate skills with live ability mods
+// ===== Skills =====
 function updateSkills() {
   const mods = updateAbilityMods();
 
   document.querySelectorAll("#skills table tr[data-ability]").forEach(row => {
     const ability = row.dataset.ability;
-    const ranks = parseInt(row.querySelector(".ranks").value) || 0;
-    const misc = parseInt(row.querySelector(".misc").value) || 0;
-    const classSkill = row.querySelector(".class-skill").checked;
+    if (!ability) return;
+
+    const ranks = toInt(row.querySelector(".ranks"));
+    const misc  = toInt(row.querySelector(".misc"));
+    const classSkill = !!row.querySelector(".class-skill")?.checked;
 
     let total = (mods[ability] || 0) + ranks + misc;
     if (classSkill && ranks > 0) total += 3;
 
-    row.querySelector(".total").textContent = (total >= 0 ? "+" : "") + total;
+    const totalEl = row.querySelector(".total");
+    if (totalEl) totalEl.textContent = signNum(total);
   });
 }
 
-// --- Combat Auto-Calculate ---
+// ===== Combat =====
 function updateCombat() {
   const mods = updateAbilityMods();
 
   // Initiative
-  const initMisc = parseInt(document.getElementById("init-misc").value) || 0;
-  const initTotal = mods.Dex + initMisc;
-  document.getElementById("init-dex").textContent = (mods.Dex >= 0 ? "+" : "") + mods.Dex;
-  document.getElementById("initiative-total").textContent = (initTotal >= 0 ? "+" : "") + initTotal;
+  const initMisc  = toIntById("init-misc");
+  const initTotal = (mods.Dex || 0) + initMisc;
+  const initDexEl = document.getElementById("init-dex");
+  const initTotEl = document.getElementById("initiative-total");
+  if (initDexEl) initDexEl.textContent = signNum(mods.Dex || 0);
+  if (initTotEl) initTotEl.textContent = signNum(initTotal);
 
-  // Armor Class
+  // AC
   const base = 10;
-  const armor = parseInt(document.getElementById("ac-armor").value) || 0;
-  const shield = parseInt(document.getElementById("ac-shield").value) || 0;
-  const dex = mods.Dex;
-  const dodge = parseInt(document.getElementById("ac-dodge").value) || 0;
-  const size = parseInt(document.getElementById("ac-size").value) || 0;
-  const natural = parseInt(document.getElementById("ac-natural").value) || 0;
-  const deflect = parseInt(document.getElementById("ac-deflection").value) || 0;
-  const misc = parseInt(document.getElementById("ac-misc").value) || 0;
+  const armor    = toIntById("ac-armor");
+  const shield   = toIntById("ac-shield");
+  const dex      = mods.Dex || 0;
+  const dodge    = toIntById("ac-dodge");
+  const size     = toIntById("ac-size");
+  const natural  = toIntById("ac-natural");
+  const deflect  = toIntById("ac-deflection");
+  const misc     = toIntById("ac-misc");
 
   const acTotal = base + armor + shield + dex + dodge + size + natural + deflect + misc;
   const acTouch = base + dex + dodge + size + deflect + misc;
-  const acFlat = base + armor + shield + size + natural + deflect + misc;
+  const acFlat  = base + armor + shield + size + natural + deflect + misc;
 
-  document.getElementById("ac-dex").textContent = (dex >= 0 ? "+" : "") + dex;
-  document.getElementById("ac-total").textContent = acTotal;
-  document.getElementById("ac-touch").textContent = acTouch;
-  document.getElementById("ac-flat").textContent = acFlat;
+  const acDexEl   = document.getElementById("ac-dex");
+  const acTotEl   = document.getElementById("ac-total");
+  const acTouchEl = document.getElementById("ac-touch");
+  const acFlatEl  = document.getElementById("ac-flat");
+
+  if (acDexEl)   acDexEl.textContent = signNum(dex);
+  if (acTotEl)   acTotEl.textContent = acTotal;
+  if (acTouchEl) acTouchEl.textContent = acTouch;
+  if (acFlatEl)  acFlatEl.textContent = acFlat;
 
   // Saves
   document.querySelectorAll("#combat tr[data-save]").forEach(row => {
     const saveType = row.dataset.save;
-    let abilityMod = 0;
-    if (saveType === "Fort") abilityMod = mods.Con;
-    if (saveType === "Ref") abilityMod = mods.Dex;
-    if (saveType === "Will") abilityMod = mods.Wis;
+    const abilityMod =
+      saveType === "Fort" ? (mods.Con || 0) :
+      saveType === "Ref"  ? (mods.Dex || 0) :
+      saveType === "Will" ? (mods.Wis || 0) : 0;
 
-    row.querySelector(".ability").textContent = (abilityMod >= 0 ? "+" : "") + abilityMod;
+    const base  = toInt(row.querySelector(".base"));
+    const magic = toInt(row.querySelector(".magic"));
+    const misc  = toInt(row.querySelector(".misc"));
+    const temp  = toInt(row.querySelector(".temp"));
 
-    const base = parseInt(row.querySelector(".base").value) || 0;
-    const magic = parseInt(row.querySelector(".magic").value) || 0;
-    const misc = parseInt(row.querySelector(".misc").value) || 0;
-    const temp = parseInt(row.querySelector(".temp").value) || 0;
+    const abilEl = row.querySelector(".ability");
+    const totalEl = row.querySelector(".total");
 
-    const total = base + abilityMod + magic + misc + temp;
-    row.querySelector(".total").textContent = (total >= 0 ? "+" : "") + total;
+    if (abilEl)  abilEl.textContent  = signNum(abilityMod);
+    if (totalEl) totalEl.textContent = signNum(base + abilityMod + magic + misc + temp);
   });
 
   // CMB / CMD
-  const bab = parseInt(document.getElementById("bab").value) || 0;
-  const sizeMod = parseInt(document.getElementById("ac-size").value) || 0;
-  const dodge = parseInt(document.getElementById("ac-dodge").value) || 0;
-  const deflect = parseInt(document.getElementById("ac-deflection").value) || 0;
-  const misc = parseInt(document.getElementById("ac-misc").value) || 0;
+  const bab     = toIntById("bab");
+  const sizeMod = size; // reuse AC size
+  const cmb     = bab + (mods.Str || 0) + sizeMod;
+  const cmd     = 10 + bab + (mods.Str || 0) + (mods.Dex || 0) + dodge + deflect + sizeMod + misc;
 
-  const cmb = bab + (mods.Str || 0) + sizeMod;
-  const cmd = 10 + bab + (mods.Str || 0) + (mods.Dex || 0) + dodge + deflect + sizeMod + misc;
-
-  document.getElementById("cmb-total").textContent = (cmb >= 0 ? "+" : "") + cmb;
-  document.getElementById("cmd-total").textContent = cmd;
+  const cmbEl = document.getElementById("cmb-total");
+  const cmdEl = document.getElementById("cmd-total");
+  if (cmbEl) cmbEl.textContent = signNum(cmb);
+  if (cmdEl) cmdEl.textContent = cmd;
 }
 
-// --- Conditions countdown ---
+// ===== Conditions button (unchanged) =====
 function advanceRound() {
-  let condInput = document.getElementById("conditions");
-  let text = condInput.value;
-  condInput.value = text.replace(/(\d+)/, (m) => Math.max(0, parseInt(m) - 1));
+  const condInput = document.getElementById("conditions");
+  if (!condInput) return;
+  const text = condInput.value || "";
+  condInput.value = text.replace(/(\d+)/, m => Math.max(0, parseInt(m) - 1));
 }
 
-// --- Event listeners ---
+// ===== Listeners =====
+// one handler that won’t crash if some tabs aren’t rendered yet
 document.addEventListener("input", e => {
-  if (e.target.closest(".ability-card") || e.target.closest("#skills")) {
+  if (e.target.closest(".ability-card")) {
     updateSkills();
     updateCombat();
-  }
-  if (e.target.closest("#combat")) {
+  } else if (e.target.closest("#combat")) {
     updateCombat();
+  } else if (e.target.closest("#skills")) {
+    updateSkills();
   }
 });
 
