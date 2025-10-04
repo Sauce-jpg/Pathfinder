@@ -48,72 +48,76 @@
     <!-- Overview -->
     <section id="overview" class="active">
   <h2>Character Overview</h2>
-  <img class="icon" src="VaelinDuskryn.png" alt="Character Icon">
 
-  <table class="char-table">
-    <tr><th>Name</th><td>Vaelin Duskryn</td></tr>
-    <tr><th>Race</th><td>Drow Noble</td></tr>
-    <tr><th>Classes</th><td>Wizard (Necromancer) 10 / Oracle 3</td></tr>
-    <tr><th>Deity</th><td>Pharasma</td></tr>
-    <tr><th>Age</th><td>134</td></tr>
-    <tr><th>Height</th><td>5’9”</td></tr>
-    <tr><th>Weight</th><td>165 lbs</td></tr>
-    <tr><th>Size</th><td>Medium</td></tr>
-    <tr><th>Speed</th>
-      <td>30 ft (6 squares), 20 ft w/ armor<br>
-          Fly 40 ft (Good), Swim 20 ft, Climb 15 ft, Burrow —</td>
-    </tr>
+  <div class="overview-grid">
     
-    <h3>Ability Scores</h3>
-<table class="char-table ability-table">
-  <tr>
-    <th>Ability</th>
-    <th>Score</th>
-    <th>Modifier</th>
-    <th>Temp Mod</th>
-  </tr>
-  <tr data-ability="Str">
-    <td>Strength</td>
-    <td><input type="number" class="score" value="17"></td>
-    <td class="mod">+3</td>
-    <td><input type="number" class="temp" value="0"></td>
-  </tr>
-  <tr data-ability="Dex">
-    <td>Dexterity</td>
-    <td><input type="number" class="score" value="19"></td>
-    <td class="mod">+4</td>
-    <td><input type="number" class="temp" value="0"></td>
-  </tr>
-  <tr data-ability="Con">
-    <td>Constitution</td>
-    <td><input type="number" class="score" value="15"></td>
-    <td class="mod">+2</td>
-    <td><input type="number" class="temp" value="0"></td>
-  </tr>
-  <tr data-ability="Int">
-    <td>Intelligence</td>
-    <td><input type="number" class="score" value="26"></td>
-    <td class="mod">+8</td>
-    <td><input type="number" class="temp" value="0"></td>
-  </tr>
-  <tr data-ability="Wis">
-    <td>Wisdom</td>
-    <td><input type="number" class="score" value="22"></td>
-    <td class="mod">+6</td>
-    <td><input type="number" class="temp" value="0"></td>
-  </tr>
-  <tr data-ability="Cha">
-    <td>Charisma</td>
-    <td><input type="number" class="score" value="28"></td>
-    <td class="mod">+9</td>
-    <td><input type="number" class="temp" value="0"></td>
-  </tr>
-</table>
-    
-    <tr><th>Experience</th><td>87,430 / 105,000</td></tr>
-    <tr><th>Luck Modifier</th><td>+1</td></tr>
-    <tr><th>Hero Points</th><td>2 / 3</td></tr>
-  </table>
+    <!-- LEFT COLUMN : ABILITIES -->
+    <div class="abilities">
+      <h3>Ability Scores</h3>
+      <div class="ability-grid">
+        <div class="ability-card" data-ability="Str">
+          <h4>STR</h4>
+          <div class="score">17</div>
+          <div class="mod">+3</div>
+          <input type="number" class="temp" value="0">
+        </div>
+        <div class="ability-card" data-ability="Dex">
+          <h4>DEX</h4>
+          <div class="score">19</div>
+          <div class="mod">+4</div>
+          <input type="number" class="temp" value="0">
+        </div>
+        <div class="ability-card" data-ability="Con">
+          <h4>CON</h4>
+          <div class="score">15</div>
+          <div class="mod">+2</div>
+          <input type="number" class="temp" value="0">
+        </div>
+        <div class="ability-card" data-ability="Int">
+          <h4>INT</h4>
+          <div class="score">26</div>
+          <div class="mod">+8</div>
+          <input type="number" class="temp" value="0">
+        </div>
+        <div class="ability-card" data-ability="Wis">
+          <h4>WIS</h4>
+          <div class="score">22</div>
+          <div class="mod">+6</div>
+          <input type="number" class="temp" value="0">
+        </div>
+        <div class="ability-card" data-ability="Cha">
+          <h4>CHA</h4>
+          <div class="score">28</div>
+          <div class="mod">+9</div>
+          <input type="number" class="temp" value="0">
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN : INFO -->
+    <div class="char-info">
+      <img class="icon" src="VaelinDuskryn.png" alt="Character Icon">
+      <ul>
+        <li><strong>Name:</strong> Vaelin Duskryn</li>
+        <li><strong>Race:</strong> Drow Noble</li>
+        <li><strong>Classes:</strong> Wizard (Necromancer) 10 / Oracle 3</li>
+        <li><strong>Deity:</strong> Pharasma</li>
+        <li><strong>Age:</strong> 134</li>
+        <li><strong>Height:</strong> 5’9”</li>
+        <li><strong>Weight:</strong> 165 lbs</li>
+        <li><strong>Size:</strong> Medium</li>
+        <li><strong>Speed:</strong> 30 ft (6 sq), 20 ft w/ armor<br>
+          Fly 40 ft (Good), Swim 20 ft, Climb 15 ft
+        </li>
+      </ul>
+      <div class="status-bar">
+        <span>XP: 87,430 / 105,000</span> |
+        <span>Luck: +1</span> |
+        <span>Hero Points: 2 / 3</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 
