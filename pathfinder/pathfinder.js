@@ -135,34 +135,18 @@ window.addEventListener("click", function (e) {
 // --- Collapsible ---
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".collapse-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const content = btn.nextElementSibling;
-      content.classList.toggle("show");
-      btn.textContent = btn.textContent.includes("▾")
-        ? btn.textContent.replace("▾", "▸")
-        : btn.textContent.replace("▸", "▾");
-    });
+  btn.addEventListener("click", () => {
+    btn.classList.toggle("active");
+    const content = btn.nextElementSibling;
+    content.classList.toggle("show");
+    btn.innerHTML = btn.textContent.includes("▾")
+      ? btn.textContent.replace("▾","▸")
+      : btn.textContent.replace("▸","▾");
   });
+ });
 });
 
 
-
-
-// --- Round Counter Script ---
-function advanceRound() {
-  const items = document.querySelectorAll("#conditions li");
-  items.forEach(li => {
-    const match = li.textContent.match(/\((\d+) rounds?\)/);
-    if (match) {
-      let num = parseInt(match[1]) - 1;
-      if (num <= 0) {
-        li.remove();
-      } else {
-        li.textContent = li.textContent.replace(/\(\d+ rounds?\)/, `(${num} rounds)`);
-      }
-    }
-  });
-}
 
 
 
