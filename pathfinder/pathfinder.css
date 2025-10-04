@@ -183,32 +183,44 @@ nav .dropdown:hover .dropdown-content {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
+/* Add a border or background to the card */
 .ability-card {
-  background: #f5f5f5;
+  background: #fafafa;
   border: 2px solid #ccc;
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0.5rem;
   text-align: center;
 }
 .dark-mode .ability-card {
-  background: #333;
+  background: #222;
   border-color: #555;
 }
+
 .ability-card h4 {
   margin: 0;
   font-family: 'Cinzel Decorative', serif;
 }
+
 .ability-card .score {
   font-size: 1.8rem;
   font-weight: bold;
 }
+/* Highlight the modifier (make it big & colorful) */
 .ability-card .mod {
-  font-size: 1.2rem;
-  margin: 0.2rem 0;
+  font-size: 1.4rem;
+  color: #006400; /* dark green for positive mods */
 }
+.dark-mode .ability-card .mod {
+  color: #90ee90; /* light green in dark mode */
+}
+
+/* Highlight the modifier (make it big & colorful) / Put them inline instead of stacked*/
+.ability-card input.score,
 .ability-card input.temp {
-  width: 50px;
-  text-align: center;
+  width: 45px;   /* narrower */
+  font-size: 0.9rem; /* smaller text */
+  display: inline-block; /* sits next to each other */
+  margin: 0 5px;
 }
 
 /* Character info */
