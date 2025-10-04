@@ -185,18 +185,19 @@ nav .dropdown:hover .dropdown-content {
 .char-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .char-table th, .char-table td {
   border: 1px solid #ccc;
-  padding: 0.5rem;
+  padding: 0.4rem;
+  text-align: center;
 }
 .char-table th {
   background: #eee;
-  text-align: left;
-  width: 200px;
 }
-.dark-mode .char-table th { background: #333; }
+.dark-mode .char-table th {
+  background: #333;
+}
 
 /* ===== Skills Table  ===== */ 
 .skills-table {
