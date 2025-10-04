@@ -267,6 +267,8 @@ nav .dropdown:hover .dropdown-content {
 }
 .char-table th {
   background: #eee;
+  font-family: 'Cinzel Decorative', serif;
+  background: #e7dcc9;
 }
 .dark-mode .char-table th {
   background: #333;
@@ -285,6 +287,8 @@ nav .dropdown:hover .dropdown-content {
 }
 .skills-table th {
   background: #eee;
+  font-family: 'Cinzel Decorative', serif;
+  background: #e7dcc9;
 }
 .skills-table td:first-child, 
 .skills-table th:first-child {
@@ -355,6 +359,8 @@ section.active { display: block; }
 
 img.icon {
   max-width: 200px;
+  border: 3px solid #5a3d2b;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
   border-radius: 50%;
   display: block;
   margin: 1rem auto;
