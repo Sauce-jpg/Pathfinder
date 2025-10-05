@@ -149,21 +149,33 @@
   <p>Conditions: <input type="text" id="conditions" placeholder="e.g. poisoned (3 rounds)"></p>
   <button onclick="advanceRound()">Advance Round</button>
 
-  <!-- AC -->
-  <table class="char-table">
-    <tr><td>Base 10</td><td>10</td></tr>
-    <tr><td>Armor Bonus</td><td><input type="number" id="ac-armor" value="0"></td></tr>
-    <tr><td>Shield Bonus</td><td><input type="number" id="ac-shield" value="0"></td></tr>
-    <tr><td>Dex Modifier</td><td><span id="ac-dex">+0</span></td></tr>
-    <tr><td>Dodge</td><td><input type="number" id="ac-dodge" value="0"></td></tr>
-    <tr><td>Size Modifier</td><td><input type="number" id="ac-size" value="0"></td></tr>
-    <tr><td>Natural Armor</td><td><input type="number" id="ac-natural" value="0"></td></tr>
-    <tr><td>Deflection</td><td><input type="number" id="ac-deflection" value="0"></td></tr>
-    <tr><td>Misc</td><td><input type="number" id="ac-misc" value="0"></td></tr>
-    <tr><th>Total AC</th><th id="ac-total">10</th></tr>
-    <tr><th>Touch AC</th><th id="ac-touch">10</th></tr>
-    <tr><th>Flat-Footed AC</th><th id="ac-flat">10</th></tr>
-  </table>
+  <!-- Simplified AC display -->
+<h3>Armor Class (AC)</h3>
+<div id="acSummary" class="ac-summary">
+  <div><strong>AC:</strong> <span id="ac-total">10</span></div>
+  <div><strong>Touch:</strong> <span id="ac-touch">10</span></div>
+  <div><strong>Flat-Footed:</strong> <span id="ac-flat">10</span></div>
+  <button onclick="openACPopup()">⚙️ Adjust</button>
+</div>
+
+<!-- Hidden popup for detailed bonuses -->
+<div id="acPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closeACPopup()">&times;</span>
+    <h4>Adjust AC Components</h4>
+    <table class="char-table">
+      <tr><td>Armor Bonus</td><td><input type="number" id="ac-armor" value="0"></td></tr>
+      <tr><td>Shield Bonus</td><td><input type="number" id="ac-shield" value="0"></td></tr>
+      <tr><td>Dex Modifier</td><td><span id="ac-dex">+0</span></td></tr>
+      <tr><td>Dodge</td><td><input type="number" id="ac-dodge" value="0"></td></tr>
+      <tr><td>Size Modifier</td><td><input type="number" id="ac-size" value="0"></td></tr>
+      <tr><td>Natural Armor</td><td><input type="number" id="ac-natural" value="0"></td></tr>
+      <tr><td>Deflection</td><td><input type="number" id="ac-deflection" value="0"></td></tr>
+      <tr><td>Misc</td><td><input type="number" id="ac-misc" value="0"></td></tr>
+    </table>
+    <button onclick="closeACPopup()">Done</button>
+  </div>
+</div>
 
   <!-- Saves -->
   <h3>Saves</h3>
