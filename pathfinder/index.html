@@ -163,20 +163,64 @@
   <div class="popup-content">
     <span class="close" onclick="closeACPopup()">&times;</span>
     <h4>Adjust AC Components</h4>
-    <table class="char-table">
-      <tr><td>Armor Bonus</td><td><input type="number" id="ac-armor" value="0"></td></tr>
-      <tr><td>Shield Bonus</td><td><input type="number" id="ac-shield" value="0"></td></tr>
-      <tr><td>Dex Modifier</td><td><span id="ac-dex">+0</span></td></tr>
-      <tr><td>Dodge</td><td><input type="number" id="ac-dodge" value="0"></td></tr>
-      <tr><td>Size Modifier</td><td><input type="number" id="ac-size" value="0"></td></tr>
-      <tr><td>Natural Armor</td><td><input type="number" id="ac-natural" value="0"></td></tr>
-      <tr><td>Deflection</td><td><input type="number" id="ac-deflection" value="0"></td></tr>
-      <tr><td>Misc</td><td><input type="number" id="ac-misc" value="0"></td></tr>
-    </table>
+    <table class="char-table ac-detail-table">
+  <tr><td>Armor Bonus</td>
+      <td><input type="number" id="ac-armor" value="0">
+      <button class="note-btn" onclick="toggleACNote('armor')">📝</button></td></tr>
+  <tr class="note-row" id="note-armor"><td colspan="2">
+      <input type="text" id="note-armor-text" placeholder="Source (e.g. Mithral Chain Shirt +2)">
+  </td></tr>
+
+  <tr><td>Shield Bonus</td>
+      <td><input type="number" id="ac-shield" value="0">
+      <button class="note-btn" onclick="toggleACNote('shield')">📝</button></td></tr>
+  <tr class="note-row" id="note-shield"><td colspan="2">
+      <input type="text" id="note-shield-text" placeholder="Source (e.g. Darkwood Buckler)">
+  </td></tr>
+
+  <tr><td>Dex Modifier</td><td><span id="ac-dex">+0</span></td></tr>
+
+  <tr><td>Dodge</td>
+      <td><input type="number" id="ac-dodge" value="0">
+      <button class="note-btn" onclick="toggleACNote('dodge')">📝</button></td></tr>
+  <tr class="note-row" id="note-dodge"><td colspan="2">
+      <input type="text" id="note-dodge-text" placeholder="Source (e.g. Haste)">
+  </td></tr>
+
+  <tr><td>Size Modifier</td>
+      <td><input type="number" id="ac-size" value="0">
+      <button class="note-btn" onclick="toggleACNote('size')">📝</button></td></tr>
+  <tr class="note-row" id="note-size"><td colspan="2">
+      <input type="text" id="note-size-text" placeholder="Source (e.g. Reduce Person)">
+  </td></tr>
+
+  <tr><td>Natural Armor</td>
+      <td><input type="number" id="ac-natural" value="0">
+      <button class="note-btn" onclick="toggleACNote('natural')">📝</button></td></tr>
+  <tr class="note-row" id="note-natural"><td colspan="2">
+      <input type="text" id="note-natural-text" placeholder="Source (e.g. Amulet of Natural Armor)">
+  </td></tr>
+
+  <tr><td>Deflection</td>
+      <td><input type="number" id="ac-deflection" value="0">
+      <button class="note-btn" onclick="toggleACNote('deflection')">📝</button></td></tr>
+  <tr class="note-row" id="note-deflection"><td colspan="2">
+      <input type="text" id="note-deflection-text" placeholder="Source (e.g. Ring of Protection)">
+  </td></tr>
+
+  <tr><td>Misc</td>
+      <td><input type="number" id="ac-misc" value="0">
+      <button class="note-btn" onclick="toggleACNote('misc')">📝</button></td></tr>
+  <tr class="note-row" id="note-misc"><td colspan="2">
+      <input type="text" id="note-misc-text" placeholder="Source (e.g. Feat, Blessing, etc.)">
+  </td></tr>
+</table>
     <button onclick="closeACPopup()">Done</button>
   </div>
 </div>
 
+
+      
   <!-- Saves -->
   <h3>Saves</h3>
   <table class="char-table">
