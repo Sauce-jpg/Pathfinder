@@ -340,24 +340,58 @@ document.addEventListener("input", e => {
 
 
 
-// =====================
-// Persistent Skills Data
-// =====================
+/* ===========================
+   SKILLS SYSTEM (Optimized)
+   =========================== */
+
+// Local storage object for skills
 let skillData = JSON.parse(localStorage.getItem("skillData")) || {};
 
+// Helper: integer value from element
+function val(el) {
+  if (!el) return 0;
+  const v = parseInt(el.value, 10);
+  return isNaN(v) ? 0 : v;
+}
+
+// Main recalculation function
+function updateSkills() {
+  const mods = updateAbilityMods();
+
+  document.querySelectorAll("#skills tr[data-ability]").forEach(row => {
+    const ability = row.dataset.ability;
+    const skillId = row.dataset.skill;
+    if (!ability || !skillId) return;
+
+    const ranks = val(row.querySelector(".ranks"));
+    const misc = val(row.querySelector(".misc"));
+    const classSkill = !!row.querySelector(".class-skill")?.checked;
+
+    let total = (mods[ability] || 0) + ranks + misc;
+    if (classSkill && ranks > 0) total += 3;
+
+    const totalEl = row.querySelector(".total");
+    if (totalEl) totalEl.textContent = (total >= 0 ? "+" : "") + total;
+  });
+}
+
+// Save skill data
 function saveSkillData(skillId, field, value) {
   if (!skillData[skillId]) skillData[skillId] = {};
   skillData[skillId][field] = value;
   localStorage.setItem("skillData", JSON.stringify(skillData));
 }
 
+// Load skill data
 function loadSkillData() {
   for (const [skillId, fields] of Object.entries(skillData)) {
     const row = document.querySelector(`tr[data-skill="${skillId}"]`);
     if (!row) continue;
+
     const cb = row.querySelector(".class-skill");
     const ranks = row.querySelector(".ranks");
     const misc = row.querySelector(".misc");
+
     if (cb && "classSkill" in fields) cb.checked = fields.classSkill;
     if (ranks && "ranks" in fields) ranks.value = fields.ranks;
     if (misc && "misc" in fields) misc.value = fields.misc;
@@ -365,27 +399,43 @@ function loadSkillData() {
   updateSkills();
 }
 
-// Track inputs
+/* ========= EVENT HANDLERS ========= */
+
+// Debounce wrapper (prevents flooding updates)
+function debounce(fn, delay = 150) {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn(...args), delay);
+  };
+}
+const debouncedUpdateSkills = debounce(updateSkills, 100);
+
+// Save and update on input
 document.addEventListener("input", e => {
   const row = e.target.closest("#skills tr[data-skill]");
   if (!row) return;
   const skillId = row.dataset.skill;
+
   if (e.target.classList.contains("ranks")) {
     saveSkillData(skillId, "ranks", parseInt(e.target.value) || 0);
   } else if (e.target.classList.contains("misc")) {
     saveSkillData(skillId, "misc", parseInt(e.target.value) || 0);
   }
+  debouncedUpdateSkills();
 });
 
+// Save and update on class skill toggle
 document.addEventListener("change", e => {
   const row = e.target.closest("#skills tr[data-skill]");
   if (!row) return;
   if (e.target.classList.contains("class-skill")) {
     saveSkillData(row.dataset.skill, "classSkill", e.target.checked);
+    debouncedUpdateSkills();
   }
 });
 
-// On load
+// Initial load
 document.addEventListener("DOMContentLoaded", loadSkillData);
 
 
