@@ -395,386 +395,111 @@
   <h2>Skills</h2>
   <p>Total = Ability Mod + Ranks + Misc + (Class skill with ≥1 rank: +3)</p>
 
-      
-  <!-- Core Physical Skills -->
+  <!-- ========== CORE PHYSICAL ========== -->
   <div class="collapsible">
     <button class="collapse-btn">Core Physical Skills ▾</button>
     <div class="collapse-content">
       <table class="skills-table">
-        <tr><th>Skill</th><th>Ability</th><th>Ranks</th><th>Class?</th><th>Misc</th><th>Total</th><th>Conditional</th></tr>
-       
-        <tr data-ability="Dex">
-  <td>Acrobatics</td>
-  <td>Dex</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Str">
-  <td>Climb</td>
-  <td>Str</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Dex">
-  <td>Escape Artist</td>
-  <td>Dex</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Dex">
-  <td>Fly</td>
-  <td>Dex</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Dex">
-  <td>Ride</td>
-  <td>Dex</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Dex">
-  <td>Stealth</td>
-  <td>Dex</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Str">
-  <td>Swim</td>
-  <td>Str</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
+        <thead>
+          <tr><th>Cls</th><th>Skill (Ability)</th><th>Total</th><th>Ranks</th><th>Misc</th></tr>
+        </thead>
+        <tbody>
+          <tr data-skill="acrobatics" data-ability="Dex">
+            <td><input type="checkbox" class="class-skill"></td>
+            <td>Acrobatics (Dex)</td>
+            <td class="total">+0</td>
+            <td><input type="number" class="ranks" value="0"></td>
+            <td><input type="number" class="misc" value="0"></td>
+          </tr>
+          <tr data-skill="climb" data-ability="Str">
+            <td><input type="checkbox" class="class-skill"></td>
+            <td>Climb (Str)</td>
+            <td class="total">+0</td>
+            <td><input type="number" class="ranks" value="0"></td>
+            <td><input type="number" class="misc" value="0"></td>
+          </tr>
+          <tr data-skill="fly" data-ability="Dex">
+            <td><input type="checkbox" class="class-skill"></td>
+            <td>Fly (Dex)</td>
+            <td class="total">+0</td>
+            <td><input type="number" class="ranks" value="0"></td>
+            <td><input type="number" class="misc" value="0"></td>
+          </tr>
+          <tr data-skill="stealth" data-ability="Dex">
+            <td><input type="checkbox" class="class-skill"></td>
+            <td>Stealth (Dex)</td>
+            <td class="total">+0</td>
+            <td><input type="number" class="ranks" value="0"></td>
+            <td><input type="number" class="misc" value="0"></td>
+          </tr>
+          <tr data-skill="swim" data-ability="Str">
+            <td><input type="checkbox" class="class-skill"></td>
+            <td>Swim (Str)</td>
+            <td class="total">+0</td>
+            <td><input type="number" class="ranks" value="0"></td>
+            <td><input type="number" class="misc" value="0"></td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
 
-      
-  <!-- Interaction / Social Skills -->
+  <!-- ========== SOCIAL ========== -->
   <div class="collapsible">
     <button class="collapse-btn">Social Skills ▾</button>
     <div class="collapse-content">
       <table class="skills-table">
-        <tr><th>Skill</th><th>Ability</th><th>Ranks</th><th>Class?</th><th>Misc</th><th>Total</th><th>Conditional</th></tr>
-        
-        <tr data-ability="Cha">
-  <td>Bluff</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Cha">
-  <td>Diplomacy</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Cha">
-  <td>Disguise</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Cha">
-  <td>Handle Animal</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Cha">
-  <td>Intimidate</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Cha">
-  <td>Perform</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Cha">
-  <td>Perform</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
+        <thead>
+          <tr><th>Cls</th><th>Skill (Ability)</th><th>Total</th><th>Ranks</th><th>Misc</th></tr>
+        </thead>
+        <tbody>
+          <tr data-skill="bluff" data-ability="Cha"><td><input type="checkbox" class="class-skill"></td><td>Bluff (Cha)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="diplomacy" data-ability="Cha"><td><input type="checkbox" class="class-skill"></td><td>Diplomacy (Cha)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="intimidate" data-ability="Cha"><td><input type="checkbox" class="class-skill"></td><td>Intimidate (Cha)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="perform" data-ability="Cha"><td><input type="checkbox" class="class-skill"></td><td>Perform (Cha)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+        </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Knowledge Skills -->
+  <!-- ========== KNOWLEDGE ========== -->
   <div class="collapsible">
     <button class="collapse-btn">Knowledge Skills ▾</button>
     <div class="collapse-content">
       <table class="skills-table">
-        <tr><th>Skill</th><th>Ability</th><th>Ranks</th><th>Class?</th><th>Misc</th><th>Total</th><th>Conditional</th></tr>
-        
-        <tr data-ability="Int">
-  <td>Knowledge (Arcana)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Dungeoneering)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Engineering)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Geography)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (History)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Local)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Nature)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Nobility)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Planes)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Knowledge (Religion)</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
+        <thead>
+          <tr><th>Cls</th><th>Skill (Ability)</th><th>Total</th><th>Ranks</th><th>Misc</th></tr>
+        </thead>
+        <tbody>
+          <tr data-skill="arcana" data-ability="Int"><td><input type="checkbox" class="class-skill"></td><td>Knowledge (Arcana, Int)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="planes" data-ability="Int"><td><input type="checkbox" class="class-skill"></td><td>Knowledge (Planes, Int)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="religion" data-ability="Int"><td><input type="checkbox" class="class-skill"></td><td>Knowledge (Religion, Int)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="nobility" data-ability="Int"><td><input type="checkbox" class="class-skill"></td><td>Knowledge (Nobility, Int)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="history" data-ability="Int"><td><input type="checkbox" class="class-skill"></td><td>Knowledge (History, Int)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+        </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Utility / Misc Skills -->
+  <!-- ========== UTILITY ========== -->
   <div class="collapsible">
     <button class="collapse-btn">Utility Skills ▾</button>
     <div class="collapse-content">
       <table class="skills-table">
-        <tr><th>Skill</th><th>Ability</th><th>Ranks</th><th>Class?</th><th>Misc</th><th>Total</th><th>Conditional</th></tr>
-        
-        <tr data-ability="Int">
-  <td>Appraise</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Craft</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Craft</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Dex">
-  <td>Disable Device</td>
-  <td>Dex</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Wis">
-  <td>Heal</td>
-  <td>Wis</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Linguistics</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Wis">
-  <td>Perception</td>
-  <td>Wis</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Wis">
-  <td>Profession</td>
-  <td>Wis</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Wis">
-  <td>Sense Motive</td>
-  <td>Wis</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Dex">
-  <td>Sleight of Hand</td>
-  <td>Dex</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Int">
-  <td>Spellcraft</td>
-  <td>Int</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Wis">
-  <td>Survival</td>
-  <td>Wis</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
-        <tr data-ability="Cha">
-  <td>Use Magical Device</td>
-  <td>Cha</td>
-  <td><input type="number" class="ranks" value="0"></td>
-  <td><input type="checkbox" class="class-skill"></td>
-  <td><input type="number" class="misc" value="0"></td>
-  <td class="total">+0</td>
-  <td>Jump/Balance</td>
-</tr>
+        <thead>
+          <tr><th>Cls</th><th>Skill (Ability)</th><th>Total</th><th>Ranks</th><th>Misc</th></tr>
+        </thead>
+        <tbody>
+          <tr data-skill="appraise" data-ability="Int"><td><input type="checkbox" class="class-skill"></td><td>Appraise (Int)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="disabledevice" data-ability="Dex"><td><input type="checkbox" class="class-skill"></td><td>Disable Device (Dex)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="perception" data-ability="Wis"><td><input type="checkbox" class="class-skill"></td><td>Perception (Wis)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="spellcraft" data-ability="Int"><td><input type="checkbox" class="class-skill"></td><td>Spellcraft (Int)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+          <tr data-skill="usemagicdevice" data-ability="Cha"><td><input type="checkbox" class="class-skill"></td><td>Use Magic Device (Cha)</td><td class="total">+0</td><td><input type="number" class="ranks" value="0"></td><td><input type="number" class="misc" value="0"></td></tr>
+        </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Languages -->
   <h3>Languages</h3>
   <ul id="languages">
     <li>Common</li>
