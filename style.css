@@ -156,24 +156,6 @@ button.toggle {
 
 
 
-.site-nav {
-  text-align: center;
-  line-height: 2;
-}
-
-.site-nav a {
-  margin: 0 0.75rem;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
-
-.site-nav a:hover {
-  text-decoration: underline;
-}
-
-
-
-
 
 
 /* ===== Spell Options Dropdowns ===== */
