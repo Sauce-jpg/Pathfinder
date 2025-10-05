@@ -509,6 +509,34 @@ button.toggle {
 }
 .dark-mode .ac-summary { background: #2b2b2b; border-color: #666; }
 
+
+/* ===== AC detail popup styling ===== */
+.ac-detail-table .note-btn {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  background: #eee;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.ac-detail-table .note-btn:hover {
+  background: #ddd;
+}
+.note-row {
+  display: none;
+}
+.note-row input[type="text"] {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.dark-mode .ac-detail-table .note-btn { background: #555; border-color: #777; color: #eee; }
+.dark-mode .note-row input { background: #333; color: #eee; border-color: #666; }
+
+
 /* ===== Popup (reuse modal style) ===== */
 .popup {
   display: none;
