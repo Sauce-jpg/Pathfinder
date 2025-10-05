@@ -110,6 +110,37 @@ function toggleACNote(type) {
   row.style.display = (row.style.display === "table-row") ? "none" : "table-row";
 }
 
+// ===== Saves Popup =====
+function openSavesPopup() {
+  document.getElementById("savesPopup").style.display = "block";
+}
+function closeSavesPopup() {
+  document.getElementById("savesPopup").style.display = "none";
+  updateCombat();
+}
+function toggleSaveNote(type) {
+  const row = document.getElementById(`note-${type}`);
+  if (row) row.style.display = (row.style.display === "table-row") ? "none" : "table-row";
+}
+
+// ===== CMB/CMD Popup =====
+function openCMBPopup() {
+  document.getElementById("cmbPopup").style.display = "block";
+}
+function closeCMBPopup() {
+  document.getElementById("cmbPopup").style.display = "none";
+  updateCombat();
+}
+function toggleCMBNote(type) {
+  const row = document.getElementById(`note-${type}`);
+  if (row) row.style.display = (row.style.display === "table-row") ? "none" : "table-row";
+}
+
+// Close popups by clicking outside
+window.addEventListener("click", e => {
+  if (e.target === document.getElementById("savesPopup")) closeSavesPopup();
+  if (e.target === document.getElementById("cmbPopup")) closeCMBPopup();
+});
 
 
 
