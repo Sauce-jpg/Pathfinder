@@ -273,6 +273,71 @@ function updateSkills() {
 function updateCombat() {
   const mods = updateAbilityMods();
 
+// =====  (Place it near the top of the Combat section (below updateCombat() is fine)):
+// ======================
+// Persistent Combat Data
+// ======================
+let combatData = JSON.parse(localStorage.getItem("combatData")) || {
+  notes: {},
+  values: {}
+};
+
+// --- Save a single entry ---
+function saveCombatData(type, key, value) {
+  combatData[type][key] = value;
+  localStorage.setItem("combatData", JSON.stringify(combatData));
+}
+
+// --- Load all saved values into inputs/texts ---
+function loadCombatData() {
+  // Load freetext notes
+  for (const [key, val] of Object.entries(combatData.notes)) {
+    const noteField = document.getElementById(`note-${key}-text`);
+    if (noteField) noteField.value = val;
+  }
+
+  // Load numeric or text values
+  for (const [key, val] of Object.entries(combatData.values)) {
+    const el = document.getElementById(key);
+    if (!el) continue;
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+      el.value = val;
+    } else {
+      el.textContent = val;
+    }
+  }
+}
+
+// --- Automatically track any input in the Combat section ---
+document.addEventListener("input", e => {
+  const el = e.target;
+  const id = el.id;
+  if (!id) return;
+
+  // 1. Notes (📝 freetext)
+  if (id.startsWith("note-") && id.endsWith("-text")) {
+    const key = id.replace("note-", "").replace("-text", "");
+    saveCombatData("notes", key, el.value);
+  }
+  // 2. Any combat input fields (numbers, text)
+  else if (
+    el.closest("#combat") ||
+    el.closest("#acPopup") ||
+    el.closest("#savesPopup") ||
+    el.closest("#cmbPopup")
+  ) {
+    if (["number", "text"].includes(el.type)) {
+      saveCombatData("values", id, el.value);
+    }
+  }
+});
+
+
+
+   
+   
+   
+   
   // Initiative
   const initMisc  = toIntById("init-misc");
   const initTotal = (mods.Dex || 0) + initMisc;
@@ -363,6 +428,7 @@ document.addEventListener("input", e => {
 document.addEventListener("DOMContentLoaded", () => {
   updateSkills();
   updateCombat();
+  loadCombatData();   // 👈 Load all stored values & notes
 });
 
 
