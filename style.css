@@ -69,8 +69,8 @@ main {
   max-width: 900px;
   margin: auto;
 }
-section { display: none; }
-section.active { display: block; }
+/* section { display: none; }
+section.active { display: block; } */
 
 img.icon {
   max-width: 200px;
