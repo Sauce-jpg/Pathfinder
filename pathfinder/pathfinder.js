@@ -165,7 +165,7 @@ function scrollToTop() {
 window.addEventListener("scroll", toggleBackToTop);
 if (modal) modal.addEventListener("scroll", toggleBackToTop);
 if (modalContent) modalContent.addEventListener("scroll", toggleBackToTop);
-);
+
 
 // --- DROPDOWNS ---
 function toggleDropdown(id) {
