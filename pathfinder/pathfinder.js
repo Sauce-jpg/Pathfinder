@@ -269,11 +269,8 @@ function updateSkills() {
   });
 }
 
-// ===== Combat =====
-function updateCombat() {
-  const mods = updateAbilityMods();
 
-// =====  (Place it near the top of the Combat section (below updateCombat() is fine)):
+
 // ======================
 // Persistent Combat Data
 // ======================
@@ -334,9 +331,12 @@ document.addEventListener("input", e => {
 
 
 
-   
-   
-   
+
+
+
+// ===== Combat =====
+function updateCombat() {
+  const mods = updateAbilityMods();  
    
   // Initiative
   const initMisc  = toIntById("init-misc");
