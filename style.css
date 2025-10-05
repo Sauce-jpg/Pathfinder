@@ -224,3 +224,37 @@ main.links a:hover { background: #bbb; }
   color: #f5f5f5;
 }
 .dark-mode main.links a:hover { background: #666; }
+
+
+
+/* ===== give link lists a clean look ===== */
+.link-category {
+  margin: 2rem 0;
+  padding: 1rem;
+  border-left: 4px solid var(--accent-color);
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.link-category h2 {
+  margin-top: 0;
+}
+
+.link-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.link-category li {
+  margin: 0.5rem 0;
+}
+
+.link-category a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-category a:hover {
+  text-decoration: underline;
+}
