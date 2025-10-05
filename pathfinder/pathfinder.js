@@ -789,3 +789,4 @@ document.getElementById("resetFilters").addEventListener("click", () => {
   document.getElementById("searchFilter").value = "";
   loadSpells();
 });
+}
