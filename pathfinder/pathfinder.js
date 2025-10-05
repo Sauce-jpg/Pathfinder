@@ -103,6 +103,12 @@ window.addEventListener("click", e => {
   if (e.target === popup) closeACPopup();
 });
 
+// ===== AC Notes toggle =====
+function toggleACNote(type) {
+  const row = document.getElementById(`note-${type}`);
+  if (!row) return;
+  row.style.display = (row.style.display === "table-row") ? "none" : "table-row";
+}
 
 
 
