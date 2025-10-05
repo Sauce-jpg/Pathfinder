@@ -469,8 +469,10 @@ function advanceRound() {
   const text = condInput.value || "";
   condInput.value = text.replace(/(\d+)/, m => Math.max(0, parseInt(m) - 1));
 }
+}
 
-// ===== Listeners =====
+
+// ===== Listeners (run once globally)  =====
 // one handler that won’t crash if some tabs aren’t rendered yet
 document.addEventListener("input", e => {
   if (e.target.closest(".ability-card")) {
@@ -483,14 +485,12 @@ document.addEventListener("input", e => {
   }
 });
 
-// Run once on load
+// ===== Run once/Initialize on load =====
 document.addEventListener("DOMContentLoaded", () => {
   updateSkills();
   updateCombat();
   loadCombatData();   // 👈 Load all stored values & notes
 });
-}
-
 
 
 
