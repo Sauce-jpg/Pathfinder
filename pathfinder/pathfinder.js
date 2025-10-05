@@ -340,6 +340,56 @@ document.addEventListener("input", e => {
 
 
 
+// =====================
+// Persistent Skills Data
+// =====================
+let skillData = JSON.parse(localStorage.getItem("skillData")) || {};
+
+function saveSkillData(skillId, field, value) {
+  if (!skillData[skillId]) skillData[skillId] = {};
+  skillData[skillId][field] = value;
+  localStorage.setItem("skillData", JSON.stringify(skillData));
+}
+
+function loadSkillData() {
+  for (const [skillId, fields] of Object.entries(skillData)) {
+    const row = document.querySelector(`tr[data-skill="${skillId}"]`);
+    if (!row) continue;
+    const cb = row.querySelector(".class-skill");
+    const ranks = row.querySelector(".ranks");
+    const misc = row.querySelector(".misc");
+    if (cb && "classSkill" in fields) cb.checked = fields.classSkill;
+    if (ranks && "ranks" in fields) ranks.value = fields.ranks;
+    if (misc && "misc" in fields) misc.value = fields.misc;
+  }
+  updateSkills();
+}
+
+// Track inputs
+document.addEventListener("input", e => {
+  const row = e.target.closest("#skills tr[data-skill]");
+  if (!row) return;
+  const skillId = row.dataset.skill;
+  if (e.target.classList.contains("ranks")) {
+    saveSkillData(skillId, "ranks", parseInt(e.target.value) || 0);
+  } else if (e.target.classList.contains("misc")) {
+    saveSkillData(skillId, "misc", parseInt(e.target.value) || 0);
+  }
+});
+
+document.addEventListener("change", e => {
+  const row = e.target.closest("#skills tr[data-skill]");
+  if (!row) return;
+  if (e.target.classList.contains("class-skill")) {
+    saveSkillData(row.dataset.skill, "classSkill", e.target.checked);
+  }
+});
+
+// On load
+document.addEventListener("DOMContentLoaded", loadSkillData);
+
+
+
 
 
 
