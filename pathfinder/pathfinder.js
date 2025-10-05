@@ -85,6 +85,30 @@ function closeModal() {
   toggleBackToTop();
 }
 
+
+
+
+// ===== AC Popup =====
+function openACPopup() {
+  document.getElementById("acPopup").style.display = "block";
+}
+function closeACPopup() {
+  document.getElementById("acPopup").style.display = "none";
+  updateCombat(); // re-calculate after editing
+}
+
+// close popup when clicking outside
+window.addEventListener("click", e => {
+  const popup = document.getElementById("acPopup");
+  if (e.target === popup) closeACPopup();
+});
+
+
+
+
+
+
+
 // --- BACK TO TOP ---
 function toggleBackToTop() {
   let show = false;
