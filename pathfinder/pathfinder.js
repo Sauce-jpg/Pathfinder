@@ -371,37 +371,87 @@ document.addEventListener("input", e => {
   if (acTouchEl) acTouchEl.textContent = acTouch;
   if (acFlatEl)  acFlatEl.textContent = acFlat;
 
-  // Saves
-  document.querySelectorAll("#combat tr[data-save]").forEach(row => {
-    const saveType = row.dataset.save;
-    const abilityMod =
-      saveType === "Fort" ? (mods.Con || 0) :
-      saveType === "Ref"  ? (mods.Dex || 0) :
-      saveType === "Will" ? (mods.Wis || 0) : 0;
+  // helper
+function getVal(id, fallback = 0) {
+  const el = document.getElementById(id);
+  if (!el) return fallback;
+  const n = parseInt(el.value, 10);
+  return isNaN(n) ? 0 : n;
+}
 
-    const base  = toInt(row.querySelector(".base"));
-    const magic = toInt(row.querySelector(".magic"));
-    const misc  = toInt(row.querySelector(".misc"));
-    const temp  = toInt(row.querySelector(".temp"));
+// ===== SAVES (summary + popup fields) =====
+(function updateSaves() {
+  const fort = {
+    abil: mods.Con || 0,
+    base: getVal("fort-base"),
+    magic: getVal("fort-magic"),
+    misc: getVal("fort-misc"),
+    temp: getVal("fort-temp"),
+  };
+  const ref = {
+    abil: mods.Dex || 0,
+    base: getVal("ref-base"),
+    magic: getVal("ref-magic"),
+    misc: getVal("ref-misc"),
+    temp: getVal("ref-temp"),
+  };
+  const will = {
+    abil: mods.Wis || 0,
+    base: getVal("will-base"),
+    magic: getVal("will-magic"),
+    misc: getVal("will-misc"),
+    temp: getVal("will-temp"),
+  };
 
-    const abilEl = row.querySelector(".ability");
-    const totalEl = row.querySelector(".total");
+  // write ability mods to popup (if spans exist)
+  const fortAb = document.getElementById("fort-abil");
+  const refAb  = document.getElementById("ref-abil");
+  const willAb = document.getElementById("will-abil");
+  if (fortAb) fortAb.textContent = signNum(fort.abil);
+  if (refAb)  refAb.textContent  = signNum(ref.abil);
+  if (willAb) willAb.textContent = signNum(will.abil);
 
-    if (abilEl)  abilEl.textContent  = signNum(abilityMod);
-    if (totalEl) totalEl.textContent = signNum(base + abilityMod + magic + misc + temp);
-  });
+  // totals
+  const fortTot = fort.base + fort.abil + fort.magic + fort.misc + fort.temp;
+  const refTot  = ref.base  + ref.abil  + ref.magic  + ref.misc  + ref.temp;
+  const willTot = will.base + will.abil + will.magic + will.misc + will.temp;
 
-  // CMB / CMD
-  const bab     = toIntById("bab");
-  const sizeMod = size; // reuse AC size
-  const cmb     = bab + (mods.Str || 0) + sizeMod;
-  const cmd     = 10 + bab + (mods.Str || 0) + (mods.Dex || 0) + dodge + deflect + sizeMod + misc;
+  const fortEl = document.getElementById("save-fort");
+  const refEl  = document.getElementById("save-ref");
+  const willEl = document.getElementById("save-will");
+  if (fortEl) fortEl.textContent = signNum(fortTot);
+  if (refEl)  refEl.textContent  = signNum(refTot);
+  if (willEl) willEl.textContent = signNum(willTot);
+})();
 
+// ===== CMB / CMD (summary + popup spans) =====
+(function updateCMB_CMD() {
+  const bab     = getVal("bab");
+  // prefer dedicated CMB size/misc if present, else fall back to AC fields
+  const sizeVal = document.getElementById("cmb-size") ? getVal("cmb-size") : getVal("ac-size");
+  const miscMv  = document.getElementById("cmb-misc") ? getVal("cmb-misc") : 0;
+
+  const dodge   = getVal("ac-dodge");
+  const deflect = getVal("ac-deflection");
+
+  const strMod = mods.Str || 0;
+  const dexMod = mods.Dex || 0;
+
+  const cmb = bab + strMod + sizeVal + miscMv; // (misc for maneuvers, optional)
+  const cmd = 10 + bab + strMod + dexMod + dodge + deflect + sizeVal + miscMv;
+
+  // write summary
   const cmbEl = document.getElementById("cmb-total");
   const cmdEl = document.getElementById("cmd-total");
   if (cmbEl) cmbEl.textContent = signNum(cmb);
   if (cmdEl) cmdEl.textContent = cmd;
-}
+
+  // write popup spans (so modifiers show correctly)
+  const cmbStr = document.getElementById("cmb-str");
+  const cmdDex = document.getElementById("cmd-dex");
+  if (cmbStr) cmbStr.textContent = signNum(strMod);
+  if (cmdDex) cmdDex.textContent = signNum(dexMod);
+})();
 
 // ===== Conditions button (unchanged) =====
 function advanceRound() {
@@ -417,7 +467,7 @@ document.addEventListener("input", e => {
   if (e.target.closest(".ability-card")) {
     updateSkills();
     updateCombat();
-  } else if (e.target.closest("#combat")) {
+  } else if (e.target.closest("#combat, #acPopup, #savesPopup, #cmbPopup")) {
     updateCombat();
   } else if (e.target.closest("#skills")) {
     updateSkills();
