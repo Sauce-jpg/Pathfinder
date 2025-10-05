@@ -222,38 +222,62 @@
 
       
   <!-- Saves -->
-  <h3>Saves</h3>
-  <table class="char-table">
-    <tr><th>Save</th><th>Base</th><th>Ability</th><th>Magic</th><th>Misc</th><th>Temp</th><th>Total</th></tr>
-    <tr data-save="Fort">
-      <td>Fortitude</td>
-      <td><input type="number" class="base" value="2"></td>
-      <td><span class="ability">+0</span></td>
-      <td><input type="number" class="magic" value="0"></td>
-      <td><input type="number" class="misc" value="0"></td>
-      <td><input type="number" class="temp" value="0"></td>
-      <td class="total">+0</td>
-    </tr>
-    <tr data-save="Ref">
-      <td>Reflex</td>
-      <td><input type="number" class="base" value="2"></td>
-      <td><span class="ability">+0</span></td>
-      <td><input type="number" class="magic" value="0"></td>
-      <td><input type="number" class="misc" value="0"></td>
-      <td><input type="number" class="temp" value="0"></td>
-      <td class="total">+0</td>
-    </tr>
-    <tr data-save="Will">
-      <td>Will</td>
-      <td><input type="number" class="base" value="2"></td>
-      <td><span class="ability">+0</span></td>
-      <td><input type="number" class="magic" value="0"></td>
-      <td><input type="number" class="misc" value="0"></td>
-      <td><input type="number" class="temp" value="0"></td>
-      <td class="total">+0</td>
-    </tr>
-  </table>
+  <!-- Simplified Saves -->
+<h3>Saving Throws</h3>
+<div id="savesSummary" class="ac-summary">
+  <div><strong>Fort:</strong> <span id="save-fort">+0</span></div>
+  <div><strong>Ref:</strong> <span id="save-ref">+0</span></div>
+  <div><strong>Will:</strong> <span id="save-will">+0</span></div>
+  <button onclick="openSavesPopup()">⚙️ Adjust</button>
+</div>
+
+<!-- Saves popup -->
+<div id="savesPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closeSavesPopup()">&times;</span>
+    <h4>Adjust Saving Throw Components</h4>
+
+    <table class="char-table save-detail-table">
+      <tr data-save="Fort">
+        <td>Fortitude</td>
+        <td>
+          <input type="number" class="base" id="fort-base" value="2">
+          <button class="note-btn" onclick="toggleSaveNote('fort')">📝</button>
+        </td>
+      </tr>
+      <tr class="note-row" id="note-fort"><td colspan="2">
+        <input type="text" id="note-fort-text" placeholder="Source (e.g. Cloak of Resistance +3)">
+      </td></tr>
+
+      <tr data-save="Ref">
+        <td>Reflex</td>
+        <td>
+          <input type="number" class="base" id="ref-base" value="2">
+          <button class="note-btn" onclick="toggleSaveNote('ref')">📝</button>
+        </td>
+      </tr>
+      <tr class="note-row" id="note-ref"><td colspan="2">
+        <input type="text" id="note-ref-text" placeholder="Source (e.g. Haste, Dexterity bonus)">
+      </td></tr>
+
+      <tr data-save="Will">
+        <td>Will</td>
+        <td>
+          <input type="number" class="base" id="will-base" value="2">
+          <button class="note-btn" onclick="toggleSaveNote('will')">📝</button>
+        </td>
+      </tr>
+      <tr class="note-row" id="note-will"><td colspan="2">
+        <input type="text" id="note-will-text" placeholder="Source (e.g. Iron Will feat)">
+      </td></tr>
+    </table>
+
+    <button onclick="closeSavesPopup()">Done</button>
+  </div>
+</div>
+
       
+  <!-- Defenses -->    
   <h3>Defenses</h3>
   <p>Resistances: <input type="text" id="resistances"></p>
   <p>Immunities: <input type="text" id="immunities"></p>
@@ -277,14 +301,63 @@
     </tr>
   </table>
 
-  <!-- BAB / CMB / CMD -->
-  <h3>Combat Maneuvers</h3>
+  <!-- BAB -->
+  <h3>Basic Attack Bonus</h3>
   <p>
-    BAB: <input type="number" id="bab" value="1"><br>
-    CMB = BAB + Str Mod + Size + Misc → <strong id="cmb-total">+0</strong><br>
-    CMD = 10 + BAB + Str Mod + Dex Mod + Dodge + Deflect + Size + Misc → <strong id="cmd-total">10</strong>
+    BAB: <input type="number" id="bab" value="1">
   </p>
 
+      <!-- Simplified CMB/CMD -->
+<h3>Combat Maneuvers</h3>
+<div id="cmbSummary" class="ac-summary">
+  <div><strong>CMB:</strong> <span id="cmb-total">+0</span></div>
+  <div><strong>CMD:</strong> <span id="cmd-total">10</span></div>
+  <button onclick="openCMBPopup()">⚙️ Adjust</button>
+</div>
+
+<!-- CMB/CMD popup -->
+<div id="cmbPopup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closeCMBPopup()">&times;</span>
+    <h4>Adjust CMB / CMD Components</h4>
+
+    <table class="char-table cmb-detail-table">
+      <tr><td>BAB</td>
+          <td><input type="number" id="bab" value="1">
+              <button class="note-btn" onclick="toggleCMBNote('bab')">📝</button>
+          </td></tr>
+      <tr class="note-row" id="note-bab"><td colspan="2">
+        <input type="text" id="note-bab-text" placeholder="Source (e.g. Wizard 10 / Oracle 3)">
+      </td></tr>
+
+      <tr><td>Strength Modifier</td>
+          <td><span id="cmb-str">+0</span></td></tr>
+
+      <tr><td>Dexterity Modifier</td>
+          <td><span id="cmd-dex">+0</span></td></tr>
+
+      <tr><td>Size Modifier</td>
+          <td><input type="number" id="cmb-size" value="0">
+              <button class="note-btn" onclick="toggleCMBNote('size')">📝</button>
+          </td></tr>
+      <tr class="note-row" id="note-size"><td colspan="2">
+        <input type="text" id="note-size-text" placeholder="Source (e.g. Reduce Person)">
+      </td></tr>
+
+      <tr><td>Misc</td>
+          <td><input type="number" id="cmb-misc" value="0">
+              <button class="note-btn" onclick="toggleCMBNote('misc')">📝</button>
+          </td></tr>
+      <tr class="note-row" id="note-misc"><td colspan="2">
+        <input type="text" id="note-misc-text" placeholder="Source (e.g. Feat, Blessing, etc.)">
+      </td></tr>
+    </table>
+
+    <button onclick="closeCMBPopup()">Done</button>
+  </div>
+</div>
+
+      
   <!-- Proficiencies -->
   <h3>Proficiencies</h3>
   <p>Simple Weapons, Rapier, Hand Crossbow, Quarterstaff, Light Armor, Shields (except Tower)</p>
