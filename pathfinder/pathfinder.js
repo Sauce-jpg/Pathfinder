@@ -97,11 +97,7 @@ function closeACPopup() {
   updateCombat(); // re-calculate after editing
 }
 
-// close popup when clicking outside
-window.addEventListener("click", e => {
-  const popup = document.getElementById("acPopup");
-  if (e.target === popup) closeACPopup();
-});
+
 
 // ===== AC Notes toggle =====
 function toggleACNote(type) {
@@ -136,11 +132,7 @@ function toggleCMBNote(type) {
   if (row) row.style.display = (row.style.display === "table-row") ? "none" : "table-row";
 }
 
-// Close popups by clicking outside
-window.addEventListener("click", e => {
-  if (e.target === document.getElementById("savesPopup")) closeSavesPopup();
-  if (e.target === document.getElementById("cmbPopup")) closeCMBPopup();
-});
+
 
 
 
@@ -173,9 +165,7 @@ function scrollToTop() {
 window.addEventListener("scroll", toggleBackToTop);
 if (modal) modal.addEventListener("scroll", toggleBackToTop);
 if (modalContent) modalContent.addEventListener("scroll", toggleBackToTop);
-window.addEventListener("click", e => {
-  if (e.target === modal) closeModal();
-});
+);
 
 // --- DROPDOWNS ---
 function toggleDropdown(id) {
@@ -184,9 +174,28 @@ function toggleDropdown(id) {
     if (d.id !== id) d.classList.remove("show");
   });
   document.getElementById(id).classList.toggle("show");
-}
-window.addEventListener("click", function (e) {
-  if (!e.target.matches(".dropbtn")) {
+});
+
+
+
+// === Unified Global Click Handler ===
+window.addEventListener("click", e => {
+  const target = e.target;
+
+  // --- 1. Close Backstory Modal ---
+  if (target === modal) closeModal();
+
+  // --- 2. Close AC, Saves, or CMB Popups if clicking outside ---
+  const acPopup = document.getElementById("acPopup");
+  const savesPopup = document.getElementById("savesPopup");
+  const cmbPopup = document.getElementById("cmbPopup");
+
+  if (target === acPopup) closeACPopup();
+  if (target === savesPopup) closeSavesPopup();
+  if (target === cmbPopup) closeCMBPopup();
+
+  // --- 3. Handle Dropdowns ---
+  if (!target.matches(".dropbtn")) {
     document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
   }
 });
