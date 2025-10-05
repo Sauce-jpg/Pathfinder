@@ -489,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCombat();
   loadCombatData();   // 👈 Load all stored values & notes
 });
-
+}
 
 
 
