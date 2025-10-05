@@ -304,10 +304,11 @@ nav .dropdown:hover .dropdown-content {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
 }
 .skills-table th, .skills-table td {
   border: 1px solid #ccc;
-  padding: 0.4rem;
+  padding: 0.25rem 0.4rem;
   text-align: center;
 }
 .skills-table th {
@@ -315,12 +316,29 @@ nav .dropdown:hover .dropdown-content {
   font-family: 'Cinzel Decorative', serif;
   background: #e7dcc9;
 }
+.skills-table td:first-child {
+  width: 30px;
+}
 .skills-table td:first-child, 
 .skills-table th:first-child {
   text-align: left;
 }
+.skills-table input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
 .skills-table input[type="number"] {
+  width: 55px;
+  text-align: center;
+}
+.skills-table .total {
+  font-weight: bold;
   width: 60px;
+}
+
+.skills-table td:nth-child(2) {
+  text-align: left;
+  white-space: nowrap;
 }
 .dark-mode .skills-table th { background: #333; }
 
