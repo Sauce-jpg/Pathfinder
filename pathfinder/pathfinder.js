@@ -174,7 +174,7 @@ function toggleDropdown(id) {
     if (d.id !== id) d.classList.remove("show");
   });
   document.getElementById(id).classList.toggle("show");
-});
+}
 
 
 
