@@ -238,39 +238,63 @@
     <h4>Adjust Saving Throw Components</h4>
 
     <table class="char-table save-detail-table">
-      <tr data-save="Fort">
-        <td>Fortitude</td>
-        <td>
-          <input type="number" class="base" id="fort-base" value="2">
-          <button class="note-btn" onclick="toggleSaveNote('fort')">📝</button>
-        </td>
-      </tr>
-      <tr class="note-row" id="note-fort"><td colspan="2">
-        <input type="text" id="note-fort-text" placeholder="Source (e.g. Cloak of Resistance +3)">
-      </td></tr>
+  <!-- FORT -->
+  <tr><th colspan="2">Fortitude</th></tr>
+  <tr>
+    <td>Ability (Con)</td>
+    <td><span id="fort-abil">+0</span></td>
+  </tr>
+  <tr>
+    <td>Base</td>
+    <td><input type="number" class="base" id="fort-base" value="2">
+      <button class="note-btn" onclick="toggleSaveNote('fort')">📝</button>
+    </td>
+  </tr>
+  <tr class="note-row" id="note-fort"><td colspan="2">
+    <input type="text" id="note-fort-text" placeholder="Source (e.g. class base)">
+  </td></tr>
+  <tr><td>Magic</td><td><input type="number" id="fort-magic" value="0"></td></tr>
+  <tr><td>Misc</td><td><input type="number" id="fort-misc" value="0"></td></tr>
+  <tr><td>Temp</td><td><input type="number" id="fort-temp" value="0"></td></tr>
 
-      <tr data-save="Ref">
-        <td>Reflex</td>
-        <td>
-          <input type="number" class="base" id="ref-base" value="2">
-          <button class="note-btn" onclick="toggleSaveNote('ref')">📝</button>
-        </td>
-      </tr>
-      <tr class="note-row" id="note-ref"><td colspan="2">
-        <input type="text" id="note-ref-text" placeholder="Source (e.g. Haste, Dexterity bonus)">
-      </td></tr>
+  <!-- REF -->
+  <tr><th colspan="2">Reflex</th></tr>
+  <tr>
+    <td>Ability (Dex)</td>
+    <td><span id="ref-abil">+0</span></td>
+  </tr>
+  <tr>
+    <td>Base</td>
+    <td><input type="number" class="base" id="ref-base" value="2">
+      <button class="note-btn" onclick="toggleSaveNote('ref')">📝</button>
+    </td>
+  </tr>
+  <tr class="note-row" id="note-ref"><td colspan="2">
+    <input type="text" id="note-ref-text" placeholder="Source">
+  </td></tr>
+  <tr><td>Magic</td><td><input type="number" id="ref-magic" value="0"></td></tr>
+  <tr><td>Misc</td><td><input type="number" id="ref-misc" value="0"></td></tr>
+  <tr><td>Temp</td><td><input type="number" id="ref-temp" value="0"></td></tr>
 
-      <tr data-save="Will">
-        <td>Will</td>
-        <td>
-          <input type="number" class="base" id="will-base" value="2">
-          <button class="note-btn" onclick="toggleSaveNote('will')">📝</button>
-        </td>
-      </tr>
-      <tr class="note-row" id="note-will"><td colspan="2">
-        <input type="text" id="note-will-text" placeholder="Source (e.g. Iron Will feat)">
-      </td></tr>
-    </table>
+  <!-- WILL -->
+  <tr><th colspan="2">Will</th></tr>
+  <tr>
+    <td>Ability (Wis)</td>
+    <td><span id="will-abil">+0</span></td>
+  </tr>
+  <tr>
+    <td>Base</td>
+    <td><input type="number" class="base" id="will-base" value="2">
+      <button class="note-btn" onclick="toggleSaveNote('will')">📝</button>
+    </td>
+  </tr>
+  <tr class="note-row" id="note-will"><td colspan="2">
+    <input type="text" id="note-will-text" placeholder="Source">
+  </td></tr>
+  <tr><td>Magic</td><td><input type="number" id="will-magic" value="0"></td></tr>
+  <tr><td>Misc</td><td><input type="number" id="will-misc" value="0"></td></tr>
+  <tr><td>Temp</td><td><input type="number" id="will-temp" value="0"></td></tr>
+</table>
 
     <button onclick="closeSavesPopup()">Done</button>
   </div>
