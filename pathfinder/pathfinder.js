@@ -174,7 +174,7 @@ function toggleDropdown(id) {
     if (d.id !== id) d.classList.remove("show");
   });
   document.getElementById(id).classList.toggle("show");
-}
+};
 
 
 
@@ -789,4 +789,3 @@ document.getElementById("resetFilters").addEventListener("click", () => {
   document.getElementById("searchFilter").value = "";
   loadSpells();
 });
-}
