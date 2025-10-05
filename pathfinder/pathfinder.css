@@ -570,6 +570,44 @@ button.toggle {
 }
 
 
+/* ===== Saves/CMB/CMD detail popup styling ===== */
+.save-detail-table .note-btn,
+.cmb-detail-table .note-btn {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  background: #eee;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.save-detail-table .note-btn:hover,
+.cmb-detail-table .note-btn:hover {
+  background: #ddd;
+}
+
+.dark-mode .save-detail-table .note-btn,
+.dark-mode .cmb-detail-table .note-btn {
+  background: #555; border-color: #777; color: #eee;
+}
+
+.note-row {
+  display: none;
+}
+.note-row input[type="text"] {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.dark-mode .note-row input { background: #333; color: #eee; border-color: #666; }
+
+
+
+
+
+
 
 
 
