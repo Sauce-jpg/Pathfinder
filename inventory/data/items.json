@@ -1,0 +1,106 @@
+[
+  {
+    "id": "pc-omen-40l",
+    "name": "HP OMEN 40L",
+    "type": "computer",
+    "category": "PC Setup",
+    "brand": "HP",
+    "model": "OMEN 40L GT21-0874no",
+    "quantity": 1,
+    "purchase": {
+      "date": "",
+      "price": "",
+      "currency": "SEK",
+      "store": "",
+      "orderRef": ""
+    },
+    "location": "Home office",
+    "tags": ["gaming", "desktop"],
+    "notes": "Main PC. Replace specs with what Windows reports if needed.",
+    "images": [],
+    "specs": {
+      "cpu": "",
+      "gpu": "",
+      "ram": "",
+      "storage": "",
+      "motherboard": "",
+      "psu": "",
+      "os": "Windows 11"
+    }
+  },
+  {
+    "id": "monitor-main",
+    "name": "Main Monitor",
+    "type": "display",
+    "category": "Displays",
+    "brand": "",
+    "model": "",
+    "quantity": 1,
+    "purchase": { "date": "", "price": "", "currency": "SEK", "store": "" },
+    "location": "Home office",
+    "tags": ["monitor"],
+    "notes": "",
+    "images": [],
+    "specs": {
+      "size": "",
+      "resolution": "",
+      "refreshRate": "",
+      "panel": ""
+    }
+  },
+  {
+    "id": "keyboard-main",
+    "name": "Mechanical Keyboard",
+    "type": "peripheral",
+    "category": "Peripherals",
+    "brand": "",
+    "model": "Crush 80 (ISO)",
+    "quantity": 1,
+    "purchase": { "date": "", "price": "", "currency": "SEK", "store": "" },
+    "location": "Home office",
+    "tags": ["keyboard", "mechanical", "custom"],
+    "notes": "Add details: switches, keycaps, plate, stabilizers, foam, lube, mods.",
+    "images": [],
+    "specs": {
+      "layout": "ISO (Swedish?)",
+      "switches": "",
+      "keycaps": "",
+      "plate": "",
+      "stabilizers": "",
+      "mods": ""
+    }
+  },
+  {
+    "id": "mouse-main",
+    "name": "Mouse",
+    "type": "peripheral",
+    "category": "Peripherals",
+    "brand": "",
+    "model": "",
+    "quantity": 1,
+    "purchase": { "date": "", "price": "", "currency": "SEK", "store": "" },
+    "location": "Home office",
+    "tags": ["mouse"],
+    "notes": "",
+    "images": [],
+    "specs": {}
+  },
+  {
+    "id": "lighting-desk",
+    "name": "Desk Lighting",
+    "type": "lighting",
+    "category": "Lighting",
+    "brand": "Govee",
+    "model": "Neon Rope Light",
+    "quantity": 1,
+    "purchase": { "date": "", "price": "", "currency": "SEK", "store": "" },
+    "location": "Home office",
+    "tags": ["rgb", "lighting"],
+    "notes": "Mounted behind/around desk setup.",
+    "images": [],
+    "specs": {
+      "length": "3m / 5m",
+      "placement": ""
+    }
+  }
+]
