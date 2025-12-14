@@ -34,6 +34,73 @@ header a {
 header a:hover { text-decoration: underline; }
 
 
+
+
+
+
+/* ===== Top Navbar for site-wide navigation ===== */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #ddd;
+  border-bottom: 1px solid #ccc;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.navbar a:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.navbar a.active {
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.navbar #theme-toggle {
+  margin-left: auto;
+  padding: 0.4rem 0.75rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  background: #ccc;
+}
+
+/* Dark mode for navbar */
+.dark-mode .navbar {
+  background: #333;
+  border-color: #444;
+}
+
+.dark-mode .navbar a:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode .navbar a.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .navbar #theme-toggle {
+  background: #555;
+  color: #f5f5f5;
+}
+
+
+
+
+
+
+
 /* ===== Top Nav (Pathfinder tabs) ===== */
 nav {
   display: flex;
