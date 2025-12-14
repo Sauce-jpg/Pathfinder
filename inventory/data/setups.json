@@ -1,0 +1,14 @@
+[
+  {
+    "id": "setup-desk",
+    "name": "Desk / PC Setup",
+    "description": "Main workstation + gaming rig",
+    "items": [
+      "pc-omen-40l",
+      "monitor-main",
+      "keyboard-main",
+      "mouse-main",
+      "lighting-desk"
+    ]
+  }
+]
