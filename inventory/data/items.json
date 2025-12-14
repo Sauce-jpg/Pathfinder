@@ -1,33 +1,152 @@
 [
   {
-    "id": "pc-omen-40l",
-    "name": "HP OMEN 40L",
-    "type": "computer",
-    "category": "PC Setup",
-    "brand": "HP",
-    "model": "OMEN 40L GT21-0874no",
-    "quantity": 1,
-    "purchase": {
-      "date": "",
-      "price": "",
-      "currency": "SEK",
-      "store": "",
-      "orderRef": ""
-    },
-    "location": "Home office",
-    "tags": ["gaming", "desktop"],
-    "notes": "Main PC. Replace specs with what Windows reports if needed.",
-    "images": [],
-    "specs": {
-      "cpu": "",
-      "gpu": "",
-      "ram": "",
-      "storage": "",
-      "motherboard": "",
-      "psu": "",
-      "os": "Windows 11"
-    }
+  "id": "pc-omen-40l",
+  "name": "HP OMEN 40L",
+  "type": "computer",
+  "category": "PC Setup",
+  "brand": "HP",
+  "model": "OMEN 40L GT21-0874no (possibly 0871no)",
+  "quantity": 1,
+  "purchase": {
+    "date": "2022-02-11",
+    "price": 22990,
+    "currency": "SEK",
+    "store": "",
+    "orderRef": ""
   },
+  "purchaseHistory": [
+    {
+      "date": "2021-12-11",
+      "item": "HP OMEN 30L GT13-1880no",
+      "price": 22990,
+      "currency": "SEK",
+      "note": "Original order (possibly on sale by 5–6000 SEK, not sure). GPU broke after about a month."
+    },
+    {
+      "date": "2022-01-xx",
+      "item": "Replacement PC (upgrade) – water damage during delivery",
+      "note": "Store roof leak -> unit got wet from rain before reaching me."
+    },
+    {
+      "date": "2022-02-11",
+      "item": "HP OMEN 40L GT21-0874no",
+      "note": "Current unit."
+    }
+  ],
+  "location": "Home office",
+  "tags": ["gaming", "desktop", "omen", "bitlocker-issues"],
+  "notes": "Frequent BitLocker recovery prompts. PIN sign-in not working (use email+code). Might be related to mixed personal/work sign-in or user profile issues.",
+  "images": [],
+  "specs": {
+    "overview": "i7-12700K / 32GB DDR4 / 2TB NVMe SSD / RTX 3080 10GB",
+    "dimensions": {
+      "height_cm": 46.7,
+      "width_cm": 20.4,
+      "depth_cm": 47.0,
+      "weight_kg": 18.7
+    },
+    "chassis": {
+      "type": "Full-Tower",
+      "formFactor": "Micro ATX",
+      "color": "Black",
+      "introducedYear": 2021
+    },
+    "cpu": {
+      "manufacturer": "Intel",
+      "family": "Core i7",
+      "model": "12700K",
+      "generation": "12th gen",
+      "cores": 12,
+      "threads": 20,
+      "baseGHz": 3.6,
+      "boostGHz": 5.0,
+      "cache": "25 MB",
+      "chipset": "Intel ADL Z690"
+    },
+    "motherboard": {
+      "brand": "BlizzardOC",
+      "pcieSupport": true
+    },
+    "memory": {
+      "manufacturer": "HyperX",
+      "model": "XMP",
+      "type": "DDR4",
+      "installedGB": 32,
+      "maxGB": 128,
+      "speedMTs": 3733,
+      "slotsTotal": 4,
+      "slotsFree": 2
+    },
+    "storage": {
+      "type": "SSD",
+      "manufacturer": "WD",
+      "ssdType": "M.2 PCIe NVMe SSD",
+      "nand": "TLC",
+      "capacityGB": 2000,
+      "installedSSDs": 1,
+      "installedHDDs": 0,
+      "totalCapacityGB": 2000
+    },
+    "gpu": {
+      "manufacturer": "NVIDIA",
+      "model": "GeForce RTX 3080",
+      "series": "GeForce RTX 30 Series",
+      "vramGB": 10,
+      "count": 1
+    },
+    "cooling": {
+      "system": "Water cooling"
+    },
+    "psu": {
+      "type": "ATX",
+      "certification": "80 Plus Gold",
+      "watt": 800
+    },
+    "audio": {
+      "info": "5.1 surround sound; Omen Audio Control Support DTS:X Ultra"
+    },
+    "wireless": {
+      "wifi": "Wi-Fi 6 (802.11ax)",
+      "bluetooth": "5.0"
+    },
+    "network": {
+      "rj45": true,
+      "ethernet": "10/100/1000"
+    },
+    "ports": {
+      "usb2_a": 4,
+      "usbA_3_2_gen1": 3,
+      "usbA_3_2_gen2": 1,
+      "usbC_3_2_gen1": 1,
+      "usbC_3_2_gen2": 1,
+      "hdmi": 1,
+      "displayPort": 3,
+      "dvi": 0,
+      "vga": 0,
+      "thunderbolt3": 0,
+      "thunderbolt4": 0,
+      "cardReader": false,
+      "usbPowerDelivery": false,
+      "audioPorts": "1 headphone/microphone combo; 1 microphone; 1 audio-in; 1 audio-out; 1 microphone"
+    },
+    "expansion": {
+      "m2_total": 2,
+      "m2_free": 1,
+      "m2_wlan_total": 1,
+      "m2_wlan_free": 0,
+      "pcie16_total": 1,
+      "pcie16_free": 0,
+      "pcie1_total": 0,
+      "pcie1_free": 0,
+      "opticalDrive": false
+    },
+    "os": {
+      "name": "Windows",
+      "version": "Windows 11 Home",
+      "arch": "64-bit"
+    }
+  }
+},
   {
     "id": "monitor-main",
     "name": "Main Monitor",
