@@ -179,6 +179,69 @@ function renderItems() {
   }
 }
 
+
+
+
+
+function humanKey(key) {
+  return String(key)
+    .replace(/_/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function renderKVTable(obj) {
+  const rows = Object.entries(obj).map(([k, v]) => {
+    const val = (v && typeof v === "object") ? JSON.stringify(v) : safeText(v);
+    return `
+      <tr>
+        <td class="spec-k">${humanKey(k)}</td>
+        <td class="spec-v">${val}</td>
+      </tr>
+    `;
+  }).join("");
+
+  return `
+    <table class="spec-table">
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+function renderSpecs(specs) {
+  if (!specs || typeof specs !== "object") return "";
+
+  // If specs is nested, render each top-level object as its own section
+  const parts = [];
+
+  for (const [sectionKey, sectionVal] of Object.entries(specs)) {
+    if (sectionVal == null || sectionVal === "") continue;
+
+    // Simple string/number/bool => show as a 1-row table section
+    if (typeof sectionVal !== "object") {
+      parts.push(`
+        <h4 style="margin: 0.75rem 0 0.25rem;">${humanKey(sectionKey)}</h4>
+        ${renderKVTable({ value: sectionVal })}
+      `);
+      continue;
+    }
+
+    // Object => section table
+    parts.push(`
+      <h4 style="margin: 0.75rem 0 0.25rem;">${humanKey(sectionKey)}</h4>
+      ${renderKVTable(sectionVal)}
+    `);
+  }
+
+  return parts.length ? `<h3>Specs</h3>${parts.join("")}` : "";
+}
+
+
+
+
+
+
+
 function openItemModal(itemId) {
   const it = state.items.find(x => x.id === itemId);
   if (!it) return;
@@ -190,7 +253,7 @@ function openItemModal(itemId) {
   `).join("");
 
   const specsEntries = Object.entries(it.specs || {});
-  const specsHtml = specsEntries.length
+  const specsHtml = renderSpecs(it.specs);
     ? `
       <h3>Specs</h3>
       <table class="spec-table">
