@@ -210,32 +210,70 @@ function renderKVTable(obj) {
   `;
 }
 
+function slugifySpecId(key) {
+  return "spec-" + String(key)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+
+
+
+
 function renderSpecs(specs) {
   if (!specs || typeof specs !== "object") return "";
 
-  // If specs is nested, render each top-level object as its own section
-  const parts = [];
+  const entries = Object.entries(specs).filter(([_, v]) => v != null && v !== "");
 
-  for (const [sectionKey, sectionVal] of Object.entries(specs)) {
-    if (sectionVal == null || sectionVal === "") continue;
+  // Build TOC from top-level spec sections
+  const tocItems = entries.map(([sectionKey, sectionVal]) => {
+    // Only include "real" sections in the TOC
+    const hasContent =
+      typeof sectionVal !== "object" ? true : Object.keys(sectionVal || {}).length > 0;
 
-    // Simple string/number/bool => show as a 1-row table section
+    if (!hasContent) return null;
+
+    const id = slugifySpecId(sectionKey);
+    return `<a class="spec-toc-link" href="#${id}">${humanKey(sectionKey)}</a>`;
+  }).filter(Boolean);
+
+  const tocHtml = tocItems.length
+    ? `
+      <div class="spec-toc">
+        <div class="spec-toc-title">Specs</div>
+        <div class="spec-toc-links">
+          ${tocItems.join("")}
+        </div>
+      </div>
+    `
+    : "";
+
+  // Render each top-level section with an anchor id
+  const sectionsHtml = entries.map(([sectionKey, sectionVal]) => {
+    const id = slugifySpecId(sectionKey);
+
     if (typeof sectionVal !== "object") {
-      parts.push(`
-        <h4 style="margin: 0.75rem 0 0.25rem;">${humanKey(sectionKey)}</h4>
+      return `
+        <h4 id="${id}" class="spec-section-title">${humanKey(sectionKey)}</h4>
         ${renderKVTable({ value: sectionVal })}
-      `);
-      continue;
+      `;
     }
 
-    // Object => section table
-    parts.push(`
-      <h4 style="margin: 0.75rem 0 0.25rem;">${humanKey(sectionKey)}</h4>
+    return `
+      <h4 id="${id}" class="spec-section-title">${humanKey(sectionKey)}</h4>
       ${renderKVTable(sectionVal)}
-    `);
-  }
+    `;
+  }).join("");
 
-  return parts.length ? `<h3>Specs</h3>${parts.join("")}` : "";
+  if (!sectionsHtml) return "";
+
+  return `
+    ${tocHtml}
+    <div class="spec-sections">
+      ${sectionsHtml}
+    </div>
+  `;
 }
 
 
@@ -446,6 +484,49 @@ function injectModalTableStyles() {
       margin: 1rem 0;
     }
     @media (max-width: 800px) { .detail-grid { grid-template-columns: 1fr; } }
+        .spec-toc {
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 12px;
+      padding: 0.75rem;
+      margin: 1rem 0 0.75rem;
+      background: rgba(0,0,0,0.03);
+    }
+    .dark-mode .spec-toc {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+    }
+    .spec-toc-title {
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+    .spec-toc-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .spec-toc-link {
+      text-decoration: none;
+      color: inherit;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.08);
+      font-size: 0.9rem;
+    }
+    .spec-toc-link:hover {
+      background: rgba(0,0,0,0.14);
+    }
+    .dark-mode .spec-toc-link {
+      background: rgba(255,255,255,0.12);
+    }
+    .dark-mode .spec-toc-link:hover {
+      background: rgba(255,255,255,0.18);
+    }
+    .spec-section-title {
+      margin: 1rem 0 0.25rem;
+      scroll-margin-top: 90px;
+    }
+    html { scroll-behavior: smooth; }
     .detail-list { margin: 0.25rem 0 0; padding-left: 1.1rem; }
     .spec-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
     .spec-table td { border-top: 1px solid rgba(0,0,0,0.12); padding: 0.5rem 0.25rem; vertical-align: top; }
