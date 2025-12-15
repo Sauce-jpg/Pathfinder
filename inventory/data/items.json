@@ -206,20 +206,147 @@
   },
   {
     "id": "lighting-desk",
-    "name": "Desk Lighting",
+    "name": "Govee Neon Rope Light 2",
     "type": "lighting",
     "category": "Lighting",
     "brand": "Govee",
-    "model": "Neon Rope Light",
+    "model": "Neon Rope Light 2 (5m)",
     "quantity": 1,
-    "purchase": { "date": "", "price": "", "currency": "SEK", "store": "" },
+    "purchase": {
+      "date": "2025-11-25",
+      "price": 699,
+      "currency": "SEK",
+      "store": "Proshop",
+      "orderRef": "64621419",
+      "orderId": "proshop-2025-11-25-64621419"
+    },
     "location": "Home office",
-    "tags": ["rgb", "lighting"],
-    "notes": "Mounted behind/around desk setup.",
+    "tags": ["rgb", "lighting", "govee", "wall", "sauce"],
+    "notes": "Mounted on the wall behind my desk, shaped to spell out “sauce” (my gamertag).",
     "images": [],
     "specs": {
-      "length": "3m / 5m",
-      "placement": ""
+      "length": "5m",
+      "placement": "Wall behind desk",
+      "design": "Spells “sauce”"
     }
+  },
+  {
+    "id": "lighting-ceiling-squares-12in",
+    "name": "Govee 12-inch Square Smart Ceiling Light",
+    "type": "lighting",
+    "category": "Lighting",
+    "brand": "Govee",
+    "model": "12inch RGBWW + RGBIC Square Smart Ceiling Light",
+    "quantity": 1,
+    "purchase": {
+      "date": "2025-11-25",
+      "price": 545,
+      "currency": "SEK",
+      "store": "Proshop",
+      "orderRef": "64621419",
+      "orderId": "proshop-2025-11-25-64621419"
+    },
+    "location": "Home",
+    "tags": ["rgb", "lighting", "govee", "ceiling"],
+    "notes": "",
+    "images": [],
+    "specs": {
+      "size": "12 inch",
+      "lighting": "RGBWW + RGBIC",
+      "mount": "Ceiling"
+    }
+  },
+  {
+    "id": "lighting-led-strip-3x",
+    "name": "Govee RGB Smart LED Strip Lights (x3)",
+    "type": "lighting",
+    "category": "Lighting",
+    "brand": "Govee",
+    "model": "RGB Smart Wi-Fi + Bluetooth LED Strip Lights",
+    "quantity": 3,
+    "purchase": {
+      "date": "2025-11-25",
+      "price": 525,
+      "currency": "SEK",
+      "store": "Proshop",
+      "orderRef": "64621419",
+      "orderId": "proshop-2025-11-25-64621419"
+    },
+    "location": "Home",
+    "tags": ["rgb", "lighting", "govee", "led-strip"],
+    "notes": "Bought as 3 units (175 SEK each).",
+    "images": [],
+    "specs": {
+      "connectivity": "Wi-Fi + Bluetooth",
+      "unitPriceSEK": 175
+    }
+  },
+  {
+    "id": "tool-air-duster-dutzo",
+    "name": "DUTZO Air Duster Pro",
+    "type": "tool",
+    "category": "Tools",
+    "brand": "DUTZO",
+    "model": "Air Duster Pro (3 speed)",
+    "quantity": 1,
+    "purchase": {
+      "date": "2025-11-25",
+      "price": 399,
+      "currency": "SEK",
+      "store": "Proshop",
+      "orderRef": "64621419",
+      "orderId": "proshop-2025-11-25-64621419"
+    },
+    "location": "Home",
+    "tags": ["tool", "cleaning", "pc"],
+    "notes": "",
+    "images": [],
+    "specs": {
+      "speeds": 3
+    }
+  },
+  {
+    "id": "lego-75639-going-merry",
+    "name": "LEGO 75639 – Piratskeppet Going Merry",
+    "type": "collectible",
+    "category": "LEGO",
+    "brand": "LEGO",
+    "model": "75639",
+    "quantity": 1,
+    "purchase": {
+      "date": "2025-11-25",
+      "price": 1099,
+      "currency": "SEK",
+      "store": "Proshop",
+      "orderRef": "64621419",
+      "orderId": "proshop-2025-11-25-64621419"
+    },
+    "location": "Home",
+    "tags": ["lego", "one-piece"],
+    "notes": "",
+    "images": [],
+    "specs": {}
+  },
+  {
+    "id": "lego-75636-windmill-village",
+    "name": "LEGO 75636 – Hydda i Väderkvarnsbyn",
+    "type": "collectible",
+    "category": "LEGO",
+    "brand": "LEGO",
+    "model": "75636",
+    "quantity": 1,
+    "purchase": {
+      "date": "2025-11-25",
+      "price": 269,
+      "currency": "SEK",
+      "store": "Proshop",
+      "orderRef": "64621419",
+      "orderId": "proshop-2025-11-25-64621419"
+    },
+    "location": "Home",
+    "tags": ["lego", "one-piece"],
+    "notes": "",
+    "images": [],
+    "specs": {}
   }
 ]
