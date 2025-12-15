@@ -484,49 +484,66 @@ function injectModalTableStyles() {
       margin: 1rem 0;
     }
     @media (max-width: 800px) { .detail-grid { grid-template-columns: 1fr; } }
-        .spec-toc {
-      border: 1px solid rgba(0,0,0,0.12);
-      border-radius: 12px;
-      padding: 0.75rem;
-      margin: 1rem 0 0.75rem;
-      background: rgba(0,0,0,0.03);
-    }
-    .dark-mode .spec-toc {
-      border-color: rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
-    }
-    .spec-toc-title {
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      opacity: 0.9;
-    }
-    .spec-toc-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .spec-toc-link {
-      text-decoration: none;
-      color: inherit;
-      padding: 0.35rem 0.6rem;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.08);
-      font-size: 0.9rem;
-    }
-    .spec-toc-link:hover {
-      background: rgba(0,0,0,0.14);
-    }
-    .dark-mode .spec-toc-link {
-      background: rgba(255,255,255,0.12);
-    }
-    .dark-mode .spec-toc-link:hover {
-      background: rgba(255,255,255,0.18);
-    }
-    .spec-section-title {
-      margin: 1rem 0 0.25rem;
-      scroll-margin-top: 90px;
-    }
-    html { scroll-behavior: smooth; }
+      .spec-toc {
+       position: sticky;
+       top: 0.75rem;               /* sticks below top padding */
+       z-index: 5;
+       border: 1px solid rgba(0,0,0,0.12);
+       border-radius: 12px;
+       padding: 0.75rem;
+       margin: 1rem 0 0.75rem;
+       background: rgba(250,250,250,0.92);
+       backdrop-filter: blur(6px);
+     }
+
+     .dark-mode .spec-toc {
+       border-color: rgba(255,255,255,0.12);
+       background: rgba(34,34,34,0.92);
+     }
+
+     .spec-toc-title {
+       font-weight: 800;
+       margin-bottom: 0.5rem;
+       opacity: 0.95;
+     }
+
+     .spec-toc-links {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 0.5rem;
+     }
+     .spec-toc-links {
+       max-height: 140px;
+       overflow: auto;
+       padding-right: 0.25rem;
+     }
+
+     /* Slightly nicer scrollbar in modern browsers (optional) */
+     .spec-toc-links::-webkit-scrollbar { width: 10px; }
+     .spec-toc-links::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(0,0,0,0.18); }
+     .dark-mode .spec-toc-links::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); }
+     .spec-toc-link {
+       text-decoration: none;
+       color: inherit;
+       padding: 0.35rem 0.6rem;
+       border-radius: 999px;
+       background: rgba(0,0,0,0.08);
+       font-size: 0.9rem;
+       line-height: 1.2;
+     }
+
+     .spec-toc-link:hover { background: rgba(0,0,0,0.14); }
+
+     .dark-mode .spec-toc-link { background: rgba(255,255,255,0.12); }
+     .dark-mode .spec-toc-link:hover { background: rgba(255,255,255,0.18); }
+
+     /* Make anchor jumps land nicely */
+     .spec-section-title {
+       margin: 1rem 0 0.25rem;
+       scroll-margin-top: 110px; /* account for sticky toc + padding */
+     }
+
+     html { scroll-behavior: smooth; }
     .detail-list { margin: 0.25rem 0 0; padding-left: 1.1rem; }
     .spec-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
     .spec-table td { border-top: 1px solid rgba(0,0,0,0.12); padding: 0.5rem 0.25rem; vertical-align: top; }
