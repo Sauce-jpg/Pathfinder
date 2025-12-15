@@ -27,6 +27,18 @@
   font-weight: 600;
 }
 
+
+.inv-pager{
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  display:flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items:center;
+}
+
+
 .inv-tab:hover { transform: translateY(-1px); background: #d2d2d2; }
 .inv-tab.active { background: #c8c8c8; }
 
