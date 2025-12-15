@@ -9,6 +9,10 @@ const state = {
   selectedSetupId: null,
 };
 
+state.page = 1;
+state.pageSize = 48;
+
+
 function el(id) { return document.getElementById(id); }
 
 function safeText(v) {
@@ -131,6 +135,9 @@ function applyFilters() {
     }
   });
 
+
+  state.page = 1;
+  
   state.filtered = list;
   renderItems();
 }
@@ -139,6 +146,18 @@ function renderItems() {
   const wrap = el("items");
   wrap.innerHTML = "";
 
+  const total = state.filtered.length;
+  const totalPages = Math.max(1, Math.ceil(total / state.pageSize));
+  if (state.page > totalPages) state.page = totalPages;
+
+  const start = (state.page - 1) * state.pageSize;
+  const end = start + state.pageSize;
+  const pageItems = state.filtered.slice(start, end);
+
+  el("count").textContent = `${total} item${total === 1 ? "" : "s"}`;
+  el("pageInfo").textContent = `Page ${state.page} / ${totalPages}`;
+
+  
   el("count").textContent = `${state.filtered.length} item${state.filtered.length === 1 ? "" : "s"}`;
 
   for (const it of state.filtered) {
@@ -451,6 +470,19 @@ function wireControls() {
   el("location").addEventListener("change", applyFilters);
   el("sort").addEventListener("change", applyFilters);
 
+
+  el("prevPage").addEventListener("click", () => {
+    state.page = Math.max(1, state.page - 1);
+    renderItems();
+  });
+
+  el("nextPage").addEventListener("click", () => {
+    const totalPages = Math.max(1, Math.ceil(state.filtered.length / state.pageSize));
+    state.page = Math.min(totalPages, state.page + 1);
+    renderItems();
+  });
+
+  
   el("reset").addEventListener("click", () => {
     el("q").value = "";
     el("category").value = "";
