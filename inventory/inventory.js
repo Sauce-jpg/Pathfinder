@@ -479,9 +479,17 @@ async function init() {
     applyFilters();
     renderSetups();
   } catch (err) {
-    console.error(err);
-    el("items").innerHTML = `<div class="inv-card"><h3>Error</h3><p class="muted">Could not load inventory data. Check console + file paths.</p></div>`;
-  }
+     console.error(err);
+
+     const msg = (err && err.stack) ? err.stack : String(err);
+
+     el("items").innerHTML = `
+       <div class="inv-card">
+         <h3>Error loading inventory</h3>
+         <pre style="white-space:pre-wrap; font-size:0.85rem; opacity:0.9;">${msg}</pre>
+         <p class="muted">Open DevTools → Console/Network for more.</p>
+       </div>`;
+   }
 }
 
 window.addEventListener("DOMContentLoaded", init);
