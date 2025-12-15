@@ -256,20 +256,7 @@ function openItemModal(itemId) {
 
   const specsEntries = Object.entries(it.specs || {});
   const specsHtml = renderSpecs(it.specs);
-    ? `
-      <h3>Specs</h3>
-      <table class="spec-table">
-        <tbody>
-          ${specsEntries.map(([k,v]) => `
-            <tr>
-              <td class="spec-k">${safeText(k)}</td>
-              <td class="spec-v">${safeText(v)}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    `
-    : "";
+
 
   const tagsHtml = (it.tags && it.tags.length)
     ? `<p class="muted">Tags: ${(it.tags || []).map(t => `#${safeText(t)}`).join(" ")}</p>`
