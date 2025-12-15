@@ -1,5 +1,7 @@
 /* Inventory v1 (static JSON + modal + setups) */
 
+console.log("inventory.js loaded ✅", location.href);
+
 const state = {
   items: [],
   setups: [],
