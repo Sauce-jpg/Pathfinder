@@ -537,16 +537,6 @@ function openOrderModal(order) {
       Filter inventory by this order
     </button>
 
-    const btn = document.getElementById("filterByOrder");
-    if (btn) {
-      btn.addEventListener("click", () => {
-        state.activeOrderId = order.orderId;
-        hideModal();
-        switchTab("inventory");
-        applyFilters();
-      });
-    }
-
     <h3>Items</h3>
     <div class="setup-items">
       ${order.items.map(it => `
@@ -564,6 +554,16 @@ function openOrderModal(order) {
       `).join("")}
     </div>
   `;
+
+  const btn = document.getElementById("filterByOrder");
+    if (btn) {
+      btn.addEventListener("click", () => {
+        state.activeOrderId = order.orderId;
+        hideModal();
+        switchTab("inventory");
+        applyFilters();
+      });
+    }
 
   // Click any row -> open item modal
   body.querySelectorAll("[data-item]").forEach(row => {
