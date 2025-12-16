@@ -205,81 +205,7 @@ function renderViews() {
   });
 }
 
-el("savedViews").addEventListener("change", () => {
-  const name = el("savedViews").value;
-  if (!name) return;
 
-  const view = getViews()[name];
-  if (!view) return;
-
-  if (view.q !== undefined) el("q").value = view.q;
-  if (view.category !== undefined) el("category").value = view.category;
-  if (view.location !== undefined) el("location").value = view.location;
-  if (view.buildStatus !== undefined) el("buildStatus").value = view.buildStatus;
-  if (view.paintStatus !== undefined) el("paintStatus").value = view.paintStatus;
-
-  state.activeOrderId = null;
-  applyFilters();
-});
-
-el("saveView").addEventListener("click", () => {
-  const name = prompt("Name this view:");
-  if (!name) return;
-
-  const views = getViews();
-  views[name] = {
-    q: el("q").value,
-    category: el("category").value,
-    location: el("location").value,
-    buildStatus: el("buildStatus").value,
-    paintStatus: el("paintStatus").value
-  };
-
-  setViews(views);
-  renderViews();
-});
-
-el("deleteView").addEventListener("click", () => {
-  const name = el("savedViews").value;
-  if (!name) return;
-  if (!confirm(`Delete view "${name}"?`)) return;
-
-  const views = getViews();
-  delete views[name];
-  setViews(views);
-  renderViews();
-});
-
-renderViews();
-
-
-
-
-el("exportCsv").addEventListener("click", () => {
-  const rows = state.filtered.map(it => ({
-    id: it.id,
-    name: it.name,
-    category: it.category,
-    type: it.type,
-    quantity: it.quantity,
-    location: it.location,
-    buildStatus: it.specs?.buildStatus || "",
-    paintStatus: it.specs?.paintStatus || "",
-    price: it.purchase?.price || "",
-    date: it.purchase?.date || ""
-  }));
-
-  const csv = [
-    Object.keys(rows[0]).join(","),
-    ...rows.map(r => Object.values(r).map(v => `"${String(v).replace(/"/g,'""')}"`).join(","))
-  ].join("\n");
-
-  const blob = new Blob([csv], { type: "text/csv" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "inventory-export.csv";
-  a.click();
-});
 
 
 
@@ -781,6 +707,88 @@ function wireControls() {
     state.activeOrderId = null;
     applyFilters();
   });
+
+
+
+
+
+
+  
+  el("savedViews").addEventListener("change", () => {
+  const name = el("savedViews").value;
+  if (!name) return;
+
+  const view = getViews()[name];
+  if (!view) return;
+
+  if (view.q !== undefined) el("q").value = view.q;
+  if (view.category !== undefined) el("category").value = view.category;
+  if (view.location !== undefined) el("location").value = view.location;
+  if (view.buildStatus !== undefined) el("buildStatus").value = view.buildStatus;
+  if (view.paintStatus !== undefined) el("paintStatus").value = view.paintStatus;
+
+  state.activeOrderId = null;
+  applyFilters();
+});
+
+el("saveView").addEventListener("click", () => {
+  const name = prompt("Name this view:");
+  if (!name) return;
+
+  const views = getViews();
+  views[name] = {
+    q: el("q").value,
+    category: el("category").value,
+    location: el("location").value,
+    buildStatus: el("buildStatus").value,
+    paintStatus: el("paintStatus").value
+  };
+
+  setViews(views);
+  renderViews();
+});
+
+el("deleteView").addEventListener("click", () => {
+  const name = el("savedViews").value;
+  if (!name) return;
+  if (!confirm(`Delete view "${name}"?`)) return;
+
+  const views = getViews();
+  delete views[name];
+  setViews(views);
+  renderViews();
+});
+
+renderViews();
+
+
+
+
+el("exportCsv").addEventListener("click", () => {
+  const rows = state.filtered.map(it => ({
+    id: it.id,
+    name: it.name,
+    category: it.category,
+    type: it.type,
+    quantity: it.quantity,
+    location: it.location,
+    buildStatus: it.specs?.buildStatus || "",
+    paintStatus: it.specs?.paintStatus || "",
+    price: it.purchase?.price || "",
+    date: it.purchase?.date || ""
+  }));
+
+  const csv = [
+    Object.keys(rows[0]).join(","),
+    ...rows.map(r => Object.values(r).map(v => `"${String(v).replace(/"/g,'""')}"`).join(","))
+  ].join("\n");
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "inventory-export.csv";
+  a.click();
+});
 }
 
 
