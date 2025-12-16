@@ -348,5 +348,40 @@
     "notes": "",
     "images": [],
     "specs": {}
+  },
+
+
+  <!-- MODELS -->
+
+  <!-- buildStatus: boxed | assembled | primed | partiallyBuilt -->
+  <!-- paintStatus: unpainted | wip | finished | mixed -->
+  <!-- priority: low | medium | high -->
+
+  {
+    "id": "wh-aos-skaven-clanrats",
+    "name": "EXAMPLE! Clanrats",
+    "type": "miniatures",
+    "category": "Warhammer",
+    "brand": "Games Workshop",
+    "model": "Skaven Clanrats",
+    "quantity": 120,
+    "purchase": { "date": "", "price": "", "currency": "SEK", "store": "" },
+    "location": "Storage",
+    "tags": ["warhammer", "aos", "skaven"],
+    "notes": "",
+    "images": [],
+    "specs": {
+      "system": "Age of Sigmar",
+      "faction": "Skaven",
+      "subfaction": "",
+      "buildStatus": "assembled",
+      "paintStatus": "mixed",
+      "baseSize": "25mm",
+      "storage": "Box A",
+      "priority": "low"
+    }
   }
+
+
+  
 ]
