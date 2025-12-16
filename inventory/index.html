@@ -34,6 +34,7 @@
     <div class="inv-tabs">
       <button class="inv-tab active" data-tab="inventory">Inventory</button>
       <button class="inv-tab" data-tab="setups">Setups</button>
+      <button class="inv-tab" data-tab="orders">Orders</button>
     </div>
 
     <!-- INVENTORY TAB -->
@@ -90,7 +91,17 @@
         </div>
       </div>
     </section>
+
+    <!-- ORDERS TAB -->
+    <section class="inv-panel" id="tab-orders">
+      <h2>🧾 Orders</h2>
+      <p class="muted">Auto-generated from items that share the same orderId.</p>
+      <div id="orders" class="inv-grid"></div>
+    </section>
   </main>
+
+
+  
 
   <!-- Item Modal -->
   <div id="itemModal" class="modal" aria-hidden="true">
