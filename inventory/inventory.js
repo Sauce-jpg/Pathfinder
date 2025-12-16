@@ -7,6 +7,7 @@ const state = {
   setups: [],
   filtered: [],
   selectedSetupId: null,
+  activeOrderId: null,
 };
 
 state.page = 1;
@@ -104,6 +105,11 @@ function applyFilters() {
 
   let list = [...state.items];
 
+  // If an order filter is active, only show items from that order
+  if (state.activeOrderId) {
+    list = list.filter(it => getOrderId(it) === state.activeOrderId);
+  }
+
   if (q) {
     list = list.filter(it => itemSearchText(it).includes(q));
   }
@@ -154,7 +160,8 @@ function renderItems() {
   const end = start + state.pageSize;
   const pageItems = state.filtered.slice(start, end);
 
-  el("count").textContent = `${total} item${total === 1 ? "" : "s"}`;
+  const orderTag = state.activeOrderId ? ` • Order: ${state.activeOrderId}` : "";
+  el("count").textContent = `${total} item${total === 1 ? "" : "s"}${orderTag}`;
   el("pageInfo").textContent = `Page ${state.page} / ${totalPages}`;
 
   
@@ -526,6 +533,20 @@ function openOrderModal(order) {
     <p class="muted" style="margin-top:0.25rem;">${safeText(order.date)} • ${order.items.length} item(s)</p>
     <p class="muted">${order.total ? `Total: ${order.total.toLocaleString()} ${safeText(order.currency)}` : ""}</p>
 
+    <button id="filterByOrder" class="inv-btn" style="margin: 0.5rem 0 1rem;">
+      Filter inventory by this order
+    </button>
+
+    const btn = document.getElementById("filterByOrder");
+    if (btn) {
+      btn.addEventListener("click", () => {
+        state.activeOrderId = order.orderId;
+        hideModal();
+        switchTab("inventory");
+        applyFilters();
+      });
+    }
+
     <h3>Items</h3>
     <div class="setup-items">
       ${order.items.map(it => `
@@ -552,6 +573,22 @@ function openOrderModal(order) {
   showModal();
 }
 
+
+
+
+
+
+function switchTab(tabName) {
+  document.querySelectorAll(".inv-tab").forEach(b => b.classList.remove("active"));
+  const btn = document.querySelector(`.inv-tab[data-tab="${tabName}"]`);
+  if (btn) btn.classList.add("active");
+
+  document.querySelectorAll(".inv-panel").forEach(p => p.classList.remove("active"));
+
+  if (tabName === "inventory") el("tab-inventory").classList.add("active");
+  if (tabName === "setups") el("tab-setups").classList.add("active");
+  if (tabName === "orders") el("tab-orders").classList.add("active");
+}
 
 
 
@@ -597,9 +634,13 @@ function wireControls() {
     el("category").value = "";
     el("location").value = "";
     el("sort").value = "name-asc";
+    state.activeOrderId = null;
     applyFilters();
   });
 }
+
+
+
 
 function wireModal() {
   el("modalClose").addEventListener("click", hideModal);
