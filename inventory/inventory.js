@@ -101,6 +101,8 @@ function applyFilters() {
   const q = el("q").value.trim().toLowerCase();
   const category = el("category").value;
   const location = el("location").value;
+  const build = el("buildStatus") ? el("buildStatus").value : "";
+  const paint = el("paintStatus") ? el("paintStatus").value : "";
   const sort = el("sort").value;
 
   let list = [...state.items];
@@ -118,6 +120,12 @@ function applyFilters() {
   }
   if (location) {
     list = list.filter(it => it.location === location);
+  }
+  if (build) {
+  list = list.filter(it => (it.specs && it.specs.buildStatus) === build);
+  }
+  if (paint) {
+    list = list.filter(it => (it.specs && it.specs.paintStatus) === paint);
   }
 
   // Sorting
@@ -164,8 +172,6 @@ function renderItems() {
   el("count").textContent = `${total} item${total === 1 ? "" : "s"}${orderTag}`;
   el("pageInfo").textContent = `Page ${state.page} / ${totalPages}`;
 
-  
-  el("count").textContent = `${state.filtered.length} item${state.filtered.length === 1 ? "" : "s"}`;
 
   for (const it of state.filtered) {
     const card = document.createElement("div");
@@ -181,6 +187,10 @@ function renderItems() {
     const money = fmtMoney(it.purchase);
     const date = it.purchase?.date ? it.purchase.date : "";
 
+    const isMini = it.type === "miniatures";
+    const buildStatus = isMini && it.specs && it.specs.buildStatus ? it.specs.buildStatus : "";
+    const paintStatus = isMini && it.specs && it.specs.paintStatus ? it.specs.paintStatus : "";
+
     card.innerHTML = `
       <div class="inv-card-top">
         ${thumbSrc ? `<img class="inv-thumb" src="${thumbSrc}" alt="">` : `<div class="inv-thumb" aria-hidden="true"></div>`}
@@ -193,6 +203,8 @@ function renderItems() {
       <div class="badges">
         ${it.category ? `<span class="badge">${safeText(it.category)}</span>` : ""}
         ${it.type ? `<span class="badge">${safeText(it.type)}</span>` : ""}
+        ${buildStatus ? `<span class="badge">🧩 ${safeText(buildStatus)}</span>` : ""}
+        ${paintStatus ? `<span class="badge">🎨 ${safeText(paintStatus)}</span>` : ""}
         ${(it.tags || []).slice(0,3).map(t => `<span class="badge">#${safeText(t)}</span>`).join("")}
         ${it.quantity && it.quantity !== 1 ? `<span class="badge">x${it.quantity}</span>` : ""}
       </div>
@@ -614,6 +626,8 @@ function wireControls() {
   el("q").addEventListener("input", applyFilters);
   el("category").addEventListener("change", applyFilters);
   el("location").addEventListener("change", applyFilters);
+  el("buildStatus").addEventListener("change", applyFilters);
+  el("paintStatus").addEventListener("change", applyFilters);
   el("sort").addEventListener("change", applyFilters);
 
 
@@ -633,6 +647,8 @@ function wireControls() {
     el("q").value = "";
     el("category").value = "";
     el("location").value = "";
+    el("buildStatus").value = "";
+    el("paintStatus").value = "";
     el("sort").value = "name-asc";
     state.activeOrderId = null;
     applyFilters();
