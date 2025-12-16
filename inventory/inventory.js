@@ -14,6 +14,34 @@ state.page = 1;
 state.pageSize = 48;
 
 
+
+// localStorage key
+inventoryViews = {
+  "Unpainted minis": {
+    category: "Warhammer",
+    buildStatus: "",
+    paintStatus: "unpainted",
+    location: "",
+    q: ""
+  },
+  "Desk setup": {
+    category: "PC Setup",
+    location: "Home office"
+  }
+}
+
+function getViews() {
+  return JSON.parse(localStorage.getItem("inventoryViews") || "{}");
+}
+
+function setViews(v) {
+  localStorage.setItem("inventoryViews", JSON.stringify(v));
+}
+
+
+
+
+
 function el(id) { return document.getElementById(id); }
 
 function safeText(v) {
@@ -76,6 +104,14 @@ async function loadData() {
 
   state.filtered = [...state.items];
 }
+
+
+
+
+
+
+
+
 
 function buildFilters() {
   const categories = uniq(state.items.map(i => i.category));
@@ -155,6 +191,69 @@ function applyFilters() {
   state.filtered = list;
   renderItems();
 }
+
+
+function renderViews() {
+  const sel = el("savedViews");
+  sel.innerHTML = `<option value="">Saved views…</option>`;
+  const views = getViews();
+  Object.keys(views).forEach(name => {
+    const o = document.createElement("option");
+    o.value = name;
+    o.textContent = name;
+    sel.appendChild(o);
+  });
+}
+
+el("savedViews").addEventListener("change", () => {
+  const name = el("savedViews").value;
+  if (!name) return;
+
+  const view = getViews()[name];
+  if (!view) return;
+
+  if (view.q !== undefined) el("q").value = view.q;
+  if (view.category !== undefined) el("category").value = view.category;
+  if (view.location !== undefined) el("location").value = view.location;
+  if (view.buildStatus !== undefined) el("buildStatus").value = view.buildStatus;
+  if (view.paintStatus !== undefined) el("paintStatus").value = view.paintStatus;
+
+  state.activeOrderId = null;
+  applyFilters();
+});
+
+el("saveView").addEventListener("click", () => {
+  const name = prompt("Name this view:");
+  if (!name) return;
+
+  const views = getViews();
+  views[name] = {
+    q: el("q").value,
+    category: el("category").value,
+    location: el("location").value,
+    buildStatus: el("buildStatus").value,
+    paintStatus: el("paintStatus").value
+  };
+
+  setViews(views);
+  renderViews();
+});
+
+el("deleteView").addEventListener("click", () => {
+  const name = el("savedViews").value;
+  if (!name) return;
+  if (!confirm(`Delete view "${name}"?`)) return;
+
+  const views = getViews();
+  delete views[name];
+  setViews(views);
+  renderViews();
+});
+
+renderViews();
+
+
+
 
 function renderItems() {
   const wrap = el("items");
