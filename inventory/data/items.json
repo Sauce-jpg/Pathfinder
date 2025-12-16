@@ -351,11 +351,11 @@
   },
 
 
-  <!-- MODELS -->
+  ##  MODELS
 
-  <!-- buildStatus: boxed | assembled | primed | partiallyBuilt -->
-  <!-- paintStatus: unpainted | wip | finished | mixed -->
-  <!-- priority: low | medium | high -->
+  - buildStatus: boxed | assembled | primed | partiallyBuilt
+  - paintStatus: unpainted | wip | finished | mixed
+  - priority: low | medium | high
 
   {
     "id": "wh-aos-skaven-clanrats",
