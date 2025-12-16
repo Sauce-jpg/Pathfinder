@@ -255,6 +255,35 @@ renderViews();
 
 
 
+el("exportCsv").addEventListener("click", () => {
+  const rows = state.filtered.map(it => ({
+    id: it.id,
+    name: it.name,
+    category: it.category,
+    type: it.type,
+    quantity: it.quantity,
+    location: it.location,
+    buildStatus: it.specs?.buildStatus || "",
+    paintStatus: it.specs?.paintStatus || "",
+    price: it.purchase?.price || "",
+    date: it.purchase?.date || ""
+  }));
+
+  const csv = [
+    Object.keys(rows[0]).join(","),
+    ...rows.map(r => Object.values(r).map(v => `"${String(v).replace(/"/g,'""')}"`).join(","))
+  ].join("\n");
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "inventory-export.csv";
+  a.click();
+});
+
+
+
+
 function renderItems() {
   const wrap = el("items");
   wrap.innerHTML = "";
