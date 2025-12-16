@@ -448,6 +448,114 @@ function renderSetupDetail(setupId) {
   });
 }
 
+
+
+
+function getOrderId(item) {
+  // supports either top-level orderId or nested inside purchase
+  return item.orderId || (item.purchase && item.purchase.orderId) || "";
+}
+
+function renderOrders() {
+  const wrap = el("orders");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  // Group items by orderId
+  const map = new Map();
+  for (const it of state.items) {
+    const oid = getOrderId(it);
+    if (!oid) continue;
+    if (!map.has(oid)) map.set(oid, []);
+    map.get(oid).push(it);
+  }
+
+  const orders = [...map.entries()]
+    .map(([orderId, items]) => {
+      const first = items[0] || {};
+      const purchase = first.purchase || {};
+      const store = purchase.store || "Unknown store";
+      const date = purchase.date || "";
+      const orderRef = purchase.orderRef || "";
+
+      // Sum prices if they are numeric
+      const total = items.reduce((sum, it) => {
+        const p = it.purchase && it.purchase.price;
+        const n = typeof p === "number" ? p : Number(p);
+        return sum + (Number.isFinite(n) ? n : 0);
+      }, 0);
+
+      const currency = (purchase.currency || "SEK");
+
+      return { orderId, store, date, orderRef, total, currency, items };
+    })
+    .sort((a, b) => (parseDate(b.date)?.getTime() || 0) - (parseDate(a.date)?.getTime() || 0));
+
+  if (!orders.length) {
+    wrap.innerHTML = `<div class="inv-card"><h3>No orders yet</h3><p class="muted">Add orderId to items to group them.</p></div>`;
+    return;
+  }
+
+  for (const o of orders) {
+    const card = document.createElement("div");
+    card.className = "inv-card";
+    card.tabIndex = 0;
+
+    card.innerHTML = `
+      <h3 style="margin:0;">${safeText(o.store)}${o.orderRef ? ` • ${safeText(o.orderRef)}` : ""}</h3>
+      <p class="inv-sub">${safeText(o.date)} • ${o.items.length} item(s)</p>
+      <p class="inv-sub">${o.total ? `${o.total.toLocaleString()} ${safeText(o.currency)}` : ""}</p>
+      <div class="badges">
+        <span class="badge">${safeText(o.orderId)}</span>
+      </div>
+    `;
+
+    card.addEventListener("click", () => openOrderModal(o));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") openOrderModal(o);
+    });
+
+    wrap.appendChild(card);
+  }
+}
+
+function openOrderModal(order) {
+  const body = el("modalBody");
+  body.innerHTML = `
+    <h2 style="margin-top:0;">${safeText(order.store)}${order.orderRef ? ` • ${safeText(order.orderRef)}` : ""}</h2>
+    <p class="muted" style="margin-top:0.25rem;">${safeText(order.date)} • ${order.items.length} item(s)</p>
+    <p class="muted">${order.total ? `Total: ${order.total.toLocaleString()} ${safeText(order.currency)}` : ""}</p>
+
+    <h3>Items</h3>
+    <div class="setup-items">
+      ${order.items.map(it => `
+        <div class="setup-item-row" data-item="${it.id}">
+          <div style="display:flex; gap:0.75rem; align-items:center;">
+            ${it.images?.[0] ? `<img class="inv-thumb" src="${it.images[0]}" alt="">` : `<div class="inv-thumb" aria-hidden="true"></div>`}
+            <div>
+              <div style="font-weight:700;">${safeText(it.name)}</div>
+              <div class="muted" style="font-size:0.95rem;">
+                ${[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+
+  // Click any row -> open item modal
+  body.querySelectorAll("[data-item]").forEach(row => {
+    row.addEventListener("click", () => openItemModal(row.getAttribute("data-item")));
+  });
+
+  showModal();
+}
+
+
+
+
+
 function wireTabs() {
   const tabs = document.querySelectorAll(".inv-tab");
   tabs.forEach(btn => {
@@ -460,6 +568,7 @@ function wireTabs() {
 
       if (tab === "inventory") el("tab-inventory").classList.add("active");
       if (tab === "setups") el("tab-setups").classList.add("active");
+      if (tab === "orders") el("tab-orders").classList.add("active");
     });
   });
 }
@@ -597,6 +706,7 @@ async function init() {
     buildFilters();
     applyFilters();
     renderSetups();
+    renderOrders();
   } catch (err) {
      console.error(err);
 
