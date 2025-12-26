@@ -1,71 +1,283 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { supabase } from "../../lib/supabaseClient";
+import styles from "./inventory.module.css";
 
-type InventoryItem = {
+type DbItem = {
   id: string;
+  user_id: string;
   name: string;
-  type?: string | null;
-  category?: string | null;
-  brand?: string | null;
-  model?: string | null;
-  quantity?: number | null;
-  location?: string | null;
-  tags?: string[] | null;
-  notes?: string | null;
-  images?: string[] | null;
-  purchase?: any;
-  specs?: any;
-  purchaseHistory?: any[]; // from your JSON
-  orderId?: string | null; // optional
+  type: string | null;
+  category: string | null;
+  brand: string | null;
+  model: string | null;
+  quantity: number;
+  location: string | null;
+  tags: string[];
+  notes: string | null;
+  images: string[];
+  purchase: any; // jsonb
+  specs: any; // jsonb
+  purchase_history: any; // jsonb
 };
 
-type SetupJson = {
+type DbSetup = {
   id: string;
+  user_id: string;
   name: string;
-  description?: string | null;
-  items: string[];
+  description: string | null;
 };
+
+type DbSetupItem = {
+  setup_id: string;
+  item_id: string;
+  user_id: string;
+  position: number;
+};
+
+type Tab = "inventory" | "setups" | "orders";
+
+type Filters = {
+  q: string;
+  category: string;
+  location: string;
+  buildStatus: string;
+  paintStatus: string;
+  sort: "name-asc" | "name-desc" | "date-desc" | "date-asc" | "price-desc" | "price-asc";
+};
+
+const DEFAULT_FILTERS: Filters = {
+  q: "",
+  category: "",
+  location: "",
+  buildStatus: "",
+  paintStatus: "",
+  sort: "name-asc",
+};
+
+function safeText(v: any) {
+  if (v === null || v === undefined) return "";
+  return String(v);
+}
+
+function parseDate(d?: string | null) {
+  if (!d) return null;
+  const dt = new Date(d);
+  return Number.isNaN(dt.getTime()) ? null : dt;
+}
+
+function fmtMoney(purchase: any) {
+  if (!purchase || purchase.price == null) return "";
+  const cur = purchase.currency || "";
+  const price = Number(purchase.price);
+  if (Number.isNaN(price)) return "";
+  return `${price.toLocaleString()} ${cur}`.trim();
+}
+
+function uniq(arr: string[]) {
+  return [...new Set(arr.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+}
+
+function itemSearchText(item: DbItem) {
+  const parts = [
+    item.name,
+    item.brand,
+    item.model,
+    item.category,
+    item.type,
+    item.location,
+    ...(item.tags || []),
+  ];
+  return parts.map(safeText).join(" ").toLowerCase();
+}
+
+function getOrderId(item: DbItem) {
+  // support either top-level orderId (if you ever add it) or purchase.orderId
+  return (item as any).orderId || (item.purchase && item.purchase.orderId) || "";
+}
+
+function humanKey(key: string) {
+  return String(key)
+    .replace(/_/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function slugifySpecId(key: string) {
+  return (
+    "spec-" +
+    String(key)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+  );
+}
+
+function renderKVTable(obj: Record<string, any>) {
+  const rows = Object.entries(obj).map(([k, v]) => {
+    const val = v && typeof v === "object" ? JSON.stringify(v) : safeText(v);
+    return (
+      <tr key={k}>
+        <td className={styles.specK}>{humanKey(k)}</td>
+        <td className={styles.specV}>{val}</td>
+      </tr>
+    );
+  });
+
+  return (
+    <table className={styles.specTable}>
+      <tbody>{rows}</tbody>
+    </table>
+  );
+}
+
+function Specs({ specs }: { specs: any }) {
+  if (!specs || typeof specs !== "object") return null;
+
+  const entries = Object.entries(specs).filter(([_, v]) => v != null && v !== "");
+  if (!entries.length) return null;
+
+  const toc = entries
+    .map(([sectionKey, sectionVal]) => {
+      const hasContent =
+        typeof sectionVal !== "object" ? true : Object.keys(sectionVal || {}).length > 0;
+      if (!hasContent) return null;
+      const id = slugifySpecId(sectionKey);
+      return (
+        <a key={sectionKey} className={styles.specTocLink} href={`#${id}`}>
+          {humanKey(sectionKey)}
+        </a>
+      );
+    })
+    .filter(Boolean);
+
+  return (
+    <>
+      {!!toc.length && (
+        <div className={styles.specToc}>
+          <div className={styles.specTocTitle}>Specs</div>
+          <div className={styles.specTocLinks}>{toc}</div>
+        </div>
+      )}
+
+      <div>
+        {entries.map(([sectionKey, sectionVal]) => {
+          const id = slugifySpecId(sectionKey);
+          if (typeof sectionVal !== "object") {
+            return (
+              <div key={sectionKey}>
+                <h4 id={id} className={styles.specSectionTitle}>
+                  {humanKey(sectionKey)}
+                </h4>
+                {renderKVTable({ value: sectionVal })}
+              </div>
+            );
+          }
+          return (
+            <div key={sectionKey}>
+              <h4 id={id} className={styles.specSectionTitle}>
+                {humanKey(sectionKey)}
+              </h4>
+              {renderKVTable(sectionVal || {})}
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+function Modal({
+  open,
+  onClose,
+  children,
+}: {
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}) {
+  useEffect(() => {
+    if (!open) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className={styles.modalOverlay}
+      onMouseDown={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className={styles.modalContent}>
+        <div className={styles.modalCloseRow}>
+          <button className={styles.modalCloseBtn} onClick={onClose} title="Close">
+            ✕
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function getViews(): Record<string, Partial<Filters>> {
+  try {
+    return JSON.parse(localStorage.getItem("inventoryViews") || "{}");
+  } catch {
+    return {};
+  }
+}
+function setViews(v: Record<string, Partial<Filters>>) {
+  localStorage.setItem("inventoryViews", JSON.stringify(v));
+}
 
 export default function InventoryPage() {
   const [session, setSession] = useState<any>(null);
   const [email, setEmail] = useState("");
 
-  const [items, setItems] = useState<any[]>([]);
-  const [loadingItems, setLoadingItems] = useState(false);
-  const [itemsError, setItemsError] = useState<string | null>(null);
+  const [tab, setTab] = useState<Tab>("inventory");
 
-  const [importing, setImporting] = useState(false);
-  const [importMsg, setImportMsg] = useState<string>("");
+  const [items, setItems] = useState<DbItem[]>([]);
+  const [setups, setSetups] = useState<DbSetup[]>([]);
+  const [setupItems, setSetupItems] = useState<DbSetupItem[]>([]);
 
+  const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
+  const [activeOrderId, setActiveOrderId] = useState<string>("");
+
+  const [page, setPage] = useState(1);
+  const pageSize = 48;
+
+  const [selectedSetupId, setSelectedSetupId] = useState<string | null>(null);
+
+  const [modalItemId, setModalItemId] = useState<string | null>(null);
+  const [modalOrderId, setModalOrderId] = useState<string | null>(null);
+
+  const [savedViews, setSavedViewsState] = useState<Record<string, Partial<Filters>>>({});
+
+  // auth
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setSession(data.session));
     const { data: sub } = supabase.auth.onAuthStateChange((_event, sess) => setSession(sess));
     return () => sub.subscription.unsubscribe();
   }, []);
 
-  async function loadItems() {
-    if (!session?.user?.id) return;
-
-    setLoadingItems(true);
-    setItemsError(null);
-
-    const { data, error } = await supabase
-      .from("inventory_items")
-      .select("id,name,category,location,quantity")
-      .order("name", { ascending: true });
-
-    if (error) setItemsError(error.message);
-    setItems(data || []);
-    setLoadingItems(false);
-  }
-
+  // load saved views
   useEffect(() => {
-    if (!session?.user?.id) return;
-    loadItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session?.user?.id]);
+    if (!session) return;
+    setSavedViewsState(getViews());
+  }, [session]);
 
   async function loginGoogle() {
     const { error } = await supabase.auth.signInWithOAuth({
@@ -85,107 +297,169 @@ export default function InventoryPage() {
     await supabase.auth.signOut();
   }
 
-  async function importFromJson() {
+  // load from supabase
+  async function loadAll() {
     if (!session?.user?.id) return;
 
-    setImporting(true);
-    setImportMsg("");
+    setLoading(true);
+    setLoadError(null);
 
-    try {
-      // 1) Fetch JSON from /public
-      const [itemsRes, setupsRes] = await Promise.all([
-        fetch("/inventory/data/items.json", { cache: "no-store" }),
-        fetch("/inventory/data/setups.json", { cache: "no-store" }),
-      ]);
+    const [itemsRes, setupsRes, joinRes] = await Promise.all([
+      supabase.from("inventory_items").select("*").order("name", { ascending: true }),
+      supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
+      supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
+    ]);
 
-      if (!itemsRes.ok) throw new Error("Failed to fetch /inventory/data/items.json");
-      if (!setupsRes.ok) throw new Error("Failed to fetch /inventory/data/setups.json");
+    if (itemsRes.error) setLoadError(itemsRes.error.message);
+    if (setupsRes.error) setLoadError(setupsRes.error.message);
+    if (joinRes.error) setLoadError(joinRes.error.message);
 
-      const rawItems = (await itemsRes.json()) as InventoryItem[];
-      const setups = (await setupsRes.json()) as SetupJson[];
+    setItems((itemsRes.data || []) as DbItem[]);
+    setSetups((setupsRes.data || []) as DbSetup[]);
+    setSetupItems((joinRes.data || []) as DbSetupItem[]);
 
-      const userId = session.user.id as string;
-
-      // 2) Normalize + map JSON -> DB shape
-      const dbItems = rawItems.map((it) => ({
-        id: it.id,
-        user_id: userId,
-        name: it.name ?? "",
-        type: it.type ?? null,
-        category: it.category ?? null,
-        brand: it.brand ?? null,
-        model: it.model ?? null,
-        quantity: it.quantity ?? 1,
-        location: it.location ?? null,
-        tags: it.tags ?? [],
-        notes: it.notes ?? null,
-        images: it.images ?? [],
-        purchase: it.purchase ?? {},
-        specs: it.specs ?? {},
-        purchase_history: it.purchaseHistory ?? [],
-      }));
-
-      setImportMsg(`Upserting ${dbItems.length} items…`);
-
-      // 3) Upsert items (private per user via user_id)
-      const { error: upsertItemsError } = await supabase
-        .from("inventory_items")
-        .upsert(dbItems, { onConflict: "id" });
-
-      if (upsertItemsError) throw new Error(upsertItemsError.message);
-
-      // 4) Upsert setups
-      const dbSetups = setups.map((s) => ({
-        id: s.id,
-        user_id: userId,
-        name: s.name,
-        description: s.description ?? null,
-      }));
-
-      setImportMsg(`Upserting ${dbSetups.length} setups…`);
-
-      const { error: upsertSetupsError } = await supabase
-        .from("inventory_setups")
-        .upsert(dbSetups, { onConflict: "id" });
-
-      if (upsertSetupsError) throw new Error(upsertSetupsError.message);
-
-      // 5) Rebuild join rows (simple + reliable)
-      setImportMsg(`Rebuilding setup ↔ items links…`);
-
-      // Delete existing join rows for this user (so you don’t get stale links)
-      const { error: delJoinError } = await supabase
-        .from("inventory_setup_items")
-        .delete()
-        .eq("user_id", userId);
-
-      if (delJoinError) throw new Error(delJoinError.message);
-
-      const joinRows = setups.flatMap((s) =>
-        (s.items || []).map((itemId, idx) => ({
-          user_id: userId,
-          setup_id: s.id,
-          item_id: itemId,
-          position: idx,
-        }))
-      );
-
-      if (joinRows.length) {
-        const { error: insJoinError } = await supabase
-          .from("inventory_setup_items")
-          .insert(joinRows);
-
-        if (insJoinError) throw new Error(insJoinError.message);
-      }
-
-      setImportMsg("✅ Import complete.");
-      await loadItems();
-    } catch (e: any) {
-      setImportMsg(`❌ Import failed: ${e?.message || String(e)}`);
-    } finally {
-      setImporting(false);
-    }
+    setLoading(false);
   }
+
+  useEffect(() => {
+    if (!session?.user?.id) return;
+    loadAll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.user?.id]);
+
+  const categories = useMemo(() => uniq(items.map((i) => i.category || "").filter(Boolean)), [items]);
+  const locations = useMemo(() => uniq(items.map((i) => i.location || "").filter(Boolean)), [items]);
+
+  const filtered = useMemo(() => {
+    const q = filters.q.trim().toLowerCase();
+    const category = filters.category;
+    const location = filters.location;
+    const build = filters.buildStatus;
+    const paint = filters.paintStatus;
+    const sort = filters.sort;
+
+    let list = [...items];
+
+    if (activeOrderId) {
+      list = list.filter((it) => getOrderId(it) === activeOrderId);
+    }
+
+    if (q) list = list.filter((it) => itemSearchText(it).includes(q));
+    if (category) list = list.filter((it) => (it.category || "") === category);
+    if (location) list = list.filter((it) => (it.location || "") === location);
+
+    if (build) {
+      list = list.filter((it) => it.type === "miniatures" && (it.specs?.buildStatus || "") === build);
+    }
+    if (paint) {
+      list = list.filter((it) => it.type === "miniatures" && (it.specs?.paintStatus || "") === paint);
+    }
+
+    list.sort((a, b) => {
+      switch (sort) {
+        case "name-desc":
+          return safeText(b.name).localeCompare(safeText(a.name));
+        case "date-desc": {
+          const da = parseDate(a.purchase?.date);
+          const db = parseDate(b.purchase?.date);
+          return (db?.getTime() || 0) - (da?.getTime() || 0);
+        }
+        case "date-asc": {
+          const da = parseDate(a.purchase?.date);
+          const db = parseDate(b.purchase?.date);
+          return (da?.getTime() || 0) - (db?.getTime() || 0);
+        }
+        case "price-desc":
+          return (Number(b.purchase?.price) || 0) - (Number(a.purchase?.price) || 0);
+        case "price-asc":
+          return (Number(a.purchase?.price) || 0) - (Number(b.purchase?.price) || 0);
+        case "name-asc":
+        default:
+          return safeText(a.name).localeCompare(safeText(b.name));
+      }
+    });
+
+    return list;
+  }, [items, filters, activeOrderId]);
+
+  const totalPages = useMemo(
+    () => Math.max(1, Math.ceil(filtered.length / pageSize)),
+    [filtered.length]
+  );
+
+  const pageItems = useMemo(() => {
+    const p = Math.min(page, totalPages);
+    const start = (p - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [filtered, page, pageSize, totalPages]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [filters, activeOrderId]);
+
+  const modalItem = useMemo(
+    () => (modalItemId ? items.find((x) => x.id === modalItemId) : null),
+    [items, modalItemId]
+  );
+
+  const orders = useMemo(() => {
+    // group items by orderId
+    const map = new Map<string, DbItem[]>();
+    for (const it of items) {
+      const oid = getOrderId(it);
+      if (!oid) continue;
+      if (!map.has(oid)) map.set(oid, []);
+      map.get(oid)!.push(it);
+    }
+
+    const list = [...map.entries()].map(([orderId, its]) => {
+      const first = its[0];
+      const purchase = first?.purchase || {};
+      const store = purchase.store || "Unknown store";
+      const date = purchase.date || "";
+      const orderRef = purchase.orderRef || "";
+      const currency = purchase.currency || "SEK";
+      const total = its.reduce((sum, x) => {
+        const p = x.purchase?.price;
+        const n = typeof p === "number" ? p : Number(p);
+        return sum + (Number.isFinite(n) ? n : 0);
+      }, 0);
+
+      return { orderId, store, date, orderRef, currency, total, items: its };
+    });
+
+    list.sort((a, b) => (parseDate(b.date)?.getTime() || 0) - (parseDate(a.date)?.getTime() || 0));
+    return list;
+  }, [items]);
+
+  const modalOrder = useMemo(
+    () => (modalOrderId ? orders.find((o) => o.orderId === modalOrderId) : null),
+    [orders, modalOrderId]
+  );
+
+  const setupDetail = useMemo(() => {
+    if (!selectedSetupId) return null;
+    const s = setups.find((x) => x.id === selectedSetupId);
+    if (!s) return null;
+
+    const ids = setupItems
+      .filter((j) => j.setup_id === selectedSetupId)
+      .sort((a, b) => (a.position || 0) - (b.position || 0))
+      .map((j) => j.item_id);
+
+    const its = ids.map((id) => items.find((it) => it.id === id)).filter(Boolean) as DbItem[];
+
+    // group by category
+    const groups = new Map<string, DbItem[]>();
+    for (const it of its) {
+      const key = it.category || "Other";
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key)!.push(it);
+    }
+
+    const groupList = [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+    return { setup: s, grouped: groupList };
+  }, [selectedSetupId, setups, setupItems, items]);
 
   if (!session) {
     return (
@@ -213,42 +487,530 @@ export default function InventoryPage() {
   }
 
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: "2rem" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem" }}>
-        <h1 style={{ margin: 0 }}>Inventory</h1>
-        <button onClick={logout}>Sign out</button>
+    <main className={styles.invPage}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem" }}>
+          <div>
+            <h1 style={{ margin: 0 }}>📦 Inventory</h1>
+            <p className={styles.muted} style={{ marginTop: "0.35rem" }}>
+              Track items + curated “Setups” + auto Orders.
+            </p>
+          </div>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <span className={styles.muted}>Logged in as <b>{session.user.email}</b></span>
+            <button className={styles.invBtn} onClick={logout}>Sign out</button>
+          </div>
+        </div>
       </div>
 
-      <p style={{ marginTop: "1rem" }}>
-        Logged in as: <b>{session.user.email}</b>
-      </p>
-
-      <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", margin: "1rem 0" }}>
-        <button onClick={importFromJson} disabled={importing}>
-          {importing ? "Importing…" : "Import from JSON seed"}
+      <div className={styles.invTabs}>
+        <button
+          className={`${styles.invTab} ${tab === "inventory" ? styles.invTabActive : ""}`}
+          onClick={() => setTab("inventory")}
+        >
+          Inventory
         </button>
-        <span style={{ opacity: 0.8 }}>{importMsg}</span>
+        <button
+          className={`${styles.invTab} ${tab === "setups" ? styles.invTabActive : ""}`}
+          onClick={() => setTab("setups")}
+        >
+          Setups
+        </button>
+        <button
+          className={`${styles.invTab} ${tab === "orders" ? styles.invTabActive : ""}`}
+          onClick={() => setTab("orders")}
+        >
+          Orders
+        </button>
+        <button className={styles.invBtn} onClick={loadAll} disabled={loading}>
+          {loading ? "Refreshing…" : "↻ Refresh"}
+        </button>
       </div>
 
-      <hr style={{ margin: "1rem 0" }} />
+      {/* INVENTORY */}
+      <section className={`${styles.invPanel} ${tab === "inventory" ? styles.invPanelActive : ""}`}>
+        <div className={styles.invControls}>
+          <input
+            className={styles.invInput}
+            type="search"
+            placeholder="Search name / model / tags..."
+            value={filters.q}
+            onChange={(e) => setFilters((f) => ({ ...f, q: e.target.value }))}
+          />
 
-      <h2 style={{ margin: "0 0 0.5rem" }}>Items</h2>
+          <select
+            className={styles.invSelect}
+            value={filters.category}
+            onChange={(e) => setFilters((f) => ({ ...f, category: e.target.value }))}
+          >
+            <option value="">All categories</option>
+            {categories.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
 
-      {loadingItems && <p>Loading…</p>}
-      {itemsError && <p style={{ color: "crimson" }}>Error: {itemsError}</p>}
-      {!loadingItems && !itemsError && items.length === 0 && (
-        <p style={{ opacity: 0.8 }}>No items in Supabase yet. Use “Import from JSON seed”.</p>
-      )}
+          <select
+            className={styles.invSelect}
+            value={filters.location}
+            onChange={(e) => setFilters((f) => ({ ...f, location: e.target.value }))}
+          >
+            <option value="">All locations</option>
+            {locations.map((l) => (
+              <option key={l} value={l}>{l}</option>
+            ))}
+          </select>
 
-      <ul style={{ paddingLeft: "1.2rem" }}>
-        {items.map((it) => (
-          <li key={it.id}>
-            <b>{it.name}</b>
-            {it.category ? ` — ${it.category}` : ""}
-            {it.location ? ` (📍 ${it.location})` : ""}
-          </li>
-        ))}
-      </ul>
+          <select
+            className={styles.invSelect}
+            value={filters.buildStatus}
+            onChange={(e) => setFilters((f) => ({ ...f, buildStatus: e.target.value }))}
+          >
+            <option value="">Build: All</option>
+            <option value="boxed">Boxed</option>
+            <option value="partiallyBuilt">Partially built</option>
+            <option value="assembled">Assembled</option>
+            <option value="primed">Primed</option>
+          </select>
+
+          <select
+            className={styles.invSelect}
+            value={filters.paintStatus}
+            onChange={(e) => setFilters((f) => ({ ...f, paintStatus: e.target.value }))}
+          >
+            <option value="">Paint: All</option>
+            <option value="unpainted">Unpainted</option>
+            <option value="wip">WIP</option>
+            <option value="finished">Finished</option>
+            <option value="mixed">Mixed</option>
+          </select>
+
+          <select
+            className={styles.invSelect}
+            value={filters.sort}
+            onChange={(e) => setFilters((f) => ({ ...f, sort: e.target.value as Filters["sort"] }))}
+          >
+            <option value="name-asc">Sort: Name (A → Z)</option>
+            <option value="name-desc">Sort: Name (Z → A)</option>
+            <option value="date-desc">Sort: Purchase date (new → old)</option>
+            <option value="date-asc">Sort: Purchase date (old → new)</option>
+            <option value="price-desc">Sort: Price (high → low)</option>
+            <option value="price-asc">Sort: Price (low → high)</option>
+          </select>
+
+          <select
+            className={styles.invSelect}
+            value=""
+            onChange={(e) => {
+              const name = e.target.value;
+              if (!name) return;
+              const view = savedViews[name];
+              if (!view) return;
+
+              setFilters((f) => ({
+                ...f,
+                q: view.q ?? f.q,
+                category: view.category ?? f.category,
+                location: view.location ?? f.location,
+                buildStatus: view.buildStatus ?? f.buildStatus,
+                paintStatus: view.paintStatus ?? f.paintStatus,
+                sort: (view.sort as any) ?? f.sort,
+              }));
+
+              setActiveOrderId("");
+              e.target.value = "";
+            }}
+          >
+            <option value="">Saved views…</option>
+            {Object.keys(savedViews).sort().map((name) => (
+              <option key={name} value={name}>{name}</option>
+            ))}
+          </select>
+
+          <button
+            className={styles.invBtn}
+            onClick={() => {
+              const name = prompt("Name this view:");
+              if (!name) return;
+
+              const next = {
+                ...savedViews,
+                [name]: { ...filters },
+              };
+              setViews(next);
+              setSavedViewsState(next);
+            }}
+          >
+            💾 Save view
+          </button>
+
+          <button
+            className={styles.invBtn}
+            onClick={() => {
+              const name = prompt("Delete which view? (type exact name)");
+              if (!name) return;
+              if (!savedViews[name]) return alert("No such view.");
+              if (!confirm(`Delete view "${name}"?`)) return;
+
+              const next = { ...savedViews };
+              delete next[name];
+              setViews(next);
+              setSavedViewsState(next);
+            }}
+          >
+            🗑 Delete
+          </button>
+
+          <button
+            className={styles.invBtn}
+            onClick={() => {
+              setFilters(DEFAULT_FILTERS);
+              setActiveOrderId("");
+            }}
+          >
+            Reset
+          </button>
+        </div>
+
+        <div className={styles.invMeta}>
+          <span>
+            {filtered.length} item{filtered.length === 1 ? "" : "s"}
+            {activeOrderId ? ` • Order: ${activeOrderId}` : ""}
+          </span>
+
+          {activeOrderId && (
+            <button className={styles.invBtn} onClick={() => setActiveOrderId("")}>
+              Clear order filter
+            </button>
+          )}
+        </div>
+
+        {loadError && (
+          <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem 1rem", color: "crimson" }}>
+            Error: {loadError}
+          </div>
+        )}
+
+        <div className={styles.invGrid}>
+          {pageItems.map((it) => {
+            const thumb = it.images?.[0] || "";
+            const subtitleParts = [
+              it.brand && it.model ? `${it.brand} ${it.model}` : (it.model || it.brand || ""),
+              it.location ? `📍 ${it.location}` : "",
+            ].filter(Boolean);
+
+            const money = fmtMoney(it.purchase);
+            const date = it.purchase?.date ? it.purchase.date : "";
+
+            const isMini = it.type === "miniatures";
+            const buildStatus = isMini ? (it.specs?.buildStatus || "") : "";
+            const paintStatus = isMini ? (it.specs?.paintStatus || "") : "";
+
+            return (
+              <div
+                key={it.id}
+                className={styles.invCard}
+                tabIndex={0}
+                onClick={() => setModalItemId(it.id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") setModalItemId(it.id);
+                }}
+              >
+                <div className={styles.invCardTop}>
+                  {thumb ? (
+                    <img className={styles.invThumb} src={thumb} alt="" />
+                  ) : (
+                    <div className={styles.invThumb} aria-hidden="true" />
+                  )}
+
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: "1.05rem" }}>{it.name}</h3>
+                    <p className={styles.invSub}>{subtitleParts.join(" • ")}</p>
+                    <p className={styles.invSub}>{[money, date].filter(Boolean).join(" • ")}</p>
+                  </div>
+                </div>
+
+                <div className={styles.badges}>
+                  {it.category ? <span className={styles.badge}>{it.category}</span> : null}
+                  {it.type ? <span className={styles.badge}>{it.type}</span> : null}
+                  {buildStatus ? <span className={styles.badge}>🧩 {buildStatus}</span> : null}
+                  {paintStatus ? <span className={styles.badge}>🎨 {paintStatus}</span> : null}
+                  {(it.tags || []).slice(0, 3).map((t) => (
+                    <span key={t} className={styles.badge}>#{t}</span>
+                  ))}
+                  {it.quantity && it.quantity !== 1 ? (
+                    <span className={styles.badge}>x{it.quantity}</span>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className={styles.invPager}>
+          <button className={styles.invBtn} onClick={() => setPage((p) => Math.max(1, p - 1))}>
+            ← Prev
+          </button>
+          <span className={styles.muted}>
+            Page {Math.min(page, totalPages)} / {totalPages}
+          </span>
+          <button className={styles.invBtn} onClick={() => setPage((p) => Math.min(totalPages, p + 1))}>
+            Next →
+          </button>
+        </div>
+      </section>
+
+      {/* SETUPS */}
+      <section className={`${styles.invPanel} ${tab === "setups" ? styles.invPanelActive : ""}`}>
+        <div className={styles.setupLayout}>
+          <div>
+            <h2 style={{ marginTop: 0 }}>🧩 Your Setups</h2>
+            <p className={styles.muted}>Pick a setup to view it like a “nice sheet”.</p>
+
+            <div className={styles.setupList}>
+              {setups.map((s) => (
+                <div
+                  key={s.id}
+                  className={`${styles.setupCard} ${selectedSetupId === s.id ? styles.setupCardActive : ""}`}
+                  onClick={() => setSelectedSetupId(s.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setSelectedSetupId(s.id);
+                  }}
+                >
+                  <h3 style={{ margin: 0 }}>{s.name}</h3>
+                  <p className={styles.muted} style={{ margin: "0.35rem 0 0" }}>
+                    {s.description || ""}
+                  </p>
+                  <p className={styles.muted} style={{ margin: "0.4rem 0 0" }}>
+                    {setupItems.filter((j) => j.setup_id === s.id).length} item(s)
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            {!setupDetail ? (
+              <div className={`${styles.setupDetail} ${styles.setupDetailEmpty}`}>
+                <div>
+                  <h2>Select a setup</h2>
+                  <p className={styles.muted}>Examples: “Desk / PC Setup”, “Living Room TV”, “Lighting”, etc.</p>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.setupDetail}>
+                <h2 style={{ marginTop: 0 }}>{setupDetail.setup.name}</h2>
+                <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
+                  {setupDetail.setup.description || ""}
+                </p>
+
+                {setupDetail.grouped.map(([cat, list]) => (
+                  <div key={cat} style={{ marginTop: "0.75rem" }}>
+                    <h3 style={{ margin: "0.25rem 0" }}>{cat}</h3>
+                    <div className={styles.setupItems}>
+                      {list.map((it) => (
+                        <div
+                          key={it.id}
+                          className={styles.setupItemRow}
+                          onClick={() => setModalItemId(it.id)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") setModalItemId(it.id);
+                          }}
+                        >
+                          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                            {it.images?.[0] ? (
+                              <img className={styles.invThumb} src={it.images[0]} alt="" />
+                            ) : (
+                              <div className={styles.invThumb} aria-hidden="true" />
+                            )}
+                            <div>
+                              <div style={{ fontWeight: 800 }}>{it.name}</div>
+                              <div className={styles.muted} style={{ fontSize: "0.95rem" }}>
+                                {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ORDERS */}
+      <section className={`${styles.invPanel} ${tab === "orders" ? styles.invPanelActive : ""}`}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem 2rem" }}>
+          <h2 style={{ marginTop: 0 }}>🧾 Orders</h2>
+          <p className={styles.muted}>Auto-generated from items that share the same purchase.orderId.</p>
+
+          <div className={styles.invGrid}>
+            {!orders.length ? (
+              <div className={styles.invCard}>
+                <h3 style={{ marginTop: 0 }}>No orders yet</h3>
+                <p className={styles.muted}>Add purchase.orderId to items to group them.</p>
+              </div>
+            ) : (
+              orders.map((o) => (
+                <div
+                  key={o.orderId}
+                  className={styles.invCard}
+                  tabIndex={0}
+                  onClick={() => setModalOrderId(o.orderId)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setModalOrderId(o.orderId);
+                  }}
+                >
+                  <h3 style={{ margin: 0 }}>
+                    {o.store}
+                    {o.orderRef ? ` • ${o.orderRef}` : ""}
+                  </h3>
+                  <p className={styles.invSub}>
+                    {o.date} • {o.items.length} item(s)
+                  </p>
+                  <p className={styles.invSub}>
+                    {o.total ? `${o.total.toLocaleString()} ${o.currency}` : ""}
+                  </p>
+                  <div className={styles.badges}>
+                    <span className={styles.badge}>{o.orderId}</span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ITEM MODAL */}
+      <Modal open={!!modalItem} onClose={() => setModalItemId(null)}>
+        {modalItem && (
+          <div>
+            <h2 style={{ marginTop: 0 }}>{modalItem.name}</h2>
+            <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
+              {[modalItem.brand, modalItem.model].filter(Boolean).map(safeText).join(" • ")}
+            </p>
+
+            {(modalItem.images || []).map((src) => (
+              <img
+                key={src}
+                src={src}
+                alt=""
+                style={{
+                  width: "100%",
+                  maxHeight: 320,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  margin: "0.5rem 0",
+                }}
+              />
+            ))}
+
+            <div className={styles.detailGrid}>
+              <div>
+                <h3>Details</h3>
+                <ul className={styles.detailList}>
+                  {modalItem.category ? <li><b>Category:</b> {modalItem.category}</li> : null}
+                  {modalItem.type ? <li><b>Type:</b> {modalItem.type}</li> : null}
+                  {modalItem.location ? <li><b>Location:</b> {modalItem.location}</li> : null}
+                  {modalItem.quantity != null ? <li><b>Quantity:</b> {modalItem.quantity}</li> : null}
+                </ul>
+              </div>
+
+              <div>
+                <h3>Purchase</h3>
+                <ul className={styles.detailList}>
+                  {modalItem.purchase?.date ? <li><b>Date:</b> {safeText(modalItem.purchase.date)}</li> : null}
+                  {modalItem.purchase?.price != null ? <li><b>Price:</b> {fmtMoney(modalItem.purchase)}</li> : null}
+                  {modalItem.purchase?.store ? <li><b>Store:</b> {safeText(modalItem.purchase.store)}</li> : null}
+                  {modalItem.purchase?.orderRef ? <li><b>Order ref:</b> {safeText(modalItem.purchase.orderRef)}</li> : null}
+                  {modalItem.purchase?.orderId ? <li><b>OrderId:</b> {safeText(modalItem.purchase.orderId)}</li> : null}
+                </ul>
+              </div>
+            </div>
+
+            {!!(modalItem.tags || []).length && (
+              <p className={styles.muted}>
+                Tags: {(modalItem.tags || []).map((t) => `#${t}`).join(" ")}
+              </p>
+            )}
+
+            {modalItem.notes ? (
+              <>
+                <h3>Notes</h3>
+                <p>{modalItem.notes}</p>
+              </>
+            ) : null}
+
+            <Specs specs={modalItem.specs} />
+          </div>
+        )}
+      </Modal>
+
+      {/* ORDER MODAL */}
+      <Modal open={!!modalOrder} onClose={() => setModalOrderId(null)}>
+        {modalOrder && (
+          <div>
+            <h2 style={{ marginTop: 0 }}>
+              {modalOrder.store}
+              {modalOrder.orderRef ? ` • ${modalOrder.orderRef}` : ""}
+            </h2>
+            <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
+              {modalOrder.date} • {modalOrder.items.length} item(s)
+            </p>
+            <p className={styles.muted}>
+              {modalOrder.total ? `Total: ${modalOrder.total.toLocaleString()} ${modalOrder.currency}` : ""}
+            </p>
+
+            <button
+              className={styles.invBtn}
+              style={{ margin: "0.5rem 0 1rem" }}
+              onClick={() => {
+                setActiveOrderId(modalOrder.orderId);
+                setModalOrderId(null);
+                setTab("inventory");
+              }}
+            >
+              Filter inventory by this order
+            </button>
+
+            <h3>Items</h3>
+            <div className={styles.setupItems}>
+              {modalOrder.items.map((it) => (
+                <div
+                  key={it.id}
+                  className={styles.setupItemRow}
+                  onClick={() => {
+                    setModalOrderId(null);
+                    setModalItemId(it.id);
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                    {it.images?.[0] ? (
+                      <img className={styles.invThumb} src={it.images[0]} alt="" />
+                    ) : (
+                      <div className={styles.invThumb} aria-hidden="true" />
+                    )}
+                    <div>
+                      <div style={{ fontWeight: 800 }}>{it.name}</div>
+                      <div className={styles.muted} style={{ fontSize: "0.95rem" }}>
+                        {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </Modal>
     </main>
   );
 }
