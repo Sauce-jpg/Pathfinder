@@ -1,0 +1,717 @@
+/* ===== Base + Theme ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  color: #222;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+/* ===== Background ===== */
+body {
+  background: url("images/pathfinder-background.png") center top repeat-y fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Add soft overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.7);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dark-mode::before {
+  background: rgba(0,0,0,0.6);
+}
+
+
+
+/* ===== Header ===== */
+header {
+  position: relative; /* allows gradient overlay */
+  background: url("images/pathfinder_header.png") center/cover no-repeat;
+  color: #fff;
+  min-height: 280px; /* makes it a hero-style banner */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+header h1, 
+header p, 
+header a {
+  position: relative;
+  z-index: 1; /* makes sure text sits above gradient */
+}
+
+/* Fantasy font + glowing effect */
+header h1 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3rem;
+  margin: 0;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 10px rgba(255,255,255,0.6);
+}
+
+header p {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+/* Optional: back-to-hub link inside headers */
+header a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+header a:hover { text-decoration: underline; }
+
+/* Subtle dark gradient overlay for readability */
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+  z-index: 0;
+}
+
+/* Dark Mode Adjustment */ 
+.dark-mode header {
+  background-blend-mode: multiply;
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+
+
+/* =====   Nav (TAB) dropdown  =====  */
+nav .dropdown {
+  position: relative;
+}
+
+nav .dropbtn {
+  padding: 1rem;
+  border: none;
+  background: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+nav .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: #ddd;
+  border: 1px solid #ccc;
+  z-index: 100;
+}
+
+nav .dropdown-content button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+nav .dropdown-content button:hover {
+  background: #bbb;
+}
+
+nav .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dark-mode nav .dropdown-content {
+  background: #444;
+  border-color: #555;
+}
+.dark-mode nav .dropdown-content button:hover {
+  background: #666;
+  color: #fff;
+}
+
+
+/* =====  Collapsible  ===== */ 
+.collapsible {
+  margin-bottom: 1rem;
+}
+
+.collapse-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  background: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+}
+
+.collapse-btn:hover {
+  background: #bbb;
+}
+
+.dark-mode .collapse-btn {
+  background: #444;
+  color: #f5f5f5;
+}
+.dark-mode .collapse-btn:hover {
+  background: #666;
+}
+
+.collapse-content {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.collapse-content.show {
+  display: block;
+}
+
+
+
+/*  ===== Layout grid for overview =====  */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Ability grid/cards */
+.ability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+/* Add a border or background to the card */
+.ability-card {
+  background: #fafafa;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  text-align: center;
+}
+.dark-mode .ability-card {
+  background: #222;
+  border-color: #555;
+}
+
+.ability-card h4 {
+  margin: 0;
+  font-family: 'Cinzel Decorative', serif;
+}
+
+.ability-card .score {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+/* Highlight the modifier (make it big & colorful) */
+.ability-card .mod {
+  font-size: 1.4rem;
+  color: #006400; /* dark green for positive mods */
+}
+.dark-mode .ability-card .mod {
+  color: #90ee90; /* light green in dark mode */
+}
+
+/* Highlight the modifier (make it big & colorful) / Put them inline instead of stacked*/
+.ability-card input.score,
+.ability-card input.temp {
+  width: 45px;   /* narrower */
+  font-size: 0.9rem; /* smaller text */
+  display: inline-block; /* sits next to each other */
+  margin: 0 5px;
+}
+
+/* Character info */
+.char-info ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+.char-info li {
+  margin: 0.3rem 0;
+}
+.status-bar {
+  margin-top: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+
+
+/* =====  Ability Table  ===== */ 
+.ability-table input[type="number"] {
+  width: 60px;
+  text-align: center;
+}
+.ability-table .mod {
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
+/* =====  Styling for Tables  ===== */ 
+.char-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.char-table th, .char-table td {
+  border: 1px solid #ccc;
+  padding: 0.4rem;
+  text-align: center;
+}
+.char-table th {
+  background: #eee;
+  font-family: 'Cinzel Decorative', serif;
+  background: #e7dcc9;
+}
+.dark-mode .char-table th {
+  background: #333;
+}
+
+/* ===== Skills Table  ===== */ 
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+}
+.skills-table th, .skills-table td {
+  border: 1px solid #ccc;
+  padding: 0.25rem 0.4rem;
+  text-align: center;
+}
+.skills-table th {
+  background: #eee;
+  font-family: 'Cinzel Decorative', serif;
+  background: #e7dcc9;
+}
+.skills-table td:first-child {
+  width: 30px;
+}
+.skills-table td:first-child, 
+.skills-table th:first-child {
+  text-align: left;
+}
+.skills-table input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.skills-table input[type="number"] {
+  width: 55px;
+  text-align: center;
+}
+.skills-table .total {
+  font-weight: bold;
+  width: 60px;
+}
+
+.skills-table td:nth-child(2) {
+  text-align: left;
+  white-space: nowrap;
+}
+.dark-mode .skills-table th { background: #333; }
+
+
+/* For nested lists in inventory */
+#inventory ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+#inventory ul li {
+  margin: 0.3rem 0;
+}
+#inventory ul ul {
+  margin-left: 1.5rem;
+  border-left: 2px solid #ccc;
+  padding-left: 1rem;
+}
+.dark-mode #inventory ul ul {
+  border-color: #555;
+}
+
+
+/* ===== Top Nav (Pathfinder tabs) ===== */
+nav {
+  display: flex;
+  justify-content: center;
+  background: #ddd;
+  border-bottom: 1px solid #ccc;
+}
+.dark-mode nav {
+  background: #444;
+  border-color: #555;
+}
+nav button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+nav button:hover,
+nav button.active {
+  background: #bbb;
+}
+.dark-mode nav button:hover,
+.dark-mode nav button.active {
+  background: #666;
+  color: #fff;
+}
+
+/* ===== Layout ===== */
+main {
+  position: relative;
+  z-index: 1;
+  background: rgba(253,250,246,0.9); /* light parchment tint */
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.dark-mode main {
+  background: rgba(26,26,26,0.85);
+}
+
+section { display: none; }
+section.active { display: block; }
+
+img.icon {
+  max-width: 200px;
+  border: 3px solid #5a3d2b;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  border-radius: 50%;
+  display: block;
+  margin: 1rem auto;
+}
+
+
+/* ===== Pathfinder-style Panels ===== */
+section {
+  background: #fdfaf6;
+  border: 2px solid #5a3d2b;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+}
+
+h2, h3 {
+  font-family: 'Cinzel Decorative', serif;
+  border-bottom: 2px solid #5a3d2b;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Attack block cards */
+.attack-block {
+  border: 2px solid #5a3d2b;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+  background: #fffdf8;
+}
+
+
+
+/* ===== Theme Toggle Button ===== */
+button.toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2000; /* sits above header + gradient */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #ddd; 
+  color: #222; 
+}
+.dark-mode button.toggle {
+  background: #555;
+  color: #fff;
+}
+
+/* ===== Modal (Backstory) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+.modal-content {
+  background-color: #fafafa;
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 900px;
+  color: #222;
+  position: relative;
+  max-height: calc(100vh - 8%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.dark-mode .modal-content {
+  background-color: #222;
+  color: #f5f5f5;
+}
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
+
+/* ===== AC Summary ===== */
+.ac-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f5f2ec;
+  border: 2px solid #5a3d2b;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  max-width: 400px;
+}
+.ac-summary button {
+  margin-left: auto;
+  background: #ddd;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+.dark-mode .ac-summary { background: #2b2b2b; border-color: #666; }
+
+
+/* ===== AC detail popup styling ===== */
+.ac-detail-table .note-btn {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  background: #eee;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.ac-detail-table .note-btn:hover {
+  background: #ddd;
+}
+.note-row {
+  display: none;
+}
+.note-row input[type="text"] {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.dark-mode .ac-detail-table .note-btn { background: #555; border-color: #777; color: #eee; }
+.dark-mode .note-row input { background: #333; color: #eee; border-color: #666; }
+
+
+/* ===== Popup (reuse modal style) ===== */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1500;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+.popup-content {
+  background: #fafafa;
+  margin: 5% auto;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  max-width: 500px;
+  position: relative;
+  color: #222;
+}
+.dark-mode .popup-content {
+  background: #222;
+  color: #f5f5f5;
+}
+.popup-content .close {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+
+/* ===== Saves/CMB/CMD detail popup styling ===== */
+.save-detail-table .note-btn,
+.cmb-detail-table .note-btn {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  background: #eee;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.save-detail-table .note-btn:hover,
+.cmb-detail-table .note-btn:hover {
+  background: #ddd;
+}
+
+.dark-mode .save-detail-table .note-btn,
+.dark-mode .cmb-detail-table .note-btn {
+  background: #555; border-color: #777; color: #eee;
+}
+
+.note-row {
+  display: none;
+}
+.note-row input[type="text"] {
+  width: 100%;
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.dark-mode .note-row input { background: #333; color: #eee; border-color: #666; }
+
+
+
+
+
+
+
+
+
+/* ===== Back to Top Button ===== */
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 2000;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #ddd;
+  transition: background 0.3s, opacity 0.3s;
+}
+#backToTop.show { display: block; opacity: 1; }
+#backToTop:hover { background: #bbb; }
+.dark-mode #backToTop { background: #555; color: #fff; }
+.dark-mode #backToTop:hover { background: #666; }
+
+/* ===== Spell Options Dropdowns ===== */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropbtn {
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+}
+.dark-mode .dropbtn {
+  background: #555;
+  color: #fff;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.dropdown-content button,
+.dropdown-content a {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.dropdown-content button:hover,
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+.dropdown.show .dropdown-content { display: block; }
+
+/* ===== Homepage Links Grid ===== */
+main.links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+main.links a {
+  display: block;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #e0e0e0;
+  text-decoration: none;
+  color: #222;
+  transition: background 0.3s;
+}
+main.links a:hover { background: #bbb; }
+.dark-mode main.links a {
+  background: #444;
+  color: #f5f5f5;
+}
+.dark-mode main.links a:hover { background: #666; }
