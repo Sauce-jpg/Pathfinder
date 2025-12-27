@@ -355,7 +355,7 @@ export default function InventoryPage() {
     setLoading(true);
     setLoadError(null);
 
-    const [itemsRes, setupsRes, joinRes] = await Promise.all([
+    const [itemsRes, setupsRes, joinRes, linksRes] = await Promise.all([
       supabase.from("inventory_items").select("*").order("name", { ascending: true }),
       supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
       supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
