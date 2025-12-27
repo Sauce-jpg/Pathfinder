@@ -387,7 +387,7 @@ export default function InventoryPage() {
   }
 
   async function toggleIncludeInParent(setupId: string, itemId: string, value: boolean) {
-    if (!si) return;
+    if (!session?.user?.id) return;
 
     const { error } = await supabase
       .from("inventory_setup_items")
