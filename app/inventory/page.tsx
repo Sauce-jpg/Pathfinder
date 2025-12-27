@@ -727,6 +727,38 @@ export default function InventoryPage() {
 
 
 
+  const setupsOrdered = useMemo(() => {
+    const byParent = new Map<string, DbSetup[]>();
+
+    for (const s of setups) {
+      const key = s.parent_setup_id || "";
+      if (!byParent.has(key)) byParent.set(key, []);
+      byParent.get(key)!.push(s);
+    }
+
+    // Sort children alphabetically
+    for (const [, list] of byParent) {
+      list.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    const out: Array<{ setup: DbSetup; depth: number }> = [];
+
+    function walk(parentId: string, depth: number) {
+      const list = byParent.get(parentId) || [];
+      for (const s of list) {
+        out.push({ setup: s, depth });
+        walk(s.id, depth + 1);
+      }
+    }
+
+    walk("", 0);
+    return out;
+  }, [setups]);
+
+
+
+
+
 
   
 
