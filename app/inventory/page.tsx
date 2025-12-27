@@ -27,6 +27,7 @@ type DbSetup = {
   user_id: string;
   name: string;
   description: string | null;
+  parent_setup_id: string | null;
 };
 
 type DbSetupItem = {
@@ -287,6 +288,10 @@ export default function InventoryPage() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
 
+  const [setupCreateOpen, setSetupCreateOpen] = useState(false);
+  const [setupDraft, setSetupDraft] = useState({ name: "", description: "", parent_setup_id: "" });
+  const [setupSelectedItemIds, setSetupSelectedItemIds] = useState<string[]>([]);
+
   const [savedViews, setSavedViewsState] = useState<Record<string, Partial<Filters>>>({});
 
   // auth
@@ -456,6 +461,69 @@ export default function InventoryPage() {
   }
 
 
+
+
+
+  async function createSetup() {
+    if (!session?.user?.id) return;
+
+    const name = setupDraft.name.trim();
+    if (!name) {
+      alert("Setup name is required.");
+      return;
+    }
+
+    const payload = {
+      user_id: session.user.id,
+      name,
+      description: setupDraft.description.trim() || null,
+      parent_setup_id: setupDraft.parent_setup_id || null,
+    };
+
+    const { data, error } = await supabase
+      .from("inventory_setups")
+      .insert(payload)
+      .select("id")
+      .single();
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    const setupId = data.id as string;
+
+    // Add selected items into the setup
+    if (setupSelectedItemIds.length) {
+      const rows = setupSelectedItemIds.map((itemId, idx) => ({
+        user_id: session.user.id,
+        setup_id: setupId,
+        item_id: itemId,
+        position: idx + 1,
+      }));
+
+      const ins = await supabase.from("inventory_setup_items").insert(rows);
+      if (ins.error) {
+        alert("Setup created, but adding items failed: " + ins.error.message);
+        // still continue
+      }
+    }
+
+    setSetupCreateOpen(false);
+    setSetupDraft({ name: "", description: "", parent_setup_id: "" });
+    setSetupSelectedItemIds([]);
+
+   await loadAll();
+
+    // auto-select new setup in UI
+    setSelectedSetupId(setupId);
+  }
+
+
+
+
+
+  
 
 
   
@@ -1082,6 +1150,10 @@ export default function InventoryPage() {
             <h2 style={{ marginTop: 0 }}>🧩 Your Setups</h2>
             <p className={styles.muted}>Pick a setup to view it like a “nice sheet”.</p>
 
+            <button className={styles.invBtn} onClick={() => setSetupCreateOpen(true)}>
+              + Add setup
+            </button>
+
             <div className={styles.setupList}>
               {setups.map((s) => (
                 <div
@@ -1203,6 +1275,11 @@ export default function InventoryPage() {
         </div>
       </section>
 
+
+
+
+
+      
      {/* ITEM MODAL */}
      <Modal
        open={!!modalItem || isCreating}
@@ -1501,6 +1578,121 @@ export default function InventoryPage() {
        )}
      </Modal>
 
+
+
+
+
+      <Modal
+        open={setupCreateOpen}
+        onClose={() => {
+          setSetupCreateOpen(false);
+         setSetupDraft({ name: "", description: "", parent_setup_id: "" });
+          setSetupSelectedItemIds([]);
+        }}
+      >
+        <div>
+          <h2 style={{ marginTop: 0 }}>Create setup</h2>
+
+          <div style={{ display: "grid", gap: "0.75rem" }}>
+            <label>
+              <div className={styles.muted}>Name</div>
+              <input
+                className={styles.invInput}
+                value={setupDraft.name}
+                onChange={(e) => setSetupDraft((d) => ({ ...d, name: e.target.value }))}
+                placeholder='e.g. "Mechanical Keyboard"'
+              />
+            </label>
+
+            <label>
+              <div className={styles.muted}>Description</div>
+              <input
+                className={styles.invInput}
+                value={setupDraft.description}
+                onChange={(e) => setSetupDraft((d) => ({ ...d, description: e.target.value }))}
+                placeholder="Optional"
+              />
+            </label>
+
+            <label>
+              <div className={styles.muted}>Parent setup (optional)</div>
+              <select
+                className={styles.invSelect}
+                value={setupDraft.parent_setup_id}
+                onChange={(e) => setSetupDraft((d) => ({ ...d, parent_setup_id: e.target.value }))}
+              >
+                <option value="">None (top-level)</option>
+                {setups.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.name}
+                  </option>
+                ))}
+              </select>
+              <div className={styles.muted} style={{ fontSize: "0.9rem", marginTop: "0.25rem" }}>
+                For your case: pick <b>Desk / PC Setup</b> as parent.
+              </div>
+            </label>
+
+            <div>
+              <div className={styles.muted} style={{ marginBottom: "0.35rem" }}>
+                Add items to this setup
+              </div>
+
+              <div style={{ maxHeight: 240, overflow: "auto", border: "1px solid rgba(0,0,0,0.12)", borderRadius: 12, padding: 10 }}>
+                {items
+                  .slice()
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((it) => {
+                    const checked = setupSelectedItemIds.includes(it.id);
+                    return (
+                      <label key={it.id} style={{ display: "flex", gap: 10, alignItems: "center", padding: "6px 4px" }}>
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={(e) => {
+                            setSetupSelectedItemIds((prev) => {
+                              if (e.target.checked) return [...prev, it.id];
+                              return prev.filter((x) => x !== it.id);
+                            });
+                          }}
+                        />
+                        <span style={{ fontWeight: 700 }}>{it.name}</span>
+                        <span className={styles.muted} style={{ fontSize: "0.9rem" }}>
+                          {it.model ? ` • ${it.model}` : ""}
+                        </span>
+                      </label>
+                    );
+                  })}
+              </div>
+
+              <div className={styles.muted} style={{ marginTop: "0.35rem" }}>
+                Tip: select your keyboard + the two extra plates.
+              </div>
+            </div>
+
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginTop: "0.25rem" }}>
+              <button className={styles.invBtn} onClick={createSetup}>
+                Create setup
+              </button>
+              <button
+                className={styles.invBtn}
+                onClick={() => {
+                  setSetupCreateOpen(false);
+                  setSetupDraft({ name: "", description: "", parent_setup_id: "" });
+                  setSetupSelectedItemIds([]);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+
+
+
+      
 
       
 
