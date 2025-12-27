@@ -530,6 +530,7 @@ export default function InventoryPage() {
         setup_id: setupId,
         item_id: itemId,
         position: idx + 1,
+        include_in_parent_summary: false,
       }));
 
       const ins = await supabase.from("inventory_setup_items").insert(rows);
