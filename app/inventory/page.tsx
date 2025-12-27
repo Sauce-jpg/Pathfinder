@@ -1390,8 +1390,18 @@ export default function InventoryPage() {
 
                             {/* Label when bubbled into parent (only makes sense when viewing parent) */}
                             {!canBubbleUp && setupView.bubbled.some((x) => x.id === it.id) && (
-                              <div className={styles.muted} style={{ fontSize: "0.85rem" }}>
-                                Included from a sub-setup
+                              <div
+                                className={styles.muted}
+                                style={{
+                                  fontSize: "0.85rem",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 6,
+                                  marginTop: 2,
+                                }}
+                              >
+                                <span title="Included from sub-setup">⤴</span>
+                                <span>From sub-setup</span>
                               </div>
                             )}
                           </div>
@@ -1400,6 +1410,7 @@ export default function InventoryPage() {
                           {canBubbleUp && si && (
                             <label
                               className={styles.muted}
+                              title="When enabled, this item appears in the parent setup summary"
                               style={{
                                 marginLeft: "auto",
                                 display: "flex",
@@ -1417,7 +1428,7 @@ export default function InventoryPage() {
                                   toggleIncludeInParent(selectedSetup!.id, it.id, e.target.checked)
                                 }
                               />
-                              Include in parent
+                              Show in parent setup
                             </label>
                           )}
                         </div>
@@ -1445,7 +1456,7 @@ export default function InventoryPage() {
                         {setupView.accessories.map(({ setup, items: accItems }) => (
                           <div
                             key={setup.id}
-                            className={styles.invCard}
+                            className={`${styles.invCard} ${styles.accessoryCard}`}
                             style={{ padding: "0.75rem" }}
                           >
                             <div style={{ fontWeight: 800 }}>{setup.name}</div>
