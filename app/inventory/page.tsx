@@ -31,10 +31,12 @@ type DbSetup = {
 };
 
 type DbSetupItem = {
+  id: string;
   setup_id: string;
   item_id: string;
   user_id: string;
   position: number;
+  include_in_parent_summary: boolean;
 };
 
 type Tab = "inventory" | "setups" | "orders";
@@ -276,6 +278,7 @@ export default function InventoryPage() {
   const pageSize = 48;
 
   const [selectedSetupId, setSelectedSetupId] = useState<string | null>(null);
+  const [showAccessories, setShowAccessories] = useState(false);
 
   const [modalItemId, setModalItemId] = useState<string | null>(null);
   const [modalOrderId, setModalOrderId] = useState<string | null>(null);
@@ -757,6 +760,88 @@ export default function InventoryPage() {
 
 
 
+  const selectedSetup = useMemo(
+    () => setups.find((s) => s.id === selectedSetupId) || null,
+    [setups, selectedSetupId]
+  );
+
+  const childrenByParent = useMemo(() => {
+    const map = new Map<string, DbSetup[]>();
+    for (const s of setups) {
+      const pid = s.parent_setup_id || "";
+      if (!map.has(pid)) map.set(pid, []);
+      map.get(pid)!.push(s);
+    }
+    for (const [, list] of map) list.sort((a, b) => a.name.localeCompare(b.name));
+    return map;
+  }, [setups]);
+
+  function getDescendantSetupIds(rootId: string) {
+    const out: string[] = [];
+    const stack: string[] = [rootId];
+
+    while (stack.length) {
+      const cur = stack.pop()!;
+      const kids = childrenByParent.get(cur) || [];
+      for (const k of kids) {
+        out.push(k.id);
+        stack.push(k.id);
+      }
+    }
+    return out;
+  }
+
+  const setupView = useMemo(() => {
+    if (!selectedSetup) {
+      return { direct: [] as DbItem[], bubbled: [] as DbItem[], accessories: [] as Array<{ setup: DbSetup; items: DbItem[] }> };
+    }
+
+    const directItemIds = new Set(
+      setupItems
+        .filter((si) => si.setup_id === selectedSetup.id)
+        .map((si) => si.item_id)
+    );
+
+    const direct = items.filter((it) => directItemIds.has(it.id));
+
+    // Collect descendants
+    const descendantIds = getDescendantSetupIds(selectedSetup.id);
+
+    // For each child setup, split items into bubbled vs accessory
+    const bubbledSet = new Set<string>();
+    const accessoriesBySetup: Array<{ setup: DbSetup; items: DbItem[] }> = [];
+
+    for (const sid of descendantIds) {
+      const childSetup = setups.find((s) => s.id === sid);
+      if (!childSetup) continue;
+
+      const links = setupItems.filter((si) => si.setup_id === sid);
+      const bubbledIds = new Set(links.filter((x) => x.include_in_parent_summary).map((x) => x.item_id));
+      const accessoryIds = new Set(links.filter((x) => !x.include_in_parent_summary).map((x) => x.item_id));
+
+      for (const id of bubbledIds) bubbledSet.add(id);
+
+      const accessoryItems = items.filter((it) => accessoryIds.has(it.id));
+      if (accessoryItems.length) accessoriesBySetup.push({ setup: childSetup, items: accessoryItems });
+    }
+
+    // Bubbled items, excluding items already direct (avoid duplicates)
+    const bubbled = items.filter((it) => bubbledSet.has(it.id) && !directItemIds.has(it.id));
+
+    return {
+      direct,
+      bubbled,
+      accessories: accessoriesBySetup,
+    };
+  }, [selectedSetup, setupItems, items, setups, childrenByParent]);
+
+
+
+
+  
+
+
+
 
 
 
@@ -1193,7 +1278,10 @@ export default function InventoryPage() {
                 className={`${styles.setupCard} ${
                   selectedSetupId === s.id ? styles.setupCardActive : ""
                 }`}
-                onClick={() => setSelectedSetupId(s.id)}
+                onClick={() => {
+                  setSelectedSetupId(s.id);
+                  setShowAccessories(false);
+                }}
                 style={{ marginLeft: depth * 14 }}
               >
                 <h3 style={{ margin: 0 }}>{s.name}</h3>
@@ -1217,44 +1305,106 @@ export default function InventoryPage() {
               </div>
             ) : (
               <div className={styles.setupDetail}>
-                <h2 style={{ marginTop: 0 }}>{setupDetail.setup.name}</h2>
+                <h2 style={{ marginTop: 0 }}>{selectedSetup!.name}</h2>
                 <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
-                  {setupDetail.setup.description || ""}
+                  {selectedSetup!.description || ""}
                 </p>
 
-                {setupDetail.grouped.map(([cat, list]) => (
-                  <div key={cat} style={{ marginTop: "0.75rem" }}>
-                    <h3 style={{ margin: "0.25rem 0" }}>{cat}</h3>
-                    <div className={styles.setupItems}>
-                      {list.map((it) => (
-                        <div
-                          key={it.id}
-                          className={styles.setupItemRow}
-                          onClick={() => setModalItemId(it.id)}
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") setModalItemId(it.id);
-                          }}
-                        >
-                          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
-                            {it.images?.[0] ? (
-                              <img className={styles.invThumb} src={it.images[0]} alt="" />
-                            ) : (
-                              <div className={styles.invThumb} aria-hidden="true" />
-                            )}
-                            <div>
-                              <div style={{ fontWeight: 800 }}>{it.name}</div>
-                              <div className={styles.muted} style={{ fontSize: "0.95rem" }}>
-                                {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
-                              </div>
+                <h3 style={{ marginTop: "1rem" }}>Core items</h3>
+                <div className={styles.setupItems}>
+                  {[...setupView.direct, ...setupView.bubbled].map((it) => (
+                    <div
+                      key={it.id}
+                      className={styles.setupItemRow}
+                      onClick={() => setModalItemId(it.id)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") setModalItemId(it.id);
+                      }}
+                    >
+                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                        {it.images?.[0] ? (
+                          <img className={styles.invThumb} src={it.images[0]} alt="" />
+                        ) : (
+                          <div className={styles.invThumb} aria-hidden="true" />
+                        )}
+                        <div>
+                          <div style={{ fontWeight: 800 }}>{it.name}</div>
+                          <div className={styles.muted} style={{ fontSize: "0.95rem" }}>
+                            {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
+                          </div>
+
+                          {setupView.bubbled.some((x) => x.id === it.id) && (
+                            <div className={styles.muted} style={{ fontSize: "0.85rem" }}>
+                              Included from a sub-setup
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {!!setupView.accessories.length && (
+                  <div style={{ marginTop: "1rem" }}>
+                    <button className={styles.invBtn} onClick={() => setShowAccessories((v) => !v)}>
+                      {showAccessories
+                        ? "Hide accessories"
+                        : `Show accessories (${setupView.accessories.reduce(
+                            (n, g) => n + g.items.length,
+                            0
+                          )})`}
+                    </button>
+
+                    {showAccessories && (
+                      <div style={{ marginTop: "0.75rem", display: "grid", gap: "0.75rem" }}>
+                        {setupView.accessories.map(({ setup, items: accItems }) => (
+                          <div
+                            key={setup.id}
+                            className={styles.invCard}
+                            style={{ padding: "0.75rem" }}
+                          >
+                            <div style={{ fontWeight: 800 }}>{setup.name}</div>
+                            <div className={styles.muted} style={{ fontSize: "0.9rem" }}>
+                              Extra items
+                            </div>
+
+                            <div style={{ marginTop: "0.5rem", display: "grid", gap: "0.5rem" }}>
+                              {accItems.map((it) => (
+                                <div
+                                  key={it.id}
+                                  className={styles.setupItemRow}
+                                  style={{ padding: "0.55rem", opacity: 0.9 }}
+                                  onClick={() => setModalItemId(it.id)}
+                                  role="button"
+                                  tabIndex={0}
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") setModalItemId(it.id);
+                                  }}
+                                >
+                                  <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                                    {it.images?.[0] ? (
+                                      <img className={styles.invThumb} src={it.images[0]} alt="" />
+                                    ) : (
+                                      <div className={styles.invThumb} aria-hidden="true" />
+                                    )}
+                                    <div>
+                                      <div style={{ fontWeight: 800 }}>{it.name}</div>
+                                      <div className={styles.muted} style={{ fontSize: "0.9rem" }}>
+                                        {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
                             </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                ))}
+                )}
               </div>
             )}
           </div>
