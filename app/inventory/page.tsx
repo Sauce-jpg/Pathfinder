@@ -292,6 +292,9 @@ export default function InventoryPage() {
   const [selectedSetupId, setSelectedSetupId] = useState<string | null>(null);
   const [showAccessories, setShowAccessories] = useState(false);
 
+  const [isEditingSetup, setIsEditingSetup] = useState(false);
+  const [setupEditItemIds, setSetupEditItemIds] = useState<string[]>([]);
+
   const [modalItemId, setModalItemId] = useState<string | null>(null);
   const [modalOrderId, setModalOrderId] = useState<string | null>(null);
 
@@ -314,6 +317,8 @@ export default function InventoryPage() {
   const [setupCreateOpen, setSetupCreateOpen] = useState(false);
   const [setupDraft, setSetupDraft] = useState({ name: "", description: "", parent_setup_id: "" });
   const [setupSelectedItemIds, setSetupSelectedItemIds] = useState<string[]>([]);
+
+
 
   const [savedViews, setSavedViewsState] = useState<Record<string, Partial<Filters>>>({});
 
@@ -571,6 +576,60 @@ export default function InventoryPage() {
 
     // auto-select new setup in UI
     setSelectedSetupId(setupId);
+  }
+
+
+
+
+
+
+  async function saveSetupEdits() {
+    if (!selectedSetup || !session?.user?.id) return;
+
+    // Current itemIds in DB for this setup
+    const currentItemIds = setupItems
+      .filter((si) => si.setup_id === selectedSetup.id)
+      .map((si) => si.item_id);
+
+    // Desired itemIds from edit UI
+    const desiredItemIds = setupEditItemIds;
+
+    const toAdd = desiredItemIds.filter((id) => !currentItemIds.includes(id));
+    const toRemove = currentItemIds.filter((id) => !desiredItemIds.includes(id));
+
+    // Remove links
+    if (toRemove.length) {
+      const del = await supabase
+        .from("inventory_setup_items")
+        .delete()
+        .eq("setup_id", selectedSetup.id)
+        .in("item_id", toRemove);
+
+      if (del.error) {
+        alert(del.error.message);
+        return;
+      }
+    }
+
+    // Add links
+    if (toAdd.length) {
+      const rows = toAdd.map((itemId, idx) => ({
+        user_id: session.user.id,
+        setup_id: selectedSetup.id,
+        item_id: itemId,
+        position: currentItemIds.length + idx + 1,
+        // include_in_parent_summary: false, // optional; default false in DB is best
+      }));
+
+      const ins = await supabase.from("inventory_setup_items").insert(rows);
+      if (ins.error) {
+        alert(ins.error.message);
+        return;
+      }
+    }
+
+    setIsEditingSetup(false);
+    await loadAll();
   }
 
 
@@ -1357,6 +1416,8 @@ export default function InventoryPage() {
                 onClick={() => {
                   setSelectedSetupId(s.id);
                   setShowAccessories(false);
+                  setIsEditingSetup(false);
+                  setSetupEditItemIds([]);
                 }}
                 style={{ marginLeft: depth * 14 }}
               >
@@ -1386,7 +1447,107 @@ export default function InventoryPage() {
                   {selectedSetup!.description || ""}
                 </p>
 
+                <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.75rem", flexWrap: "wrap" }}>
+                  <button
+                    className={styles.invBtn}
+                    onClick={() => {
+                      // entering edit mode: preload current items in this setup
+                      setIsEditingSetup(true);
+                      setSetupEditItemIds(
+                        setupItems
+                          .filter((si) => si.setup_id === selectedSetup!.id)
+                          .map((si) => si.item_id)
+                      );
+                    }}
+                  >
+                    ✏ Edit setup items
+                  </button>
+
+                  {isEditingSetup && (
+                    <button className={styles.invBtn} onClick={() => setIsEditingSetup(false)}>
+                      Cancel edit
+                    </button>
+                  )}
+                </div>
+
+                
+
                 <h3 style={{ marginTop: "1rem" }}>Core items</h3>
+
+
+
+
+                {isEditingSetup && (
+                  <div style={{ marginTop: "0.75rem" }}>
+                    <div className={styles.muted} style={{ marginBottom: "0.35rem" }}>
+                      Tick items to include in this setup
+                    </div>
+
+                    <div
+                      style={{
+                        maxHeight: 260,
+                        overflow: "auto",
+                        border: "1px solid rgba(0,0,0,0.12)",
+                        borderRadius: 12,
+                        padding: 10,
+                      }}
+                    >
+                      {items
+                        .slice()
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((it) => {
+                          const checked = setupEditItemIds.includes(it.id);
+
+                          return (
+                            <label
+                              key={it.id}
+                              style={{
+                                display: "flex",
+                                gap: 10,
+                                alignItems: "center",
+                                padding: "6px 4px",
+                              }}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={checked}
+                                onChange={(e) => {
+                                  setSetupEditItemIds((prev) => {
+                                    if (e.target.checked) return [...prev, it.id];
+                                    return prev.filter((x) => x !== it.id);
+                                  });
+                                }}
+                              />
+                              <span style={{ fontWeight: 700 }}>{it.name}</span>
+                              <span className={styles.muted} style={{ fontSize: "0.9rem" }}>
+                                {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
+                              </span>
+                            </label>
+                          );
+                        })}
+                    </div>
+
+                    <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.75rem", flexWrap: "wrap" }}>
+                      <button className={styles.invBtn} onClick={saveSetupEdits}>
+                        Save setup items
+                      </button>
+                      <button
+                        className={styles.invBtn}
+                        onClick={() => {
+                          setIsEditingSetup(false);
+                          setSetupEditItemIds([]);
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+
+
+
+
 
                 <div className={styles.setupItems}>
                   {[...setupView.direct, ...setupView.bubbled].map((it) => {
@@ -1488,6 +1649,8 @@ export default function InventoryPage() {
                             0
                           )})`}
                     </button>
+
+                    
 
                     {showAccessories && (
                       <div style={{ marginTop: "0.75rem", display: "grid", gap: "0.75rem" }}>
