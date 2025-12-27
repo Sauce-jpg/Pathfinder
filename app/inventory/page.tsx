@@ -389,7 +389,7 @@ export default function InventoryPage() {
   async function toggleIncludeInParent(setupId: string, itemId: string, value: boolean) {
     if (!session?.user?.id) return;
 
-    const { error } = await supabase
+    const { data: updatedRows, error } = await supabase
       .from("inventory_setup_items")
       .update({ include_in_parent_summary: value })
       .eq("setup_id", setupId)
@@ -403,7 +403,7 @@ export default function InventoryPage() {
     }
 
       // If this triggers: your UPDATE matched 0 rows (filters or RLS)
-      if (!data || data.length === 0) {
+      if (!updatedRows || updatedRows.length === 0) {
         alert(
           `Nothing updated.\n\nLikely cause:\n- setup_id/item_id didn’t match any row, OR\n- RLS blocked update (row user_id not yours).\n\nsetupId=${setupId}\nitemId=${itemId}`
         );
