@@ -1416,28 +1416,7 @@ export default function InventoryPage() {
                 </div>
 
 
-                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
-                        {it.images?.[0] ? (
-                          <img className={styles.invThumb} src={it.images[0]} alt="" />
-                        ) : (
-                          <div className={styles.invThumb} aria-hidden="true" />
-                        )}
-                        <div>
-                          <div style={{ fontWeight: 800 }}>{it.name}</div>
-                          <div className={styles.muted} style={{ fontSize: "0.95rem" }}>
-                            {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
-                          </div>
-
-                          {setupView.bubbled.some((x) => x.id === it.id) && (
-                            <div className={styles.muted} style={{ fontSize: "0.85rem" }}>
-                              Included from a sub-setup
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                      
 
                 {!!setupView.accessories.length && (
                   <div style={{ marginTop: "1rem" }}>
