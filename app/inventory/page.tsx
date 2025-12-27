@@ -525,6 +525,57 @@ export default function InventoryPage() {
         <button className={styles.invBtn} onClick={loadAll} disabled={loading}>
           {loading ? "Refreshing…" : "↻ Refresh"}
         </button>
+       
+        <button
+          className={styles.invBtn}
+          onClick={() => {
+            const rows = filtered.map((it) => ({
+              id: it.id,
+              name: it.name,
+              category: it.category || "",
+              type: it.type || "",
+              quantity: it.quantity ?? 1,
+              location: it.location || "",
+              buildStatus: it.specs?.buildStatus || "",
+              paintStatus: it.specs?.paintStatus || "",
+              price: it.purchase?.price ?? "",
+              currency: it.purchase?.currency ?? "",
+              date: it.purchase?.date ?? "",
+              orderId: it.purchase?.orderId ?? "",
+              store: it.purchase?.store ?? "",
+              orderRef: it.purchase?.orderRef ?? "",
+              tags: (it.tags || []).join(" "),
+            }));
+
+            if (!rows.length) {
+              alert("Nothing to export (no items in current view).");
+              return;
+            }
+
+            const headers = Object.keys(rows[0]);
+
+            const csv = [
+              headers.join(","),
+              ...rows.map((r) =>
+                headers
+                  .map((h) => `"${String((r as any)[h] ?? "").replace(/"/g, '""')}"`)
+                  .join(",")
+              ),
+            ].join("\n");
+
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+
+            const stamp = new Date().toISOString().slice(0, 10);
+            a.download = `inventory-export-${stamp}.csv`;
+
+            a.click();
+            URL.revokeObjectURL(a.href);
+          }}
+        >
+          ⬇ Export CSV
+        </button>
       </div>
 
       {/* INVENTORY */}
