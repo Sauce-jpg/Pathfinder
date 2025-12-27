@@ -264,6 +264,11 @@ export default function InventoryPage() {
   const [modalItemId, setModalItemId] = useState<string | null>(null);
   const [modalOrderId, setModalOrderId] = useState<string | null>(null);
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [editDraft, setEditDraft] = useState<any>(null);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+
   const [savedViews, setSavedViewsState] = useState<Record<string, Partial<Filters>>>({});
 
   // auth
@@ -321,6 +326,87 @@ export default function InventoryPage() {
     setLoading(false);
   }
 
+  async function saveItemEdits(itemId: string) {
+    if (!editDraft) return;
+    setSaving(true);
+    setSaveError(null);
+
+    try {
+      let specsObj: any = {};
+      try {
+        specsObj = editDraft.specs_json ? JSON.parse(editDraft.specs_json) : {};
+      } catch {
+        throw new Error("Specs JSON is invalid. Fix it or clear it.");
+      }
+
+      const nextPurchase: any = {
+        ...(modalItem?.purchase || {}),
+        date: editDraft.purchase_date || null,
+        price: editDraft.purchase_price === "" ? null : editDraft.purchase_price,
+        currency: editDraft.purchase_currency || "SEK",
+        store: editDraft.purchase_store || null,
+        orderRef: editDraft.purchase_orderRef || null,
+        orderId: editDraft.purchase_orderId || null,
+      };
+
+      // If price looks numeric, store it as a number
+      if (nextPurchase.price != null) {
+        const n = typeof nextPurchase.price === "number" ? nextPurchase.price : Number(nextPurchase.price);
+        nextPurchase.price = Number.isFinite(n) ? n : nextPurchase.price;
+      }
+
+      const tagsArr =
+        String(editDraft.tags || "")
+          .split(",")
+          .map((t: string) => t.trim())
+          .filter(Boolean);
+
+      const payload = {
+        name: editDraft.name,
+        category: editDraft.category || null,
+        type: editDraft.type || null,
+        brand: editDraft.brand || null,
+        model: editDraft.model || null,
+        quantity: Number(editDraft.quantity) || 1,
+        location: editDraft.location || null,
+        tags: tagsArr,
+        notes: editDraft.notes || null,
+        purchase: nextPurchase,
+        specs: specsObj,
+      };
+
+      const { error } = await supabase
+        .from("inventory_items")
+        .update(payload)
+        .eq("id", itemId);
+
+      if (error) throw new Error(error.message);
+
+      setIsEditing(false);
+      await loadAll();
+    } catch (e: any) {
+      setSaveError(e?.message || String(e));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function deleteItem(itemId: string) {
+    if (!confirm("Delete this item? This cannot be undone.")) return;
+
+    const { error } = await supabase.from("inventory_items").delete().eq("id", itemId);
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    setModalItemId(null);
+    await loadAll();
+  }
+
+
+
+  
   useEffect(() => {
     if (!session?.user?.id) return;
     loadAll();
@@ -401,6 +487,47 @@ export default function InventoryPage() {
     () => (modalItemId ? items.find((x) => x.id === modalItemId) : null),
     [items, modalItemId]
   );
+
+
+
+  useEffect(() => {
+    if (!modalItem) {
+      setIsEditing(false);
+      setEditDraft(null);
+      setSaveError(null);
+      return;
+    }
+
+    setIsEditing(false);
+    setSaveError(null);
+
+    setEditDraft({
+      name: modalItem.name ?? "",
+      category: modalItem.category ?? "",
+      type: modalItem.type ?? "",
+      brand: modalItem.brand ?? "",
+      model: modalItem.model ?? "",
+      quantity: modalItem.quantity ?? 1,
+      location: modalItem.location ?? "",
+      tags: (modalItem.tags || []).join(", "),
+      notes: modalItem.notes ?? "",
+
+      purchase_date: modalItem.purchase?.date ?? "",
+      purchase_price: modalItem.purchase?.price ?? "",
+      purchase_currency: modalItem.purchase?.currency ?? "SEK",
+      purchase_store: modalItem.purchase?.store ?? "",
+      purchase_orderRef: modalItem.purchase?.orderRef ?? "",
+      purchase_orderId: modalItem.purchase?.orderId ?? "",
+
+      specs_json: JSON.stringify(modalItem.specs ?? {}, null, 2),
+    });
+  }, [modalItem]);
+
+
+
+
+
+  
 
   const orders = useMemo(() => {
     // group items by orderId
@@ -938,70 +1065,257 @@ export default function InventoryPage() {
         </div>
       </section>
 
-      {/* ITEM MODAL */}
-      <Modal open={!!modalItem} onClose={() => setModalItemId(null)}>
-        {modalItem && (
-          <div>
-            <h2 style={{ marginTop: 0 }}>{modalItem.name}</h2>
-            <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
-              {[modalItem.brand, modalItem.model].filter(Boolean).map(safeText).join(" • ")}
-            </p>
+     {/* ITEM MODAL */}
+     <Modal open={!!modalItem} onClose={() => setModalItemId(null)}>
+       {modalItem && (
+         <div>
+           <h2 style={{ marginTop: 0 }}>{modalItem.name}</h2>
+           <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
+             {[modalItem.brand, modalItem.model].filter(Boolean).map(safeText).join(" • ")}
+           </p>
 
-            {(modalItem.images || []).map((src) => (
-              <img
-                key={src}
-                src={src}
-                alt=""
-                style={{
-                  width: "100%",
-                  maxHeight: 320,
-                  objectFit: "cover",
-                  borderRadius: 12,
-                  margin: "0.5rem 0",
-                }}
-              />
-            ))}
+           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
+             <button className={styles.invBtn} onClick={() => setIsEditing((v) => !v)}>
+               {isEditing ? "Cancel edit" : "Edit"}
+             </button>
 
-            <div className={styles.detailGrid}>
-              <div>
-                <h3>Details</h3>
-                <ul className={styles.detailList}>
-                  {modalItem.category ? <li><b>Category:</b> {modalItem.category}</li> : null}
-                  {modalItem.type ? <li><b>Type:</b> {modalItem.type}</li> : null}
-                  {modalItem.location ? <li><b>Location:</b> {modalItem.location}</li> : null}
-                  {modalItem.quantity != null ? <li><b>Quantity:</b> {modalItem.quantity}</li> : null}
-                </ul>
-              </div>
+             {isEditing && (
+               <button
+                 className={styles.invBtn}
+                 onClick={() => saveItemEdits(modalItem.id)}
+                 disabled={saving}
+               >
+                 {saving ? "Saving…" : "Save"}
+               </button>
+             )}
 
-              <div>
-                <h3>Purchase</h3>
-                <ul className={styles.detailList}>
-                  {modalItem.purchase?.date ? <li><b>Date:</b> {safeText(modalItem.purchase.date)}</li> : null}
-                  {modalItem.purchase?.price != null ? <li><b>Price:</b> {fmtMoney(modalItem.purchase)}</li> : null}
-                  {modalItem.purchase?.store ? <li><b>Store:</b> {safeText(modalItem.purchase.store)}</li> : null}
-                  {modalItem.purchase?.orderRef ? <li><b>Order ref:</b> {safeText(modalItem.purchase.orderRef)}</li> : null}
-                  {modalItem.purchase?.orderId ? <li><b>OrderId:</b> {safeText(modalItem.purchase.orderId)}</li> : null}
-                </ul>
-              </div>
-            </div>
+             <button className={styles.invBtn} onClick={() => deleteItem(modalItem.id)} disabled={saving}>
+               🗑 Delete
+             </button>
 
-            {!!(modalItem.tags || []).length && (
-              <p className={styles.muted}>
-                Tags: {(modalItem.tags || []).map((t) => `#${t}`).join(" ")}
-              </p>
-            )}
+             {saveError && <span style={{ color: "crimson" }}>Error: {saveError}</span>}
+           </div>
 
-            {modalItem.notes ? (
-              <>
-                <h3>Notes</h3>
-                <p>{modalItem.notes}</p>
-              </>
-            ) : null}
+           {isEditing ? (
+             // -------- EDIT MODE --------
+             <div style={{ display: "grid", gap: "0.75rem" }}>
+               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                 <label>
+                   <div className={styles.muted}>Name</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.name || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, name: e.target.value }))}
+                   />
+                 </label>
 
-            <Specs specs={modalItem.specs} />
-          </div>
-        )}
-      </Modal>
+                 <label>
+                   <div className={styles.muted}>Category</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.category || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, category: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Type</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.type || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, type: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Location</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.location || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, location: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Brand</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.brand || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, brand: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Model</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.model || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, model: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Quantity</div>
+                   <input
+                     className={styles.invInput}
+                     type="number"
+                     value={editDraft?.quantity ?? 1}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, quantity: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Tags (comma separated)</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.tags || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, tags: e.target.value }))}
+                   />
+                 </label>
+               </div>
+
+               <label>
+                 <div className={styles.muted}>Notes</div>
+                 <textarea
+                   className={styles.invInput}
+                   style={{ minHeight: 90 }}
+                   value={editDraft?.notes || ""}
+                   onChange={(e) => setEditDraft((d: any) => ({ ...d, notes: e.target.value }))}
+                 />
+               </label>
+
+               <h3 style={{ margin: "0.5rem 0 0" }}>Purchase</h3>
+
+               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                 <label>
+                   <div className={styles.muted}>Date (YYYY-MM-DD)</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.purchase_date || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, purchase_date: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Price</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.purchase_price ?? ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, purchase_price: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Currency</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.purchase_currency || "SEK"}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, purchase_currency: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Store</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.purchase_store || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, purchase_store: e.target.value }))}
+                   />
+                 </label>
+
+                 <label>
+                   <div className={styles.muted}>Order ref</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.purchase_orderRef || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, purchase_orderRef: e.target.value }))}
+                   />
+                 </label>
+     
+                 <label>
+                   <div className={styles.muted}>OrderId</div>
+                   <input
+                     className={styles.invInput}
+                     value={editDraft?.purchase_orderId || ""}
+                     onChange={(e) => setEditDraft((d: any) => ({ ...d, purchase_orderId: e.target.value }))}
+                   />
+                 </label>
+               </div>
+
+               <h3 style={{ margin: "0.5rem 0 0" }}>Specs (JSON)</h3>
+               <textarea
+                 className={styles.invInput}
+                 style={{
+                   minHeight: 240,
+                   fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+                 }}
+                 value={editDraft?.specs_json || "{}"}
+                 onChange={(e) => setEditDraft((d: any) => ({ ...d, specs_json: e.target.value }))}
+               />
+             </div>
+           ) : (
+             // -------- READ MODE (your existing view) --------
+             <>
+              {(modalItem.images || []).map((src) => (
+                 <img
+                   key={src}
+                   src={src}
+                   alt=""
+                   style={{
+                     width: "100%",
+                     maxHeight: 320,
+                     objectFit: "cover",
+                     borderRadius: 12,
+                     margin: "0.5rem 0",
+                   }}
+                 />
+               ))}
+
+               <div className={styles.detailGrid}>
+                 <div>
+                   <h3>Details</h3>
+                   <ul className={styles.detailList}>
+                     {modalItem.category ? <li><b>Category:</b> {modalItem.category}</li> : null}
+                     {modalItem.type ? <li><b>Type:</b> {modalItem.type}</li> : null}
+                     {modalItem.location ? <li><b>Location:</b> {modalItem.location}</li> : null}
+                     {modalItem.quantity != null ? <li><b>Quantity:</b> {modalItem.quantity}</li> : null}
+                   </ul>
+                 </div>
+
+                 <div>
+                   <h3>Purchase</h3>
+                   <ul className={styles.detailList}>
+                     {modalItem.purchase?.date ? <li><b>Date:</b> {safeText(modalItem.purchase.date)}</li> : null}
+                     {modalItem.purchase?.price != null ? <li><b>Price:</b> {fmtMoney(modalItem.purchase)}</li> : null}
+                     {modalItem.purchase?.store ? <li><b>Store:</b> {safeText(modalItem.purchase.store)}</li> : null}
+                     {modalItem.purchase?.orderRef ? <li><b>Order ref:</b> {safeText(modalItem.purchase.orderRef)}</li> : null}
+                     {modalItem.purchase?.orderId ? <li><b>OrderId:</b> {safeText(modalItem.purchase.orderId)}</li> : null}
+                   </ul>
+                 </div>
+               </div>
+
+               {!!(modalItem.tags || []).length && (
+                 <p className={styles.muted}>
+                   Tags: {(modalItem.tags || []).map((t) => `#${t}`).join(" ")}
+                 </p>
+               )}
+
+               {modalItem.notes ? (
+                 <>
+                   <h3>Notes</h3>
+                   <p>{modalItem.notes}</p>
+                 </>
+               ) : null}
+
+               <Specs specs={modalItem.specs} />
+             </>
+           )}
+         </div>
+       )}
+     </Modal>
+
+
+      
 
       {/* ORDER MODAL */}
       <Modal open={!!modalOrder} onClose={() => setModalOrderId(null)}>
