@@ -1186,28 +1186,25 @@ export default function InventoryPage() {
               + Add setup
             </button>
 
-            <div className={styles.setupList}>
-              {setupsOrdered.map((s) => (
-                <div
-                  key={s.id}
-                  className={`${styles.setupCard} ${selectedSetupId === s.id ? styles.setupCardActive : ""}`}
-                  onClick={() => setSelectedSetupId(s.id)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") setSelectedSetupId(s.id);
-                  }}
-                >
-                  <h3 style={{ margin: 0 }}>{s.name}</h3>
+           <div className={styles.setupList}>
+            {setupsOrdered.map(({ setup: s, depth }) => (
+              <div
+                key={s.id}
+                className={`${styles.setupCard} ${
+                  selectedSetupId === s.id ? styles.setupCardActive : ""
+                }`}
+                onClick={() => setSelectedSetupId(s.id)}
+                style={{ marginLeft: depth * 14 }}
+              >
+                <h3 style={{ margin: 0 }}>{s.name}</h3>
+                {s.description && (
                   <p className={styles.muted} style={{ margin: "0.35rem 0 0" }}>
-                    {s.description || ""}
+                    {s.description}
                   </p>
-                  <p className={styles.muted} style={{ margin: "0.4rem 0 0" }}>
-                    {setupItems.filter((j) => j.setup_id === s.id).length} item(s)
-                  </p>
-                </div>
-              ))}
-            </div>
+                )}
+              </div>
+            ))}
+          </div>
           </div>
 
           <div>
