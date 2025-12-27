@@ -56,6 +56,21 @@ const DEFAULT_FILTERS: Filters = {
   sort: "name-asc",
 };
 
+
+
+function slugifyId(input: string) {
+  return String(input || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+    .slice(0, 80);
+}
+
+
+
+
 function safeText(v: any) {
   if (v === null || v === undefined) return "";
   return String(v);
@@ -264,6 +279,9 @@ export default function InventoryPage() {
   const [modalItemId, setModalItemId] = useState<string | null>(null);
   const [modalOrderId, setModalOrderId] = useState<string | null>(null);
 
+  const [isCreating, setIsCreating] = useState(false);
+  const [newId, setNewId] = useState<string>("");
+
   const [isEditing, setIsEditing] = useState(false);
   const [editDraft, setEditDraft] = useState<any>(null);
   const [saving, setSaving] = useState(false);
@@ -326,6 +344,121 @@ export default function InventoryPage() {
     setLoading(false);
   }
 
+
+  function openCreateModal() {
+    setModalOrderId(null);
+    setModalItemId(null);
+
+    setIsCreating(true);
+    setIsEditing(true); // start in edit mode
+    setSaveError(null);
+
+    const draft = {
+      name: "",
+      category: "",
+      type: "",
+      brand: "",
+      model: "",
+      quantity: 1,
+      location: "",
+      tags: "",
+      notes: "",
+
+      purchase_date: "",
+      purchase_price: "",
+      purchase_currency: "SEK",
+      purchase_store: "",
+      purchase_orderRef: "",
+      purchase_orderId: "",
+
+      specs_json: "{}",
+    };
+
+    setEditDraft(draft);
+    setNewId("");
+  }
+
+
+  async function createNewItem() {
+    if (!session?.user?.id) return;
+    if (!editDraft) return;
+
+    setSaving(true);
+    setSaveError(null);
+
+    try {
+      const id = (newId || slugifyId(editDraft.name)).trim();
+      if (!id) throw new Error("ID is required (enter a name or an id).");
+
+      // Prevent accidental duplicates client-side (still protected by DB unique id)
+      if (items.some((x) => x.id === id)) {
+        throw new Error(`An item with id "${id}" already exists.`);
+      }
+
+      let specsObj: any = {};
+      try {
+        specsObj = editDraft.specs_json ? JSON.parse(editDraft.specs_json) : {};
+      } catch {
+        throw new Error("Specs JSON is invalid. Fix it or clear it.");
+      }
+
+      const tagsArr =
+        String(editDraft.tags || "")
+          .split(",")
+          .map((t: string) => t.trim())
+          .filter(Boolean);
+
+      const purchase: any = {
+        date: editDraft.purchase_date || null,
+        price: editDraft.purchase_price === "" ? null : editDraft.purchase_price,
+        currency: editDraft.purchase_currency || "SEK",
+        store: editDraft.purchase_store || null,
+        orderRef: editDraft.purchase_orderRef || null,
+        orderId: editDraft.purchase_orderId || null,
+      };
+
+      if (purchase.price != null) {
+        const n = typeof purchase.price === "number" ? purchase.price : Number(purchase.price);
+        purchase.price = Number.isFinite(n) ? n : purchase.price;
+      }
+
+      const payload = {
+        id,
+        user_id: session.user.id,
+        name: editDraft.name || id,
+        category: editDraft.category || null,
+        type: editDraft.type || null,
+        brand: editDraft.brand || null,
+        model: editDraft.model || null,
+        quantity: Number(editDraft.quantity) || 1,
+        location: editDraft.location || null,
+        tags: tagsArr,
+        notes: editDraft.notes || null,
+        images: [],              // you can add later
+        purchase,
+        specs: specsObj,
+        purchase_history: [],    // keep for later
+      };
+
+      const { error } = await supabase.from("inventory_items").insert(payload);
+      if (error) throw new Error(error.message);
+
+      // refresh and open the newly created item
+      await loadAll();
+      setIsCreating(false);
+      setIsEditing(false);
+      setModalItemId(id);
+    } catch (e: any) {
+      setSaveError(e?.message || String(e));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+
+
+
+  
   async function saveItemEdits(itemId: string) {
     if (!editDraft) return;
     setSaving(true);
@@ -651,6 +784,11 @@ export default function InventoryPage() {
         </button>
         <button className={styles.invBtn} onClick={loadAll} disabled={loading}>
           {loading ? "Refreshing…" : "↻ Refresh"}
+        </button>
+
+
+        <button className={styles.invBtn} onClick={openCreateModal}>
+          + Add item
         </button>
        
         <button
@@ -1066,32 +1204,81 @@ export default function InventoryPage() {
       </section>
 
      {/* ITEM MODAL */}
-     <Modal open={!!modalItem} onClose={() => setModalItemId(null)}>
-       {modalItem && (
-         <div>
-           <h2 style={{ marginTop: 0 }}>{modalItem.name}</h2>
-           <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
-             {[modalItem.brand, modalItem.model].filter(Boolean).map(safeText).join(" • ")}
-           </p>
+     <Modal
+       open={!!modalItem || isCreating}
+       onClose={() => {
+         setModalItemId(null);
+         setIsCreating(false);
+         setIsEditing(false);
+         setSaveError(null);
+       }}
+     >
+       {(modalItem || isCreating) && (
+        <div>
+          <h2 style={{ marginTop: 0 }}>
+            {isCreating ? "Add new item" : modalItem!.name}
+          </h2>
 
-           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
-             <button className={styles.invBtn} onClick={() => setIsEditing((v) => !v)}>
-               {isEditing ? "Cancel edit" : "Edit"}
-             </button>
+          {!isCreating && (
+            <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
+              {[modalItem!.brand, modalItem!.model].filter(Boolean).map(safeText).join(" • ")}
+            </p>
+          )}
 
-             {isEditing && (
-               <button
-                 className={styles.invBtn}
-                 onClick={() => saveItemEdits(modalItem.id)}
-                 disabled={saving}
-               >
-                 {saving ? "Saving…" : "Save"}
-               </button>
-             )}
+          {/* Create-mode ID input */}
+          {isCreating && (
+            <div style={{ display: "grid", gap: "0.35rem", margin: "0.5rem 0 0.75rem" }}>
+              <div className={styles.muted}>ID (slug)</div>
+              <input
+                className={styles.invInput}
+                value={newId}
+                placeholder="auto from name (or type your own)"
+                onChange={(e) => setNewId(slugifyId(e.target.value))}
+              />
+              <div className={styles.muted} style={{ fontSize: "0.9rem" }}>
+                Suggested: <b>{slugifyId(editDraft?.name || "") || "—"}</b>
+              </div>
+            </div>
+          )}
 
-             <button className={styles.invBtn} onClick={() => deleteItem(modalItem.id)} disabled={saving}>
-               🗑 Delete
-             </button>
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
+            {/* In create mode: primary action is Create */}
+            {isCreating ? (
+              <>
+                <button className={styles.invBtn} onClick={createNewItem} disabled={saving}>
+                  {saving ? "Creating…" : "Create"}
+                </button>
+
+                <button
+                  className={styles.invBtn}
+                  onClick={() => {
+                    setIsCreating(false);
+                    setIsEditing(false);
+                    setSaveError(null);
+                  }}
+                  disabled={saving}
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <>
+                <button className={styles.invBtn} onClick={() => setIsEditing((v) => !v)}>
+                  {isEditing ? "Cancel edit" : "Edit"}
+                </button>
+
+                {isEditing && (
+                  <button className={styles.invBtn} onClick={() => saveItemEdits(modalItem!.id)} disabled={saving}>
+                    {saving ? "Saving…" : "Save"}
+                  </button>
+                )}
+
+                <button className={styles.invBtn} onClick={() => deleteItem(modalItem!.id)} disabled={saving}>
+                  🗑 Delete
+                </button>
+              </>
+            )}
+
 
              {saveError && <span style={{ color: "crimson" }}>Error: {saveError}</span>}
            </div>
