@@ -1323,7 +1323,7 @@ export default function InventoryPage() {
           </div>
 
           <div>
-            {!setupDetail ? (
+            {!selectedSetup ? (
               <div className={`${styles.setupDetail} ${styles.setupDetailEmpty}`}>
                 <div>
                   <h2>Select a setup</h2>
