@@ -22,6 +22,17 @@ type DbItem = {
   purchase_history: any; // jsonb
 };
 
+type DbItemLink = {
+  id: string;
+  user_id: string;
+  from_item_id: string;
+  to_item_id: string;
+  relation_type: string;
+  note: string | null;
+  meta: any; // jsonb
+  created_at: string;
+};
+
 type DbSetup = {
   id: string;
   user_id: string;
@@ -265,6 +276,7 @@ export default function InventoryPage() {
   const [tab, setTab] = useState<Tab>("inventory");
 
   const [items, setItems] = useState<DbItem[]>([]);
+  const [links, setLinks] = useState<DbItemLink[]>([]);
   const [setups, setSetups] = useState<DbSetup[]>([]);
   const [setupItems, setSetupItems] = useState<DbSetupItem[]>([]);
 
@@ -282,6 +294,14 @@ export default function InventoryPage() {
 
   const [modalItemId, setModalItemId] = useState<string | null>(null);
   const [modalOrderId, setModalOrderId] = useState<string | null>(null);
+
+  const [linkCreateOpen, setLinkCreateOpen] = useState(false);
+  const [linkDraft, setLinkDraft] = useState({
+    relation_type: "installed_in",
+    to_item_id: "",
+    note: "",
+    meta_json: "{}",
+  });
 
   const [isCreating, setIsCreating] = useState(false);
   const [newId, setNewId] = useState<string>("");
@@ -339,15 +359,18 @@ export default function InventoryPage() {
       supabase.from("inventory_items").select("*").order("name", { ascending: true }),
       supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
       supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
+      supabase.from("inventory_item_links").select("*").order("created_at", { ascending: false }),
     ]);
 
     if (itemsRes.error) setLoadError(itemsRes.error.message);
     if (setupsRes.error) setLoadError(setupsRes.error.message);
     if (joinRes.error) setLoadError(joinRes.error.message);
+    if (linksRes.error) setLoadError(linksRes.error.message);
 
     setItems((itemsRes.data || []) as DbItem[]);
     setSetups((setupsRes.data || []) as DbSetup[]);
     setSetupItems((joinRes.data || []) as DbSetupItem[]);
+    setLinks((linksRes.data || []) as DbItemLink[]);
 
     setLoading(false);
   }
@@ -754,6 +777,21 @@ export default function InventoryPage() {
       specs_json: JSON.stringify(modalItem.specs ?? {}, null, 2),
     });
   }, [modalItem]);
+
+
+  const modalLinks = useMemo(() => {
+    if (!modalItem) return { outgoing: [] as DbItemLink[], incoming: [] as DbItemLink[] };
+
+    const outgoing = links.filter((l) => l.from_item_id === modalItem.id);
+    const incoming = links.filter((l) => l.to_item_id === modalItem.id);
+
+    return { outgoing, incoming };
+  }, [links, modalItem]);
+
+  function itemLabel(id: string) {
+    const it = items.find((x) => x.id === id);
+    return it ? it.name : id;
+  }
 
 
 
@@ -1626,6 +1664,13 @@ export default function InventoryPage() {
                 <button className={styles.invBtn} onClick={() => deleteItem(modalItem!.id)} disabled={saving}>
                   🗑 Delete
                 </button>
+
+                <button className={styles.invBtn} onClick={() => {
+                  setLinkDraft({ relation_type: "installed_in", to_item_id: "", note: "", meta_json: "{}" });
+                  setLinkCreateOpen(true);
+                }}>
+                  + Link item
+                </button>
               </>
             )}
 
@@ -1844,6 +1889,99 @@ export default function InventoryPage() {
                  </>
                ) : null}
 
+               <h3>Relationships</h3>
+
+               {/* Installed in / Used on etc (OUTGOING) */}
+               {!!modalLinks.outgoing.length ? (
+                 <div style={{ display: "grid", gap: 8 }}>
+                   {Object.entries(
+                     modalLinks.outgoing.reduce((acc: Record<string, DbItemLink[]>, l) => {
+                       (acc[l.relation_type] ||= []).push(l);
+                       return acc;
+                     }, {})
+                   ).map(([type, list]) => (
+                     <div key={type}>
+                       <div className={styles.muted} style={{ fontWeight: 800, marginBottom: 4 }}>
+                         {type}
+                       </div>
+
+                       <div style={{ display: "grid", gap: 6 }}>
+                         {list.map((l) => (
+                           <div
+                             key={l.id}
+                             className={styles.setupItemRow}
+                             style={{ padding: "0.55rem" }}
+                             role="button"
+                             tabIndex={0}
+                             onClick={() => setModalItemId(l.to_item_id)}
+                             onKeyDown={(e) => {
+                               if (e.key === "Enter" || e.key === " ") setModalItemId(l.to_item_id);
+                             }}
+                           >
+                             <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
+                               <div>
+                                 <div style={{ fontWeight: 800 }}>{itemLabel(l.to_item_id)}</div>
+                                 {l.note ? <div className={styles.muted}>{l.note}</div> : null}
+                               </div>
+
+                               <button
+                                 className={styles.invBtn}
+                                 style={{ padding: "0.35rem 0.6rem", height: "fit-content" }}
+                                 onClick={async (e) => {
+                                   e.stopPropagation();
+                                   if (!confirm("Delete link?")) return;
+                                   const { error } = await supabase.from("inventory_item_links").delete().eq("id", l.id);
+                                   if (error) return alert(error.message);
+                                   await loadAll();
+                                 }}
+                               >
+                                 Remove
+                               </button>
+                             </div>
+                           </div>
+                         ))}
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+               ) : (
+                 <p className={styles.muted}>No links from this item yet.</p>
+               )}
+
+               {/* INCOMING (reverse links) */}
+               {!!modalLinks.incoming.length && (
+                 <div style={{ marginTop: 12 }}>
+                   <div className={styles.muted} style={{ fontWeight: 800, marginBottom: 6 }}>
+                     Linked from
+                   </div>
+
+                   <div style={{ display: "grid", gap: 6 }}>
+                     {modalLinks.incoming.map((l) => (
+                       <div
+                         key={l.id}
+                         className={styles.setupItemRow}
+                         style={{ padding: "0.55rem" }}
+                         role="button"
+                         tabIndex={0}
+                         onClick={() => setModalItemId(l.from_item_id)}
+                         onKeyDown={(e) => {
+                           if (e.key === "Enter" || e.key === " ") setModalItemId(l.from_item_id);
+                         }}
+                       >
+                         <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
+                           <div>
+                             <div style={{ fontWeight: 800 }}>{itemLabel(l.from_item_id)}</div>
+                             <div className={styles.muted}>{l.relation_type}</div>
+                           </div>
+                         </div>
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+               )}
+
+               
+
                <Specs specs={modalItem.specs} />
              </>
            )}
@@ -1961,6 +2099,120 @@ export default function InventoryPage() {
           </div>
         </div>
       </Modal>
+
+
+
+
+
+
+      <Modal
+        open={linkCreateOpen}
+        onClose={() => setLinkCreateOpen(false)}
+      >
+        <div>
+          <h2 style={{ marginTop: 0 }}>Create relationship</h2>
+
+          <div style={{ display: "grid", gap: "0.75rem" }}>
+            <label>
+              <div className={styles.muted}>Type</div>
+              <select
+                className={styles.invSelect}
+                value={linkDraft.relation_type}
+                onChange={(e) => setLinkDraft((d) => ({ ...d, relation_type: e.target.value }))}
+              >
+                <option value="installed_in">installed_in</option>
+                <option value="uses">uses</option>
+                <option value="painted_with">painted_with</option>
+                <option value="replaces">replaces</option>
+                <option value="compatible_with">compatible_with</option>
+              </select>
+            </label>
+
+            <label>
+              <div className={styles.muted}>Target item</div>
+              <select
+                className={styles.invSelect}
+                value={linkDraft.to_item_id}
+                onChange={(e) => setLinkDraft((d) => ({ ...d, to_item_id: e.target.value }))}
+              >
+                <option value="">Select…</option>
+                {items
+                  .filter((x) => x.id !== modalItem?.id)
+                  .slice()
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((it) => (
+                    <option key={it.id} value={it.id}>
+                      {it.name} ({it.id})
+                    </option>
+                  ))}
+              </select>
+            </label>
+
+            <label>
+              <div className={styles.muted}>Note (optional)</div>
+              <input
+                className={styles.invInput}
+                value={linkDraft.note}
+                onChange={(e) => setLinkDraft((d) => ({ ...d, note: e.target.value }))}
+                placeholder='e.g. "Installed in M.2 slot 2"'
+              />
+            </label>
+
+            <label>
+              <div className={styles.muted}>Meta (JSON, optional)</div>
+              <textarea
+                className={styles.invInput}
+                style={{ minHeight: 140, fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" }}
+                value={linkDraft.meta_json}
+                onChange={(e) => setLinkDraft((d) => ({ ...d, meta_json: e.target.value }))}
+              />
+            </label>
+
+            <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+              <button
+                className={styles.invBtn}
+                onClick={async () => {
+                  if (!session?.user?.id || !modalItem) return;
+                  if (!linkDraft.to_item_id) return alert("Pick a target item.");
+
+                  let metaObj: any = {};
+                  try {
+                    metaObj = linkDraft.meta_json ? JSON.parse(linkDraft.meta_json) : {};
+                  } catch {
+                    return alert("Meta JSON is invalid.");
+                  }
+
+                  const payload = {
+                    user_id: session.user.id,
+                    from_item_id: modalItem.id,
+                    to_item_id: linkDraft.to_item_id,
+                    relation_type: linkDraft.relation_type.trim(),
+                    note: linkDraft.note.trim() || null,
+                    meta: metaObj,
+                  };
+
+                  const { error } = await supabase.from("inventory_item_links").insert(payload);
+                  if (error) return alert(error.message);
+
+                  setLinkCreateOpen(false);
+                  await loadAll();
+                }}
+              >
+                Create link
+              </button>
+
+              <button className={styles.invBtn} onClick={() => setLinkCreateOpen(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+
+
+
+
 
 
 
