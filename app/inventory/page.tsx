@@ -393,7 +393,8 @@ export default function InventoryPage() {
     const { error } = await supabase
       .from("inventory_setup_items")
       .update({ include_in_parent_summary: value })
-      .eq("id", si.id);
+      .eq("setup_id", setupId)
+      .eq("item_id", itemId);
 
     if (error) {
       alert(error.message);
