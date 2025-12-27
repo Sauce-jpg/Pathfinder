@@ -393,7 +393,7 @@ export default function InventoryPage() {
       .from("inventory_setup_items")
       .update({ include_in_parent_summary: value })
       .eq("setup_id", setupId)
-      .eq("item_id", itemId);
+      .eq("item_id", itemId)
       .eq("user_id", session.user.id) // 👈 IMPORTANT for RLS + safety
       .select("setup_id,item_id,include_in_parent_summary");
 
