@@ -1187,7 +1187,7 @@ export default function InventoryPage() {
             </button>
 
             <div className={styles.setupList}>
-              {setups.map((s) => (
+              {setupsOrdered.map((s) => (
                 <div
                   key={s.id}
                   className={`${styles.setupCard} ${selectedSetupId === s.id ? styles.setupCardActive : ""}`}
