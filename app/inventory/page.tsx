@@ -1338,74 +1338,83 @@ export default function InventoryPage() {
                 </p>
 
                 <h3 style={{ marginTop: "1rem" }}>Core items</h3>
+
                 <div className={styles.setupItems}>
-                  {[...setupView.direct, ...setupView.bubbled].map((it) => (
-                    <div className={styles.setupItems}>
-                      {[...setupView.direct, ...setupView.bubbled].map((it) => {
-                        const canBubbleUp = !!selectedSetup?.parent_setup_id; // only child setups show checkbox
-                        const si = selectedSetup
-                          ? setupItemBySetupAndItem.get(`${selectedSetup.id}:${it.id}`)
-                          : undefined;
+                  {[...setupView.direct, ...setupView.bubbled].map((it) => {
+                    const canBubbleUp = !!selectedSetup?.parent_setup_id; // only child setups show checkbox
+                    const si = selectedSetup
+                      ? setupItemBySetupAndItem.get(`${selectedSetup.id}:${it.id}`)
+                      : undefined;
 
-                        return (
-                          <div
-                            key={it.id}
-                            className={styles.setupItemRow}
-                            onClick={() => setModalItemId(it.id)}
-                            role="button"
-                            tabIndex={0}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter" || e.key === " ") setModalItemId(it.id);
-                            }}
-                          >
-                            <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", width: "100%" }}>
-                              {it.images?.[0] ? (
-                                <img className={styles.invThumb} src={it.images[0]} alt="" />
-                              ) : (
-                                <div className={styles.invThumb} aria-hidden="true" />
-                              )}
+                    return (
+                      <div
+                        key={it.id}
+                        className={styles.setupItemRow}
+                        onClick={() => setModalItemId(it.id)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") setModalItemId(it.id);
+                        }}
+                      >
+                        <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", width: "100%" }}>
+                          {it.images?.[0] ? (
+                            <img className={styles.invThumb} src={it.images[0]} alt="" />
+                          ) : (
+                            <div className={styles.invThumb} aria-hidden="true" />
+                          )}
 
-                              <div>
-                                <div style={{ fontWeight: 800 }}>{it.name}</div>
-                                <div className={styles.muted} style={{ fontSize: "0.95rem" }}>
-                                  {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
-                                </div>
-
-                                {/* Optional: show a hint when this item is bubbled into parent */}
-                                {canBubbleUp && si?.include_in_parent_summary && (
-                                  <div className={styles.muted} style={{ fontSize: "0.85rem" }}>
-                                    Shown in parent setup
-                                  </div>
-                                )}
-                              </div>
-
-                              {/* Checkbox on the far right */}
-                              {canBubbleUp && si && (
-                                <label
-                                  className={styles.muted}
-                                  style={{
-                                    marginLeft: "auto",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: 8,
-                                    whiteSpace: "nowrap",
-                                    paddingLeft: 12,
-                                  }}
-                                  onClick={(e) => e.stopPropagation()} // don't open modal when clicking checkbox
-                                >
-                                  <input
-                                    type="checkbox"
-                                    checked={!!si.include_in_parent_summary}
-                                    onChange={(e) => toggleIncludeInParent(selectedSetup!.id, it.id, e.target.checked)}
-                                  />
-                                  Include in parent
-                                </label>
-                              )}
+                          <div>
+                            <div style={{ fontWeight: 800 }}>{it.name}</div>
+                            <div className={styles.muted} style={{ fontSize: "0.95rem" }}>
+                              {[it.brand, it.model].filter(Boolean).map(safeText).join(" • ")}
                             </div>
+
+                            {/* Label when included */}
+                            {canBubbleUp && si?.include_in_parent_summary && (
+                              <div className={styles.muted} style={{ fontSize: "0.85rem" }}>
+                                Shown in parent setup
+                              </div>
+                            )}
+
+                            {/* Label when bubbled into parent (only makes sense when viewing parent) */}
+                            {!canBubbleUp && setupView.bubbled.some((x) => x.id === it.id) && (
+                              <div className={styles.muted} style={{ fontSize: "0.85rem" }}>
+                                Included from a sub-setup
+                              </div>
+                            )}
                           </div>
-                        );
-                      })}
-                    </div>
+
+                          {/* Checkbox on the far right (only in child setups) */}
+                          {canBubbleUp && si && (
+                            <label
+                              className={styles.muted}
+                              style={{
+                                marginLeft: "auto",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 8,
+                                whiteSpace: "nowrap",
+                                paddingLeft: 12,
+                              }}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={!!si.include_in_parent_summary}
+                                onChange={(e) =>
+                                  toggleIncludeInParent(selectedSetup!.id, it.id, e.target.checked)
+                                }
+                              />
+                              Include in parent
+                            </label>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
 
                       <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
                         {it.images?.[0] ? (
