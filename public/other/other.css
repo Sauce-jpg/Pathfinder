@@ -1,0 +1,58 @@
+/* Other page: link cards */
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+
+/* Make card links not inherit the underline styles */
+.link-card {
+  display: block;
+  padding: 14px 14px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.02);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+
+.link-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.10);
+  background: rgba(0, 0, 0, 0.035);
+}
+
+.link-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.link-desc {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+.link-meta {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  opacity: 0.65;
+}
+
+/* Dark mode adjustments */
+.dark-mode .link-card {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dark-mode .link-card:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+}
