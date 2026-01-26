@@ -6,6 +6,7 @@
   <title>Other Links | Personal Hub</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/other/other.css">
+  <script src="/other/other.js" defer></script>
   <script src="../theme.js" defer></script>
 </head>
 <body>
@@ -29,57 +30,199 @@
     <p>A curated collection of sites, tools, and resources I find interesting or useful.</p>
     <p>Tip for online articles that request login. Add following in front of adress: http://achive.is/https://www...</p>  
 
-    <!-- Added myself -->
-      <section class="link-category">
-        <h2>🌟 Personal Favourites</h2>
 
+      <section class="other-controls">
+        <div class="other-controls-row">
+          <input id="link-search" class="other-search" type="search" placeholder="Search links (name, description, domain)..." autocomplete="off" />
+          <div id="link-count" class="other-count">Showing 0 of 0</div>
+        </div>
+
+        <div id="tag-bar" class="tag-bar" aria-label="Filter tags">
+          <!-- JS will populate tag pills -->
+        </div>
+      </section>
+
+
+      <section class="link-category">
+        <h2>🗺️ Maps, Geography & History</h2>
         <div class="link-grid">
-          <a class="link-card" href="https://www.oldmapsonline.org/" target="_blank" rel="noopener noreferrer">
+          <a class="link-card" data-tags="maps,history" href="https://www.oldmapsonline.org/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Old Maps Online</div>
             <div class="link-desc">Explore historical maps by location and time.</div>
             <div class="link-meta">oldmapsonline.org</div>
           </a>
+
+
+          <a class="link-card" data-tags="maps,people" href="https://tjukanovt.github.io/notable-people" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Notable People Map</div>
+            <div class="link-desc">World map of notable people by location.</div>
+            <div class="link-meta">tjukanovt.github.io</div>
+          </a>
+
+
+          <a class="link-card" data-tags="maps,tools" href="https://www.mapchart.net/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">MapChart</div>
+            <div class="link-desc">Color and label maps for world/regions/countries.</div>
+            <div class="link-meta">mapchart.net</div>
+          </a>
+
+
+          <a class="link-card" data-tags="maps,aviation" href="https://objectiveunclear.com/airloom.html" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">AirLoom</div>
+            <div class="link-desc">Track flights in a 3D view.</div>
+            <div class="link-meta">objectiveunclear.com</div>
+          </a>
+        </div>
+      </section>
+
+
+      <section class="link-category">
+        <h2>🧙 TTRPG & Worldbuilding</h2>
+        <div class="link-grid">
+
+          <a class="link-card" data-tags="maps, ttrpg, rpg" href="https://inkarnate.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Inkarnate</div>
+            <div class="link-desc">Create fantasy maps for campaigns and worlds.</div>
+            <div class="link-meta">inkarnate.com</div>
+          </a>
+
+          <a class="link-card" data-tags="maps, ttrpg, rpg" href="https://azgaar.github.io/Fantasy-Map-Generator/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Map Maker</div>
+            <div class="link-desc">Create fantasy maps online.</div>
+            <div class="link-meta">azgaar.github.io/Fantasy-Map-Generator</div>
+          </a>
+
+          <a class="link-card" data-tags="maps, ttrpg, rpg" href="https://watabou.itch.io/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">DnD generators</div>
+            <div class="link-desc">Generate maps and building for DnD. Customizable</div>
+            <div class="link-meta">watabou.itch.io</div>
+          </a>
+
+          <a class="link-card" data-tags="maps, ttrpg, rpg" href="https://www.dungeonscrawl.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Map Maker</div>
+            <div class="link-desc">Create dungeon maps online.</div>
+            <div class="link-meta">dungeonscrawl.com</div>
+          </a>
+
+          <a class="link-card" data-tags="maps, ttrpg, rpg" href="https://rasterbator.net/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Poster Maker</div>
+            <div class="link-desc">Create posters out of images online, perfect to print out maps.</div>
+            <div class="link-meta">rasterbator.net</div>
+          </a>
+          
+        </div>
+      </section>
+
+
+
+
+      <section class="link-category">
+        <h2>🎨 Design, Creativity & Media</h2>
+        <div class="link-grid">
+
+          <a class="link-card" data-tags="mockup, design" href="https://creatoom.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Creatoom</div>
+            <div class="link-desc">Mockups and design resources for quick presentations.</div>
+            <div class="link-meta">creatoom.com</div>
+          </a>
+
+          <a class="link-card" data-tags="graphics, GIF, video" href="https://jitter.video/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Jitter</div>
+            <div class="link-desc">Create motion graphics and export GIF/video.</div>
+            <div class="link-meta">jitter.video</div>
+          </a>
+
+          <a class="link-card" data-tags="animated, text" href="https://spacetypegenerator.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Space Type Generator</div>
+            <div class="link-desc">Animated text effects you can customize.</div>
+            <div class="link-meta">spacetypegenerator.com</div>
+          </a>
+
+          <a class="link-card" data-tags="photoshop" href="https://www.photopea.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Photopea</div>
+            <div class="link-desc">Photoshop-like editor in the browser (PSD support).</div>
+            <div class="link-meta">photopea.com</div>
+          </a>
+
+          <a class="link-card" data-tags="3D" href="https://sketchfab.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Sketchfab</div>
+            <div class="link-desc">Browse and preview 3D models online.</div>
+            <div class="link-meta">sketchfab.com</div>
+          </a>
+
+          <a class="link-card" data-tags="UI, design" href="https://uiverse.io/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Free UI elemens library</div>
+            <div class="link-desc">Free to use open-souce UI elements library.</div>
+            <div class="link-meta">uiverse.io</div>
+          </a>
+
+          <a class="link-card" data-tags="beads, design" href="https://beadifier.eremes.xyz/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Turn image into bead pattern</div>
+            <div class="link-desc">Upload image and turn it into bead pattern. Adjust grid and color palette.</div>
+            <div class="link-meta">beadifier.eremes.xyz</div>
+          </a>
+
+          <a class="link-card" data-tags="folding, book, art" href="https://foldbook.art/en" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Fold art from books</div>
+            <div class="link-desc">Fold art from books.</div>
+            <div class="link-meta">foldbook.art/en</div>
+          </a>
+
+          <a class="link-card" data-tags="wallpaper, icon" href="https://wallpapers-clan.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Wallpapers and Icon images</div>
+            <div class="link-desc">Wallpapers and Icon images.</div>
+            <div class="link-meta">wallpapers-clan.com</div>
+          </a>
+
+        </div>
+      </section>
+
+
+      <section class="link-category">
+        <h2>🧠 Learning & Courses</h2>
+        <div class="link-grid">
+
+          <a class="link-card" data-tags="online courses, certificates" href="https://www.classcentral.com/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">Class Central</div>
+            <div class="link-desc">Find online courses and learning resources.</div>
+            <div class="link-meta">classcentral.com</div>
+          </a>
+
+          <a class="link-card" data-tags="simulations, science, math" href="https://phet.colorado.edu/" target="_blank" rel="noopener noreferrer">
+            <div class="link-title">PhET Simulations</div>
+            <div class="link-desc">Interactive simulations for science and math.</div>
+            <div class="link-meta">phet.colorado.edu</div>
+          </a>
+
+        </div>
+      </section>
+
+      
+      
+    <!-- Added myself -->
+      <section class="link-category">
+        <h2>🌟 Personal Favourites</h2>
+
+        
 
           <a class="link-card" href="https://radio.garden/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Radio Garden</div>
             <div class="link-desc">Spin the globe and listen to live radio worldwide.</div>
             <div class="link-meta">radio.garden</div>
           </a>
-
-          <a class="link-card" href="https://creatoom.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Creatoom</div>
-            <div class="link-desc">Mockups and design resources for quick presentations.</div>
-            <div class="link-meta">creatoom.com</div>
-          </a>
-
+        
           <a class="link-card" href="https://animagraffs.com/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Animagraffs</div>
             <div class="link-desc">Beautiful visual explanations of how things work.</div>
             <div class="link-meta">animagraffs.com</div>
           </a>
 
-          <a class="link-card" href="https://jitter.video/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Jitter</div>
-            <div class="link-desc">Create motion graphics and export GIF/video.</div>
-            <div class="link-meta">jitter.video</div>
-          </a>
 
-          <a class="link-card" href="https://www.classcentral.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Class Central</div>
-            <div class="link-desc">Find online courses and learning resources.</div>
-            <div class="link-meta">classcentral.com</div>
-          </a>
 
           <a class="link-card" href="https://carcarekiosk.com/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Car Care Kiosk</div>
             <div class="link-desc">Maintenance guides by car model (fluids, lights, etc.).</div>
             <div class="link-meta">carcarekiosk.com</div>
-          </a>
-
-          <a class="link-card" href="https://tjukanovt.github.io/notable-people" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Notable People Map</div>
-            <div class="link-desc">World map of notable people by location.</div>
-            <div class="link-meta">tjukanovt.github.io</div>
           </a>
 
           <a class="link-card" href="https://huggingface.com/" target="_blank" rel="noopener noreferrer">
@@ -106,17 +249,9 @@
             <div class="link-meta">freesewing.org</div>
           </a>
 
-          <a class="link-card" href="https://inkarnate.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Inkarnate</div>
-            <div class="link-desc">Create fantasy maps for campaigns and worlds.</div>
-            <div class="link-meta">inkarnate.com</div>
-          </a>
 
-          <a class="link-card" href="https://spacetypegenerator.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Space Type Generator</div>
-            <div class="link-desc">Animated text effects you can customize.</div>
-            <div class="link-meta">spacetypegenerator.com</div>
-          </a>
+
+
 
           <a class="link-card" href="https://muted.io/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Muted</div>
@@ -148,11 +283,7 @@
             <div class="link-meta">emupedia.net</div>
           </a>
 
-          <a class="link-card" href="https://phet.colorado.edu/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">PhET Simulations</div>
-            <div class="link-desc">Interactive simulations for science and math.</div>
-            <div class="link-meta">phet.colorado.edu</div>
-          </a>
+
 
           <a class="link-card" href="https://archive.org/details/magazine_rack" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Internet Archive – Magazine Rack</div>
@@ -166,17 +297,9 @@
             <div class="link-meta">dimensions.com</div>
           </a>
 
-          <a class="link-card" href="https://www.photopea.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Photopea</div>
-            <div class="link-desc">Photoshop-like editor in the browser (PSD support).</div>
-            <div class="link-meta">photopea.com</div>
-          </a>
 
-          <a class="link-card" href="https://sketchfab.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Sketchfab</div>
-            <div class="link-desc">Browse and preview 3D models online.</div>
-            <div class="link-meta">sketchfab.com</div>
-          </a>
+
+
 
           <a class="link-card" href="https://www.creativemode.net/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Creative Mode</div>
@@ -274,29 +397,7 @@
             <div class="link-meta">flashmuseum.org</div>
           </a>
 
-          <a class="link-card" href="https://azgaar.github.io/Fantasy-Map-Generator/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Map Maker</div>
-            <div class="link-desc">Create fantasy maps online.</div>
-            <div class="link-meta">azgaar.github.io/Fantasy-Map-Generator</div>
-          </a>
 
-          <a class="link-card" href="https://watabou.itch.io/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">DnD generators</div>
-            <div class="link-desc">Generate maps and building for DnD. Customizable</div>
-            <div class="link-meta">watabou.itch.io</div>
-          </a>
-
-          <a class="link-card" href="https://www.dungeonscrawl.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Map Maker</div>
-            <div class="link-desc">Create dungeon maps online.</div>
-            <div class="link-meta">dungeonscrawl.com</div>
-          </a>
-
-          <a class="link-card" href="https://rasterbator.net/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Poster Maker</div>
-            <div class="link-desc">Create posters out of images online, perfect to print out maps.</div>
-            <div class="link-meta">rasterbator.net</div>
-          </a>
 
           <a class="link-card" href="https://thetoymaker.com/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Paper Toys, Crafts</div>
@@ -316,23 +417,6 @@
             <div class="link-meta">loecsen.com</div>
           </a>
 
-          <a class="link-card" href="https://objectiveunclear.com/airloom.html" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Flight tracker 3D</div>
-            <div class="link-desc">Track flights in 3D.</div>
-            <div class="link-meta">objectiveunclear.com/airloom.html</div>
-          </a>
-
-          <a class="link-card" href="https://www.mapchart.net/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Edit maps</div>
-            <div class="link-desc">Edit maps of world, continent, country etc with colors and titles.</div>
-            <div class="link-meta">mapchart.net</div>
-          </a>
-
-          <a class="link-card" href="https://www.oldmapsonline.org/en#position=6/57.659/12.118" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Historical Maps</div>
-            <div class="link-desc">Interactive historical maps with timeline.</div>
-            <div class="link-meta">oldmapsonline.org</div>
-          </a>
 
           <a class="link-card" href="https://toytheater.com/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Interactive learning tools</div>
@@ -340,11 +424,7 @@
             <div class="link-meta">toytheater.com</div>
           </a>
 
-          <a class="link-card" href="https://wallpapers-clan.com/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Wallpapers and Icon images</div>
-            <div class="link-desc">Wallpapers and Icon images.</div>
-            <div class="link-meta">wallpapers-clan.com</div>
-          </a>
+
 
           <a class="link-card" href="https://myretrotvs.com/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Old TV</div>
@@ -364,11 +444,7 @@
             <div class="link-meta">ifixit.com</div>
           </a>
 
-          <a class="link-card" href="https://uiverse.io/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Free UI elemens library</div>
-            <div class="link-desc">Free to use open-souce UI elements library.</div>
-            <div class="link-meta">uiverse.io</div>
-          </a>
+
 
           <a class="link-card" href="https://floor796.com/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Giant animation of memes and other references</div>
@@ -382,11 +458,7 @@
             <div class="link-meta">playphrase.me</div>
           </a>
 
-          <a class="link-card" href="https://beadifier.eremes.xyz/" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Turn image into bead pattern</div>
-            <div class="link-desc">Upload image and turn it into bead pattern. Adjust grid and color palette.</div>
-            <div class="link-meta">beadifier.eremes.xyz</div>
-          </a>
+
 
           <a class="link-card" href="https://www.hooktheory.com/" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Music, Hooks</div>
@@ -406,11 +478,7 @@
             <div class="link-meta">dimensions.com</div>
           </a>
 
-          <a class="link-card" href="https://foldbook.art/en" target="_blank" rel="noopener noreferrer">
-            <div class="link-title">Fold art from books</div>
-            <div class="link-desc">Fold art from books.</div>
-            <div class="link-meta">foldbook.art/en</div>
-          </a>
+
 
           <a class="link-card" href="https://www.mcstumble.com/tools/fake-text-message" target="_blank" rel="noopener noreferrer">
             <div class="link-title">Fake texts</div>
