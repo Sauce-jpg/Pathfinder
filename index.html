@@ -1,1113 +1,882 @@
-"use client";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pathfinder Character Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #222;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #f5f5f5;
+    }
+    header {
+      background-color: #e0e0e0;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .dark-mode header {
+      background-color: #333;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #ddd;
+      border-bottom: 1px solid #ccc;
+    }
+    .dark-mode nav {
+      background: #444;
+      border-color: #555;
+    }
+    nav button {
+      flex: 1;
+      padding: 1rem;
+      border: none;
+      background: inherit;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    nav button:hover, nav button.active {
+      background: #bbb;
+    }
+    .dark-mode nav button:hover, .dark-mode nav button.active {
+      background: #666;
+      color: #fff;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    img.icon {
+      max-width: 200px;
+      border-radius: 50%;
+      display: block;
+      margin: 1rem auto;
+    }
+    button.toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #ddd;
+    }
+    .dark-mode button.toggle {
+      background: #555;
+      color: #fff;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
 
-import { useEffect, useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
+    .modal-content {
+      background-color: #fafafa;
+      margin: 5% auto;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 900px;
+      color: #222;
+      position: relative;
+      max-height: calc(100vh - 8%); /* keep some vertical margin */
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch; /* smoother scrolling on mobile */
+    }
 
-// ============================================================================
-// TYPES
-// ============================================================================
+    .dark-mode .modal-content {
+      background-color: #222;
+      color: #f5f5f5;
 
-type Event = {
-  id: string;
-  title: string;
-  description: string | null;
-  start_time: string;
-  end_time: string | null;
-  color?: string;
-  category?: string;
-  group_name?: string | null;
-};
+    }
 
-type Revision = {
-  revision_id: string;
-  event_id: string;
-  event_title: string | null;
-  event_owner_id: string | null;
-  editor_user_id: string | null;
-  editor_name: string | null;
-  revision_number: number;
-  old_title: string | null;
-  old_description: string | null;
-  old_start_time: string | null;
-  old_end_time: string | null;
-  revision_created_at: string;
-};
+    .close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-type FilterOption = "all" | "upcoming" | "past" | "ongoing";
-type SortOption = "start_asc" | "start_desc" | "title" | "category";
 
-// ============================================================================
-// MAIN DASHBOARD
-// ============================================================================
+    #backToTop {
+      display: none; /* Hidden by default */
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2000;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #ddd;
+      transition: background 0.3s, opacity 0.3s;
+    }
+    
+    #backToTop.show {
+      display: block;
+      opacity: 1;
+    }
+    
+    #backToTop:hover {
+      background: #bbb;
+    }
 
-export default function DashboardPage() {
-  const router = useRouter();
-  const [userEmail, setUserEmail] = useState("Loading...");
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"events" | "profile" | "friends">("events");
+    .dark-mode #backToTop {
+      background: #555;
+      color: #fff;
+    }
 
-  useEffect(() => {
-    const getUser = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      const session = data?.session;
-      if (!session || error) return router.replace("/login");
+    .dark-mode #backToTop:hover {
+      background: #666;
+    }
 
-      setUserEmail(session.user.email ?? "Unknown user");
-      setLoading(false);
-    };
-    getUser();
-  }, [router]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    router.push("/login");
-  };
+    
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-slate-900 dark:to-indigo-950">
-        <div className="text-center space-y-4">
-          <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent"></div>
-          <p className="text-gray-600 dark:text-gray-300 font-medium">Loading your timeline...</p>
-        </div>
+
+    .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+}
+
+.dark-mode .dropbtn {
+  background: #555;
+  color: #fff;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.dropdown-content button,
+.dropdown-content a {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover,
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}
+
+
+
+
+    
+  </style>
+</head>
+<body>
+  <button class="toggle" onclick="toggleTheme()">Toggle Theme</button>
+  <button id="backToTop" onclick="scrollToTop()">↑ Back to Top</button>
+  <header>
+    <h1>Vaelin Duskryn</h1>
+    <p>Drow Noble • Oracle-Wizard • Necromancer</p>
+  </header>
+  <nav>
+    <button onclick="openTab('overview', this)" class="active">Overview</button>
+    <button onclick="openTab('combat', this)">Combat</button>
+    <button onclick="openTab('spells', this)">Spells</button>
+    <button onclick="openTab('inventory', this)">Inventory</button>
+    <button onclick="openTab('allies', this)">Allies</button>
+    <button onclick="openTab('story', this)">Story</button>
+    <button onclick="openTab('resources', this)">Resources</button>
+  </nav>
+  <main>
+    <section id="overview" class="active">
+      <h2>Character Overview</h2>
+      <img class="icon" src="VaelinDuskryn.png" alt="Character Icon">
+      <p><strong>Name:</strong> Vaelin Duskryn</p>
+      <p><strong>Ancestry/Race:</strong> Drow Noble</p>
+      <p><strong>Class:</strong> Necromancer</p>
+      <p><strong>Alignment:</strong> N/E</p>
+      <p><strong>Level:</strong> 13</p>
+      <p><strong>Background:</strong> Betrayed noble, seeks revenge</p>
+    </section>
+
+    <section id="combat">
+      <h2>Combat & Stats</h2>
+      <ul>
+        <li>HP: 175</li>
+        <li>AC: 28</li>
+        <li>Initiative: +5</li>
+        <li>Fortitude: +12</li>
+        <li>Reflex: +16</li>
+        <li>Will: +22</li>
+        <li>Strength: 17</li>
+        <li>Dexterity: 19</li>
+        <li>Constitution: 15</li>
+        <li>Intelligence: 26</li>
+        <li>Wisdom: 22</li>
+        <li>Charisma: 28</li>
+      </ul>
+      <h3>Weapons & Attacks</h3>
+      <p>Hand Crossbow, Rapier (Silver, Finesse), Dagger (Silver), Quarterstaff, Rapier (+1, Finesse), Wendifisa Spear, etc.</p>
+    </section>
+
+    <section id="spells">
+
+     <h2>Spells & Powers</h2>
+
+
+<div>
+  <button onclick="rest()">Rest</button>
+</div>
+<div>
+  <h4>Wizard Prepared Spells</h4>
+  <ul id="preparedList"></ul>
+</div>
+
+<div>
+  <h4>Oracle Spell Slots</h4>
+  <ul id="oracleSlots"></ul>
+</div>
+
+
+  <div style="display: flex; gap: 2rem;">
+    <div style="flex:1;">
+      <h4>Oracle Known</h4>
+      <ul id="oracleKnownList"></ul>
+    </div>
+    <div style="flex:1;">
+      <h4>Wizard Spellbook</h4>
+      <ul id="wizardKnownList"></ul>
+    </div>
+  </div>
+
+  <!-- Spell Manager (filters & search) -->
+  <h3>Spell Manager</h3>
+  <div>
+    <label for="classFilter">Class:</label>
+    <select id="classFilter">
+      <option value="">All</option>
+      <option value="Wizard">Wizard</option>
+      <option value="Oracle">Oracle</option>
+    </select>
+
+    <label for="levelFilter">Level:</label>
+    <select id="levelFilter">
+      <option value="">All</option>
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+
+    <label for="schoolFilter">School:</label>
+    <select id="schoolFilter">
+      <option value="">All</option>
+      <option value="Abjuration">Abjuration</option>
+      <option value="Conjuration">Conjuration</option>
+      <option value="Divination">Divination</option>
+      <option value="Enchantment">Enchantment</option>
+      <option value="Evocation">Evocation</option>
+      <option value="Illusion">Illusion</option>
+      <option value="Necromancy">Necromancy</option>
+      <option value="Transmutation">Transmutation</option>
+      <option value="Universal">Universal</option>
+    </select>
+
+    <label for="searchFilter">Search:</label>
+    <input type="text" id="searchFilter" placeholder="Spell name...">
+
+    <button id="resetFilters">Reset Filters</button>
+  </div>
+
+  <ul id="spellList"></ul>
+
+  
+    </section>
+
+    <section id="inventory">
+      <h2>Inventory</h2>
+      <ul>
+        <li>Spellbook</li>
+        <li>Handy Haversack</li>
+        <li>Bag of Holding I</li>
+        <li>Bag of Holding IV</li>
+      </ul>
+    </section>
+
+    <section id="allies">
+      <h2>Allies & Contacts</h2>
+      <ul>
+        <li>Shermit Ribba - Grippli Gunslinger – Party ally</li>
+        <li>Carol – Cleric Queen</li>
+        <li>Glenda – Witch, Blood Queen supporter</li>
+      </ul>
+    </section>
+
+    <section id="story">
+      <h2>Story & Notes</h2>
+      <h3>Backstory</h3>
+      <button onclick="openModal()">Read Full Backstory (Popup)</button>
+      <p>Or <a href="backstory.html" target="_blank">open in a separate page</a></p>
+
+      <h3>Session Log</h3>
+      <ul id="log">
+        <li>Session 1: ...</li>
+      </ul>
+    </section>
+
+    <section id="resources">
+      <h2>Resources</h2>
+      <p>Links to spell lists, rulebooks, reference sheets, etc.</p>
+    </section>
+  </main>
+  
+  <!-- Modal overlay -->
+  <div id="backstoryModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="backstoryText">
+        <!-- Content will be loaded from backstory.html -->
+        <p>Loading...</p>
       </div>
-    );
+    </div>
+  </div>
+  
+<script>
+  // THEME TOGGLE
+  function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-slate-900 dark:to-indigo-950">
-      {/* Header with gradient overlay */}
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-gray-900/70 border-b border-gray-200/50 dark:border-gray-700/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo & Title */}
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
-                <span className="text-white text-xl font-bold">T</span>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-                  Timeline
-                </h1>
-                <p className="text-xs text-gray-500 dark:text-gray-400">{userEmail}</p>
-              </div>
-            </div>
-
-            {/* Navigation */}
-            <nav className="flex items-center gap-2">
-              <button
-                onClick={() => router.push("/timeline")}
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium hover:shadow-lg hover:scale-105 transition-all"
-              >
-                View Timeline
-              </button>
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-              >
-                Logout
-              </button>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Tab Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="flex gap-1 p-1 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 w-fit">
-          {[
-            { id: "events" as const, label: "Events", icon: "📅" },
-            { id: "profile" as const, label: "Profile", icon: "👤" },
-            { id: "friends" as const, label: "Friends", icon: "👥" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-2.5 rounded-lg font-medium transition-all ${
-                activeTab === tab.id
-                  ? "bg-white dark:bg-gray-800 shadow-md text-indigo-600 dark:text-indigo-400"
-                  : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
-              }`}
-            >
-              <span className="mr-2">{tab.icon}</span>
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === "events" && <EventManager />}
-        {activeTab === "profile" && <ProfileSection userEmail={userEmail} />}
-        {activeTab === "friends" && <FriendsSection />}
-      </div>
-    </div>
-  );
-}
-
-// ============================================================================
-// PROFILE SECTION
-// ============================================================================
-
-function ProfileSection({ userEmail }: { userEmail: string }) {
-  const [displayName, setDisplayName] = useState("");
-  const [bio, setBio] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [saving, setSaving] = useState(false);
-  const [stats, setStats] = useState({ events: 0, friends: 0, days: 0 });
-
-  // Load profile on mount
-  useEffect(() => {
-    const loadProfile = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch("/api/profile");
-        if (res.ok) {
-          const { profile } = await res.json();
-          if (profile) {
-            setDisplayName(profile.display_name || "");
-            setBio(profile.bio || "");
-          }
-        }
-      } catch (error) {
-        console.error("Failed to load profile:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadProfile();
-  }, []);
-
-  // Load stats
-  useEffect(() => {
-    const loadStats = async () => {
-      try {
-        // Load events count
-        const eventsRes = await fetch("/api/events?all=true");
-        if (eventsRes.ok) {
-          const { events } = await eventsRes.json();
-          const eventCount = events.length;
-          
-          // Calculate days tracked (range from earliest to latest event)
-          let daysTracked = 0;
-          if (events.length > 0) {
-            const dates = events.map((e: { start_time: string }) => new Date(e.start_time).getTime());
-            const earliest = Math.min(...dates);
-            const latest = Math.max(...dates);
-            daysTracked = Math.ceil((latest - earliest) / (1000 * 60 * 60 * 24));
-          }
-
-          // Load friends count
-          const friendsRes = await fetch("/api/friends");
-          let friendsCount = 0;
-          if (friendsRes.ok) {
-            const { friends } = await friendsRes.json();
-            friendsCount = friends.filter((f: { status: string }) => f.status === "accepted").length;
-          }
-
-          setStats({
-            events: eventCount,
-            friends: friendsCount,
-            days: daysTracked,
-          });
-        }
-      } catch (error) {
-        console.error("Failed to load stats:", error);
-      }
-    };
-    loadStats();
-  }, []);
-
-  const saveProfile = async () => {
-    setSaving(true);
-    try {
-      const res = await fetch("/api/profile", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          display_name: displayName,
-          bio: bio,
-        }),
-      });
-      
-      if (res.ok) {
-        alert("Profile saved successfully!");
-      } else {
-        const err = await res.json();
-        alert(err.error || "Failed to save profile");
-      }
-    } catch (error) {
-      console.error("Failed to save profile:", error);
-      alert("Failed to save profile");
-    } finally {
-      setSaving(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center py-12">
-        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent"></div>
-      </div>
-    );
+  // TABS
+  function openTab(tabId, btn) {
+    document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    const section = document.getElementById(tabId);
+    if (section) section.classList.add('active');
+    if (btn) btn.classList.add('active');
   }
 
-  return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Your Profile</h2>
+  // ELEMENT REFERENCES (DOM is already loaded because script is at page bottom)
+  const backToTopBtn = document.getElementById("backToTop");
+  const modal = document.getElementById("backstoryModal");
+  const modalContent = document.querySelector("#backstoryModal .modal-content");
 
-      <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200/50 dark:border-gray-700/50 overflow-hidden">
-        <div className="p-8 space-y-6">
-          {/* Avatar */}
-          <div className="flex items-center gap-6">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-4xl font-bold shadow-lg">
-              {userEmail.charAt(0).toUpperCase()}
-            </div>
-            <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">{userEmail}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Account created recently</p>
-            </div>
-          </div>
+  // OPEN MODAL + LOAD BACKSTORY
+  function openModal() {
+    const backstoryDiv = document.getElementById('backstoryText');
+    // show modal
+    modal.style.display = 'block';
+    // reset scrolls and show loading
+    backstoryDiv.innerHTML = '<p>Loading...</p>';
+    if (modal) modal.scrollTop = 0;
+    if (modalContent) modalContent.scrollTop = 0;
+    toggleBackToTop();
 
-          {/* Display Name */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-              Display Name
-            </label>
-            <input
-              type="text"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="Enter your display name"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-            />
-          </div>
-
-          {/* Bio */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-              Bio
-            </label>
-            <textarea
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-              placeholder="Tell us about yourself..."
-              rows={4}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
-            />
-          </div>
-
-          {/* Save Button */}
-          <button
-            onClick={saveProfile}
-            disabled={saving}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {saving ? "Saving..." : "Save Profile"}
-          </button>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
-        {[
-          { label: "Events Created", value: stats.events.toString(), icon: "📅" },
-          { label: "Friends", value: stats.friends.toString(), icon: "👥" },
-          { label: "Days Tracked", value: stats.days.toString(), icon: "🗓️" },
-        ].map((stat) => (
-          <div
-            key={stat.label}
-            className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 dark:border-gray-700/50 text-center hover:shadow-lg transition-all"
-          >
-            <div className="text-3xl mb-2">{stat.icon}</div>
-            <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{stat.value}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ============================================================================
-// FRIENDS SECTION
-// ============================================================================
-
-type Friend = {
-  id: string;
-  friend_id: string;
-  display_name: string | null;
-  avatar_url: string | null;
-  status: "pending" | "accepted" | "blocked";
-  created_at: string;
-  is_initiator: boolean;
-};
-
-function FriendsSection() {
-  const [friends, setFriends] = useState<Friend[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [friendEmail, setFriendEmail] = useState("");
-  const [adding, setAdding] = useState(false);
-
-  const loadFriends = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/friends");
-      if (res.ok) {
-        const { friends: data } = await res.json();
-        setFriends(data);
-      }
-    } catch (error) {
-      console.error("Failed to load friends:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadFriends();
-  }, []);
-
-  const addFriend = async () => {
-    if (!friendEmail.trim()) {
-      alert("Please enter an email address");
-      return;
-    }
-
-    setAdding(true);
-    try {
-      const res = await fetch("/api/friends", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ friend_email: friendEmail }),
+    fetch('backstory.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Could not load backstory.');
+        return response.text();
+      })
+      .then(data => {
+        backstoryDiv.innerHTML = data;
+        // ensure scroll position reset after content inserted
+        if (modalContent) modalContent.scrollTop = 0;
+        if (modal) modal.scrollTop = 0;
+        // update visibility of back-to-top
+        toggleBackToTop();
+      })
+      .catch(err => {
+        backstoryDiv.innerHTML = `<p>Error loading backstory: ${err.message}</p>`;
+        toggleBackToTop();
       });
+  }
 
-      if (res.ok) {
-        setFriendEmail("");
-        setShowAddModal(false);
-        loadFriends();
-        alert("Friend request sent!");
-      } else {
-        const err = await res.json();
-        alert(err.error || "Failed to send request");
-      }
-    } catch (error) {
-      console.error("Failed to add friend:", error);
-      alert("Failed to send request");
-    } finally {
-      setAdding(false);
+  // CLOSE MODAL
+  function closeModal() {
+    if (modal) {
+      modal.style.display = 'none';
+      if (modalContent) modalContent.scrollTop = 0; // reset modal scroll
+      modal.scrollTop = 0; // reset overlay scroll just in case
     }
-  };
+    toggleBackToTop(); // re-check after closing
+  }
 
-  const acceptFriend = async (id: string) => {
-    try {
-      const res = await fetch(`/api/friends?id=${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: "accepted" }),
-      });
+  // BACK-TO-TOP VISIBILITY
+  function toggleBackToTop() {
+    let show = false;
 
-      if (res.ok) {
-        loadFriends();
-        alert("Friend request accepted!");
-      } else {
-        alert("Failed to accept request");
-      }
-    } catch (error) {
-      console.error("Failed to accept friend:", error);
-      alert("Failed to accept request");
+    // page scroll
+    const pageScroll = window.scrollY || document.documentElement.scrollTop || 0;
+    if (pageScroll > 200) show = true;
+
+    // if modal is open, check modal overlay and inner content scrolls
+    if (modal && getComputedStyle(modal).display !== 'none') {
+      if (modal.scrollTop && modal.scrollTop > 200) show = true;
+      if (modalContent && modalContent.scrollTop && modalContent.scrollTop > 200) show = true;
     }
-  };
 
-  const removeFriend = async (id: string) => {
-    if (!confirm("Remove this friend?")) return;
+    if (show) backToTopBtn.classList.add('show');
+    else backToTopBtn.classList.remove('show');
+  }
 
-    try {
-      const res = await fetch(`/api/friends?id=${id}`, {
-        method: "DELETE",
-      });
-
-      if (res.ok) {
-        loadFriends();
-      } else {
-        alert("Failed to remove friend");
-      }
-    } catch (error) {
-      console.error("Failed to remove friend:", error);
-      alert("Failed to remove friend");
+  // SCROLL TO TOP (either page or modal content)
+  function scrollToTop() {
+    if (modal && getComputedStyle(modal).display !== 'none') {
+      if (modalContent) modalContent.scrollTo({ top: 0, behavior: 'smooth' });
+      else modal.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  };
+  }
 
-  // Filter friends by search query
-  const filteredFriends = friends.filter((f) =>
-    f.display_name?.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // GLOBAL LISTENERS
+  window.addEventListener('scroll', toggleBackToTop);
 
-  // Separate into categories
-  const pendingReceived = filteredFriends.filter((f) => f.status === "pending" && !f.is_initiator);
-  const pendingSent = filteredFriends.filter((f) => f.status === "pending" && f.is_initiator);
-  const accepted = filteredFriends.filter((f) => f.status === "accepted");
+  // observe overlay and content scrolling (if they exist)
+  if (modal) modal.addEventListener('scroll', toggleBackToTop);
+  if (modalContent) modalContent.addEventListener('scroll', toggleBackToTop);
 
-  return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Friends</h2>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="px-4 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium hover:shadow-lg hover:scale-105 transition-all"
-        >
-          + Add Friend
-        </button>
-      </div>
-
-      {/* Search */}
-      <div className="relative">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search friends..."
-          className="w-full px-4 py-3 pl-12 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-        />
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
-      </div>
-
-      {loading ? (
-        <div className="flex justify-center py-12">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent"></div>
-        </div>
-      ) : (
-        <>
-          {/* Pending Requests Received */}
-          {pendingReceived.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Friend Requests ({pendingReceived.length})
-              </h3>
-              {pendingReceived.map((friend) => (
-                <div
-                  key={friend.id}
-                  className="bg-amber-50/70 dark:bg-amber-900/20 backdrop-blur-sm rounded-xl p-4 border-2 border-amber-300 dark:border-amber-700 flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
-                      {friend.display_name?.charAt(0).toUpperCase() || "?"}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 dark:text-gray-100">
-                        {friend.display_name || "Unknown User"}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        Sent you a friend request
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => acceptFriend(friend.id)}
-                      className="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-all"
-                    >
-                      Accept
-                    </button>
-                    <button
-                      onClick={() => removeFriend(friend.id)}
-                      className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-all"
-                    >
-                      Decline
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Pending Requests Sent */}
-          {pendingSent.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Pending Sent ({pendingSent.length})
-              </h3>
-              {pendingSent.map((friend) => (
-                <div
-                  key={friend.id}
-                  className="bg-blue-50/70 dark:bg-blue-900/20 backdrop-blur-sm rounded-xl p-4 border border-blue-300 dark:border-blue-700 flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
-                      {friend.display_name?.charAt(0).toUpperCase() || "?"}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 dark:text-gray-100">
-                        {friend.display_name || "Unknown User"}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        Waiting for response...
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => removeFriend(friend.id)}
-                    className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Accepted Friends */}
-          {accepted.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                Friends ({accepted.length})
-              </h3>
-              {accepted.map((friend) => (
-                <div
-                  key={friend.id}
-                  className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 border border-gray-200 dark:border-gray-700 flex items-center justify-between hover:shadow-lg transition-all"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
-                      {friend.display_name?.charAt(0).toUpperCase() || "?"}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 dark:text-gray-100">
-                        {friend.display_name || "Unknown User"}
-                      </div>
-                      <div className="text-sm text-gray-500 dark:text-gray-400">
-                        Friends since {new Date(friend.created_at).toLocaleDateString()}
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => removeFriend(friend.id)}
-                    className="px-4 py-2 rounded-lg bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-800 transition-all"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Empty State */}
-          {friends.length === 0 && (
-            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl p-12 text-center border border-gray-200/50 dark:border-gray-700/50">
-              <div className="text-6xl mb-4">👥</div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">No friends yet</h3>
-              <p className="text-gray-500 dark:text-gray-400 mb-6">
-                Start connecting with others to share timelines and collaborate
-              </p>
-              <button
-                onClick={() => setShowAddModal(true)}
-                className="px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium hover:shadow-lg hover:scale-105 transition-all"
-              >
-                Add Your First Friend
-              </button>
-            </div>
-          )}
-        </>
-      )}
-
-      {/* Add Friend Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-md shadow-2xl">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">Add Friend</h3>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              Enter your friend&apos;s email address to send them a friend request.
-            </p>
-            <input
-              type="email"
-              value={friendEmail}
-              onChange={(e) => setFriendEmail(e.target.value)}
-              placeholder="friend@example.com"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all mb-4"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") addFriend();
-              }}
-            />
-            <div className="flex gap-3">
-              <button
-                onClick={() => {
-                  setShowAddModal(false);
-                  setFriendEmail("");
-                }}
-                disabled={adding}
-                className="flex-1 px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={addFriend}
-                disabled={adding}
-                className="flex-1 px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {adding ? "Sending..." : "Send Request"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ============================================================================
-// EVENT MANAGER
-// ============================================================================
-
-function EventManager() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [editing, setEditing] = useState<string | null>(null);
-  const [filter, setFilter] = useState<FilterOption>("all");
-  const [sortBy, setSortBy] = useState<SortOption>("start_desc");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [form, setForm] = useState({
-    title: "",
-    description: "",
-    start_time: "",
-    end_time: "",
+  // clicking outside modal closes it
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
   });
 
-  const fetchEvents = async () => {
-    setLoading(true);
-    const res = await fetch("/api/events?all=true");
-    if (res.ok) {
-      const { events } = await res.json();
-      setEvents(events);
-    }
-    setLoading(false);
-  };
+  // INITIAL PAGE LOAD: theme + open tab based on hash
+  window.onload = () => {
+    // theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') document.body.classList.add('dark-mode');
 
-  useEffect(() => {
-    fetchEvents();
-  }, []);
+    // default tab or hash
+    let tabToOpen = 'overview';
+    let buttonToActivate = document.querySelector('nav button');
 
-  // Filtered and sorted events
-  const filteredAndSortedEvents = useMemo(() => {
-    let filtered = [...events];
-    const now = new Date().getTime();
-
-    // Apply search filter
-    if (searchQuery) {
-      filtered = filtered.filter(
-        (ev) =>
-          ev.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          ev.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          ev.category?.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    // Apply time filter
-    if (filter === "upcoming") {
-      filtered = filtered.filter((ev) => new Date(ev.start_time).getTime() > now);
-    } else if (filter === "past") {
-      filtered = filtered.filter((ev) => {
-        const endTime = ev.end_time ? new Date(ev.end_time).getTime() : new Date(ev.start_time).getTime();
-        return endTime < now;
-      });
-    } else if (filter === "ongoing") {
-      filtered = filtered.filter((ev) => {
-        const start = new Date(ev.start_time).getTime();
-        const end = ev.end_time ? new Date(ev.end_time).getTime() : Infinity;
-        return start <= now && end >= now;
-      });
-    }
-
-    // Apply sorting
-    filtered.sort((a, b) => {
-      switch (sortBy) {
-        case "start_asc":
-          return new Date(a.start_time).getTime() - new Date(b.start_time).getTime();
-        case "start_desc":
-          return new Date(b.start_time).getTime() - new Date(a.start_time).getTime();
-        case "title":
-          return a.title.localeCompare(b.title);
-        case "category":
-          return (a.category || "").localeCompare(b.category || "");
-        default:
-          return 0;
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      if (document.getElementById(hash)) {
+        tabToOpen = hash;
+        const btn = document.querySelector(`nav button[onclick*="${hash}"]`);
+        if (btn) buttonToActivate = btn;
       }
-    });
-
-    return filtered;
-  }, [events, filter, sortBy, searchQuery]);
-
-  const createEvent = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.title || !form.start_time) return alert("Title and start time required");
-
-    setLoading(true);
-    const res = await fetch("/api/events", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-
-    if (res.ok) {
-      setForm({ title: "", description: "", start_time: "", end_time: "" });
-      fetchEvents();
-    } else {
-      const err = await res.json();
-      alert(err.error || "Failed to save event");
     }
-    setLoading(false);
+
+    openTab(tabToOpen, buttonToActivate);
+
+    // initial back-to-top state
+    toggleBackToTop();
   };
 
-  const deleteEvent = async (id: string) => {
-    if (!confirm("Delete this event?")) return;
-    const res = await fetch(`/api/events?id=${id}`, { method: "DELETE" });
-    if (res.ok) fetchEvents();
-  };
 
-  const startEdit = (ev: Event) => {
-    setEditing(ev.id);
-    setForm({
-      title: ev.title,
-      description: ev.description ?? "",
-      start_time: ev.start_time.slice(0, 16),
-      end_time: ev.end_time ? ev.end_time.slice(0, 16) : "",
-    });
-  };
 
-  const saveEdit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editing) return;
-    const res = await fetch(`/api/events?id=${editing}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    if (res.ok) {
-      setEditing(null);
-      setForm({ title: "", description: "", start_time: "", end_time: "" });
-      fetchEvents();
-    } else {
-      const err = await res.json();
-      alert(err.error || "Failed to update");
-    }
-  };
-
-  const cancelEdit = () => {
-    setEditing(null);
-    setForm({ title: "", description: "", start_time: "", end_time: "" });
-  };
-
-  return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Timeline Events</h2>
-
-      {/* Create/Edit Form */}
-      <form
-        onSubmit={editing ? saveEdit : createEvent}
-        className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-200/50 dark:border-gray-700/50 space-y-4"
-      >
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          {editing ? "✏️ Edit Event" : "➕ Create Event"}
-        </h3>
-        
-        <input
-          type="text"
-          placeholder="Event title"
-          value={form.title}
-          onChange={(e) => setForm({ ...form, title: e.target.value })}
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-        />
-        
-        <textarea
-          placeholder="Description (optional)"
-          value={form.description}
-          onChange={(e) => setForm({ ...form, description: e.target.value })}
-          rows={3}
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
-        />
-        
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Start Time
-            </label>
-            <input
-              type="datetime-local"
-              value={form.start_time}
-              onChange={(e) => setForm({ ...form, start_time: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              End Time (optional)
-            </label>
-            <input
-              type="datetime-local"
-              value={form.end_time}
-              onChange={(e) => setForm({ ...form, end_time: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-            />
-          </div>
-        </div>
-
-        <div className="flex gap-3">
-          <button
-            type="submit"
-            disabled={loading}
-            className="flex-1 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? "Saving..." : editing ? "💾 Save Changes" : "➕ Create Event"}
-          </button>
-          {editing && (
-            <button
-              type="button"
-              onClick={cancelEdit}
-              className="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
-            >
-              Cancel
-            </button>
-          )}
-        </div>
-      </form>
-
-      {/* Filters & Search */}
-      <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-200/50 dark:border-gray-700/50 space-y-4">
-        {/* Search */}
-        <div className="relative">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search events..."
-            className="w-full px-4 py-3 pl-12 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-          />
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">🔍</span>
-        </div>
-
-        <div className="flex flex-wrap gap-4">
-          {/* Time Filter */}
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Filter</label>
-            <select
-              value={filter}
-              onChange={(e) => setFilter(e.target.value as FilterOption)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-            >
-              <option value="all">All Events</option>
-              <option value="upcoming">Upcoming</option>
-              <option value="ongoing">Ongoing</option>
-              <option value="past">Past</option>
-            </select>
-          </div>
-
-          {/* Sort */}
-          <div className="flex-1 min-w-[200px]">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sort By</label>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as SortOption)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-            >
-              <option value="start_desc">Newest First</option>
-              <option value="start_asc">Oldest First</option>
-              <option value="title">Title (A-Z)</option>
-              <option value="category">Category</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Results count */}
-        <div className="text-sm text-gray-500 dark:text-gray-400">
-          Showing {filteredAndSortedEvents.length} of {events.length} events
-        </div>
-      </div>
-
-      {/* Event List */}
-      <div className="space-y-3">
-        {loading && (
-          <div className="text-center py-12">
-            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent"></div>
-          </div>
-        )}
-        
-        {!loading && filteredAndSortedEvents.length === 0 && (
-          <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl p-12 text-center border border-gray-200/50 dark:border-gray-700/50">
-            <div className="text-6xl mb-4">📅</div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-              {searchQuery || filter !== "all" ? "No events found" : "No events yet"}
-            </h3>
-            <p className="text-gray-500 dark:text-gray-400">
-              {searchQuery || filter !== "all"
-                ? "Try adjusting your filters"
-                : "Create your first event to get started"}
-            </p>
-          </div>
-        )}
-
-        {filteredAndSortedEvents.map((ev) => (
-          <EventCard key={ev.id} event={ev} onEdit={startEdit} onDelete={deleteEvent} />
-        ))}
-      </div>
-    </div>
-  );
+  function toggleDropdown(id) {
+  document.querySelectorAll(".dropdown").forEach(d => {
+    if (d.id !== id) d.classList.remove("show"); // close others
+  });
+  document.getElementById(id).classList.toggle("show");
 }
 
-// ============================================================================
-// EVENT CARD
-// ============================================================================
+// close dropdowns if clicking outside
+window.addEventListener("click", function(e) {
+  if (!e.target.matches(".dropbtn")) {
+    document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("show"));
+  }
+});
 
-function EventCard({
-  event,
-  onEdit,
-  onDelete,
-}: {
-  event: Event;
-  onEdit: (ev: Event) => void;
-  onDelete: (id: string) => void;
-}) {
-  const [showHistory, setShowHistory] = useState(false);
-  const [history, setHistory] = useState<Revision[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const toggleHistory = async () => {
-    if (!showHistory) {
-      setLoading(true);
-      try {
-        const res = await fetch(`/api/event-history?event_id=${event.id}`);
-        if (res.ok) {
-          const { history: fetched } = (await res.json()) as { history: Revision[] };
-          setHistory(fetched);
-        }
-      } catch (error) {
-        console.error("Failed to fetch event history:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    setShowHistory((prev) => !prev);
-  };
-
-  const now = new Date().getTime();
-  const start = new Date(event.start_time).getTime();
-  const end = event.end_time ? new Date(event.end_time).getTime() : start;
   
-  const isUpcoming = start > now;
-  const isOngoing = start <= now && end >= now;
 
-  return (
-    <div className="group bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 overflow-hidden hover:shadow-xl transition-all">
-      <div className="p-6">
-        <div className="flex justify-between items-start gap-4">
-          {/* Event Content */}
-          <div className="flex-1 space-y-2">
-            <div className="flex items-start gap-3">
-              {/* Status indicator */}
-              <div className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${
-                isOngoing ? "bg-green-500 animate-pulse" : isUpcoming ? "bg-blue-500" : "bg-gray-400"
-              }`} />
-              
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                  {event.title}
-                </h3>
-                
-                {event.description && (
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                    {event.description}
-                  </p>
-                )}
+  let allSpells = [];
+let oracleKnown = JSON.parse(localStorage.getItem("oracleKnown")) || [];
+let wizardKnown = JSON.parse(localStorage.getItem("wizardKnown")) || [];
+let preparedSpells = JSON.parse(localStorage.getItem("preparedSpells")) || [];
+  // Example Oracle slots by level (you’ll adjust these numbers to match your level)
+let oracleSlots = JSON.parse(localStorage.getItem("oracleSlots")) || {
+  1: 5, // Level 1: 5 slots
+  2: 4, // Level 2: 4 slots
+  3: 3, // Level 3: 3 slots
+  4: 2, // etc...
+};
+  // Store the *max slots* too so you can reset daily
+let oracleMaxSlots = { 1: 5, 2: 4, 3: 3, 4: 2 };
 
-                <div className="flex flex-wrap items-center gap-3 mt-3 text-xs text-gray-500 dark:text-gray-400">
-                  <span className="flex items-center gap-1">
-                    🕐 {new Date(event.start_time).toLocaleString()}
-                  </span>
-                  {event.end_time && (
-                    <span className="flex items-center gap-1">
-                      → {new Date(event.end_time).toLocaleString()}
-                    </span>
-                  )}
-                  {event.category && (
-                    <span className="px-2 py-1 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300">
-                      📁 {event.category}
-                    </span>
-                  )}
-                  {event.group_name && (
-                    <span className="px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300">
-                      🔗 {event.group_name}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+// Load ALL spells
+fetch("spells-all.json")
+  .then(res => res.json())
+  .then(data => {
+    allSpells = data;
+    loadSpells();
+    renderKnown();
+    renderPrepared();
+    renderOracleSlots(); // <-- show oracle counters on load
+  });
 
-          {/* Actions */}
-          <div className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button
-              onClick={() => onEdit(event)}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 transition-all"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => onDelete(event.id)}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-800 transition-all"
-            >
-              Delete
-            </button>
-            <button
-              onClick={toggleHistory}
-              className="px-3 py-1.5 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all"
-            >
-              History
-            </button>
+
+
+
+
+
+
+  
+// Show spells from DB based on filter
+function loadSpells() {
+  const classFilter = document.getElementById("classFilter").value;
+  const levelFilter = document.getElementById("levelFilter").value;
+  const schoolFilter = document.getElementById("schoolFilter").value;
+  const searchFilter = document.getElementById("searchFilter").value.toLowerCase();
+  const list = document.getElementById("spellList");
+  list.innerHTML = "";
+
+  if (!classFilter && !levelFilter && !schoolFilter && !searchFilter) {
+    return; // empty by default
+  }
+
+  const filtered = allSpells.filter(spell => {
+    // --- Class ---
+    const matchesClass = !classFilter || spell.level[classFilter] !== undefined;
+
+    // --- Level ---
+    let matchesLevel = true;
+    if (levelFilter) {
+      if (classFilter) {
+        // check only chosen class level
+        matchesLevel = spell.level[classFilter] == levelFilter;
+      } else {
+        // no class chosen → check ANY class level
+        matchesLevel = Object.values(spell.level).some(lv => lv == levelFilter);
+      }
+    }
+
+    // --- School ---
+    const matchesSchool =
+  !schoolFilter || spell.school.toLowerCase().includes(schoolFilter.toLowerCase());
+
+    // --- Search ---
+    const matchesSearch = !searchFilter || spell.name.toLowerCase().includes(searchFilter);
+
+    return matchesClass && matchesLevel && matchesSchool && matchesSearch;
+  });
+
+  // show results
+  if (filtered.length === 0) {
+    list.innerHTML = `<li><em>No results found</em></li>`;
+    return;
+  }
+
+  filtered.forEach(spell => {
+    const spellLevel = classFilter
+      ? spell.level[classFilter]
+      : Object.values(spell.level)[0];
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${spell.name}</strong>
+      (Lv ${spellLevel}, ${spell.school})
+      <a href="${spell.url}" target="_blank">📖</a>
+      <button onclick="chooseKnown('${spell.name}')">+ Known</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+
+
+
+  
+  
+
+
+function chooseKnown(spellName) {
+  const choice = prompt(`Add "${spellName}" to:\n1 = Oracle Known\n2 = Wizard Spellbook`);
+  if (choice === "1") {
+    oracleKnown.push(spellName);
+    localStorage.setItem("oracleKnown", JSON.stringify(oracleKnown));
+  } else if (choice === "2") {
+    wizardKnown.push(spellName);
+    localStorage.setItem("wizardKnown", JSON.stringify(wizardKnown));
+  }
+  renderKnown();
+}
+  
+// Show Known Spells
+function renderKnown() {
+  const oracleList = document.getElementById("oracleKnownList");
+  const wizardList = document.getElementById("wizardKnownList");
+  oracleList.innerHTML = "";
+  wizardList.innerHTML = "";
+
+  const oracleGrouped = {};
+  oracleKnown.forEach(name => {
+    const spell = allSpells.find(s => s.name === name);
+    if (!spell) return;
+    const lvl = spell.level.Oracle ?? "?";
+    if (!oracleGrouped[lvl]) oracleGrouped[lvl] = [];
+    oracleGrouped[lvl].push(spell);
+  });
+
+  Object.keys(oracleGrouped).sort((a,b)=>a-b).forEach(lvl => {
+    const header = document.createElement("li");
+    header.innerHTML = `<strong>Level ${lvl}</strong>`;
+    oracleList.appendChild(header);
+    oracleGrouped[lvl].forEach((spell, i) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${spell.name}
+        <div class="dropdown" id="dd-oracle-${lvl}-${i}">
+          <button class="dropbtn" onclick="toggleDropdown('dd-oracle-${lvl}-${i}')">⋮</button>
+          <div class="dropdown-content">
+            <a href="${spell.url}" target="_blank">📖 Open</a>
+            <button onclick="removeKnown('oracle', oracleKnown.indexOf('${spell.name}'))">Remove</button>
           </div>
         </div>
+      `;
+      oracleList.appendChild(li);
+    });
+  });
 
-        {/* History Section */}
-        {showHistory && (
-          <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-            {loading ? (
-              <p className="text-sm text-gray-500 italic">Loading history...</p>
-            ) : history.length === 0 ? (
-              <p className="text-sm text-gray-500 italic">No revisions yet.</p>
-            ) : (
-              <div className="space-y-2">
-                <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300">Revision History</h4>
-                <ul className="space-y-2">
-                  {history.map((rev) => (
-                    <li
-                      key={rev.revision_id}
-                      className="text-sm bg-gray-50 dark:bg-gray-900/50 rounded-lg p-3 border-l-4 border-indigo-500"
-                    >
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <strong className="text-gray-900 dark:text-gray-100">Rev {rev.revision_number}</strong>
-                          <span className="text-gray-500 dark:text-gray-400 ml-2">
-                            {new Date(rev.revision_created_at).toLocaleString()}
-                          </span>
-                        </div>
-                        <span className="text-xs text-gray-500">
-                          {rev.editor_name || "Unknown"}
-                        </span>
-                      </div>
-                      {rev.old_title && (
-                        <p className="text-gray-600 dark:text-gray-400 mt-1 italic">
-                          &ldquo;{rev.old_title}&rdquo;
-                        </p>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+  const wizardGrouped = {};
+  wizardKnown.forEach(name => {
+    const spell = allSpells.find(s => s.name === name);
+    if (!spell) return;
+    const lvl = spell.level.Wizard ?? "?";
+    if (!wizardGrouped[lvl]) wizardGrouped[lvl] = [];
+    wizardGrouped[lvl].push(spell);
+  });
+
+  Object.keys(wizardGrouped).sort((a,b)=>a-b).forEach(lvl => {
+    const header = document.createElement("li");
+    header.innerHTML = `<strong>Level ${lvl}</strong>`;
+    wizardList.appendChild(header);
+    wizardGrouped[lvl].forEach((spell, i) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${spell.name}
+        <div class="dropdown" id="dd-wizard-${lvl}-${i}">
+          <button class="dropbtn" onclick="toggleDropdown('dd-wizard-${lvl}-${i}')">⋮</button>
+          <div class="dropdown-content">
+            <a href="${spell.url}" target="_blank">📖 Open</a>
+            <button onclick="prepareSpell('${spell.name}')">Prepare</button>
+            <button onclick="removeKnown('wizard', wizardKnown.indexOf('${spell.name}'))">Remove</button>
           </div>
-        )}
-      </div>
-    </div>
-  );
+        </div>
+      `;
+      wizardList.appendChild(li);
+    });
+  });
 }
+
+
+  
+  
+function prepareSpell(name) {
+  preparedSpells.push({ name, used: false });
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
+}
+
+
+  
+  
+// Add to Prepared
+function addPrepared(name) {
+  preparedSpells.push({ name, used: false });
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
+}
+
+// Show Prepared Spells
+function renderPrepared() {
+  const list = document.getElementById("preparedList");
+  list.innerHTML = "";
+
+  const grouped = {};
+  preparedSpells.forEach((p, index) => {
+    const spell = allSpells.find(s => s.name === p.name);
+    if (!spell) return;
+    const lvl = spell.level.Wizard ?? "?";
+    if (!grouped[lvl]) grouped[lvl] = [];
+    grouped[lvl].push({ spell, index, used: p.used });
+  });
+
+  Object.keys(grouped).sort((a,b)=>a-b).forEach(lvl => {
+    const header = document.createElement("li");
+    header.innerHTML = `<strong>Level ${lvl}</strong>`;
+    list.appendChild(header);
+    grouped[lvl].forEach(({spell, index, used}) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <label>
+          <input type="checkbox" ${used ? "checked" : ""} onchange="toggleUsed(${index})">
+          ${spell.name}
+        </label>
+        <div class="dropdown" id="dd-prepared-${lvl}-${index}">
+          <button class="dropbtn" onclick="toggleDropdown('dd-prepared-${lvl}-${index}')">⋮</button>
+          <div class="dropdown-content">
+            <a href="${spell.url}" target="_blank">📖 Open</a>
+            <button onclick="removePrepared(${index})">Remove</button>
+          </div>
+        </div>
+      `;
+      list.appendChild(li);
+    });
+  });
+}
+
+
+  function renderOracleSlots() {
+  const list = document.getElementById("oracleSlots");
+  list.innerHTML = "";
+  for (const lvl in oracleSlots) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      L${lvl}: ${oracleSlots[lvl]}/${oracleMaxSlots[lvl]}
+      <div class="dropdown" id="dd-oracleSlot-${lvl}">
+        <button class="dropbtn" onclick="toggleDropdown('dd-oracleSlot-${lvl}')">⋮</button>
+        <div class="dropdown-content">
+          <button onclick="useOracleSlot(${lvl})">Use</button>
+          <button onclick="adjustOracleSlot(${lvl})">Adjust</button>
+        </div>
+      </div>
+    `;
+    list.appendChild(li);
+  }
+}
+
+
+function adjustOracleSlot(level) {
+  const newVal = prompt(`Set slots for Level ${level}:`, oracleSlots[level]);
+  if (newVal !== null) {
+    const parsed = parseInt(newVal, 10);
+    if (!isNaN(parsed) && parsed >= 0) {
+      oracleSlots[level] = parsed;
+      localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
+      renderOracleSlots();
+    }
+  }
+}
+  
+  
+
+function useOracleSlot(level) {
+  if (oracleSlots[level] > 0) {
+    oracleSlots[level]--;
+    localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
+    renderOracleSlots();
+  }
+}
+
+
+
+
+
+  function rest() {
+  // Reset all oracle slots to max
+  Object.keys(oracleMaxSlots).forEach(l => oracleSlots[l] = oracleMaxSlots[l]);
+  localStorage.setItem("oracleSlots", JSON.stringify(oracleSlots));
+  renderOracleSlots();
+
+  // Uncheck all wizard prepared spells
+  preparedSpells.forEach(p => p.used = false);
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
+}
+
+  
+
+  
+// Toggle prepared spell usage
+function toggleUsed(index) {
+  preparedSpells[index].used = !preparedSpells[index].used;
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+}
+
+//   Remove known function:
+function removeKnown(type, index) {
+  if (type === "oracle") {
+    oracleKnown.splice(index, 1);
+    localStorage.setItem("oracleKnown", JSON.stringify(oracleKnown));
+  } else {
+    wizardKnown.splice(index, 1);
+    localStorage.setItem("wizardKnown", JSON.stringify(wizardKnown));
+  }
+  renderKnown();
+}
+  
+// Remove prepared spell
+function removePrepared(index) {
+  preparedSpells.splice(index, 1);
+  localStorage.setItem("preparedSpells", JSON.stringify(preparedSpells));
+  renderPrepared();
+}
+
+// Auto-refresh on search  
+document.getElementById("searchFilter").addEventListener("input", loadSpells);  
+// Auto-refresh on dropdown changes
+document.getElementById("classFilter").addEventListener("change", loadSpells);
+document.getElementById("levelFilter").addEventListener("change", loadSpells);
+document.getElementById("schoolFilter").addEventListener("change", loadSpells);
+
+// Reset filters button
+document.getElementById("resetFilters").addEventListener("click", () => {
+  document.getElementById("classFilter").value = "";
+  document.getElementById("levelFilter").value = "";
+  document.getElementById("schoolFilter").value = "";
+  document.getElementById("searchFilter").value = "";
+  loadSpells(); // Clears list
+});  
+  
+</script>
+</body>
+</html>
