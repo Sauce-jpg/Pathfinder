@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import Link from "next/link";
+import { StatWithSources } from "@/components/StatWithSources";
 
 // Utility functions
 function calculateMod(score: number, temp: number = 0): number {
@@ -416,7 +417,15 @@ export default function CharacterSheetPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem", marginBottom: "2rem" }}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>Total AC</div>
-                <div style={{ fontSize: "3rem", fontWeight: 700, color: "#0070f3" }}>{acTotal}</div>
+                <div style={{ fontSize: "3rem", fontWeight: 700, color: "#0070f3" }}>
+                  <StatWithSources
+                    characterId={characterId}
+                    statCategory="ac"
+                    displayValue={acTotal}
+                    label="Armor Class"
+                    editable={!editing}
+                  />
+                </div>
               </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>Touch</div>
@@ -467,13 +476,21 @@ export default function CharacterSheetPage() {
             <h2 style={{ marginTop: 0 }}>Saving Throws</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
               {[
-                { label: "Fortitude", total: fortTotal, base: char.fort_base || 0, basefield: "fort_base", mod: conMod, modName: "CON" },
-                { label: "Reflex", total: refTotal, base: char.ref_base || 0, basefield: "ref_base", mod: dexMod, modName: "DEX" },
-                { label: "Will", total: willTotal, base: char.will_base || 0, basefield: "will_base", mod: wisMod, modName: "WIS" },
+                { label: "Fortitude", total: fortTotal, base: char.fort_base || 0, basefield: "fort_base", mod: conMod, modName: "CON", statCat: "save_fort" },
+                { label: "Reflex", total: refTotal, base: char.ref_base || 0, basefield: "ref_base", mod: dexMod, modName: "DEX", statCat: "save_ref" },
+                { label: "Will", total: willTotal, base: char.will_base || 0, basefield: "will_base", mod: wisMod, modName: "WIS", statCat: "save_will" },
               ].map((save) => (
                 <div key={save.label} style={{ textAlign: "center" }}>
                   <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>{save.label}</div>
-                  <div style={{ fontSize: "2.5rem", fontWeight: 700, color: "#10b981" }}>{formatMod(save.total)}</div>
+                  <div style={{ fontSize: "2.5rem", fontWeight: 700, color: "#10b981" }}>
+                    <StatWithSources
+                      characterId={characterId}
+                      statCategory={save.statCat}
+                      displayValue={save.total}
+                      label={`${save.label} Save`}
+                      editable={!editing}
+                    />
+                  </div>
                   <div style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.5rem" }}>
                     {editing ? (
                       <div>
