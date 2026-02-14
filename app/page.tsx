@@ -25,7 +25,7 @@ export default function Home() {
         }}
       >
         {links.map((l) => (
-          
+          <a
             key={l.href}
             href={l.href}
             style={{
