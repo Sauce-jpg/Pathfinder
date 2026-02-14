@@ -271,7 +271,6 @@ function setViews(v: Record<string, Partial<Filters>>) {
 
 export default function InventoryPage() {
   const [session, setSession] = useState<any>(null);
-  const [email, setEmail] = useState("");
 
   const [tab, setTab] = useState<Tab>("inventory");
 
@@ -334,20 +333,6 @@ export default function InventoryPage() {
     if (!session) return;
     setSavedViewsState(getViews());
   }, [session]);
-
-  async function loginGoogle() {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: `${location.origin}/inventory` },
-    });
-    if (error) alert(error.message);
-  }
-
-  async function loginEmail() {
-    const { error } = await supabase.auth.signInWithOtp({ email });
-    if (error) alert(error.message);
-    else alert("Check your email for the login link.");
-  }
 
   async function logout() {
     await supabase.auth.signOut();
@@ -1043,24 +1028,37 @@ export default function InventoryPage() {
 
   if (!session) {
     return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: "2rem" }}>
-        <h1>Inventory</h1>
+      <main style={{ maxWidth: 900, margin: "0 auto", padding: "2rem", textAlign: "center" }}>
+        <h1>📦 Inventory</h1>
         <p>Sign in to sync across devices.</p>
 
-        <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem", flexWrap: "wrap" }}>
-          <button onClick={loginGoogle}>Sign in with Google</button>
-
-          <div style={{ display: "flex", gap: "0.5rem", flex: 1, minWidth: 280 }}>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              style={{ flex: 1, padding: "0.6rem" }}
-            />
-            <button onClick={loginEmail} disabled={!email.includes("@")}>
-              Email link
-            </button>
-          </div>
+        <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", justifyContent: "center" }}>
+          <a 
+            href="/auth/login"
+            style={{
+              padding: "0.75rem 1.5rem",
+              background: "#0070f3",
+              color: "white",
+              textDecoration: "none",
+              borderRadius: "8px",
+              fontWeight: 600,
+            }}
+          >
+            Sign In
+          </a>
+          <a 
+            href="/auth/signup"
+            style={{
+              padding: "0.75rem 1.5rem",
+              background: "#10b981",
+              color: "white",
+              textDecoration: "none",
+              borderRadius: "8px",
+              fontWeight: 600,
+            }}
+          >
+            Create Account
+          </a>
         </div>
       </main>
     );
