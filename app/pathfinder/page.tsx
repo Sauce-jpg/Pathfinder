@@ -15,10 +15,13 @@ export default function PathfinderPage() {
   // Check auth
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
+      console.log("Session data:", data.session);
+      console.log("User ID:", data.session?.user?.id);
       setSession(data.session);
       setLoading(false);
     });
     const { data: sub } = supabase.auth.onAuthStateChange((_event, sess) => {
+      console.log("Auth state changed:", sess);
       setSession(sess);
     });
     return () => sub.subscription.unsubscribe();
@@ -31,10 +34,16 @@ export default function PathfinderPage() {
   }, [session?.user?.id]);
 
   async function loadCampaigns() {
+    console.log("Loading campaigns...");
+    console.log("Session user ID:", session?.user?.id);
+    
     const { data, error } = await supabase
       .from("campaigns")
       .select("*")
       .order("updated_at", { ascending: false });
+
+    console.log("Campaigns data:", data);
+    console.log("Campaigns error:", error);
 
     if (error) {
       console.error("Error loading campaigns:", error);
@@ -47,6 +56,8 @@ export default function PathfinderPage() {
     e.preventDefault();
     if (!session?.user?.id) return;
 
+    console.log("Creating campaign with owner_id:", session.user.id);
+
     const { error } = await supabase.from("campaigns").insert({
       owner_id: session.user.id,
       name: newCampaignName,
@@ -54,12 +65,18 @@ export default function PathfinderPage() {
     });
 
     if (error) {
+      console.error("Create campaign error:", error);
       alert("Error creating campaign: " + error.message);
     } else {
+      console.log("Campaign created successfully");
       setNewCampaignName("");
       setNewCampaignDescription("");
       setShowNewCampaign(false);
-      loadCampaigns();
+      
+      // Add small delay before reloading
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
+      await loadCampaigns();
     }
   }
 
@@ -145,6 +162,21 @@ export default function PathfinderPage() {
             Sign out
           </button>
         </div>
+      </div>
+
+      {/* Debug Info */}
+      <div style={{ 
+        background: "#fff3cd", 
+        border: "1px solid #ffc107", 
+        borderRadius: "8px", 
+        padding: "1rem",
+        marginBottom: "1.5rem",
+        fontSize: "0.9rem"
+      }}>
+        <strong>Debug Info:</strong>
+        <div>User ID: {session?.user?.id}</div>
+        <div>Campaigns loaded: {campaigns.length}</div>
+        <div>Session active: {session ? "Yes" : "No"}</div>
       </div>
 
       {/* New Campaign Button */}
@@ -299,8 +331,7 @@ export default function PathfinderPage() {
               <h3 style={{ margin: "0 0 0.5rem 0" }}>{campaign.name}</h3>
               {campaign.description && (
                 <p style={{ margin: 0, color: "#666", fontSize: "0.95rem" }}>
-                  {campaign.description}
-                </p>
+                  {campaign.description}</p>
               )}
               <div style={{ marginTop: "1rem", fontSize: "0.85rem", color: "#999" }}>
                 {campaign.system || "Pathfinder 1e"}
