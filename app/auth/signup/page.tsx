@@ -34,7 +34,10 @@ export default function SignupPage() {
 
       if (signUpError) throw signUpError;
 
-      // Create user profile
+      // Wait a moment for auth user to be fully created
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Create user profile (with better error handling)
       if (data.user) {
         const { error: profileError } = await supabase.from("users").insert({
           id: data.user.id,
@@ -42,9 +45,14 @@ export default function SignupPage() {
           display_name: displayName || email.split("@")[0],
         });
 
-        // Ignore error if user already exists
-        if (profileError && !profileError.message.includes("duplicate")) {
+        // Log error but don't fail signup
+        if (profileError) {
           console.error("Profile creation error:", profileError);
+          // If it's not a duplicate error, warn but continue
+          if (!profileError.message.includes("duplicate")) {
+            console.warn("User profile may not have been created automatically.");
+            // Don't throw - the user can still sign up, we'll handle profile creation on first login if needed
+          }
         }
       }
 
