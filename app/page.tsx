@@ -1,6 +1,7 @@
 export default function Home() {
   const links = [
     { href: "/pathfinder", label: "⚔️ Pathfinder" },
+    { href: "/pathfinder/index.html", label: "⚔️ Pathfinder (Legacy since 14-02-2026)" },
     { href: "/mtg/index.html", label: "🃏 Magic the Gathering" },
     { href: "/boardgames/index.html", label: "🎲 Boardgames" },
     { href: "/tt-minis/index.html", label: "⚒️ TT Miniatures" },
