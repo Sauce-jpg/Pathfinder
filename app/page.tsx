@@ -8,7 +8,7 @@ export default function Home() {
     { href: "/recipes/index.html", label: "🥘 Recipes" },
     { href: "/inventory", label: "📦 Inventory (App)" },
     { href: "/other/index.html", label: "🧭 Other" },
-    { href: "https://timeline-sauces-projects-a91ee751.vercel.app", label: "⏳ Timeline" }
+    { href: "https://mytimeliner.app", label: "⏳ Timeline" }
   ];
 
   return (
