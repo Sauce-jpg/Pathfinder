@@ -1,6 +1,6 @@
 export default function Home() {
   const links = [
-    { href: "/pathfinder/index.html", label: "⚔️ Pathfinder" },
+    { href: "/pathfinder", label: "⚔️ Pathfinder" },
     { href: "/mtg/index.html", label: "🃏 Magic the Gathering" },
     { href: "/boardgames/index.html", label: "🎲 Boardgames" },
     { href: "/tt-minis/index.html", label: "⚒️ TT Miniatures" },
@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <main style={{ maxWidth: 900, margin: "0 auto", padding: "2rem" }}>
-      <h1>Daniel’s Hub</h1>
+      <h1>Daniel's Hub</h1>
       <p>Select a branch:</p>
 
       <div
@@ -24,7 +24,7 @@ export default function Home() {
         }}
       >
         {links.map((l) => (
-          <a
+          
             key={l.href}
             href={l.href}
             style={{
