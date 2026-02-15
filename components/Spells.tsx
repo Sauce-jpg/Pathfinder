@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { SpellBrowser } from "./SpellBrowser";
 import { SpellCard } from "./SpellCard";
+import { AddSpellcastingClassModal } from "./AddSpellcastingClassModal";
 
 interface SpellsProps {
   characterId: string;
@@ -63,6 +64,7 @@ export function Spells({ characterId, characterLevel, abilityMods }: SpellsProps
   const [loading, setLoading] = useState(true);
   const [showBrowser, setShowBrowser] = useState(false);
   const [browserSpellLevel, setBrowserSpellLevel] = useState<number | null>(null);
+  const [showAddClassModal, setShowAddClassModal] = useState(false);
 
   // Load spellcasting classes
   useEffect(() => {
@@ -250,11 +252,41 @@ export function Spells({ characterId, characterLevel, abilityMods }: SpellsProps
 
   if (classes.length === 0) {
     return (
-      <div style={{ padding: "2rem", textAlign: "center" }}>
-        <p style={{ color: "#999" }}>No spellcasting classes configured.</p>
-        <p style={{ fontSize: "0.9rem", color: "#666" }}>
-          Add spellcasting classes in the character editor to manage spells.
-        </p>
+      <div style={{ padding: "2rem" }}>
+        <div style={{ background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "12px", padding: "2rem", marginBottom: "2rem" }}>
+          <h3 style={{ marginTop: 0, color: "#16a34a" }}>No Spellcasting Classes</h3>
+          <p style={{ color: "#666", marginBottom: "1.5rem" }}>
+            Add your first spellcasting class (Oracle, Wizard, Cleric, etc.) to start managing spells!
+          </p>
+          <button
+            onClick={() => setShowAddClassModal(true)}
+            style={{
+              padding: "0.75rem 1.5rem",
+              background: "#8b5cf6",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: 600,
+              fontSize: "1rem",
+            }}
+          >
+            + Add Spellcasting Class
+          </button>
+        </div>
+
+        {/* Add Class Modal */}
+        <AddSpellcastingClassModal
+          characterId={characterId}
+          characterLevel={characterLevel}
+          abilityMods={abilityMods}
+          isOpen={showAddClassModal}
+          onClose={() => setShowAddClassModal(false)}
+          onClassAdded={() => {
+            setShowAddClassModal(false);
+            loadClasses();
+          }}
+        />
       </div>
     );
   }
@@ -266,30 +298,61 @@ export function Spells({ characterId, characterLevel, abilityMods }: SpellsProps
     <div>
       {/* Class Tabs */}
       <div style={{ borderBottom: "2px solid #ddd", marginBottom: "2rem" }}>
-        <div style={{ display: "flex", gap: "1rem" }}>
-          {classes.map((cls) => (
-            <button
-              key={cls.id}
-              onClick={() => setActiveClass(cls)}
-              style={{
-                padding: "0.75rem 1.5rem",
-                background: activeClass?.id === cls.id ? "#8b5cf6" : "transparent",
-                color: activeClass?.id === cls.id ? "white" : "#8b5cf6",
-                border: `2px solid #8b5cf6`,
-                borderBottom: activeClass?.id === cls.id ? "none" : `2px solid #8b5cf6`,
-                borderRadius: "8px 8px 0 0",
-                cursor: "pointer",
-                fontWeight: 600,
-              }}
-            >
-              {cls.class_name}
-              <span style={{ fontSize: "0.85rem", marginLeft: "0.5rem", opacity: 0.8 }}>
-                (CL {cls.caster_level})
-              </span>
-            </button>
-          ))}
+        <div style={{ display: "flex", gap: "1rem", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            {classes.map((cls) => (
+              <button
+                key={cls.id}
+                onClick={() => setActiveClass(cls)}
+                style={{
+                  padding: "0.75rem 1.5rem",
+                  background: activeClass?.id === cls.id ? "#8b5cf6" : "transparent",
+                  color: activeClass?.id === cls.id ? "white" : "#8b5cf6",
+                  border: `2px solid #8b5cf6`,
+                  borderBottom: activeClass?.id === cls.id ? "none" : `2px solid #8b5cf6`,
+                  borderRadius: "8px 8px 0 0",
+                  cursor: "pointer",
+                  fontWeight: 600,
+                }}
+              >
+                {cls.class_name}
+                <span style={{ fontSize: "0.85rem", marginLeft: "0.5rem", opacity: 0.8 }}>
+                  (CL {cls.caster_level})
+                </span>
+              </button>
+            ))}
+          </div>
+          
+          <button
+            onClick={() => setShowAddClassModal(true)}
+            style={{
+              padding: "0.5rem 1rem",
+              background: "#10b981",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+              fontSize: "0.9rem",
+              fontWeight: 600,
+            }}
+          >
+            + Add Class
+          </button>
         </div>
       </div>
+
+      {/* Add Class Modal */}
+      <AddSpellcastingClassModal
+        characterId={characterId}
+        characterLevel={characterLevel}
+        abilityMods={abilityMods}
+        isOpen={showAddClassModal}
+        onClose={() => setShowAddClassModal(false)}
+        onClassAdded={() => {
+          setShowAddClassModal(false);
+          loadClasses();
+        }}
+      />
 
       {/* Class Info */}
       <div
