@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { FeatBrowser } from "./FeatBrowser";
+import { TraitBrowser } from "./TraitBrowser";
 
 interface Feature {
   id: string;
@@ -39,6 +41,8 @@ export function Features({ characterId, characterLevel }: FeaturesProps) {
   const [activeTab, setActiveTab] = useState<string>("feat");
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingFeature, setEditingFeature] = useState<Feature | null>(null);
+  const [showFeatBrowser, setShowFeatBrowser] = useState(false);
+  const [showTraitBrowser, setShowTraitBrowser] = useState(false);
 
   // Form state
   const [formName, setFormName] = useState("");
@@ -213,21 +217,56 @@ export function Features({ characterId, characterLevel }: FeaturesProps) {
       </div>
 
       {/* Add Button */}
-      <button
-        onClick={() => openAddModal(activeTab)}
-        style={{
-          padding: "0.75rem 1.5rem",
-          background: FEATURE_TYPE_INFO[activeTab as keyof typeof FEATURE_TYPE_INFO].color,
-          color: "white",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-          fontWeight: 600,
-          marginBottom: "1.5rem",
-        }}
-      >
-        + Add {FEATURE_TYPE_INFO[activeTab as keyof typeof FEATURE_TYPE_INFO].label.slice(0, -1)}
-      </button>
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
+        <button
+          onClick={() => openAddModal(activeTab)}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: FEATURE_TYPE_INFO[activeTab as keyof typeof FEATURE_TYPE_INFO].color,
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          + Add {FEATURE_TYPE_INFO[activeTab as keyof typeof FEATURE_TYPE_INFO].label.slice(0, -1)}
+        </button>
+
+        {activeTab === "feat" && (
+          <button
+            onClick={() => setShowFeatBrowser(true)}
+            style={{
+              padding: "0.75rem 1.5rem",
+              background: "white",
+              color: FEATURE_TYPE_INFO.feat.color,
+              border: `2px solid ${FEATURE_TYPE_INFO.feat.color}`,
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
+          >
+            📚 Browse Feats Database
+          </button>
+        )}
+
+        {activeTab === "trait" && (
+          <button
+            onClick={() => setShowTraitBrowser(true)}
+            style={{
+              padding: "0.75rem 1.5rem",
+              background: "white",
+              color: FEATURE_TYPE_INFO.trait.color,
+              border: `2px solid ${FEATURE_TYPE_INFO.trait.color}`,
+              borderRadius: "8px",
+              cursor: "pointer",
+              fontWeight: 600,
+            }}
+          >
+            📚 Browse Traits Database
+          </button>
+        )}
+      </div>
 
       {/* Features List */}
       {activeFeatures.length === 0 ? (
@@ -663,6 +702,34 @@ export function Features({ characterId, characterLevel }: FeaturesProps) {
           </div>
         </div>
       )}
+
+      {/* Feat Browser */}
+      <FeatBrowser
+        isOpen={showFeatBrowser}
+        onClose={() => setShowFeatBrowser(false)}
+        onSelectFeat={(feat) => {
+          openAddModal("feat");
+          setFormName(feat.name);
+          setFormDescription(feat.benefit || "");
+          setFormPrerequisites(feat.prerequisites || "");
+          setFormCategory(feat.types.join(", ") || "");
+        }}
+      />
+
+      {/* Trait Browser */}
+      <TraitBrowser
+        isOpen={showTraitBrowser}
+        onClose={() => setShowTraitBrowser(false)}
+        onSelectTrait={(trait) => {
+          openAddModal("trait");
+          setFormName(trait.name);
+          setFormDescription(trait.benefit || "");
+          setFormCategory(trait.type || "");
+          if (trait.restrictions) {
+            setFormPrerequisites(trait.restrictions);
+          }
+        }}
+      />
     </div>
   );
 }
