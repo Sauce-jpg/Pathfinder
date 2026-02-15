@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import Link from "next/link";
 import { StatWithSources } from "@/components/StatWithSources";
+import { Skills } from "@/components/Skills";
 
 // Utility functions
 function calculateMod(score: number, temp: number = 0): number {
@@ -527,7 +528,12 @@ export default function CharacterSheetPage() {
       {activeTab === "skills" && (
         <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
           <h2 style={{ marginTop: 0 }}>Skills & Feats</h2>
-          <p style={{ color: "#999" }}>Skills and feats management coming soon!</p>
+          <Skills
+            characterId={characterId}
+            characterLevel={char.level || 1}
+            abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
+            armorCheckPenalty={-(char.ac_armor || 0)} // Simplified - armor bonus as penalty
+          />
         </div>
       )}
 
