@@ -22,6 +22,9 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [costGp, setCostGp] = useState(0);
   const [container, setContainer] = useState("");
   const [notes, setNotes] = useState("");
+  const [slotName, setSlotName] = useState("");
+  const [grantsSlotType, setGrantsSlotType] = useState("");
+  const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
 
   function openAddModal() {
@@ -40,6 +43,9 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
     setCostGp(item.cost_gp || 0);
     setContainer(item.container || "");
     setNotes(item.notes || "");
+    setSlotName(item.slot_name || "");
+    setGrantsSlotType(item.grants_slot_type || "");
+    setGrantsSlotCount(item.grants_slot_count || 0);
     setShowAddModal(true);
   }
 
@@ -52,6 +58,9 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
     setCostGp(0);
     setContainer("");
     setNotes("");
+    setSlotName("");
+    setGrantsSlotType("");
+    setGrantsSlotCount(0);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -69,6 +78,9 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
       container: container || null,
       notes: notes || null,
       is_equipped: false,
+      slot_name: slotName || null,
+      grants_slot_type: grantsSlotType || null,
+      grants_slot_count: grantsSlotCount || 0,
     };
 
     let error;
@@ -366,6 +378,38 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
               <div>
                 <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem" }}>
+                  Equipment Slot (optional)
+                </label>
+                <select
+                  value={slotName}
+                  onChange={(e) => setSlotName(e.target.value)}
+                  style={{
+                    width: "100%",
+                    padding: "0.75rem",
+                    border: "1px solid #ddd",
+                    borderRadius: "6px",
+                    fontSize: "1rem",
+                  }}
+                >
+                  <option value="">None (Not equippable)</option>
+                  <option value="head">Head</option>
+                  <option value="headband">Headband</option>
+                  <option value="eyes">Eyes</option>
+                  <option value="neck">Neck</option>
+                  <option value="shoulders">Shoulders</option>
+                  <option value="body">Body</option>
+                  <option value="chest">Chest/Armor</option>
+                  <option value="belt">Belt</option>
+                  <option value="wrists">Wrists</option>
+                  <option value="hands">Hands</option>
+                  <option value="ring">Ring</option>
+                  <option value="feet">Feet</option>
+                  <option value="slotless">Slotless</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem" }}>
                   Description
                 </label>
                 <textarea
@@ -480,6 +524,70 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
                     fontSize: "1rem",
                   }}
                 />
+              </div>
+
+              {/* Bonus Slot Granting */}
+              <div
+                style={{
+                  padding: "1rem",
+                  background: "#f0fdf4",
+                  border: "1px solid #86efac",
+                  borderRadius: "8px",
+                }}
+              >
+                <div style={{ marginBottom: "0.75rem", fontWeight: 600 }}>
+                  ✨ Does this item grant additional equipment slots?
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>
+                      Slot Type
+                    </label>
+                    <select
+                      value={grantsSlotType}
+                      onChange={(e) => setGrantsSlotType(e.target.value)}
+                      style={{
+                        width: "100%",
+                        padding: "0.5rem",
+                        border: "1px solid #ddd",
+                        borderRadius: "6px",
+                        fontSize: "0.9rem",
+                      }}
+                    >
+                      <option value="">None</option>
+                      <option value="ring">Ring</option>
+                      <option value="head">Head</option>
+                      <option value="neck">Neck</option>
+                      <option value="belt">Belt</option>
+                      <option value="feet">Feet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>
+                      Quantity
+                    </label>
+                    <input
+                      type="number"
+                      value={grantsSlotCount}
+                      onChange={(e) => setGrantsSlotCount(parseInt(e.target.value) || 0)}
+                      min="0"
+                      disabled={!grantsSlotType}
+                      placeholder="0"
+                      style={{
+                        width: "100%",
+                        padding: "0.5rem",
+                        border: "1px solid #ddd",
+                        borderRadius: "6px",
+                        fontSize: "0.9rem",
+                      }}
+                    />
+                  </div>
+                </div>
+                {grantsSlotType && grantsSlotCount > 0 && (
+                  <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "#10b981" }}>
+                    💡 When equipped, this item will grant +{grantsSlotCount} {grantsSlotType} slots
+                  </div>
+                )}
               </div>
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
