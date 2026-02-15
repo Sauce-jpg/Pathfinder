@@ -29,6 +29,9 @@ export default function CharacterSheetPage() {
   const [saving, setSaving] = useState(false);
   const [activeTab, setActiveTab] = useState<"overview" | "combat" | "skills" | "spells" | "story">("overview");
 
+  // Sources for calculated stats
+  const [statSources, setStatSources] = useState<any>({});
+
   // Editable state
   const [editData, setEditData] = useState<any>(null);
 
@@ -70,6 +73,23 @@ export default function CharacterSheetPage() {
       setEditData(charData);
     }
 
+    // Load all stat sources
+    const { data: sourcesData } = await supabase
+      .from("character_stat_sources")
+      .select("*")
+      .eq("character_id", characterId)
+      .eq("is_active", true);
+
+    // Group sources by stat category
+    const grouped: any = {};
+    (sourcesData || []).forEach((source: any) => {
+      if (!grouped[source.stat_category]) {
+        grouped[source.stat_category] = [];
+      }
+      grouped[source.stat_category].push(source);
+    });
+
+    setStatSources(grouped);
     setLoading(false);
   }
 
@@ -93,6 +113,12 @@ export default function CharacterSheetPage() {
 
   function updateField(field: string, value: any) {
     setEditData((prev: any) => ({ ...prev, [field]: value }));
+  }
+
+  // Calculate totals from sources
+  function getStatTotal(category: string): number {
+    const sources = statSources[category] || [];
+    return sources.reduce((sum: number, s: any) => sum + s.bonus_value, 0);
   }
 
   if (!session) {
@@ -133,21 +159,21 @@ export default function CharacterSheetPage() {
   const wisMod = calculateMod(char.wis, char.wis_temp || 0);
   const chaMod = calculateMod(char.cha, char.cha_temp || 0);
 
-  // Calculate AC
-  const acTotal = 10 + (char.ac_armor || 0) + (char.ac_shield || 0) + dexMod + 
-                  (char.ac_size || 0) + (char.ac_natural || 0) + 
-                  (char.ac_deflection || 0) + (char.ac_misc || 0);
-  const acTouch = 10 + dexMod + (char.ac_size || 0) + (char.ac_deflection || 0) + (char.ac_misc || 0);
+  // Calculate AC from sources
+  const acFromSources = getStatTotal("ac");
+  const acTotal = 10 + dexMod + acFromSources;
+  const acTouch = 10 + dexMod + getStatTotal("ac_touch_bonus");
   const acFlatFooted = acTotal - dexMod;
 
-  // Calculate saves
-  const fortTotal = (char.fort_base || 0) + conMod + (char.fort_misc || 0);
-  const refTotal = (char.ref_base || 0) + dexMod + (char.ref_misc || 0);
-  const willTotal = (char.will_base || 0) + wisMod + (char.will_misc || 0);
+  // Calculate saves from sources (sources include base saves, ability mods, and all bonuses)
+  const fortTotal = getStatTotal("save_fort");
+  const refTotal = getStatTotal("save_ref");
+  const willTotal = getStatTotal("save_will");
 
-  // Calculate CMB/CMD
-  const cmb = (char.bab || 0) + strMod + (char.cmb_misc || 0);
-  const cmd = 10 + (char.bab || 0) + strMod + dexMod + (char.cmd_misc || 0);
+  // Calculate CMB/CMD from sources
+  const babFromSources = getStatTotal("bab");
+  const cmb = babFromSources + strMod + getStatTotal("cmb");
+  const cmd = 10 + babFromSources + strMod + dexMod + getStatTotal("cmd");
 
   return (
     <main style={{ maxWidth: 1200, margin: "0 auto", padding: "2rem" }}>
@@ -426,6 +452,9 @@ export default function CharacterSheetPage() {
                     editable={true}
                   />
                 </div>
+                <div style={{ fontSize: "0.85rem", color: "#999", marginTop: "0.5rem" }}>
+                  10 + DEX {formatMod(dexMod)} + bonuses
+                </div>
               </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>Touch</div>
@@ -437,37 +466,8 @@ export default function CharacterSheetPage() {
               </div>
             </div>
 
-            <h3>AC Breakdown</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: "1rem" }}>
-              {[
-                { label: "Armor", field: "ac_armor", value: char.ac_armor || 0 },
-                { label: "Shield", field: "ac_shield", value: char.ac_shield || 0 },
-                { label: "Natural", field: "ac_natural", value: char.ac_natural || 0 },
-                { label: "Deflection", field: "ac_deflection", value: char.ac_deflection || 0 },
-                { label: "Misc", field: "ac_misc", value: char.ac_misc || 0 },
-              ].map((bonus) => (
-                <div key={bonus.field}>
-                  <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem" }}>{bonus.label}</label>
-                  {editing ? (
-                    <input
-                      type="number"
-                      value={bonus.value}
-                      onChange={(e) => updateField(bonus.field, parseInt(e.target.value) || 0)}
-                      style={{
-                        width: "100%",
-                        padding: "0.75rem",
-                        border: "1px solid #ddd",
-                        borderRadius: "6px",
-                        fontSize: "1rem",
-                      }}
-                    />
-                  ) : (
-                    <div style={{ padding: "0.75rem", background: "#f9fafb", borderRadius: "6px", textAlign: "center" }}>
-                      {bonus.value}
-                    </div>
-                  )}
-                </div>
-              ))}
+            <div style={{ padding: "1rem", background: "#f0f9ff", borderRadius: "8px", fontSize: "0.9rem" }}>
+              <strong>💡 Tip:</strong> Click the AC number to manage armor, shield, natural armor, deflection, and other bonuses via sources.
             </div>
           </section>
 
@@ -476,9 +476,9 @@ export default function CharacterSheetPage() {
             <h2 style={{ marginTop: 0 }}>Saving Throws</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
               {[
-                { label: "Fortitude", total: fortTotal, base: char.fort_base || 0, basefield: "fort_base", mod: conMod, modName: "CON", statCat: "save_fort" },
-                { label: "Reflex", total: refTotal, base: char.ref_base || 0, basefield: "ref_base", mod: dexMod, modName: "DEX", statCat: "save_ref" },
-                { label: "Will", total: willTotal, base: char.will_base || 0, basefield: "will_base", mod: wisMod, modName: "WIS", statCat: "save_will" },
+                { label: "Fortitude", total: fortTotal, statCat: "save_fort" },
+                { label: "Reflex", total: refTotal, statCat: "save_ref" },
+                { label: "Will", total: willTotal, statCat: "save_will" },
               ].map((save) => (
                 <div key={save.label} style={{ textAlign: "center" }}>
                   <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>{save.label}</div>
@@ -491,23 +491,12 @@ export default function CharacterSheetPage() {
                       editable={true}
                     />
                   </div>
-                  <div style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-                    {editing ? (
-                      <div>
-                        Base:{" "}
-                        <input
-                          type="number"
-                          value={save.base}
-                          onChange={(e) => updateField(save.basefield, parseInt(e.target.value) || 0)}
-                          style={{ width: "50px", padding: "0.25rem", border: "1px solid #ddd", borderRadius: "4px" }}
-                        />
-                      </div>
-                    ) : (
-                      `Base ${save.base} + ${save.modName} ${formatMod(save.mod)}`
-                    )}
-                  </div>
                 </div>
               ))}
+            </div>
+            
+            <div style={{ padding: "1rem", background: "#f0f9ff", borderRadius: "8px", fontSize: "0.9rem", marginTop: "1.5rem" }}>
+              <strong>💡 Tip:</strong> Click any save to add base save (from class), ability modifier, resistance bonuses, etc.
             </div>
           </section>
 
@@ -517,30 +506,21 @@ export default function CharacterSheetPage() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>Base Attack Bonus</div>
-                {editing ? (
-                  <input
-                    type="number"
-                    value={char.bab || 0}
-                    onChange={(e) => updateField("bab", parseInt(e.target.value) || 0)}
-                    style={{
-                      width: "100%",
-                      padding: "0.75rem",
-                      border: "1px solid #ddd",
-                      borderRadius: "6px",
-                      fontSize: "2rem",
-                      textAlign: "center",
-                      fontWeight: 700,
-                    }}
+                <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>
+                  <StatWithSources
+                    characterId={characterId}
+                    statCategory="bab"
+                    displayValue={babFromSources}
+                    label="BAB"
+                    editable={true}
                   />
-                ) : (
-                  <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>{formatMod(char.bab || 0)}</div>
-                )}
+                </div>
               </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>CMB</div>
                 <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>{formatMod(cmb)}</div>
                 <div style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-                  BAB {formatMod(char.bab || 0)} + STR {formatMod(strMod)}
+                  BAB + STR {formatMod(strMod)}
                 </div>
               </div>
               <div style={{ textAlign: "center" }}>
