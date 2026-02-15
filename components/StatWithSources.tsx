@@ -33,6 +33,7 @@ export function StatWithSources({
   const [showTooltip, setShowTooltip] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [editingSource, setEditingSource] = useState<StatSource | null>(null);
   const [sources, setSources] = useState<StatSource[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -256,10 +257,28 @@ export function StatWithSources({
                                 </div>
                               )}
                             </div>
-                            <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginLeft: "1rem" }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginLeft: "1rem" }}>
                               <div style={{ fontSize: "1.2rem", fontWeight: 700, color: source.bonus_value >= 0 ? "#10b981" : "#ef4444" }}>
                                 {source.bonus_value >= 0 ? "+" : ""}{source.bonus_value}
                               </div>
+                              <button
+                                onClick={() => {
+                                  setEditingSource(source);
+                                  setShowEditor(false);
+                                  setShowAddModal(true);
+                                }}
+                                style={{
+                                  padding: "0.25rem 0.5rem",
+                                  background: "#0070f3",
+                                  color: "white",
+                                  border: "none",
+                                  borderRadius: "4px",
+                                  cursor: "pointer",
+                                  fontSize: "0.8rem",
+                                }}
+                              >
+                                Edit
+                              </button>
                               <button
                                 onClick={() => toggleSource(source.id, source.is_active)}
                                 style={{
@@ -397,11 +416,18 @@ export function StatWithSources({
       {/* Add Source Modal */}
       <AddSourceModal
         isOpen={showAddModal}
-        onClose={() => setShowAddModal(false)}
+        onClose={() => {
+          setShowAddModal(false);
+          setEditingSource(null);
+        }}
         characterId={characterId}
         statCategory={statCategory}
         statLabel={label}
-        onSourceAdded={loadSources}
+        editingSource={editingSource}
+        onSourceAdded={() => {
+          loadSources();
+          setEditingSource(null);
+        }}
       />
     </div>
   );
