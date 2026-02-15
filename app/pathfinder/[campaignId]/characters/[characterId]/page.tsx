@@ -423,7 +423,7 @@ export default function CharacterSheetPage() {
                     statCategory="ac"
                     displayValue={acTotal}
                     label="Armor Class"
-                    editable={!editing}
+                    editable={true}
                   />
                 </div>
               </div>
@@ -488,7 +488,7 @@ export default function CharacterSheetPage() {
                       statCategory={save.statCat}
                       displayValue={save.total}
                       label={`${save.label} Save`}
-                      editable={!editing}
+                      editable={true}
                     />
                   </div>
                   <div style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.5rem" }}>
