@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 interface AddSourceModalProps {
@@ -9,6 +9,15 @@ interface AddSourceModalProps {
   characterId: string;
   statCategory: string;
   statLabel: string;
+  editingSource?: {
+    id: string;
+    source_name: string;
+    source_type: string;
+    bonus_value: number;
+    bonus_type: string;
+    obtained_level?: number;
+    obtained_notes?: string;
+  } | null;
   onSourceAdded: () => void;
 }
 
@@ -18,6 +27,7 @@ export function AddSourceModal({
   characterId,
   statCategory,
   statLabel,
+  editingSource,
   onSourceAdded,
 }: AddSourceModalProps) {
   const [sourceName, setSourceName] = useState("");
@@ -28,23 +38,60 @@ export function AddSourceModal({
   const [obtainedNotes, setObtainedNotes] = useState("");
   const [saving, setSaving] = useState(false);
 
+  // Load editing source data when modal opens
+  useEffect(() => {
+    if (editingSource) {
+      setSourceName(editingSource.source_name);
+      setSourceType(editingSource.source_type);
+      setBonusValue(editingSource.bonus_value);
+      setBonusType(editingSource.bonus_type);
+      setObtainedLevel(editingSource.obtained_level || null);
+      setObtainedNotes(editingSource.obtained_notes || "");
+    } else {
+      // Reset form for new source
+      setSourceName("");
+      setSourceType("item");
+      setBonusValue(1);
+      setBonusType("enhancement");
+      setObtainedLevel(null);
+      setObtainedNotes("");
+    }
+  }, [editingSource, isOpen]);
+
   if (!isOpen) return null;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
 
-    const { error } = await supabase.from("character_stat_sources").insert({
-      character_id: characterId,
-      stat_category: statCategory,
+    const sourceData = {
       source_name: sourceName,
       source_type: sourceType,
       bonus_value: bonusValue,
       bonus_type: bonusType,
       obtained_level: obtainedLevel,
       obtained_notes: obtainedNotes || null,
-      is_active: true,
-    });
+    };
+
+    let error;
+
+    if (editingSource) {
+      // Update existing source
+      const result = await supabase
+        .from("character_stat_sources")
+        .update(sourceData)
+        .eq("id", editingSource.id);
+      error = result.error;
+    } else {
+      // Insert new source
+      const result = await supabase.from("character_stat_sources").insert({
+        character_id: characterId,
+        stat_category: statCategory,
+        is_active: true,
+        ...sourceData,
+      });
+      error = result.error;
+    }
 
     if (error) {
       alert("Error adding source: " + error.message);
@@ -92,7 +139,9 @@ export function AddSourceModal({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 style={{ marginTop: 0 }}>Add Source to {statLabel}</h2>
+        <h2 style={{ marginTop: 0 }}>
+          {editingSource ? `Edit ${statLabel} Source` : `Add Source to ${statLabel}`}
+        </h2>
 
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1rem" }}>
           {/* Source Name */}
@@ -257,7 +306,7 @@ export function AddSourceModal({
                 fontWeight: 600,
               }}
             >
-              {saving ? "Adding..." : "Add Source"}
+              {saving ? (editingSource ? "Saving..." : "Adding...") : (editingSource ? "Save Changes" : "Add Source")}
             </button>
             <button
               type="button"
