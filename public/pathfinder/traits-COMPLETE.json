@@ -1,0 +1,800 @@
+[
+  {
+    "name": "Adopted",
+    "type": "social",
+    "benefit": "Choose one race trait from your adoptive race",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Ambitious",
+    "type": "drawback",
+    "benefit": "-2 penalty on saves against compulsions to fulfill your goals",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Anatomist",
+    "type": "combat",
+    "benefit": "+1 trait bonus on all rolls made to confirm critical hits",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Ancestral Weapon Familiarity",
+    "type": "race",
+    "benefit": "Proficiency with racial weapons (various races)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Anxious",
+    "type": "drawback",
+    "benefit": "-2 penalty on initiative checks and can't delay or ready",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Armor Expert",
+    "type": "combat",
+    "benefit": "Reduce armor check penalty by 1 (minimum 0)",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Attached",
+    "type": "drawback",
+    "benefit": "Must save vs. emotion effects when ally is harmed",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Avarice",
+    "type": "drawback",
+    "benefit": "-2 penalty on saves vs. effects that promise wealth",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Berserker of the Society",
+    "type": "combat",
+    "benefit": "+1 trait bonus on melee damage when raging",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Birthmark",
+    "type": "faith",
+    "benefit": "+2 trait bonus on saves against charm and compulsion effects",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Blessed",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Will saves",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Bruising Intellect",
+    "type": "social",
+    "benefit": "Use Intelligence instead of Charisma for Intimidate",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Bullied",
+    "type": "combat",
+    "benefit": "+1 trait bonus on attack of opportunity attacks",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Bully",
+    "type": "social",
+    "benefit": "+1 trait bonus on Intimidate and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Burned",
+    "type": "drawback",
+    "benefit": "-2 penalty on saves vs. fire effects",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Canter",
+    "type": "social",
+    "benefit": "+1 trait bonus on Bluff and Diplomacy with certain types",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Caravan Member",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on Handle Animal and Survival",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Charming",
+    "type": "social",
+    "benefit": "+1 trait bonus on Diplomacy and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Child of the Streets",
+    "type": "social",
+    "benefit": "+1 trait bonus on Sleight of Hand and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Child of the Temple",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Knowledge (religion) and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Civilized",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Knowledge (local) and Linguistics",
+    "source": null,
+    "restrictions": "Region-specific"
+  },
+  {
+    "name": "Classically Schooled",
+    "type": "magic",
+    "benefit": "+1 trait bonus on Spellcraft checks and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Convincing Liar",
+    "type": "social",
+    "benefit": "+1 trait bonus on Bluff checks to lie, +1 DC for Sense Motive to sense lies",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Cosmopolitan",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Linguistics and one additional language",
+    "source": null,
+    "restrictions": "Region-specific"
+  },
+  {
+    "name": "Courageous",
+    "type": "combat",
+    "benefit": "+2 trait bonus on saves against fear",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Criminal",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on Disable Device and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Dangerously Curious",
+    "type": "magic",
+    "benefit": "+1 trait bonus on Use Magic Device and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Defender of the Society",
+    "type": "combat",
+    "benefit": "+1 trait bonus on AC when adjacent to an ally",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Deft Dodger",
+    "type": "combat",
+    "benefit": "+1 trait bonus on Reflex saves",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Desert Child",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Survival and it's always a class skill",
+    "source": null,
+    "restrictions": "Region-specific"
+  },
+  {
+    "name": "Desperate Focus",
+    "type": "magic",
+    "benefit": "+2 trait bonus on concentration checks when casting defensively",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Desperate Resolve",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Will saves when below 0 HP",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Devotee of the Green",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Knowledge (nature) and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Dirty Fighter",
+    "type": "combat",
+    "benefit": "+1 trait bonus on damage when flanking",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Doubt",
+    "type": "drawback",
+    "benefit": "-2 penalty on Will saves vs. mind-affecting effects",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Ease of Faith",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on Diplomacy and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Elven Reflexes",
+    "type": "race",
+    "benefit": "+2 trait bonus on initiative checks (Elf)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Empathic",
+    "type": "social",
+    "benefit": "+1 trait bonus on Sense Motive and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Extremely Fashionable",
+    "type": "social",
+    "benefit": "+1 trait bonus on Bluff, Diplomacy, and Intimidate in settlements",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Eye for Talent",
+    "type": "race",
+    "benefit": "+2 trait bonus on Sense Motive checks (Half-Elf)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Fast-Talker",
+    "type": "social",
+    "benefit": "+1 trait bonus on Bluff and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Fate's Favored",
+    "type": "faith",
+    "benefit": "Luck bonuses increase by 1",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Fearless Defiance",
+    "type": "magic",
+    "benefit": "+1 trait bonus on saves against fear",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Fencer",
+    "type": "combat",
+    "benefit": "+1 trait bonus on attack of opportunity attacks with daggers",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Finding Your Kin",
+    "type": "combat",
+    "benefit": "+1 trait bonus on Survival checks to track humanoids",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Focused Mind",
+    "type": "faith",
+    "benefit": "+2 trait bonus on concentration checks",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Focused Mind",
+    "type": "magic",
+    "benefit": "+2 trait bonus on concentration checks",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Foul Brand",
+    "type": "drawback",
+    "benefit": "-2 penalty on Bluff and Diplomacy checks",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Freedom Fighter",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Will saves vs. charm and compulsion",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Frontier-Forged",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Knowledge (geography) and Survival",
+    "source": null,
+    "restrictions": "Region-specific"
+  },
+  {
+    "name": "Gifted Adept",
+    "type": "magic",
+    "benefit": "+1 trait bonus to caster level for one spell",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Guardian of the Forge",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Craft (armor or weapons)",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Harrow Chosen",
+    "type": "faith",
+    "benefit": "Bonus on a random ability check, attack roll, or skill check 1/day",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Headstrong",
+    "type": "drawback",
+    "benefit": "-2 penalty on initiative checks",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Heavy Hitter",
+    "type": "combat",
+    "benefit": "When wielding two-handed weapons, +1 bonus on damage rolls",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Hedge Magician",
+    "type": "magic",
+    "benefit": "Crafting magic items costs 5% less",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Hill Child",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Climb and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "History of Heresy",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Knowledge (planes or religion)",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Indomitable Faith",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Will saves",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Influence",
+    "type": "social",
+    "benefit": "+1 trait bonus on Diplomacy checks to influence creatures",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Inspired",
+    "type": "faith",
+    "benefit": "+1 trait bonus to Will saves, +2 vs. mind-affecting",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Intimidating Prowess",
+    "type": "social",
+    "benefit": "+1 trait bonus on Intimidate checks",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Killer",
+    "type": "combat",
+    "benefit": "+1 trait bonus on weapon damage rolls",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Lessons of Chaldira",
+    "type": "faith",
+    "benefit": "Can re-roll one d20 per day",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Log Roller",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Acrobatics when balancing",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Maestro of the Society",
+    "type": "social",
+    "benefit": "+1 trait bonus on one Perform skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Magical Knack",
+    "type": "magic",
+    "benefit": "+2 trait bonus to caster level (up to character level)",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Magical Lineage",
+    "type": "magic",
+    "benefit": "Pick one spell. It is treated as 1 level lower when applying metamagic feats",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Militant Merchant",
+    "type": "combat",
+    "benefit": "+1 trait bonus on weapon damage with crossbows and firearms",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Moon Kissed",
+    "type": "race",
+    "benefit": "+1 trait bonus on saves against lycanthropy (Gnome)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Natural-Born Leader",
+    "type": "social",
+    "benefit": "+1 trait bonus on Leadership score",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Noble Born",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on Knowledge (nobility) and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Observant Half-Elf",
+    "type": "race",
+    "benefit": "+1 trait bonus on Perception (Half-Elf)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Ocean Child",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Swim and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Orator",
+    "type": "social",
+    "benefit": "+1 trait bonus on one Perform category and Diplomacy",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Outlander",
+    "type": "magic",
+    "benefit": "+1 trait bonus on concentration checks when casting defensively",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Outlander",
+    "type": "campaign",
+    "benefit": "Select one Knowledge skill, it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Pious",
+    "type": "faith",
+    "benefit": "+1 trait bonus on Knowledge (religion) and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Poverty-Stricken",
+    "type": "social",
+    "benefit": "+1 trait bonus on Survival checks",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Pragmatic Activator",
+    "type": "magic",
+    "benefit": "Use Intelligence instead of Charisma for Use Magic Device",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Pride",
+    "type": "drawback",
+    "benefit": "-2 penalty on Diplomacy and saves vs. compulsion to prove superiority",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Principled",
+    "type": "faith",
+    "benefit": "+2 trait bonus on Will saves vs. charm and compulsion",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Reactionary",
+    "type": "combat",
+    "benefit": "+2 trait bonus on initiative checks",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Resilient",
+    "type": "combat",
+    "benefit": "+1 trait bonus on Fortitude saves",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Resilient Caster",
+    "type": "magic",
+    "benefit": "+1 trait bonus on caster level checks to overcome SR",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Resourceful",
+    "type": "social",
+    "benefit": "+1 trait bonus on Use Magic Device and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Rich Parents",
+    "type": "campaign",
+    "benefit": "Start with 900 gp instead of normal starting wealth",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "River Rat",
+    "type": "combat",
+    "benefit": "+1 trait bonus on Swim checks and +1 trait bonus on damage with daggers",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Sacred Conduit",
+    "type": "faith",
+    "benefit": "+1 trait bonus to DC of channel energy",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Sacred Tattoo",
+    "type": "race",
+    "benefit": "+1 trait bonus on all saving throws (Half-Orc)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Sacred Touch",
+    "type": "faith",
+    "benefit": "+1 trait bonus on caster level checks to overcome spell resistance",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Savanna Child",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Handle Animal and it's always a class skill",
+    "source": null,
+    "restrictions": "Region-specific"
+  },
+  {
+    "name": "Scholar of Ruins",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on Knowledge (history) and Linguistics",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Scholar of the Great Beyond",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on Knowledge (planes) and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Snow Child",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Survival in cold climates",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Spark of Creation",
+    "type": "magic",
+    "benefit": "+1 trait bonus on Craft checks and reduce cost of magic items by 5%",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Steppe Child",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Ride and it's always a class skill",
+    "source": null,
+    "restrictions": "Region-specific"
+  },
+  {
+    "name": "Student of Philosophy",
+    "type": "campaign",
+    "benefit": "Use Intelligence for Diplomacy instead of Charisma",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Surprise Weapon",
+    "type": "combat",
+    "benefit": "+2 trait bonus on Sleight of Hand checks to conceal light weapon",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Suspicious",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on Sense Motive and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Talented",
+    "type": "social",
+    "benefit": "+1 trait bonus on Perform checks and it's always a class skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Threatening Defender",
+    "type": "combat",
+    "benefit": "+1 trait bonus to CMD",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Tireless Logic",
+    "type": "campaign",
+    "benefit": "+1 trait bonus on saves vs. illusions",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Tunnel Fighter",
+    "type": "regional",
+    "benefit": "+2 trait bonus on initiative in underground areas",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Unstoppable Magic",
+    "type": "race",
+    "benefit": "+1 trait bonus on caster level checks (Half-Orc)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Urban Child",
+    "type": "regional",
+    "benefit": "+1 trait bonus on Diplomacy or Intimidate in settlements",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Vain",
+    "type": "drawback",
+    "benefit": "-2 penalty on saves vs. effects targeting pride",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  },
+  {
+    "name": "Void-Touched",
+    "type": "magic",
+    "benefit": "+1 trait bonus on saves vs. dark and shadow effects",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Warrior of Old",
+    "type": "race",
+    "benefit": "+2 trait bonus on initiative checks (Dwarf)",
+    "source": null,
+    "restrictions": "Race-specific"
+  },
+  {
+    "name": "Wary",
+    "type": "combat",
+    "benefit": "+1 trait bonus on Perception checks",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Wayang Spellhunter",
+    "type": "magic",
+    "benefit": "Like Magical Lineage - spell treated as 1 level lower for metamagic",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "Wisdom in the Flesh",
+    "type": "faith",
+    "benefit": "Use Wisdom instead of other ability for one skill",
+    "source": null,
+    "restrictions": null
+  },
+  {
+    "name": "World Traveler",
+    "type": "regional",
+    "benefit": "+1 trait bonus on a social skill and it's always a class skill",
+    "source": null,
+    "restrictions": "Region-specific"
+  },
+  {
+    "name": "Wrath",
+    "type": "drawback",
+    "benefit": "-2 penalty on saves vs. effects that provoke anger",
+    "source": null,
+    "restrictions": "Drawback - can take one to gain a 3rd trait"
+  }
+]
