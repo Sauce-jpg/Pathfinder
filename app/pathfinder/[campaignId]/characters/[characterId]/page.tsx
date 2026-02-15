@@ -8,6 +8,7 @@ import { StatWithSources } from "@/components/StatWithSources";
 import { Skills } from "@/components/Skills";
 import { Features } from "@/components/Features";
 import { Spells } from "@/components/Spells";
+import { Inventory } from "@/components/Inventory";
 
 // Utility functions
 function calculateMod(score: number, temp: number = 0): number {
@@ -30,7 +31,7 @@ export default function CharacterSheetPage() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"overview" | "combat" | "skills" | "spells" | "story">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "combat" | "skills" | "spells" | "inventory" | "story">("overview");
 
   // Sources for calculated stats
   const [statSources, setStatSources] = useState<any>({});
@@ -282,6 +283,7 @@ export default function CharacterSheetPage() {
             { id: "combat", label: "Combat" },
             { id: "skills", label: "Skills & Feats" },
             { id: "spells", label: "Spells" },
+            { id: "inventory", label: "Inventory" },
             { id: "story", label: "Story" },
           ].map((tab) => (
             <button
@@ -558,6 +560,17 @@ export default function CharacterSheetPage() {
             characterId={characterId}
             characterLevel={char.level || 1}
             abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
+          />
+        </div>
+      )}
+
+      {activeTab === "inventory" && (
+        <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
+          <h2 style={{ marginTop: 0 }}>Inventory & Equipment</h2>
+          <Inventory
+            characterId={characterId}
+            characterLevel={char.level || 1}
+            strengthScore={strTotal}
           />
         </div>
       )}
