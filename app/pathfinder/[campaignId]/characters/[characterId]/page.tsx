@@ -151,13 +151,21 @@ export default function CharacterSheetPage() {
 
   const char = editing ? editData : character;
 
-  // Calculate modifiers
-  const strMod = calculateMod(char.str, char.str_temp || 0);
-  const dexMod = calculateMod(char.dex, char.dex_temp || 0);
-  const conMod = calculateMod(char.con, char.con_temp || 0);
-  const intMod = calculateMod(char.int, char.int_temp || 0);
-  const wisMod = calculateMod(char.wis, char.wis_temp || 0);
-  const chaMod = calculateMod(char.cha, char.cha_temp || 0);
+  // Calculate ability scores from sources (base racial + level increases + items + temp)
+  const strTotal = getStatTotal("ability_str");
+  const dexTotal = getStatTotal("ability_dex");
+  const conTotal = getStatTotal("ability_con");
+  const intTotal = getStatTotal("ability_int");
+  const wisTotal = getStatTotal("ability_wis");
+  const chaTotal = getStatTotal("ability_cha");
+
+  // Calculate modifiers from source-driven ability scores
+  const strMod = calculateMod(strTotal, 0);
+  const dexMod = calculateMod(dexTotal, 0);
+  const conMod = calculateMod(conTotal, 0);
+  const intMod = calculateMod(intTotal, 0);
+  const wisMod = calculateMod(wisTotal, 0);
+  const chaMod = calculateMod(chaTotal, 0);
 
   // Calculate AC from sources
   const acFromSources = getStatTotal("ac");
@@ -169,6 +177,10 @@ export default function CharacterSheetPage() {
   const fortTotal = getStatTotal("save_fort");
   const refTotal = getStatTotal("save_ref");
   const willTotal = getStatTotal("save_will");
+
+  // Calculate HP from sources
+  const hpMax = getStatTotal("hp_max");
+  const hpTemp = getStatTotal("hp_temp");
 
   // Calculate CMB/CMD from sources
   const babFromSources = getStatTotal("bab");
@@ -297,33 +309,24 @@ export default function CharacterSheetPage() {
             <h2 style={{ marginTop: 0 }}>Ability Scores</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: "1rem" }}>
               {[
-                { label: "STR", score: char.str, temp: char.str_temp || 0, mod: strMod, field: "str" },
-                { label: "DEX", score: char.dex, temp: char.dex_temp || 0, mod: dexMod, field: "dex" },
-                { label: "CON", score: char.con, temp: char.con_temp || 0, mod: conMod, field: "con" },
-                { label: "INT", score: char.int, temp: char.int_temp || 0, mod: intMod, field: "int" },
-                { label: "WIS", score: char.wis, temp: char.wis_temp || 0, mod: wisMod, field: "wis" },
-                { label: "CHA", score: char.cha, temp: char.cha_temp || 0, mod: chaMod, field: "cha" },
+                { label: "STR", total: strTotal, mod: strMod, statCat: "ability_str" },
+                { label: "DEX", total: dexTotal, mod: dexMod, statCat: "ability_dex" },
+                { label: "CON", total: conTotal, mod: conMod, statCat: "ability_con" },
+                { label: "INT", total: intTotal, mod: intMod, statCat: "ability_int" },
+                { label: "WIS", total: wisTotal, mod: wisMod, statCat: "ability_wis" },
+                { label: "CHA", total: chaTotal, mod: chaMod, statCat: "ability_cha" },
               ].map((ability) => (
                 <div key={ability.label} style={{ textAlign: "center" }}>
                   <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>{ability.label}</div>
-                  {editing ? (
-                    <input
-                      type="number"
-                      value={ability.score}
-                      onChange={(e) => updateField(ability.field, parseInt(e.target.value) || 10)}
-                      style={{
-                        width: "100%",
-                        padding: "0.75rem",
-                        border: "1px solid #ddd",
-                        borderRadius: "6px",
-                        fontSize: "1.5rem",
-                        textAlign: "center",
-                        fontWeight: 600,
-                      }}
+                  <div style={{ fontSize: "2rem", fontWeight: 700 }}>
+                    <StatWithSources
+                      characterId={characterId}
+                      statCategory={ability.statCat}
+                      displayValue={ability.total}
+                      label={ability.label}
+                      editable={true}
                     />
-                  ) : (
-                    <div style={{ fontSize: "2rem", fontWeight: 700 }}>{ability.score + ability.temp}</div>
-                  )}
+                  </div>
                   <div style={{ fontSize: "1.2rem", color: "#666", marginTop: "0.25rem" }}>
                     {formatMod(ability.mod)}
                   </div>
@@ -357,41 +360,27 @@ export default function CharacterSheetPage() {
               </div>
               <div>
                 <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem" }}>Max HP</label>
-                {editing ? (
-                  <input
-                    type="number"
-                    value={char.hp_max || 0}
-                    onChange={(e) => updateField("hp_max", parseInt(e.target.value) || 0)}
-                    style={{
-                      width: "100%",
-                      padding: "0.75rem",
-                      border: "1px solid #ddd",
-                      borderRadius: "6px",
-                      fontSize: "1.5rem",
-                    }}
+                <div style={{ fontSize: "2rem", fontWeight: 700, color: "#666" }}>
+                  <StatWithSources
+                    characterId={characterId}
+                    statCategory="hp_max"
+                    displayValue={hpMax}
+                    label="Max HP"
+                    editable={true}
                   />
-                ) : (
-                  <div style={{ fontSize: "2rem", fontWeight: 700, color: "#666" }}>{char.hp_max || 0}</div>
-                )}
+                </div>
               </div>
               <div>
                 <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem" }}>Temp HP</label>
-                {editing ? (
-                  <input
-                    type="number"
-                    value={char.hp_temp || 0}
-                    onChange={(e) => updateField("hp_temp", parseInt(e.target.value) || 0)}
-                    style={{
-                      width: "100%",
-                      padding: "0.75rem",
-                      border: "1px solid #ddd",
-                      borderRadius: "6px",
-                      fontSize: "1.5rem",
-                    }}
+                <div style={{ fontSize: "2rem", fontWeight: 700, color: "#10b981" }}>
+                  <StatWithSources
+                    characterId={characterId}
+                    statCategory="hp_temp"
+                    displayValue={hpTemp}
+                    label="Temp HP"
+                    editable={true}
                   />
-                ) : (
-                  <div style={{ fontSize: "2rem", fontWeight: 700, color: "#10b981" }}>{char.hp_temp || 0}</div>
-                )}
+                </div>
               </div>
             </div>
           </section>
