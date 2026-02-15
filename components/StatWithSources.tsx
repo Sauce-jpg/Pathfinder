@@ -1,8 +1,9 @@
-// components/StatWithSources.tsx
+d// components/StatWithSources.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { AddSourceModal } from "./AddSourceModal";
 
 interface StatSource {
   id: string;
@@ -32,6 +33,7 @@ export function StatWithSources({
 }: StatWithSourcesProps) {
   const [showTooltip, setShowTooltip] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
   const [sources, setSources] = useState<StatSource[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -370,11 +372,38 @@ export function StatWithSources({
                 >
                   Close
                 </button>
+
+                <button
+                  onClick={() => setShowAddModal(true)}
+                  style={{
+                    marginTop: "0.75rem",
+                    width: "100%",
+                    padding: "0.75rem",
+                    background: "#0070f3",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    fontWeight: 600,
+                  }}
+                >
+                  + Add Source
+                </button>
               </>
             )}
           </div>
         </div>
       )}
+
+      {/* Add Source Modal */}
+      <AddSourceModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        characterId={characterId}
+        statCategory={statCategory}
+        statLabel={label}
+        onSourceAdded={loadSources}
+      />
     </div>
   );
 }
