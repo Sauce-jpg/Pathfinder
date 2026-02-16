@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { ItemBonusesEditor } from "./ItemBonusesEditor";
 
 interface ItemsTabProps {
   characterId: string;
@@ -589,6 +590,12 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
                   </div>
                 )}
               </div>
+
+              {/* Item Stat Bonuses Editor */}
+              <ItemBonusesEditor
+                itemId={editingItem?.id || null}
+                onUpdate={onUpdate}
+              />
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
