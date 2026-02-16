@@ -83,7 +83,7 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
       alert("Error adding bonus: " + error.message);
     } else {
       loadBonuses();
-      onUpdate?.();
+      // Don't call onUpdate here - it closes the modal
     }
   }
 
@@ -94,13 +94,13 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
       .eq("id", bonusId);
 
     loadBonuses();
-    onUpdate?.();
+    // Don't call onUpdate here - it closes the modal
   }
 
   async function deleteBonus(bonusId: string) {
     await supabase.from("item_stat_bonuses").delete().eq("id", bonusId);
     loadBonuses();
-    onUpdate?.();
+    // Don't call onUpdate here - it closes the modal
   }
 
   if (!itemId) {
@@ -150,6 +150,7 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
               <select
                 value={bonus.stat_category}
                 onChange={(e) => updateBonus(bonus.id, "stat_category", e.target.value)}
+                onClick={(e) => e.stopPropagation()}
                 style={{
                   padding: "0.5rem",
                   border: "1px solid #ddd",
@@ -168,6 +169,7 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
                 type="number"
                 value={bonus.bonus_value}
                 onChange={(e) => updateBonus(bonus.id, "bonus_value", parseInt(e.target.value) || 0)}
+                onClick={(e) => e.stopPropagation()}
                 style={{
                   padding: "0.5rem",
                   border: "1px solid #ddd",
@@ -179,6 +181,7 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
               <select
                 value={bonus.bonus_type}
                 onChange={(e) => updateBonus(bonus.id, "bonus_type", e.target.value)}
+                onClick={(e) => e.stopPropagation()}
                 style={{
                   padding: "0.5rem",
                   border: "1px solid #ddd",
@@ -194,7 +197,11 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
               </select>
 
               <button
-                onClick={() => deleteBonus(bonus.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteBonus(bonus.id);
+                }}
+                type="button"
                 style={{
                   padding: "0.5rem",
                   background: "#ef4444",
@@ -213,7 +220,11 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
       )}
 
       <button
-        onClick={addBonus}
+        onClick={(e) => {
+          e.stopPropagation();
+          addBonus();
+        }}
+        type="button"
         style={{
           padding: "0.5rem 1rem",
           background: "#10b981",
