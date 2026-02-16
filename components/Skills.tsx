@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { StatWithSources } from "./StatWithSources";
+import { AddCustomSkillModal } from "./AddCustomSkillModal";
 
 // Pathfinder 1e skill definitions
 const SKILL_DEFINITIONS = [
@@ -64,6 +65,7 @@ export function Skills({ characterId, characterLevel, abilityMods, armorCheckPen
   const [loading, setLoading] = useState(true);
   const [searchFilter, setSearchFilter] = useState("");
   const [showOnlyTrained, setShowOnlyTrained] = useState(false);
+  const [showCustomSkillModal, setShowCustomSkillModal] = useState(false);
 
   useEffect(() => {
     loadSkills();
@@ -209,6 +211,21 @@ export function Skills({ characterId, characterLevel, abilityMods, armorCheckPen
           />
           <span>Trained only</span>
         </label>
+        <button
+          onClick={() => setShowCustomSkillModal(true)}
+          style={{
+            padding: "0.75rem 1.25rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            whiteSpace: "nowrap",
+          }}
+        >
+          + Custom Skill
+        </button>
       </div>
 
       {/* Skills Table */}
@@ -306,6 +323,14 @@ export function Skills({ characterId, characterLevel, abilityMods, armorCheckPen
           No skills found matching "{searchFilter}"
         </div>
       )}
+
+      {/* Custom Skill Modal */}
+      <AddCustomSkillModal
+        characterId={characterId}
+        isOpen={showCustomSkillModal}
+        onClose={() => setShowCustomSkillModal(false)}
+        onSkillAdded={loadSkills}
+      />
     </div>
   );
 }
