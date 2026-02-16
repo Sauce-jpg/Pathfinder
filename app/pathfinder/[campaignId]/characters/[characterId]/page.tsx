@@ -32,7 +32,7 @@ export default function CharacterSheetPage() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"overview" | "combat" | "skills" | "spells" | "equipment" | "inventory" | "story">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "combat" | "skills" | "feats" | "spells" | "equipment" | "inventory" | "story">("overview");
 
   // Sources for calculated stats
   const [statSources, setStatSources] = useState<any>({});
@@ -282,7 +282,8 @@ export default function CharacterSheetPage() {
           {[
             { id: "overview", label: "Overview" },
             { id: "combat", label: "Combat" },
-            { id: "skills", label: "Skills & Feats" },
+            { id: "skills", label: "Skills" },
+            { id: "feats", label: "Feats & Abilities" },
             { id: "spells", label: "Spells" },
             { id: "equipment", label: "Equipment" },
             { id: "inventory", label: "Inventory" },
@@ -532,26 +533,24 @@ export default function CharacterSheetPage() {
       )}
 
       {activeTab === "skills" && (
-        <div style={{ display: "grid", gap: "2rem" }}>
-          {/* Skills Section */}
-          <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
-            <h2 style={{ marginTop: 0 }}>Skills</h2>
-            <Skills
-              characterId={characterId}
-              characterLevel={char.level || 1}
-              abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
-              armorCheckPenalty={-(char.ac_armor || 0)}
-            />
-          </div>
+        <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
+          <h2 style={{ marginTop: 0 }}>Skills</h2>
+          <Skills
+            characterId={characterId}
+            characterLevel={char.level || 1}
+            abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
+            armorCheckPenalty={-(char.ac_armor || 0)}
+          />
+        </div>
+      )}
 
-          {/* Features Section */}
-          <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
-            <h2 style={{ marginTop: 0 }}>Feats, Traits & Abilities</h2>
-            <Features
-              characterId={characterId}
-              characterLevel={char.level || 1}
-            />
-          </div>
+      {activeTab === "feats" && (
+        <div style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
+          <h2 style={{ marginTop: 0 }}>Feats, Traits & Abilities</h2>
+          <Features
+            characterId={characterId}
+            characterLevel={char.level || 1}
+          />
         </div>
       )}
 
