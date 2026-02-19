@@ -1,0 +1,3033 @@
+[
+  {
+    "Name": "Adamantine chain (10 ft.)",
+    "Cost": "3,030 gp",
+    "Weight": "2 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Extremely strong chain made of adamantine. Can support massive weights and is nearly impossible to break."
+  },
+  {
+    "Name": "Adventurer's sash",
+    "Cost": "20 gp",
+    "Weight": "3 lbs.",
+    "Category": "clothing",
+    "Description": "A stylish sash with hidden pockets and loops for storing small items and tools while keeping them readily accessible."
+  },
+  {
+    "Name": "Air bladder",
+    "Cost": "1 sp",
+    "Weight": "1/2 lb.",
+    "Category": "survival",
+    "Description": "An inflatable bladder that can be used as a flotation device or to store air for breathing underwater."
+  },
+  {
+    "Name": "Air tank",
+    "Cost": "5 sp/gallon",
+    "Weight": "1/2 lb./gallon",
+    "Category": "survival",
+    "Description": "A container for storing compressed air. Can be used for underwater breathing or other purposes requiring stored air."
+  },
+  {
+    "Name": "Air tank, pressurized",
+    "Cost": "25 gp",
+    "Weight": "30 lbs.",
+    "Category": "survival",
+    "Description": "A large pressurized tank that holds enough air for extended underwater activities or breathing in hazardous environments."
+  },
+  {
+    "Name": "Alchemical tar paper",
+    "Cost": "50 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "Special paper treated with alchemical substances that makes it waterproof and resistant to deterioration."
+  },
+  {
+    "Name": "Animal glue",
+    "Cost": "5 sp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "Sticky adhesive made from animal products. Can be used to bond materials together temporarily."
+  },
+  {
+    "Name": "Animal-repellant sack",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "survival",
+    "Description": "A sack treated with substances that repel common animals, useful for storing food and preventing animal interference."
+  },
+  {
+    "Name": "Aquatic harness (Large)",
+    "Cost": "20 gp",
+    "Weight": "3 lbs.",
+    "Category": "equipment",
+    "Description": "A harness designed for Large creatures to use underwater, improving swimming and allowing attachment of equipment."
+  },
+  {
+    "Name": "Aquatic harness (Medium)",
+    "Cost": "10 gp",
+    "Weight": "2 lbs.",
+    "Category": "equipment",
+    "Description": "A harness designed for Medium creatures to use underwater, improving swimming and allowing attachment of equipment."
+  },
+  {
+    "Name": "Area map",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Category": "navigation",
+    "Description": "A detailed map of a specific area, providing information about terrain, landmarks, and local features."
+  },
+  {
+    "Name": "Armor vents",
+    "Cost": "100 gp",
+    "Weight": "-5 lbs.",
+    "Category": "armor_accessories",
+    "Description": "Ventilation system that can be added to armor, reducing heat buildup and improving comfort. Reduces armor weight by 5 lbs."
+  },
+  {
+    "Name": "Arrow (grappling)",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "climbing",
+    "Description": "A specially designed arrow with a grappling hook that can be fired from a bow to create climbing lines."
+  },
+  {
+    "Name": "Artificial gills",
+    "Cost": "50 gp",
+    "Weight": "15 lbs.",
+    "Category": "survival",
+    "Description": "A device that extracts oxygen from water, allowing the wearer to breathe underwater for a limited time."
+  },
+  {
+    "Name": "Artist's poster",
+    "Cost": "15 gp",
+    "Weight": "\u2014",
+    "Category": "entertainment",
+    "Description": "A decorative poster created by an artist, can be used for decoration or as cover for hidden spaces."
+  },
+  {
+    "Name": "Astrolabe",
+    "Cost": "1,000 gp",
+    "Weight": "6 lbs.",
+    "Category": "navigation",
+    "Description": "A sophisticated navigation instrument used to determine latitude and longitude by measuring celestial bodies."
+  },
+  {
+    "Name": "Aura goggles",
+    "Cost": "15 gp",
+    "Weight": "1 lb.",
+    "Category": "magical_items",
+    "Description": "Special goggles that help detect magical auras and supernatural effects in the surrounding area."
+  },
+  {
+    "Name": "Automatic writing planchette",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Category": "occult",
+    "Description": "A mystical device used in s\u00e9ances and divination, believed to allow spirits to communicate through writing."
+  },
+  {
+    "Name": "Autosniper trap",
+    "Cost": "250 gp",
+    "Weight": "1 lb.",
+    "Category": "traps",
+    "Description": "A mechanical trap that automatically fires crossbow bolts at targets that trigger it."
+  },
+  {
+    "Name": "Backpack (carrier)",
+    "Cost": "25 gp",
+    "Weight": "5 lbs.",
+    "Category": "containers",
+    "Description": "A sturdy backpack designed to safely carry a Small creature or similar-sized cargo."
+  },
+  {
+    "Name": "Backpack (common)",
+    "Cost": "2 gp",
+    "Weight": "2 lbs.",
+    "Category": "containers",
+    "Description": "A standard leather or canvas backpack with multiple pockets for organizing adventuring gear."
+  },
+  {
+    "Name": "Backpack (hydration)",
+    "Cost": "40 gp",
+    "Weight": "4 lbs.",
+    "Category": "containers",
+    "Description": "A backpack with an integrated water bladder and drinking tube for easy hydration while traveling."
+  },
+  {
+    "Name": "Backpack (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "4 lbs.",
+    "Category": "containers",
+    "Description": "A superior quality backpack with reinforced stitching, better weight distribution, and more organized compartments."
+  },
+  {
+    "Name": "Backpack (weaponrack)",
+    "Cost": "25 gp",
+    "Weight": "5 lbs.",
+    "Category": "containers",
+    "Description": "A specialized backpack with external mounting points and straps for carrying weapons securely."
+  },
+  {
+    "Name": "Badger plush",
+    "Cost": "45 gp",
+    "Weight": "2 lbs.",
+    "Category": "entertainment",
+    "Description": "A stuffed badger toy. Can be used as a comfort item or as a decoy."
+  },
+  {
+    "Name": "Bag, bear",
+    "Cost": "2 gp",
+    "Weight": "3 lbs.",
+    "Category": "containers",
+    "Description": "A large, sturdy bag designed to store food and keep it safe from bears and other animals."
+  },
+  {
+    "Name": "Balloon trap",
+    "Cost": "150 gp",
+    "Weight": "4 lbs.",
+    "Category": "traps",
+    "Description": "An inflatable device that can be triggered to expand rapidly, potentially trapping or disorienting targets."
+  },
+  {
+    "Name": "Bandolier",
+    "Cost": "5 sp",
+    "Weight": "\u2014",
+    "Category": "clothing",
+    "Description": "A belt worn across the chest with loops and pockets for holding ammunition, potions, and small items."
+  },
+  {
+    "Name": "Banner",
+    "Cost": "1\u201320 gp",
+    "Weight": "2 lbs.",
+    "Category": "misc",
+    "Description": "A decorative flag or standard bearing symbols, heraldry, or messages. Used for identification or morale."
+  },
+  {
+    "Name": "Barbed vest",
+    "Cost": "10 gp",
+    "Weight": "4 lbs.",
+    "Category": "armor_accessories",
+    "Description": "A vest covered in sharp barbs that damage creatures attempting to grapple the wearer."
+  },
+  {
+    "Name": "Barrel",
+    "Cost": "2 gp",
+    "Weight": "30 lbs.",
+    "Category": "containers",
+    "Description": "A large wooden cask used for storing liquids or dry goods. Holds 40 gallons."
+  },
+  {
+    "Name": "Basket",
+    "Cost": "4 sp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A woven container useful for carrying and storing various items."
+  },
+  {
+    "Name": "Beast-hunter whistle",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A special whistle that produces sounds effective for tracking or controlling certain animals."
+  },
+  {
+    "Name": "Bedroll",
+    "Cost": "1 sp",
+    "Weight": "5 lbs.",
+    "Category": "camping",
+    "Description": "A portable sleeping mat with blankets, providing basic comfort and warmth when camping."
+  },
+  {
+    "Name": "Bell",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A small metal bell that rings when moved, useful for alarms or signals."
+  },
+  {
+    "Name": "Bell net",
+    "Cost": "2 gp",
+    "Weight": "2 lbs.",
+    "Category": "traps",
+    "Description": "A net strung with small bells that jingle when disturbed, serving as an early warning system."
+  },
+  {
+    "Name": "Bell tripwire trap",
+    "Cost": "2 gp",
+    "Weight": "2 lbs.",
+    "Category": "traps",
+    "Description": "A simple trap consisting of a tripwire attached to bells that ring when triggered."
+  },
+  {
+    "Name": "Belt pouch",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "containers",
+    "Description": "A small leather pouch worn on a belt, perfect for coins and small objects."
+  },
+  {
+    "Name": "Black powder (dose)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Category": "firearms",
+    "Description": "A single dose of explosive black powder used to fire guns or create small explosions."
+  },
+  {
+    "Name": "Black powder (keg)",
+    "Cost": "1,000 gp",
+    "Weight": "5 lbs.",
+    "Category": "firearms",
+    "Description": "A large keg containing 100 doses of black powder. Highly explosive if ignited."
+  },
+  {
+    "Name": "Blanket",
+    "Cost": "5 sp",
+    "Weight": "3 lbs.",
+    "Category": "camping",
+    "Description": "A warm woolen blanket for sleeping or keeping warm in cold weather."
+  },
+  {
+    "Name": "Blightburn reader",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Category": "magical_items",
+    "Description": "A device that detects the presence and intensity of blightburn radiation."
+  },
+  {
+    "Name": "Block and tackle",
+    "Cost": "5 gp",
+    "Weight": "5 lbs.",
+    "Category": "tools",
+    "Description": "A system of pulleys and rope that provides mechanical advantage for lifting heavy objects."
+  },
+  {
+    "Name": "Blue book",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "writing",
+    "Description": "A book with blank blue pages, often used for official records or important documentation."
+  },
+  {
+    "Name": "Book lariat",
+    "Cost": "3 sp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A cord with loops designed to securely carry books and keep them accessible."
+  },
+  {
+    "Name": "Book of letters",
+    "Cost": "50 gp",
+    "Weight": "3 lbs.",
+    "Category": "writing",
+    "Description": "A collection of correspondence and letters, useful for reference or study."
+  },
+  {
+    "Name": "Book of war prayers",
+    "Cost": "50 gp",
+    "Weight": "1/2 lb.",
+    "Category": "religious",
+    "Description": "A small book containing prayers and blessings specific to warriors and combat."
+  },
+  {
+    "Name": "Bottle",
+    "Cost": "2 gp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A glass container with a cork or stopper, used for storing liquids."
+  },
+  {
+    "Name": "Bottom-walker's anchor",
+    "Cost": "5 gp",
+    "Weight": "50 lbs.",
+    "Category": "underwater",
+    "Description": "A heavy weight used by divers to walk along the ocean floor rather than swim."
+  },
+  {
+    "Name": "Braille bracelet",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A bracelet with raised bumps that can convey messages in braille."
+  },
+  {
+    "Name": "Breakaway chains",
+    "Cost": "65 gp",
+    "Weight": "2 lbs.",
+    "Category": "escape_artist",
+    "Description": "Chains designed to appear secure but can be easily broken with the right technique, useful for escape artists."
+  },
+  {
+    "Name": "Breathing tube",
+    "Cost": "1 gp",
+    "Weight": "1/10 lb.",
+    "Category": "survival",
+    "Description": "A simple tube that extends above water, allowing someone submerged to breathe surface air."
+  },
+  {
+    "Name": "Broadsheet",
+    "Cost": "6 sp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "A single sheet of paper with news, announcements, or propaganda printed on it."
+  },
+  {
+    "Name": "Bucket",
+    "Cost": "5 sp",
+    "Weight": "2 lbs.",
+    "Category": "containers",
+    "Description": "A simple container with a handle, useful for carrying water or other materials."
+  },
+  {
+    "Name": "Bullseye lantern",
+    "Cost": "12 gp",
+    "Weight": "3 lbs.",
+    "Category": "lighting",
+    "Description": "A lantern with a shuttered directional lens that focuses light in a 60-foot cone."
+  },
+  {
+    "Name": "Buoy (common)",
+    "Cost": "5 sp",
+    "Weight": "16 lbs.",
+    "Category": "underwater",
+    "Description": "A floating marker used to indicate locations in water or serve as a flotation device."
+  },
+  {
+    "Name": "Buoy (superior)",
+    "Cost": "10 gp",
+    "Weight": "30 lbs.",
+    "Category": "underwater",
+    "Description": "A larger, more durable buoy with better buoyancy and visibility."
+  },
+  {
+    "Name": "Butterfly net",
+    "Cost": "5 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A net on a long handle, traditionally for catching butterflies but useful for capturing small creatures."
+  },
+  {
+    "Name": "Caltrops",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Category": "tactical",
+    "Description": "Small metal spikes that scatter on the ground to injure feet and slow pursuers."
+  },
+  {
+    "Name": "Caltrops, cold iron",
+    "Cost": "2 gp",
+    "Weight": "2 lbs.",
+    "Category": "tactical",
+    "Description": "Caltrops made of cold iron, effective against certain fey and demons."
+  },
+  {
+    "Name": "Caltrops, vicious",
+    "Cost": "50 gp",
+    "Weight": "4 lbs.",
+    "Category": "tactical",
+    "Description": "Enhanced caltrops with longer spikes and sharper points, dealing more damage."
+  },
+  {
+    "Name": "Calumet",
+    "Cost": "20 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "A ceremonial pipe used in religious rituals and peace negotiations."
+  },
+  {
+    "Name": "Camouflage blanket",
+    "Cost": "12 gp",
+    "Weight": "2 lbs.",
+    "Category": "stealth",
+    "Description": "A blanket with natural patterns that helps conceal the user in wilderness environments."
+  },
+  {
+    "Name": "Camouflage netting",
+    "Cost": "20 gp",
+    "Weight": "5 lbs.",
+    "Category": "stealth",
+    "Description": "Large mesh netting with natural colors used to hide objects, people, or structures."
+  },
+  {
+    "Name": "Camouflaged Canvas",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Category": "stealth",
+    "Description": "Canvas fabric with camouflage patterns, useful for creating concealment."
+  },
+  {
+    "Name": "Candle",
+    "Cost": "1 cp",
+    "Weight": "\u2014",
+    "Category": "lighting",
+    "Description": "A simple wax candle that provides light for 1 hour in a 5-foot radius."
+  },
+  {
+    "Name": "Candle lamp",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "lighting",
+    "Description": "A protective lamp housing for a candle, preventing wind from extinguishing it."
+  },
+  {
+    "Name": "Candlestick",
+    "Cost": "1 cp",
+    "Weight": "1/2 lb.",
+    "Category": "lighting",
+    "Description": "A holder for candles, keeping them upright and stable."
+  },
+  {
+    "Name": "Cane (common)",
+    "Cost": "1 sp",
+    "Weight": "3 lbs.",
+    "Category": "tools",
+    "Description": "A simple wooden walking stick that aids mobility."
+  },
+  {
+    "Name": "Cane (elegant)",
+    "Cost": "25 gp",
+    "Weight": "4 lbs.",
+    "Category": "tools",
+    "Description": "A finely crafted cane, often with decorative elements, serving both functional and social purposes."
+  },
+  {
+    "Name": "Cane (simple)",
+    "Cost": "2 gp",
+    "Weight": "3 lbs.",
+    "Category": "tools",
+    "Description": "A basic but sturdy walking cane."
+  },
+  {
+    "Name": "Cane, hollow",
+    "Cost": "+1 gp",
+    "Weight": "\u2014",
+    "Category": "concealment",
+    "Description": "A cane with a hollow interior, perfect for concealing small items or documents."
+  },
+  {
+    "Name": "Cannon ball",
+    "Cost": "30 gp",
+    "Weight": "25 lbs.",
+    "Category": "firearms",
+    "Description": "A heavy iron sphere designed to be fired from cannons."
+  },
+  {
+    "Name": "Canteen",
+    "Cost": "2 gp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A portable container for carrying water or other beverages."
+  },
+  {
+    "Name": "Canvas (sq. yd.)",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "materials",
+    "Description": "A square yard of heavy-duty canvas fabric, useful for repairs or creating shelters."
+  },
+  {
+    "Name": "Cauldron",
+    "Cost": "1 gp",
+    "Weight": "5 lbs.",
+    "Category": "cooking",
+    "Description": "A large metal pot used for cooking or brewing, often suspended over a fire."
+  },
+  {
+    "Name": "Cauldron (mithral)",
+    "Cost": "2,501 gp",
+    "Weight": "2-1/2 lbs.",
+    "Category": "cooking",
+    "Description": "A lightweight cauldron made of mithral, easier to transport than standard iron cauldrons."
+  },
+  {
+    "Name": "Cave whistle",
+    "Cost": "20 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A whistle designed to produce echoes useful for mapping cave systems or signaling in caves."
+  },
+  {
+    "Name": "Censer",
+    "Cost": "5 gp",
+    "Weight": "1/2 lb.",
+    "Category": "religious",
+    "Description": "A metal container for burning incense during religious ceremonies."
+  },
+  {
+    "Name": "Chain (10 ft.)",
+    "Cost": "30 gp",
+    "Weight": "2 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Ten feet of sturdy iron chain, useful for binding, climbing, or securing objects."
+  },
+  {
+    "Name": "Chalk",
+    "Cost": "1 cp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A stick of chalk for making marks on stone, wood, or other surfaces."
+  },
+  {
+    "Name": "Chalkboard",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Category": "writing",
+    "Description": "A portable slate board that can be written on with chalk and erased."
+  },
+  {
+    "Name": "Charcoal",
+    "Cost": "5 sp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "Sticks of charcoal used for drawing, writing, or starting fires."
+  },
+  {
+    "Name": "Charda claws",
+    "Cost": "150 gp",
+    "Weight": "\u2014",
+    "Category": "underwater",
+    "Description": "Special claws worn by chardas (shark-people) that enhance their underwater combat ability."
+  },
+  {
+    "Name": "Chest (huge)",
+    "Cost": "25 gp",
+    "Weight": "250 lbs.",
+    "Category": "containers",
+    "Description": "An enormous storage chest capable of holding large quantities of treasure or equipment."
+  },
+  {
+    "Name": "Chest (large)",
+    "Cost": "10 gp",
+    "Weight": "100 lbs.",
+    "Category": "containers",
+    "Description": "A large storage chest for valuables and equipment."
+  },
+  {
+    "Name": "Chest (medium)",
+    "Cost": "5 gp",
+    "Weight": "50 lbs.",
+    "Category": "containers",
+    "Description": "A medium-sized storage chest."
+  },
+  {
+    "Name": "Chest (small)",
+    "Cost": "2 gp",
+    "Weight": "25 lbs.",
+    "Category": "containers",
+    "Description": "A small chest suitable for storing coins, gems, or personal items."
+  },
+  {
+    "Name": "Cipher rings",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Category": "espionage",
+    "Description": "Rotating rings with letters used to encode and decode messages."
+  },
+  {
+    "Name": "City map",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Category": "navigation",
+    "Description": "A detailed map of a city showing streets, districts, and important landmarks."
+  },
+  {
+    "Name": "Clay",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "materials",
+    "Description": "Moldable clay useful for creating sculptures, sealing containers, or taking impressions."
+  },
+  {
+    "Name": "Clay whippoorwill",
+    "Cost": "5 gp",
+    "Weight": "1/2 lb.",
+    "Category": "magical_items",
+    "Description": "A small clay bird that can be animated to deliver short messages."
+  },
+  {
+    "Name": "Click-claw",
+    "Cost": "2 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A device that makes clicking sounds, useful for communication in darkness or for signaling."
+  },
+  {
+    "Name": "Climber's plank",
+    "Cost": "20 gp",
+    "Weight": "4 lbs.",
+    "Category": "climbing",
+    "Description": "A reinforced plank with attachments for climbing difficult surfaces."
+  },
+  {
+    "Name": "Clockwork dial",
+    "Cost": "150 gp",
+    "Weight": "1/2 lb.",
+    "Category": "clockwork",
+    "Description": "A precise clockwork device for measuring time or setting timed mechanisms."
+  },
+  {
+    "Name": "Clockwork oar",
+    "Cost": "500 gp",
+    "Weight": "50 lbs.",
+    "Category": "clockwork",
+    "Description": "A mechanical oar that rows automatically when wound, propelling a boat without manual effort."
+  },
+  {
+    "Name": "Cobbled item",
+    "Cost": "Special",
+    "Weight": "Special",
+    "Category": "crafting",
+    "Description": "An item hastily assembled from scavenged parts. Quality and cost vary."
+  },
+  {
+    "Name": "Code rod",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "espionage",
+    "Description": "A rod with encoded markings used for sending secret messages."
+  },
+  {
+    "Name": "Coffee pot",
+    "Cost": "3 gp",
+    "Weight": "4 lbs.",
+    "Category": "cooking",
+    "Description": "A metal pot designed for brewing coffee over a fire."
+  },
+  {
+    "Name": "Coffin (common)",
+    "Cost": "10 gp",
+    "Weight": "30 lbs.",
+    "Category": "burial",
+    "Description": "A simple wooden coffin for burial."
+  },
+  {
+    "Name": "Coffin (ornate)",
+    "Cost": "100 gp",
+    "Weight": "50 lbs.",
+    "Category": "burial",
+    "Description": "An elaborately decorated coffin, often used for nobility or wealthy individuals."
+  },
+  {
+    "Name": "Collapsible bathtub",
+    "Cost": "15 gp",
+    "Weight": "20 lbs.",
+    "Category": "camping",
+    "Description": "A portable tub that folds flat for transport and expands to hold water for bathing."
+  },
+  {
+    "Name": "Collapsible plank",
+    "Cost": "4 sp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "A plank that folds or telescopes for easy transport."
+  },
+  {
+    "Name": "Collapsible rowboat",
+    "Cost": "100 gp",
+    "Weight": "40 lbs.",
+    "Category": "transportation",
+    "Description": "A boat that can be folded or disassembled for transport and reassembled for use."
+  },
+  {
+    "Name": "Collapsible trampoline",
+    "Cost": "50 gp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "A portable trampoline that can be set up to break falls or launch objects."
+  },
+  {
+    "Name": "Combat scabbard",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Category": "weapon_accessories",
+    "Description": "A scabbard designed for quick drawing and secure weapon retention in combat."
+  },
+  {
+    "Name": "Companion cold-weather outfit",
+    "Cost": "15 gp",
+    "Weight": "6 lbs.",
+    "Category": "animal_gear",
+    "Description": "Warm clothing designed for animal companions to protect them in cold climates."
+  },
+  {
+    "Name": "Compass",
+    "Cost": "10 gp",
+    "Weight": "1/2 lb.",
+    "Category": "navigation",
+    "Description": "A magnetic compass for determining direction and navigation."
+  },
+  {
+    "Name": "Concealable thieves' tools",
+    "Cost": "190 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A set of lockpicks and tools designed to be easily hidden on the body."
+  },
+  {
+    "Name": "Concealment coin",
+    "Cost": "12 gp",
+    "Weight": "1/10 lb.",
+    "Category": "concealment",
+    "Description": "A hollow coin with a hidden compartment for storing tiny items."
+  },
+  {
+    "Name": "Contracting rope",
+    "Cost": "50 gp",
+    "Weight": "5 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Magical rope that shrinks on command, making it easier to transport."
+  },
+  {
+    "Name": "Conversation tube",
+    "Cost": "10 gp",
+    "Weight": "3 lbs.",
+    "Category": "tools",
+    "Description": "A long tube that allows conversation between two distant points by channeling sound."
+  },
+  {
+    "Name": "Cooler chest",
+    "Cost": "25 gp",
+    "Weight": "60 lbs.",
+    "Category": "containers",
+    "Description": "An insulated chest that keeps contents cold for extended periods."
+  },
+  {
+    "Name": "Copy of a key",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "locks_keys",
+    "Description": "A duplicate key made from a wax impression or other method."
+  },
+  {
+    "Name": "Cot",
+    "Cost": "1 gp",
+    "Weight": "30 lbs.",
+    "Category": "camping",
+    "Description": "A portable folding bed that provides more comfort than sleeping on the ground."
+  },
+  {
+    "Name": "Crowbar",
+    "Cost": "2 gp",
+    "Weight": "5 lbs.",
+    "Category": "tools",
+    "Description": "An iron prying tool useful for opening crates, doors, or moving heavy objects."
+  },
+  {
+    "Name": "Crusader's cross (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "A finely crafted holy symbol in the shape of a cross."
+  },
+  {
+    "Name": "Crusader's cross (standard)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "A simple cross used as a holy symbol."
+  },
+  {
+    "Name": "Crutch",
+    "Cost": "5 sp",
+    "Weight": "2 lbs.",
+    "Category": "medical",
+    "Description": "A wooden support to aid walking when injured."
+  },
+  {
+    "Name": "Cryptography book",
+    "Cost": "100 gp",
+    "Weight": "2 lbs.",
+    "Category": "writing",
+    "Description": "A book containing codes, ciphers, and methods for encrypting and decrypting messages."
+  },
+  {
+    "Name": "Cypher books",
+    "Cost": "150 gp",
+    "Weight": "2 lbs.",
+    "Category": "espionage",
+    "Description": "A pair of matching books used for encoding and decoding secret messages."
+  },
+  {
+    "Name": "Darkwood ancestry plank",
+    "Cost": "10 gp",
+    "Weight": "1/2 lb.",
+    "Category": "religious",
+    "Description": "A plank made of darkwood inscribed with family genealogy and honored ancestors."
+  },
+  {
+    "Name": "Disguised holy text",
+    "Cost": "1-100 gp",
+    "Weight": "1-20 lbs.",
+    "Category": "religious",
+    "Description": "A holy book disguised to look like a mundane text, useful in regions where certain faiths are persecuted."
+  },
+  {
+    "Name": "Display stand",
+    "Cost": "40 gp",
+    "Weight": "16 lbs.",
+    "Category": "misc",
+    "Description": "A wooden or metal stand for displaying items, weapons, or trophies."
+  },
+  {
+    "Name": "Dowsing rod",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A forked stick or metal rod used to locate underground water, minerals, or magical energy."
+  },
+  {
+    "Name": "Drill",
+    "Cost": "5 sp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A hand-operated drill for boring holes in wood, stone, or other materials."
+  },
+  {
+    "Name": "Duo saw",
+    "Cost": "100 gp",
+    "Weight": "20 lbs.",
+    "Category": "tools",
+    "Description": "A large two-person saw for cutting through thick logs or trees."
+  },
+  {
+    "Name": "Dusk lantern",
+    "Cost": "35 gp",
+    "Weight": "4 lbs.",
+    "Category": "lighting",
+    "Description": "A lantern that provides dim illumination without producing much heat or brightness."
+  },
+  {
+    "Name": "Ear trumpet",
+    "Cost": "5 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A horn-shaped device for amplifying sound, helping those with hearing difficulties."
+  },
+  {
+    "Name": "Ear trumpet (common)",
+    "Cost": "25 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A basic ear trumpet for modest sound amplification."
+  },
+  {
+    "Name": "Ear trumpet (masterwork)",
+    "Cost": "100 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A finely crafted ear trumpet providing superior sound amplification."
+  },
+  {
+    "Name": "Earplugs",
+    "Cost": "3 cp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "Soft plugs inserted in ears to block out sound or reduce loud noises."
+  },
+  {
+    "Name": "Efficient tent",
+    "Cost": "150 gp",
+    "Weight": "15 lbs.",
+    "Category": "camping",
+    "Description": "A well-designed tent that sets up quickly and provides excellent shelter."
+  },
+  {
+    "Name": "Ember pot",
+    "Cost": "5 sp",
+    "Weight": "1 lb.",
+    "Category": "cooking",
+    "Description": "A sealed container that keeps coals hot for hours, useful for starting fires quickly."
+  },
+  {
+    "Name": "Esquire attach\u00e9 case",
+    "Cost": "100 gp",
+    "Weight": "8 lbs.",
+    "Category": "containers",
+    "Description": "A sophisticated leather case for carrying documents and important papers."
+  },
+  {
+    "Name": "Everburning torch",
+    "Cost": "110 gp",
+    "Weight": "1 lb.",
+    "Category": "lighting",
+    "Description": "A magical torch that burns continuously without fuel or heat."
+  },
+  {
+    "Name": "Eye patch",
+    "Cost": "1 sp",
+    "Weight": "\u2014",
+    "Category": "clothing",
+    "Description": "A patch worn over one eye, whether for injury, protection, or style."
+  },
+  {
+    "Name": "Fake footprint shoes",
+    "Cost": "5 gp",
+    "Weight": "2 lbs.",
+    "Category": "stealth",
+    "Description": "Shoes with carved soles that leave misleading animal tracks instead of human prints."
+  },
+  {
+    "Name": "False manacles",
+    "Cost": "65 gp",
+    "Weight": "2 lbs.",
+    "Category": "escape_artist",
+    "Description": "Manacles that appear secure but can be easily opened by the wearer."
+  },
+  {
+    "Name": "False teeth (clockwork)",
+    "Cost": "100 gp",
+    "Weight": "1/2 lb.",
+    "Category": "clockwork",
+    "Description": "Mechanical false teeth that can conceal tiny items."
+  },
+  {
+    "Name": "False teeth (common)",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "misc",
+    "Description": "Simple replacement teeth, usually wooden or bone."
+  },
+  {
+    "Name": "False teeth (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Category": "misc",
+    "Description": "High-quality false teeth that appear natural."
+  },
+  {
+    "Name": "False-bottomed chest",
+    "Cost": "52 gp",
+    "Weight": "25 lbs.",
+    "Category": "concealment",
+    "Description": "A chest with a hidden compartment beneath a false bottom."
+  },
+  {
+    "Name": "False-bottomed cup",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "concealment",
+    "Description": "A drinking vessel with a secret compartment in its base."
+  },
+  {
+    "Name": "False-bottomed scabbard",
+    "Cost": "45 gp",
+    "Weight": "1 lb.",
+    "Category": "concealment",
+    "Description": "A weapon scabbard with a hidden storage space."
+  },
+  {
+    "Name": "False-bottomed wagon",
+    "Cost": "375 gp",
+    "Weight": "400 lbs.",
+    "Category": "concealment",
+    "Description": "A wagon with concealed compartments for smuggling."
+  },
+  {
+    "Name": "Familiar satchel",
+    "Cost": "25 gp",
+    "Weight": "6 lbs.",
+    "Category": "animal_gear",
+    "Description": "A comfortable carrier for transporting a wizard's familiar."
+  },
+  {
+    "Name": "Fangfile",
+    "Cost": "3 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A file specifically designed for sharpening or filing fangs and teeth."
+  },
+  {
+    "Name": "Fetters (common)",
+    "Cost": "15 gp",
+    "Weight": "2 lbs.",
+    "Category": "restraints",
+    "Description": "Shackles placed around the ankles to prevent running."
+  },
+  {
+    "Name": "Fetters (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Category": "restraints",
+    "Description": "Superior quality ankle shackles that are harder to escape."
+  },
+  {
+    "Name": "Field survival guide",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Category": "writing",
+    "Description": "A book containing practical advice for surviving in wilderness environments."
+  },
+  {
+    "Name": "Filter hood",
+    "Cost": "10 gp",
+    "Weight": "4 lbs.",
+    "Category": "protective",
+    "Description": "A hood with built-in filters to protect against airborne toxins and spores."
+  },
+  {
+    "Name": "Filter mask",
+    "Cost": "5 gp",
+    "Weight": "4 lbs.",
+    "Category": "protective",
+    "Description": "A mask that filters out harmful particles and gases from the air."
+  },
+  {
+    "Name": "Firearm bullet",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "firearms",
+    "Description": "A single lead or metal bullet designed for use in firearms."
+  },
+  {
+    "Name": "Firewood (per day)",
+    "Cost": "1 cp",
+    "Weight": "20 lbs.",
+    "Category": "camping",
+    "Description": "Enough cut wood to maintain a campfire for one day."
+  },
+  {
+    "Name": "Fishhook",
+    "Cost": "1 sp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A small metal hook for catching fish."
+  },
+  {
+    "Name": "Fishing net",
+    "Cost": "4 gp",
+    "Weight": "5 lbs.",
+    "Category": "tools",
+    "Description": "A weighted net for catching fish in quantity."
+  },
+  {
+    "Name": "Flag",
+    "Cost": "10 gp",
+    "Weight": "3 lbs.",
+    "Category": "misc",
+    "Description": "A cloth banner displaying colors, symbols, or heraldry."
+  },
+  {
+    "Name": "Flag (ensign or courtesy, large)",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "misc",
+    "Description": "A large flag flown on ships to show nationality or allegiance."
+  },
+  {
+    "Name": "Flag (ensign or courtesy, small)",
+    "Cost": "2 gp",
+    "Weight": "\u2014",
+    "Category": "misc",
+    "Description": "A smaller version of an ensign flag."
+  },
+  {
+    "Name": "Flag (personal signal, large)",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Category": "misc",
+    "Description": "A large personalized flag for signaling or identification."
+  },
+  {
+    "Name": "Flag (personal signal, small)",
+    "Cost": "4 gp",
+    "Weight": "\u2014",
+    "Category": "misc",
+    "Description": "A small personalized signal flag."
+  },
+  {
+    "Name": "Flask",
+    "Cost": "3 cp",
+    "Weight": "1-1/2 lbs.",
+    "Category": "containers",
+    "Description": "A small glass or metal container for liquids."
+  },
+  {
+    "Name": "Flask launcher",
+    "Cost": "300 gp",
+    "Weight": "9 lbs.",
+    "Category": "weapons",
+    "Description": "A device for hurling alchemical flasks at range."
+  },
+  {
+    "Name": "Fleshgem (decorative)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "body_modification",
+    "Description": "A gem embedded in the skin for decoration."
+  },
+  {
+    "Name": "Fleshgem (spikes)",
+    "Cost": "50 gp",
+    "Weight": "5 lbs.",
+    "Category": "body_modification",
+    "Description": "Sharp gems embedded in skin that can be used as weapons."
+  },
+  {
+    "Name": "Flight grapnel",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Category": "climbing",
+    "Description": "A lightweight grappling hook designed to be thrown or shot."
+  },
+  {
+    "Name": "Flint and steel",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "Tools for creating sparks to start fires."
+  },
+  {
+    "Name": "Folding chair",
+    "Cost": "2 gp",
+    "Weight": "10 lbs.",
+    "Category": "furniture",
+    "Description": "A portable chair that folds flat for easy transport."
+  },
+  {
+    "Name": "Folding ladder",
+    "Cost": "2 gp",
+    "Weight": "16 lbs.",
+    "Category": "climbing",
+    "Description": "A ladder that can be folded or collapsed for storage."
+  },
+  {
+    "Name": "Folding pole",
+    "Cost": "2 sp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "A pole that telescopes or folds into segments."
+  },
+  {
+    "Name": "Folding table",
+    "Cost": "10 gp",
+    "Weight": "20 lbs.",
+    "Category": "furniture",
+    "Description": "A portable table that folds flat."
+  },
+  {
+    "Name": "Founderflame torch",
+    "Cost": "250 gp",
+    "Weight": "1 lb.",
+    "Category": "lighting",
+    "Description": "A special torch that cannot be extinguished by wind or water."
+  },
+  {
+    "Name": "Gauntlet magnet",
+    "Cost": "75 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A magnet built into a gauntlet for retrieving metal objects or disarming metal weapons."
+  },
+  {
+    "Name": "Glass cutter",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A diamond-tipped tool for cutting through glass panes."
+  },
+  {
+    "Name": "Glue paper",
+    "Cost": "1 sp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "Paper coated with adhesive on one side."
+  },
+  {
+    "Name": "Goblin fishing lure",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A lure designed to attract fish using goblin techniques."
+  },
+  {
+    "Name": "Grappling hook (common)",
+    "Cost": "1 gp",
+    "Weight": "4 lbs.",
+    "Category": "climbing",
+    "Description": "An iron hook with multiple prongs for catching on ledges and creating climbing lines."
+  },
+  {
+    "Name": "Grappling hook (mithral)",
+    "Cost": "2,001 gp",
+    "Weight": "2 lbs.",
+    "Category": "climbing",
+    "Description": "A lightweight mithral grappling hook."
+  },
+  {
+    "Name": "Grooming kit",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A collection of brushes, combs, and tools for personal hygiene and appearance."
+  },
+  {
+    "Name": "Hammer",
+    "Cost": "5 sp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A basic iron hammer useful for driving spikes, breaking objects, or as an improvised weapon."
+  },
+  {
+    "Name": "Hammock",
+    "Cost": "1 sp",
+    "Weight": "3 lbs.",
+    "Category": "camping",
+    "Description": "A suspended fabric bed that can be strung between trees or posts."
+  },
+  {
+    "Name": "Haunt detector",
+    "Cost": "25 gp",
+    "Weight": "4 lbs.",
+    "Category": "occult",
+    "Description": "A device that detects the presence of haunts and undead activity."
+  },
+  {
+    "Name": "Heatstone",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Category": "magical_items",
+    "Description": "A magical stone that radiates warmth for hours when activated."
+  },
+  {
+    "Name": "Heatstone desalinator",
+    "Cost": "10 gp",
+    "Weight": "2 lbs.",
+    "Category": "survival",
+    "Description": "A device that uses heatstones to evaporate and collect fresh water from saltwater."
+  },
+  {
+    "Name": "Helmet candle",
+    "Cost": "2 gp",
+    "Weight": "4 lbs.",
+    "Category": "lighting",
+    "Description": "A small candle mounted on a helmet to provide hands-free light."
+  },
+  {
+    "Name": "Heritage book",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Category": "writing",
+    "Description": "A book recording family lineages, histories, and important events."
+  },
+  {
+    "Name": "Hip flask",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "containers",
+    "Description": "A small, flat flask designed to be carried in a pocket or on the hip."
+  },
+  {
+    "Name": "Hollow book",
+    "Cost": "15 gp",
+    "Weight": "3 lbs.",
+    "Category": "concealment",
+    "Description": "A book with pages hollowed out to create a hidden compartment."
+  },
+  {
+    "Name": "Hollow caltrops",
+    "Cost": "451 gp",
+    "Weight": "2 lbs.",
+    "Category": "tactical",
+    "Description": "Caltrops with hollow interiors that can be filled with poison or acid."
+  },
+  {
+    "Name": "Hollowed pommel",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "concealment",
+    "Description": "A weapon pommel with a secret compartment for small items."
+  },
+  {
+    "Name": "Holy symbol (compartment)",
+    "Cost": "+5 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "A holy symbol with a hidden compartment."
+  },
+  {
+    "Name": "Holy symbol (flask)",
+    "Cost": "+10 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "A holy symbol shaped like a flask that can hold holy water."
+  },
+  {
+    "Name": "Holy symbol (gold)",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Category": "religious",
+    "Description": "A holy symbol crafted from gold."
+  },
+  {
+    "Name": "Holy symbol (iron)",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "religious",
+    "Description": "A simple iron holy symbol."
+  },
+  {
+    "Name": "Holy symbol (platinum)",
+    "Cost": "500 gp",
+    "Weight": "1 lb.",
+    "Category": "religious",
+    "Description": "An expensive holy symbol made of platinum."
+  },
+  {
+    "Name": "Holy symbol (silver)",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Category": "religious",
+    "Description": "A silver holy symbol."
+  },
+  {
+    "Name": "Holy symbol (tattoo)",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "A permanent holy symbol tattooed on the body."
+  },
+  {
+    "Name": "Holy symbol (wooden)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "A basic wooden holy symbol."
+  },
+  {
+    "Name": "Holy text",
+    "Cost": "1\u2013100 gp",
+    "Weight": "1\u201320 lbs.",
+    "Category": "religious",
+    "Description": "Sacred writings and scriptures of a particular faith."
+  },
+  {
+    "Name": "Hooded lantern",
+    "Cost": "7 gp",
+    "Weight": "2 lbs.",
+    "Category": "lighting",
+    "Description": "A lantern with shutters that can be opened and closed to control light direction."
+  },
+  {
+    "Name": "Hoodwink cowl",
+    "Cost": "75 gp",
+    "Weight": "3 lbs.",
+    "Category": "stealth",
+    "Description": "A hood designed to obscure the wearer's face and identity."
+  },
+  {
+    "Name": "Hourglass",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A glass timer that measures the passage of time using flowing sand."
+  },
+  {
+    "Name": "Hourglass (1 hour)",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "An hourglass calibrated to measure one hour."
+  },
+  {
+    "Name": "Hourglass (1 minute)",
+    "Cost": "20 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "An hourglass that measures one minute."
+  },
+  {
+    "Name": "Hourglass (6 seconds)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A tiny hourglass that measures 6 seconds (one round)."
+  },
+  {
+    "Name": "Hunter's manual",
+    "Cost": "90 gp",
+    "Weight": "1 lb.",
+    "Category": "writing",
+    "Description": "A guide to tracking, identifying, and hunting various creatures."
+  },
+  {
+    "Name": "Hunter's stand",
+    "Cost": "25 gp",
+    "Weight": "15 lbs.",
+    "Category": "camping",
+    "Description": "A portable elevated platform for hunting from concealment."
+  },
+  {
+    "Name": "Hypnotist's locket (locket)",
+    "Cost": "15 gp",
+    "Weight": "1 lb.",
+    "Category": "occult",
+    "Description": "A locket with a swinging pendant used for hypnotic induction."
+  },
+  {
+    "Name": "Hypnotist's locket (pocket watch)",
+    "Cost": "250 gp",
+    "Weight": "1 lb.",
+    "Category": "occult",
+    "Description": "A pocket watch used as a hypnotic focus."
+  },
+  {
+    "Name": "Incense",
+    "Cost": "7 sp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "Aromatic substances burned to produce pleasant smells during rituals."
+  },
+  {
+    "Name": "Incense (10 sticks)",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Category": "religious",
+    "Description": "Ten sticks of incense."
+  },
+  {
+    "Name": "Ink",
+    "Cost": "8 gp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "Black ink for writing with quills or pens."
+  },
+  {
+    "Name": "Ink, bioluminescent",
+    "Cost": "32 gp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "Ink that glows faintly in the dark, useful for secret messages."
+  },
+  {
+    "Name": "Inkpen",
+    "Cost": "1 sp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "A simple pen for writing with ink."
+  },
+  {
+    "Name": "Insulated flask",
+    "Cost": "2 sp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A double-walled flask that keeps liquids hot or cold."
+  },
+  {
+    "Name": "Iron spike",
+    "Cost": "5 cp",
+    "Weight": "1 lb.",
+    "Category": "climbing",
+    "Description": "A thick iron spike for climbing, securing ropes, or wedging doors."
+  },
+  {
+    "Name": "Iron vial",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A sturdy metal vial that won't break easily."
+  },
+  {
+    "Name": "Jetcaster",
+    "Cost": "80 gp",
+    "Weight": "6 lbs.",
+    "Category": "tools",
+    "Description": "A device that propels water at high speed for cleaning or combat."
+  },
+  {
+    "Name": "Journal",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Category": "writing",
+    "Description": "A bound book with blank pages for recording notes and observations."
+  },
+  {
+    "Name": "Jug",
+    "Cost": "3 cp",
+    "Weight": "9 lbs.",
+    "Category": "containers",
+    "Description": "A large ceramic container with a handle and spout."
+  },
+  {
+    "Name": "Key-wound rattler",
+    "Cost": "350 gp",
+    "Weight": "25 lbs.",
+    "Category": "clockwork",
+    "Description": "A clockwork device that makes rattling noises to distract or alarm."
+  },
+  {
+    "Name": "Ladder",
+    "Cost": "2 sp",
+    "Weight": "20 lbs.",
+    "Category": "climbing",
+    "Description": "A wooden or rope ladder for climbing."
+  },
+  {
+    "Name": "Lamp",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "lighting",
+    "Description": "A simple oil lamp that provides light."
+  },
+  {
+    "Name": "Land limbs",
+    "Cost": "10 gp",
+    "Weight": "4 lbs.",
+    "Category": "underwater",
+    "Description": "Prosthetic limbs that allow aquatic creatures to move on land."
+  },
+  {
+    "Name": "Lifting bag",
+    "Cost": "3 gp",
+    "Weight": "42 lbs.",
+    "Category": "tools",
+    "Description": "An inflatable bag used underwater to lift sunken objects."
+  },
+  {
+    "Name": "Loaded shell game cups",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Category": "entertainment",
+    "Description": "Rigged cups used for cheating at shell games."
+  },
+  {
+    "Name": "Lock (average)",
+    "Cost": "40 gp",
+    "Weight": "1 lb.",
+    "Category": "locks_keys",
+    "Description": "A standard lock of moderate security."
+  },
+  {
+    "Name": "Lock (good)",
+    "Cost": "80 gp",
+    "Weight": "1 lb.",
+    "Category": "locks_keys",
+    "Description": "A well-made lock that is difficult to pick."
+  },
+  {
+    "Name": "Lock (simple)",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Category": "locks_keys",
+    "Description": "A basic lock with minimal security."
+  },
+  {
+    "Name": "Lock (superior)",
+    "Cost": "150 gp",
+    "Weight": "1 lb.",
+    "Category": "locks_keys",
+    "Description": "An extremely complex lock very difficult to pick."
+  },
+  {
+    "Name": "Lure (fake area map)",
+    "Cost": "20 gp",
+    "Weight": "\u2014",
+    "Category": "deception",
+    "Description": "A fake map planted to mislead pursuers."
+  },
+  {
+    "Name": "Lure (fake coins)",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "deception",
+    "Description": "Fake coins placed as bait or distraction."
+  },
+  {
+    "Name": "Magnet",
+    "Cost": "5 sp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A magnetized piece of metal that attracts iron objects."
+  },
+  {
+    "Name": "Magnifying glass",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A lens that magnifies small details for closer examination."
+  },
+  {
+    "Name": "Manacle barbs",
+    "Cost": "+15 gp",
+    "Weight": "1 lb.",
+    "Category": "restraints",
+    "Description": "Sharp barbs that can be added to manacles to injure escape attempts."
+  },
+  {
+    "Name": "Manacles (common)",
+    "Cost": "15 gp",
+    "Weight": "2 lbs.",
+    "Category": "restraints",
+    "Description": "Standard iron shackles for restraining prisoners."
+  },
+  {
+    "Name": "Manacles (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Category": "restraints",
+    "Description": "Superior manacles that are harder to escape from."
+  },
+  {
+    "Name": "Manacles (mithral)",
+    "Cost": "1,000 gp",
+    "Weight": "2 lbs.",
+    "Category": "restraints",
+    "Description": "Lightweight but strong mithral manacles."
+  },
+  {
+    "Name": "Manacles (quickcatch)",
+    "Cost": "180 gp",
+    "Weight": "3 lbs.",
+    "Category": "restraints",
+    "Description": "Manacles designed to be applied quickly in combat."
+  },
+  {
+    "Name": "Mantra wheel",
+    "Cost": "450 gp",
+    "Weight": "1/2 lb.",
+    "Category": "religious",
+    "Description": "A religious device spun while reciting prayers."
+  },
+  {
+    "Name": "Marbles",
+    "Cost": "1 sp",
+    "Weight": "2 lbs.",
+    "Category": "tactical",
+    "Description": "Small glass spheres that can be scattered to trip pursuers."
+  },
+  {
+    "Name": "Marine rope (treated hemp)",
+    "Cost": "10 gp",
+    "Weight": "12 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Rope treated to resist rot and water damage."
+  },
+  {
+    "Name": "Marine rope (woven kelp)",
+    "Cost": "20 gp",
+    "Weight": "5 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Rope woven from kelp, naturally water-resistant."
+  },
+  {
+    "Name": "Measuring cord, 10 ft.",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A rope marked at intervals for measuring distances."
+  },
+  {
+    "Name": "Miner's bird",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A caged bird used to detect dangerous gases in mines."
+  },
+  {
+    "Name": "Miner's lantern",
+    "Cost": "15 gp",
+    "Weight": "2 lbs.",
+    "Category": "lighting",
+    "Description": "A rugged lantern designed for use in mines."
+  },
+  {
+    "Name": "Miner's pick",
+    "Cost": "3 gp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "A heavy pick for breaking rock and extracting ore."
+  },
+  {
+    "Name": "Mirror",
+    "Cost": "10 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A small metal or glass mirror for seeing around corners or signaling."
+  },
+  {
+    "Name": "Mirror ball",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A reflective sphere that can create dazzling light displays."
+  },
+  {
+    "Name": "Mithral chain (10 ft.)",
+    "Cost": "530 gp",
+    "Weight": "1 lb.",
+    "Category": "chains_ropes",
+    "Description": "Ten feet of lightweight but strong mithral chain."
+  },
+  {
+    "Name": "Mithral manacles",
+    "Cost": "1,000 gp",
+    "Weight": "2 lbs.",
+    "Category": "restraints",
+    "Description": "Extremely light and strong manacles made of mithral."
+  },
+  {
+    "Name": "Mock armor",
+    "Cost": "90 gp",
+    "Weight": "10 lbs.",
+    "Category": "deception",
+    "Description": "Fake armor designed to look real but offer no protection."
+  },
+  {
+    "Name": "Monkey statue",
+    "Cost": "150 gp",
+    "Weight": "1/2 lb.",
+    "Category": "occult",
+    "Description": "A small statue of three monkeys (see no evil, hear no evil, speak no evil)."
+  },
+  {
+    "Name": "Monster bait",
+    "Cost": "60 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "Special lures designed to attract specific types of monsters."
+  },
+  {
+    "Name": "Mug/tankard",
+    "Cost": "2 cp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A sturdy drinking vessel, usually made of wood, metal, or ceramic."
+  },
+  {
+    "Name": "Nautical chart",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Category": "navigation",
+    "Description": "A detailed map of waterways, currents, and coastal features for navigation."
+  },
+  {
+    "Name": "Necrotic talisman",
+    "Cost": "500 gp",
+    "Weight": "1 lb.",
+    "Category": "necromancy",
+    "Description": "A dark talisman that provides protection against negative energy and undead."
+  },
+  {
+    "Name": "Net rigging",
+    "Cost": "250 gp",
+    "Weight": "40 lbs.",
+    "Category": "climbing",
+    "Description": "Rope netting used on ships or for climbing."
+  },
+  {
+    "Name": "Oar",
+    "Cost": "2 gp",
+    "Weight": "10 lbs.",
+    "Category": "transportation",
+    "Description": "A wooden pole with a flat blade for propelling boats."
+  },
+  {
+    "Name": "Obals",
+    "Cost": "12 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "Gaming pieces used in an ancient strategy game."
+  },
+  {
+    "Name": "Oil",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "lighting",
+    "Description": "Lamp oil for fueling lanterns. Can also be used as a slippery substance or improvised weapon."
+  },
+  {
+    "Name": "Pantograph",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A device for copying drawings and maps at different scales."
+  },
+  {
+    "Name": "Paper (sheet)",
+    "Cost": "4 sp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "A single sheet of paper for writing."
+  },
+  {
+    "Name": "Paper, underwater (sheet)",
+    "Cost": "6 sp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "Special paper that can be written on underwater."
+  },
+  {
+    "Name": "Parchment (sheet)",
+    "Cost": "2 sp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "A sheet of prepared animal skin used for writing."
+  },
+  {
+    "Name": "Pathfinder Chronicle",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Category": "writing",
+    "Description": "A collection of reports and discoveries from Pathfinder Society agents."
+  },
+  {
+    "Name": "Peg leg",
+    "Cost": "10 gp",
+    "Weight": "5 lbs.",
+    "Category": "prosthetics",
+    "Description": "A wooden prosthetic leg replacement."
+  },
+  {
+    "Name": "Pen, underwater",
+    "Cost": "6 sp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "A special pen that writes underwater."
+  },
+  {
+    "Name": "Performer's token",
+    "Cost": "2 sp",
+    "Weight": "\u2014",
+    "Category": "entertainment",
+    "Description": "A small token given to entertainers as payment or proof of performance."
+  },
+  {
+    "Name": "Perfume (common)",
+    "Cost": "1 gp/dose",
+    "Weight": "\u2014",
+    "Category": "clothing",
+    "Description": "Basic scented oil or spray."
+  },
+  {
+    "Name": "Perfume (exotic)",
+    "Cost": "100 gp/dose",
+    "Weight": "\u2014",
+    "Category": "clothing",
+    "Description": "Rare and expensive perfume from distant lands."
+  },
+  {
+    "Name": "Perfume (rare)",
+    "Cost": "10 gp/dose",
+    "Weight": "\u2014",
+    "Category": "clothing",
+    "Description": "Uncommon perfume of good quality."
+  },
+  {
+    "Name": "Perfume kit",
+    "Cost": "40 gp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "A collection of scents and tools for creating custom perfumes."
+  },
+  {
+    "Name": "Perfume/cologne",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "clothing",
+    "Description": "Scented liquid worn to smell pleasant."
+  },
+  {
+    "Name": "Periscope",
+    "Cost": "20 gp",
+    "Weight": "4 lbs.",
+    "Category": "tools",
+    "Description": "A device using mirrors to see over obstacles or around corners."
+  },
+  {
+    "Name": "Pickle extractor",
+    "Cost": "2 cp",
+    "Weight": "2 lbs.",
+    "Category": "cooking",
+    "Description": "A specialized tool for removing pickles from jars."
+  },
+  {
+    "Name": "Piecemeal weapon",
+    "Cost": "50 gp",
+    "Weight": "10 lbs.",
+    "Category": "weapons",
+    "Description": "A makeshift weapon assembled from scavenged parts."
+  },
+  {
+    "Name": "Pitcher",
+    "Cost": "2 cp",
+    "Weight": "5 lbs.",
+    "Category": "containers",
+    "Description": "A ceramic jug with a handle and pour spout."
+  },
+  {
+    "Name": "Piton",
+    "Cost": "1 sp",
+    "Weight": "1/2 lb.",
+    "Category": "climbing",
+    "Description": "A metal spike hammered into rock or ice for climbing."
+  },
+  {
+    "Name": "Pocket watch",
+    "Cost": "250 gp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A portable timepiece carried in a pocket."
+  },
+  {
+    "Name": "Poison latch needle",
+    "Cost": "200 gp",
+    "Weight": "\u2014",
+    "Category": "traps",
+    "Description": "A needle hidden in a latch that injects poison when triggered."
+  },
+  {
+    "Name": "Poison lip paint",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "poison",
+    "Description": "Lipstick laced with poison, potentially deadly to kiss."
+  },
+  {
+    "Name": "Poison pill ring",
+    "Cost": "+20 gp",
+    "Weight": "\u2014",
+    "Category": "poison",
+    "Description": "A ring with a hidden compartment containing a poison pill for emergencies."
+  },
+  {
+    "Name": "Poisoning sheath",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Category": "weapon_accessories",
+    "Description": "A sheath that coats a blade with poison when drawn."
+  },
+  {
+    "Name": "Pole",
+    "Cost": "5 cp",
+    "Weight": "8 lbs.",
+    "Category": "tools",
+    "Description": "A simple wooden pole, 10 feet long, useful for testing ground or reaching high objects."
+  },
+  {
+    "Name": "Pomander (merchant's)",
+    "Cost": "12 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A decorative ball filled with aromatic substances to mask unpleasant smells."
+  },
+  {
+    "Name": "Pomander (noble's)",
+    "Cost": "225 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "An expensive, ornate pomander with rare perfumes."
+  },
+  {
+    "Name": "Portable bolt trap",
+    "Cost": "125 gp",
+    "Weight": "9 lbs.",
+    "Category": "traps",
+    "Description": "A compact crossbow trap that can be set quickly."
+  },
+  {
+    "Name": "Portable bridge",
+    "Cost": "200 gp",
+    "Weight": "60 lbs.",
+    "Category": "tools",
+    "Description": "A collapsible bridge for crossing gaps."
+  },
+  {
+    "Name": "Portable ram",
+    "Cost": "10 gp",
+    "Weight": "20 lbs.",
+    "Category": "tools",
+    "Description": "A lightweight battering ram for breaking down doors."
+  },
+  {
+    "Name": "Pot (common)",
+    "Cost": "8 sp",
+    "Weight": "4 lbs.",
+    "Category": "cooking",
+    "Description": "A metal cooking pot."
+  },
+  {
+    "Name": "Pot (mithral)",
+    "Cost": "2,001 gp",
+    "Weight": "2 lbs.",
+    "Category": "cooking",
+    "Description": "A lightweight mithral cooking pot."
+  },
+  {
+    "Name": "Pouch, belt (empty)",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "containers",
+    "Description": "An empty belt pouch for storage."
+  },
+  {
+    "Name": "Powder",
+    "Cost": "1 cp",
+    "Weight": "1/2 lb.",
+    "Category": "clothing",
+    "Description": "Cosmetic powder for the face."
+  },
+  {
+    "Name": "Powder horn",
+    "Cost": "3 gp",
+    "Weight": "1 lb.",
+    "Category": "firearms",
+    "Description": "A horn container for storing black powder."
+  },
+  {
+    "Name": "Prismatic crystal",
+    "Cost": "30 gp",
+    "Weight": "1/2 lb.",
+    "Category": "magical_items",
+    "Description": "A crystal that splits light into rainbow colors."
+  },
+  {
+    "Name": "Privacy shelter",
+    "Cost": "5 gp",
+    "Weight": "10 lbs.",
+    "Category": "camping",
+    "Description": "A portable screen or tent for privacy."
+  },
+  {
+    "Name": "Prosthetic (arm)",
+    "Cost": "10 gp",
+    "Weight": "3 lbs.",
+    "Category": "prosthetics",
+    "Description": "A replacement arm made of wood or metal."
+  },
+  {
+    "Name": "Prosthetic (foot)",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Category": "prosthetics",
+    "Description": "A replacement foot."
+  },
+  {
+    "Name": "Prosthetic (hand)",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Category": "prosthetics",
+    "Description": "An artificial hand."
+  },
+  {
+    "Name": "Prosthetic (leg)",
+    "Cost": "20 gp",
+    "Weight": "6 lbs.",
+    "Category": "prosthetics",
+    "Description": "A replacement leg."
+  },
+  {
+    "Name": "Pull-cord grenade",
+    "Cost": "150 gp",
+    "Weight": "2 lbs.",
+    "Category": "explosives",
+    "Description": "A grenade activated by pulling a cord."
+  },
+  {
+    "Name": "Pump water canister",
+    "Cost": "75 gp",
+    "Weight": "5 lbs.",
+    "Category": "tools",
+    "Description": "A container with a pump for pressurizing water."
+  },
+  {
+    "Name": "Puzzle heel",
+    "Cost": "varies",
+    "Weight": "\u2014",
+    "Category": "concealment",
+    "Description": "A boot heel with a hidden compartment accessed through a trick mechanism."
+  },
+  {
+    "Name": "Quick-change outfit",
+    "Cost": "varies",
+    "Weight": "5 lbs.",
+    "Category": "clothing",
+    "Description": "Clothing designed to be removed and changed quickly."
+  },
+  {
+    "Name": "Quick-pack table",
+    "Cost": "5 gp",
+    "Weight": "20 lbs.",
+    "Category": "furniture",
+    "Description": "A table that quickly folds into a portable pack."
+  },
+  {
+    "Name": "Quicksilver barometer",
+    "Cost": "400 gp",
+    "Weight": "12 lbs.",
+    "Category": "navigation",
+    "Description": "A precision instrument using mercury to predict weather."
+  },
+  {
+    "Name": "Remora pad",
+    "Cost": "5 gp",
+    "Weight": "1/2 lb.",
+    "Category": "underwater",
+    "Description": "A suction pad that allows sticking to surfaces underwater."
+  },
+  {
+    "Name": "Repellent salts",
+    "Cost": "100 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tactical",
+    "Description": "Alchemical salts that repel certain creatures."
+  },
+  {
+    "Name": "Rice paper (sheet)",
+    "Cost": "5 cp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "Thin, delicate paper made from rice."
+  },
+  {
+    "Name": "Ritual bell",
+    "Cost": "2 gp",
+    "Weight": "1 lb.",
+    "Category": "religious",
+    "Description": "A bell used in religious ceremonies."
+  },
+  {
+    "Name": "Rope (50 ft.)",
+    "Cost": "1 gp",
+    "Weight": "10 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Fifty feet of hemp rope, useful for climbing, binding, or towing."
+  },
+  {
+    "Name": "Rope recaller",
+    "Cost": "250 gp",
+    "Weight": "30 lbs.",
+    "Category": "chains_ropes",
+    "Description": "A magical device that makes rope return to you when commanded."
+  },
+  {
+    "Name": "Sack",
+    "Cost": "1 sp",
+    "Weight": "1/2 lb.",
+    "Category": "containers",
+    "Description": "A large cloth bag for carrying items."
+  },
+  {
+    "Name": "Saw",
+    "Cost": "4 cp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A hand saw for cutting wood."
+  },
+  {
+    "Name": "Sawback sword",
+    "Cost": "+5 gp",
+    "Weight": "\u2014",
+    "Category": "weapon_accessories",
+    "Description": "A sword with a serrated back edge that can be used as a saw."
+  },
+  {
+    "Name": "Scroll belt",
+    "Cost": "3 sp",
+    "Weight": "varies",
+    "Category": "containers",
+    "Description": "A belt with pouches specifically designed to hold scrolls."
+  },
+  {
+    "Name": "Scroll box",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A rigid box for protecting scrolls."
+  },
+  {
+    "Name": "Scroll case",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "containers",
+    "Description": "A waterproof tube for storing and protecting scrolls."
+  },
+  {
+    "Name": "Scroll case, spring loaded",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A scroll case that ejects scrolls quickly when triggered."
+  },
+  {
+    "Name": "Sealing wax",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Category": "writing",
+    "Description": "Wax used to seal letters and documents."
+  },
+  {
+    "Name": "Second-story harness",
+    "Cost": "55 gp",
+    "Weight": "3 lbs.",
+    "Category": "climbing",
+    "Description": "A climbing harness designed for scaling buildings."
+  },
+  {
+    "Name": "Sentry mannequin",
+    "Cost": "30 gp",
+    "Weight": "35 lbs.",
+    "Category": "tactical",
+    "Description": "A dressed dummy that resembles a guard at a distance."
+  },
+  {
+    "Name": "Sentry seeds",
+    "Cost": "7 gp",
+    "Weight": "1/2 lb.",
+    "Category": "magical_items",
+    "Description": "Seeds that sprout when intruders approach, alerting guards."
+  },
+  {
+    "Name": "Serrated caltrops",
+    "Cost": "451 gp",
+    "Weight": "2 lbs.",
+    "Category": "tactical",
+    "Description": "Caltrops with saw-tooth edges that cause bleeding wounds."
+  },
+  {
+    "Name": "Sewing needle",
+    "Cost": "5 sp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A thin needle for sewing cloth and leather."
+  },
+  {
+    "Name": "Sextant",
+    "Cost": "500 gp",
+    "Weight": "2 lbs.",
+    "Category": "navigation",
+    "Description": "A precision navigation instrument for measuring angles between celestial objects."
+  },
+  {
+    "Name": "Sheriff's whistle",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A loud whistle used to summon help or signal alarm."
+  },
+  {
+    "Name": "Shield boss (breakaway)",
+    "Cost": "120 gp",
+    "Weight": "10 lbs.",
+    "Category": "shield_accessories",
+    "Description": "A shield boss designed to break free and strike opponents."
+  },
+  {
+    "Name": "Shield boss (hooked)",
+    "Cost": "80 gp",
+    "Weight": "10 lbs.",
+    "Category": "shield_accessories",
+    "Description": "A shield boss with hooks for catching weapons."
+  },
+  {
+    "Name": "Shield boss (illuminating)",
+    "Cost": "35 gp",
+    "Weight": "10 lbs.",
+    "Category": "shield_accessories",
+    "Description": "A shield boss containing a light source."
+  },
+  {
+    "Name": "Shield boss (masterwork)",
+    "Cost": "+50 gp",
+    "Weight": "\u2014",
+    "Category": "shield_accessories",
+    "Description": "A superior quality shield boss."
+  },
+  {
+    "Name": "Shield boss (reinforcing boss)",
+    "Cost": "30 gp",
+    "Weight": "10 lbs.",
+    "Category": "shield_accessories",
+    "Description": "An extra-strong shield boss that reinforces the shield."
+  },
+  {
+    "Name": "Shield sconce",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Category": "shield_accessories",
+    "Description": "A holder that allows a torch or lantern to be mounted on a shield."
+  },
+  {
+    "Name": "Shoddy item",
+    "Cost": "varies",
+    "Weight": "varies",
+    "Category": "misc",
+    "Description": "A poorly made item of inferior quality and reduced price."
+  },
+  {
+    "Name": "Shovel (common)",
+    "Cost": "2 gp",
+    "Weight": "8 lbs.",
+    "Category": "tools",
+    "Description": "A basic digging tool."
+  },
+  {
+    "Name": "Shovel (folding)",
+    "Cost": "10 gp",
+    "Weight": "12 lbs.",
+    "Category": "tools",
+    "Description": "A shovel that folds for easier transport."
+  },
+  {
+    "Name": "Shovel, common",
+    "Cost": "2 cp",
+    "Weight": "3 lbs.",
+    "Category": "tools",
+    "Description": "A standard shovel."
+  },
+  {
+    "Name": "Shrapnel caltrops",
+    "Cost": "401 gp",
+    "Weight": "2 lbs.",
+    "Category": "tactical",
+    "Description": "Caltrops that explode into fragments when stepped on."
+  },
+  {
+    "Name": "Signal horn",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A horn for sending acoustic signals over distance."
+  },
+  {
+    "Name": "Signet ring",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A ring bearing a personal or family seal for marking documents."
+  },
+  {
+    "Name": "Silent piton",
+    "Cost": "5 sp",
+    "Weight": "1/2 lb.",
+    "Category": "climbing",
+    "Description": "A climbing piton designed to be hammered quietly."
+  },
+  {
+    "Name": "Silk rope (50 ft.)",
+    "Cost": "10 gp",
+    "Weight": "5 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Fifty feet of strong, lightweight silk rope."
+  },
+  {
+    "Name": "Siphon ray",
+    "Cost": "5 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A creature used to transfer liquids between containers."
+  },
+  {
+    "Name": "Skeleton key",
+    "Cost": "85 gp",
+    "Weight": "\u2014",
+    "Category": "locks_keys",
+    "Description": "A specially crafted key that can open many simple locks."
+  },
+  {
+    "Name": "Skillet (common)",
+    "Cost": "8 sp",
+    "Weight": "4 lbs.",
+    "Category": "cooking",
+    "Description": "An iron frying pan."
+  },
+  {
+    "Name": "Skillet (mithral)",
+    "Cost": "2,001 gp",
+    "Weight": "2 lbs.",
+    "Category": "cooking",
+    "Description": "A lightweight mithral frying pan."
+  },
+  {
+    "Name": "Sledge",
+    "Cost": "1 gp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "A heavy hammer for demolition or driving large spikes."
+  },
+  {
+    "Name": "Smoke cover",
+    "Cost": "75 gp",
+    "Weight": "10 lbs.",
+    "Category": "tactical",
+    "Description": "A device that releases smoke to provide concealment."
+  },
+  {
+    "Name": "Smoked goggles",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Category": "protective",
+    "Description": "Tinted goggles that protect eyes from bright light and glare."
+  },
+  {
+    "Name": "Snorkel (common)",
+    "Cost": "5 sp",
+    "Weight": "\u2014",
+    "Category": "survival",
+    "Description": "A tube for breathing while swimming face-down in water."
+  },
+  {
+    "Name": "Snorkel (masterwork)",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "survival",
+    "Description": "A superior snorkel with better airflow and comfort."
+  },
+  {
+    "Name": "Soap",
+    "Cost": "1 cp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A bar of soap for washing."
+  },
+  {
+    "Name": "Soul candle",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "occult",
+    "Description": "A candle believed to guide departed souls."
+  },
+  {
+    "Name": "Spear-thrower",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Category": "weapons",
+    "Description": "An atlatl or similar device for throwing spears with greater force."
+  },
+  {
+    "Name": "Spider's silk rope (50 ft.)",
+    "Cost": "100 gp",
+    "Weight": "4 lbs.",
+    "Category": "chains_ropes",
+    "Description": "Extremely strong rope woven from giant spider silk."
+  },
+  {
+    "Name": "Spike hilt",
+    "Cost": "300 gp",
+    "Weight": "1 lb.",
+    "Category": "weapon_accessories",
+    "Description": "A weapon hilt with spikes for punching."
+  },
+  {
+    "Name": "Spirit compass",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Category": "occult",
+    "Description": "A compass that points toward spiritual disturbances."
+  },
+  {
+    "Name": "Spirit offerings",
+    "Cost": "20 gp",
+    "Weight": "1/2 lb.",
+    "Category": "religious",
+    "Description": "Items left as offerings to appease spirits."
+  },
+  {
+    "Name": "Spirit trumpet",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Category": "occult",
+    "Description": "A cone used in s\u00e9ances, supposedly amplifying spirit voices."
+  },
+  {
+    "Name": "Spotlight",
+    "Cost": "75 gp",
+    "Weight": "18 lbs.",
+    "Category": "lighting",
+    "Description": "A powerful directional light."
+  },
+  {
+    "Name": "Spyglass",
+    "Cost": "1,000 gp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A collapsing telescope for viewing distant objects."
+  },
+  {
+    "Name": "Spyglass (masterwork)",
+    "Cost": "4,000 gp",
+    "Weight": "2 lbs.",
+    "Category": "tools",
+    "Description": "A superior quality spyglass with better optics."
+  },
+  {
+    "Name": "Stationery",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "writing",
+    "Description": "Quality paper, envelopes, and writing materials."
+  },
+  {
+    "Name": "Stilts (common)",
+    "Cost": "2 sp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "Wooden poles for walking at an elevated height."
+  },
+  {
+    "Name": "Stilts (masterwork)",
+    "Cost": "5 gp",
+    "Weight": "10 lbs.",
+    "Category": "tools",
+    "Description": "Well-balanced, sturdy stilts."
+  },
+  {
+    "Name": "Storm glass",
+    "Cost": "80 gp",
+    "Weight": "5 lbs.",
+    "Category": "navigation",
+    "Description": "A sealed glass containing liquid that changes to predict weather."
+  },
+  {
+    "Name": "Stove can",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Category": "cooking",
+    "Description": "A portable camping stove."
+  },
+  {
+    "Name": "Stretch cords",
+    "Cost": "5 sp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "Elastic cords for bundling items."
+  },
+  {
+    "Name": "String or twine (50 ft.)",
+    "Cost": "1 cp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "Thin cordage for light tasks."
+  },
+  {
+    "Name": "Subversive vest (vest)",
+    "Cost": "45 gp",
+    "Weight": "1 lb.",
+    "Category": "clothing",
+    "Description": "A vest with hidden pockets for smuggling."
+  },
+  {
+    "Name": "Subversive vest (vestment)",
+    "Cost": "90 gp",
+    "Weight": "2 lbs.",
+    "Category": "clothing",
+    "Description": "Religious robes with hidden compartments."
+  },
+  {
+    "Name": "Sucker's barrel",
+    "Cost": "4 gp",
+    "Weight": "35 lbs.",
+    "Category": "deception",
+    "Description": "A rigged game barrel for cheating at carnival games."
+  },
+  {
+    "Name": "Sureseal bladder (mundane)",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "containers",
+    "Description": "A waterproof bladder for storing items."
+  },
+  {
+    "Name": "Sureseal bladder (potion)",
+    "Cost": "8 gp",
+    "Weight": "\u2014",
+    "Category": "containers",
+    "Description": "A bladder specifically designed for storing potions."
+  },
+  {
+    "Name": "Swarmsuit",
+    "Cost": "20 gp",
+    "Weight": "10 lbs.",
+    "Category": "protective",
+    "Description": "A protective suit that defends against insect swarms."
+  },
+  {
+    "Name": "Talking board",
+    "Cost": "15 gp",
+    "Weight": "2 lbs.",
+    "Category": "occult",
+    "Description": "A board with letters and numbers used for communicating with spirits."
+  },
+  {
+    "Name": "Tattoo",
+    "Cost": "1 cp\u201320 gp",
+    "Weight": "\u2014",
+    "Category": "body_modification",
+    "Description": "Permanent body art, ranging from simple designs to elaborate works."
+  },
+  {
+    "Name": "Teapot",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Category": "cooking",
+    "Description": "A pot for brewing and serving tea."
+  },
+  {
+    "Name": "Tears of Razmir",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Category": "religious",
+    "Description": "Fake magical potions sold by Razmiran priests."
+  },
+  {
+    "Name": "Tent",
+    "Cost": "10 gp",
+    "Weight": "20 lbs.",
+    "Category": "camping",
+    "Description": "A portable shelter for camping."
+  },
+  {
+    "Name": "Tent (large)",
+    "Cost": "30 gp",
+    "Weight": "40 lbs.",
+    "Category": "camping",
+    "Description": "A spacious tent for multiple people."
+  },
+  {
+    "Name": "Tent (medium)",
+    "Cost": "15 gp",
+    "Weight": "30 lbs.",
+    "Category": "camping",
+    "Description": "A tent for 2-4 people."
+  },
+  {
+    "Name": "Tent (pavilion)",
+    "Cost": "100 gp",
+    "Weight": "50 lbs.",
+    "Category": "camping",
+    "Description": "An elaborate tent suitable for extended stays or formal occasions."
+  },
+  {
+    "Name": "Tent (small)",
+    "Cost": "10 gp",
+    "Weight": "20 lbs.",
+    "Category": "camping",
+    "Description": "A compact tent for 1-2 people."
+  },
+  {
+    "Name": "Tent cover",
+    "Cost": "15 gp",
+    "Weight": "15 lbs.",
+    "Category": "camping",
+    "Description": "A waterproof cover to place over a tent for extra protection."
+  },
+  {
+    "Name": "Tent, hanging",
+    "Cost": "20 gp",
+    "Weight": "15 lbs.",
+    "Category": "camping",
+    "Description": "A tent designed to be suspended from trees or cliff faces."
+  },
+  {
+    "Name": "Thurible",
+    "Cost": "50 gp",
+    "Weight": "3 lbs.",
+    "Category": "religious",
+    "Description": "A censer suspended on chains for swinging during religious ceremonies."
+  },
+  {
+    "Name": "Torch",
+    "Cost": "1 cp",
+    "Weight": "1 lb.",
+    "Category": "lighting",
+    "Description": "A wooden rod with one end wrapped in cloth soaked in flammable materials, providing light for 1 hour."
+  },
+  {
+    "Name": "Traveler's dictionary",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Category": "writing",
+    "Description": "A book containing common phrases in multiple languages."
+  },
+  {
+    "Name": "Treasure chest (small)",
+    "Cost": "3 gp",
+    "Weight": "25 lbs.",
+    "Category": "containers",
+    "Description": "A reinforced small chest for storing valuables."
+  },
+  {
+    "Name": "Treasure chest (medium)",
+    "Cost": "7 gp",
+    "Weight": "50 lbs.",
+    "Category": "containers",
+    "Description": "A medium-sized chest for treasures."
+  },
+  {
+    "Name": "Treasure chest (large)",
+    "Cost": "15 gp",
+    "Weight": "100 lbs.",
+    "Category": "containers",
+    "Description": "A large chest for storing significant treasure."
+  },
+  {
+    "Name": "Treasure chest (huge)",
+    "Cost": "37 gp",
+    "Weight": "250 lbs.",
+    "Category": "containers",
+    "Description": "An enormous chest capable of holding vast amounts of treasure."
+  },
+  {
+    "Name": "Trekking pole",
+    "Cost": "15 gp",
+    "Weight": "2 lbs.",
+    "Category": "climbing",
+    "Description": "A sturdy walking pole that aids in hiking and climbing."
+  },
+  {
+    "Name": "Underwater compass",
+    "Cost": "20 gp",
+    "Weight": "1/2 lb.",
+    "Category": "navigation",
+    "Description": "A compass designed to function underwater."
+  },
+  {
+    "Name": "Underwater goggles",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Category": "underwater",
+    "Description": "Goggles that allow clear vision while swimming underwater."
+  },
+  {
+    "Name": "Undine weaponshaft",
+    "Cost": "+300 gp",
+    "Weight": "\u2014",
+    "Category": "weapon_accessories",
+    "Description": "A weapon shaft enchanted to function better underwater."
+  },
+  {
+    "Name": "Unguent of revivification",
+    "Cost": "50 gp/dose",
+    "Weight": "\u2014",
+    "Category": "magical_items",
+    "Description": "A rare ointment that can preserve corpses or slow death."
+  },
+  {
+    "Name": "Varisian idol",
+    "Cost": "75 gp",
+    "Weight": "1 lb.",
+    "Category": "occult",
+    "Description": "A small idol used in Varisian fortune-telling."
+  },
+  {
+    "Name": "Vault altimeter",
+    "Cost": "10 gp",
+    "Weight": "1/2 lb.",
+    "Category": "navigation",
+    "Description": "A device for measuring depth underground."
+  },
+  {
+    "Name": "Venom trap",
+    "Cost": "300 gp",
+    "Weight": "10 lbs.",
+    "Category": "traps",
+    "Description": "A trap that delivers poison to victims."
+  },
+  {
+    "Name": "Ventriloquist's dummy",
+    "Cost": "100 gp",
+    "Weight": "7 lbs.",
+    "Category": "entertainment",
+    "Description": "A puppet used in ventriloquist performances."
+  },
+  {
+    "Name": "Vial",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Category": "containers",
+    "Description": "A small glass container for liquids or powders."
+  },
+  {
+    "Name": "Vigilante's kit",
+    "Cost": "8 gp",
+    "Weight": "22 lbs.",
+    "Category": "kits",
+    "Description": "A collection of items useful for maintaining a secret identity."
+  },
+  {
+    "Name": "Waffle iron (common)",
+    "Cost": "1 gp",
+    "Weight": "5 lbs.",
+    "Category": "cooking",
+    "Description": "An iron mold for cooking waffles over a fire."
+  },
+  {
+    "Name": "Waffle iron (mithral)",
+    "Cost": "2,501 gp",
+    "Weight": "2-1/2 lbs.",
+    "Category": "cooking",
+    "Description": "A lightweight mithral waffle iron."
+  },
+  {
+    "Name": "Wall hook",
+    "Cost": "2 sp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "A metal hook for hanging items on walls."
+  },
+  {
+    "Name": "Warka jar",
+    "Cost": "2 gp",
+    "Weight": "1/2 lb.",
+    "Category": "containers",
+    "Description": "A ceramic jar used for storing water in hot climates."
+  },
+  {
+    "Name": "Water clock",
+    "Cost": "1,000 gp",
+    "Weight": "200 lbs.",
+    "Category": "tools",
+    "Description": "A complex device that measures time using flowing water."
+  },
+  {
+    "Name": "Waterproof bag",
+    "Cost": "5 sp",
+    "Weight": "1/2 lb.",
+    "Category": "containers",
+    "Description": "A sealed bag that keeps contents dry even when submerged."
+  },
+  {
+    "Name": "Waterproof lantern",
+    "Cost": "+5 gp",
+    "Weight": "\u2014",
+    "Category": "lighting",
+    "Description": "A sealed lantern that functions underwater."
+  },
+  {
+    "Name": "Waterskin",
+    "Cost": "1 gp",
+    "Weight": "4 lbs.",
+    "Category": "containers",
+    "Description": "A leather bag for carrying water or other liquids."
+  },
+  {
+    "Name": "Wax key blank",
+    "Cost": "15 gp",
+    "Weight": "1/2 lb.",
+    "Category": "locks_keys",
+    "Description": "A wax impression used to make copies of keys."
+  },
+  {
+    "Name": "Weapon cord",
+    "Cost": "1 sp",
+    "Weight": "\u2014",
+    "Category": "weapon_accessories",
+    "Description": "A cord that attaches a weapon to your wrist, preventing disarming."
+  },
+  {
+    "Name": "Whale oil",
+    "Cost": "2 sp",
+    "Weight": "1 lb.",
+    "Category": "lighting",
+    "Description": "Rendered whale fat used as lamp fuel or waterproofing."
+  },
+  {
+    "Name": "Wheelchair",
+    "Cost": "20 gp",
+    "Weight": "25 lbs.",
+    "Category": "medical",
+    "Description": "A wheeled chair for those unable to walk."
+  },
+  {
+    "Name": "Whetstone",
+    "Cost": "2 cp",
+    "Weight": "1 lb.",
+    "Category": "tools",
+    "Description": "A sharpening stone for maintaining blade edges."
+  },
+  {
+    "Name": "Whistle (signal)",
+    "Cost": "8 sp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A loud whistle for sending signals."
+  },
+  {
+    "Name": "Whistle (silent)",
+    "Cost": "9 sp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A whistle that produces sounds only animals can hear."
+  },
+  {
+    "Name": "Wind chime",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Category": "misc",
+    "Description": "Hanging chimes that make pleasant sounds in the wind."
+  },
+  {
+    "Name": "Windup music box",
+    "Cost": "25 gp",
+    "Weight": "1/2 lb.",
+    "Category": "entertainment",
+    "Description": "A clockwork box that plays a tune when wound."
+  },
+  {
+    "Name": "Wing hobble",
+    "Cost": "75 gp",
+    "Weight": "1-20 lbs.",
+    "Category": "restraints",
+    "Description": "Restraints designed to prevent flying creatures from using their wings."
+  },
+  {
+    "Name": "Wing sheaths",
+    "Cost": "10 gp",
+    "Weight": "10 lbs.",
+    "Category": "protective",
+    "Description": "Protective coverings for wings."
+  },
+  {
+    "Name": "Wing staff",
+    "Cost": "1,000 gp",
+    "Weight": "6 lbs.",
+    "Category": "tools",
+    "Description": "A magical staff that grants temporary flight."
+  },
+  {
+    "Name": "Wire",
+    "Cost": "5 gp",
+    "Weight": "1/2 lb.",
+    "Category": "tools",
+    "Description": "Thin metal wire useful for traps, bindings, or lockpicking."
+  },
+  {
+    "Name": "Wire saw (adamantine)",
+    "Cost": "150 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A saw made of adamantine wire, can cut through almost anything."
+  },
+  {
+    "Name": "Wire saw (common)",
+    "Cost": "30 gp",
+    "Weight": "\u2014",
+    "Category": "tools",
+    "Description": "A flexible wire that can cut through wood and soft metals."
+  },
+  {
+    "Name": "Wrist sheath",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Category": "concealment",
+    "Description": "A sheath strapped to the wrist for concealing a dagger or small weapon."
+  },
+  {
+    "Name": "Wrist sheath (spring loaded)",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "concealment",
+    "Description": "A wrist sheath that deploys weapons with the flick of a wrist."
+  },
+  {
+    "Name": "Zip-line hook (masterwork)",
+    "Cost": "55 gp",
+    "Weight": "1 lb.",
+    "Category": "climbing",
+    "Description": "A superior grappling hook with a pulley for sliding down ropes."
+  },
+  {
+    "Name": "Zip-line hook (normal)",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Category": "climbing",
+    "Description": "A grappling hook with an attached pulley for rapid descent."
+  }
+]
