@@ -1,0 +1,1521 @@
+[
+  {
+    "Name": "Aboleth Mucus Extract",
+    "Cost": "100 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "This extract, harvested from aboleths, can be used to create slime-based adhesives or to study aboleth biology."
+  },
+  {
+    "Name": "Accuracy Lozenge",
+    "Cost": "330 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "These lozenges enhance hand-eye coordination and precision, providing bonuses to ranged attack rolls."
+  },
+  {
+    "Name": "Adhesive Strip",
+    "Cost": "5 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "A sticky strip that can bond materials together temporarily, useful for quick repairs."
+  },
+  {
+    "Name": "Age Ointment",
+    "Cost": "80 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "When applied, this ointment makes the user appear older, useful for disguises."
+  },
+  {
+    "Name": "Alchemical Candle Wax",
+    "Cost": "150 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Special wax used to create candles with enhanced properties such as longer burning time or special effects."
+  },
+  {
+    "Name": "Alchemical Cement",
+    "Cost": "5 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 15,
+    "Description": "A quick-setting cement that bonds stone, brick, or similar materials."
+  },
+  {
+    "Name": "Alchemical Cleaner",
+    "Cost": "300 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A powerful cleaning solution that removes stains, odors, and even magical marks."
+  },
+  {
+    "Name": "Alchemical Dye Kit",
+    "Cost": "160 gp",
+    "Weight": "6 lbs",
+    "Craft DC": 20,
+    "Description": "A kit containing various alchemical dyes that permanently color cloth, leather, or other materials."
+  },
+  {
+    "Name": "Alchemical Glue",
+    "Cost": "20 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Strong adhesive that bonds most materials. Takes time to set but creates a permanent bond."
+  },
+  {
+    "Name": "Alchemical Glue Accelerant",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "When mixed with alchemical glue, this accelerant causes it to set almost instantly."
+  },
+  {
+    "Name": "Alchemical Pheromones (aggression)",
+    "Cost": "150 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Pheromones that make creatures more aggressive and hostile toward each other."
+  },
+  {
+    "Name": "Alchemical Pheromones (arousal)",
+    "Cost": "300 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Pheromones that create feelings of attraction and romantic interest."
+  },
+  {
+    "Name": "Alchemical Pheromones (simple)",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Basic pheromones that can attract or repel simple creatures."
+  },
+  {
+    "Name": "Alchemical Pheromones (susceptibility)",
+    "Cost": "300 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Pheromones that make targets more susceptible to suggestion and influence."
+  },
+  {
+    "Name": "Alchemical Resin",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "A sticky resin used in crafting and repairs, or as a component in other alchemical items."
+  },
+  {
+    "Name": "Alchemical Solvent",
+    "Cost": "20 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "A liquid that dissolves alchemical glue and other adhesives without damaging the bonded materials."
+  },
+  {
+    "Name": "Alkali Salt",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A chemical salt that neutralizes acids and can be used in various alchemical processes."
+  },
+  {
+    "Name": "Amp",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "An alchemical stimulant that enhances sensory perception and alertness."
+  },
+  {
+    "Name": "Angel Quill Arrowhead",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "An arrowhead crafted from celestial materials, effective against evil creatures."
+  },
+  {
+    "Name": "Anointing Oil",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Sacred oil used in religious ceremonies and for consecrating items or places."
+  },
+  {
+    "Name": "Armor Ointment",
+    "Cost": "30 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Applied to armor, this ointment helps prevent rust, reduces friction, and eases donning."
+  },
+  {
+    "Name": "Barbarian Chew",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "A stimulating substance that enhances rage and physical prowess when chewed."
+  },
+  {
+    "Name": "Beast Lure",
+    "Cost": "30 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Bait or scent that attracts animals and magical beasts to a specific location."
+  },
+  {
+    "Name": "Beast-Scent",
+    "Cost": "75 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "A concentrated scent that makes the wearer smell like a specific type of animal."
+  },
+  {
+    "Name": "Black Fester (vial)",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A virulent substance that causes wounds to fester and resist healing."
+  },
+  {
+    "Name": "Blackfingers Paste",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "A toxic paste used by assassins, leaving distinctive black marks on victims."
+  },
+  {
+    "Name": "Blackfire Clay",
+    "Cost": "20 gp",
+    "Weight": "10 lbs",
+    "Craft DC": 20,
+    "Description": "Moldable clay that hardens when exposed to air and is resistant to fire."
+  },
+  {
+    "Name": "Blasting Jelly",
+    "Cost": "45 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "An explosive gel used for demolition. Unstable and dangerous to transport."
+  },
+  {
+    "Name": "Blight Tonic",
+    "Cost": "150 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "A poison that withers plants and causes blight in vegetation."
+  },
+  {
+    "Name": "Blightburn Paste",
+    "Cost": "5000 gp",
+    "Weight": "45 lbs",
+    "Craft DC": 30,
+    "Description": "Radioactive paste derived from blightburn crystals, deadly but useful in certain applications."
+  },
+  {
+    "Name": "Blood Neutralizer",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A substance that breaks down blood, useful for cleaning crime scenes or medical applications."
+  },
+  {
+    "Name": "Bloodblock",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Applied to wounds, this substance prevents bleeding and promotes clotting."
+  },
+  {
+    "Name": "Bloodvine Rope",
+    "Cost": "200 gp",
+    "Weight": "5 lbs",
+    "Craft DC": 30,
+    "Description": "Rope woven from bloodvine fibers, incredibly strong and slightly elastic."
+  },
+  {
+    "Name": "Boar's Bellow",
+    "Cost": "190 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "When consumed, this substance temporarily enhances the user's voice, making it louder and more intimidating."
+  },
+  {
+    "Name": "Bodybalm",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A soothing balm that eases muscle soreness and promotes recovery from physical exertion."
+  },
+  {
+    "Name": "Bomb Launcher",
+    "Cost": "10 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "A device that launches alchemist bombs greater distances than they can be thrown."
+  },
+  {
+    "Name": "Bone Paste",
+    "Cost": "75 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "An adhesive that bonds broken bones, accelerating the healing of fractures."
+  },
+  {
+    "Name": "Boniface Paint",
+    "Cost": "15 gp",
+    "Weight": "5 lbs",
+    "Craft DC": 20,
+    "Description": "Paint used for creating facial features on corpses or masks, making them appear lifelike."
+  },
+  {
+    "Name": "Bore Brush",
+    "Cost": "75 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "A specialized brush treated with alchemical solvents for cleaning firearm barrels."
+  },
+  {
+    "Name": "Bottled Musk",
+    "Cost": "25 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "Concentrated animal musk used for tracking, luring, or masking scents."
+  },
+  {
+    "Name": "Bottled Sunlight",
+    "Cost": "200 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 30,
+    "Description": "A bottle containing concentrated sunlight that releases bright illumination and affects creatures vulnerable to sunlight."
+  },
+  {
+    "Name": "Brewer's Kit",
+    "Cost": "25 gp",
+    "Weight": "50 lbs",
+    "Craft DC": null,
+    "Description": "Tools and equipment for brewing beer, ale, and other fermented beverages."
+  },
+  {
+    "Name": "Brewer's Kit, Masterwork",
+    "Cost": "75 gp",
+    "Weight": "50 lbs",
+    "Craft DC": null,
+    "Description": "Superior quality brewing equipment that produces better results."
+  },
+  {
+    "Name": "Bunk",
+    "Cost": "5 cp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Fake or diluted alchemical substances sold as genuine products."
+  },
+  {
+    "Name": "Buoyant Balloon",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "A balloon filled with alchemically-produced lighter-than-air gas."
+  },
+  {
+    "Name": "Burner",
+    "Cost": "3 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "A small portable burner for heating alchemical substances or cooking."
+  },
+  {
+    "Name": "Camouflage Lichen",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Living lichen that can be cultivated on clothing or equipment to provide natural camouflage."
+  },
+  {
+    "Name": "Candlerod",
+    "Cost": "1 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "A stick coated in slow-burning wax that provides light like a candle but lasts longer."
+  },
+  {
+    "Name": "Caphorite Dust",
+    "Cost": "25 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Alchemical dust that disrupts magical auras and interferes with divination."
+  },
+  {
+    "Name": "Cardice Oil",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Oil that remains liquid at very low temperatures, useful in cold environments."
+  },
+  {
+    "Name": "Carrion Bait",
+    "Cost": "25 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 19,
+    "Description": "Pungent bait that attracts scavengers and carrion-eating creatures."
+  },
+  {
+    "Name": "Casting Plaster",
+    "Cost": "0.5 gp",
+    "Weight": "5 lbs",
+    "Craft DC": 25,
+    "Description": "Quick-setting plaster for making molds and casts of objects or tracks."
+  },
+  {
+    "Name": "Chameleon Pill",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "When swallowed, this pill causes the user's skin to change color to match surroundings."
+  },
+  {
+    "Name": "Chemical Ward",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "A protective barrier that shields against specific chemical or alchemical effects."
+  },
+  {
+    "Name": "Chill Cream",
+    "Cost": "15 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Cream that produces a cooling sensation when applied, useful for treating burns or fevers."
+  },
+  {
+    "Name": "Clatterstone",
+    "Cost": "30 gp",
+    "Weight": "2 lbs",
+    "Craft DC": null,
+    "Description": "A stone that makes loud clattering noises when moved, useful as an alarm."
+  },
+  {
+    "Name": "Clockwork Prowler",
+    "Cost": "500 gp",
+    "Weight": "25 lbs",
+    "Craft DC": null,
+    "Description": "A mechanical spider-like device that can be wound up to scout or patrol."
+  },
+  {
+    "Name": "Clockwork Prowler (advanced)",
+    "Cost": "1500 gp",
+    "Weight": "30 lbs",
+    "Craft DC": null,
+    "Description": "An improved version of the clockwork prowler with enhanced capabilities."
+  },
+  {
+    "Name": "Cooking Powder",
+    "Cost": "2 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Alchemical powder that generates heat when mixed with water, useful for cooking without fire."
+  },
+  {
+    "Name": "Coral Boulder",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A seed or substance that rapidly grows coral when placed underwater."
+  },
+  {
+    "Name": "Crucible",
+    "Cost": "20 gp",
+    "Weight": "30 lbs",
+    "Craft DC": null,
+    "Description": "A heat-resistant container for melting or mixing alchemical substances."
+  },
+  {
+    "Name": "Dampening Ointment",
+    "Cost": "250 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Ointment that suppresses sound when applied to objects or surfaces."
+  },
+  {
+    "Name": "Darklight Lantern",
+    "Cost": "20 gp",
+    "Weight": "3 lbs",
+    "Craft DC": null,
+    "Description": "A lantern that produces light visible only to creatures with darkvision."
+  },
+  {
+    "Name": "Dead Air Vial",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A vial containing air devoid of life-sustaining properties, useful for certain experiments."
+  },
+  {
+    "Name": "Deep Breath",
+    "Cost": "100 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Compressed air in a container that allows one breath underwater or in a vacuum."
+  },
+  {
+    "Name": "Defoliant",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Chemical that kills plants and strips leaves from trees."
+  },
+  {
+    "Name": "Deodorizing Agent (vial)",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Liquid that neutralizes odors, useful for covering tracks or cleaning."
+  },
+  {
+    "Name": "Drought Powder",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Powder that absorbs moisture from the air or wet surfaces."
+  },
+  {
+    "Name": "Duskeye",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 16,
+    "Description": "Eye drops that enhance vision in low light conditions."
+  },
+  {
+    "Name": "Ectoplasmic Tracer",
+    "Cost": "100 gp",
+    "Weight": "7 lbs",
+    "Craft DC": 20,
+    "Description": "Substance that marks incorporeal creatures, making them easier to track and target."
+  },
+  {
+    "Name": "Efreeti Cord",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 10,
+    "Description": "A magical cord that produces heat, useful for starting fires."
+  },
+  {
+    "Name": "Efreeti Switch",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 10,
+    "Description": "A switch that controls heat-producing efreeti magic items."
+  },
+  {
+    "Name": "Elemental Breath",
+    "Cost": "80 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "When consumed, allows the user to breathe a gout of elemental energy once."
+  },
+  {
+    "Name": "Elemental Proofing",
+    "Cost": "100 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Treatment that protects items from elemental damage (fire, cold, acid, or electricity)."
+  },
+  {
+    "Name": "Embalming Fluid",
+    "Cost": "50 gp",
+    "Weight": "10 lbs",
+    "Craft DC": 25,
+    "Description": "Fluid used to preserve corpses and prevent decomposition."
+  },
+  {
+    "Name": "Exemplar Weapon Salve",
+    "Cost": "350 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Salve that temporarily enhances a weapon's effectiveness."
+  },
+  {
+    "Name": "Falsehood Fizz",
+    "Cost": "190 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Effervescent drink that makes lies more convincing for a short time."
+  },
+  {
+    "Name": "Fellowship Film",
+    "Cost": "190 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Thin film applied to the tongue that enhances social interaction and fellowship."
+  },
+  {
+    "Name": "Fervor Juice",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Drink that temporarily boosts religious fervor and conviction."
+  },
+  {
+    "Name": "Fiendgore Unguent",
+    "Cost": "75 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Unguent effective against fiends and evil outsiders."
+  },
+  {
+    "Name": "Filter",
+    "Cost": "0.5 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "Cloth or charcoal filter for purifying water or air."
+  },
+  {
+    "Name": "Fire Ink",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Ink that ignites when exposed to air, used for creating burning messages."
+  },
+  {
+    "Name": "Firearm Oil",
+    "Cost": "260 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Special oil that lubricates firearms and prevents misfires."
+  },
+  {
+    "Name": "Fireskin Elixir",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Elixir that makes skin resistant to fire damage for a short time."
+  },
+  {
+    "Name": "Flash Seeds",
+    "Cost": "35 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 15,
+    "Description": "Seeds that burst with bright light when crushed or ignited."
+  },
+  {
+    "Name": "Foaming Powder",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Powder that produces copious foam when mixed with liquid."
+  },
+  {
+    "Name": "Focus Chew",
+    "Cost": "40 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Chewable substance that enhances mental focus and concentration."
+  },
+  {
+    "Name": "Fool's Glow",
+    "Cost": "45 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Substance that glows faintly, mimicking magical auras to fool detect magic."
+  },
+  {
+    "Name": "Frightful War Paint",
+    "Cost": "300 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 30,
+    "Description": "War paint that makes the wearer more terrifying and intimidating."
+  },
+  {
+    "Name": "Fuel Pellet (10)",
+    "Cost": "0.3 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Compressed fuel pellets that burn steadily and produce significant heat."
+  },
+  {
+    "Name": "Garlic Tablets",
+    "Cost": "20 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Concentrated garlic in tablet form, useful for warding off vampires."
+  },
+  {
+    "Name": "Ghost Ink",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Ink that is invisible to normal sight but visible to creatures that can see invisible things."
+  },
+  {
+    "Name": "Gloom Sight Goggles",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Goggles treated with alchemical substances that allow vision in magical darkness."
+  },
+  {
+    "Name": "Gloomstick",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A stick that creates darkness when activated, opposite of a sunrod."
+  },
+  {
+    "Name": "Glowing Ink",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Ink that glows faintly in the dark, useful for writing messages visible at night."
+  },
+  {
+    "Name": "Golden Maple Leaves",
+    "Cost": "50 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "Alchemically preserved leaves that shimmer like gold, used in ceremonies."
+  },
+  {
+    "Name": "Gravelly Tonic",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Tonic that makes the voice deeper and more gravelly."
+  },
+  {
+    "Name": "Gum Rope",
+    "Cost": "30 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Rope made from elastic tree gum that stretches and contracts."
+  },
+  {
+    "Name": "Harpy Musk",
+    "Cost": "20 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Musk collected from harpies, used in certain alchemical recipes."
+  },
+  {
+    "Name": "Hobgoblin War Draught",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "A stimulating drink used by hobgoblin warriors before battle."
+  },
+  {
+    "Name": "Homunculus Clay",
+    "Cost": "2250 gp",
+    "Weight": "5 lbs",
+    "Craft DC": 30,
+    "Description": "Special clay used in the creation of homunculi."
+  },
+  {
+    "Name": "Houndbane Dust",
+    "Cost": "75 gp",
+    "Weight": "3 lbs",
+    "Craft DC": 25,
+    "Description": "Dust that repels canines and interferes with their sense of smell."
+  },
+  {
+    "Name": "Hound's Blood (vial)",
+    "Cost": "110 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Blood from tracking hounds, used to enhance tracking abilities."
+  },
+  {
+    "Name": "Ifrit's Blood",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Blood from ifrits, used in fire-related alchemical creations."
+  },
+  {
+    "Name": "Impact Foam",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Foam that hardens on impact, useful for cushioning falls or creating barriers."
+  },
+  {
+    "Name": "Imposing War Paint",
+    "Cost": "70 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "War paint that makes the wearer appear more imposing and authoritative."
+  },
+  {
+    "Name": "Incense of Divinity",
+    "Cost": "200 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 30,
+    "Description": "Sacred incense that enhances divine magic and religious ceremonies."
+  },
+  {
+    "Name": "Ink of Stolen Secrets",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Ink that subtly extracts information from those who read messages written with it."
+  },
+  {
+    "Name": "Instant Fertilizer",
+    "Cost": "20 gp",
+    "Weight": "4 lbs",
+    "Craft DC": 20,
+    "Description": "Alchemical fertilizer that rapidly accelerates plant growth."
+  },
+  {
+    "Name": "Intuition Serum",
+    "Cost": "190 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Serum that enhances intuition and gut feelings."
+  },
+  {
+    "Name": "Invisible Ink (simple)",
+    "Cost": "2 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Basic invisible ink that becomes visible when heated."
+  },
+  {
+    "Name": "Invisible Ink (average)",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Invisible ink requiring a specific chemical to reveal."
+  },
+  {
+    "Name": "Invisible Ink (good)",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "High-quality invisible ink difficult to detect."
+  },
+  {
+    "Name": "Invisible Ink (superior)",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Superior invisible ink virtually undetectable without magic."
+  },
+  {
+    "Name": "Kaava Musk",
+    "Cost": "40 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Musk from kaava creatures, used in alchemical formulas."
+  },
+  {
+    "Name": "Light Detector",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 10,
+    "Description": "A simple chemical strip that changes color when exposed to light."
+  },
+  {
+    "Name": "Light Fire Ink",
+    "Cost": "40 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Ink that bursts into flame when exposed to bright light."
+  },
+  {
+    "Name": "Light of Axtarr",
+    "Cost": "180 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 30,
+    "Description": "A powerful light source that also harms undead."
+  },
+  {
+    "Name": "Light-Killer's Grease",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Grease that extinguishes light sources when applied."
+  },
+  {
+    "Name": "Liniment",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Soothing ointment for treating muscle aches and joint pain."
+  },
+  {
+    "Name": "Liquid Traction",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Liquid that increases grip and prevents slipping when applied to surfaces."
+  },
+  {
+    "Name": "Litmus Strip",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Chemical test strip for determining acidity or alkalinity."
+  },
+  {
+    "Name": "Lover's Breath",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Perfumed breath freshener that enhances charm and appeal."
+  },
+  {
+    "Name": "Lozenge of the Songbird",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Lozenge that improves singing voice and vocal performance."
+  },
+  {
+    "Name": "Magnetized Paper",
+    "Cost": "11 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Paper treated to be slightly magnetic, useful for certain tricks."
+  },
+  {
+    "Name": "Marker Dye",
+    "Cost": "15 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Dye that marks targets visibly, making them easier to track."
+  },
+  {
+    "Name": "Masking Scent (animal)",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Scent that makes the wearer smell like an animal."
+  },
+  {
+    "Name": "Masking Scent (humanoid)",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Scent that makes the wearer smell like a specific type of humanoid."
+  },
+  {
+    "Name": "Masking Scent (magical beast)",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "Scent that makes the wearer smell like a magical beast."
+  },
+  {
+    "Name": "Mending Paste",
+    "Cost": "25 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Paste that repairs small breaks in objects when applied."
+  },
+  {
+    "Name": "Mimic Fibers",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Fibers harvested from mimics, used in shape-changing alchemical items."
+  },
+  {
+    "Name": "Minkaian Ceremonial Tea",
+    "Cost": "900 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 35,
+    "Description": "Rare ceremonial tea from Minkai with mystical properties."
+  },
+  {
+    "Name": "Mithralbane Sap",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Corrosive sap that can eat through mithral."
+  },
+  {
+    "Name": "Monochrome Camouflage",
+    "Cost": "40 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Paint that creates effective camouflage in black and white environments."
+  },
+  {
+    "Name": "Moonrod",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A rod that produces soft, moon-like light."
+  },
+  {
+    "Name": "Necrobane Formaldehyde",
+    "Cost": "60 gp",
+    "Weight": "3 lbs",
+    "Craft DC": 23,
+    "Description": "Formaldehyde that prevents corpses from rising as undead."
+  },
+  {
+    "Name": "Necrosalt",
+    "Cost": "150 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 30,
+    "Description": "Salt blessed and treated to harm undead and prevent negative energy."
+  },
+  {
+    "Name": "Night Stalker's Tonic",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Tonic that enhances stealth and allows movement in darkness."
+  },
+  {
+    "Name": "Nushadir",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Alchemical salt with various uses in crafting."
+  },
+  {
+    "Name": "Odor Stalk",
+    "Cost": "70 gp",
+    "Weight": "0.1 lbs",
+    "Craft DC": null,
+    "Description": "Plant stalk that produces specific odors when broken."
+  },
+  {
+    "Name": "Oil of the Masters",
+    "Cost": "50 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Oil that temporarily enhances crafting abilities."
+  },
+  {
+    "Name": "Ooze Attractant",
+    "Cost": "100 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Substance that attracts oozes and slimes."
+  },
+  {
+    "Name": "Ooze Grease",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Slippery grease harvested from oozes."
+  },
+  {
+    "Name": "Oozing Vat (small)",
+    "Cost": "1 gp",
+    "Weight": "2 lbs",
+    "Craft DC": null,
+    "Description": "Small container for cultivating oozes."
+  },
+  {
+    "Name": "Oozing Vat (medium)",
+    "Cost": "10 gp",
+    "Weight": "20 lbs",
+    "Craft DC": null,
+    "Description": "Medium container for cultivating oozes."
+  },
+  {
+    "Name": "Oozing Vat (large)",
+    "Cost": "50 gp",
+    "Weight": "200 lbs",
+    "Craft DC": null,
+    "Description": "Large container for cultivating oozes."
+  },
+  {
+    "Name": "Oozing Vat (huge)",
+    "Cost": "200 gp",
+    "Weight": "2000 lbs",
+    "Craft DC": null,
+    "Description": "Huge container for cultivating oozes."
+  },
+  {
+    "Name": "Oozing Vat (gargantuan)",
+    "Cost": "500 gp",
+    "Weight": "10000 lbs",
+    "Craft DC": null,
+    "Description": "Gargantuan container for cultivating oozes."
+  },
+  {
+    "Name": "Pallid Suspension",
+    "Cost": "324 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Alchemical suspension that preserves living tissue."
+  },
+  {
+    "Name": "Paper Wall Paste",
+    "Cost": "10 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 15,
+    "Description": "Paste for adhering paper to walls, creating temporary partitions."
+  },
+  {
+    "Name": "Pathstones",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Stones that glow faintly to mark a path in darkness."
+  },
+  {
+    "Name": "Petrified Ooze",
+    "Cost": "80 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Hardened ooze material used in alchemical recipes."
+  },
+  {
+    "Name": "Phosphorescent Gel",
+    "Cost": "45 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Gel that glows with a steady phosphorescent light."
+  },
+  {
+    "Name": "Planar Alchemical Catalyst",
+    "Cost": "200 gp",
+    "Weight": "2 lbs",
+    "Craft DC": null,
+    "Description": "Catalyst infused with planar energy for creating planar-specific items."
+  },
+  {
+    "Name": "Poison Diffuser",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Device that spreads poison in gaseous form over an area."
+  },
+  {
+    "Name": "Poison Sealant",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Coating that seals poison inside a container or on a weapon."
+  },
+  {
+    "Name": "Poison Tattoo",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Tattoo containing poison that can be released into the bloodstream."
+  },
+  {
+    "Name": "Potion Sponge",
+    "Cost": "2 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Sponge that absorbs and stores potion for later application."
+  },
+  {
+    "Name": "Pressure Pill",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Pill that helps the body resist extreme pressure changes."
+  },
+  {
+    "Name": "Rake's Friend",
+    "Cost": "120 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Substance that makes the user more charming and attractive."
+  },
+  {
+    "Name": "Reagent Paper",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Paper treated with reagents for testing various substances."
+  },
+  {
+    "Name": "Reanimating Fluid",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Fluid that can briefly animate dead tissue."
+  },
+  {
+    "Name": "Red Flame Torch",
+    "Cost": "20 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Torch that burns with distinctive red flame."
+  },
+  {
+    "Name": "Retort",
+    "Cost": "2 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "Glass container used for distilling alchemical substances."
+  },
+  {
+    "Name": "Rhinarium Paste",
+    "Cost": "75 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Paste that temporarily enhances sense of smell."
+  },
+  {
+    "Name": "Rockshard Canister",
+    "Cost": "50 gp",
+    "Weight": "25 lbs",
+    "Craft DC": null,
+    "Description": "Explosive canister filled with sharp rock fragments."
+  },
+  {
+    "Name": "Rusting Powder",
+    "Cost": "60 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "Powder that causes rapid rusting of metal."
+  },
+  {
+    "Name": "Scent Blocker",
+    "Cost": "80 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 23,
+    "Description": "Substance that blocks or neutralizes scents."
+  },
+  {
+    "Name": "Scent Cloak",
+    "Cost": "20 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 20,
+    "Description": "Chemical treatment that masks the wearer's scent."
+  },
+  {
+    "Name": "Scentbane Incense",
+    "Cost": "80 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Incense that eliminates scents in an area when burned."
+  },
+  {
+    "Name": "Serpent Line",
+    "Cost": "12 gp",
+    "Weight": "5 lbs",
+    "Craft DC": 20,
+    "Description": "Rope that moves like a snake when activated."
+  },
+  {
+    "Name": "Shaman's Paint",
+    "Cost": "90 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Ceremonial paint used by shamans to enhance spiritual connection."
+  },
+  {
+    "Name": "Shrieking Paste",
+    "Cost": "35 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 25,
+    "Description": "Paste that emits loud shrieking sounds when disturbed."
+  },
+  {
+    "Name": "Silence Dust",
+    "Cost": "60 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Dust that creates an area of supernatural silence."
+  },
+  {
+    "Name": "Silver Drops",
+    "Cost": "180 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "Eye drops that allow the user to see invisible creatures."
+  },
+  {
+    "Name": "Singer's Solution",
+    "Cost": "120 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Gargle solution that improves vocal performance."
+  },
+  {
+    "Name": "Smoke Bomb",
+    "Cost": "100 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 22,
+    "Description": "Bomb that creates thick concealing smoke when detonated."
+  },
+  {
+    "Name": "Smoke Pellet",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Small pellet that produces smoke when crushed or ignited."
+  },
+  {
+    "Name": "Smoke Signal",
+    "Cost": "5 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Device for creating colored smoke signals."
+  },
+  {
+    "Name": "Smokestick",
+    "Cost": "20 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Stick that produces thick smoke for 1 minute when ignited."
+  },
+  {
+    "Name": "Snake Oil",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Dubious remedy that may or may not have real benefits."
+  },
+  {
+    "Name": "Sparkle Smoke",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Smoke infused with glittering particles."
+  },
+  {
+    "Name": "Speech Resin",
+    "Cost": "410 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Resin that allows the mute to speak or enhances verbal communication."
+  },
+  {
+    "Name": "Spider Sac",
+    "Cost": "30 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Harvested spider silk sac with various alchemical uses."
+  },
+  {
+    "Name": "Spiderdraw",
+    "Cost": "40 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Substance that causes items to stick to surfaces like spider webs."
+  },
+  {
+    "Name": "Spirit of Glass",
+    "Cost": "35 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Purified alchemical alcohol as clear as glass."
+  },
+  {
+    "Name": "Spiritbane Spike",
+    "Cost": "300 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Spike that damages incorporeal creatures."
+  },
+  {
+    "Name": "Spirit-Vision Ink",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "Ink visible only to those who can see spirits."
+  },
+  {
+    "Name": "Stagnant Fog Sack",
+    "Cost": "80 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Sack containing fog that remains stationary when released."
+  },
+  {
+    "Name": "Stalker's Oil",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Oil that makes the user harder to detect when stalking prey."
+  },
+  {
+    "Name": "Static Wool",
+    "Cost": "100 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "Wool that generates static electricity, useful for certain purposes."
+  },
+  {
+    "Name": "Stonechipper Salve",
+    "Cost": "150 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Salve that temporarily allows tools to cut stone more easily."
+  },
+  {
+    "Name": "Sun Cinder",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Ember that burns with sunlight, harmful to undead."
+  },
+  {
+    "Name": "Sunderblock",
+    "Cost": "35 gp",
+    "Weight": "2 lbs",
+    "Craft DC": null,
+    "Description": "Block that helps break or sunder objects."
+  },
+  {
+    "Name": "Sunrod",
+    "Cost": "2 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Rod that shines bright light for 6 hours when struck."
+  },
+  {
+    "Name": "Sunsoil",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Soil infused with sunlight energy, useful for growing plants."
+  },
+  {
+    "Name": "Swift Hands Tonic",
+    "Cost": "250 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Tonic that enhances manual dexterity and hand speed."
+  },
+  {
+    "Name": "Thunder Kettle",
+    "Cost": "275 gp",
+    "Weight": "3 lbs",
+    "Craft DC": 25,
+    "Description": "Device that produces deafening thunder when activated."
+  },
+  {
+    "Name": "Tiller's Gum",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Chewing gum that helps farmers and planters work more efficiently."
+  },
+  {
+    "Name": "Tindertwig",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Small stick that ignites easily, useful for starting fires quickly."
+  },
+  {
+    "Name": "Tracker's Snuff",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "Snuff that dramatically enhances sense of smell for tracking."
+  },
+  {
+    "Name": "Tracking Powder",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Powder that marks targets, making them easier to track."
+  },
+  {
+    "Name": "Trailscent Kit",
+    "Cost": "10 gp",
+    "Weight": "5 lbs",
+    "Craft DC": 25,
+    "Description": "Kit for creating scent markers along a trail."
+  },
+  {
+    "Name": "Tunnel Creeper",
+    "Cost": "280 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Alchemical creature or device for exploring tunnels and cramped spaces."
+  },
+  {
+    "Name": "Unstable Accelerant",
+    "Cost": "50 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Highly volatile substance that causes fires to burn faster and hotter."
+  },
+  {
+    "Name": "Vector Ink",
+    "Cost": "60 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Ink that can carry diseases or poisons to those who handle it."
+  },
+  {
+    "Name": "Vine Tube",
+    "Cost": "40 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Hollow vine tube useful for breathing underwater or delivering substances."
+  },
+  {
+    "Name": "Vomit Capsule",
+    "Cost": "12 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Capsule that induces vomiting when swallowed, useful for purging poisons."
+  },
+  {
+    "Name": "Warding Ash",
+    "Cost": "100 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Blessed ash that creates protective wards against evil."
+  },
+  {
+    "Name": "Waspguts",
+    "Cost": "100 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 20,
+    "Description": "Wasp entrails with various alchemical properties."
+  },
+  {
+    "Name": "Water Purification Sponge",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Sponge that purifies water as it passes through."
+  },
+  {
+    "Name": "Weapon Blanch (adamantine)",
+    "Cost": "100 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "Coating that temporarily makes a weapon function as adamantine."
+  },
+  {
+    "Name": "Weapon Blanch (cold iron)",
+    "Cost": "20 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Coating that temporarily makes a weapon function as cold iron."
+  },
+  {
+    "Name": "Weapon Blanch (ghost salt)",
+    "Cost": "200 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": null,
+    "Description": "Coating that allows a weapon to strike incorporeal creatures."
+  },
+  {
+    "Name": "Weapon Blanch (silver)",
+    "Cost": "5 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "Coating that temporarily makes a weapon function as silver."
+  },
+  {
+    "Name": "Woad Painting (kit)",
+    "Cost": "300 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 30,
+    "Description": "Complete kit for applying ceremonial woad body paint."
+  },
+  {
+    "Name": "Woad Painting (paint, 1 block)",
+    "Cost": "60 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "Single block of woad paint for ceremonial body decoration."
+  }
+]
