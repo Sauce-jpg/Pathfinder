@@ -1,0 +1,555 @@
+[
+  {
+    "Name": "Air Crystals",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "These crystalline structures can be dissolved to provide breathable air, useful in situations of suffocation or underwater breathing."
+  },
+  {
+    "Name": "Alchemical Blood",
+    "Cost": "40 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 40,
+    "Description": "This synthetic blood can be used as a temporary replacement for lost blood, helping to stabilize bleeding creatures."
+  },
+  {
+    "Name": "Alchemical Grease",
+    "Cost": "5 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "A slippery substance that can be applied to surfaces or objects to make them difficult to grip or walk on."
+  },
+  {
+    "Name": "Alchemical Preserves",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "These preservatives can extend the shelf life of perishable materials and prevent decomposition."
+  },
+  {
+    "Name": "Alchemist's Kindness",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A remedy that alleviates the effects of a hangover and helps recover from excessive alcohol consumption."
+  },
+  {
+    "Name": "Ambrosia (vial)",
+    "Cost": "100 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "This rare alchemical substance provides exceptional nourishment and can sustain a person for an extended period."
+  },
+  {
+    "Name": "Anderos Salve and Mulibrous Tincture",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "A dual remedy used to treat gender-specific ailments and conditions."
+  },
+  {
+    "Name": "Anesthetic Wine",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "Wine infused with pain-numbing agents, used before surgery or to dull severe pain."
+  },
+  {
+    "Name": "Antidote",
+    "Cost": "varies gp",
+    "Weight": "0 lbs",
+    "Craft DC": "varies",
+    "Description": "A specific remedy designed to counteract a particular poison. The cost and craft DC vary based on the poison being countered."
+  },
+  {
+    "Name": "Antiemetic Snuff",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A powder that, when inhaled, prevents nausea and vomiting."
+  },
+  {
+    "Name": "Antiplague",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A preventative measure against disease, granting a bonus to saves against contracting illnesses."
+  },
+  {
+    "Name": "Antitoxin",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A universal remedy that provides resistance to poisons for a limited time."
+  },
+  {
+    "Name": "Antivenom",
+    "Cost": "varies gp",
+    "Weight": "0 lbs",
+    "Craft DC": "varies",
+    "Description": "A specialized antitoxin designed to counteract venom from specific creatures. Cost and DC vary by creature type."
+  },
+  {
+    "Name": "Applecheek",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "A cosmetic substance that gives the wearer a healthy, rosy complexion."
+  },
+  {
+    "Name": "Aquemir",
+    "Cost": "150 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "A rare alchemical substance with potent curative properties."
+  },
+  {
+    "Name": "Bladeguard",
+    "Cost": "40 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "A protective coating applied to weapons and armor to prevent rust and corrosion."
+  },
+  {
+    "Name": "Blain Bane",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 19,
+    "Description": "An ointment that treats boils, blisters, and other skin inflammations."
+  },
+  {
+    "Name": "Blood-Boiling Pill",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "When ingested, this pill raises the user's body temperature, providing resistance to cold."
+  },
+  {
+    "Name": "Blood-Chilling Pill",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "When ingested, this pill lowers the user's body temperature, providing resistance to heat."
+  },
+  {
+    "Name": "Blood-Clotter Salve",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Applied to wounds, this salve promotes rapid blood clotting and reduces bleeding."
+  },
+  {
+    "Name": "Bloodgorge",
+    "Cost": "40 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 25,
+    "Description": "A stimulant that increases blood flow and enhances physical performance temporarily."
+  },
+  {
+    "Name": "Boulderhead Bock",
+    "Cost": "25 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 19,
+    "Description": "A thick, fortifying drink favored by dwarves that bolsters constitution."
+  },
+  {
+    "Name": "Calistria's Kindness",
+    "Cost": "3 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "An alchemical contraceptive that prevents pregnancy when consumed."
+  },
+  {
+    "Name": "Chameleon Ointment",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "When applied to skin, this ointment helps the user blend with their surroundings."
+  },
+  {
+    "Name": "Curative Myrrh",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A healing resin that accelerates natural recovery when applied to wounds."
+  },
+  {
+    "Name": "Distilled Terrap Sap",
+    "Cost": "30 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 15,
+    "Description": "A sticky sap with adhesive and medicinal properties."
+  },
+  {
+    "Name": "Essence of Independence",
+    "Cost": "80 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "This essence grants temporary resistance to mind-affecting effects and compulsions."
+  },
+  {
+    "Name": "Eye Drops of the Unseen Master",
+    "Cost": "150 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "These drops enhance vision and provide bonuses to visual Perception checks."
+  },
+  {
+    "Name": "Fire Ward Gel",
+    "Cost": "150 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A gel that, when applied to skin or clothing, provides temporary protection against fire damage."
+  },
+  {
+    "Name": "Fortifying Brew",
+    "Cost": "20 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "A nutritious drink that bolsters stamina and endurance."
+  },
+  {
+    "Name": "Fortifying Fertilizer",
+    "Cost": "120 gp",
+    "Weight": "2 lbs",
+    "Craft DC": 25,
+    "Description": "An alchemical fertilizer that dramatically accelerates plant growth and improves crop yields."
+  },
+  {
+    "Name": "Frost Ward Gel",
+    "Cost": "150 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A gel that, when applied to skin or clothing, provides temporary protection against cold damage."
+  },
+  {
+    "Name": "Frostbite Ointment",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "An ointment that treats frostbite and prevents further cold damage to affected areas."
+  },
+  {
+    "Name": "Fury Drops",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Eye drops that enhance combat focus and aggression, providing bonuses in battle."
+  },
+  {
+    "Name": "Gildea Myrrh",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "A special variety of myrrh with enhanced healing properties."
+  },
+  {
+    "Name": "Icecap Ale",
+    "Cost": "40 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "A chilled ale that provides temporary resistance to cold environments."
+  },
+  {
+    "Name": "Iniquitous Panacea",
+    "Cost": "200 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "A powerful but morally questionable cure-all with potent healing properties."
+  },
+  {
+    "Name": "Insight Leaves",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "When chewed, these leaves enhance mental clarity and provide bonuses to Wisdom-based checks."
+  },
+  {
+    "Name": "Lantern Honey",
+    "Cost": "150 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "A luminescent honey that provides light when consumed or applied."
+  },
+  {
+    "Name": "Liquid Breeze",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "When opened, this vial releases a pleasant cooling breeze."
+  },
+  {
+    "Name": "Longbeard Lambic",
+    "Cost": "20 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 18,
+    "Description": "A dwarven ale known for promoting healthy beard growth."
+  },
+  {
+    "Name": "Loping Ointment",
+    "Cost": "60 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "Applied to legs and feet, this ointment temporarily increases movement speed."
+  },
+  {
+    "Name": "Loyalty Transfusion",
+    "Cost": "625 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "A rare substance that strengthens bonds of loyalty and resists compulsions to betray."
+  },
+  {
+    "Name": "Meditation Tea",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "This calming tea aids in meditation and helps regain mental focus."
+  },
+  {
+    "Name": "Mellowroot (vial)",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A mild sedative that calms nerves and reduces anxiety."
+  },
+  {
+    "Name": "Memory Incense",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 20,
+    "Description": "When burned, this incense enhances memory recall and concentration."
+  },
+  {
+    "Name": "Muscle Grout",
+    "Cost": "100 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "A paste applied to sore muscles to reduce pain and accelerate recovery from strain."
+  },
+  {
+    "Name": "Nostalgia Oil",
+    "Cost": "80 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "An aromatic oil that evokes pleasant memories and improves morale."
+  },
+  {
+    "Name": "Padzahr",
+    "Cost": "80 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A powerful antitoxin from Qadiran tradition that neutralizes many poisons."
+  },
+  {
+    "Name": "Phantom Ash",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Ash that creates ghostly after-images when scattered, useful for deception."
+  },
+  {
+    "Name": "Poison Ward Salve",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 15,
+    "Description": "Applied to skin, this salve provides a small degree of protection against contact poisons."
+  },
+  {
+    "Name": "Purification Pellet",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "Dissolves in water to purify it, making contaminated water safe to drink."
+  },
+  {
+    "Name": "Rager's Aid",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A substance that enhances rage and berserker abilities when consumed."
+  },
+  {
+    "Name": "Salt Tablets (10)",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 10,
+    "Description": "Tablets that help prevent dehydration and maintain electrolyte balance in hot environments."
+  },
+  {
+    "Name": "Scarsalve",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "A cosmetic ointment that reduces the appearance of scars over time."
+  },
+  {
+    "Name": "Semblance Transfusion",
+    "Cost": "300 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A rare alchemical substance that temporarily alters one's appearance."
+  },
+  {
+    "Name": "Smelling Salts",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Pungent salts that can revive unconscious creatures and negate certain conditions."
+  },
+  {
+    "Name": "Soothe Syrup",
+    "Cost": "25 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 15,
+    "Description": "A sweet syrup that soothes sore throats and calms coughs."
+  },
+  {
+    "Name": "Soul Stimulant",
+    "Cost": "300 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 30,
+    "Description": "A powerful remedy that can restore drained life force and negative levels."
+  },
+  {
+    "Name": "Stillgut (vial)",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A substance that settles the stomach and prevents digestive distress."
+  },
+  {
+    "Name": "Stink Ink (arcane)",
+    "Cost": "special gp",
+    "Weight": "1 lbs",
+    "Craft DC": null,
+    "Description": "Magical ink that releases a foul odor when specific conditions are met."
+  },
+  {
+    "Name": "Stink Ink (common)",
+    "Cost": "5 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 15,
+    "Description": "Non-magical ink that releases an unpleasant smell to mark or deter thieves."
+  },
+  {
+    "Name": "Sun Cream",
+    "Cost": "10 gp",
+    "Weight": "0.5 lbs",
+    "Craft DC": 20,
+    "Description": "A protective cream that prevents sunburn and reduces sun damage."
+  },
+  {
+    "Name": "Surge Syrup",
+    "Cost": "80 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A powerful stimulant that provides a temporary burst of energy and speed."
+  },
+  {
+    "Name": "Surgical Jelly",
+    "Cost": "300 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 25,
+    "Description": "A sterile gel used during surgery to prevent infection and promote healing."
+  },
+  {
+    "Name": "Sweet Rest",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A pleasant-tasting sedative that induces deep, restful sleep."
+  },
+  {
+    "Name": "Synthetic Mumia",
+    "Cost": "150 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 14,
+    "Description": "An alchemical substitute for mummy wrappings, with similar preservative properties."
+  },
+  {
+    "Name": "Tea of Transference",
+    "Cost": "40 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A tea that allows limited sharing of sensory experiences between drinkers."
+  },
+  {
+    "Name": "Troll Oil",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 30,
+    "Description": "An oil that mimics troll regeneration, promoting rapid healing when applied."
+  },
+  {
+    "Name": "Troll Styptic",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A powerful coagulant made from troll blood that stops bleeding almost instantly."
+  },
+  {
+    "Name": "Twitch Tonic",
+    "Cost": "45 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "A tonic that enhances reflexes and provides bonuses to initiative and Reflex saves."
+  },
+  {
+    "Name": "Vapors of Easy Breath",
+    "Cost": "75 gp",
+    "Weight": "3 lbs",
+    "Craft DC": 25,
+    "Description": "When released, these vapors make breathing easier in thin air or polluted environments."
+  },
+  {
+    "Name": "Venombane Lozenges",
+    "Cost": "35 gp",
+    "Weight": "0 lbs",
+    "Craft DC": null,
+    "Description": "Lozenges that provide minor protection against inhaled poisons and toxins."
+  },
+  {
+    "Name": "Vermin Repellent",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A substance applied to skin or clothing that repels insects and other small vermin."
+  },
+  {
+    "Name": "Vivifying Moxibustion Needles",
+    "Cost": "85 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 25,
+    "Description": "Acupuncture needles that, when properly applied, restore vitality and cure fatigue."
+  },
+  {
+    "Name": "War Spirit Pouch",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A pouch containing herbs and charms that bolster courage and combat prowess."
+  },
+  {
+    "Name": "Wing Oil",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "An oil that, when applied to wings, improves flight performance."
+  },
+  {
+    "Name": "Wismuth Salix",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Craft DC": 20,
+    "Description": "A remedy that soothes digestive ailments and stomach upset."
+  },
+  {
+    "Name": "Wyrm's Breath Bitter",
+    "Cost": "30 gp",
+    "Weight": "1 lbs",
+    "Craft DC": 21,
+    "Description": "A bitter drink that provides temporary resistance to dragon breath weapons."
+  }
+]
