@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import EquipmentBrowser from "../EquipmentBrowser";
+import { mapArmorToCharacter, mapShieldToCharacter } from "@/lib/equipmentMappers";
+import "../styles/EquipmentBrowser.css";
 
 interface ArmorTabProps {
   characterId: string;
@@ -12,6 +15,8 @@ interface ArmorTabProps {
 export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingArmor, setEditingArmor] = useState<any>(null);
+  const [showArmorBrowser, setShowArmorBrowser] = useState(false); // NEW: Equipment Browser state for armor
+  const [showShieldBrowser, setShowShieldBrowser] = useState(false); // NEW: Equipment Browser state for shields
 
   // Form state
   const [armorName, setArmorName] = useState("");
@@ -24,6 +29,30 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   const [properties, setProperties] = useState("");
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
+
+  // NEW: Handle armor selection from Equipment Browser
+  async function handleSelectArmor(armor: any) {
+    const armorData = mapArmorToCharacter(armor, characterId);
+    const { error } = await supabase.from("character_armor").insert(armorData);
+    if (error) {
+      alert("Error adding armor: " + error.message);
+    } else {
+      setShowArmorBrowser(false);
+      onUpdate();
+    }
+  }
+
+  // NEW: Handle shield selection from Equipment Browser
+  async function handleSelectShield(shield: any) {
+    const shieldData = mapShieldToCharacter(shield, characterId);
+    const { error } = await supabase.from("character_armor").insert(shieldData);
+    if (error) {
+      alert("Error adding shield: " + error.message);
+    } else {
+      setShowShieldBrowser(false);
+      onUpdate();
+    }
+  }
 
   function openAddModal() {
     setEditingArmor(null);
@@ -112,21 +141,53 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
 
   return (
     <div>
-      <button
-        onClick={openAddModal}
-        style={{
-          padding: "0.75rem 1.5rem",
-          background: "#f59e0b",
-          color: "white",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-          fontWeight: 600,
-          marginBottom: "1.5rem",
-        }}
-      >
-        + Add Armor/Shield
-      </button>
+      {/* MODIFIED: Button group with Browse buttons */}
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
+        <button
+          onClick={() => setShowArmorBrowser(true)}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          📖 Browse Armor Library
+        </button>
+
+        <button
+          onClick={() => setShowShieldBrowser(true)}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          📖 Browse Shields
+        </button>
+
+        <button
+          onClick={openAddModal}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#f59e0b",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          + Add Custom Armor
+        </button>
+      </div>
 
       {armor.length === 0 ? (
         <div
@@ -139,7 +200,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
           }}
         >
           <h3 style={{ margin: 0, color: "#666" }}>No armor or shields yet</h3>
-          <p style={{ color: "#999" }}>Click "Add Armor/Shield" to add protection!</p>
+          <p style={{ color: "#999" }}>Browse the library or add custom armor!</p>
         </div>
       ) : (
         <div style={{ display: "grid", gap: "1rem" }}>
@@ -298,7 +359,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 style={{ marginTop: 0 }}>{editingArmor ? "Edit Armor" : "Add Armor/Shield"}</h2>
+            <h2 style={{ marginTop: 0 }}>{editingArmor ? "Edit Armor" : "Add Custom Armor/Shield"}</h2>
 
             <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1rem" }}>
               <div>
@@ -512,6 +573,23 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
             </form>
           </div>
         </div>
+      )}
+
+      {/* NEW: Equipment Browser Modals */}
+      {showArmorBrowser && (
+        <EquipmentBrowser
+          category="armor"
+          onSelect={handleSelectArmor}
+          onClose={() => setShowArmorBrowser(false)}
+        />
+      )}
+
+      {showShieldBrowser && (
+        <EquipmentBrowser
+          category="shields"
+          onSelect={handleSelectShield}
+          onClose={() => setShowShieldBrowser(false)}
+        />
       )}
     </div>
   );
