@@ -6,7 +6,7 @@ import { ItemBonusesEditor } from "./ItemBonusesEditor";
 import EquipmentBrowser from "../EquipmentBrowser";
 import { mapItemToInventory } from "@/lib/equipmentMappers";
 import type { EquipmentCategory } from "@/types/equipment-types";
-import "../styles/EquipmentBrowser.css";
+import "../../styles/EquipmentBrowser.css";
 
 interface ItemsTabProps {
   characterId: string;
