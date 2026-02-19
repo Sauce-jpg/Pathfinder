@@ -1,0 +1,122 @@
+[
+  {
+    "Name": "Angelstep",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Description": "Herb with medicinal or magical properties. Can be gathered in wilderness and prepared for use."
+  },
+  {
+    "Name": "Black Amaranth",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Description": "Valuable herb with potent properties. Requires skill to gather and prepare properly."
+  },
+  {
+    "Name": "Bloody Mandrake",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Description": "Root herb with distinctive appearance. Used in various preparations."
+  },
+  {
+    "Name": "Bone Reed",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Description": "Reed-like plant found in specific terrain. Valuable for its properties when prepared."
+  },
+  {
+    "Name": "Cloud Puff",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Description": "Fungus or plant with cloud-like appearance. Requires careful preparation."
+  },
+  {
+    "Name": "Desna's Star",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Description": "Inexpensive herb, possibly associated with Desna, goddess of dreams and stars. Common and easily gathered."
+  },
+  {
+    "Name": "Dragon Rose",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Description": "Rose variety with draconic associations. Moderately valuable herb."
+  },
+  {
+    "Name": "Dream Lichen",
+    "Cost": "2000 gp",
+    "Weight": "0 lbs",
+    "Description": "Extremely rare and valuable lichen with dream-related properties. Most expensive herb. Likely affects sleep, dreams, or consciousness."
+  },
+  {
+    "Name": "Fairy Cap",
+    "Cost": "250 gp",
+    "Weight": "0 lbs",
+    "Description": "Mushroom with fey associations. Expensive and rare. May have magical or supernatural properties."
+  },
+  {
+    "Name": "Goblinvine",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Description": "Vine plant, possibly named for goblin habitats or uses. Moderately priced herb."
+  },
+  {
+    "Name": "Leechwort",
+    "Cost": "3 gp",
+    "Weight": "0 lbs",
+    "Description": "Very cheap herb, possibly used for drawing out toxins or healing wounds. Second-cheapest herb."
+  },
+  {
+    "Name": "Love-In-Idleness",
+    "Cost": "150 gp",
+    "Weight": "0 lbs",
+    "Description": "Herb from folklore, possibly affecting emotions or charm. Named after Shakespeare's flower used for love potions."
+  },
+  {
+    "Name": "Merfolk's Comb",
+    "Cost": "750 gp",
+    "Weight": "0 lbs",
+    "Description": "Aquatic plant or seaweed associated with merfolk. Expensive, likely found in water or coastal areas."
+  },
+  {
+    "Name": "Mimameith",
+    "Cost": "600 gp",
+    "Weight": "0 lbs",
+    "Description": "Rare herb with significant value. Properties unknown but expensive enough to be potent."
+  },
+  {
+    "Name": "Moly",
+    "Cost": "1200 gp",
+    "Weight": "0 lbs",
+    "Description": "Legendary herb from Greek mythology that protects against magic. Second most expensive herb. In myth, given by Hermes to Odysseus to resist Circe's magic."
+  },
+  {
+    "Name": "Nepenthe",
+    "Cost": "400 gp",
+    "Weight": "0 lbs",
+    "Description": "Herb that removes pain and sorrow. Named after mythological drug that banishes grief. Likely provides relief from mental or emotional afflictions."
+  },
+  {
+    "Name": "Nethys's Dagger",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "Herb associated with Nethys, god of magic. Possibly shaped like a dagger or used in magical preparations."
+  },
+  {
+    "Name": "Nightsage",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Description": "Sage variety that grows or is harvested at night. Moderately expensive, likely has nocturnal or shadow-related properties."
+  },
+  {
+    "Name": "Seeing Slime",
+    "Cost": "160 gp",
+    "Weight": "0 lbs",
+    "Description": "Fungus or mold that grants vision-related benefits. Possibly provides darkvision, detection abilities, or scrying properties."
+  },
+  {
+    "Name": "Winterbite",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Description": "Cold-weather herb with biting properties. Inexpensive, possibly provides cold resistance or is used in cold climates."
+  }
+]

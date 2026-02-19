@@ -1,0 +1,219 @@
+[
+  {
+    "Name": "Arrow, Iron-Tipped Distance (20)",
+    "Cost": "1 gp",
+    "Weight": 4,
+    "Type": "Ammunition",
+    "Description": "These arrows have iron tips and are designed for increased range."
+  },
+  {
+    "Name": "Arrows (20)",
+    "Cost": "1 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "Standard arrows for bows. An arrow that hits its target is destroyed; one that misses has a 50% chance of being destroyed or lost."
+  },
+  {
+    "Name": "Atlatl Dart",
+    "Cost": "1 gp",
+    "Weight": 2,
+    "Type": "Ammunition",
+    "Description": "Specially fitted dart designed for use with an atlatl."
+  },
+  {
+    "Name": "Bamboo Shaft Arrows (20)",
+    "Cost": "1 gp",
+    "Weight": 0.5,
+    "Type": "Ammunition",
+    "Description": "These lightweight arrows have bamboo shafts, making them easier to carry."
+  },
+  {
+    "Name": "Barbed Arrow (20)",
+    "Cost": "2 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "These arrows have barbs that make them difficult to remove, dealing additional damage when extracted."
+  },
+  {
+    "Name": "Blowgun Darts (10)",
+    "Cost": "0.5 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "These thin, light darts are typically used with a blowgun. They deal minimal damage but are excellent for delivering poison."
+  },
+  {
+    "Name": "Blunt Arrows (20)",
+    "Cost": "2 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "These arrows have blunted tips and deal nonlethal damage."
+  },
+  {
+    "Name": "Bolas Bolts",
+    "Cost": "20 gp",
+    "Weight": 4,
+    "Type": "Ammunition",
+    "Description": "These special crossbow bolts entangle the target on a successful hit."
+  },
+  {
+    "Name": "Bolt, Acid",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "This bolt is filled with acid and deals additional acid damage on a hit."
+  },
+  {
+    "Name": "Bolt, Drow Poison",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "This bolt is coated with drow poison."
+  },
+  {
+    "Name": "Bolt, Fire",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "This bolt is filled with alchemist's fire and deals additional fire damage on a hit."
+  },
+  {
+    "Name": "Bolts, Heartstake (5)",
+    "Cost": "100 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "These wooden bolts are designed to pierce the hearts of vampires."
+  },
+  {
+    "Name": "Bullets, Groaning (10)",
+    "Cost": "2 gp",
+    "Weight": 5,
+    "Type": "Ammunition",
+    "Description": "These bullets make a groaning sound when fired, potentially frightening opponents."
+  },
+  {
+    "Name": "Crossbow Bolts (10)",
+    "Cost": "1 gp",
+    "Weight": 1,
+    "Type": "Ammunition",
+    "Description": "Standard crossbow bolts. A bolt that hits its target is destroyed; one that misses has a 50% chance of being destroyed or lost."
+  },
+  {
+    "Name": "Featherweight Dart (10)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "These extremely light darts can be thrown or used with a blowgun."
+  },
+  {
+    "Name": "Flight Arrows (20)",
+    "Cost": "2 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "These arrows are lighter and more aerodynamic, increasing range increment by 10 feet."
+  },
+  {
+    "Name": "Halfling Little Starstones (10)",
+    "Cost": "0.05 gp",
+    "Weight": 2,
+    "Type": "Ammunition",
+    "Description": "These small stones deal minimal nonlethal damage. Halflings treat these as martial ammunition."
+  },
+  {
+    "Name": "Halfling Sharpstones (10)",
+    "Cost": "1 gp",
+    "Weight": 5,
+    "Type": "Ammunition",
+    "Description": "These sharp stones can deal piercing or slashing damage. Halflings treat these as martial ammunition."
+  },
+  {
+    "Name": "Halfling Softstones (10)",
+    "Cost": "0.1 gp",
+    "Weight": 4,
+    "Type": "Ammunition",
+    "Description": "These soft stones deal nonlethal damage. Halflings treat these as martial ammunition."
+  },
+  {
+    "Name": "Halfling Spongestones (10)",
+    "Cost": "10 gp",
+    "Weight": 2,
+    "Type": "Ammunition",
+    "Description": "These porous stones can absorb liquids like poison or alchemical substances. Halflings treat these as martial ammunition."
+  },
+  {
+    "Name": "Incendiary Arrow (20)",
+    "Cost": "10 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "These arrows deal additional fire damage and can ignite flammable objects."
+  },
+  {
+    "Name": "Kestros Dart (10)",
+    "Cost": "5 gp",
+    "Weight": 5,
+    "Type": "Ammunition",
+    "Description": "Specially weighted darts designed for use with a kestros."
+  },
+  {
+    "Name": "Pronged Arrow (20)",
+    "Cost": "2 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "These arrows have multiple prongs and can be used to grapple or disarm."
+  },
+  {
+    "Name": "Repeating Crossbow Bolts (5)",
+    "Cost": "1 gp",
+    "Weight": 1,
+    "Type": "Ammunition",
+    "Description": "These bolts are designed to fit in the magazine of a repeating crossbow."
+  },
+  {
+    "Name": "Sling Bullets (10)",
+    "Cost": "0.1 gp",
+    "Weight": 5,
+    "Type": "Ammunition",
+    "Description": "Shaped metal projectiles designed to be used with a sling. A bullet that hits its target is destroyed; one that misses has a 50% chance of being destroyed or lost."
+  },
+  {
+    "Name": "Smoke Arrow",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "This arrow creates a burst of smoke on impact, creating concealment in a 5-foot radius for 1 round."
+  },
+  {
+    "Name": "Smoke Bullet",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "This alchemical bullet creates a cloud of smoke on impact."
+  },
+  {
+    "Name": "Thistle Arrow",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Type": "Ammunition",
+    "Description": "This arrow is covered in barbed thistles that can entangle the target."
+  },
+  {
+    "Name": "Thorns (20)",
+    "Cost": "1 gp",
+    "Weight": 2,
+    "Type": "Ammunition",
+    "Description": "Natural thorns used as ammunition for a thorn bow."
+  },
+  {
+    "Name": "Throwing Arrow",
+    "Cost": "0.5 gp",
+    "Weight": 0.5,
+    "Type": "Ammunition",
+    "Description": "An arrow designed to be thrown by hand using a throwing cord."
+  },
+  {
+    "Name": "Whistling Arrows (20)",
+    "Cost": "2 gp",
+    "Weight": 3,
+    "Type": "Ammunition",
+    "Description": "These arrows come with a specially designed head that creates a loud whistle audible within a quarter-mile. They are often used for signaling allies or intimidating enemies."
+  }
+]

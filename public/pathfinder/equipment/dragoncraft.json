@@ -1,0 +1,38 @@
+[
+  {
+    "Name": "Dahak's Fire",
+    "Cost": "50 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Alchemical fire extracted and refined from a dragon's flame-producing organs. This substance burns with intense heat similar to a dragon's breath weapon. Can be used as an enhanced version of alchemist's fire, likely dealing additional damage or having special properties related to the dragon's breath type. Named after Dahak, the evil deity of destruction and dragonkind."
+  },
+  {
+    "Name": "Draconic Perfume",
+    "Cost": "75 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Exotic perfume distilled from a dragon's scent glands. Dragons use their natural musk to mark territory and communicate. This perfume may grant bonuses when interacting with dragons, provide benefits to Diplomacy or Intimidate checks against draconic creatures, or mask the wearer's scent from dragons. The rarity and potency of dragon essence makes this a luxury item."
+  },
+  {
+    "Name": "Dragon's Blood",
+    "Cost": "60 gp",
+    "Weight": "1 lbs",
+    "Description": "Preserved and processed blood from a slain dragon. Dragon blood is renowned for its magical properties and can be used in powerful alchemical formulas, magical rituals, or as a potion ingredient. May grant temporary resistance to the dragon's energy type, enhance the drinker's physical abilities, or serve as a potent component in spellcasting. The blood retains some of the dragon's innate magic."
+  },
+  {
+    "Name": "Dragon's Gut",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Description": "Processed intestinal lining from a dragon, incredibly strong and flexible. Dragon's gut can be used to create superior bowstrings, musical instrument strings, or surgical sutures. The material is resistant to acid and other corrosive substances due to the dragon's digestive processes. May also be used in crafting items that require exceptionally durable cordage."
+  },
+  {
+    "Name": "Dragonskin Grip",
+    "Cost": "250 gp",
+    "Weight": "0 lbs",
+    "Description": "Weapon grip wrapped in treated dragon scales or hide. This enhancement provides superior grip even when wet or bloody, and may grant bonuses to avoid being disarmed. The natural texture of dragon scales ensures the weapon never slips from the wielder's grasp. Additionally, the dragonskin may provide minor resistance to the energy type associated with the dragon (fire, cold, acid, etc.) when gripping the weapon. This is a permanent enhancement applied to a weapon."
+  },
+  {
+    "Name": "Wyrm Pesh",
+    "Cost": "500 gp",
+    "Weight": "0 lbs",
+    "Description": "An extremely rare and potent narcotic created from dragon brain matter or neural essence. This is the most expensive standard dragoncraft item, reflecting both its rarity and power. Wyrm pesh likely provides enhanced mental abilities, grants temporary access to dragon-like senses or abilities, or allows the user to tap into draconic magical power. However, as a drug derived from pesh, it carries risks of addiction and side effects. The name suggests it combines the properties of regular pesh with draconic essence."
+  }
+]

@@ -1,0 +1,978 @@
+[
+  {
+    "Name": "Alchemist's Kit",
+    "Cost": "40 gp",
+    "Weight": "24 lbs",
+    "Description": "Complete starter kit for alchemists including backpack, bedroll, belt pouch, flint and steel, ink, inkpen, iron pot, mess kit, soap, torches, trail rations, waterskin, and most importantly - alchemist's lab for crafting alchemical items. Essential for bomb-throwing and mutagen-brewing alchemists.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Arcane Adept Package",
+    "Cost": "1000 gp",
+    "Weight": "45 lbs",
+    "Description": "Premium package for arcane spellcasters with focus on magical prowess. Includes quality robes, spellbook with extra pages, writing supplies, spell component pouch, scrolls, and various magical tools. Designed for wizards and similar casters who want to start with superior gear.",
+    "Category": "package",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Arcanist's Kit",
+    "Cost": "21 gp",
+    "Weight": "34 lbs",
+    "Description": "Specialized kit for arcanists who blend wizardry and sorcery. Contains backpack, bedroll, belt pouch, flint and steel, ink, inkpen, iron pot, mess kit, soap, torches, trail rations, waterskin, and spellbook. Perfect for the spontaneous arcane caster.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Arctic Kit",
+    "Cost": "27 gp",
+    "Weight": "30 lbs",
+    "Description": "Survival gear for frigid climates including cold-weather outfit, snowshoes, crampons for icy terrain, furred bedroll, and supplies to prevent frostbite. Essential for arctic expeditions and mountain climbing in winter.",
+    "Category": "environment",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Barbarian's Kit",
+    "Cost": "9 gp",
+    "Weight": "26 lbs",
+    "Description": "Rugged survival kit for barbarians. Includes backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, and waterskin. Simple, durable gear for warriors who rage in battle.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Bard's Kit",
+    "Cost": "41 gp",
+    "Weight": "33.5 lbs",
+    "Description": "Performance and adventuring gear for bards including backpack, bedroll, belt pouch, common musical instrument, costume, flint and steel, ink, inkpen, iron pot, journal, mess kit, mirror, rope, soap, torches, trail rations, and waterskin. Everything for the traveling performer.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Bloodrager's Kit",
+    "Cost": "9 gp",
+    "Weight": "27 lbs",
+    "Description": "Combat-ready kit for bloodragers who channel arcane power through their rage. Contains backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, and waterskin. Built for magical berserkers.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Bounty Hunter's Kit (common)",
+    "Cost": "105 gp",
+    "Weight": "15 lbs",
+    "Description": "Professional equipment for tracking and capturing bounties including manacles, rope, gag, blindfold, and tools for restraining targets. Basic version for everyday bounty work.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Bounty Hunter's Kit (superior)",
+    "Cost": "380 gp",
+    "Weight": "24 lbs",
+    "Description": "Premium bounty hunting equipment with masterwork manacles, superior quality restraints, tracking tools, and specialized gear for capturing dangerous targets alive. For professional man-hunters.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Brawler's Kit",
+    "Cost": "9 gp",
+    "Weight": "36.5 lbs",
+    "Description": "Gear for brawlers who fight with flexibility and martial prowess. Includes backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, and waterskin. For unarmed combat specialists.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Breaker's Kit",
+    "Cost": "353 gp",
+    "Weight": "40 lbs",
+    "Description": "Specialized tools for breaking through barriers including crowbars, hammers, chisels, wedges, and other implements for smashing down doors, walls, and fortifications. Essential for siege work and breaching operations.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Campsite Kit",
+    "Cost": "12 gp",
+    "Weight": "80 lbs",
+    "Description": "Complete camp setup for a group including tent, bedrolls, cooking equipment, campfire supplies, and basic comforts. Heavy but provides everything needed for wilderness camping.",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Cat Burglar's Kit",
+    "Cost": "15 gp",
+    "Weight": "12 lbs",
+    "Description": "Tools of the trade for thieves specializing in climbing and second-story work. Includes climbing gear, dark clothing, rope, and tools for quiet entry. NOT legal for organized play.",
+    "Category": "profession",
+    "PFS Legal": false
+  },
+  {
+    "Name": "Cavalier's Kit",
+    "Cost": "23 gp",
+    "Weight": "112 lbs",
+    "Description": "Mounted warrior's equipment including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, waterskin, and feed for mount. Very heavy due to horse care supplies.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Chirurgeon's Kit",
+    "Cost": "400 gp",
+    "Weight": "4 lbs",
+    "Description": "Advanced medical equipment for surgeons including scalpels, sutures, bandages, antiseptics, and specialized surgical tools. Provides bonuses to Heal checks for treating wounds and performing surgery.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Chronicler's Kit",
+    "Cost": "40 gp",
+    "Weight": "4.5 lbs",
+    "Description": "Complete writing supplies for historians and scribes including multiple bottles of ink, numerous pens, blank journals, parchment, bookbinding supplies, and portable writing desk. Perfect for recording adventures.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Cleric's Kit",
+    "Cost": "16 gp",
+    "Weight": "32 lbs",
+    "Description": "Divine caster's essentials including backpack, bedroll, belt pouch, candles, cheap holy text, flint and steel, iron pot, mess kit, rope, soap, spell component pouch, torches, trail rations, wooden holy symbol, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Cooking Kit",
+    "Cost": "3 gp",
+    "Weight": "16 lbs",
+    "Description": "Pots, pans, utensils, and supplies for preparing meals in the wilderness or camp. Includes seasonings and basic cooking tools. Much better than eating cold rations!",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Courtesan's Kit",
+    "Cost": "10 gp",
+    "Weight": "5 lbs",
+    "Description": "Beauty supplies and tools of seduction including cosmetics, perfume, jewelry, fine clothing accessories, and items for enhancing appearance and charm. For professional companions and those who use guile.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Daring Bravo Package",
+    "Cost": "1000 gp",
+    "Weight": "76.5 lbs",
+    "Description": "Premium package for swashbuckling warriors emphasizing finesse, style, and panache. Includes quality weapons, fashionable clothing, dueling equipment, and all the gear needed for a dashing swordsman.",
+    "Category": "package",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Desert Kit",
+    "Cost": "30 gp",
+    "Weight": "20 lbs",
+    "Description": "Survival gear for arid climates including hot-weather outfit, extra waterskins, sunblock, sand goggles, light cloth for sun protection, and supplies to prevent dehydration and sun exposure.",
+    "Category": "environment",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Diver's Kit",
+    "Cost": "121 gp",
+    "Weight": "38 lbs",
+    "Description": "Equipment for underwater exploration including weighted belt, waterproof containers, breathing tube, underwater light sources, and specialized gear for subaquatic adventures.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Dragonslayer's Kit",
+    "Cost": "485 gp",
+    "Weight": "64 lbs",
+    "Description": "Specialized equipment for hunting dragons including fireproof gear, acid-resistant items, tools for harvesting dragon parts, and weapons effective against scaled beasts. Very expensive but essential for dragon hunters.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Druid's Kit",
+    "Cost": "14 gp",
+    "Weight": "44 lbs",
+    "Description": "Nature-focused gear including backpack, bedroll, belt pouch, flint and steel, holly and mistletoe, iron pot, mess kit, rope, soap, spell component pouch, torches, trail rations, waterskin, and wooden holy symbol.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Dungeoneering Kit (common)",
+    "Cost": "15 gp",
+    "Weight": "25 lbs",
+    "Description": "Basic underground exploration gear including rope, torches, chalk for marking paths, pitons, crowbar, and basic tools for navigating dungeons. Affordable option for novice delvers.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Dungeoneering Kit (deluxe)",
+    "Cost": "130 gp",
+    "Weight": "15 lbs",
+    "Description": "Premium dungeon exploration equipment with superior quality ropes, better light sources, mapping supplies, tools for detecting traps, and specialized gear. Lighter and more effective than common version.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Elemental Explorer's Kit",
+    "Cost": "2700 gp",
+    "Weight": "8 lbs",
+    "Description": "Extremely expensive magical kit for traveling the elemental planes. Includes protections against extreme temperatures, breathing apparatus for airless environments, and specialized tools for planar travel. ALWAYS costs 2,700 gp regardless of discounts. NOT PFS legal.",
+    "Category": "specialty",
+    "PFS Legal": false
+  },
+  {
+    "Name": "Emergency Interrogation Kit",
+    "Cost": "1665 gp",
+    "Weight": "3 lbs",
+    "Description": "High-end interrogation equipment including truth serums, torture implements, intimidation tools, and alchemical substances for extracting information quickly. Very expensive, very light, very effective.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Entertainer's Kit",
+    "Cost": "5 sp",
+    "Weight": "3 lbs",
+    "Description": "Basic performance supplies including simple costume pieces, face paint, juggling balls or similar props. Cheapest kit available, perfect for street performers.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Exorcism Kit",
+    "Cost": "950 gp",
+    "Weight": "44 lbs",
+    "Description": "Sacred items for banishing spirits and possessing entities including holy water, blessed salts, religious texts, exorcism rituals, candles, incense, and protective wards. Essential for dealing with hauntings.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Fiendslayer's Kit",
+    "Cost": "1100 gp",
+    "Weight": "9 lbs",
+    "Description": "Specialized gear for hunting devils, demons, and other evil outsiders. Includes holy water, cold iron weapons, protective circles, and tools for banishing fiends. Third most expensive kit.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Fighter's Kit",
+    "Cost": "9 gp",
+    "Weight": "29 lbs",
+    "Description": "Warrior's essentials including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, and waterskin. No-frills adventuring gear for martial combatants.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Fire Giant Hunter's Kit",
+    "Cost": "300 gp",
+    "Weight": "25 lbs",
+    "Description": "Specialized equipment for hunting fire giants including cold-based weapons, fire resistance potions, heat-proof gear, and tools sized for fighting huge opponents.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Fire Pump",
+    "Cost": "200 gp",
+    "Weight": "500 lbs",
+    "Description": "Large manual pump for fighting fires. Requires multiple operators to use effectively. Essential for towns and keeps. Extremely heavy - 500 pounds!",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Fishing Kit",
+    "Cost": "5 sp",
+    "Weight": "3 lbs",
+    "Description": "Fishing pole, hooks, line, lures, and net for catching fish. Provides food while traveling near water. Very cheap utility kit.",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Forest Kit",
+    "Cost": "25 gp",
+    "Weight": "29 lbs",
+    "Description": "Woodland survival gear including camouflage clothing, tree climbing equipment, insect repellent, and supplies for navigating dense forests.",
+    "Category": "environment",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Fraudulent Medium's Kit",
+    "Cost": "50 gp",
+    "Weight": "10 lbs",
+    "Description": "Props and tricks for faking s\u00e9ances and spirit communication including hidden compartments, false ectoplasm, voice-throwing devices, and stage magic equipment for charlatan spiritualists.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Frost Giant Hunter's Kit",
+    "Cost": "305 gp",
+    "Weight": "35 lbs",
+    "Description": "Specialized equipment for hunting frost giants including fire-based weapons, cold resistance potions, ice-proof gear, and tools for fighting in frozen environments.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Gambler's Kit (cheating)",
+    "Cost": "300 gp",
+    "Weight": "5 lbs",
+    "Description": "Professional cheating equipment including loaded dice, marked cards, card-holding devices, and other tools for rigging games of chance. Expensive but very profitable if not caught!",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Gambler's Kit (common)",
+    "Cost": "75 gp",
+    "Weight": "5 lbs",
+    "Description": "Standard gambling supplies including dice, cards, gaming tokens, and table for setting up games. For honest gamblers or those who cheat the old-fashioned way.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Gear Maintenance Kit",
+    "Cost": "5 gp",
+    "Weight": "2 lbs",
+    "Description": "Tools for maintaining equipment including oil for weapons and armor, leather treatment, cloth for cleaning, needle and thread for repairs, and basic maintenance supplies.",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Ghost Hunter's Kit",
+    "Cost": "670 gp",
+    "Weight": "22 lbs",
+    "Description": "Equipment for tracking and combating incorporeal undead including ghost touch items, salt lines, holy water, detection devices, and tools for dealing with spirits.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Giant Lair Infiltrator's Kit",
+    "Cost": "215 gp",
+    "Weight": "33 lbs",
+    "Description": "Specialized gear for sneaking into giant lairs including climbing equipment sized for huge architecture, giant-sized decoys, and tools for avoiding detection by enormous humanoids.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Gravedigger's Kit",
+    "Cost": "265 gp",
+    "Weight": "22 lbs",
+    "Description": "Professional burial equipment including shovels, pickaxes, consecration materials, coffin-building tools, and supplies for properly interring the dead.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Guard's Kit",
+    "Cost": "20 gp",
+    "Weight": "20 lbs",
+    "Description": "Standard guard equipment including signal horn, manacles, rope, lantern, and supplies for watch duty and patrol work. Perfect for city guards and sentries.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Gunslinger's Kit",
+    "Cost": "26 gp",
+    "Weight": "31 lbs",
+    "Description": "Firearms specialist's gear including backpack, bedroll, belt pouch, flint and steel, gunsmith's kit for maintenance, iron pot, rope, soap, torches, trail rations, and waterskin. Essential for those who sling lead.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Gunsmith's Kit",
+    "Cost": "15 gp",
+    "Weight": "2 lbs",
+    "Description": "Tools for crafting and repairing firearms including files, hammers, cleaning rods, and specialized equipment for gunsmithing. Necessary for maintaining firearms.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Holy Warrior Package",
+    "Cost": "1000 gp",
+    "Weight": "102 lbs",
+    "Description": "Premium package for paladins and holy champions including quality armor, blessed weapons, religious texts, healing supplies, and everything needed for righteous crusaders. Very heavy but comprehensive.",
+    "Category": "package",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Hunter's Kit",
+    "Cost": "15 gp",
+    "Weight": "43.5 lbs",
+    "Description": "Wilderness warrior's gear for hunters who bond with animal companions. Includes backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, waterskin, and animal feed.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Infiltration Kit",
+    "Cost": "140 gp",
+    "Weight": "15 lbs",
+    "Description": "Professional spy equipment including disguise supplies, forgery tools, lockpicks, silent shoes, dark clothing, and gear for covert operations. For serious infiltrators.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Inquisitor's Kit",
+    "Cost": "30 gp",
+    "Weight": "34 lbs",
+    "Description": "Heretic hunter's gear including backpack, bedroll, belt pouch, candles, flint and steel, holy text, iron pot, mess kit, rope, soap, spell component pouch, torches, trail rations, wooden holy symbol, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Interrogation Tools",
+    "Cost": "30 gp",
+    "Weight": "1 lbs",
+    "Description": "Basic interrogation implements including intimidation tools, restraints, and simple equipment for extracting information. Much cheaper than the emergency version.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Investigator's Kit",
+    "Cost": "40 gp",
+    "Weight": "37 lbs",
+    "Description": "Detective's equipment including backpack, bedroll, belt pouch, flint and steel, ink, inkpen, iron pot, magnifying glass, measuring cord, mess kit, soap, torches, trail rations, and waterskin. Everything for solving mysteries.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Invisible Enemies Kit",
+    "Cost": "900 gp",
+    "Weight": "4 lbs",
+    "Description": "Specialized gear for detecting and fighting invisible foes including see invisibility potions, glitterdust, flour for revealing footprints, and tools for tracking unseen opponents. NOT PFS legal.",
+    "Category": "specialty",
+    "PFS Legal": false
+  },
+  {
+    "Name": "Kineticist's Kit",
+    "Cost": "8 gp",
+    "Weight": "22 lbs",
+    "Description": "Elemental channeler's basic gear including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, and waterskin. One of the cheapest class kits.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Knight's Kit",
+    "Cost": "751 gp",
+    "Weight": "17 lbs",
+    "Description": "Noble warrior's equipment including quality armor, heraldic surcoat, lance, banner, and all the supplies needed for a proper knight. Expensive and carries significant social weight.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Light Kit",
+    "Cost": "170 gp",
+    "Weight": "6 lbs",
+    "Description": "Comprehensive lighting equipment including sunrods, everburning torches, lanterns, oil, and various light sources for all situations. Never be caught in the dark!",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Lore Seeker Package",
+    "Cost": "1000 gp",
+    "Weight": "44 lbs",
+    "Description": "Premium package for knowledge-focused adventurers including extensive books, research materials, translation guides, and tools for uncovering ancient secrets.",
+    "Category": "package",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Magus's Kit",
+    "Cost": "22 gp",
+    "Weight": "31 lbs",
+    "Description": "Spellblade's equipment including backpack, bedroll, belt pouch, flint and steel, ink, inkpen, iron pot, mess kit, rope, soap, spell component pouch, torches, trail rations, waterskin, and spellbook.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Medium's Kit",
+    "Cost": "40 gp",
+    "Weight": "14 lbs",
+    "Description": "Spiritual channeler's gear including backpack, bedroll, belt pouch, candles, flint and steel, harrow deck, incense, iron pot, mess kit, soap, spell component pouch, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Melee Contingency Kit",
+    "Cost": "150 gp",
+    "Weight": "14 lbs",
+    "Description": "Backup melee weapons and gear for spellcasters who need emergency close-combat options. Includes various small weapons, armor pieces, and defensive equipment for when spells fail.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Mesmerist's Kit",
+    "Cost": "35 gp",
+    "Weight": "26.5 lbs",
+    "Description": "Hypnotist's equipment including backpack, bedroll, belt pouch, flint and steel, ink, inkpen, iron pot, mess kit, rope, soap, spell component pouch, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Mess Kit",
+    "Cost": "2 sp",
+    "Weight": "1 lbs",
+    "Description": "Simple tin plate, cup, fork, and knife for eating. The absolute cheapest kit available at only 2 silver pieces!",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Mobile Hospital",
+    "Cost": "1000 gp",
+    "Weight": "500 lbs",
+    "Description": "Complete portable medical facility including surgery table, medical supplies, beds, bandages, medicines, and everything needed to treat wounded soldiers in the field. Extremely heavy but saves lives.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Monk's Kit",
+    "Cost": "8 gp",
+    "Weight": "22 lbs",
+    "Description": "Ascetic warrior's simple gear including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, and waterskin. Minimal possessions for those who need little.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Monster Hunter's Kit (aberration)",
+    "Cost": "257 gp",
+    "Weight": "15.5 lbs",
+    "Description": "Specialized gear for hunting aberrations like beholders and mind flayers. Includes mental protection, anti-psionics items, and tools effective against creatures with alien anatomies.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Monster Hunter's Kit (fey)",
+    "Cost": "224 gp",
+    "Weight": "15.5 lbs",
+    "Description": "Equipment for tracking and combating fey creatures. Includes cold iron items, salt, tools for breaking enchantments, and defenses against fey magic and tricks.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Monster Hunter's Kit (ooze)",
+    "Cost": "232 gp",
+    "Weight": "17 lbs",
+    "Description": "Specialized gear for fighting oozes and slimes. Includes acid-resistant containers, pole-mounted weapons for keeping distance, and substances that harm amorphous creatures.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Monster Hunter's Kit (regular)",
+    "Cost": "202 gp",
+    "Weight": "15 lbs",
+    "Description": "General-purpose monster hunting equipment effective against common threats. Includes silver weapons, basic alchemical items, and versatile hunting tools.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Musk Kit",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Description": "Various scents for masking your own smell or laying false trails. Includes animal musks, perfumes, and odor-covering substances for evading tracking by scent.",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Mystic Guide Package",
+    "Cost": "1000 gp",
+    "Weight": "67 lbs",
+    "Description": "Premium package for divine casters and spiritual leaders. Includes quality religious items, healing supplies, blessed equipment, and everything needed for clerics and oracles who lead others.",
+    "Category": "package",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Occultist's Kit",
+    "Cost": "45 gp",
+    "Weight": "32.5 lbs",
+    "Description": "Psychic magic user's gear including backpack, bedroll, belt pouch, candles, flint and steel, inkpen, iron pot, mess kit, soap, spell component pouch, torches, trail rations, waterskin, and various implements.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Oracle's Kit",
+    "Cost": "9 gp",
+    "Weight": "29 lbs",
+    "Description": "Divinely-touched caster's essentials including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, spell component pouch, torches, trail rations, waterskin, and wooden holy symbol.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Out-of-Towner's Kit",
+    "Cost": "55 gp",
+    "Weight": "1 lbs",
+    "Description": "Compact city survival kit for visitors including maps, local currency, disguise elements, and information about urban customs. Extremely light - only 1 pound!",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Paladin's Kit",
+    "Cost": "11 gp",
+    "Weight": "30 lbs",
+    "Description": "Holy warrior's gear including backpack, bedroll, belt pouch, cheap holy text, flint and steel, iron pot, rope, soap, spell component pouch, torches, trail rations, wooden holy symbol, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Pathfinder's Kit",
+    "Cost": "12 gp",
+    "Weight": "22 lbs",
+    "Description": "Standard adventuring kit for Pathfinder Society agents including rope, pitons, wayfinder polish, journal for documenting discoveries, and essential exploration tools.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Phrenologist's Kit",
+    "Cost": "50 gp",
+    "Weight": "5 lbs",
+    "Description": "Skull-reading equipment including calipers, charts, measuring tools, and phrenological models. For those who claim to divine personality from skull shape.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Planar Traveler's Kit",
+    "Cost": "350 gp",
+    "Weight": "3 lbs",
+    "Description": "Compact gear for surviving the planes including environmental protections, plane-shift materials, and tools for navigating extraplanar environments. Very light!",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Portable Prison",
+    "Cost": "200 gp",
+    "Weight": "300 lbs",
+    "Description": "Portable cell with bars, locks, and restraints for transporting prisoners. Very heavy but secure. Essential for bounty hunters and law enforcement.",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Psychic's Kit",
+    "Cost": "35 gp",
+    "Weight": "27 lbs",
+    "Description": "Mental magic user's essentials including backpack, bedroll, belt pouch, flint and steel, ink, inkpen, iron pot, mess kit, soap, spell component pouch, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Pyramid Buster's Kit",
+    "Cost": "310 gp",
+    "Weight": "8 lbs",
+    "Description": "Tomb raiding equipment specialized for ancient pyramids. Includes tools for navigating trapped corridors, hieroglyphic translation guides, mummy-fighting supplies, and curse protection.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Pyrography Kit",
+    "Cost": "1 gp",
+    "Weight": "2 lbs",
+    "Description": "Wood-burning tools including heated stylus, patterns, and materials for creating decorative burned designs on wood. One of the cheapest profession kits.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Questing Knight Package",
+    "Cost": "1000 gp",
+    "Weight": "127.5 lbs",
+    "Description": "Complete package for knights-errant on holy quests. Includes armor, weapons, mount equipment, heraldry, and all supplies for noble adventuring. Heaviest of the 1,000 gp packages!",
+    "Category": "package",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Ranger's Kit",
+    "Cost": "9 gp",
+    "Weight": "28 lbs",
+    "Description": "Wilderness warrior's equipment including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, torches, trail rations, and waterskin. Built for trackers and hunters.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Riding Kit (common)",
+    "Cost": "16 gp",
+    "Weight": "54 lbs",
+    "Description": "Standard equipment for mounted travel including saddle, bit and bridle, saddlebags, riding boots, and horse care supplies.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Riding Kit (exotic mount)",
+    "Cost": "36 gp",
+    "Weight": "59 lbs",
+    "Description": "Specialized gear for exotic mounts like griffons or giant lizards. Includes custom saddles and equipment adapted for unusual anatomy.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Rogue's Kit",
+    "Cost": "50 gp",
+    "Weight": "37 lbs",
+    "Description": "Professional thief's gear including backpack, bedroll, belt pouch, caltrops, chalk, flint and steel, grappling hook, iron pot, pitons, rope, sack, soap, thieves' tools, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Scrivener's Kit",
+    "Cost": "2 gp",
+    "Weight": "1 lbs",
+    "Description": "Basic writing supplies for professional scribes including ink, pen, parchment, and blotting sand. Very light and affordable.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Seance Kit",
+    "Cost": "290 gp",
+    "Weight": "12 lbs",
+    "Description": "Equipment for contacting spirits including candles, incense, spirit board, ectoplasmic detection powder, and ritual components. For actual s\u00e9ances, not frauds.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Shadowy Stalker Package",
+    "Cost": "1000 gp",
+    "Weight": "63 lbs",
+    "Description": "Premium package for assassins and shadow-dancers. Includes dark clothing, poisoner's tools, silent weapons, and everything needed for deadly stealth operations.",
+    "Category": "package",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Shaman's Kit",
+    "Cost": "15 gp",
+    "Weight": "44 lbs",
+    "Description": "Spirit-caller's gear including backpack, bedroll, belt pouch, flint and steel, holly and mistletoe, iron pot, rope, soap, spell component pouch, torches, trail rations, waterskin, and wooden holy symbol.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Shaving Kit",
+    "Cost": "15 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Razor, mirror, soap, and towel for grooming. Extremely light - only half a pound!",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Skald's Kit",
+    "Cost": "37 gp",
+    "Weight": "47.5 lbs",
+    "Description": "Battle-poet's equipment including backpack, bedroll, belt pouch, common musical instrument, flint and steel, ink, inkpen, iron pot, journal, mess kit, rope, soap, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Skeleton Slayer's Kit",
+    "Cost": "120 gp",
+    "Weight": "32 lbs",
+    "Description": "Specialized gear for destroying skeletal undead including bludgeoning weapons, holy water, and tools for smashing bones to prevent reanimation.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Slayer's Kit",
+    "Cost": "22 gp",
+    "Weight": "43.5 lbs",
+    "Description": "Assassin's equipment including backpack, bedroll, belt pouch, flint and steel, grappling hook, ink, inkpen, iron pot, rope, soap, thieves' tools, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Sorcerer's Kit",
+    "Cost": "8 gp",
+    "Weight": "19 lbs",
+    "Description": "Spontaneous caster's basic gear including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, spell component pouch, torches, trail rations, and waterskin. Cheapest caster kit.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Spelunking Kit",
+    "Cost": "174 gp",
+    "Weight": "32 lbs",
+    "Description": "Professional cave exploration equipment including superior ropes, advanced light sources, climbing gear, cave mapping supplies, and safety equipment for deep underground work.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Spiritualist's Kit",
+    "Cost": "50 gp",
+    "Weight": "34 lbs",
+    "Description": "Phantom-bonding caster's gear including backpack, bedroll, belt pouch, candles, flint and steel, inkpen, iron pot, mess kit, soap, spell component pouch, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Spycatcher's Kit",
+    "Cost": "260 gp",
+    "Weight": "7.5 lbs",
+    "Description": "Counter-intelligence equipment including spy detection tools, code-breaking supplies, interrogation aids, and devices for uncovering hidden operatives.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Spy's Kit",
+    "Cost": "140 gp",
+    "Weight": "12.5 lbs",
+    "Description": "Professional espionage equipment including disguise supplies, lockpicks, secret message materials, and covert communication tools.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Summoner's Kit",
+    "Cost": "8 gp",
+    "Weight": "19 lbs",
+    "Description": "Eidolon-caller's basic gear including backpack, bedroll, belt pouch, flint and steel, iron pot, rope, soap, spell component pouch, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Survival Kit (common)",
+    "Cost": "5 gp",
+    "Weight": "4 lbs",
+    "Description": "Basic wilderness survival supplies including flint and steel, fishhook, cord, and emergency food. Very affordable.",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Survival Kit (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "5 lbs",
+    "Description": "Premium survival equipment with superior quality tools, better food preservation, advanced fire-starting, and all the best wilderness gear.",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Swashbuckler's Kit",
+    "Cost": "9 gp",
+    "Weight": "42 lbs",
+    "Description": "Dashing duelist's equipment including backpack, bedroll, belt pouch, flint and steel, grappling hook, iron pot, rope, soap, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Taxidermy Tools",
+    "Cost": "80 gp",
+    "Weight": "10 lbs",
+    "Description": "Specialized equipment for preserving and mounting animal specimens including scalpels, preservatives, stuffing materials, and tools for creating lifelike displays.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Tracker's Kit",
+    "Cost": "563 gp",
+    "Weight": "33 lbs",
+    "Description": "Professional tracking equipment including scent markers, magnifying lenses, casting materials for footprints, tracking dogs' supplies, and advanced tools for following quarry.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Trapper's Kit",
+    "Cost": "263 gp",
+    "Weight": "90 lbs",
+    "Description": "Complete trap-setting equipment including various traps, chains, bait, lures, and tools for capturing animals alive. Very heavy with all the metal traps.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Traveling Garden",
+    "Cost": "200 gp",
+    "Weight": "500 lbs",
+    "Description": "Portable greenhouse with soil, seeds, watering system, and plant care tools. Allows growing fresh food while traveling. Extremely heavy!",
+    "Category": "utility",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Trickster's Kit",
+    "Cost": "474 gp",
+    "Weight": "23 lbs",
+    "Description": "Advanced infiltrator's gear combining thief's tools, alchemical items, magical trinkets, and specialized equipment for overcoming defenses and pulling off elaborate heists.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Troll Slayer's Kit",
+    "Cost": "30 gp",
+    "Weight": "17 lbs",
+    "Description": "Specialized gear for hunting trolls including fire and acid supplies for preventing regeneration, pole-mounted weapons, and protection against their claws.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Tropical Kit",
+    "Cost": "120 gp",
+    "Weight": "6 lbs",
+    "Description": "Jungle survival gear including insect repellent, lightweight breathable clothing, hammock for sleeping above ground, and tools for navigating dense vegetation. Surprisingly light!",
+    "Category": "environment",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Undead Slayer's Kit",
+    "Cost": "402 gp",
+    "Weight": "7 lbs",
+    "Description": "Comprehensive anti-undead equipment including holy water, wooden stakes, garlic, mirrors, blessed items, and tools for destroying various types of undead.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Undead Survivor's Kit",
+    "Cost": "900 gp",
+    "Weight": "3 lbs",
+    "Description": "Emergency gear for escaping undead apocalypse scenarios. Compact but expensive with holy symbols, undead repellents, and tools for avoiding detection by the unliving. Only 3 pounds!",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Undeath Aid Kit",
+    "Cost": "500 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Medical supplies for treating intelligent undead including blood substitutes, preservatives for rotting flesh, and alchemical treatments for undead conditions. Lightest substantial kit - half a pound!",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Underground Survival Kit",
+    "Cost": "644 gp",
+    "Weight": "30 lbs",
+    "Description": "Complete Darklands survival package including darkvision items, cave navigation tools, climbing gear, anti-radiation protection, and supplies for surviving deep underground for extended periods.",
+    "Category": "specialty",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Vampire Slayer's Kit",
+    "Cost": "500 gp",
+    "Weight": "8 lbs",
+    "Description": "Specialized vampire hunting equipment including wooden stakes, holy water, garlic, mirrors, silvered weapons, and tools for detecting and destroying vampires. Classic monster hunter gear!",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Warpriest's Kit",
+    "Cost": "16 gp",
+    "Weight": "44 lbs",
+    "Description": "Battle-cleric's equipment including backpack, bedroll, belt pouch, candles, cheap holy text, flint and steel, iron pot, rope, soap, spell component pouch, torches, trail rations, wooden holy symbol, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Watchman's Kit",
+    "Cost": "3 gp",
+    "Weight": "10 lbs",
+    "Description": "Basic town guard equipment including lantern, whistle, manacles, and supplies for patrol duty. Very affordable for city watch.",
+    "Category": "profession",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Wilderness Wanderer Package",
+    "Cost": "1000 gp",
+    "Weight": "108.5 lbs",
+    "Description": "Premium package for rangers and druids emphasizing wilderness survival and nature magic. Includes quality outdoor gear, animal companion supplies, and everything for long-term wilderness adventuring. NOT PFS legal.",
+    "Category": "package",
+    "PFS Legal": false
+  },
+  {
+    "Name": "Witch's Kit",
+    "Cost": "21 gp",
+    "Weight": "21 lbs",
+    "Description": "Hex-using caster's gear including backpack, bedroll, belt pouch, familiar food, flint and steel, ink, inkpen, iron pot, rope, soap, spell component pouch, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Wizard's Kit",
+    "Cost": "21 gp",
+    "Weight": "21 lbs",
+    "Description": "Arcane scholar's essentials including backpack, bedroll, belt pouch, flint and steel, ink, inkpen, iron pot, rope, soap, spell component pouch, spellbook, torches, trail rations, and waterskin.",
+    "Category": "class",
+    "PFS Legal": true
+  },
+  {
+    "Name": "Zombie Slayer's Kit",
+    "Cost": "170 gp",
+    "Weight": "31 lbs",
+    "Description": "Zombie-fighting equipment including head-removal tools, body-burning supplies, blessed weapons, and gear for permanently destroying shambling undead before they rise again.",
+    "Category": "monster_hunter",
+    "PFS Legal": true
+  }
+]

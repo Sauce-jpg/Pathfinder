@@ -1,0 +1,50 @@
+[
+  {
+    "Name": "Crystal-Sweet Concoction",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "A crystalline, sweet-tasting concoction with unpredictable alchemical properties. When consumed, it provides specific benefits but carries the risk of dangerous interactions if mixed with other concoctions. The exact beneficial effects vary, but the sweet taste masks the volatile nature of the compound."
+  },
+  {
+    "Name": "Darting-Eye Concoction",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "This concoction enhances visual perception and awareness, causing the drinker's eyes to dart about more rapidly. It likely provides bonuses to Perception checks or grants enhanced vision capabilities, though mixing it with other concoctions within the hour risks severe side effects."
+  },
+  {
+    "Name": "Fear-Killer Concoction",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "A courage-enhancing concoction that suppresses fear and anxiety. Grants bonuses against fear effects or immunity to being frightened or shaken. However, the alchemical compounds remain active for a full hour, making it dangerous to consume other concoctions during that time."
+  },
+  {
+    "Name": "Quick-Step Concoction",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Description": "This concoction enhances speed and reflexes, allowing the drinker to move with supernatural quickness. Likely provides bonuses to initiative, AC, Reflex saves, or movement speed. The slightly higher cost reflects its more potent effects, but it shares the same dangerous mixing properties as other concoctions."
+  },
+  {
+    "Name": "Slow-Heart Concoction",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "A calming concoction that slows the heartbeat and promotes composure under pressure. May provide bonuses to concentration, saves against emotion effects, or resistance to mental influences. The slowed metabolism keeps the alchemical compounds active for the full hour duration."
+  },
+  {
+    "Name": "Snake-Tongue Concoction",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "This concoction enhances the drinker's persuasive abilities and social grace, making their words smoother and more convincing. Likely provides bonuses to Bluff, Diplomacy, or other Charisma-based skills. The volatile nature of the formula makes mixing it with other concoctions extremely hazardous."
+  },
+  {
+    "Name": "Sphere-Song Concoction",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "A mystical concoction that attunes the drinker to magical or cosmic harmonies. May enhance spellcasting, provide bonuses to knowledge checks, or grant insight into arcane matters. As with all concoctions, it remains active for a full hour and cannot safely be mixed with others."
+  },
+  {
+    "Name": "Wild-Blood Concoction",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Description": "The most expensive of the standard concoctions, this powerful brew taps into primal energies and bestial strength. Likely enhances physical prowess, grants temporary hit points, or provides bonuses to Strength or Constitution. Its wild, unpredictable nature makes it especially dangerous when combined with other concoctions, potentially triggering violent reactions."
+  }
+]

@@ -1,0 +1,597 @@
+[
+  {
+    "Name": "Absinthe (bottle)",
+    "Cost": "30 gp",
+    "Weight": "1.5 lbs",
+    "Description": "Potent green spirit infused with wormwood and other herbs. Known for its high alcohol content and alleged hallucinogenic properties.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Absinthe (glass)",
+    "Cost": "3 gp",
+    "Weight": "0 lbs",
+    "Description": "Single serving of absinthe, typically diluted with water and sugar in traditional preparation.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Ale (gallon)",
+    "Cost": "2 sp",
+    "Weight": "8 lbs",
+    "Description": "One gallon of common ale, standard tavern fare.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Ale (mug)",
+    "Cost": "4 cp",
+    "Weight": "1 lbs",
+    "Description": "Single mug of ale, the most common drink in taverns across the realm.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Anulite Paprika",
+    "Cost": "3 gp",
+    "Weight": "0 lbs",
+    "Description": "Exotic red spice from Anulite, prized for its distinctive flavor and heat.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Applejack (gallon)",
+    "Cost": "4 sp",
+    "Weight": "8 lbs",
+    "Description": "Apple-based spirit, one gallon. Stronger than cider.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Applejack (mug)",
+    "Cost": "8 cp",
+    "Weight": "1 lbs",
+    "Description": "Single serving of applejack, concentrated apple brandy.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Baijiu (bottle)",
+    "Cost": "10 gp",
+    "Weight": "2 lbs",
+    "Description": "Strong distilled spirit from Tian Xia, clear and potent.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Banquet (per person)",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Elaborate feast with multiple courses, fine wines, and entertainment. Per person cost.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Black Cumin",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Description": "Rare black spice seed with distinctive bitter-sweet flavor.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Bread",
+    "Cost": "2 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Loaf of common bread, staple food.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Bufo (jug)",
+    "Cost": "1 gp",
+    "Weight": "2 lbs",
+    "Description": "Hallucinogenic beverage brewed with toad secretions. Illegal in many jurisdictions.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Candlefish",
+    "Cost": "7 sp",
+    "Weight": "1 lbs",
+    "Description": "Oily fish that can be dried and burned like a candle, or eaten.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Cauim (gourd)",
+    "Cost": "1 gp",
+    "Weight": "2 lbs",
+    "Description": "Fermented beverage made from cassava or maize, served in traditional gourd.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Caviar",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "Luxury fish eggs, delicacy favored by nobility.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Caydenbrew",
+    "Cost": "5 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Ale blessed or associated with Cayden Cailean, god of ale and freedom.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Celwynvian Stone Fruit",
+    "Cost": "500 gp",
+    "Weight": "1 lbs",
+    "Description": "Extremely rare fruit from abandoned elven city. Possibly magical, definitely expensive.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Cheese",
+    "Cost": "1 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Common cheese, any variety.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Chocolate (bar)",
+    "Cost": "5 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Luxury treat made from cacao. Expensive import.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Coffee (cup)",
+    "Cost": "1 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Cup of standard coffee.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Corentyn Wine",
+    "Cost": "15 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Fine wine from Corentyn, Cheliax. Quality vintage.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Dragon Punch Whiskey",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Potent whiskey with fiery kick. Named for its strength.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Dragon's Blend",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Description": "Special blend of spices or tea, possibly draconic in origin.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Dwarven Stout (mug)",
+    "Cost": "4 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Heavy, dark beer favored by dwarves. Strong and filling.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Dwarven Trail Rations",
+    "Cost": "2 gp",
+    "Weight": "1.5 lbs",
+    "Description": "Hearty preserved foods for travel. One day's food. Dwarven recipe emphasizes preserved meats and hard bread.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Elven Trail Rations",
+    "Cost": "2 gp",
+    "Weight": "1 lbs",
+    "Description": "Light, nutritious preserved foods. One day's food. Elven recipe includes nuts, dried fruits, and waybread.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Flaming Sumac",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Description": "Rare red spice with intense heat and flavor.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Fortune Cookie",
+    "Cost": "1 cp",
+    "Weight": "0 lbs",
+    "Description": "Cookie containing fortune or prophecy on paper slip. Tian tradition.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Gnome Trail Rations",
+    "Cost": "2 gp",
+    "Weight": "1 lbs",
+    "Description": "Colorful, varied preserved foods. One day's food. Gnome recipe emphasizes variety and flavor.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Golden Cardamom",
+    "Cost": "30 gp",
+    "Weight": "0 lbs",
+    "Description": "Precious spice, golden variety of cardamom with exceptional aroma.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Grog (cup)",
+    "Cost": "1 cp",
+    "Weight": "1 lbs",
+    "Description": "Watered-down rum or similar spirit. Cheapest alcohol.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Grog (gallon)",
+    "Cost": "1 sp",
+    "Weight": "8 lbs",
+    "Description": "One gallon of grog, diluted spirits.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Grog (mug)",
+    "Cost": "2 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Mug-sized serving of grog.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Haggis",
+    "Cost": "1 sp",
+    "Weight": "1.5 lbs",
+    "Description": "Traditional dish of sheep organs cooked in stomach lining. Acquired taste.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Halfling Trail Rations",
+    "Cost": "2 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Compact, tasty preserved foods. One day's food. Halfling recipe maximizes flavor in minimal weight.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Honey (jar)",
+    "Cost": "1 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Jar of honey, natural sweetener and preservative.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Ice Cream",
+    "Cost": "1 sp",
+    "Weight": "0 lbs",
+    "Description": "Frozen dessert, rare treat requiring ice or magic to maintain.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Jungle Coffee (cup)",
+    "Cost": "3 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Coffee from Mwangi Expanse jungles, strong and exotic.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Kahve (cup)",
+    "Cost": "2 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Qadiran-style coffee, often spiced.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Karazhica",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Description": "Specialty food or drink item.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Kumis (wineskin)",
+    "Cost": "5 sp",
+    "Weight": "1.5 lbs",
+    "Description": "Fermented mare's milk, traditional beverage of horse nomads.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Linnorm Mead",
+    "Cost": "5 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Honey wine from the Linnorm Kingdoms. Bold, northern drink.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Lisken's Medicinal Tonic",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Tonic claiming medicinal properties. May be snake oil or legitimate remedy.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Lonoma Eel",
+    "Cost": "1 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Specialty eel, delicacy in certain regions.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Luglurch Ale",
+    "Cost": "1 gp/gallon, 4 sp/mug",
+    "Weight": "0 lbs",
+    "Description": "Specific brand or style of ale.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Maple Syrup (jar)",
+    "Cost": "1 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Sweet syrup tapped from maple trees.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Mead (gallon)",
+    "Cost": "2 gp",
+    "Weight": "8 lbs",
+    "Description": "Honey wine, one gallon.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Mead (mug)",
+    "Cost": "5 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Single serving of mead, fermented honey drink.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Meal (common, per day)",
+    "Cost": "3 sp",
+    "Weight": "0 lbs",
+    "Description": "One day's worth of common meals at inn or tavern.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Meal (good, per day)",
+    "Cost": "5 sp",
+    "Weight": "0 lbs",
+    "Description": "One day's worth of quality meals with better ingredients.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Meal (poor, per day)",
+    "Cost": "1 sp",
+    "Weight": "0 lbs",
+    "Description": "One day's worth of basic subsistence meals.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Meat",
+    "Cost": "3 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Half pound of common meat.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Mekainae",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Description": "Specialty food or ingredient.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Milk",
+    "Cost": "5 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Fresh milk, half pint.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Mwangi Coffee",
+    "Cost": "3 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Coffee from Mwangi Expanse, rich and flavorful.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Oldlaw Whiskey (bottle)",
+    "Cost": "20 gp",
+    "Weight": "1 lbs",
+    "Description": "Premium aged whiskey, expensive vintage.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Orc Trail Rations",
+    "Cost": "1 gp",
+    "Weight": "1 lbs",
+    "Description": "Crude but filling preserved foods. One day's food. Orc recipe emphasizes preserved meat.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Pickles, Goblin (1 jar)",
+    "Cost": "4 sp",
+    "Weight": "1 lbs",
+    "Description": "Pickled vegetables prepared goblin-style. Questionable ingredients.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Powdered Milk",
+    "Cost": "1 sp",
+    "Weight": "1 lbs",
+    "Description": "Dehydrated milk powder for long-term storage.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Pulque (cup)",
+    "Cost": "1 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Fermented agave drink, traditional beverage.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Pulque (wineskin)",
+    "Cost": "4 sp",
+    "Weight": "2 lbs",
+    "Description": "Larger portion of pulque in wineskin.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Rations, Space (per day)",
+    "Cost": "1 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Extremely compact, lightweight rations. One day's food optimized for space.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Rumboozle (cup)",
+    "Cost": "1 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Mixed rum drink or punch.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Sangwine",
+    "Cost": "200 gp",
+    "Weight": "2 lbs",
+    "Description": "Extremely rare and expensive wine, possibly magical or sacred.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Sealord Wine (bottle)",
+    "Cost": "15 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Fine wine from coastal regions, quality vintage.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Street Meat",
+    "Cost": "1 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Cheap meat on a stick from street vendors. Questionable origins.",
+    "Category": "meals"
+  },
+  {
+    "Name": "Striped Nutmeg",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Description": "Extremely rare striped variety of nutmeg. Luxury spice.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Sunrise Cinnamon",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Description": "Premium cinnamon variety, golden in color.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Sylirican Lemons",
+    "Cost": "1 gp",
+    "Weight": "1 lbs",
+    "Description": "Lemons from Sylirica, prized for quality.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Tea (ceremonial, cup)",
+    "Cost": "4 cp",
+    "Weight": "0.5 lbs",
+    "Description": "High-quality tea prepared ceremonially.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Tea (cup)",
+    "Cost": "2 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Standard cup of tea.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Tea Ceremony Set",
+    "Cost": "25 gp",
+    "Weight": "5 lbs",
+    "Description": "Complete set of tools and vessels for performing traditional tea ceremony.",
+    "Category": "specialty_items"
+  },
+  {
+    "Name": "Tea, Kelp",
+    "Cost": "3 sp",
+    "Weight": "0 lbs",
+    "Description": "Tea made from seaweed, acquired taste.",
+    "Category": "non_alcoholic_beverages"
+  },
+  {
+    "Name": "Tepache (cup)",
+    "Cost": "5 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Fermented pineapple drink, lightly alcoholic.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Tiger Cloves",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Description": "Rare striped cloves, premium spice.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Trail Rations",
+    "Cost": "5 sp",
+    "Weight": "1 lbs",
+    "Description": "Standard preserved food for travel. One day's food. Generic trail rations.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Travel Cake Mix",
+    "Cost": "1 sp",
+    "Weight": "1 lbs",
+    "Description": "Dry mix for making quick trail bread. Just add water.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Violet Salt",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Description": "Rare purple-hued salt, possibly from special mines.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Wandermeal (per day)",
+    "Cost": "1 cp",
+    "Weight": "0.5 lbs",
+    "Description": "Cheapest trail rations. Minimal nutrition, one day's food.",
+    "Category": "trail_rations"
+  },
+  {
+    "Name": "Wasp Metheglin",
+    "Cost": "400 gp",
+    "Weight": "2 lbs",
+    "Description": "Extremely rare spiced mead made with wasp larvae or honey. Second most expensive drink.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Whiskey (cup)",
+    "Cost": "1 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Cup of standard whiskey.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Wine (common, pitcher)",
+    "Cost": "2 sp",
+    "Weight": "6 lbs",
+    "Description": "Pitcher of common table wine.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Wine (fine, bottle)",
+    "Cost": "10 gp",
+    "Weight": "1.5 lbs",
+    "Description": "Bottle of quality wine.",
+    "Category": "alcoholic_beverages"
+  },
+  {
+    "Name": "Yenchaburian Hybrid",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Description": "Hybrid plant or food product from Yenchabur.",
+    "Category": "ingredients"
+  },
+  {
+    "Name": "Yogurt",
+    "Cost": "1 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Cultured milk product, nutritious food.",
+    "Category": "meals"
+  }
+]

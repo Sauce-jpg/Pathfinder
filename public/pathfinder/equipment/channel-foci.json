@@ -1,0 +1,146 @@
+[
+  {
+    "Name": "Authoritative Vestments",
+    "Cost": "450 gp",
+    "Weight": "15 lbs",
+    "Slot": "worn",
+    "Deity": "Any",
+    "Description": "Ornate religious robes that incorporate holy symbols. When activated, these vestments grant the wearer an aura of divine authority, making their commands more compelling and their presence more commanding. Particularly useful when leading religious ceremonies or dealing with members of the faith."
+  },
+  {
+    "Name": "Bronze Gong",
+    "Cost": "100 gp",
+    "Weight": "5 lbs",
+    "Slot": "held",
+    "Deity": "Irori",
+    "Description": "A meditation gong sacred to Irori, god of perfection and enlightenment. When struck while channeling energy through it, the gong produces harmonious tones that enhance meditation and mental clarity. Followers of Irori use these to achieve higher states of consciousness and perfect their discipline."
+  },
+  {
+    "Name": "Chains of Contrition",
+    "Cost": "200 gp",
+    "Weight": "2 lbs",
+    "Slot": "worn",
+    "Deity": "Any",
+    "Description": "Penitential chains worn by the devout as a sign of humility and atonement. When activated, these chains channel divine energy to absolve minor sins or cleanse spiritual impurities. Often used in redemption ceremonies or acts of penance."
+  },
+  {
+    "Name": "Consecrated Weapon",
+    "Cost": "+150 gp",
+    "Weight": "2 lbs",
+    "Slot": "held",
+    "Deity": "Any",
+    "Description": "Any weapon can be made into a channel focus by incorporating a holy symbol into its design. When activated, the weapon becomes blessed, dealing additional damage to creatures of opposed alignment or enhancing the wielder's combat prowess. The base cost is added to the weapon's normal cost."
+  },
+  {
+    "Name": "Driftwood Icon",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Slot": "worn/held",
+    "Deity": "Gozreh",
+    "Description": "A holy symbol carved from driftwood, sacred to Gozreh, deity of nature, wind, and waves. When activated, this icon channels the power of the natural world, potentially calming storms, purifying water, or communing with natural spirits. Its weathered appearance reflects the eternal cycle of nature."
+  },
+  {
+    "Name": "Hallowed Chalice",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Slot": "held",
+    "Deity": "Any",
+    "Description": "A sacred cup used in religious ceremonies. When activated by channeling energy into it, liquids poured into the chalice become blessed or purified. Can be used to create holy water, cleanse poisons, or perform sacred rites of communion."
+  },
+  {
+    "Name": "Instrument of the Divine",
+    "Cost": "200 gp",
+    "Weight": "3 lbs",
+    "Slot": "held",
+    "Deity": "Any",
+    "Description": "A musical instrument (such as a lyre, flute, or drum) adorned with holy symbols. When played while channeling energy through it, the music carries divine power that can inspire allies, demoralize foes, or enhance religious ceremonies. Popular among bardic clerics and temple musicians."
+  },
+  {
+    "Name": "Iron Eye",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Slot": "worn",
+    "Deity": "Gorum",
+    "Description": "A brutal iron amulet shaped like an eye, sacred to Gorum, god of battle and strength. When activated, the Iron Eye channels martial fury, granting the wearer enhanced combat prowess or the ability to shake off fear and pain. Worn proudly by Gorum's battle-priests."
+  },
+  {
+    "Name": "Just Scale",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Slot": "held",
+    "Deity": "Abadar",
+    "Description": "A perfectly balanced scale bearing Abadar's symbol, representing law, commerce, and justice. When activated, the scale can detect lies, reveal the true value of objects, or help adjudicate disputes fairly. Essential equipment for Abadar's judges and merchants."
+  },
+  {
+    "Name": "Lock of the Saved",
+    "Cost": "+50 gp",
+    "Weight": "1 lbs",
+    "Slot": "worn",
+    "Deity": "Any",
+    "Description": "A lock of hair from a saint or holy person, preserved in a locket or reliquary incorporated into armor or clothing. When activated, the blessed lock channels protective energy, shielding the wearer from harm or evil influence. The cost is added to the base item."
+  },
+  {
+    "Name": "Meditation Crystal",
+    "Cost": "100 gp",
+    "Weight": "1 lbs",
+    "Slot": "held",
+    "Deity": "Any",
+    "Description": "A clear crystal carved with holy symbols and used as a focus for meditation and prayer. When channeling energy through it, the crystal glows with divine light and enhances the user's spiritual connection, granting insight, clarity, or visions from their deity."
+  },
+  {
+    "Name": "Sanctified Rings (pair)",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Slot": "worn",
+    "Deity": "Any",
+    "Description": "A matching pair of rings blessed with holy symbols, often exchanged during religious marriage ceremonies. When activated, the rings create a spiritual bond between the wearers, allowing them to sense each other's well-being or share divine blessings."
+  },
+  {
+    "Name": "Sanctified Shield",
+    "Cost": "+100 gp",
+    "Weight": "0 lbs",
+    "Slot": "held",
+    "Deity": "Any",
+    "Description": "Any shield emblazoned with a holy symbol can serve as a channel focus. When activated, the shield radiates divine protection, potentially deflecting attacks, turning undead, or shielding allies from harm. The cost is added to the shield's base price."
+  },
+  {
+    "Name": "Spiked Focus Ward",
+    "Cost": "100 gp",
+    "Weight": "2 lbs",
+    "Slot": "worn",
+    "Deity": "Any",
+    "Description": "A spiked collar, bracelet, or belt incorporating holy symbols. When activated, the spikes channel divine energy to harm creatures that attack the wearer in melee, dealing damage or imposing penalties on attackers. Often worn by militant clerics."
+  },
+  {
+    "Name": "Stinging Whip",
+    "Cost": "50 gp",
+    "Weight": "5 lbs",
+    "Slot": "held",
+    "Deity": "Calistria",
+    "Description": "A barbed whip sacred to Calistria, goddess of lust, revenge, and trickery. When activated, the whip channels divine energy that enhances its pain-dealing capabilities or delivers Calistria's vengeful wrath upon enemies. The weapon of choice for Calistria's sacred courtesans and avengers."
+  },
+  {
+    "Name": "Sundered Mask",
+    "Cost": "250 gp",
+    "Weight": "1 lbs",
+    "Slot": "worn",
+    "Deity": "Nethys",
+    "Description": "A ceremonial mask split down the middle, representing Nethys's dual nature as god of magic\u2014half white (creation) and half black (destruction). When activated, the mask channels raw magical energy, potentially enhancing spells, revealing magical auras, or unleashing destructive and creative forces simultaneously."
+  },
+  {
+    "Name": "Teaching Staff",
+    "Cost": "75 gp",
+    "Weight": "5 lbs",
+    "Slot": "held",
+    "Deity": "Any",
+    "Description": "A wooden staff carved with religious symbols and wisdom texts. When activated, the staff channels divine knowledge, enhancing the wielder's ability to teach, inspire, or impart religious instruction. Often carried by temple educators and wandering preachers."
+  },
+  {
+    "Name": "Winged Fetish",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Slot": "worn/held",
+    "Deity": "Pharasma",
+    "Description": "A small fetish adorned with bird wings, sacred to Pharasma, goddess of fate, death, and birth. When activated, this focus channels the energy of souls in transition, potentially aiding in speaking with the dead, guiding spirits to the afterlife, or revealing someone's fate. Essential for Pharasma's psychopomps and midwives."
+  }
+]

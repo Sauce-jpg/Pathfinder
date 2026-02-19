@@ -1,0 +1,192 @@
+[
+  {
+    "Name": "Buckler",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -1,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [
+      "strapped to forearm"
+    ],
+    "Description": "This small metal shield is worn strapped to your forearm. You can use a bow or crossbow without penalty while carrying it. You can also use your shield hand for other purposes (such as holding a second weapon), but you take a -1 penalty on attack rolls while doing so."
+  },
+  {
+    "Name": "Klar",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -1,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [
+      "can be used as weapon"
+    ],
+    "Description": "The klar is a wooden shield fitted to a large, skull-shaped spike. When used as a shield, the klar grants a +1 shield bonus to AC. While using the klar as a weapon, you lose the AC bonus."
+  },
+  {
+    "Name": "Shield, Light Steel",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -1,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [],
+    "Description": "You strap a light shield to your forearm and grip it with your hand. A light shield's weight lets you carry other items in that hand."
+  },
+  {
+    "Name": "Shield, Light Steel Quickdraw",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -2,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [
+      "quickdraw"
+    ],
+    "Description": "This light steel shield has special quick-release straps that allow you to don or remove it as a free action."
+  },
+  {
+    "Name": "Shield, Light Wooden",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -1,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [],
+    "Description": "You strap a light shield to your forearm and grip it with your hand. A light shield's weight lets you carry other items in that hand."
+  },
+  {
+    "Name": "Shield, Light Wooden Quickdraw",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -2,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [
+      "quickdraw"
+    ],
+    "Description": "This light wooden shield has special quick-release straps that allow you to don or remove it as a free action."
+  },
+  {
+    "Name": "Madu (Leather)",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -2,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [
+      "exotic weapon",
+      "performance"
+    ],
+    "Description": "A madu is a round, light shield with two animal horns projecting from opposite sides of the shield. If you are proficient with the madu, you may use it to fight defensively with a -2 penalty instead of the normal -4."
+  },
+  {
+    "Name": "Madu (Steel)",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -2,
+    "Arcane Spell Failure": "5%",
+    "Weight": "0 lbs",
+    "Special": [
+      "exotic weapon",
+      "performance"
+    ],
+    "Description": "A steel madu is a round, light shield with two metal spikes projecting from opposite sides of the shield. If you are proficient with the madu, you may use it to fight defensively with a -2 penalty instead of the normal -4."
+  },
+  {
+    "Name": "Poisoner's Buckler",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": 0,
+    "Arcane Spell Failure": "0%",
+    "Weight": "0 lbs",
+    "Special": [
+      "poison reservoir"
+    ],
+    "Description": "This buckler has a hidden reservoir that can hold one dose of poison. As a swift action, you can coat a weapon you're holding with the poison."
+  },
+  {
+    "Name": "War-Shield, Dwarven",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -1,
+    "Arcane Spell Failure": "20%",
+    "Weight": "0 lbs",
+    "Special": [
+      "exotic weapon",
+      "can be used as weapon"
+    ],
+    "Description": "This shield has blades and spikes mounted on it. It can be used as a weapon while still providing shield bonuses, though it's an exotic weapon for non-dwarves."
+  },
+  {
+    "Name": "Shield, Heavy Steel",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -2,
+    "Arcane Spell Failure": "15%",
+    "Weight": "0 lbs",
+    "Special": [],
+    "Description": "You strap a heavy shield to your forearm and grip it with your hand. A heavy shield is so heavy that you can't use your shield hand for anything else."
+  },
+  {
+    "Name": "Shield, Heavy Wooden",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -2,
+    "Arcane Spell Failure": "15%",
+    "Weight": "0 lbs",
+    "Special": [],
+    "Description": "You strap a heavy shield to your forearm and grip it with your hand. A heavy shield is so heavy that you can't use your shield hand for anything else."
+  },
+  {
+    "Name": "Snarlshield, Steel",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -3,
+    "Arcane Spell Failure": "15%",
+    "Weight": "0 lbs",
+    "Special": [
+      "entangle"
+    ],
+    "Description": "This heavy shield has chains and hooks that can entangle opponents. Once per round as a free action when you're hit by a melee attack, you can attempt to entangle your attacker's weapon."
+  },
+  {
+    "Name": "Snarlshield, Wooden",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": null,
+    "Armor Check Penalty": -3,
+    "Arcane Spell Failure": "15%",
+    "Weight": "0 lbs",
+    "Special": [
+      "entangle"
+    ],
+    "Description": "This heavy wooden shield has chains and hooks that can entangle opponents. Once per round as a free action when you're hit by a melee attack, you can attempt to entangle your attacker's weapon."
+  },
+  {
+    "Name": "Tower Shield",
+    "Cost": "\u2014",
+    "AC Bonus": "+0",
+    "Max Dex": 2,
+    "Armor Check Penalty": -10,
+    "Arcane Spell Failure": "50%",
+    "Weight": "0 lbs",
+    "Special": [
+      "provides cover"
+    ],
+    "Description": "This massive wooden shield is nearly as tall as you are. In most situations, it provides the indicated shield bonus to your AC. As a standard action, however, you can use a tower shield to grant you total cover until the beginning of your next turn. When using a tower shield in this way, you must choose one edge of your space. Any attack that passes through that edge is treated as if you had total cover. You gain no shield bonus to AC while using a tower shield in this way."
+  }
+]

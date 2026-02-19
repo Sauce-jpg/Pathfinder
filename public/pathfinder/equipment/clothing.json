@@ -1,0 +1,602 @@
+[
+  {
+    "Name": "Artisan's Outfit",
+    "Cost": "1 gp",
+    "Weight": "4 lbs",
+    "Description": "Sturdy work clothes worn by craftspeople, including apron, durable tunic, and practical footwear. Suitable for any trade or craft."
+  },
+  {
+    "Name": "Battle Mask",
+    "Cost": "50 gp",
+    "Weight": "2 lbs",
+    "Description": "Intimidating mask worn in combat to frighten enemies and protect the face. Often decorated with fierce designs."
+  },
+  {
+    "Name": "Billow Cape",
+    "Cost": "100 gp",
+    "Weight": "4 lbs",
+    "Description": "Dramatic cape designed to billow impressively in the wind. Popular among performers and those seeking to make grand entrances."
+  },
+  {
+    "Name": "Bogwalking Sandals",
+    "Cost": "250 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Special sandals with broad soles that distribute weight, allowing easier movement through swamps, bogs, and marshes."
+  },
+  {
+    "Name": "Brooch",
+    "Cost": "Varies",
+    "Weight": "0 lbs",
+    "Description": "Decorative pin for fastening cloaks or adorning clothing. Cost varies by materials and craftsmanship."
+  },
+  {
+    "Name": "Burglar's Outfit",
+    "Cost": "5 gp",
+    "Weight": "5 lbs",
+    "Description": "Dark, close-fitting clothing designed for stealth. Includes soft boots, dark hood, and clothing with many hidden pockets."
+  },
+  {
+    "Name": "Caul",
+    "Cost": "10-100 gp",
+    "Weight": "0 lbs",
+    "Description": "Decorative hairnet or cap, often jeweled. Cost varies from simple to elaborate designs."
+  },
+  {
+    "Name": "Chain Belt",
+    "Cost": "15 gp",
+    "Weight": "0.25 lbs",
+    "Description": "Decorative belt made of metal chain links, fashionable and sturdy."
+  },
+  {
+    "Name": "Chausses",
+    "Cost": "1 gp",
+    "Weight": "3 lbs",
+    "Description": "Medieval leg coverings, similar to tights or hose, worn under armor or as everyday legwear."
+  },
+  {
+    "Name": "Cleats",
+    "Cost": "5 gp",
+    "Weight": "2 lbs",
+    "Description": "Spiked attachments for boots providing better traction on ice, mud, or steep slopes."
+  },
+  {
+    "Name": "Cleric's Vestments",
+    "Cost": "5 gp",
+    "Weight": "6 lbs",
+    "Description": "Ceremonial robes worn by clerics during religious services, adorned with holy symbols."
+  },
+  {
+    "Name": "Cold-Weather Outfit",
+    "Cost": "8 gp",
+    "Weight": "7 lbs",
+    "Description": "Heavy furs, thick boots, and insulated clothing for surviving arctic conditions. Grants bonuses against cold weather."
+  },
+  {
+    "Name": "Cork Vest",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Description": "Buoyant vest filled with cork, helps the wearer float in water."
+  },
+  {
+    "Name": "Corset",
+    "Cost": "1 sp-200 gp",
+    "Weight": "3 lbs",
+    "Description": "Structured undergarment or outer garment. Cost varies from practical to elaborate, jeweled designs."
+  },
+  {
+    "Name": "Courtesan's Outfit",
+    "Cost": "8 gp",
+    "Weight": "4 lbs",
+    "Description": "Alluring, fashionable clothing designed to attract attention and seduce."
+  },
+  {
+    "Name": "Courtier's Outfit",
+    "Cost": "30 gp",
+    "Weight": "6 lbs",
+    "Description": "Fine clothing suitable for noble courts, including rich fabrics, jewelry, and fashionable accessories."
+  },
+  {
+    "Name": "Covenant Rings",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Description": "Matching pair of rings symbolizing a sacred bond, often used in marriages or partnerships."
+  },
+  {
+    "Name": "Cushion Inserts",
+    "Cost": "5 sp",
+    "Weight": "0 lbs",
+    "Description": "Padding inserted into clothing to alter appearance or provide comfort."
+  },
+  {
+    "Name": "Dancer's Garb",
+    "Cost": "100 gp",
+    "Weight": "5 lbs",
+    "Description": "Flowing, colorful clothing designed for performance, allowing freedom of movement."
+  },
+  {
+    "Name": "Dancer's Garb, Silver",
+    "Cost": "200 gp",
+    "Weight": "5 lbs",
+    "Description": "Premium dancer's outfit adorned with silver bells, coins, or trim that jingles melodiously."
+  },
+  {
+    "Name": "Decorative Trim",
+    "Cost": "1 sp-50 gp",
+    "Weight": "0 lbs",
+    "Description": "Ornamental edging for clothing like lace, fringe, or embroidery. Cost varies by quality."
+  },
+  {
+    "Name": "Dilettante's Outfit",
+    "Cost": "20 gp",
+    "Weight": "8 lbs",
+    "Description": "Fashionable but impractical clothing worn by wealthy youth pretending to pursue various interests."
+  },
+  {
+    "Name": "Diving Suit",
+    "Cost": "10 gp",
+    "Weight": "2 lbs",
+    "Description": "Waterproof outfit for underwater work, though primitive compared to modern diving equipment."
+  },
+  {
+    "Name": "Elven Prosthetics",
+    "Cost": "250 gp",
+    "Weight": "1 lbs",
+    "Description": "Masterfully crafted false ears that make non-elves appear elven. Nearly indistinguishable from real elven ears."
+  },
+  {
+    "Name": "Emissary's Sash",
+    "Cost": "500 gp",
+    "Weight": "3 lbs",
+    "Description": "Ornate sash indicating diplomatic status, often bearing national or organizational colors and symbols."
+  },
+  {
+    "Name": "Entertainer's Outfit",
+    "Cost": "3 gp",
+    "Weight": "4 lbs",
+    "Description": "Colorful, eye-catching clothing suitable for performers like bards, acrobats, or actors."
+  },
+  {
+    "Name": "Executioner's Outfit",
+    "Cost": "5 gp",
+    "Weight": "8 lbs",
+    "Description": "Dark, hooded clothing worn by executioners to conceal identity during public executions."
+  },
+  {
+    "Name": "Explorer's Outfit",
+    "Cost": "10 gp",
+    "Weight": "8 lbs",
+    "Description": "Durable clothing for adventuring, including sturdy boots, practical pants, and weatherproof cloak."
+  },
+  {
+    "Name": "False Jewelry",
+    "Cost": "20+ gp",
+    "Weight": "0 lbs",
+    "Description": "Costume jewelry made to look valuable but crafted from cheap materials. Useful for disguises."
+  },
+  {
+    "Name": "Fashionable Accessories",
+    "Cost": "20 gp",
+    "Weight": "5 lbs",
+    "Description": "Collection of trendy items like gloves, scarves, pins, and other accessories."
+  },
+  {
+    "Name": "Filter Scarf",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Description": "Cloth scarf that can be worn over nose and mouth to filter dust and irritants."
+  },
+  {
+    "Name": "Fire-Resistant Boots",
+    "Cost": "20 gp",
+    "Weight": "2 lbs",
+    "Description": "Boots treated with alchemical substances to resist heat and provide some protection from fire."
+  },
+  {
+    "Name": "Flame-Retardant Outfit",
+    "Cost": "50 gp",
+    "Weight": "10 lbs",
+    "Description": "Complete outfit treated to resist flames, useful for firefighters or those working near heat."
+  },
+  {
+    "Name": "Furs",
+    "Cost": "12 gp",
+    "Weight": "5 lbs",
+    "Description": "Animal pelts worn for warmth and status. Quality varies by animal type."
+  },
+  {
+    "Name": "Gambeson",
+    "Cost": "1 gp",
+    "Weight": "4 lbs",
+    "Description": "Padded jacket worn under armor or alone for minor protection."
+  },
+  {
+    "Name": "Gecko Gloves",
+    "Cost": "300 gp",
+    "Weight": "1 lbs",
+    "Description": "Special gloves with sticky palms that improve climbing ability."
+  },
+  {
+    "Name": "Hat",
+    "Cost": "1 sp-50 gp",
+    "Weight": "0.5-2 lbs",
+    "Description": "Any style of headwear. Cost varies from simple caps to elaborate plumed hats."
+  },
+  {
+    "Name": "Headscarf",
+    "Cost": "1 sp-10 gp",
+    "Weight": "0 lbs",
+    "Description": "Cloth worn on the head for protection from sun, cultural reasons, or fashion."
+  },
+  {
+    "Name": "Heated Gloves",
+    "Cost": "2 gp",
+    "Weight": "1 lbs",
+    "Description": "Insulated gloves that retain body heat, keeping hands warm in cold conditions."
+  },
+  {
+    "Name": "Hennin",
+    "Cost": "10-100 gp",
+    "Weight": "1 lbs",
+    "Description": "Tall, conical hat worn by noblewomen in certain cultures. Cost varies by decoration."
+  },
+  {
+    "Name": "Hollow-Heeled Boot",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Description": "Boot with a secret compartment in the heel for hiding small items."
+  },
+  {
+    "Name": "Hot Weather Outfit",
+    "Cost": "8 gp",
+    "Weight": "4 lbs",
+    "Description": "Light, breathable clothing designed for desert or tropical climates. Protects from sun while allowing cooling."
+  },
+  {
+    "Name": "Ice Skates",
+    "Cost": "1 gp",
+    "Weight": "2 lbs",
+    "Description": "Bladed footwear for gliding on ice."
+  },
+  {
+    "Name": "Inside Pocket",
+    "Cost": "4 gp",
+    "Weight": "0 lbs",
+    "Description": "Hidden pocket sewn into the lining of clothing for concealing small valuables."
+  },
+  {
+    "Name": "Iron Mask (common)",
+    "Cost": "75 gp",
+    "Weight": "10 lbs",
+    "Description": "Heavy iron mask used for punishment, restraint, or intimidation."
+  },
+  {
+    "Name": "Iron Mask (masterwork)",
+    "Cost": "150 gp",
+    "Weight": "15 lbs",
+    "Description": "Superior quality iron mask, better crafted and more secure."
+  },
+  {
+    "Name": "Jewelry",
+    "Cost": "Varies",
+    "Weight": "\u2014",
+    "Description": "Decorative items like rings, necklaces, bracelets. Cost and weight vary by materials."
+  },
+  {
+    "Name": "Kilt",
+    "Cost": "2 sp",
+    "Weight": "1 lbs",
+    "Description": "Knee-length pleated skirt, traditional garment in certain cultures."
+  },
+  {
+    "Name": "Litchina",
+    "Cost": "100 gp",
+    "Weight": "2 lbs",
+    "Description": "Specialized garment from specific culture, likely ceremonial or cultural significance."
+  },
+  {
+    "Name": "Lodestone Boots",
+    "Cost": "60 gp",
+    "Weight": "4 lbs",
+    "Description": "Boots with magnetic lodestones in the soles, useful on metal surfaces or around magnetic fields."
+  },
+  {
+    "Name": "Long Gloves",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Description": "Elegant gloves extending to elbow or beyond, fashionable accessory."
+  },
+  {
+    "Name": "Mask",
+    "Cost": "1 sp-50 gp",
+    "Weight": "1 lbs",
+    "Description": "Face covering for disguise, ceremony, or protection. Cost varies by quality."
+  },
+  {
+    "Name": "Metal Glove",
+    "Cost": "120 gp",
+    "Weight": "10 lbs",
+    "Description": "Heavy gauntlet-like glove, provides protection and can be used as improvised weapon."
+  },
+  {
+    "Name": "Monk's Outfit",
+    "Cost": "5 gp",
+    "Weight": "2 lbs",
+    "Description": "Simple, loose-fitting robes suitable for meditation and martial arts practice."
+  },
+  {
+    "Name": "Monster Mask",
+    "Cost": "5-10 gp",
+    "Weight": "1 lbs",
+    "Description": "Frightening mask designed to look like a monster or creature."
+  },
+  {
+    "Name": "Neck Guard",
+    "Cost": "10 gp",
+    "Weight": "0.25 lbs",
+    "Description": "Padded or reinforced collar protecting the neck."
+  },
+  {
+    "Name": "Noble's Outfit",
+    "Cost": "75 gp",
+    "Weight": "10 lbs",
+    "Description": "Luxurious clothing befitting nobility, with fine fabrics, jewelry, and accessories."
+  },
+  {
+    "Name": "Ostentatious Garment",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Description": "Flashy, attention-grabbing piece of clothing designed to impress or distract."
+  },
+  {
+    "Name": "Patchwork Cloak",
+    "Cost": "5 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Cloak made from mismatched fabric scraps, cheap but functional."
+  },
+  {
+    "Name": "Peasant's Outfit",
+    "Cost": "1 sp",
+    "Weight": "2 lbs",
+    "Description": "Simple, rough clothing worn by commoners and laborers."
+  },
+  {
+    "Name": "Pickpocket's Outfit",
+    "Cost": "5 gp",
+    "Weight": "3 lbs",
+    "Description": "Unremarkable street clothes with many hidden pockets for stolen goods."
+  },
+  {
+    "Name": "Pirate Clothes (basic)",
+    "Cost": "1 sp",
+    "Weight": "2 lbs",
+    "Description": "Simple sailor's garb suitable for seafaring work."
+  },
+  {
+    "Name": "Pirate Clothes (fancy)",
+    "Cost": "30 gp",
+    "Weight": "6 lbs",
+    "Description": "Flamboyant captain's outfit with tricorn hat, sash, and dramatic coat."
+  },
+  {
+    "Name": "Poncho",
+    "Cost": "5 sp",
+    "Weight": "2 lbs",
+    "Description": "Simple rain cloak, blanket with head hole, practical in wet weather."
+  },
+  {
+    "Name": "Reversible Cloak",
+    "Cost": "2 sp-100 gp",
+    "Weight": "1 lbs",
+    "Description": "Cloak with different colors or patterns on each side, useful for quick disguise changes."
+  },
+  {
+    "Name": "Royal Outfit",
+    "Cost": "200 gp",
+    "Weight": "15 lbs",
+    "Description": "Magnificent clothing fit for royalty, incorporating the finest materials and jewels."
+  },
+  {
+    "Name": "Scarf",
+    "Cost": "1 sp-5 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Length of cloth worn around neck or head for warmth or fashion."
+  },
+  {
+    "Name": "Scarf (pocketed)",
+    "Cost": "8 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Scarf with hidden pockets sewn into it for concealing small items."
+  },
+  {
+    "Name": "Scarf (reinforced)",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Description": "Scarf woven with wire or chain, can be used for climbing or as improvised weapon."
+  },
+  {
+    "Name": "Scholar's Outfit",
+    "Cost": "5 gp",
+    "Weight": "6 lbs",
+    "Description": "Practical robes with many pockets for scrolls, books, and writing implements."
+  },
+  {
+    "Name": "Shinobi Shozoku",
+    "Cost": "50 gp",
+    "Weight": "2 lbs",
+    "Description": "Traditional ninja outfit, dark and form-fitting for stealth operations."
+  },
+  {
+    "Name": "Signifer Mask",
+    "Cost": "75 gp",
+    "Weight": "2 lbs",
+    "Description": "Ceremonial mask worn by Hellknight signifers (magic users)."
+  },
+  {
+    "Name": "Signifier Mask",
+    "Cost": "75 gp",
+    "Weight": "2 lbs",
+    "Description": "Alternate spelling/variant of Signifer Mask."
+  },
+  {
+    "Name": "Silk Kimono",
+    "Cost": "200 gp",
+    "Weight": "5 lbs",
+    "Description": "Elegant silk robe from Tian Xia, highly valued for quality and artistry."
+  },
+  {
+    "Name": "Skates",
+    "Cost": "10 gp",
+    "Weight": "3 lbs",
+    "Description": "Wheeled footwear for gliding on smooth surfaces."
+  },
+  {
+    "Name": "Skis",
+    "Cost": "5 gp",
+    "Weight": "20 lbs",
+    "Description": "Long boards strapped to feet for gliding over snow."
+  },
+  {
+    "Name": "Snow Goggles",
+    "Cost": "12 gp",
+    "Weight": "0 lbs",
+    "Description": "Protective eyewear preventing snow blindness and reducing glare."
+  },
+  {
+    "Name": "Snowshoes",
+    "Cost": "5 gp",
+    "Weight": "4 lbs",
+    "Description": "Wide frames worn on feet to distribute weight, preventing sinking in deep snow."
+  },
+  {
+    "Name": "Softpaw Boots",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Description": "Soft-soled boots that muffle footsteps, granting bonuses to stealth."
+  },
+  {
+    "Name": "Soldier's Uniform",
+    "Cost": "1 gp",
+    "Weight": "5 lbs",
+    "Description": "Standard military dress identifying wearer's allegiance and rank."
+  },
+  {
+    "Name": "Sparring Gear",
+    "Cost": "35 gp",
+    "Weight": "15 lbs",
+    "Description": "Padded protective equipment for combat training."
+  },
+  {
+    "Name": "Speed Sheath",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Description": "Specially designed sheath allowing faster weapon drawing."
+  },
+  {
+    "Name": "Spiritual Leader's Vestments",
+    "Cost": "100 gp",
+    "Weight": "8 lbs",
+    "Description": "Elaborate ceremonial robes worn by high-ranking religious figures."
+  },
+  {
+    "Name": "Sponge Suit",
+    "Cost": "30 gp",
+    "Weight": "2 or 10 lbs",
+    "Description": "Suit made of absorbent material. Weighs 2 lbs dry, 10 lbs when saturated."
+  },
+  {
+    "Name": "Squire's Outfit",
+    "Cost": "5 gp",
+    "Weight": "8 lbs",
+    "Description": "Practical clothing for a knight's servant, durable and functional."
+  },
+  {
+    "Name": "Stiletto Boots",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Description": "Boots with concealed blade in heel or toe, serving as hidden weapon."
+  },
+  {
+    "Name": "Straitjacket (common)",
+    "Cost": "5 gp",
+    "Weight": "1 lbs",
+    "Description": "Restraining garment that binds arms, used on dangerous individuals."
+  },
+  {
+    "Name": "Straitjacket (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Description": "Superior quality straitjacket, harder to escape from."
+  },
+  {
+    "Name": "Sunblock Kohl",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Eye makeup that reduces sun glare, popular in desert regions."
+  },
+  {
+    "Name": "Tabard",
+    "Cost": "5 gp",
+    "Weight": "1 lbs",
+    "Description": "Sleeveless overgarment displaying heraldry or symbols."
+  },
+  {
+    "Name": "Tear-Away Clothing",
+    "Cost": "+5 gp",
+    "Weight": "0 lbs",
+    "Description": "Clothing designed to rip away easily, useful for escape artists. Cost added to base garment."
+  },
+  {
+    "Name": "Track-Obscuring Soles",
+    "Cost": "8 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Boot attachments that leave misleading or unclear footprints."
+  },
+  {
+    "Name": "Traveler's Outfit",
+    "Cost": "1 gp",
+    "Weight": "5 lbs",
+    "Description": "Durable, practical clothing for long journeys."
+  },
+  {
+    "Name": "Veil",
+    "Cost": "40 gp",
+    "Weight": "0 lbs",
+    "Description": "Sheer fabric worn over face for modesty, ceremony, or concealment."
+  },
+  {
+    "Name": "Vest",
+    "Cost": "1 sp-50 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Sleeveless garment worn over shirt. Cost varies by quality."
+  },
+  {
+    "Name": "Wading Boots",
+    "Cost": "50 gp",
+    "Weight": "2 lbs",
+    "Description": "Tall, waterproof boots for wading through water."
+  },
+  {
+    "Name": "Wet Suit",
+    "Cost": "8 gp",
+    "Weight": "4 lbs",
+    "Description": "Tight-fitting waterproof garment for swimming or diving."
+  },
+  {
+    "Name": "Wig",
+    "Cost": "5-500 gp",
+    "Weight": "0.5-4 lbs",
+    "Description": "False hair for disguise or fashion. Cost and weight vary by quality and elaborateness."
+  },
+  {
+    "Name": "Wing Cloak",
+    "Cost": "1200 gp",
+    "Weight": "1 lbs",
+    "Description": "Magical or mechanical cloak that allows limited gliding or flight."
+  },
+  {
+    "Name": "Wrangler's Gloves",
+    "Cost": "20 gp",
+    "Weight": "6 lbs",
+    "Description": "Thick leather gloves for handling dangerous animals or rough materials."
+  }
+]

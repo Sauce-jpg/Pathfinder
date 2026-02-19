@@ -1,0 +1,233 @@
+[
+  {
+    "Name": "Air Reservoir",
+    "Cost": "6 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This reservoir holds compressed air for use with an air repeater."
+  },
+  {
+    "Name": "Alchemical Cartridge (Dragon's Breath)",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge releases a gout of flame on impact."
+  },
+  {
+    "Name": "Alchemical Cartridge (Entangling Shot)",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge entangles the target in sticky strands."
+  },
+  {
+    "Name": "Alchemical Cartridge (Flare)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge creates a bright flare for signaling."
+  },
+  {
+    "Name": "Alchemical Cartridge (Gray Dust Shot)",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge releases a cloud of gray dust."
+  },
+  {
+    "Name": "Alchemical Cartridge (Gray Dust)",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge contains gray dust."
+  },
+  {
+    "Name": "Alchemical Cartridge (Molten Shot)",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge deals additional fire damage."
+  },
+  {
+    "Name": "Alchemical Cartridge (Paper, Bullet or Pellet)",
+    "Cost": "12 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This is a pre-made paper cartridge containing a bullet or pellet and black powder. Reduces reload time by one step."
+  },
+  {
+    "Name": "Alchemical Cartridge (Repellent)",
+    "Cost": "30 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge repels certain creatures."
+  },
+  {
+    "Name": "Alchemical Cartridge (Salt Shot)",
+    "Cost": "12 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge is effective against certain undead and incorporeal creatures."
+  },
+  {
+    "Name": "Alchemical Cartridge (Smoke)",
+    "Cost": "35 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge creates a cloud of smoke."
+  },
+  {
+    "Name": "Alchemical Cartridge (Toxin)",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This cartridge delivers poison on a hit."
+  },
+  {
+    "Name": "Black Powder (Dose)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "A single dose of black powder is enough to power a single shot from most one-handed and two-handed firearms."
+  },
+  {
+    "Name": "Black Powder (Keg)",
+    "Cost": "1000 gp",
+    "Weight": 5,
+    "Type": "firearm_ammunition",
+    "Description": "A keg of black powder contains 100 doses."
+  },
+  {
+    "Name": "Bullet, Adamantine",
+    "Cost": "61 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This bullet is made of adamantine and can overcome hardness and DR."
+  },
+  {
+    "Name": "Bullet, Screaming",
+    "Cost": "20 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This bullet makes a terrifying screaming sound when fired."
+  },
+  {
+    "Name": "Dragoon Cartridge",
+    "Cost": "30 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This is a metal cartridge designed for dragoon firearms."
+  },
+  {
+    "Name": "Firearm Bullet (1)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "A standard metal bullet for firearms."
+  },
+  {
+    "Name": "Firearm Bullet (30)",
+    "Cost": "30 gp",
+    "Weight": 0.5,
+    "Type": "firearm_ammunition",
+    "Description": "30 standard metal bullets for firearms."
+  },
+  {
+    "Name": "Firearm Bullet, Silver",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This silver bullet is effective against creatures vulnerable to silver."
+  },
+  {
+    "Name": "Metal Cartridge",
+    "Cost": "15 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "Metal cartridges are pre-made rounds containing a bullet, black powder, and a primer. Required for advanced firearms."
+  },
+  {
+    "Name": "Pellets (Handful)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "A handful of pellets is ammunition for firearms with the scatter weapon quality."
+  },
+  {
+    "Name": "Pellets (30 Handfuls)",
+    "Cost": "30 gp",
+    "Weight": 0.5,
+    "Type": "firearm_ammunition",
+    "Description": "30 handfuls of pellets for scatter weapons."
+  },
+  {
+    "Name": "Pitted Bullet",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Type": "firearm_ammunition",
+    "Description": "This bullet has grooves that make it more deadly but also more fragile."
+  },
+  {
+    "Name": "Gunsmith's Kit",
+    "Cost": "15 gp",
+    "Weight": 2,
+    "Type": "firearm_gear",
+    "Description": "This kit contains all the tools needed to maintain and repair firearms."
+  },
+  {
+    "Name": "Powder Horn",
+    "Cost": "3 gp",
+    "Weight": 1,
+    "Type": "firearm_gear",
+    "Description": "This horn can hold 10 doses of black powder."
+  },
+  {
+    "Name": "Lawrence 1917 Flamethrower Fuel Tank",
+    "Cost": "50 gp",
+    "Weight": 9,
+    "Type": "firearm_gear",
+    "Description": "This fuel tank provides ammunition for the Lawrence 1917 flamethrower."
+  },
+  {
+    "Name": "Aasen Mortar",
+    "Cost": "500 gp",
+    "Weight": 50,
+    "Type": "siege_firearms_modern",
+    "Description": "This modern mortar launches explosive shells in an arc."
+  },
+  {
+    "Name": "Hotchkiss 6 Pounder",
+    "Cost": "2000 gp",
+    "Weight": "\u2014",
+    "Type": "siege_firearms_modern",
+    "Description": "This artillery piece fires explosive shells."
+  },
+  {
+    "Name": "Gas Cylinder",
+    "Cost": "300 gp",
+    "Weight": 50,
+    "Type": "explosives_modern",
+    "Description": "This cylinder releases poisonous gas when opened."
+  },
+  {
+    "Name": "M1914 Grenade (Concussion)",
+    "Cost": "50 gp",
+    "Weight": 1,
+    "Type": "explosives_modern",
+    "Description": "This grenade deals concussion damage in a 15-foot radius."
+  },
+  {
+    "Name": "M1914 Grenade (Fragmentation)",
+    "Cost": "75 gp",
+    "Weight": 1,
+    "Type": "explosives_modern",
+    "Description": "This grenade explodes into deadly fragments in a 15-foot radius."
+  },
+  {
+    "Name": "M1917 Chemical Grenade",
+    "Cost": "100 gp",
+    "Weight": 2,
+    "Type": "explosives_modern",
+    "Description": "This grenade releases a cloud of toxic chemicals."
+  }
+]

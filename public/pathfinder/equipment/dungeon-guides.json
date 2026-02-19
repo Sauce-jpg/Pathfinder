@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "A Thread of Silver",
+    "Cost": "\u2014",
+    "Weight": "\u2014",
+    "Description": "An engineering-focused dungeon guide with exceptional accuracy (+7 bonus). This text requires significant expertise in engineering (DC 25 Knowledge check) to properly interpret. The guide's focus on structural and mechanical elements makes it invaluable for navigating dungeons with complex architecture, traps, or mechanical hazards. The title 'A Thread of Silver' likely refers to following a careful path through dangerous engineered environments."
+  },
+  {
+    "Name": "Heroka's Saga, Vol. I",
+    "Cost": "\u2014",
+    "Weight": "\u2014",
+    "Description": "An epic saga or oral tradition transcribed into written form, making it the most expensive dungeon guide but also the least accurate (-1 penalty to accuracy). The information is presented as narrative poetry or storytelling rather than factual documentation, requiring performance skill (DC 15 Perform (oratory)) to extract useful information. The low DC suggests the performance aspect isn't particularly difficult, but the -1 accuracy indicates the dramatic embellishments and heroic exaggerations make the guide less reliable. Despite its drawbacks, the guide's high price suggests it contains unique or otherwise unavailable information about the dungeon."
+  },
+  {
+    "Name": "Liron Treye's Journal",
+    "Cost": "\u2014",
+    "Weight": "\u2014",
+    "Description": "A personal journal by Liron Treye documenting a religiously significant dungeon or temple complex. With +6 accuracy, this is a highly reliable source requiring expert knowledge of religion (DC 25) to properly interpret. The journal likely details religious sites, temples, shrines, or dungeons with significant theological importance. Liron Treye's firsthand observations provide accurate information about religious symbols, divine magic, undead, or faith-based challenges within the dungeon."
+  },
+  {
+    "Name": "Observations of Oagon",
+    "Cost": "\u2014",
+    "Weight": "\u2014",
+    "Description": "Geographic observations compiled by someone named Oagon, focusing on the physical location and environmental features of a dungeon. This is the least expensive guide (+5 accuracy is good but not exceptional) requiring expert geographic knowledge (DC 25) to interpret properly. The guide likely details the dungeon's location within the broader landscape, natural cave formations, underground waterways, geological features, or how the dungeon connects to surface geography. Oagon's systematic observations provide reliable information about navigating and understanding the dungeon's physical environment."
+  }
+]

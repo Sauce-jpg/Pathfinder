@@ -1,0 +1,344 @@
+[
+  {
+    "Name": "Animal Call",
+    "Cost": "1 sp",
+    "Weight": "0 lbs",
+    "Description": "A device or whistle that mimics animal sounds, useful for luring or communicating with specific types of animals."
+  },
+  {
+    "Name": "Animal Harness",
+    "Cost": "2 gp",
+    "Weight": "2 lbs",
+    "Description": "A harness for controlling and directing working animals, allowing them to pull carts or perform tasks."
+  },
+  {
+    "Name": "Animal Repellent",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Description": "Chemical or alchemical substance that repels common animals, keeping them at a distance."
+  },
+  {
+    "Name": "Aquarium Ball",
+    "Cost": "80 gp",
+    "Weight": "20 lbs",
+    "Description": "A glass sphere filled with water for transporting aquatic creatures safely on land."
+  },
+  {
+    "Name": "Aquatic Pinger",
+    "Cost": "6 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Device that emits sounds underwater to attract or communicate with aquatic animals."
+  },
+  {
+    "Name": "Barding (Large creature)",
+    "Cost": "\u2014",
+    "Weight": "\u2014",
+    "Description": "Armor for Large creatures. Costs 4 times the standard armor cost and weighs twice as much."
+  },
+  {
+    "Name": "Barding (Medium creature)",
+    "Cost": "\u2014",
+    "Weight": "\u2014",
+    "Description": "Armor for Medium creatures. Costs 2 times the standard armor cost and weighs the same as normal armor."
+  },
+  {
+    "Name": "Barding Stitches",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Description": "Special reinforced stitching used to repair or strengthen barding."
+  },
+  {
+    "Name": "Beast Whistle",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Description": "A whistle designed to train or command beasts, producing sounds animals respond to."
+  },
+  {
+    "Name": "Beast-Training Kit",
+    "Cost": "15 gp",
+    "Weight": "26 lbs",
+    "Description": "Tools and equipment for training beasts and exotic animals, including rewards, restraints, and training aids."
+  },
+  {
+    "Name": "Bird Feed (per day)",
+    "Cost": "5 cp",
+    "Weight": "0.5 lbs",
+    "Description": "One day's worth of food for a bird, including seeds, grains, and other suitable nutrition."
+  },
+  {
+    "Name": "Bird-Training Kit",
+    "Cost": "17 gp",
+    "Weight": "8 lbs",
+    "Description": "Specialized equipment for training falcons, hawks, and other birds, including hoods, lures, and treats."
+  },
+  {
+    "Name": "Bit and Bridle",
+    "Cost": "2 gp",
+    "Weight": "1 lbs",
+    "Description": "Essential equipment for controlling a mount, consisting of a bit that goes in the mouth and bridle straps."
+  },
+  {
+    "Name": "Cage (Diminutive or Fine)",
+    "Cost": "10 gp",
+    "Weight": "2 lbs",
+    "Description": "Small cage for tiny creatures like mice, insects, or fairies."
+  },
+  {
+    "Name": "Cage (Huge)",
+    "Cost": "60 gp",
+    "Weight": "960 lbs",
+    "Description": "Massive cage for containing Huge creatures."
+  },
+  {
+    "Name": "Cage (Large)",
+    "Cost": "30 gp",
+    "Weight": "240 lbs",
+    "Description": "Large cage for containing Large animals or creatures."
+  },
+  {
+    "Name": "Cage (Small or Medium)",
+    "Cost": "15 gp",
+    "Weight": "60 lbs",
+    "Description": "Standard cage for Small or Medium-sized creatures like dogs, cats, or humanoids."
+  },
+  {
+    "Name": "Cage (Tiny)",
+    "Cost": "2 gp",
+    "Weight": "5 lbs",
+    "Description": "Cage for Tiny creatures like rats, ravens, or small reptiles."
+  },
+  {
+    "Name": "Caparison",
+    "Cost": "2 gp",
+    "Weight": "4 lbs",
+    "Description": "Decorative cloth covering for a horse or mount, often displaying heraldry or colors."
+  },
+  {
+    "Name": "Carnivore Feed (per day)",
+    "Cost": "5 cp",
+    "Weight": "5 lbs",
+    "Description": "One day's worth of meat and protein for carnivorous animals."
+  },
+  {
+    "Name": "Dandy Brush",
+    "Cost": "2 sp",
+    "Weight": "2 lbs",
+    "Description": "Grooming brush for removing dirt and loose hair from horses and other mounts."
+  },
+  {
+    "Name": "Dragon Muzzle",
+    "Cost": "20 gp",
+    "Weight": "2 lbs",
+    "Description": "Reinforced muzzle designed to prevent young or small dragons from using their breath weapons."
+  },
+  {
+    "Name": "Enraging Whip",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Whip designed to enrage animals, making them more aggressive and difficult to control."
+  },
+  {
+    "Name": "Falconry Gauntlet",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Description": "Heavy leather glove that protects the hand and arm when handling birds of prey."
+  },
+  {
+    "Name": "Feed (per day)",
+    "Cost": "5 cp",
+    "Weight": "10 lbs",
+    "Description": "One day's worth of standard feed for herbivorous animals like horses, cattle, or pack animals."
+  },
+  {
+    "Name": "Flying Straps (masterwork)",
+    "Cost": "80 gp",
+    "Weight": "10 lbs",
+    "Description": "Superior quality straps for securing a rider to a flying mount, providing better security and control."
+  },
+  {
+    "Name": "Flying Straps (standard)",
+    "Cost": "10 gp",
+    "Weight": "10 lbs",
+    "Description": "Straps that secure a rider to a flying mount like a griffon, pegasus, or hippogriff."
+  },
+  {
+    "Name": "Gorthek Saddle",
+    "Cost": "50 gp",
+    "Weight": "75 lbs",
+    "Description": "Specialized saddle designed for riding gortheks, large quadrupedal creatures."
+  },
+  {
+    "Name": "Hellknight Barding",
+    "Cost": "varies",
+    "Weight": "varies",
+    "Description": "Distinctive armor for mounts used by Hellknights, often heavily spiked and intimidating."
+  },
+  {
+    "Name": "Hide Dye",
+    "Cost": "20 gp",
+    "Weight": "1 lbs",
+    "Description": "Dye used to color an animal's fur, hide, or feathers, often for identification or disguise."
+  },
+  {
+    "Name": "Horn Harness",
+    "Cost": "30 gp",
+    "Weight": "20 lbs",
+    "Description": "Harness that attaches to the horns of creatures, allowing them to pull heavy loads."
+  },
+  {
+    "Name": "Horse Whip",
+    "Cost": "5 gp",
+    "Weight": "1 lbs",
+    "Description": "Long whip used to direct and encourage horses and similar mounts."
+  },
+  {
+    "Name": "Howdah",
+    "Cost": "500 gp",
+    "Weight": "250 lbs",
+    "Description": "Carriage or platform mounted on the back of a large creature like an elephant, allowing multiple passengers to ride."
+  },
+  {
+    "Name": "Incubation Stove",
+    "Cost": "750 gp",
+    "Weight": "250 lbs",
+    "Description": "Specialized heating device for incubating eggs, maintaining optimal temperature and humidity."
+  },
+  {
+    "Name": "Mammoth Goad",
+    "Cost": "5 gp",
+    "Weight": "10 lbs",
+    "Description": "Long pole with a pointed tip used to direct mammoths and other massive creatures."
+  },
+  {
+    "Name": "Mastodon Brush",
+    "Cost": "20 gp",
+    "Weight": "5 lbs",
+    "Description": "Large, sturdy brush for grooming mastodons, mammoths, and other huge animals."
+  },
+  {
+    "Name": "Mithral Horseshoes",
+    "Cost": "550 gp",
+    "Weight": "4 lbs",
+    "Description": "Lightweight horseshoes made of mithral that don't tire the mount as quickly and last longer than iron shoes."
+  },
+  {
+    "Name": "Owlbear Blinders",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Blinders designed for owlbears to limit their peripheral vision and make them easier to control."
+  },
+  {
+    "Name": "Poh Armor",
+    "Cost": "500 gp",
+    "Weight": "65 lbs",
+    "Description": "Specialized armor designed for poh mounts, providing protection without restricting movement."
+  },
+  {
+    "Name": "Poison Caps",
+    "Cost": "25 gp",
+    "Weight": "0.5 lbs",
+    "Description": "Caps placed over claws, horns, or tusks that can hold poison for delivery during attacks."
+  },
+  {
+    "Name": "Qadiran Saddle",
+    "Cost": "200 gp",
+    "Weight": "5 lbs",
+    "Description": "Lightweight, ornate saddle from Qadira, designed for comfort during long desert rides."
+  },
+  {
+    "Name": "Saddle (exotic, military)",
+    "Cost": "60 gp",
+    "Weight": "40 lbs",
+    "Description": "Military-grade saddle for exotic mounts, providing secure seating during combat."
+  },
+  {
+    "Name": "Saddle (exotic, pack)",
+    "Cost": "15 gp",
+    "Weight": "20 lbs",
+    "Description": "Saddle designed for exotic creatures used as pack animals."
+  },
+  {
+    "Name": "Saddle (exotic, riding)",
+    "Cost": "30 gp",
+    "Weight": "30 lbs",
+    "Description": "Saddle designed for riding exotic creatures like giant lizards or unusual beasts."
+  },
+  {
+    "Name": "Saddle (military)",
+    "Cost": "20 gp",
+    "Weight": "30 lbs",
+    "Description": "Sturdy saddle designed for combat, providing bonuses to Ride checks and better security."
+  },
+  {
+    "Name": "Saddle (pack)",
+    "Cost": "5 gp",
+    "Weight": "15 lbs",
+    "Description": "Simple saddle designed for pack animals, with attachment points for cargo."
+  },
+  {
+    "Name": "Saddle (riding)",
+    "Cost": "10 gp",
+    "Weight": "25 lbs",
+    "Description": "Standard saddle for everyday riding, providing comfort and basic control."
+  },
+  {
+    "Name": "Saddlebags",
+    "Cost": "4 gp",
+    "Weight": "8 lbs",
+    "Description": "Bags that attach to a saddle for carrying supplies. Can hold 20 pounds per side."
+  },
+  {
+    "Name": "Stabling (per day)",
+    "Cost": "5 sp",
+    "Weight": "0 lbs",
+    "Description": "One day's cost for housing an animal in a stable, including feed and basic care."
+  },
+  {
+    "Name": "Target Dummy",
+    "Cost": "2-20 gp",
+    "Weight": "0 lbs",
+    "Description": "Practice target for training animals in attack or combat behaviors. Cost varies by quality."
+  },
+  {
+    "Name": "Thorny Breastplate",
+    "Cost": "600 gp",
+    "Weight": "80 lbs",
+    "Description": "Spiked barding for the chest of a mount, dealing damage to creatures that attack it."
+  },
+  {
+    "Name": "Training Harness",
+    "Cost": "10 gp",
+    "Weight": "10 lbs",
+    "Description": "Harness with attachment points for training animals to pull, carry, or perform tasks."
+  },
+  {
+    "Name": "Training Sleeve",
+    "Cost": "100 gp",
+    "Weight": "5 lbs",
+    "Description": "Padded sleeve for training attack animals, protecting the trainer from bites during practice."
+  },
+  {
+    "Name": "Traveling Bee Hive",
+    "Cost": "10 gp",
+    "Weight": "10 lbs",
+    "Description": "Portable bee hive for transporting bees, useful for beekeepers or those who use bees for pollination or defense."
+  },
+  {
+    "Name": "Tusk Blades",
+    "Cost": "50 gp",
+    "Weight": "10 lbs",
+    "Description": "Metal blades attached to the tusks of elephants, boars, or similar creatures to increase damage."
+  },
+  {
+    "Name": "Whet Bone",
+    "Cost": "1 sp",
+    "Weight": "2 lbs",
+    "Description": "Specialized bone used to maintain and sharpen an animal's teeth or claws."
+  },
+  {
+    "Name": "Whip, Training",
+    "Cost": "5 gp",
+    "Weight": "2 lbs",
+    "Description": "Lighter whip designed for animal training, making noise without causing significant harm."
+  }
+]

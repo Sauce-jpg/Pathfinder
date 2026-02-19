@@ -1,0 +1,261 @@
+[
+  {
+    "Name": "Allnight",
+    "Cost": "75 gp",
+    "Weight": "0 lbs",
+    "Description": "An alchemical stimulant that prevents sleep and fatigue for 24 hours. After the effects wear off, the user must rest or suffer exhaustion.",
+    "Category": "drug"
+  },
+  {
+    "Name": "Angry Jack",
+    "Cost": "25 gp",
+    "Weight": "2 lbs",
+    "Description": "A stimulant that increases aggression and reduces pain sensitivity, making users more prone to violence.",
+    "Category": "drug"
+  },
+  {
+    "Name": "Bachelor Snuff",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Description": "Common snuff tobacco marketed to unmarried men, providing mild stimulation.",
+    "Category": "tobacco"
+  },
+  {
+    "Name": "Bamboo Palace",
+    "Cost": "1000 gp",
+    "Weight": "10 lbs",
+    "Description": "An elaborate and expensive hookah made from bamboo and precious materials, often a status symbol among wealthy smokers.",
+    "Category": "contraband"
+  },
+  {
+    "Name": "Belladonna",
+    "Cost": "2 gp",
+    "Weight": "0 lbs",
+    "Description": "Deadly nightshade, a poisonous plant. Can be used as a poison or in certain alchemical preparations. Highly toxic.",
+    "Category": "poison"
+  },
+  {
+    "Name": "Burglar's Torc",
+    "Cost": "2102 gp",
+    "Weight": "5 lbs",
+    "Description": "A neck ornament favored by thieves, often enchanted to aid in stealth or provide other benefits to burglary.",
+    "Category": "magical_item"
+  },
+  {
+    "Name": "Clear Ear",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Description": "An alchemical substance that temporarily enhances hearing, allowing users to eavesdrop more effectively.",
+    "Category": "drug"
+  },
+  {
+    "Name": "False Ectoplasm",
+    "Cost": "2 gp",
+    "Weight": "2 lbs",
+    "Description": "Substance used by fraudulent mediums and spiritualists to fake supernatural manifestations during s\u00e9ances.",
+    "Category": "fraud"
+  },
+  {
+    "Name": "Flayleaf",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Description": "An addictive drug that produces euphoria and relaxation. Long-term use leads to lethargy and dependency.",
+    "Category": "drug"
+  },
+  {
+    "Name": "Garlic",
+    "Cost": "1 sp",
+    "Weight": "0 lbs",
+    "Description": "Common herb believed to ward off vampires and evil. Also used in cooking and some folk remedies.",
+    "Category": "component"
+  },
+  {
+    "Name": "Gaspodar's Signet",
+    "Cost": "5900 gp",
+    "Weight": "0.5 lbs",
+    "Description": "A valuable and likely stolen signet ring, possibly bearing the seal of nobility or important organization.",
+    "Category": "contraband"
+  },
+  {
+    "Name": "Heathensnuff",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Exotic snuff from foreign lands, often viewed with suspicion by conservative societies.",
+    "Category": "tobacco"
+  },
+  {
+    "Name": "Holly",
+    "Cost": "\u2014",
+    "Weight": "0 lbs",
+    "Description": "Sacred plant used in druidic rituals and as a spell component. Free if gathered in the wild.",
+    "Category": "component"
+  },
+  {
+    "Name": "Hookah",
+    "Cost": "400 gp",
+    "Weight": "10 lbs",
+    "Description": "Water pipe for smoking tobacco or other substances. Often used in social settings.",
+    "Category": "smoking_equipment"
+  },
+  {
+    "Name": "Leng Ruby",
+    "Cost": "500 gp",
+    "Weight": "0 lbs",
+    "Description": "A mysterious gemstone from the nightmare realm of Leng, highly valuable and possibly cursed.",
+    "Category": "contraband"
+  },
+  {
+    "Name": "Mengkare's Shards",
+    "Cost": "6000 gp",
+    "Weight": "1 lbs",
+    "Description": "Rare and valuable crystal shards, possibly of draconic origin, highly sought after on the black market.",
+    "Category": "contraband"
+  },
+  {
+    "Name": "Mindburn Incense",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "Incense that produces hallucinogenic effects when burned and inhaled, potentially dangerous to mental health.",
+    "Category": "drug"
+  },
+  {
+    "Name": "Mishan's Melodious Feather",
+    "Cost": "2500 gp",
+    "Weight": "0 lbs",
+    "Description": "A rare and valuable feather, possibly from a magical creature, prized by collectors and spellcasters.",
+    "Category": "contraband"
+  },
+  {
+    "Name": "Mistletoe",
+    "Cost": "\u2014",
+    "Weight": "0 lbs",
+    "Description": "Sacred plant used by druids as a spell focus. Free if gathered from oak trees with a golden sickle.",
+    "Category": "component"
+  },
+  {
+    "Name": "Night Tea",
+    "Cost": "1 sp",
+    "Weight": "0 lbs",
+    "Description": "A mild stimulant tea that helps users stay awake, popular among guards and students.",
+    "Category": "drug"
+  },
+  {
+    "Name": "Pesh",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Description": "Highly addictive narcotic that enhances physical abilities but causes dependency and long-term health problems.",
+    "Category": "drug"
+  },
+  {
+    "Name": "Premium Hookah",
+    "Cost": "1000 gp",
+    "Weight": "15 lbs",
+    "Description": "Exceptionally well-crafted hookah made from fine materials, a luxury item for the wealthy.",
+    "Category": "smoking_equipment"
+  },
+  {
+    "Name": "Pump Organ",
+    "Cost": "2000 gp",
+    "Weight": "100 lbs",
+    "Description": "Musical instrument, though sometimes associated with illicit establishments or used to cover illegal activities.",
+    "Category": "equipment"
+  },
+  {
+    "Name": "Purity Test",
+    "Cost": "10 gp",
+    "Weight": "2 lbs",
+    "Description": "Alchemical kit for testing the quality and purity of drugs, poisons, or precious metals.",
+    "Category": "alchemical"
+  },
+  {
+    "Name": "Quieting Needles",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Description": "Acupuncture needles that can temporarily paralyze or silence victims, often used by assassins.",
+    "Category": "tool"
+  },
+  {
+    "Name": "Slave",
+    "Cost": "75 gp",
+    "Weight": "175 lbs",
+    "Description": "A person held in bondage. Slavery is illegal in many nations but persists in others. Average adult slave.",
+    "Category": "slavery"
+  },
+  {
+    "Name": "Slave (hard labor)",
+    "Cost": "100 gp",
+    "Weight": "200 lbs",
+    "Description": "Strong slave suited for demanding physical work in mines, quarries, or construction.",
+    "Category": "slavery"
+  },
+  {
+    "Name": "Slave (household)",
+    "Cost": "50 gp",
+    "Weight": "130 lbs",
+    "Description": "Slave trained for domestic work such as cooking, cleaning, or childcare.",
+    "Category": "slavery"
+  },
+  {
+    "Name": "Slave (slip, halfling)",
+    "Cost": "100 gp",
+    "Weight": "39 lbs",
+    "Description": "Halfling slave, often used for tasks requiring small size or stealth. 'Slip' refers to their ability to move quietly.",
+    "Category": "slavery"
+  },
+  {
+    "Name": "Slave (specialized)",
+    "Cost": "500 gp",
+    "Weight": "160 lbs",
+    "Description": "Slave with valuable skills such as literacy, artistic talent, or professional training.",
+    "Category": "slavery"
+  },
+  {
+    "Name": "Snuffbox (bone or tortoise shell)",
+    "Cost": "25 gp",
+    "Weight": "0 lbs",
+    "Description": "Decorative box for carrying snuff tobacco, made from bone or tortoise shell.",
+    "Category": "container"
+  },
+  {
+    "Name": "Snuffbox (ivory or precious metal)",
+    "Cost": "300 gp",
+    "Weight": "0 lbs",
+    "Description": "Luxury snuffbox crafted from ivory, gold, silver, or other precious materials.",
+    "Category": "container"
+  },
+  {
+    "Name": "Snuffbox (tin or wood)",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Description": "Simple, functional snuffbox made from common materials.",
+    "Category": "container"
+  },
+  {
+    "Name": "Songs of Shazathared",
+    "Cost": "11000 gp",
+    "Weight": "4 lbs",
+    "Description": "Rare and forbidden tome containing dangerous knowledge, magical secrets, or heretical teachings. Highly illegal in most civilized lands.",
+    "Category": "contraband"
+  },
+  {
+    "Name": "Tobacco",
+    "Cost": "1 gp",
+    "Weight": "2 lbs",
+    "Description": "Dried tobacco leaves for smoking in pipes, cigars, or hookahs. Also ground for use as snuff.",
+    "Category": "tobacco"
+  },
+  {
+    "Name": "Traveler's Hookah",
+    "Cost": "1500 gp",
+    "Weight": "4 lbs",
+    "Description": "Portable, collapsible hookah designed for use while traveling, combining luxury with practicality.",
+    "Category": "smoking_equipment"
+  },
+  {
+    "Name": "Wolfsbane",
+    "Cost": "5 sp",
+    "Weight": "0 lbs",
+    "Description": "Poisonous herb also known as aconite. Believed to have properties against werewolves and can be used as a poison component.",
+    "Category": "poison"
+  }
+]

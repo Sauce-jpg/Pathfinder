@@ -1,0 +1,212 @@
+[
+  {
+    "Name": "Ball (10 in.)",
+    "Cost": "6 gp",
+    "Weight": "1 lbs",
+    "Description": "Large 10-inch ball suitable for sports and games requiring a substantial sphere. Can be used for various ball games or as a toy.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Ball (2 in.)",
+    "Cost": "8 cp",
+    "Weight": "0 lbs",
+    "Description": "Small 2-inch ball, inexpensive toy or game piece. Suitable for juggling, children's games, or as a simple plaything.",
+    "Category": "toys"
+  },
+  {
+    "Name": "Ball (5 in.)",
+    "Cost": "2 sp",
+    "Weight": "0 lbs",
+    "Description": "Medium 5-inch ball, versatile size for various games and sports. Common choice for casual play.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Billiards Gear",
+    "Cost": "5 sp",
+    "Weight": "8 lbs",
+    "Description": "Complete set for playing billiards, including cues, balls, and accessories. Requires a billiards table (sold separately).",
+    "Category": "games"
+  },
+  {
+    "Name": "Board Game",
+    "Cost": "1 sp-10 gp",
+    "Weight": "2 lbs",
+    "Description": "Various board games from simple checkers to elaborate strategy games. Cost varies by complexity and quality of materials.",
+    "Category": "games"
+  },
+  {
+    "Name": "Book of Puzzles",
+    "Cost": "50 gp",
+    "Weight": "1 lbs",
+    "Description": "Collection of riddles, logic puzzles, and brain teasers. Popular among scholars and those who enjoy intellectual challenges.",
+    "Category": "puzzles"
+  },
+  {
+    "Name": "Bowling Set",
+    "Cost": "5 sp-10 gp",
+    "Weight": "15 lbs",
+    "Description": "Pins and ball for lawn bowling or similar games. Cost varies by quality of materials.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Cards",
+    "Cost": "1 sp-100 gp",
+    "Weight": "1 lbs",
+    "Description": "Playing cards for various card games. Simple paper cards cost 1 sp, while elaborate hand-painted or magical decks can cost up to 100 gp.",
+    "Category": "gambling"
+  },
+  {
+    "Name": "Croquet Set",
+    "Cost": "5 sp",
+    "Weight": "10 lbs",
+    "Description": "Mallets, balls, and wickets for playing croquet. A popular lawn game among the nobility.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Crossword",
+    "Cost": "1 cp-1 sp",
+    "Weight": "0 lbs",
+    "Description": "Word puzzle on paper or parchment. Simple crosswords cost 1 cp, while more elaborate or themed versions cost up to 1 sp.",
+    "Category": "puzzles"
+  },
+  {
+    "Name": "Dartboard Set",
+    "Cost": "5 sp",
+    "Weight": "10 lbs",
+    "Description": "Board and darts for playing darts. Common in taverns and popular for gambling.",
+    "Category": "games"
+  },
+  {
+    "Name": "Dice",
+    "Cost": "1 sp",
+    "Weight": "0 lbs",
+    "Description": "Standard gaming dice, typically a set of six-sided dice. Essential for many gambling games.",
+    "Category": "gambling"
+  },
+  {
+    "Name": "Dominos",
+    "Cost": "1 sp-25 gp",
+    "Weight": "1 lbs",
+    "Description": "Set of domino tiles for playing various domino games. Simple wooden sets cost 1 sp, while ivory or decorated sets can cost up to 25 gp.",
+    "Category": "games"
+  },
+  {
+    "Name": "Halfling Jugglesticks",
+    "Cost": "25 gp",
+    "Weight": "1 lbs",
+    "Description": "Specialized juggling equipment popular among halflings. These balanced sticks are designed for elaborate juggling routines and tricks.",
+    "Category": "toys"
+  },
+  {
+    "Name": "Harrow Carrying Case",
+    "Cost": "10 gp",
+    "Weight": "2 lbs",
+    "Description": "Protective case for storing and transporting a Harrow deck. Keeps the valuable cards safe from damage.",
+    "Category": "games"
+  },
+  {
+    "Name": "Harrow Deck",
+    "Cost": "100 gp",
+    "Weight": "0 lbs",
+    "Description": "Traditional Varisian fortune-telling deck consisting of 54 cards. Used for divination, gambling, and storytelling. Each card depicts powerful imagery and symbolism.",
+    "Category": "gambling"
+  },
+  {
+    "Name": "Harrow Mat",
+    "Cost": "80 gp",
+    "Weight": "1 lbs",
+    "Description": "Cloth mat with traditional Harrow spread patterns marked on it. Used for laying out Harrow cards during readings or games.",
+    "Category": "games"
+  },
+  {
+    "Name": "Horseshoes Game",
+    "Cost": "5 sp",
+    "Weight": "3 lbs",
+    "Description": "Set of horseshoes and stakes for playing the classic tossing game. Popular outdoor entertainment.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Imperial Conquest",
+    "Cost": "250 gp",
+    "Weight": "4 lbs",
+    "Description": "Elaborate strategy board game simulating military conquest and empire building. Expensive and complex, favored by nobles and military strategists.",
+    "Category": "games"
+  },
+  {
+    "Name": "Kite",
+    "Cost": "1 sp-2,000 gp",
+    "Weight": "1-5 lbs",
+    "Description": "Flying toy ranging from simple paper kites (1 sp) to elaborate masterworks with precious materials and magical enhancements (up to 2,000 gp).",
+    "Category": "toys"
+  },
+  {
+    "Name": "Loaded Dice (average)",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Description": "Weighted dice designed to favor certain results. Average quality provides some advantage but may be detected by careful observers.",
+    "Category": "gambling"
+  },
+  {
+    "Name": "Loaded Dice (superior)",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Description": "Expertly crafted weighted dice that are very difficult to detect. Provides better advantage while being less obvious than average loaded dice.",
+    "Category": "gambling"
+  },
+  {
+    "Name": "Marked Cards",
+    "Cost": "1 gp",
+    "Weight": "1 lbs",
+    "Description": "Playing cards with subtle marks on the backs allowing the informed user to identify them. Used for cheating at card games.",
+    "Category": "gambling"
+  },
+  {
+    "Name": "Polo Gear",
+    "Cost": "5 sp",
+    "Weight": "5 lbs",
+    "Description": "Mallets and ball for playing polo. Does not include horses or field. A sport of the wealthy.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Puzzle Box",
+    "Cost": "1 gp-1,000 gp",
+    "Weight": "1-5 lbs",
+    "Description": "Mechanical puzzle requiring specific manipulations to open. Simple boxes cost 1 gp, while masterwork or magical puzzle boxes with multiple stages can cost up to 1,000 gp.",
+    "Category": "puzzles"
+  },
+  {
+    "Name": "Rounders Gear",
+    "Cost": "1 sp",
+    "Weight": "0.5 lbs",
+    "Description": "Bat and ball for playing rounders, a bat-and-ball game. Inexpensive and popular among common folk.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Scent Salts",
+    "Cost": "1 sp",
+    "Weight": "0 lbs",
+    "Description": "Aromatic salts used for entertainment or to revive someone who has fainted. Can also be used in pranks.",
+    "Category": "toys"
+  },
+  {
+    "Name": "Signal Kite Kit",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Description": "Kite designed specifically for signaling, with colored ribbons or flags. Can be used to send simple messages over distance.",
+    "Category": "toys"
+  },
+  {
+    "Name": "Tennis Gear",
+    "Cost": "3 sp",
+    "Weight": "3 lbs",
+    "Description": "Rackets and ball for playing tennis. Does not include net or court. Popular among nobility.",
+    "Category": "sports_equipment"
+  },
+  {
+    "Name": "Terror Kite",
+    "Cost": "20 gp",
+    "Weight": "0 lbs",
+    "Description": "Kite designed to look frightening, possibly resembling a dragon, demon, or other monster. Used for entertainment, intimidation, or scaring away birds.",
+    "Category": "toys"
+  }
+]

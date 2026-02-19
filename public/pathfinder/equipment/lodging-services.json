@@ -1,0 +1,226 @@
+[
+  {
+    "Name": "Bath (cold)",
+    "Cost": "2 cp",
+    "Weight": "\u2014",
+    "Description": "Basic cold water bath at a public bathhouse or inn. Unheated water, minimal amenities. Gets you clean but not comfortable.",
+    "Category": "personal_care"
+  },
+  {
+    "Name": "Bath (hot)",
+    "Cost": "6 cp",
+    "Weight": "\u2014",
+    "Description": "Hot water bath with heated water. Much more comfortable than cold. Popular after long adventures. Water must be heated, hence the higher cost.",
+    "Category": "personal_care"
+  },
+  {
+    "Name": "Bath (public)",
+    "Cost": "2 sp-1 gp",
+    "Weight": "\u2014",
+    "Description": "Access to public bathhouse facilities with heated pools, steam rooms, and social bathing areas. Price varies by quality of establishment from basic communal baths to luxury spa experiences.",
+    "Category": "personal_care"
+  },
+  {
+    "Name": "Commissioned Broadsheet (print run - 500 broadsheets)",
+    "Cost": "150 gp",
+    "Weight": "\u2014",
+    "Description": "Print 500 copies of your broadsheet after setup is complete. Includes paper, ink, press time, and labor for a full print run. Used for spreading news, announcements, or propaganda.",
+    "Category": "communication"
+  },
+  {
+    "Name": "Commissioned Broadsheet (setup and proof print)",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Description": "Initial setup for printing including typesetting, layout, and proof print to verify accuracy before full print run. Essential first step before mass printing.",
+    "Category": "communication"
+  },
+  {
+    "Name": "Companion",
+    "Cost": "5 cp-10 gp",
+    "Weight": "\u2014",
+    "Description": "Hired companion for social events or private entertainment. Price varies wildly based on quality, services provided, and social standing. From simple escort to elite courtesan.",
+    "Category": "personal_care"
+  },
+  {
+    "Name": "Doctor",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Description": "Medical consultation and treatment from a trained physician. Covers examination, diagnosis, and basic medical care. Does not include expensive medicines or surgery.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Footman",
+    "Cost": "5 sp",
+    "Weight": "\u2014",
+    "Description": "Servant who runs errands, carries packages, opens doors, and performs basic household tasks. Per day rate for a personal attendant.",
+    "Category": "hired_help"
+  },
+  {
+    "Name": "Hireling (trained)",
+    "Cost": "3 sp",
+    "Weight": "\u2014",
+    "Description": "Skilled worker with specific trade or professional training. Includes craftsmen, scribes, sailors, and other trained laborers. Daily wage for competent help.",
+    "Category": "hired_help"
+  },
+  {
+    "Name": "Hireling (untrained)",
+    "Cost": "1 sp",
+    "Weight": "\u2014",
+    "Description": "Unskilled laborer for manual work like digging, carrying, loading wagons, or general tasks. Cheapest labor available. Daily wage for basic muscle.",
+    "Category": "hired_help"
+  },
+  {
+    "Name": "Hireling, Crier (masterful)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Description": "Elite town crier with booming voice, perfect diction, and commanding presence. Makes your message heard and remembered across entire districts. Most expensive crier option.",
+    "Category": "communication"
+  },
+  {
+    "Name": "Hireling, Crier (skilled)",
+    "Cost": "3 gp",
+    "Weight": "\u2014",
+    "Description": "Experienced town crier with strong voice and good delivery. Effectively announces messages to crowds and spreads word throughout neighborhoods.",
+    "Category": "communication"
+  },
+  {
+    "Name": "Hireling, Crier (trained)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Description": "Competent town crier who can clearly announce messages in public spaces. Standard option for spreading news or announcements.",
+    "Category": "communication"
+  },
+  {
+    "Name": "Hireling, Crier (untrained)",
+    "Cost": "3 sp",
+    "Weight": "\u2014",
+    "Description": "Basic messenger who shouts your message in streets. Lacks polish but gets the job done cheaply. Sufficient for simple announcements.",
+    "Category": "communication"
+  },
+  {
+    "Name": "Inn Stay (common)",
+    "Cost": "5 sp",
+    "Weight": "\u2014",
+    "Description": "Standard inn room with bed, basic furnishings, and simple breakfast. Clean sheets, shared common areas. The adventurer's default lodging choice.",
+    "Category": "lodging"
+  },
+  {
+    "Name": "Inn Stay (good)",
+    "Cost": "2 gp",
+    "Weight": "\u2014",
+    "Description": "Quality inn with comfortable bed, better meals, private room, and nice amenities. Popular with successful adventurers and merchants.",
+    "Category": "lodging"
+  },
+  {
+    "Name": "Inn Stay (poor)",
+    "Cost": "2 sp",
+    "Weight": "\u2014",
+    "Description": "Cheap flophouse with straw mattress, thin blanket, and questionable cleanliness. Often shared room with strangers. You get what you pay for.",
+    "Category": "lodging"
+  },
+  {
+    "Name": "Inn Stay (suite, average)",
+    "Cost": "16 gp",
+    "Weight": "\u2014",
+    "Description": "Multiple-room suite with bedroom, sitting area, and better furnishings. Suitable for small parties or those desiring privacy and comfort.",
+    "Category": "lodging"
+  },
+  {
+    "Name": "Inn Stay (suite, luxurious)",
+    "Cost": "32+ gp",
+    "Weight": "\u2014",
+    "Description": "Opulent multi-room suite with finest furnishings, servants, private bath, excellent meals, and luxury amenities. For nobility and the very wealthy. 32+ gp depending on establishment.",
+    "Category": "lodging"
+  },
+  {
+    "Name": "Inn Stay (suite, small)",
+    "Cost": "4 gp",
+    "Weight": "\u2014",
+    "Description": "Two-room suite with separate sleeping and living areas. More spacious than single room, affordable luxury for adventuring parties.",
+    "Category": "lodging"
+  },
+  {
+    "Name": "Laundry",
+    "Cost": "1 sp",
+    "Weight": "\u2014",
+    "Description": "Washing, drying, and basic folding of clothes. Standard service for keeping adventuring gear clean after dungeon delving.",
+    "Category": "personal_care"
+  },
+  {
+    "Name": "Laundry (magic)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Description": "Magical cleaning using prestidigitation or similar spells. Instant, perfect cleaning that removes all stains, odors, and damage to fabric. Worth it after fighting in sewers!",
+    "Category": "personal_care"
+  },
+  {
+    "Name": "Lawyer (competent)",
+    "Cost": "3 gp",
+    "Weight": "\u2014",
+    "Description": "Experienced lawyer capable of handling most legal matters competently. Standard choice for civil cases, contracts, and legal representation.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Lawyer (experienced)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Description": "Highly skilled lawyer with extensive experience and excellent success rate. For serious criminal cases, complex contracts, or when you absolutely need to win.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Lawyer (novice)",
+    "Cost": "5 sp",
+    "Weight": "\u2014",
+    "Description": "Newly practicing lawyer with basic training. Suitable for simple matters or when funds are limited. You get what you pay for.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Messenger",
+    "Cost": "2 cp",
+    "Weight": "\u2014",
+    "Description": "Runner who delivers messages, packages, or letters. Paid by distance traveled. Faster than mail, more discreet than town crier. 2 copper per mile.",
+    "Category": "communication"
+  },
+  {
+    "Name": "Nurse",
+    "Cost": "7 sp",
+    "Weight": "\u2014",
+    "Description": "Medical caretaker who provides bedside care, administers medicines, changes bandages, and monitors patient condition. Essential for recovering from serious wounds.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Road or Gate Toll",
+    "Cost": "1 cp",
+    "Weight": "\u2014",
+    "Description": "Fee for using maintained roads or entering city gates. Standard infrastructure tax. Some locations charge more for carts or livestock.",
+    "Category": "miscellaneous"
+  },
+  {
+    "Name": "Scribe (map)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Description": "Professional cartographer creates accurate map from your descriptions or copies existing maps. Includes artistic borders and clear labels. Essential for dungeon mapping.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Scribe (text)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Description": "Professional scribe copies text, writes letters, or transcribes documents. Includes high-quality penmanship and accurate transcription. Per page or letter.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Spellcasting",
+    "Cost": "\u2014",
+    "Weight": "\u2014",
+    "Description": "Hiring a spellcaster to cast a spell. Formula: caster level \u00d7 spell level \u00d7 10 gp. Examples: 1st level spell from 1st level caster = 10 gp; 3rd level spell from 5th level caster = 150 gp; 9th level spell from 17th level caster = 1,530 gp. Does not include costly material components - those are extra.",
+    "Category": "professional_services"
+  },
+  {
+    "Name": "Valet",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Description": "Personal servant who maintains clothing, prepares outfits, assists with dressing, and handles personal effects. Daily rate for proper gentleman's/lady's attendant.",
+    "Category": "hired_help"
+  }
+]

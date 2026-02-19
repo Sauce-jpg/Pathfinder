@@ -1,0 +1,4446 @@
+[
+  {
+    "Name": "Battle Aspergillum",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This light mace has a hollow head that can be filled with holy water. The wielder can deliver holy water to undead or evil outsiders as if making a melee touch attack."
+  },
+  {
+    "Name": "Brass Knife",
+    "Cost": "2 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "fragile"
+    ],
+    "Category": "Simple",
+    "Description": "This knife is made of soft brass and is easy to conceal. It has the fragile weapon quality."
+  },
+  {
+    "Name": "Brass Knuckles",
+    "Cost": "1 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and magnifying the force delivered by a punch."
+  },
+  {
+    "Name": "Cestus",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "The cestus is a glove of leather or thick cloth reinforced with metal plates, often with spikes or blades attached over the knuckles."
+  },
+  {
+    "Name": "Dagger",
+    "Cost": "2 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body."
+  },
+  {
+    "Name": "Gauntlet",
+    "Cost": "2 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This metal glove lets you deal lethal damage rather than nonlethal damage with unarmed strikes."
+  },
+  {
+    "Name": "Hanbo",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This staff is about 3 feet long. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Handwraps",
+    "Cost": "0.01 gp",
+    "Damage (S)": "\u2014",
+    "Damage (M)": "\u2014",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "Handwraps are cloth wraps designed to protect the hands. They don't grant an enhancement bonus on attack rolls or damage rolls, but they can be enhanced as if they were a weapon."
+  },
+  {
+    "Name": "Hook Hand",
+    "Cost": "10 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm"
+    ],
+    "Category": "Simple",
+    "Description": "A hook hand is fitted over a stump left by an amputated hand. The wearer can use it as a weapon."
+  },
+  {
+    "Name": "Kunai",
+    "Cost": "2 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The kunai is a simple iron or steel implement resembling a pointed trowel. Originating as a farming and excavating tool, it's commonly used as a throwing weapon."
+  },
+  {
+    "Name": "Mace, Light",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A light mace is made up of an ornate metal head attached to a simple wooden or metal shaft."
+  },
+  {
+    "Name": "Dagger, Punching",
+    "Cost": "2 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A punching dagger's blade is attached to a horizontal handle that projects out from the fist when held."
+  },
+  {
+    "Name": "Sickle",
+    "Cost": "6 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon is used to reap wheat and other grains, but it also makes a fine weapon."
+  },
+  {
+    "Name": "Sickle, Spider-Leg",
+    "Cost": "15 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This sickle has a jagged, barbed blade and can be used to make trip attacks."
+  },
+  {
+    "Name": "Gauntlet, Spiked",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "An attack with a spiked gauntlet is considered an armed attack. Your opponent cannot use a disarm action to disarm you of spiked gauntlets."
+  },
+  {
+    "Name": "Spring Blade",
+    "Cost": "70 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This blade is hidden within a bracer or under a sleeve until it is needed. You can deploy the blade as a swift action."
+  },
+  {
+    "Name": "Traveling Kettle",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This reinforced kettle can be used as a weapon. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Wooden Stake",
+    "Cost": "\u2014",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A wooden stake is useful against vampires and other creatures harmed by wood. It can also be thrown."
+  },
+  {
+    "Name": "Baston, Fighting Stick",
+    "Cost": "10 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This hardwood stick is used as a training weapon and for fighting. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Club",
+    "Cost": "\u2014",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A wooden club is so simple that anyone can find one lying around."
+  },
+  {
+    "Name": "Mace, Heavy",
+    "Cost": "12 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A heavy mace has a larger head and a longer handle than a light mace."
+  },
+  {
+    "Name": "Mere Club",
+    "Cost": "2 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "fragile"
+    ],
+    "Category": "Simple",
+    "Description": "Carved from a single piece of stone or bone, the mere is a traditional weapon of the Polynesians."
+  },
+  {
+    "Name": "Morningstar",
+    "Cost": "8 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A morningstar is a spiked metal ball, affixed to the top of a long handle."
+  },
+  {
+    "Name": "Shortspear",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A shortspear is about 3 feet in length, making it a suitable thrown weapon."
+  },
+  {
+    "Name": "Bayonet",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms. Bayonets can be attached or removed as a move action."
+  },
+  {
+    "Name": "Boar Spear",
+    "Cost": "5 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length. The crossbar prevents creatures from moving forward beyond your square when set against a charge."
+  },
+  {
+    "Name": "Boarding Pike",
+    "Cost": "8 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 9,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "A boarding pike is a long spear used on ships to repel boarders. It has reach, allowing you to strike opponents 10 feet away."
+  },
+  {
+    "Name": "Kumade",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "grapple"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm consists of a long pole with a metal basket similar to a bear trap at the top. It can be used to hook and pull opponents."
+  },
+  {
+    "Name": "Kumade, Collapsible",
+    "Cost": "10 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "grapple"
+    ],
+    "Category": "Simple",
+    "Description": "The metal basket of this kumade can collapse into the haft for easy transport. Deploying or collapsing the kumade is a move action."
+  },
+  {
+    "Name": "Lantern Staff",
+    "Cost": "15 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 9,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This staff has a lantern mounted at the top. The lantern can be lit and provides illumination as a normal lantern."
+  },
+  {
+    "Name": "Longspear",
+    "Cost": "5 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 9,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "A longspear is about 8 feet in length. You can strike opponents 10 feet away with it, but you can't use it against an adjacent foe."
+  },
+  {
+    "Name": "Quarterstaff",
+    "Cost": "\u2014",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "A quarterstaff is a simple piece of wood, about 5 feet in length. You can strike with either end."
+  },
+  {
+    "Name": "Spear",
+    "Cost": "2 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "brace"
+    ],
+    "Category": "Simple",
+    "Description": "A spear is 5 feet in length and can be thrown. If you use a ready action to set a spear against a charge, you deal double damage on a successful hit."
+  },
+  {
+    "Name": "Spear, Weighted",
+    "Cost": "10 gp",
+    "Damage (S)": "1d6/1d4",
+    "Damage (M)": "1d8/1d6",
+    "Critical": "20/x3 or 20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "double"
+    ],
+    "Category": "Simple",
+    "Description": "This spear has a weighted butt end that can be used as a separate weapon. It functions as a double weapon."
+  },
+  {
+    "Name": "Blowgun",
+    "Cost": "2 gp",
+    "Damage (S)": "1",
+    "Damage (M)": "1d2",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "Blowguns are generally used to deliver debilitating poisons from a distance. They are nearly silent when fired."
+  },
+  {
+    "Name": "Dart",
+    "Cost": "0.5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 0.5,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "Darts are missile weapons designed to fly such that a sharp, often weighted point will strike first."
+  },
+  {
+    "Name": "Crossbow, Heavy",
+    "Cost": "50 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You draw a heavy crossbow back by turning a small winch. Loading is a full-round action that provokes attacks of opportunity."
+  },
+  {
+    "Name": "Javelin",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A javelin is a thin throwing spear. You take a \u20134 penalty on attack rolls if you use a javelin as a melee weapon."
+  },
+  {
+    "Name": "Crossbow, Light",
+    "Cost": "35 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You draw a light crossbow back by pulling a lever. Loading is a move action that provokes attacks of opportunity."
+  },
+  {
+    "Name": "Sling",
+    "Cost": "\u2014",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A sling is a leather cup attached to a pair of strings. Your Strength modifier applies to damage rolls. Loading is a move action that requires two hands."
+  },
+  {
+    "Name": "Stingchuck",
+    "Cost": "\u2014",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 9,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This woven textile weapon contains a hole for your thumb and a small net that holds a jagged stone or similar projectile."
+  },
+  {
+    "Name": "Stonebow",
+    "Cost": "35 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A stonebow is a crossbow that fires stones or bullets instead of bolts."
+  },
+  {
+    "Name": "Underwater Crossbow, Heavy",
+    "Cost": "100 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This weapon functions like a heavy crossbow but can be used underwater without penalty."
+  },
+  {
+    "Name": "Underwater Crossbow, Light",
+    "Cost": "70 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This weapon functions like a light crossbow but can be used underwater without penalty."
+  },
+  {
+    "Name": "Unarmed Strike",
+    "Cost": "\u2014",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "nonlethal",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "An unarmed strike is always considered a light weapon. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls."
+  },
+  {
+    "Name": "Amentum",
+    "Cost": "\u2014",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "An amentum is a leather thong that attaches to a javelin. Before throwing, you wrap it around the javelin's shaft. It takes a move action but increases range. It has the performance weapon quality."
+  },
+  {
+    "Name": "Ankus",
+    "Cost": "8 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This hooked staff is used to control elephants and other large animals. It can be used to disarm or trip opponents."
+  },
+  {
+    "Name": "Armor, Spiked",
+    "Cost": "50 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You can have spikes added to your armor, allowing you to deal extra piercing damage on a successful grapple attack. Weight is included in armor."
+  },
+  {
+    "Name": "Atlatl",
+    "Cost": "2 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "An atlatl is a thin piece of wood or antler used as a lever to hurl a specially fitted dart with greater range and force."
+  },
+  {
+    "Name": "Bardiche",
+    "Cost": "13 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 14,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "The crescent-bladed bardiche is a polearm with reach. You can use it to make trip attacks. If you are tripped during your own trip attempt, you can drop the bardiche to avoid being tripped."
+  },
+  {
+    "Name": "Battleaxe",
+    "Cost": "10 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The handle of this axe is long enough that you can wield it one-handed or two-handed. The head may have one blade or two."
+  },
+  {
+    "Name": "Bec de Corbin",
+    "Cost": "15 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "The bec de corbin is a polearm with a hammer head balanced by a spike. It has reach."
+  },
+  {
+    "Name": "Bill",
+    "Cost": "11 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 11,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "disarm",
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "The bill is a polearm with a hooked blade. It has reach and can be used to disarm opponents."
+  },
+  {
+    "Name": "Blade Boot",
+    "Cost": "25 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "A blade boot is a sharp-pointed blade that is strapped to the bottom of your boot. You can use it to make powerful kicks."
+  },
+  {
+    "Name": "Boarding Axe",
+    "Cost": "6 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "Boarding axes are the favorite weapon for ship-to-ship combat. They are equally useful for chopping through rigging and boarding enemy vessels."
+  },
+  {
+    "Name": "Butterfly Sword",
+    "Cost": "20 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "These short matching swords come in pairs, cleverly nested together to appear as a single blade. Monks are proficient with butterfly swords."
+  },
+  {
+    "Name": "Cat-o'-Nine-Tails",
+    "Cost": "1 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "nonlethal"
+    ],
+    "Category": "Simple",
+    "Description": "A cat-o'-nine-tails is a whip with nine knotted thongs. It deals nonlethal damage and can be used to disarm opponents."
+  },
+  {
+    "Name": "Chakram",
+    "Cost": "1 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The chakram is a simple, elegant, and highly portable thrown weapon. It is a flat, open-centered metal discus with a sharpened edge."
+  },
+  {
+    "Name": "Combat Scabbard",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "improvised",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This scabbard is designed to be used as a weapon. When empty, it can be wielded as a club."
+  },
+  {
+    "Name": "Combat Scabbard, Sharpened",
+    "Cost": "10 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This scabbard has a sharpened edge and can be used as a slashing weapon even when it contains a blade."
+  },
+  {
+    "Name": "Cutlass",
+    "Cost": "15 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This slightly curved sword is a favorite of pirates and sailors. Its heavy basket hilt protects the hand."
+  },
+  {
+    "Name": "Dogslicer",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "fragile"
+    ],
+    "Category": "Simple",
+    "Description": "This short, curved sword is a favorite weapon of goblins, who use it to deadly effect against dogs."
+  },
+  {
+    "Name": "Double Chicken Saber",
+    "Cost": "12 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This sword has an intricate guard that can catch and disarm opponents' weapons. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Dueling Dagger",
+    "Cost": "12 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This dagger has a long, thin blade and an ornate basket hilt. When fighting defensively or using Combat Expertise, you gain an additional +1 shield bonus to AC."
+  },
+  {
+    "Name": "Earth Breaker",
+    "Cost": "40 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "2d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 14,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The earth breaker is a massive hammer, often carved from a single piece of iron or stone."
+  },
+  {
+    "Name": "Falchion",
+    "Cost": "75 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This sword has one curved, sharp edge like a scimitar, with the back edge unsharpened."
+  },
+  {
+    "Name": "Flail, Heavy",
+    "Cost": "15 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "Similar to a flail, a heavy flail has a larger metal ball and a longer handle."
+  },
+  {
+    "Name": "Flail, Light",
+    "Cost": "8 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A flail consists of a spiked metal ball, connected to a handle by a sturdy chain."
+  },
+  {
+    "Name": "Gandasa",
+    "Cost": "15 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This is a large, heavy axe with a distinctive curved blade. It's favored by executioners."
+  },
+  {
+    "Name": "Gastraphetes",
+    "Cost": "65 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "1d12",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The gastraphetes is an ancient, heavy crossbow. Loading it is a full-round action that requires placing the bow on the ground and using a lever."
+  },
+  {
+    "Name": "Gladius",
+    "Cost": "15 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "The gladius is the favorite short sword of gladiators. It has the performance weapon quality."
+  },
+  {
+    "Name": "Glaive",
+    "Cost": "8 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "A glaive is a simple blade, mounted to the end of a pole about 7 feet in length."
+  },
+  {
+    "Name": "Glaive-Guisarme",
+    "Cost": "12 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm combines the blade of a glaive with the hook of a guisarme. It has reach and can be used to make trip attacks."
+  },
+  {
+    "Name": "Greataxe",
+    "Cost": "20 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "1d12",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This big, heavy axe is a favorite of barbarians and anybody else who wants to deal out incredible damage."
+  },
+  {
+    "Name": "Greatclub",
+    "Cost": "5 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A greatclub is a two-handed version of a regular club. It is often studded with nails or spikes."
+  },
+  {
+    "Name": "Greatsword",
+    "Cost": "50 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "2d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This immense two-handed sword is about 5 feet in length."
+  },
+  {
+    "Name": "Guisarme",
+    "Cost": "9 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A guisarme is an 8-foot-long shaft with a blade and a hook mounted at the tip."
+  },
+  {
+    "Name": "Halberd",
+    "Cost": "10 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A halberd is a combination of a spear and an axe. The spike at the end is used like a spear, the axe blade is used for slashing, and the hook opposite the blade is used for tripping."
+  },
+  {
+    "Name": "Hammer, Light",
+    "Cost": "1 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This small hammer is perfect for throwing or close combat."
+  },
+  {
+    "Name": "Handaxe",
+    "Cost": "6 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This one-handed axe is short (roughly 1 foot long) and designed for use with one hand."
+  },
+  {
+    "Name": "Hooked Lance",
+    "Cost": "3 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This slender spear has a hook near the head that can be used to trip opponents."
+  },
+  {
+    "Name": "Horsechopper",
+    "Cost": "10 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm combines a blade with a hook. Goblins use it to dismount riders."
+  },
+  {
+    "Name": "Hunga Munga",
+    "Cost": "4 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This curved throwing blade has multiple sharpened edges and points."
+  },
+  {
+    "Name": "Hurlbat",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The hurlbat is a throwing axe with a blade on one side and a spike on the other."
+  },
+  {
+    "Name": "Iron Brush",
+    "Cost": "2 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This is an iron-handled version of a scholar's brush. The iron brush can be used as a weapon."
+  },
+  {
+    "Name": "Jolting Dart",
+    "Cost": "100 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 0.5,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This dart has a small reservoir that can hold one dose of liquid. On a hit, the liquid is injected into the target."
+  },
+  {
+    "Name": "Jutte",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This short metal weapon has a curved prong that can be used to disarm opponents. Monks are proficient with the jutte."
+  },
+  {
+    "Name": "Katar, Tri-Bladed",
+    "Cost": "6 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This punching dagger has three blades that deploy when the weapon is thrust forward. It has an increased critical multiplier."
+  },
+  {
+    "Name": "Kerambit",
+    "Cost": "2 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This small, curved blade is worn on a finger ring and has a wicked hooked point."
+  },
+  {
+    "Name": "Klar",
+    "Cost": "12 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "The klar is a short blade bound to a large lizard skull. A klar serves as a light shield when you aren't using it as a weapon."
+  },
+  {
+    "Name": "Kukri",
+    "Cost": "8 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A kukri is a curved blade, about 1 foot in length."
+  },
+  {
+    "Name": "Lance",
+    "Cost": "10 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "A lance deals double damage when used from the back of a charging mount. While mounted, you can wield a lance with one hand."
+  },
+  {
+    "Name": "Lizard King War Trident",
+    "Cost": "20 gp",
+    "Damage (S)": "see text",
+    "Damage (M)": "see text",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "brace"
+    ],
+    "Category": "Simple",
+    "Description": "This oversized trident is designed for lizardfolk. It deals damage based on the wielder's size."
+  },
+  {
+    "Name": "Longbow",
+    "Cost": "75 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You need two hands to use a bow, regardless of its size. A longbow is too unwieldy to use while you are mounted."
+  },
+  {
+    "Name": "Longbow, Composite",
+    "Cost": "100 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You need at least two hands to use a bow. You can use a composite longbow while mounted. All composite bows are made with a particular Strength rating allowing you to add your Strength bonus to damage, up to the maximum bonus indicated for the bow."
+  },
+  {
+    "Name": "Longsword",
+    "Cost": "15 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This classic, straight blade is the weapon of knighthood and valor."
+  },
+  {
+    "Name": "Lucerne Hammer",
+    "Cost": "15 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "1d12",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm has a hammer head balanced by a spike. It has reach and can be set against a charge."
+  },
+  {
+    "Name": "Lungchuan Tamo",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon is a tiny dagger with a curved blade. Monks are proficient with the lungchuan tamo."
+  },
+  {
+    "Name": "Machete",
+    "Cost": "10 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This wide-bladed knife is designed for cutting through thick vegetation. It makes an effective weapon."
+  },
+  {
+    "Name": "Manople",
+    "Cost": "17 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "disarm"
+    ],
+    "Category": "Simple",
+    "Description": "This stiff, heavy glove has a blade or spike mounted on the back of the hand. It has blocking and disarm special features."
+  },
+  {
+    "Name": "Mattock",
+    "Cost": "12 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "fragile"
+    ],
+    "Category": "Simple",
+    "Description": "A mattock is a digging tool that makes a serviceable weapon. It has the fragile quality."
+  },
+  {
+    "Name": "Monk's Spade",
+    "Cost": "20 gp",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon has a sharpened spade blade on one end and a crescent blade on the other. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Naginata",
+    "Cost": "35 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 9,
+    "Type": "weapon",
+    "Special": [
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "A naginata is a polearm with a curved blade on the end. It has reach."
+  },
+  {
+    "Name": "Nine-Ring Broadsword",
+    "Cost": "15 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This broad-bladed sword has nine heavy rings threaded through the back of the blade. The rings make a distinctive sound. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Nodachi",
+    "Cost": "60 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "brace"
+    ],
+    "Category": "Simple",
+    "Description": "This very long, curved sword is even longer than a katana. It can be set against a charge."
+  },
+  {
+    "Name": "Ogre Hook",
+    "Cost": "24 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This large, curved blade is used by ogres to hook and drag down opponents."
+  },
+  {
+    "Name": "Phaleros",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A phaleros is a throwing dart with a wide, leaf-shaped head."
+  },
+  {
+    "Name": "Pick, Heavy",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A heavy pick is a one-handed tool designed to concentrate the force of its blow on a small area."
+  },
+  {
+    "Name": "Pick, Light",
+    "Cost": "4 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A light pick is a one-handed tool designed to concentrate the force of its blow on a small area."
+  },
+  {
+    "Name": "Pickaxe",
+    "Cost": "14 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A pickaxe is a mining tool that can be used as a weapon."
+  },
+  {
+    "Name": "Pilum",
+    "Cost": "5 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "A pilum is a javelin with a pyramidal head. If a pilum hits a shield, it becomes lodged and makes the shield difficult to use."
+  },
+  {
+    "Name": "Planson",
+    "Cost": "10 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "brace"
+    ],
+    "Category": "Simple",
+    "Description": "The planson is a polearm with a cutting blade set at a right angle to the shaft."
+  },
+  {
+    "Name": "Poisoned Sand Tube",
+    "Cost": "1 gp",
+    "Damage (S)": "special",
+    "Damage (M)": "special",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon is a tube filled with poisoned sand. You can blow the sand into an adjacent target's face, forcing them to save against the poison."
+  },
+  {
+    "Name": "Ranseur",
+    "Cost": "10 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "Similar in appearance to a trident, a ranseur has a single spear at its tip, flanked by a pair of short, curving blades."
+  },
+  {
+    "Name": "Rapier",
+    "Cost": "20 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a rapier."
+  },
+  {
+    "Name": "Reflex Bow",
+    "Cost": "125 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This shortbow has a unique construction that allows it to be used while mounted without penalty."
+  },
+  {
+    "Name": "Rhomphaia",
+    "Cost": "15 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "fragile",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "The rhomphaia is a polearm with a curved blade. It has reach and can be set against a charge. It has the fragile quality."
+  },
+  {
+    "Name": "Sansetsukon",
+    "Cost": "8 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "disarm",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon consists of three wooden or metal rods connected by short chains. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Sap",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "nonlethal"
+    ],
+    "Category": "Simple",
+    "Description": "A sap is a leather pouch, loaded with powdered lead. It deals nonlethal damage."
+  },
+  {
+    "Name": "Sarissa",
+    "Cost": "12 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "The sarissa is an extremely long spear, up to 20 feet in length. It has reach and can be set against a charge."
+  },
+  {
+    "Name": "Scimitar",
+    "Cost": "15 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This curved sword is shorter than a longsword and longer than a shortsword."
+  },
+  {
+    "Name": "Scizore",
+    "Cost": "20 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "The scizore is a hardened tube of metal designed to be fitted over a forearm. It has a blade that extends from the wrist. It has the performance weapon quality."
+  },
+  {
+    "Name": "Scythe",
+    "Cost": "18 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A farm implement used for harvesting wheat, a scythe requires proficiency with martial weapons. A scythe can be used to make trip attacks."
+  },
+  {
+    "Name": "Sea-Knife",
+    "Cost": "8 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This short, curved blade is designed for use on ships and in naval combat."
+  },
+  {
+    "Name": "Shang Gou",
+    "Cost": "6 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm or trip",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon resembles a shepherd's crook. Monks are proficient with the shang gou. You can use it to disarm or trip opponents."
+  },
+  {
+    "Name": "Shield, Heavy",
+    "Cost": "7 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You can bash with a heavy shield. A heavy shield is so heavy that you can't use your shield hand for anything else. Weight varies by material."
+  },
+  {
+    "Name": "Shield, Light",
+    "Cost": "3 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You can bash with a light shield. When you do so, you use your shield like a light weapon. Weight varies by material."
+  },
+  {
+    "Name": "Shield, Spiked Heavy",
+    "Cost": "17 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You can bash with a spiked heavy shield. The spikes deal piercing damage. Weight varies by material."
+  },
+  {
+    "Name": "Shield, Spiked Light",
+    "Cost": "13 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You can bash with a spiked light shield. The spikes deal piercing damage. Weight varies by material."
+  },
+  {
+    "Name": "Shortbow",
+    "Cost": "30 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You need two hands to use a bow, regardless of its size. You can use a shortbow while mounted."
+  },
+  {
+    "Name": "Shortbow, Composite",
+    "Cost": "75 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "You need at least two hands to use a bow. You can use a composite shortbow while mounted. All composite bows are made with a particular Strength rating."
+  },
+  {
+    "Name": "Shortsword",
+    "Cost": "10 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This sword is popular as an off-hand weapon or a primary weapon for Small creatures."
+  },
+  {
+    "Name": "Sibat",
+    "Cost": "2 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "grapple"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon is a short spear with a single blade or multiple smaller blades. It can be thrown and used to grapple."
+  },
+  {
+    "Name": "Spear-Sling",
+    "Cost": "50 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This device allows you to throw a spear much farther than normal. The range increment is based on the spear used."
+  },
+  {
+    "Name": "Starknife",
+    "Cost": "24 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This 4-pointed blade resembles a star and can be used as a melee weapon or thrown."
+  },
+  {
+    "Name": "Switchblade Knife",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This knife has a spring-loaded blade hidden in the handle. You can deploy the blade as a free action."
+  },
+  {
+    "Name": "Sword Cane",
+    "Cost": "45 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This slender light blade lies within a wooden container that serves as both its scabbard and hiding place. You can draw the blade as a swift action."
+  },
+  {
+    "Name": "Syringe Spear",
+    "Cost": "100 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This spear has a hollow head that can hold one dose of poison. On a hit, the poison is delivered to the target."
+  },
+  {
+    "Name": "Tailblade, Ratfolk",
+    "Cost": "11 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 0.5,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A tailblade is a small, sharp blade designed to be strapped to a ratfolk's tail, making it a dangerous weapon."
+  },
+  {
+    "Name": "Tepoztopilli",
+    "Cost": "8 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "fragile",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm has a head lined with obsidian shards. It has reach and the fragile quality."
+  },
+  {
+    "Name": "Terbutje",
+    "Cost": "5 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "fragile"
+    ],
+    "Category": "Simple",
+    "Description": "This sword has a blade of volcanic glass. It has the fragile weapon quality."
+  },
+  {
+    "Name": "Terbutje, Steel",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This is a steel version of the terbutje. It lacks the fragile quality."
+  },
+  {
+    "Name": "Throwing Arrow Cord",
+    "Cost": "\u2014",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This simple cord can be used to throw an arrow by hand with surprising range and accuracy."
+  },
+  {
+    "Name": "Throwing Axe",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This light axe is perfectly balanced for throwing, though it can also be used in melee."
+  },
+  {
+    "Name": "Tiger Fork",
+    "Cost": "5 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "The tiger fork is a long, trident-like polearm. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Tonfa",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This wooden club has a side handle. Monks are proficient with the tonfa. It has the blocking special feature."
+  },
+  {
+    "Name": "Tri-Point Double-Edged Sword",
+    "Cost": "12 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 14,
+    "Type": "weapon",
+    "Special": [
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm has three blades arranged in a fan-like pattern. It has reach."
+  },
+  {
+    "Name": "Trident",
+    "Cost": "15 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "brace"
+    ],
+    "Category": "Simple",
+    "Description": "A trident has three metal prongs at the end of a 4-foot-long shaft. This weapon can be thrown."
+  },
+  {
+    "Name": "Tube Arrow Shooter",
+    "Cost": "3 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 0.5,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This hollow tube allows you to shoot arrows without a bow by placing an arrow in the tube and sharply striking the back."
+  },
+  {
+    "Name": "War Razor",
+    "Cost": "8 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This is an oversized, sharpened straight razor. It folds into its handle for safe storage."
+  },
+  {
+    "Name": "Warhammer",
+    "Cost": "12 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This weapon, common among dwarves, is a one-handed sledge with a large, heavy head."
+  },
+  {
+    "Name": "Wushu Dart",
+    "Cost": "0.02 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This sharpened needle is designed for throwing. Monks are proficient with wushu darts."
+  },
+  {
+    "Name": "Aklys",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "performance",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "An aklys is a hooked throwing club with a cord attached. You can retrieve it after throwing as a move action. It has the performance weapon quality."
+  },
+  {
+    "Name": "Aldori Dueling Sword",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This sword is the signature weapon of the Aldori swordlords. It is perfectly balanced for dueling."
+  },
+  {
+    "Name": "Axe-Gauntlet, Dwarven Heavy",
+    "Cost": "21 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "disarm"
+    ],
+    "Category": "Simple",
+    "Description": "This axe blade is attached to a reinforced gauntlet. It cannot be disarmed and has blocking and disarm special features."
+  },
+  {
+    "Name": "Axe-Gauntlet, Dwarven Light",
+    "Cost": "16 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "disarm"
+    ],
+    "Category": "Simple",
+    "Description": "This axe blade is attached to a gauntlet. It cannot be disarmed and has blocking and disarm special features."
+  },
+  {
+    "Name": "Barbazu Beard",
+    "Cost": "25 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This artificial metal beard is strapped to your chin and has jagged blades you can use as a weapon."
+  },
+  {
+    "Name": "Barbed Spear",
+    "Cost": "15 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "fragile",
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This spear has backward-facing barbs that tear flesh when removed. It has reach and the fragile quality."
+  },
+  {
+    "Name": "Battle Ladder, Gnome",
+    "Cost": "20 gp",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "trip",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This folding ladder can be used as a double weapon and for climbing. Gnomes treat this as a martial weapon."
+  },
+  {
+    "Name": "Battle Poi",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3 fire",
+    "Damage (M)": "1d4 fire",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "Battle poi are a pair of fire-poi designed for combat. They deal fire damage and can be used to dazzle opponents."
+  },
+  {
+    "Name": "Bich'hwa",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This double-curved dagger has a distinctive loop-shaped hilt. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Bladed Scarf",
+    "Cost": "12 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This scarf has blades sewn into it. It can be used to disarm and trip opponents."
+  },
+  {
+    "Name": "Bo Staff",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "double",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This six-foot staff can be used as a double weapon. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Boarding Gaff",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This pole has hooks on both ends. It can be used as a double weapon with reach."
+  },
+  {
+    "Name": "Bolas",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "nonlethal",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A bolas is a pair of weights connected by a cord. You can use this weapon to make a ranged trip attack. You can't be tripped during your own trip attempt when using a bolas."
+  },
+  {
+    "Name": "Boomerang",
+    "Cost": "3 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "A boomerang is a curved throwing weapon. If it misses, it flies back to your square."
+  },
+  {
+    "Name": "Broken-Back Seax",
+    "Cost": "40 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This sword has a distinctive angled back. It deals both piercing and slashing damage."
+  },
+  {
+    "Name": "Butchering Axe",
+    "Cost": "65 gp",
+    "Damage (S)": "1d12",
+    "Damage (M)": "3d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 25,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This massive axe is designed for chopping through bone and flesh."
+  },
+  {
+    "Name": "Butterfly Knife",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This folding knife can be deployed with a flick of the wrist. Deploying it is a free action."
+  },
+  {
+    "Name": "Chain Spear",
+    "Cost": "15 gp",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 13,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon has a spear point on one end and a blade on a chain on the other."
+  },
+  {
+    "Name": "Chain-Hammer",
+    "Cost": "34 gp",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon has hammers on chains at both ends. It can be used as a double weapon or thrown."
+  },
+  {
+    "Name": "Crook",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This shepherd's crook can be used to trip opponents. It has reach."
+  },
+  {
+    "Name": "Crystal Chakram",
+    "Cost": "20 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This chakram is made of crystal and has an improved critical threat range."
+  },
+  {
+    "Name": "Dan Bong",
+    "Cost": "0.01 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "monk",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "A dan bong is a short stick designed to be gripped in the hand. Monks are proficient with this weapon. It has the blocking special feature."
+  },
+  {
+    "Name": "Deer Horn Knife",
+    "Cost": "10 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This crescent-shaped blade resembles deer antlers. Monks are proficient with this weapon. It has the blocking special feature."
+  },
+  {
+    "Name": "Dire Bolas",
+    "Cost": "20 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "nonlethal",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "These are larger, heavier bolas designed to entangle larger creatures."
+  },
+  {
+    "Name": "Dorn-Dergar, Dwarven",
+    "Cost": "50 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 15,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This dwarven war hammer has a long handle. It has reach. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Doru",
+    "Cost": "4 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "brace"
+    ],
+    "Category": "Simple",
+    "Description": "The doru is a short spear. It can be thrown and can be set against a charge."
+  },
+  {
+    "Name": "Double Crossbow",
+    "Cost": "300 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 18,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This heavy crossbow has two strings and can fire two bolts with a single trigger pull."
+  },
+  {
+    "Name": "Double Spear",
+    "Cost": "25 gp",
+    "Damage (S)": "1d6/1d6",
+    "Damage (M)": "1d8/1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "double"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon has spear points on both ends. It can be used as a double weapon."
+  },
+  {
+    "Name": "Double Walking Stick Katana",
+    "Cost": "50 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This walking stick conceals two katana blades that can be drawn quickly."
+  },
+  {
+    "Name": "Double-Chained Kama",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4/1d4",
+    "Damage (M)": "1d6/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "monk",
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "Two kama connected by a chain. Monks are proficient with this weapon. It has reach."
+  },
+  {
+    "Name": "Dwarven Double Waraxe",
+    "Cost": "60 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This double-bladed axe can be wielded as a double weapon. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Dwarven Maulaxe",
+    "Cost": "25 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This axe head is mounted on a stout handle with a hammer on the back. It can deal bludgeoning or slashing damage."
+  },
+  {
+    "Name": "Elven Branched Spear",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This spear has small branches that can catch weapons. It has reach and can be set against a charge. Elves treat this as a martial weapon."
+  },
+  {
+    "Name": "Elven Curve Blade",
+    "Cost": "80 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 7,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "Essentially a two-handed scimitar, this blade is highly valued by elves. Elves treat this as a martial weapon."
+  },
+  {
+    "Name": "Elven Leafblade",
+    "Cost": "40 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This blade is shaped like an elongated leaf. Elves treat this as a martial weapon."
+  },
+  {
+    "Name": "Elven Thornblade",
+    "Cost": "60 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This blade is covered in thorn-like projections. Elves treat this as a martial weapon."
+  },
+  {
+    "Name": "Emei Piercer",
+    "Cost": "3 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon consists of a metal ring worn on the middle finger with a sharp spike extending from the ring. It leaves your hand free to use other weapons or objects."
+  },
+  {
+    "Name": "Estoc",
+    "Cost": "50 gp",
+    "Damage (S)": "2d3",
+    "Damage (M)": "2d4",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This long, thin sword is designed for thrusting. It is highly effective at piercing armor."
+  },
+  {
+    "Name": "Falcata",
+    "Cost": "18 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x3",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This curved sword has a weighted blade that delivers powerful chopping blows."
+  },
+  {
+    "Name": "Fauchard",
+    "Cost": "14 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm has a curved blade. It has reach and can be used to trip."
+  },
+  {
+    "Name": "Fighting Fan",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "distracting",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This metal fan has sharpened edges. Monks are proficient with this weapon. It has the distracting special feature."
+  },
+  {
+    "Name": "Flail, Dire",
+    "Cost": "90 gp",
+    "Damage (S)": "1d6/1d6",
+    "Damage (M)": "1d8/1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "double",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A dire flail is a double flail. Each end can be used as a separate weapon."
+  },
+  {
+    "Name": "Flailpole",
+    "Cost": "15 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm has a flail head. It has reach and can be used to disarm and trip."
+  },
+  {
+    "Name": "Flambard",
+    "Cost": "50 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "sunder"
+    ],
+    "Category": "Simple",
+    "Description": "This sword has a wavy blade. It has the sunder special feature."
+  },
+  {
+    "Name": "Flask Pike",
+    "Cost": "30 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 9,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This pike has a compartment that can hold alchemical substances. It has reach."
+  },
+  {
+    "Name": "Flask Thrower",
+    "Cost": "25 gp",
+    "Damage (S)": "\u2014",
+    "Damage (M)": "\u2014",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This device allows you to throw alchemical flasks farther and more accurately."
+  },
+  {
+    "Name": "Flindbar",
+    "Cost": "9 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon has a spiked ball connected to a handle by a chain. It can be used to disarm and trip."
+  },
+  {
+    "Name": "Flying Blade",
+    "Cost": "40 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "1d12",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "performance",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This large blade on a pole can be spun dramatically. It has the performance weapon quality and reach."
+  },
+  {
+    "Name": "Flying Talon",
+    "Cost": "15 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "reach",
+      "trip",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon is a spring-loaded claw on an extendable arm. It has reach and can be used to disarm or trip."
+  },
+  {
+    "Name": "Garrote",
+    "Cost": "3 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "grapple",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This wire is used to strangle opponents. It can only be used against grappled or helpless targets."
+  },
+  {
+    "Name": "Giant-Sticker, Dwarven",
+    "Cost": "25 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "2d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This dwarven polearm is designed for fighting giants. It has reach and can be set against a charge."
+  },
+  {
+    "Name": "Gnome Flick-Mace",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This gnomish weapon has an extending handle. As a swift action, you can extend it to gain reach or retract it."
+  },
+  {
+    "Name": "Gnome Hooked Hammer",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6/1d4",
+    "Damage (M)": "1d8/1d6",
+    "Critical": "20/x3 or 20/x4",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A gnome hooked hammer is a double weapon with a hammer head and a hook. Gnomes treat this as a martial weapon."
+  },
+  {
+    "Name": "Gnome Pincher",
+    "Cost": "10 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon resembles oversized tongs. It can be used to disarm opponents and grab objects."
+  },
+  {
+    "Name": "Grappling Hook",
+    "Cost": "6 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 14,
+    "Type": "weapon",
+    "Special": [
+      "grapple"
+    ],
+    "Category": "Simple",
+    "Description": "A grappling hook can be thrown and used as a weapon or for climbing."
+  },
+  {
+    "Name": "Great Terbutje",
+    "Cost": "12 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "fragile"
+    ],
+    "Category": "Simple",
+    "Description": "This larger version of the terbutje has a blade of volcanic glass. It has the fragile weapon quality."
+  },
+  {
+    "Name": "Halfling Double Sling",
+    "Cost": "10 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "double"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon can fire two bullets at once. Halflings treat this as a martial weapon."
+  },
+  {
+    "Name": "Halfling Rope-Shot",
+    "Cost": "1 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon is a weighted pouch on the end of a rope. It can be used to disarm opponents."
+  },
+  {
+    "Name": "Halfling Sling Staff",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This staff has a sling at the end for hurling projectiles. Halflings treat this as a martial weapon."
+  },
+  {
+    "Name": "Halfling Stitched Sling",
+    "Cost": "\u2014",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This sling is designed to hurl unusual projectiles. Halflings treat this as a martial weapon."
+  },
+  {
+    "Name": "Hand Crossbow",
+    "Cost": "100 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This is a miniature crossbow designed to be held in one hand. Loading is a move action that provokes attacks of opportunity."
+  },
+  {
+    "Name": "Harpoon",
+    "Cost": "5 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 16,
+    "Type": "weapon",
+    "Special": [
+      "grapple",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "A harpoon is a barbed spear with an attached rope. If you hit, the harpoon lodges in the target."
+  },
+  {
+    "Name": "Heavy Crank Crossbow",
+    "Cost": "400 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This heavy crossbow has a cranking mechanism. Loading it is a full-round action."
+  },
+  {
+    "Name": "Heavy Slaver's Crossbow",
+    "Cost": "400 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "nonlethal",
+      "trip",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This crossbow fires bolas bolts designed to entangle targets."
+  },
+  {
+    "Name": "Heavy Wrist Launcher",
+    "Cost": "250 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This device is strapped to your wrist and fires darts."
+  },
+  {
+    "Name": "Helmet, Dwarven Boulder",
+    "Cost": "20 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This reinforced helmet can be used as a weapon when headbutting opponents."
+  },
+  {
+    "Name": "Hooked Axe",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 7,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "performance",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This axe has a hook on the back. It has the performance weapon quality and can be used to disarm and trip."
+  },
+  {
+    "Name": "Hornbow, Orc",
+    "Cost": "130 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "2d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 7,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This bow is made from horn and is favored by orcs. Orcs treat this as a martial weapon."
+  },
+  {
+    "Name": "Horse Bow",
+    "Cost": "150 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This bow is designed for use while mounted."
+  },
+  {
+    "Name": "Injection Spear",
+    "Cost": "60 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This spear has a hollow tip that can inject poison on a successful hit."
+  },
+  {
+    "Name": "Kama",
+    "Cost": "2 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "Similar to a sickle, a kama is a short, curved blade attached to a simple handle. Monks use this weapon. It can be used to make trip attacks."
+  },
+  {
+    "Name": "Kasatha Spinal Sword",
+    "Cost": "50 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "fragile"
+    ],
+    "Category": "Simple",
+    "Description": "This sword is made from vertebrae linked by wire. It has the fragile weapon quality."
+  },
+  {
+    "Name": "Katana",
+    "Cost": "50 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "deadly"
+    ],
+    "Category": "Simple",
+    "Description": "This curved sword is the signature weapon of samurai. It has the deadly special feature. Characters can use a katana two-handed as a martial weapon."
+  },
+  {
+    "Name": "Katar, Tri-Bladed",
+    "Cost": "6 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This punching dagger has three blades that deploy when thrust forward."
+  },
+  {
+    "Name": "Kestros",
+    "Cost": "1 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This sling-like weapon hurls darts with great force."
+  },
+  {
+    "Name": "Khopesh",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This curved sword has a distinctive hooked blade. It can be used to make trip attacks."
+  },
+  {
+    "Name": "Knobkerrie",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This club has a large knob at the end. It can be thrown."
+  },
+  {
+    "Name": "Knuckle Axe",
+    "Cost": "9 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "This axe blade is mounted on brass knuckles. Monks are proficient with this weapon. It has the performance weapon quality."
+  },
+  {
+    "Name": "Kusarigama",
+    "Cost": "12 gp",
+    "Damage (S)": "1d2/1d4",
+    "Damage (M)": "1d3/1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "double",
+      "grapple",
+      "monk",
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon consists of a kama attached to a weighted chain. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Kyoketsu Shoge",
+    "Cost": "6 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "grapple",
+      "monk",
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon has a knife on a rope with a ring. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Lasso",
+    "Cost": "0.1 gp",
+    "Damage (S)": "\u2014",
+    "Damage (M)": "\u2014",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This rope with a noose can be used to grapple opponents."
+  },
+  {
+    "Name": "Launching Crossbow",
+    "Cost": "75 gp",
+    "Damage (S)": "\u2014",
+    "Damage (M)": "\u2014",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This crossbow is designed to launch alchemical items."
+  },
+  {
+    "Name": "Light Crank Crossbow",
+    "Cost": "250 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This light crossbow has a cranking mechanism."
+  },
+  {
+    "Name": "Light Slaver's Crossbow",
+    "Cost": "250 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "nonlethal",
+      "trip",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This light crossbow fires bolas bolts designed to entangle targets."
+  },
+  {
+    "Name": "Longaxe, Dwarven",
+    "Cost": "50 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "1d12",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 14,
+    "Type": "weapon",
+    "Special": [
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This dwarven poleaxe has reach. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Longhammer, Dwarven",
+    "Cost": "70 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "2d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 20,
+    "Type": "weapon",
+    "Special": [
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This massive dwarven hammer has a long handle. It has reach. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Madu, Leather",
+    "Cost": "40 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "A madu is a round, light shield with sharp spikes protruding from the center. It has the performance weapon quality."
+  },
+  {
+    "Name": "Madu, Steel",
+    "Cost": "50 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "A steel madu is a round, light shield with sharp spikes protruding from the center. It has the performance weapon quality."
+  },
+  {
+    "Name": "Mancatcher",
+    "Cost": "15 gp",
+    "Damage (S)": "1",
+    "Damage (M)": "1d2",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This polearm has a spring-loaded set of jaws. It can be used to grapple opponents at reach."
+  },
+  {
+    "Name": "Meteor Hammer",
+    "Cost": "10 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon consists of one or two weights on a long rope. It has reach and can trip."
+  },
+  {
+    "Name": "Net",
+    "Cost": "20 gp",
+    "Damage (S)": "\u2014",
+    "Damage (M)": "\u2014",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "A fighting net has small barbs in the weave and a trailing rope to control netted opponents. You can use it to entangle opponents. It is a ranged touch attack."
+  },
+  {
+    "Name": "Nine-Section Whip",
+    "Cost": "8 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "distracting",
+      "monk",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon consists of nine metal rods connected by chain. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Nunchaku",
+    "Cost": "2 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "A nunchaku is made up of two wooden or metal bars connected by a small length of rope or chain. Monks use this weapon."
+  },
+  {
+    "Name": "Orc Double Axe",
+    "Cost": "60 gp",
+    "Damage (S)": "1d6/1d6",
+    "Damage (M)": "1d8/1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 15,
+    "Type": "weapon",
+    "Special": [
+      "double"
+    ],
+    "Category": "Simple",
+    "Description": "An orc double axe is a double weapon with axe heads on both ends. Orcs treat this as a martial weapon."
+  },
+  {
+    "Name": "Orc Skull Ram",
+    "Cost": "15 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 20,
+    "Type": "weapon",
+    "Special": [
+      "reach"
+    ],
+    "Category": "Simple",
+    "Description": "This massive skull-headed hammer has reach. Orcs treat this as a martial weapon."
+  },
+  {
+    "Name": "Pata",
+    "Cost": "14 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "A pata is a short sword mounted on a gauntlet. It has the performance weapon quality."
+  },
+  {
+    "Name": "Pelletbow, Dwarven Heavy",
+    "Cost": "75 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x3",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This dwarven crossbow fires pellets instead of bolts. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Pelletbow, Dwarven Light",
+    "Cost": "50 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x3",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This light dwarven crossbow fires pellets instead of bolts. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Piston Maul, Gnome",
+    "Cost": "70 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 15,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This gnomish hammer has a piston mechanism. Gnomes treat this as a martial weapon."
+  },
+  {
+    "Name": "Quadrens",
+    "Cost": "8 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "This four-pronged dagger is designed for gladiatorial combat. It has the performance weapon quality."
+  },
+  {
+    "Name": "Ram Hammer, Dwarven",
+    "Cost": "25 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 5,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This heavy hammer has a ram's head design. It can be thrown."
+  },
+  {
+    "Name": "Razor, Drow",
+    "Cost": "25 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This wickedly sharp blade is favored by drow. Drow treat this as a martial weapon."
+  },
+  {
+    "Name": "Repeating Hand Crossbow",
+    "Cost": "800 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This hand crossbow has a magazine that holds 5 bolts. Loading the magazine is a full-round action."
+  },
+  {
+    "Name": "Repeating Heavy Crossbow",
+    "Cost": "400 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The repeating heavy crossbow holds 5 bolts. Loading the magazine is a full-round action."
+  },
+  {
+    "Name": "Repeating Light Crossbow",
+    "Cost": "250 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "The repeating light crossbow holds 5 bolts. Loading the magazine is a full-round action."
+  },
+  {
+    "Name": "Rhoka Sword",
+    "Cost": "25 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This distinctive curved sword is designed for mounted combat."
+  },
+  {
+    "Name": "Ripsaw Glaive, Gnome",
+    "Cost": "30 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "reach",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This gnomish glaive has a serrated blade. It has reach. Gnomes treat this as a martial weapon."
+  },
+  {
+    "Name": "Rope Dart",
+    "Cost": "1 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "distracting",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This dart on a rope can be retrieved after throwing. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Rope Gauntlet",
+    "Cost": "0.2 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This gauntlet is wrapped in heavy rope that can be used as a weapon."
+  },
+  {
+    "Name": "Sai",
+    "Cost": "1 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "A sai is a metal spike flanked by a pair of prongs used to trap an enemy's weapon. Monks use this weapon."
+  },
+  {
+    "Name": "Sanpkhang",
+    "Cost": "60 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This crescent-shaped blade is designed to be concealed. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Sawtooth Sabre",
+    "Cost": "35 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This sabre has a serrated edge. It deals bleed damage on critical hits."
+  },
+  {
+    "Name": "Scorpion Whip",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "This whip has a blade at the end. It has the performance weapon quality."
+  },
+  {
+    "Name": "Seven-Branched Sword",
+    "Cost": "50 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 7,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This sword has six prongs along the blade. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Shoanti Bolas",
+    "Cost": "15 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "These bolas have sharp hooks that deal piercing damage in addition to bludgeoning."
+  },
+  {
+    "Name": "Shotel",
+    "Cost": "30 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "This curved blade can reach around shields. It has the performance weapon quality."
+  },
+  {
+    "Name": "Shrillshaft Javelin",
+    "Cost": "35 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This javelin makes a loud whistling noise when thrown."
+  },
+  {
+    "Name": "Shuriken",
+    "Cost": "0.2 gp",
+    "Damage (S)": "1",
+    "Damage (M)": "1d2",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 0.1,
+    "Type": "weapon",
+    "Special": [
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "A shuriken is a small piece of metal with sharpened edges, designed for throwing. Monks use this weapon. Shuriken are sold in sets of five."
+  },
+  {
+    "Name": "Siangham",
+    "Cost": "3 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [
+      "monk"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon is a handheld shaft fitted with a pointed blade. Monks use this weapon."
+  },
+  {
+    "Name": "Sica",
+    "Cost": "10 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "performance"
+    ],
+    "Category": "Simple",
+    "Description": "This curved dagger is designed for gladiatorial combat. It has the performance weapon quality."
+  },
+  {
+    "Name": "Sickle-Sword",
+    "Cost": "20 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [
+      "distracting",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This sword has a sickle-shaped blade. It has the distracting special feature."
+  },
+  {
+    "Name": "Sling Glove",
+    "Cost": "5 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This sling is built into a glove, allowing you to use it without occupying a hand."
+  },
+  {
+    "Name": "Snag Net",
+    "Cost": "30 gp",
+    "Damage (S)": "\u2014",
+    "Damage (M)": "\u2014",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "trip",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This net has hooks that can snag and trip opponents."
+  },
+  {
+    "Name": "Sphinx Hammer, Dwarven",
+    "Cost": "45 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This dwarven hammer can be thrown. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Spiked Chain",
+    "Cost": "25 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A spiked chain has reach. You can strike opponents 10 feet away with it. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a spiked chain sized for you, even though it isn't a light weapon."
+  },
+  {
+    "Name": "Spiral Rapier",
+    "Cost": "80 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "blocking",
+      "disarm",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This rapier has a spiral blade. It has blocking and disarm special features."
+  },
+  {
+    "Name": "Split-Blade Sword",
+    "Cost": "200 gp",
+    "Damage (S)": "1d10",
+    "Damage (M)": "2d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "trip",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This sword can split into two blades connected by a chain. It can be used to disarm and trip."
+  },
+  {
+    "Name": "Stormshaft Javelin",
+    "Cost": "35 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This javelin can channel electrical energy when thrown."
+  },
+  {
+    "Name": "Switchscythe",
+    "Cost": "18 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "2d4",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This scythe has a blade that can switch positions. It can be used to trip."
+  },
+  {
+    "Name": "Sword, Bastard",
+    "Cost": "35 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A bastard sword is too large to use in one hand without special training; thus, it is an exotic weapon. A character can use a bastard sword two-handed as a martial weapon."
+  },
+  {
+    "Name": "Swordbreaker Dagger",
+    "Cost": "10 gp",
+    "Damage (S)": "1d3",
+    "Damage (M)": "1d4",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This dagger has a serrated edge designed to catch and break swords. It can be used to disarm and sunder weapons."
+  },
+  {
+    "Name": "Taiaha",
+    "Cost": "10 gp",
+    "Damage (S)": "1d8/1d4",
+    "Damage (M)": "1d10/1d6",
+    "Critical": "20/x2 or 20/x3",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "double"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon has a club on one end and a spear point on the other. It functions as a double weapon."
+  },
+  {
+    "Name": "Tekko-Kagi",
+    "Cost": "2 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This weapon consists of a metal bar with clawed tips that extends from a fist guard. It can be used to disarm."
+  },
+  {
+    "Name": "Temple Sword",
+    "Cost": "30 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "Heavy blades typically used by guardians of religious sites. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Tetsubo",
+    "Cost": "20 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x4",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This heavy spiked club is designed to defeat heavily armored opponents."
+  },
+  {
+    "Name": "Thorn Bow",
+    "Cost": "50 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This bow fires thorns instead of arrows."
+  },
+  {
+    "Name": "Thorn Bracer",
+    "Cost": "30 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This bracer has sharp thorns that can be used as a weapon."
+  },
+  {
+    "Name": "Throwing Shield",
+    "Cost": "50 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": "\u2014",
+    "Type": "weapon",
+    "Special": [
+      "performance",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "This shield is specially designed to be thrown. It has the performance weapon quality. Weight varies by shield type."
+  },
+  {
+    "Name": "Tongi",
+    "Cost": "18 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "19-20/x3",
+    "Range": "\u2014",
+    "Weight": 4,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This unique blade has an unusual curved design."
+  },
+  {
+    "Name": "Totem Spear",
+    "Cost": "25 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This spear has a weighted butt that can deal bludgeoning damage. It can be thrown."
+  },
+  {
+    "Name": "Two-Bladed Sword",
+    "Cost": "100 gp",
+    "Damage (S)": "1d6/1d6",
+    "Damage (M)": "1d8/1d8",
+    "Critical": "19-20/x2",
+    "Range": "\u2014",
+    "Weight": 10,
+    "Type": "weapon",
+    "Special": [
+      "double"
+    ],
+    "Category": "Simple",
+    "Description": "A two-bladed sword is a double weapon with blades on both ends."
+  },
+  {
+    "Name": "Urgrosh, Dwarven",
+    "Cost": "50 gp",
+    "Damage (S)": "1d6/1d4",
+    "Damage (M)": "1d8/1d6",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 12,
+    "Type": "weapon",
+    "Special": [
+      "brace",
+      "double"
+    ],
+    "Category": "Simple",
+    "Description": "A dwarven urgrosh is a double weapon with an axe head and a spear point. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Urumi",
+    "Cost": "30 gp",
+    "Damage (S)": "1d6",
+    "Damage (M)": "1d8",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 6,
+    "Type": "weapon",
+    "Special": [
+      "distracting"
+    ],
+    "Category": "Simple",
+    "Description": "This flexible sword made of several blades is extremely difficult to use. It has the distracting special feature."
+  },
+  {
+    "Name": "Wahaika",
+    "Cost": "3 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 3,
+    "Type": "weapon",
+    "Special": [
+      "disarm"
+    ],
+    "Category": "Simple",
+    "Description": "This short, notched club can be used to disarm opponents. It can be thrown."
+  },
+  {
+    "Name": "Wakizashi",
+    "Cost": "35 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "deadly"
+    ],
+    "Category": "Simple",
+    "Description": "These short, slender blades are between 1 to 2 feet long. They have the deadly special feature."
+  },
+  {
+    "Name": "War-Shield, Dwarven",
+    "Cost": "50 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This shield has blades mounted on it. Dwarves treat this as a martial weapon."
+  },
+  {
+    "Name": "Waraxe, Dwarven",
+    "Cost": "30 gp",
+    "Damage (S)": "1d8",
+    "Damage (M)": "1d10",
+    "Critical": "20/x3",
+    "Range": "\u2014",
+    "Weight": 8,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "A dwarven waraxe is too large to use in one hand without special training; thus, it is an exotic weapon. A Medium character can use a dwarven waraxe two-handed as a martial weapon. A dwarf treats a dwarven waraxe as a martial weapon even when using it in one hand."
+  },
+  {
+    "Name": "Waveblade",
+    "Cost": "5 gp",
+    "Damage (S)": "1d4",
+    "Damage (M)": "1d6",
+    "Critical": "18-20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "monk",
+      "see text"
+    ],
+    "Category": "Simple",
+    "Description": "This undulating blade can be concealed easily. Monks are proficient with this weapon."
+  },
+  {
+    "Name": "Whip",
+    "Cost": "1 gp",
+    "Damage (S)": "1d2",
+    "Damage (M)": "1d3",
+    "Critical": "20/x2",
+    "Range": "\u2014",
+    "Weight": 2,
+    "Type": "weapon",
+    "Special": [
+      "disarm",
+      "nonlethal",
+      "reach",
+      "trip"
+    ],
+    "Category": "Simple",
+    "Description": "A whip deals nonlethal damage. It has 15-foot reach. You can use it against foes anywhere within your reach (including adjacent foes). Using a whip provokes an attack of opportunity."
+  },
+  {
+    "Name": "Wrist Launcher",
+    "Cost": "200 gp",
+    "Damage (S)": "\u2014",
+    "Damage (M)": "\u2014",
+    "Critical": "\u2014",
+    "Range": "\u2014",
+    "Weight": 1,
+    "Type": "weapon",
+    "Special": [],
+    "Category": "Simple",
+    "Description": "This device is strapped to your wrist and fires small darts or alchemical items."
+  }
+]
