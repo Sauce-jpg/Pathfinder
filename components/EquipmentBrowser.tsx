@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import type { EquipmentItem, EquipmentCategory } from "./equipment-types";
-import { parseCostToGold, parseWeightToPounds } from "./equipment-types";
+import type { EquipmentItem, EquipmentCategory } from "@/types/equipment-types";
+import { parseCostToGold, parseWeightToPounds } from "@/types/equipment-types";
 
 interface EquipmentBrowserProps {
   category: EquipmentCategory;
