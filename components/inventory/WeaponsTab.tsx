@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import EquipmentBrowser from "../EquipmentBrowser";
+import { mapWeaponToCharacter } from "@/lib/equipmentMappers";
+import "../styles/EquipmentBrowser.css";
 
 interface WeaponsTabProps {
   characterId: string;
@@ -12,6 +15,7 @@ interface WeaponsTabProps {
 export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingWeapon, setEditingWeapon] = useState<any>(null);
+  const [showBrowser, setShowBrowser] = useState(false); // NEW: Equipment Browser state
 
   // Form state
   const [weaponName, setWeaponName] = useState("");
@@ -27,6 +31,22 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   const [properties, setProperties] = useState("");
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
+
+  // NEW: Handle weapon selection from Equipment Browser
+  async function handleSelectFromLibrary(weapon: any) {
+    const weaponData = mapWeaponToCharacter(weapon, characterId);
+
+    const { error } = await supabase
+      .from("character_weapons")
+      .insert(weaponData);
+
+    if (error) {
+      alert("Error adding weapon: " + error.message);
+    } else {
+      setShowBrowser(false);
+      onUpdate();
+    }
+  }
 
   function openAddModal() {
     setEditingWeapon(null);
@@ -137,21 +157,41 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
 
   return (
     <div>
-      <button
-        onClick={openAddModal}
-        style={{
-          padding: "0.75rem 1.5rem",
-          background: "#f59e0b",
-          color: "white",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-          fontWeight: 600,
-          marginBottom: "1.5rem",
-        }}
-      >
-        + Add Weapon
-      </button>
+      {/* MODIFIED: Add button group with Browse Library button */}
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
+        <button
+          onClick={() => setShowBrowser(true)}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          📖 Browse Weapons Library
+        </button>
+
+        <button
+          onClick={openAddModal}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#f59e0b",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          + Add Custom Weapon
+        </button>
+      </div>
 
       {weapons.length === 0 ? (
         <div
@@ -164,7 +204,7 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
           }}
         >
           <h3 style={{ margin: 0, color: "#666" }}>No weapons yet</h3>
-          <p style={{ color: "#999" }}>Click "Add Weapon" to add your first weapon!</p>
+          <p style={{ color: "#999" }}>Browse the library or add a custom weapon!</p>
         </div>
       ) : (
         <div style={{ display: "grid", gap: "1rem" }}>
@@ -349,7 +389,7 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 style={{ marginTop: 0 }}>{editingWeapon ? "Edit Weapon" : "Add Weapon"}</h2>
+            <h2 style={{ marginTop: 0 }}>{editingWeapon ? "Edit Weapon" : "Add Custom Weapon"}</h2>
 
             <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1rem" }}>
               <div>
@@ -631,6 +671,15 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
             </form>
           </div>
         </div>
+      )}
+
+      {/* NEW: Equipment Browser Modal */}
+      {showBrowser && (
+        <EquipmentBrowser
+          category="weapons"
+          onSelect={handleSelectFromLibrary}
+          onClose={() => setShowBrowser(false)}
+        />
       )}
     </div>
   );
