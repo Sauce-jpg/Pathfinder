@@ -138,37 +138,7 @@ export interface SiegeEngine extends BaseEquipmentItem {
 // UNION TYPE FOR ALL EQUIPMENT
 // ============================================================================
 
-export type EquipmentItem = 
-  | Weapon
-  | Firearm
-  | Armor
-  | Shield
-  | AlchemicalReagent
-  | AlchemicalRemedy
-  | AlchemicalTool
-  | AlchemicalWeapon
-  | AdventuringGear
-  | Ammunition
-  | AnimalGear
-  | ChannelFocus
-  | Clothing
-  | Concoction
-  | Dragoncraft
-  | DungeonGuide
-  | Entertainment
-  | FoodDrink
-  | FungalGraft
-  | Herb
-  | Kit
-  | LodgingService
-  | SiegeEngine
-  | chronicles
-  | tinctures
-  | torture-implements
-  | tools
-  | transport
-  | spellbooks
-  | mounts-pets;
+export type EquipmentItem = Weapon | Firearm | Armor | Shield | AlchemicalReagent | AlchemicalRemedy | AlchemicalTool | AlchemicalWeapon | AdventuringGear | Ammunition | AnimalGear | ChannelFocus | Clothing | Concoction | Dragoncraft | DungeonGuide | Entertainment | FoodDrink | FungalGraft | Herb | Kit | LodgingService | SiegeEngine | BaseEquipmentItem;
 
 // ============================================================================
 // EQUIPMENT CATEGORIES
