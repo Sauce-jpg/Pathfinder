@@ -1,0 +1,298 @@
+[
+  {
+    "Name": "Acid",
+    "Cost": "10 gp",
+    "Weight": "1 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "A common flask of acid has many uses as a power component, particularly with attack spells."
+  },
+  {
+    "Name": "Alchemical Grease",
+    "Cost": "5 gp",
+    "Weight": "1 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This substance is good for augmenting spells affecting or creating surfaces."
+  },
+  {
+    "Name": "Alchemist's Fire",
+    "Cost": "20 gp",
+    "Weight": "1 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This dwarven favorite can make fire spells last longer."
+  },
+  {
+    "Name": "Antiplague",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Certain healing spells have greater effects when used with this substance."
+  },
+  {
+    "Name": "Antitoxin",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Like antiplague, this substance can augment certain healing spells."
+  },
+  {
+    "Name": "Black Powder",
+    "Cost": "10 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Black powder is a volatile explosive and is the primary component in fireworks and other explosives."
+  },
+  {
+    "Name": "Bladeguard",
+    "Cost": "40 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Weapons and armor aren't the only things bladeguard protects."
+  },
+  {
+    "Name": "Brimstone",
+    "Cost": "0.5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Brimstone, also called sulfur, has a distinctive odor and caustic properties."
+  },
+  {
+    "Name": "Cold Iron",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Cold iron is often used to produce alloyed metals, catalysts, and items that interfere with magic."
+  },
+  {
+    "Name": "Cooperation Crystals",
+    "Cost": "300 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This vibrant blue-green crystal is a distillation of the spirit of cooperation characteristic of the chaotic good plane of Elysium."
+  },
+  {
+    "Name": "Cytillesh Spores",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "The spore of the cytillesh fungus is a versatile reagent, and is often combined with other poisonous elements to create deliriums, hallucinogens, and psychotics."
+  },
+  {
+    "Name": "Darkwood",
+    "Cost": "2 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "The bark of the darkwood tree is useful in numerous alchemical applications, especially those that require a light but strong foundation."
+  },
+  {
+    "Name": "Dew of Lunary",
+    "Cost": "4 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Dew of lunary is derived from a potent herb. It is commonly used in the creation of medicinal, protective, and divinatory items."
+  },
+  {
+    "Name": "Fire Fragment",
+    "Cost": "350 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This small, reddish crystal shard flickers with a brilliant, dancing flame\u2014a representation of the Plane of Fire."
+  },
+  {
+    "Name": "Flash Powder",
+    "Cost": "50 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Useful as a distraction, flash powder makes light-burst spells more dangerous."
+  },
+  {
+    "Name": "Ginger Extract",
+    "Cost": "0.5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "In addition to serving as a spice and as an alchemical reagent, ginger extract has a wide variety of uses in herbal remedies that treat nausea and pain."
+  },
+  {
+    "Name": "Gold",
+    "Cost": "5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "In its purest form, gold is a dense, nonreactive metal. Its alchemical products are useful in stains and in treating swelling, pain, and infections."
+  },
+  {
+    "Name": "Heavenly Quartz",
+    "Cost": "250 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This fragment appears to be made of glass and gold and emits gleaming light, reminiscent of the mountain of Heaven."
+  },
+  {
+    "Name": "Itching Powder",
+    "Cost": "60 gp",
+    "Weight": "2 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This powder can make an otherwise innocuous spell especially irritating."
+  },
+  {
+    "Name": "Liquid Ice",
+    "Cost": "40 gp",
+    "Weight": "2 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This substance augments cold magic."
+  },
+  {
+    "Name": "Magnesium",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Magnesium is an extremely light and reactive metal that burns brightly when exposed to air. It is important for all living things, especially plants."
+  },
+  {
+    "Name": "Mugwort Extract",
+    "Cost": "2 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Many varieties of mugwort exist; some are used in acupuncture, while others are key ingredients in herbal remedies that ward off fatigue, cold, or even supernatural dangers."
+  },
+  {
+    "Name": "Myrrh",
+    "Cost": "0.5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Myrrh is an aromatic gum used as a base for alchemical remedies and as a sticky bonding agent."
+  },
+  {
+    "Name": "Pesh",
+    "Cost": "15 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "When used as an alchemical reagent, refined pesh is often sublimated along with other reagents to create new forms of the famous drug."
+  },
+  {
+    "Name": "Phosphorus",
+    "Cost": "0.2 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Phosphorus is a highly reactive mineral that glows faintly in air. Vital to all life, it is most commonly used by alchemists to create fertilizers, poisons, soaps, and tindertwigs. It is obtained by processing uric acid or bone ash."
+  },
+  {
+    "Name": "Quicksilver",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Quicksilver is a liquid metal with dangerous mental effects on those who handle it. It is most often distilled from crystalline amalgams such as cinnabar and stored in iron flasks."
+  },
+  {
+    "Name": "Realgar",
+    "Cost": "3 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Realgar, also called ruby of arsenic, is a red crystal useful in creating poisons and medicines. It is commonly purified into arsenic, a crystalline metal known as the 'king of poisons' for its popularity among nobles seeking to poison their rivals."
+  },
+  {
+    "Name": "Salt",
+    "Cost": "0.5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Salt is a vital mineral commodity. It is most commonly used as a desiccant and as a catalyst."
+  },
+  {
+    "Name": "Saltpeter",
+    "Cost": "3 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Saltpeter is used to create fertilizers, propellants, fireworks, and preservatives."
+  },
+  {
+    "Name": "Silver",
+    "Cost": "1 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Silver is a lustrous precious metal used in mirrors, disinfectants, electrics, and illusion-creating magic items."
+  },
+  {
+    "Name": "Smokestick",
+    "Cost": "20 gp",
+    "Weight": "0.5 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "These items work best with spells that create clouds or smoke."
+  },
+  {
+    "Name": "Spirit of Wine",
+    "Cost": "0.5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Spirit of wine is purified, alchemically active alcohol commonly used as a fuel or solvent in alchemical items, specialized inks, and perfumes. It is too pure to drink alone, but can be used as a reagent to form tinctures and alchemical drinks."
+  },
+  {
+    "Name": "Tanglefoot Bag",
+    "Cost": "50 gp",
+    "Weight": "4 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "These sticky pouches can make a troublesome spell even worse."
+  },
+  {
+    "Name": "Thunderstone",
+    "Cost": "30 gp",
+    "Weight": "1 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "While they are effective enough on their own, these stones have useful interactions with some spells."
+  },
+  {
+    "Name": "Urea",
+    "Cost": "0.5 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "Urea is a highly versatile reagent most commonly used in salves and as a stabilizer for particularly volatile alchemical reactions."
+  },
+  {
+    "Name": "Void Shard",
+    "Cost": "250 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "This shard seems to absorb the light around it, demonstrating the annihilatory power of the Negative Energy Plane."
+  },
+  {
+    "Name": "Whimsy Star",
+    "Cost": "200 gp",
+    "Weight": "0 lbs",
+    "Type": "Power Component",
+    "School": "\u2014",
+    "Description": "The shimmering, multicolored whimsy star captures the mutability of the First World."
+  }
+]
