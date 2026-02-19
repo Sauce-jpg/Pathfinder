@@ -235,6 +235,86 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
         </button>
 
         <button
+          onClick={() => openBrowser("tools")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Tools (168)
+        </button>
+
+        <button
+          onClick={() => openBrowser("tinctures")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Tinctures (16)
+        </button>
+
+        <button
+          onClick={() => openBrowser("spellbooks")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Spellbooks (42)
+        </button>
+
+        <button
+          onClick={() => openBrowser("mounts-pets")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          🐴 Browse Mounts & Pets (216)
+        </button>
+
+        <button
+          onClick={() => openBrowser("transport")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Transport (25)
+        </button>
+
+        <button
           onClick={openAddModal}
           style={{
             padding: "0.75rem 1.5rem",
