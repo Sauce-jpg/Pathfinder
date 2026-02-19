@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { ItemBonusesEditor } from "./ItemBonusesEditor";
+import EquipmentBrowser from "../EquipmentBrowser";
+import { mapItemToInventory } from "@/lib/equipmentMappers";
+import type { EquipmentCategory } from "@/types/equipment-types";
+import "../styles/EquipmentBrowser.css";
 
 interface ItemsTabProps {
   characterId: string;
@@ -13,6 +17,8 @@ interface ItemsTabProps {
 export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
+  const [showBrowser, setShowBrowser] = useState(false); // NEW: Equipment Browser state
+  const [browserCategory, setBrowserCategory] = useState<EquipmentCategory>("adventuring-gear"); // NEW: Browser category
 
   // Form state
   const [itemName, setItemName] = useState("");
@@ -27,6 +33,24 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [grantsSlotType, setGrantsSlotType] = useState("");
   const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
+
+  // NEW: Handle item selection from Equipment Browser
+  async function handleSelectFromLibrary(item: any) {
+    const itemData = mapItemToInventory(item, characterId);
+    const { error } = await supabase.from("character_inventory").insert(itemData);
+    if (error) {
+      alert("Error adding item: " + error.message);
+    } else {
+      setShowBrowser(false);
+      onUpdate();
+    }
+  }
+
+  // NEW: Open browser with specific category
+  function openBrowser(category: EquipmentCategory) {
+    setBrowserCategory(category);
+    setShowBrowser(true);
+  }
 
   function openAddModal() {
     setEditingItem(null);
@@ -144,21 +168,87 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
   return (
     <div>
-      <button
-        onClick={openAddModal}
-        style={{
-          padding: "0.75rem 1.5rem",
-          background: "#f59e0b",
-          color: "white",
-          border: "none",
-          borderRadius: "8px",
-          cursor: "pointer",
-          fontWeight: 600,
-          marginBottom: "1.5rem",
-        }}
-      >
-        + Add Item
-      </button>
+      {/* MODIFIED: Button group with Browse buttons */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginBottom: "1.5rem" }}>
+        <button
+          onClick={() => openBrowser("adventuring-gear")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Gear (433)
+        </button>
+
+        <button
+          onClick={() => openBrowser("alchemical-tools")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Alchemical
+        </button>
+
+        <button
+          onClick={() => openBrowser("kits")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Kits (122)
+        </button>
+
+        <button
+          onClick={() => openBrowser("food-drink")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#10b981",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "0.9rem",
+          }}
+        >
+          📖 Browse Food
+        </button>
+
+        <button
+          onClick={openAddModal}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "#f59e0b",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+          }}
+        >
+          + Add Custom Item
+        </button>
+      </div>
 
       {items.length === 0 ? (
         <div
@@ -171,7 +261,7 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
           }}
         >
           <h3 style={{ margin: 0, color: "#666" }}>No items yet</h3>
-          <p style={{ color: "#999" }}>Click "Add Item" to add gear, potions, scrolls, and more!</p>
+          <p style={{ color: "#999" }}>Browse the library or add custom items!</p>
         </div>
       ) : (
         <div style={{ display: "grid", gap: "2rem" }}>
@@ -333,7 +423,7 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
             }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 style={{ marginTop: 0 }}>{editingItem ? "Edit Item" : "Add Item"}</h2>
+            <h2 style={{ marginTop: 0 }}>{editingItem ? "Edit Item" : "Add Custom Item"}</h2>
 
             <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1rem" }}>
               <div>
@@ -632,6 +722,15 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
             </form>
           </div>
         </div>
+      )}
+
+      {/* NEW: Equipment Browser Modal */}
+      {showBrowser && (
+        <EquipmentBrowser
+          category={browserCategory}
+          onSelect={handleSelectFromLibrary}
+          onClose={() => setShowBrowser(false)}
+        />
       )}
     </div>
   );
