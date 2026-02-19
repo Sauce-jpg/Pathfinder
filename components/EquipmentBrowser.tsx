@@ -1,380 +1,207 @@
-/* ============================================================================
-   EQUIPMENT BROWSER STYLES
-   ============================================================================ */
+"use client";
 
-/* Overlay */
-.equipment-browser-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
+import { useState, useEffect, useMemo } from "react";
+import type { EquipmentItem, EquipmentCategory } from "./equipment-types";
+import { parseCostToGold, parseWeightToPounds } from "./equipment-types";
+
+interface EquipmentBrowserProps {
+  category: EquipmentCategory;
+  onSelect: (item: EquipmentItem) => void;
+  onClose: () => void;
 }
 
-/* Modal */
-.equipment-browser-modal {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 900px;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
+type SortOption = "name-asc" | "name-desc" | "cost-asc" | "cost-desc" | "weight-asc" | "weight-desc";
 
-/* Header */
-.equipment-browser-header {
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+export default function EquipmentBrowser({ 
+  category, 
+  onSelect, 
+  onClose 
+}: EquipmentBrowserProps) {
+  const [items, setItems] = useState<EquipmentItem[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState<SortOption>("name-asc");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-.equipment-browser-header h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  text-transform: capitalize;
-}
+  // Load equipment data
+  useEffect(() => {
+    const loadEquipment = async () => {
+      setLoading(true);
+      setError(null);
+      
+      try {
+        const response = await fetch(`/pathfinder/equipment/${category}.json`);
+        if (!response.ok) {
+          throw new Error(`Failed to load ${category}`);
+        }
+        const data = await response.json();
+        setItems(data);
+      } catch (err) {
+        console.error(`Error loading ${category}:`, err);
+        setError(`Failed to load ${category}. Please try again.`);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-.equipment-browser-close {
-  background: none;
-  border: none;
-  font-size: 32px;
-  color: #666;
-  cursor: pointer;
-  padding: 0;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  transition: all 0.2s;
-}
+    loadEquipment();
+  }, [category]);
 
-.equipment-browser-close:hover {
-  background: #f0f0f0;
-  color: #333;
-}
+  // Filter and sort items
+  const filteredAndSortedItems = useMemo(() => {
+    let result = [...items];
 
-/* Controls */
-.equipment-browser-controls {
-  padding: 16px 20px;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  gap: 12px;
-}
+    // Filter by search term
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      result = result.filter(item =>
+        item.Name.toLowerCase().includes(term) ||
+        item.Description?.toLowerCase().includes(term) ||
+        item.Category?.toLowerCase().includes(term)
+      );
+    }
 
-.equipment-browser-search {
-  flex: 1;
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.2s;
-}
+    // Sort
+    result.sort((a, b) => {
+      switch (sortBy) {
+        case "name-asc":
+          return a.Name.localeCompare(b.Name);
+        case "name-desc":
+          return b.Name.localeCompare(a.Name);
+        case "cost-asc":
+          return parseCostToGold(a.Cost) - parseCostToGold(b.Cost);
+        case "cost-desc":
+          return parseCostToGold(b.Cost) - parseCostToGold(a.Cost);
+        case "weight-asc":
+          return parseWeightToPounds(a.Weight) - parseWeightToPounds(b.Weight);
+        case "weight-desc":
+          return parseWeightToPounds(b.Weight) - parseWeightToPounds(a.Weight);
+        default:
+          return 0;
+      }
+    });
 
-.equipment-browser-search:focus {
-  outline: none;
-  border-color: #0070f3;
-}
+    return result;
+  }, [items, searchTerm, sortBy]);
 
-.equipment-browser-sort {
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  background: white;
-  cursor: pointer;
-  min-width: 180px;
-}
-
-/* Items List */
-.equipment-browser-items {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px 20px;
-}
-
-.equipment-browser-empty {
-  text-align: center;
-  padding: 40px 20px;
-  color: #666;
-}
-
-/* Individual Equipment Item */
-.equipment-item {
-  padding: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: white;
-}
-
-.equipment-item:hover {
-  background: #f8f9fa;
-  border-color: #0070f3;
-  box-shadow: 0 2px 8px rgba(0, 112, 243, 0.1);
-  transform: translateY(-1px);
-}
-
-.equipment-item:active {
-  transform: translateY(0);
-}
-
-.equipment-item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.equipment-item-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #222;
-}
-
-.equipment-item-cost {
-  font-size: 14px;
-  font-weight: 600;
-  color: #0070f3;
-  background: #e6f2ff;
-  padding: 4px 10px;
-  border-radius: 4px;
-}
-
-/* Item Stats */
-.equipment-item-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 8px;
-  font-size: 13px;
-  color: #555;
-}
-
-.equipment-item-stats span {
-  background: #f5f5f5;
-  padding: 4px 8px;
-  border-radius: 3px;
-  font-weight: 500;
-}
-
-/* Item Meta */
-.equipment-item-meta {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 8px;
-  font-size: 12px;
-  color: #777;
-}
-
-.equipment-item-weight {
-  background: #f0f0f0;
-  padding: 2px 8px;
-  border-radius: 3px;
-}
-
-.equipment-item-category {
-  background: #e8f5e9;
-  color: #2e7d32;
-  padding: 2px 8px;
-  border-radius: 3px;
-  font-weight: 500;
-}
-
-.equipment-item-description {
-  margin: 0;
-  font-size: 14px;
-  color: #444;
-  line-height: 1.5;
-}
-
-/* Footer */
-.equipment-browser-footer {
-  padding: 16px 20px;
-  border-top: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f8f9fa;
-}
-
-.equipment-browser-footer span {
-  font-size: 14px;
-  color: #666;
-}
-
-.equipment-browser-footer button {
-  padding: 10px 24px;
-  background: #0070f3;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.equipment-browser-footer button:hover {
-  background: #0051cc;
-}
-
-/* Loading State */
-.equipment-browser-loading {
-  padding: 60px 20px;
-  text-align: center;
-  color: #666;
-}
-
-/* Error State */
-.equipment-browser-error {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.equipment-browser-error p {
-  color: #d32f2f;
-  margin-bottom: 20px;
-}
-
-.equipment-browser-error button {
-  padding: 10px 24px;
-  background: #d32f2f;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* ============================================================================
-   RESPONSIVE DESIGN
-   ============================================================================ */
-
-@media (max-width: 768px) {
-  .equipment-browser-modal {
-    max-width: 100%;
-    max-height: 100vh;
-    border-radius: 0;
+  if (loading) {
+    return (
+      <div className="equipment-browser-overlay" onClick={onClose}>
+        <div className="equipment-browser-modal" onClick={(e) => e.stopPropagation()}>
+          <div className="equipment-browser-loading">
+            <p>Loading {category}...</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
-  .equipment-browser-controls {
-    flex-direction: column;
+  if (error) {
+    return (
+      <div className="equipment-browser-overlay" onClick={onClose}>
+        <div className="equipment-browser-modal" onClick={(e) => e.stopPropagation()}>
+          <div className="equipment-browser-error">
+            <p>{error}</p>
+            <button onClick={onClose}>Close</button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
-  .equipment-browser-sort {
-    width: 100%;
-  }
+  return (
+    <div className="equipment-browser-overlay" onClick={onClose}>
+      <div className="equipment-browser-modal" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
+        <div className="equipment-browser-header">
+          <h2>Browse {category.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}</h2>
+          <button className="equipment-browser-close" onClick={onClose}>×</button>
+        </div>
 
-  .equipment-item-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
+        {/* Search and Sort */}
+        <div className="equipment-browser-controls">
+          <input
+            type="text"
+            className="equipment-browser-search"
+            placeholder={`Search ${filteredAndSortedItems.length} items...`}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          
+          <select 
+            className="equipment-browser-sort"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as SortOption)}
+          >
+            <option value="name-asc">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="cost-asc">Cost (Low to High)</option>
+            <option value="cost-desc">Cost (High to Low)</option>
+            <option value="weight-asc">Weight (Light to Heavy)</option>
+            <option value="weight-desc">Weight (Heavy to Light)</option>
+          </select>
+        </div>
 
-  .equipment-item-stats {
-    font-size: 12px;
-    gap: 8px;
-  }
-}
+        {/* Items List */}
+        <div className="equipment-browser-items">
+          {filteredAndSortedItems.length === 0 ? (
+            <div className="equipment-browser-empty">
+              <p>No items found matching "{searchTerm}"</p>
+            </div>
+          ) : (
+            filteredAndSortedItems.map((item, index) => (
+              <div 
+                key={index} 
+                className="equipment-item"
+                onClick={() => onSelect(item)}
+              >
+                <div className="equipment-item-header">
+                  <strong className="equipment-item-name">{item.Name}</strong>
+                  <span className="equipment-item-cost">{item.Cost}</span>
+                </div>
+                
+                {/* Weapon Stats */}
+                {("Damage (M)" in item) && (
+                  <div className="equipment-item-stats">
+                    <span>Dmg: {item["Damage (M)"]}</span>
+                    <span>Crit: {item.Critical}</span>
+                    {item.Range && item.Range !== "—" && <span>Range: {item.Range}</span>}
+                    <span>Type: {item.Type}</span>
+                  </div>
+                )}
+                
+                {/* Armor Stats */}
+                {("AC Bonus" in item && "Armor Check Penalty" in item) && (
+                  <div className="equipment-item-stats">
+                    <span>AC: {item["AC Bonus"]}</span>
+                    <span>Max Dex: {item["Max Dex"]}</span>
+                    <span>ACP: {item["Armor Check Penalty"]}</span>
+                    <span>ASF: {item["Arcane Spell Failure"]}</span>
+                  </div>
+                )}
 
-/* ============================================================================
-   DARK MODE (Optional)
-   ============================================================================ */
+                {/* General Info */}
+                <div className="equipment-item-meta">
+                  {item.Weight && item.Weight !== "—" && (
+                    <span className="equipment-item-weight">{item.Weight}</span>
+                  )}
+                  {item.Category && (
+                    <span className="equipment-item-category">{item.Category}</span>
+                  )}
+                </div>
+                
+                <p className="equipment-item-description">{item.Description}</p>
+              </div>
+            ))
+          )}
+        </div>
 
-@media (prefers-color-scheme: dark) {
-  .equipment-browser-modal {
-    background: #1a1a1a;
-    color: #e0e0e0;
-  }
-
-  .equipment-browser-header {
-    border-bottom-color: #333;
-  }
-
-  .equipment-browser-header h2 {
-    color: #e0e0e0;
-  }
-
-  .equipment-browser-close {
-    color: #aaa;
-  }
-
-  .equipment-browser-close:hover {
-    background: #2a2a2a;
-    color: #e0e0e0;
-  }
-
-  .equipment-browser-controls {
-    border-bottom-color: #333;
-  }
-
-  .equipment-browser-search,
-  .equipment-browser-sort {
-    background: #2a2a2a;
-    border-color: #444;
-    color: #e0e0e0;
-  }
-
-  .equipment-item {
-    background: #2a2a2a;
-    border-color: #444;
-  }
-
-  .equipment-item:hover {
-    background: #333;
-    border-color: #0070f3;
-  }
-
-  .equipment-item-name {
-    color: #e0e0e0;
-  }
-
-  .equipment-item-cost {
-    background: #0051cc;
-    color: white;
-  }
-
-  .equipment-item-stats span {
-    background: #333;
-    color: #bbb;
-  }
-
-  .equipment-item-weight {
-    background: #333;
-    color: #bbb;
-  }
-
-  .equipment-item-category {
-    background: #1b5e20;
-    color: #a5d6a7;
-  }
-
-  .equipment-item-description {
-    color: #bbb;
-  }
-
-  .equipment-browser-footer {
-    border-top-color: #333;
-    background: #222;
-  }
-
-  .equipment-browser-footer span {
-    color: #aaa;
-  }
+        {/* Footer */}
+        <div className="equipment-browser-footer">
+          <span>Showing {filteredAndSortedItems.length} of {items.length} items</span>
+          <button onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  );
 }
