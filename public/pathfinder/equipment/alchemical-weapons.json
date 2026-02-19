@@ -1,0 +1,1112 @@
+[
+  {
+    "Name": "Acid",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "15",
+    "Description": "A flask of acid can be thrown as a splash weapon. Direct hit deals 1d6 acid damage. Creatures within 5 feet take 1 point of splash damage."
+  },
+  {
+    "Name": "Acid neutralizer",
+    "Cost": "15 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "15",
+    "Description": "Alchemical weapon: Acid neutralizer"
+  },
+  {
+    "Name": "Alchemical coal (blinding cinders)",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Alchemical coal (blinding cinders)"
+  },
+  {
+    "Name": "Alchemical coal (choking smoke)",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Alchemical coal (choking smoke)"
+  },
+  {
+    "Name": "Alchemist's fire",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Alchemist's fire"
+  },
+  {
+    "Name": "Alkali flask",
+    "Cost": "15 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Alkali flask"
+  },
+  {
+    "Name": "Arrow (bleeding)",
+    "Cost": "160 gp",
+    "Weight": "\u2014",
+    "Damage": "bleed 1",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Hollow arrow filled with alchemical fluid. Causes 1 point of bleed damage when it hits."
+  },
+  {
+    "Name": "Arrow (durable)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Treated arrow with 50% chance of being recoverable after being fired."
+  },
+  {
+    "Name": "Arrow (dye)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Damage": "none",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Arrow with dye pod that bursts on impact, marking target with colored dye."
+  },
+  {
+    "Name": "Arrow (lodestone)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Damage": "half",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Magnetic arrow that deals half damage but magnetizes metal armor on hit."
+  },
+  {
+    "Name": "Arrow (pheromone)",
+    "Cost": "15 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Releases pheromones on impact that attract or repel creatures."
+  },
+  {
+    "Name": "Arrow (raining)",
+    "Cost": "30 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Bursts into dozens of tiny needles on impact, affecting 10-foot radius."
+  },
+  {
+    "Name": "Arrow (slow burn)",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Contains alchemical substances that cause it to burn for several rounds after hitting."
+  },
+  {
+    "Name": "Arrow (splintercloud)",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Damage": "1d3",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Explodes into a cloud of splinters, creating an area effect."
+  },
+  {
+    "Name": "Arrow (tangleshot)",
+    "Cost": "20 gp",
+    "Weight": "\u2014",
+    "Damage": "none",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Deploys sticky streamers that entangle the target on impact."
+  },
+  {
+    "Name": "Arrow (trip)",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Deploys a tripwire effect, potentially tripping the target."
+  },
+  {
+    "Name": "Artokus's fire",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d6/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Alchemical weapon: Artokus's fire"
+  },
+  {
+    "Name": "Blanch bomb (adamantine)",
+    "Cost": "250 gp",
+    "Weight": "1/2 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Alchemical weapon: Blanch bomb (adamantine)"
+  },
+  {
+    "Name": "Blanch bomb (cold iron)",
+    "Cost": "150 gp",
+    "Weight": "1/2 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Blanch bomb (cold iron)"
+  },
+  {
+    "Name": "Blanch bomb (silver)",
+    "Cost": "100 gp",
+    "Weight": "1/2 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Blanch bomb (silver)"
+  },
+  {
+    "Name": "Bloating solution",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Bloating solution"
+  },
+  {
+    "Name": "Bolt, acid",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Bolt, acid"
+  },
+  {
+    "Name": "Bolt, alchemical fire",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Bolt, alchemical fire"
+  },
+  {
+    "Name": "Bolt, liquid ice",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Bolt, liquid ice"
+  },
+  {
+    "Name": "Bolt, poison",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Bolt, poison"
+  },
+  {
+    "Name": "Bone Burn",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6; see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Acid particularly effective against skeletons and bone constructs."
+  },
+  {
+    "Name": "Bottled lightning",
+    "Cost": "40 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d8/1",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Bottled lightning"
+  },
+  {
+    "Name": "Brewed reek",
+    "Cost": "40 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Brewed reek"
+  },
+  {
+    "Name": "Burst jar",
+    "Cost": "35 gp",
+    "Weight": "1 lb.",
+    "Damage": "1",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Burst jar"
+  },
+  {
+    "Name": "Chroma grenade",
+    "Cost": "75 gp",
+    "Weight": "2 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Chroma grenade"
+  },
+  {
+    "Name": "Congealer spray",
+    "Cost": "15 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Congealer spray"
+  },
+  {
+    "Name": "Consecrated Salts",
+    "Cost": "300 gp",
+    "Weight": "1/2 lb.",
+    "Damage": "2d4",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Blessed salts particularly effective against undead and evil creatures."
+  },
+  {
+    "Name": "Corrosenze",
+    "Cost": "90 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Powerful corrosive substance that eats through materials over time."
+  },
+  {
+    "Name": "Cytillesh stun vial",
+    "Cost": "75 gp",
+    "Weight": "1/2 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Alchemical weapon: Cytillesh stun vial"
+  },
+  {
+    "Name": "Darkflare",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Creates burst of darkness when ignited."
+  },
+  {
+    "Name": "Deadground dust",
+    "Cost": "70 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Deadground dust"
+  },
+  {
+    "Name": "Desiccating lubricant",
+    "Cost": "30 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Desiccating lubricant"
+  },
+  {
+    "Name": "Dung grenade",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Dung grenade"
+  },
+  {
+    "Name": "Dust knuckles (4 vials)",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "15",
+    "Description": "Alchemical weapon: Dust knuckles (4 vials)"
+  },
+  {
+    "Name": "Dust knuckles (diamond dust vial)",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Dust knuckles (diamond dust vial)"
+  },
+  {
+    "Name": "Dust knuckles (gloves)",
+    "Cost": "25 gp",
+    "Weight": "1/2 lb.",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Dust knuckles (gloves)"
+  },
+  {
+    "Name": "Ectoplasmic residue",
+    "Cost": "20 gp",
+    "Weight": "2 lbs.",
+    "Damage": "special",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Ectoplasmic residue"
+  },
+  {
+    "Name": "Elemental brine",
+    "Cost": "500 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d6 (special)",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": null,
+    "Description": "Alchemical weapon: Elemental brine"
+  },
+  {
+    "Name": "Elemental flux (flask)",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Elemental flux (flask)"
+  },
+  {
+    "Name": "Fiery boulder",
+    "Cost": "100 gp",
+    "Weight": "10 lbs.",
+    "Damage": "2d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Alchemical weapon: Fiery boulder"
+  },
+  {
+    "Name": "Firework (banshee ballerina)",
+    "Cost": "75 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Spins and screams, dealing sonic damage in an area."
+  },
+  {
+    "Name": "Firework (coughing dragon)",
+    "Cost": "40 gp",
+    "Weight": "1 lb.",
+    "Damage": "special",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Rocket that releases choking smoke as it flies."
+  },
+  {
+    "Name": "Firework (dancing peonies)",
+    "Cost": "50 gp",
+    "Weight": "1/2 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "18",
+    "Description": "Decorative fireworks creating beautiful patterns in the sky."
+  },
+  {
+    "Name": "Firework (fire wheel)",
+    "Cost": "200 gp",
+    "Weight": "1 lb.",
+    "Damage": "special",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Spins rapidly, creating a wheel of fire."
+  },
+  {
+    "Name": "Firework (firecracker)",
+    "Cost": "10 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Simple firework creating loud bangs and flashes."
+  },
+  {
+    "Name": "Firework (firecracker, spirit)",
+    "Cost": "30 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Blessed firecracker effective against spirits and undead."
+  },
+  {
+    "Name": "Firework (flame fountain)",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Damage": "1d8",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Handheld firework that shoots a fountain of flames."
+  },
+  {
+    "Name": "Firework (flashing fiend)",
+    "Cost": "100 gp",
+    "Weight": "\u2014",
+    "Damage": "special",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Creates intense flashes of light that can blind."
+  },
+  {
+    "Name": "Firework (holy fountain)",
+    "Cost": "110 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d4",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Blessed firework that damages evil creatures."
+  },
+  {
+    "Name": "Firework (jumping jenny)",
+    "Cost": "15 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "16",
+    "Description": "Small firework that jumps around unpredictably."
+  },
+  {
+    "Name": "Firework (paper candle)",
+    "Cost": "1 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Simple paper firework used for celebrations."
+  },
+  {
+    "Name": "Firework (signal rocket)",
+    "Cost": "100 gp",
+    "Weight": "3 lbs.",
+    "Damage": "special",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "15",
+    "Description": "Rocket that flies high and creates visible signal."
+  },
+  {
+    "Name": "Firework (skydragon)",
+    "Cost": "300 gp",
+    "Weight": "10 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Large, elaborate firework display."
+  },
+  {
+    "Name": "Firework (skyrocket)",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Rocket that explodes, dealing fire damage in an area."
+  },
+  {
+    "Name": "Firework (sparking pinwheel)",
+    "Cost": "60 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Spinning firework that creates sparks."
+  },
+  {
+    "Name": "Firework (star candle)",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Damage": "1/1",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Small firework that can blind targets."
+  },
+  {
+    "Name": "Firework (starfountain)",
+    "Cost": "500 gp",
+    "Weight": "100 lbs.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Massive fountain of sparks and flames."
+  },
+  {
+    "Name": "Flash powder",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Flash powder"
+  },
+  {
+    "Name": "Fuse grenade",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d6/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Fuse grenade"
+  },
+  {
+    "Name": "Ghast retch flask",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Ghast retch flask"
+  },
+  {
+    "Name": "Hellfire sparkler",
+    "Cost": "250 gp",
+    "Weight": "50 lbs.",
+    "Damage": "3d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Hellfire sparkler"
+  },
+  {
+    "Name": "Holy water",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d4",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": null,
+    "Description": "Alchemical weapon: Holy water"
+  },
+  {
+    "Name": "Holy weapon balm",
+    "Cost": "30 gp",
+    "Weight": "1/2 lb.",
+    "Damage": "varies",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Holy weapon balm"
+  },
+  {
+    "Name": "Incendiary catalyst",
+    "Cost": "40 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Incendiary catalyst"
+  },
+  {
+    "Name": "Insomnia powder",
+    "Cost": "60 gp",
+    "Weight": "2 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Insomnia powder"
+  },
+  {
+    "Name": "Itching powder",
+    "Cost": "60 gp",
+    "Weight": "2 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Itching powder"
+  },
+  {
+    "Name": "Keros oil",
+    "Cost": "5 gp",
+    "Weight": "\u2014",
+    "Damage": "1d3",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "15",
+    "Description": "Alchemical weapon: Keros oil"
+  },
+  {
+    "Name": "Kitumu's ire",
+    "Cost": "75 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Alchemical weapon: Kitumu's ire"
+  },
+  {
+    "Name": "Liquid blade",
+    "Cost": "40 gp",
+    "Weight": "2 lbs.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "15",
+    "Description": "Alchemical weapon: Liquid blade"
+  },
+  {
+    "Name": "Liquid ice",
+    "Cost": "40 gp",
+    "Weight": "2 lbs.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Liquid ice"
+  },
+  {
+    "Name": "Lyddric essence",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6/2d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Lyddric essence"
+  },
+  {
+    "Name": "Mineral acid",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Mineral acid"
+  },
+  {
+    "Name": "Mu spore secretions",
+    "Cost": "25 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": null,
+    "Description": "Alchemical weapon: Mu spore secretions"
+  },
+  {
+    "Name": "Noxious aromatic (flask)",
+    "Cost": "15 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Noxious aromatic (flask)"
+  },
+  {
+    "Name": "Noxious pig",
+    "Cost": "150 gp",
+    "Weight": "25 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "35",
+    "Description": "Alchemical weapon: Noxious pig"
+  },
+  {
+    "Name": "Pellet grenade (adamantine)",
+    "Cost": "150 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6/1d6/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Pellet grenade (adamantine)"
+  },
+  {
+    "Name": "Pellet grenade (cold iron)",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6/1d6/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Pellet grenade (cold iron)"
+  },
+  {
+    "Name": "Pellet grenade (iron)",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6/1d6/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Pellet grenade (iron)"
+  },
+  {
+    "Name": "Pellet grenade (silver)",
+    "Cost": "70 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6/1d6/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Pellet grenade (silver)"
+  },
+  {
+    "Name": "Perfect ice",
+    "Cost": "1,500 gp",
+    "Weight": "\u2014",
+    "Damage": "special",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Perfect ice"
+  },
+  {
+    "Name": "Plague powder",
+    "Cost": "varies",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Plague powder"
+  },
+  {
+    "Name": "Portable hive",
+    "Cost": "300 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Portable hive"
+  },
+  {
+    "Name": "Pox burster",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Pox burster"
+  },
+  {
+    "Name": "Shadowcloy flask",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Shadowcloy flask"
+  },
+  {
+    "Name": "Shard gel",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d4",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Shard gel"
+  },
+  {
+    "Name": "Shriek bomb",
+    "Cost": "45 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Shriek bomb"
+  },
+  {
+    "Name": "Silvercloud oil",
+    "Cost": "60 gp",
+    "Weight": "1/2 lb.",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Silvercloud oil"
+  },
+  {
+    "Name": "Slime grenade",
+    "Cost": "100 gp",
+    "Weight": "3 lbs.",
+    "Damage": "2d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Slime grenade"
+  },
+  {
+    "Name": "Slime slow",
+    "Cost": "15 gp",
+    "Weight": "1/2 lb.",
+    "Damage": "see text",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Slime slow"
+  },
+  {
+    "Name": "Sneezing powder",
+    "Cost": "60 gp",
+    "Weight": "2 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Sneezing powder"
+  },
+  {
+    "Name": "Somnigrip",
+    "Cost": "45 gp",
+    "Weight": "3 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical substance that induces sleep in those who breathe it."
+  },
+  {
+    "Name": "Specialty smoke pellet (Pepper)",
+    "Cost": "60 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Specialty smoke pellet (Pepper)"
+  },
+  {
+    "Name": "Specialty smoke pellet (Smog)",
+    "Cost": "40 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Specialty smoke pellet (Smog)"
+  },
+  {
+    "Name": "Spore dehiscent",
+    "Cost": "30 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": null,
+    "Description": "Alchemical weapon: Spore dehiscent"
+  },
+  {
+    "Name": "Stench-gas bladder",
+    "Cost": "30 gp",
+    "Weight": "1/2 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": null,
+    "Description": "Alchemical weapon: Stench-gas bladder"
+  },
+  {
+    "Name": "Sting grenade",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Damage": "2d6/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Sting grenade"
+  },
+  {
+    "Name": "Stormstone",
+    "Cost": "150 gp",
+    "Weight": "1 lb.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Stone that creates thunderclap when thrown, dealing sonic damage."
+  },
+  {
+    "Name": "Suffocating powder",
+    "Cost": "45 gp",
+    "Weight": "2 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "20",
+    "Description": "Alchemical weapon: Suffocating powder"
+  },
+  {
+    "Name": "Tangleburn bag",
+    "Cost": "150 gp",
+    "Weight": "5 lbs.",
+    "Damage": "1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "30",
+    "Description": "Alchemical weapon: Tangleburn bag"
+  },
+  {
+    "Name": "Tanglefoot bag",
+    "Cost": "50 gp",
+    "Weight": "4 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Tanglefoot bag"
+  },
+  {
+    "Name": "Tanglefoot bundle",
+    "Cost": "250 gp",
+    "Weight": "20 lbs.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "35",
+    "Description": "Alchemical weapon: Tanglefoot bundle"
+  },
+  {
+    "Name": "Tar bomb",
+    "Cost": "15 gp",
+    "Weight": "2 lbs.",
+    "Damage": "1d4/1d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "15",
+    "Description": "Alchemical weapon: Tar bomb"
+  },
+  {
+    "Name": "Thunderclap charge",
+    "Cost": "200 gp",
+    "Weight": "10 lbs.",
+    "Damage": "2d6",
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Thunderclap charge"
+  },
+  {
+    "Name": "Thunderstone",
+    "Cost": "30 gp",
+    "Weight": "1 lb.",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Explodes with deafening roar. Creatures within 10 feet must save or be deafened for 1 hour."
+  },
+  {
+    "Name": "Tress tincture",
+    "Cost": "50 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": "25",
+    "Description": "Alchemical weapon: Tress tincture"
+  },
+  {
+    "Name": "Venomblock",
+    "Cost": "60 gp",
+    "Weight": "\u2014",
+    "Damage": null,
+    "Splash Damage": "\u2014",
+    "Range": "\u2014",
+    "Craft DC": null,
+    "Description": "Provides temporary protection against venom and poison."
+  }
+]
