@@ -161,7 +161,14 @@ export type EquipmentItem =
   | Herb
   | Kit
   | LodgingService
-  | SiegeEngine;
+  | SiegeEngine
+  | chronicles
+  | tinctures
+  | torture-implements
+  | tools
+  | transport
+  | spellbooks
+  | mounts-pets;
 
 // ============================================================================
 // EQUIPMENT CATEGORIES
@@ -192,7 +199,14 @@ export type EquipmentCategory =
   | "herbs"
   | "kits"
   | "lodging-services"
-  | "siege-engines";
+  | "siege-engines"
+  | "chronicles"
+  | "tinctures"
+  | "torture-implements"
+  | "tools"
+  | "transport"
+  | "spellbooks"
+  | "mounts-pets";
 
 // ============================================================================
 // CATEGORY METADATA
