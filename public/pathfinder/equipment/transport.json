@@ -1,0 +1,427 @@
+[
+  {
+    "Name": "Caravan master's wagon",
+    "Cost": "1,000 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "Ultimate Equipment pg. 87",
+    "Size": "Huge",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 0,
+      "currency": "cp"
+    },
+    "Description": "This reinforced wagon is designed to serve as the central command vehicle of a caravan. It contains secure storage compartments, reinforced walls, and space for a caravan master to coordinate travel and defense.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Caravan+master%27s+wagon"
+  },
+  {
+    "Name": "Carriage",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 3,
+      "currency": "cp"
+    },
+    "Description": "This four-wheeled enclosed vehicle is designed to transport passengers comfortably. It typically carries two to four passengers and requires two draft animals.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Carriage"
+  },
+  {
+    "Name": "Cart",
+    "Cost": "15 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 1,
+      "currency": "cp"
+    },
+    "Description": "This simple two-wheeled vehicle is pulled by a single draft animal and is primarily used for transporting goods.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Cart"
+  },
+  {
+    "Name": "Chariot (heavy)",
+    "Cost": "200 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "This sturdy two-wheeled vehicle is designed for heavy-duty travel or combat and requires two draft animals.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Chariot"
+  },
+  {
+    "Name": "Chariot (light)",
+    "Cost": "50 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "This lightweight two-wheeled vehicle is designed for speed and maneuverability.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Chariot"
+  },
+  {
+    "Name": "Chariot (medium)",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "This balanced two-wheeled vehicle is suitable for both travel and light combat.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Chariot"
+  },
+  {
+    "Name": "Coach cab",
+    "Cost": "—",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 3,
+      "currency": "cp"
+    },
+    "Description": "A hired carriage service that transports passengers for a per-mile fee.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Coach+cab"
+  },
+  {
+    "Name": "Sled",
+    "Cost": "20 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "",
+    "Vehicle Type": "",
+    "PriceOfPassagePerMile": {
+      "value": 0,
+      "currency": "cp"
+    },
+    "Description": "This is a wagon on runners for snow and ice travel. In general, two horses (or other beasts of burden) draw it. A sled comes with the harness needed to pull it.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sled"
+  },
+  {
+    "Name": "Dog sled",
+    "Cost": "20 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "Ultimate Equipment pg. 87, Adventurer's Armory pg. 19, Advanced Player's Guide pg. 185, Pathfinder #51: The Hungry Storm pg. 67",
+    "Size": "",
+    "Vehicle Type": "",
+    "PriceOfPassagePerMile": {
+      "value": 3,
+      "currency": "cp"
+    },
+    "Description": "This sled is designed to be pulled over snow and ice by a team of trained riding dogs. Most sleds have runners at the back for a musher to stand on. A dog sled can carry up to the capacity of all the dogs that pull it.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Dog+sled"
+  },
+  {
+    "Name": "Sleigh",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "Ultimate Equipment pg. 87",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "This wagon has runners, making it an ideal conveyance for snow and ice travel. In general, two horses (or other beasts of burden) are needed to draw it. A sled comes with the harness required to pull it.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sleigh"
+  },
+  {
+    "Name": "Wagon (light)",
+    "Cost": "50 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "This four-wheeled open vehicle is used for transporting heavy loads. It includes the harness needed to pull it. There are three common varieties of wagon.\n\nLight Wagon: Wagons of this type are most commonly employed by farmers and craftsmen transporting their goods short distances or by venders in and around cities. A light wagon carries up to 1,000 pounds of cargo and requires two Medium creatures or one Large creature to pull it.\n\nMedium Wagon: Wagons of this type are typically employed for heavy duty work, often in agricultural, mining, or construction settings. A medium wagon can carry up to 2,000 pounds of cargo and requires four Medium or two Large creatures to pull it.\n\nHeavy Wagon: Wagons of this type are large, fourwheeled vehicles primarily used in caravans to transport goods over long stretches of territory. A heavy wagon carries up to 4,000 pounds of cargo, and is pulled by either eight Medium creatures or four Large creatures.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Wagon+%28light%29"
+  },
+  {
+    "Name": "Wagon (medium)",
+    "Cost": "75 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "This four-wheeled open vehicle is used for transporting heavy loads. It includes the harness needed to pull it. There are three common varieties of wagon.\n\nLight Wagon: Wagons of this type are most commonly employed by farmers and craftsmen transporting their goods short distances or by venders in and around cities. A light wagon carries up to 1,000 pounds of cargo and requires two Medium creatures or one Large creature to pull it.\n\nMedium Wagon: Wagons of this type are typically employed for heavy duty work, often in agricultural, mining, or construction settings. A medium wagon can carry up to 2,000 pounds of cargo and requires four Medium or two Large creatures to pull it.\n\nHeavy Wagon: Wagons of this type are large, fourwheeled vehicles primarily used in caravans to transport goods over long stretches of territory. A heavy wagon carries up to 4,000 pounds of cargo, and is pulled by either eight Medium creatures or four Large creatures.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Wagon+%28heavy%29"
+  },
+  {
+    "Name": "Wagon (heavy)",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "Ultimate Equipment pg. 87",
+    "Size": "Huge",
+    "Vehicle Type": "Land",
+    "PriceOfPassagePerMile": {
+      "value": 3,
+      "currency": "cp"
+    },
+    "Description": "This four-wheeled open vehicle is used for transporting heavy loads. It includes the harness needed to pull it. There are three common varieties of wagon.\n\nLight Wagon: Wagons of this type are most commonly employed by farmers and craftsmen transporting their goods short distances or by venders in and around cities. A light wagon carries up to 1,000 pounds of cargo and requires two Medium creatures or one Large creature to pull it.\n\nMedium Wagon: Wagons of this type are typically employed for heavy duty work, often in agricultural, mining, or construction settings. A medium wagon can carry up to 2,000 pounds of cargo and requires four Medium or two Large creatures to pull it.\n\nHeavy Wagon: Wagons of this type are large, fourwheeled vehicles primarily used in caravans to transport goods over long stretches of territory. A heavy wagon carries up to 4,000 pounds of cargo, and is pulled by either eight Medium creatures or four Large creatures.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Wagon+%28heavy%29"
+  },
+  {
+    "Name": "Smuggler's wagon",
+    "Cost": "varies",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Land",
+    "Source": "Villain Codex pg. 116",
+    "Size": "",
+    "Vehicle Type": "",
+    "PriceOfPassagePerMile": {
+      "value": null,
+      "currency": ""
+    },
+    "Description": "A smuggler’s wagon functions in most respects exactly like an ordinary wagon (Pathfinder RPG Ultimate Equipment 87), except it contains hidden compartments that allow for cargo to be transported in secret. The price of a smuggler’s wagon depends on two factors—the size or type of the original wagon, and the skill with which the hidden compartments have been constructed. The table below details the prices of such a vehicle (the numbers in parentheses indicate the DC for a Perception check to successfully locate the hidden compartments during a search of the wagon).\n\nConcealment Quality\nSize  Low (15)  Med. (20)  High (25)\nLight  75 gp    100 gp      150 gp\nMedium 115 gp   150 gp      225 gp\nHeavy  150 gp   200 gp      300 gp\n\nCompartments can be located throughout the wagon, in such places as a hollowed-out axle, beneath the seats, between panels on the floor decking, and so forth. The total amount of weight the wagon and its draft animals can accommodate remains the same as the original variety of wagon.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Smuggler%27s+wagon"
+  },
+  {
+    "Name": "Raft",
+    "Cost": "—",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87",
+    "Size": "",
+    "Vehicle Type": "",
+    "PriceOfPassagePerMile": {
+      "value": 1,
+      "currency": "cp"
+    },
+    "Description": "The most basic and primitive type of watercraft, a raft is a simple, flat boat with no hull, often made of logs lashed together. It typically uses two to four oars for propulsion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Raft"
+  },
+  {
+    "Name": "Rowboat",
+    "Cost": "50 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Large",
+    "Vehicle Type": "Water",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "This 8- to 12-foot-long boat with two oars holds two or three Medium passengers, and is either carried on the deck of a larger ship or moored to a dock onshore. A rowboat moves about 1-1/2 miles per hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Rowboat"
+  },
+  {
+    "Name": "Ship's boat",
+    "Cost": "500 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87",
+    "Size": "Large",
+    "Vehicle Type": "Water",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "cp"
+    },
+    "Description": "Ship’s boats are usually carried on the decks of larger ships to ferry passengers and cargo.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Ship%27s+boat"
+  },
+  {
+    "Name": "Junk",
+    "Cost": "15,000 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87",
+    "Size": "",
+    "Vehicle Type": "",
+    "PriceOfPassagePerMile": {
+      "value": 1,
+      "currency": "sp"
+    },
+    "Description": "This flat-bottomed sailing ship typically has two or three masts with junk-rigged sails, allowing it to be sailed by small crews. Junks commonly feature a high poop deck and lack a keel.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Junk"
+  },
+  {
+    "Name": "Galley",
+    "Cost": "30,000 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Colossal",
+    "Vehicle Type": "Water",
+    "PriceOfPassagePerMile": {
+      "value": 1,
+      "currency": "sp"
+    },
+    "Description": "This three-masted ship has 70 oars per side and requires a total crew of 200. A galley is 130 feet long and 20 feet wide, and can carry 150 tons of cargo or 250 soldiers. For 8,000 gp more, it can be fitted with a ram and firing platforms fore, aft, and amidships. This ship cannot make sea voyages and sticks close to the coast. It moves about 4 miles per hour when being rowed or under sail.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Galley"
+  },
+  {
+    "Name": "Keelboat",
+    "Cost": "3,000 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Colossal",
+    "Vehicle Type": "Water",
+    "PriceOfPassagePerMile": {
+      "value": 1,
+      "currency": "sp"
+    },
+    "Description": "This 50- to 75-foot-long ship is 15 to 20 feet wide and has a dozen oars to supplement its single mast with a square sail. It requires a crew of 8 to 15 to sail and can carry 40 to 50 tons of cargo or 100 soldiers. It can make sea voyages, as well as sail down rivers (thanks to its flat bottom). It moves about 1 mile per hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Keelboat"
+  },
+  {
+    "Name": "Longship",
+    "Cost": "10,000 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Colossal",
+    "Vehicle Type": "Water",
+    "PriceOfPassagePerMile": {
+      "value": 5,
+      "currency": "cp"
+    },
+    "Description": "This 75-foot-long ship has 40 oars and requires a total crew of 50. It has a single mast with a square sail and can carry 50 tons of cargo or 120 soldiers. A longship can make sea voyages. It moves about 3 miles per hour when being rowed or under sail.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Longship"
+  },
+  {
+    "Name": "Sailing ship",
+    "Cost": "10,000 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Colossal",
+    "Vehicle Type": "Water",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "sp"
+    },
+    "Description": "This large, seaworthy ship is 75 to 90 feet long, 20 feet wide, and has a crew of 20. It can carry 150 tons of cargo. It has square sails on its two masts and can make sea voyages. It moves about 2 miles per hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sailing+ship"
+  },
+  {
+    "Name": "Warship",
+    "Cost": "25,000 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "Ultimate Equipment pg. 87, PRPG Core Rulebook pg. 159",
+    "Size": "Colossal",
+    "Vehicle Type": "Water",
+    "PriceOfPassagePerMile": {
+      "value": 2,
+      "currency": "sp"
+    },
+    "Description": "This 100-foot-long ship has a single mast, although oars can also propel it. It has a crew of 60 to 80 rowers. This ship can carry 160 soldiers, but not for long distances, since there isn’t room for supplies to support that many people. A warship cannot make sea voyages and sticks to the coast. It is not used for cargo. It moves about 2-1/2 miles per hour when being rowed or under sail.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Warship"
+  },
+  {
+    "Name": "Ship's passage",
+    "Cost": "—",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Sea",
+    "Source": "PRPG Core Rulebook pg. 159",
+    "Size": "",
+    "Vehicle Type": "",
+    "PriceOfPassagePerMile": {
+      "value": 1,
+      "currency": "sp"
+    },
+    "Description": "Most ships do not specialize in passengers, but many have the capability to take a few along when transporting cargo. Double the given cost for creatures larger than Medium or creatures that are otherwise difficult to bring aboard a ship.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Ship%27s+passage"
+  },
+  {
+    "Name": "Wind platform",
+    "Cost": "5,000 gp",
+    "Weight": "1,600 lbs.",
+    "Craft DC": 0,
+    "Type": "transport",
+    "Category": "Air",
+    "Source": "Ultimate Equipment pg. 87",
+    "Size": "",
+    "Vehicle Type": "",
+    "PriceOfPassagePerMile": {
+      "value": 0,
+      "currency": "cp"
+    },
+    "Description": "A rare and dangerous marvel from the strange nation of Alkenstar, this light, airborne device is held aloft by a huge buoyant balloon which is attached by chains to an open-air wicker basket.\n\nA wind platform is socalled because it remains at the mercy of the winds, as it has no propulsion system of its own and can therefor not be used as much more than an airborne watchtower or platform for the deployment of siege engines.\n\nThe basket of a wind platform can hold as many as six Medium creatures and two Large direct-fire siege engines, or any combination of smaller creatures and siege engines occupying the same space. The platform cannot withstand a carried weight of more than 3,000 lbs.\n\nA wind platform has AC 4, harness 5, and 250 hp, and takes double damage from acid and fire attacks. When reduced to half its total hit points (125 hp) the platform begins to descend at a rate of 20 ft. per round. When reduced to one-quarter its total hit points (62 hp), the rate of descent increases to 60 ft. per round. When destroyed, all creatures and items on the wind platform simply fall as normal.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Wind+platform"
+  }
+]

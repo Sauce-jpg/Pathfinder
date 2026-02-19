@@ -1,0 +1,1157 @@
+[
+  {
+    "Name": "Nyzam's Remedies",
+    "Cost": "50 gp",
+    "Book Type": "Formula Book",
+    "Class Requirements": "Level 3 Alchemist",
+    "Source": "Arcane Anthology",
+    "Value": "50 gp",
+    "Value With Preparation Ritual": "115 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "The first three pages of this book contain pressed flowers and botanical diagrams relating to brewing Thuvian remedies.",
+    "Spells": {
+      "1st": [
+        "cure light wounds",
+        "expeditious retreat",
+        "keen senses",
+        "polypurpose panacea",
+        "youthful appearance"
+      ]
+    },
+    "Ritual": {
+      "Name": "Rejuvenating Infusion",
+      "Type": "Su",
+      "Effect": "Whenever you imbibe an alchemist extract of a conjuration spell, you can spend this boon as a swift action. If you do, you are healed of 1 point of damage and can ignore the effects of fatigue for 1 round."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Nyzam%27s+Remedies"
+  },
+  {
+    "Name": "Songs of the Linnorm Kings",
+    "Cost": "180 gp",
+    "Book Type": "Meditation Book",
+    "Class Requirements": "Level 5 Skald",
+    "Source": "Arcane Anthology",
+    "Value": "180 gp",
+    "Value With Preparation Ritual": "440 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This book’s cover is made of scales that are warm to the touch.",
+    "Spells": {
+      "2nd": ["marching chant", "path of glory", "scare"],
+      "1st": ["cure light wounds", "heightened awareness", "remove fear"],
+      "0 (at will)": ["dancing lights", "ghost sound", "lullaby", "mage hand", "mending", "resistance"]
+    },
+    "Ritual": {
+      "Name": "Storied Spell Lore",
+      "Type": "Su",
+      "Effect": "When you use this meditation ritual, choose a spell of 2nd level or lower in this meditation book. Whenever you cast a bard or skald conjuration spell, you can spend this boon as a swift action to add the chosen spell to your list of bard or skald spells known for 1 round."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Songs+of+the+Linnorm+Kings"
+  },
+  {
+    "Name": "Defensive Primer",
+    "Cost": "185 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 1 Abjurer",
+    "Source": "Ultimate Magic",
+    "Value": "185 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "Conjuration, enchantment",
+    "Protection": "Average lock (DC 25)",
+    "Description": "This surprisingly ornate and heavy volume is more than three-quarters empty. Tightly written notes on the precepts of arcane defense and the vulnerabilities of supernatural entities fill the first two pages.",
+    "Spells": {
+      "1st": [
+        "burning hands",
+        "detect undead",
+        "expeditious retreat",
+        "magic missile",
+        "protection from evil",
+        "ray of enfeeblement",
+        "shield"
+      ]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Defensive+Primer"
+  },
+  {
+    "Name": "Apprentice Chapbook of Rul Thaven",
+    "Cost": "195 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 2 Diviner",
+    "Source": "Ultimate Magic",
+    "Value": "195 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "Illusion, transmutation",
+    "Protection": "—",
+    "Description": "This slim book is carefully but amateurishly bound, with leather stretched tight across thin boards. The writing inside is fussy and crammed together, with words that are occasionally illegible. Eight of its pages contain spells; the final 10 pages are blank. A portrait of a plain woman, unsmiling, has been bound into the inside front cover.",
+    "Spells": {
+      "1st": [
+        "comprehend languages",
+        "detect secret doors",
+        "detect undead",
+        "identify",
+        "protection from evil",
+        "protection from law",
+        "summon monster I",
+        "true strike"
+      ]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Apprentice+Chapbook+of+Rul+Thaven"
+  },
+  {
+    "Name": "The Swordsman's Analects",
+    "Cost": "250 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 3 Universalist",
+    "Source": "Arcane Anthology",
+    "Value": "250 gp",
+    "Value With Preparation Ritual": "400 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This book's worn leather cover is emblazoned with a winged sword with an eye at its hilt.",
+    "Spells": {
+      "2nd": ["force sword", "human potential"],
+      "1st": [
+        "expeditious construction",
+        "identify",
+        "magic weapon",
+        "mirror strike",
+        "protection from evil",
+        "unerring weapon"
+      ]
+    },
+    "Ritual": {
+      "Name": "Shielding Weapon",
+      "Type": "Su",
+      "Effect": "Your spells infuse a weapon with protective magic. Spend this boon as an immediate action whenever you cast an abjuration spell. When you do, a weapon you wield grants you a shield bonus to your AC equal to 1 + 1/2 the spell’s level for 1 round."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=The+Swordsman%27s+Analects"
+  },
+  {
+    "Name": "Unnamed Journal",
+    "Cost": "275 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 3 Universalist",
+    "Source": "Ultimate Magic",
+    "Value": "275 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This is a simple, unadorned spellbook. Notes on improving the efficiency of each spell crowd the margins, most of them hopelessly misguided.",
+    "Spells": {
+      "2nd": ["fox’s cunning", "scorching ray"],
+      "1st": [
+        "alarm",
+        "feather fall",
+        "obscuring mist",
+        "mount",
+        "shield",
+        "shocking grasp",
+        "silent image",
+        "sleep"
+      ]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Unnamed+Journal"
+  },
+  {
+    "Name": "Traveler's Tome",
+    "Cost": "365 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 4 Transmuter",
+    "Source": "Ultimate Magic",
+    "Value": "365 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "Conjuration, enchantment",
+    "Protection": "Simple lock (DC 20)",
+    "Description": "This small book, no larger than a pocket notebook, is bound between wooden covers, and is clearly a copy meant to withstand the rigors of adventuring. The arrowhead lodged in the cover can’t be removed without magic.",
+    "Spells": {
+      "2nd": ["glide", "knock", "levitate", "rope trick"],
+      "1st": [
+        "ant haul",
+        "enlarge person",
+        "erase",
+        "expeditious retreat",
+        "gravity bow",
+        "hold portal",
+        "jump",
+        "magic weapon",
+        "shield"
+      ]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Traveler%27s+Tome"
+  },
+  {
+    "Name": "Wisdom of Jatembe (Three Warriors Edition)",
+    "Cost": "375 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 5 Diviner",
+    "Source": "Arcane Anthology",
+    "Value": "375 gp",
+    "Value With Preparation Ritual": "875 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "Well-tanned leather binds this sturdy spellbook, with a copper plate of a stylized animal head bolted to the front cover. A foreword filling the first several pages of this book is addressed to “young students of the Magaambya,” and offers warnings about the unexpected consequences of using spells without careful consideration. The rest of the book contains spells, each proceeded and followed by one or more stories discussing situations with thematic links to the spell.",
+    "Spells": {
+      "3rd": ["beast shape I", "clairaudience/clairvoyance", "planar inquiry", "tongues"],
+      "2nd": ["alter self", "detect thoughts", "locate object", "obscure object", "see invisibility"],
+      "1st": [
+        "celestial healing",
+        "comprehend languages",
+        "detect undead",
+        "endure elements",
+        "heightened awareness",
+        "hydraulic push",
+        "identify",
+        "obscuring mist"
+      ]
+    },
+    "Ritual": {
+      "Name": "Eyes of Jatembe",
+      "Type": "Su",
+      "Effect": "Several of the stories within this spellbook suggest ways to take what information you have and use it to infer the answers to questions for which you don’t have proven solutions. Spend this boon when you cast a divination spell to increase the spell’s caster level by +2."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Wisdom+of+Jatembe+%28Three+Warriors+Edition%29"
+  },
+  {
+    "Name": "Lab Journal of Constance Inflix",
+    "Cost": "395 gp",
+    "Book Type": "Formula Book",
+    "Class Requirements": "Level 5 Alchemist",
+    "Source": "Ultimate Magic",
+    "Value": "395 gp",
+    "Value With Preparation Ritual": "770 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "The steel cover of this slim journal has taken its fair share of abuse; acid scars and minor slag spots show where the journal was subjected to intense working conditions. Equations, balances, and chemical notations mark the margins of the pages—with some formulae, it is difficult to tell where the notes end and the formula begins.",
+    "Spells": {
+      "2nd": [
+        "blur",
+        "delay poison",
+        "fire breath",
+        "transmute potion to poison",
+        "vomit swarm"
+      ],
+      "1st": [
+        "bomber’s eye",
+        "comprehend languages",
+        "cure light wounds",
+        "jump",
+        "keen senses",
+        "negate aroma",
+        "resist energy",
+        "touch of the sea"
+      ]
+    },
+    "Ritual": {
+      "Name": "Alchemical Protection",
+      "Type": "Su",
+      "Effect": "Spend this boon’s effect as an immediate action when you make a saving throw against poison or an alchemical item but before rolling. You gain a +4 bonus on that saving throw."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Lab+Journal+of+Constance+Inflix"
+  },
+  {
+    "Name": "Book of Harms",
+    "Cost": "535 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 5 Evoker",
+    "Source": "Ultimate Magic",
+    "Value": "535 gp",
+    "Value With Preparation Ritual": "900 gp",
+    "Opposition Schools": "Divination, transmutation",
+    "Protection": "Average lock (DC 25)",
+    "Description": "The leather wrapping of this book is of an indeterminate type, and gives off a faint and unpleasant scent, as of charred meat. The writing inside is in a jagged hand, and many notes on the ash-smudged pages indicate its previous owner sought ever more damaging magic. A glittering rune in the cover’s center is shaped vaguely like a lightning bolt.",
+    "Spells": {
+      "3rd": ["fireball", "lightning bolt"],
+      "2nd": ["acid arrow", "darkness", "ghoul touch", "gust of wind"],
+      "1st": [
+        "burning hands",
+        "color spray",
+        "corrosive touch",
+        "hydraulic push",
+        "hypnotism",
+        "magic missile",
+        "ray of enfeeblement",
+        "shocking grasp"
+      ]
+    },
+    "Ritual": {
+      "Name": "Harmful Surge",
+      "Type": "Su",
+      "Effect": "Spend this boon effect as a free action when you cast a wizard evocation spell to treat it as if Maximize Spell was applied; you take 1d4 damage × the level of the spell you maximize. This damage can’t be reduced in any way."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Book+of+Harms"
+  },
+  {
+    "Name": "Erages Journeyman's Manual",
+    "Cost": "575 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 7 Magus",
+    "Source": "Arcane Anthology",
+    "Value": "575 gp",
+    "Value With Preparation Ritual": "1,100 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This book is bound in glittering silver bark, and its title is printed in golden calligraphy in both Elven and Common.",
+    "Spells": {
+      "3rd": ["dispel magic", "haste"],
+      "2nd": [
+        "alter self",
+        "frigid touch",
+        "invisibility",
+        "mirror image",
+        "pyrotechnics",
+        "scorching ray"
+      ],
+      "1st": [
+        "chill touch",
+        "color spray",
+        "enlarge person",
+        "grease",
+        "jump",
+        "reduce person",
+        "shield",
+        "silent image"
+      ]
+    },
+    "Ritual": {
+      "Name": "Avoiding Spell",
+      "Type": "Su",
+      "Effect": "Whenever you cast a transmutation spell, you can spend this boon as a swift action to gain a +1 dodge bonus to AC for a number of rounds equal to the spell’s level."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Erages+Journeyman%27s+Manual"
+  },
+  {
+    "Name": "Galtan Cookbook",
+    "Cost": "670 gp",
+    "Book Type": "Formula Book",
+    "Class Requirements": "Level 8 Alchemist",
+    "Source": "Arcane Anthology",
+    "Value": "670 gp",
+    "Value With Preparation Ritual": "1,270 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This book’s cover is illegibly scorched and the pages are wrinkled from water damage.",
+    "Spells": {
+      "3rd": ["absorbing touch", "arcane sight", "draconic reservoir", "seek thoughts"],
+      "2nd": [
+        "cat’s grace",
+        "invisibility",
+        "perceive cues",
+        "resist energy",
+        "see invisibility",
+        "undetectable alignment"
+      ],
+      "1st": [
+        "ant haul",
+        "bomber’s eye",
+        "comprehend languages",
+        "detect secret doors",
+        "disguise self",
+        "expeditious retreat",
+        "true strike"
+      ]
+    },
+    "Ritual": {
+      "Name": "Blast Finesse",
+      "Type": "Su",
+      "Effect": "As an immediate action when you throw a bomb, you can spend this boon to shape the blast by adding up to three 5-foot squares to the area, as long as those squares are adjacent to the bomb’s normal area."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Galtan+Cookbook"
+  },
+  {
+    "Name": "The Guide's Analects",
+    "Cost": "690 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 6 Universalist",
+    "Source": "Arcane Anthology",
+    "Value": "690 gp",
+    "Value With Preparation Ritual": "990 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This book’s worn leather cover is emblazoned with a simplified winged eye superimposed on a map of Avistan.",
+    "Spells": {
+      "3rd": [
+        "Aroden’s spellsword",
+        "heroism",
+        "lesser guardian monument",
+        "magic circle against evil"
+      ],
+      "2nd": [
+        "arcane disruption",
+        "human potential",
+        "masterwork transformation",
+        "winged sword"
+      ],
+      "1st": [
+        "detect undead",
+        "endure elements",
+        "expeditious construction",
+        "heightened awareness",
+        "linked legacy",
+        "mage armor"
+      ]
+    },
+    "Ritual": {
+      "Name": "Glorious Blade",
+      "Type": "Su",
+      "Effect": "When you attack with a sword (including swordlike spell effects that require attack rolls), you can expend a prepared spell or spell slot as a free action to spend this boon. You gain an insight bonus on that attack roll equal to the level of the spell/slot expended."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=The+Guide%27s+Analects"
+  },
+  {
+    "Name": "Book of the Grave",
+    "Cost": "815 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 6 Necromancer",
+    "Source": "Ultimate Magic",
+    "Value": "815 gp",
+    "Value With Preparation Ritual": "1,265 gp",
+    "Opposition Schools": "Enchantment, transmutation",
+    "Protection": "The edges of the first three pages are coated with nitharit poison (contact; Fort DC 13; frequency 1/minute for 6 minutes; effect 1d3 Con damage; cure 1 save).",
+    "Description": "This tome reeks of decomposing flesh or some even fouler stench. Grave mold clings to the worm-eaten cover, and dirt stains the pages. Some pages have been torn out.",
+    "Spells": {
+      "3rd": ["blood biography", "ray of exhaustion", "vampiric touch", "vitriol"],
+      "2nd": [
+        "command undead",
+        "create treasure map",
+        "ghoul touch",
+        "spectral hand",
+        "stone call",
+        "web"
+      ],
+      "1st": [
+        "burning hands",
+        "chill touch",
+        "disguise self",
+        "mage armor",
+        "protection from good",
+        "ray of enfeeblement",
+        "sculpt corpse",
+        "shield",
+        "true strike",
+        "ventriloquism"
+      ]
+    },
+    "Ritual": {
+      "Name": "Breath of the Grave",
+      "Type": "Su",
+      "Effect": "As a swift action, spend this boon’s effect to breathe a 15-foot cone of rotting stench. Creatures in the cone must succeed at a Fort save (DC 10 + your highest caster level in a class that prepares spells) or be sickened for 1 round. After spending it, you take a –4 penalty on Diplomacy and Stealth checks until you prepare spells again."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Book+of+the+Grave"
+  },
+  {
+    "Name": "Journal of the Beast Within",
+    "Cost": "915 gp",
+    "Book Type": "Formula Book",
+    "Class Requirements": "Level 10 Alchemist",
+    "Source": "Ultimate Magic",
+    "Value": "915 gp",
+    "Value With Preparation Ritual": "2,165 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This ragged collection of scorched and stained notes is tied with cheap twine between wooden covers. A few formulae appear to have been deliberately obliterated, scratched through so thoroughly that the paper is torn in places.",
+    "Spells": {
+      "4th": ["dragon’s breath"],
+      "3rd": ["beast shape I", "rage", "tongues", "water breathing"],
+      "2nd": [
+        "barkskin",
+        "bull’s strength",
+        "cure moderate wounds",
+        "elemental touch",
+        "resist energy"
+      ],
+      "1st": [
+        "bomber’s eye",
+        "comprehend languages",
+        "crafter’s fortune",
+        "cure light wounds",
+        "disguise self",
+        "enlarge person",
+        "identify",
+        "shield"
+      ]
+    },
+    "Ritual": {
+      "Name": "Beastly Concoction",
+      "Type": "Su",
+      "Effect": "Spend this boon when you imbibe your mutagen. The mutagen grants a +6 alchemical bonus to your selected ability score instead of +4; you take a –2 penalty to all mental ability scores (Int, Wis, Cha) while it lasts."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Journal+of+the+Beast+Within"
+  },
+  {
+    "Name": "Grimoire of Glittering Eyes",
+    "Cost": "1,055 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 7 Illusionist",
+    "Source": "Ultimate Magic",
+    "Value": "1,055 gp",
+    "Value With Preparation Ritual": "1,755 gp",
+    "Opposition Schools": "Evocation, necromancy",
+    "Protection": "The entire book is warded with illusory script (Will DC 16; on failure, the suggestion is for the reader to “Close the book and leave”).",
+    "Description": "The title of this book is embossed into the scaly cover. Inside, the pages sparkle and gleam in even the faintest light, and the handwriting looks preternaturally clean.",
+    "Spells": {
+      "4th": ["phantasmal killer", "wandering star motes"],
+      "3rd": [
+        "illusory script",
+        "invisibility sphere",
+        "madness",
+        "major image"
+      ],
+      "2nd": ["magic mouth", "misdirection", "phantom trap", "scare"],
+      "1st": [
+        "alarm",
+        "animate rope",
+        "color spray",
+        "comprehend languages",
+        "disguise self",
+        "hypnotism",
+        "magic aura",
+        "magic weapon",
+        "shield",
+        "sleep"
+      ]
+    },
+    "Ritual": {
+      "Name": "Glittering Eyes",
+      "Type": "Su",
+      "Effect": "Spend this boon’s effect as a free action when you cast an illusion spell. You gain darkvision 60 ft. and a +4 bonus on saves to disbelieve illusions for 1 minute."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Grimoire+of+Glittering+Eyes"
+  },
+  {
+    "Name": "Arrowsong's Sorrow",
+    "Cost": "1,200 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 3 Universalist",
+    "Source": "Arcane Anthology",
+    "Value": "1,200 gp",
+    "Value With Preparation Ritual": "2,200 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This drab leather tome is stamped plainly with elven lettering, appearing at first glance as little more than a journeyman’s treatise on spellcasting. Penned into almost every margin, however, are copious notes by an author who identifies herself only as “Arrowsong.” These annotations discuss numerous spellcasting fallacies made by the tome’s original authors and simple (yet effective) countermeasures that more martially inclined persons can use to disrupt spellcasting. The overall tone of Arrowsong’s notes is one of bitter melancholy, and an equal amount of space is dedicated to slanderous poetry directed toward Arrowsong’s parents and the book’s writers, who might be the same people.",
+    "Spells": {
+      "3rd": ["contingent action", "cloak of winds", "fireball", "lightning bolt"],
+      "2nd": ["acid arrow", "arrow eruption", "protection from arrows", "scorching ray", "stone call"],
+      "1st": ["blend", "gravity bow", "identify", "longshot", "magic missile", "shield", "true strike"]
+    },
+    "Ritual": {
+      "Name": "Disruption Master",
+      "Type": "Ex",
+      "Effect": "Unlike other boons, you do not spend this one. Until you prepare spells again, when you damage a foe or the foe fails a saving throw against a spell of yours, the foe also takes a –2 penalty on all concentration checks it attempts for 1 round."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Arrowsong%27s+Sorrow"
+  },
+  {
+    "Name": "Calamaes Fragment",
+    "Cost": "1,565 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 7 Transmuter",
+    "Source": "Arcane Anthology",
+    "Value": "1,565 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "Two gold-plated bronze covers bind this gaudy tome. Several synonyms for “wealth” are neatly chiseled in different languages on the cover.",
+    "Spells": {
+      "4th": ["dimension door", "lesser age resistance", "liquefy"],
+      "3rd": ["deft digits", "dispel magic", "greater magic weapon", "haste", "hostile levitation", "rags to riches"],
+      "2nd": ["alter self", "darkvision", "fool’s gold", "glide", "glitterdust", "scorching ray", "touch of idiocy"],
+      "1st": ["ant haul", "jury-rig", "mage armor", "magic missile", "polypurpose panacea", "shocking grasp", "sleep", "tears to wine"]
+    },
+    "Ritual": null,
+    "Reference": "https://www.aonprd.com/SpellbookDisplay.aspx?ItemName=Calamaes+Fragment"
+  },
+  {
+    "Name": "Tome of the Transmuter",
+    "Cost": "1,835 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 8 Transmuter",
+    "Source": "Ultimate Magic",
+    "Value": "1,835 gp",
+    "Value With Preparation Ritual": "2,635 gp",
+    "Opposition Schools": "Illusion, necromancy",
+    "Protection": "Good lock (DC 30), explosive runes (Reflex DC 16)",
+    "Description": "This simple book is bound in white leather with a silver clasp. Careful notes on economic theory in a crisp and precise hand occupy the last few written pages, after which there is a page stained with a dark reddish-brown smear. The rest of the pages are blank.",
+    "Spells": {
+      "4th": ["beast shape II", "calcific touch", "confusion", "dimension door", "stone shape"],
+      "3rd": ["arcane sight", "dispel magic", "explosive runes", "lightning bolt", "greater magic weapon", "slow"],
+      "2nd": ["alter self", "flaming sphere", "knock", "pyrotechnics", "resist energy", "see invisibility", "whispering wind"],
+      "1st": ["animate rope", "charm person", "color spray", "erase", "floating disk", "hush", "mage armor", "magic missile", "protection from chaos", "unseen servant"]
+    },
+    "Ritual": {
+      "Name": "Defensive Transmutation",
+      "Type": "Su",
+      "Effect": "Spend this boon’s effect as a free action when you cast a transmutation spell with a range of personal. As long as you are affected by that spell, you gain a +2 natural armor bonus for the duration of the spell."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Tome+of+the+Transmuter"
+  },
+  {
+    "Name": "The Prying Eye",
+    "Cost": "1,940 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 7 Universalist",
+    "Source": "Divine Anthology",
+    "Value": "1,940 gp",
+    "Value With Preparation Ritual": "2,200 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "The front cover of this tome is as black as night, while the back cover is ivory white. An eye-shaped symbol graces both covers.",
+    "Spells": {
+      "4th": ["arcane eye", "eyes of the void", "medusa’s bane"],
+      "3rd": ["arcane sight", "channel the gift", "fractions of heal and harm"],
+      "2nd": ["darkvision", "burning gaze", "see invisibility", "spell gauge"],
+      "1st": ["countless eyes", "detect secret doors", "identify", "invisibility alarm", "see alignment", "true strike"]
+    },
+    "Ritual": {
+      "Name": "Keen Perception",
+      "Type": "Su",
+      "Effect": "You can spend this boon to gain a +2 insight bonus on a single Perception or Sense Motive check."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=The+Prying+Eye"
+  },
+  {
+    "Name": "Journeyman Book of Rul Thaven",
+    "Cost": "2,195 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 9 Diviner",
+    "Source": "Ultimate Magic",
+    "Value": "2,195 gp",
+    "Value With Preparation Ritual": "3,320 gp",
+    "Opposition Schools": "Illusion, transmutation",
+    "Protection": "Average lock (DC 25), and the 5th-level spells are hidden with secret page. The special word is “reveal.”",
+    "Description": "This medium-sized book has a creased spine and supple gray leather covers. The leather has rubbed away in certain spots, tiny pinhole burns pock the surface, and a brass lock holds the book shut. A woman’s portrait has been bound into the front cover, and text covers almost all of the image except her face: text in circles, with arrows pointing to new circles with suppositions. Underneath the woman’s chin are the words “Diabolist sacrifice?”",
+    "Spells": {
+      "5th": ["contact other plane", "major creation", "telepathic bond"],
+      "4th": ["detect scrying", "locate creature", "remove curse", "scrying"],
+      "3rd": ["arcane sight", "clairaudience/clairvoyance", "secret page", "tongues"],
+      "2nd": ["detect thoughts", "flaming sphere", "locate object", "resist energy", "see invisibility", "summon monster II"],
+      "1st": ["cause fear", "comprehend languages", "detect secret doors", "detect undead", "disguise self", "identify", "protection from evil", "protection from law", "true strike"]
+    },
+    "Ritual": {
+      "Name": "Eyes of Rul Thaven",
+      "Type": "Su",
+      "Effect": "Spend this boon’s effect as a swift action to gain the effects of see invisibility for 1 round."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Journeyman+Book+of+Rul+Thaven"
+  },
+  {
+    "Name": "Cold Irony",
+    "Cost": "2,420 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 15 Bard",
+    "Source": "Arcane Anthology",
+    "Value": "2,420 gp",
+    "Value With Preparation Ritual": "2,795 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "Bound in thin sheets of iron, this book is designed as a series of treatises on divination, information gathering, and rhetoric. The thoughts and notes are so complete as to qualify as a spellbook for the spells listed, despite the fact the author was a bard with no need for a spellbook.",
+    "Spells": {
+      "5th": ["foe to friend", "greater heroism", "song of discord", "unwilling shield"],
+      "4th": ["break enchantment", "detect scrying", "dominate person", "foretell failure"],
+      "3rd": ["blink", "find fault", "glibness", "haste", "reviving finale"],
+      "2nd": ["cure moderate wounds", "gallant inspiration", "hold person", "locate object", "misdirection", "perfect placement"],
+      "1st": ["expeditious retreat", "memory lapse", "moment of greatness", "obscure object", "undetectable alignment", "vanish"]
+    },
+    "Ritual": {
+      "Name": "Brain Wash",
+      "Type": "Su",
+      "Effect": "You can expend this boon when you cast a spell on a creature you have succeeded at a Bluff, Diplomacy, Knowledge, or Sense Motive check against. You cast that spell at +1 caster level and its save DC increases by 1."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Cold+Irony"
+  },
+  {
+    "Name": "Chymist's Guidebook",
+    "Cost": "2,545 gp",
+    "Book Type": "Formula Book",
+    "Class Requirements": "Level 15 Alchemist",
+    "Source": "Ultimate Magic",
+    "Value": "2,545 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "Good lock (DC 30)",
+    "Description": "The pages of this formula book are carefully varnished. Sprinkled among the formulae are details and diagrams of alchemical devices, many of which seem to defy the normal conventions of alchemy and physics. The last page contains incomplete notes on the preparation of experimental mutagens.",
+    "Spells": {
+      "5th": ["delayed consumption", "magic jar", "spell resistance"],
+      "4th": ["detonate", "freedom of movement", "greater invisibility", "restoration", "stoneskin"],
+      "3rd": ["amplify elixir", "arcane sight", "haste", "heroism", "protection from energy", "thorn body"],
+      "2nd": ["alter self", "bear’s endurance", "false life", "fire breath", "see invisibility", "transmute potion to poison"],
+      "1st": ["ant haul", "comprehend languages", "cure light wounds", "detect secret doors", "enlarge person", "jump", "keen senses", "negate aroma", "shield", "true strike"]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Chymist%27s+Guidebook"
+  },
+  {
+    "Name": "Manuscript of Jack Were-son",
+    "Cost": "2,835 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 10 Universalist",
+    "Source": "Ultimate Magic",
+    "Value": "2,835 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "Average lock with arcane lock (DC 35) and explosive runes (Reflex DC 16)",
+    "Description": "Blood, dirt, wine, and more stain this white leather book. The owner’s name, Jack Were-son, is stamped into the cover in peeling gold, yet no more information about the author is immediately evident. Several of the pages contain careful diagrams and illustrations done by a competent but uninspiring artist.",
+    "Spells": {
+      "5th": ["break enchantment", "mage’s private sanctum", "polymorph", "treasure stitching"],
+      "4th": ["charm monster", "dimension door", "greater invisibility", "moonstruck", "true form"],
+      "3rd": ["cloak of winds", "explosive runes", "haste", "lightning bolt", "nondetection", "twilight knife"],
+      "2nd": ["acid arrow", "burning gaze", "dust of twilight", "fog cloud", "metabolize", "protection from arrows", "spider climb"],
+      "1st": ["alter winds", "ant haul", "burning hands", "cause fear", "hold portal", "identify", "magic missile", "sleep", "stone fist", "vanish"]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Manuscript+of+Jack+Were-son"
+  },
+  {
+    "Name": "Sarini's Workbook",
+    "Cost": "4,295 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 16 Magus with Bard Spells",
+    "Source": "Arcane Anthology",
+    "Value": "4,295 gp",
+    "Value With Preparation Ritual": "4,670 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This book appears to be more of a personal journal than a magical tome. The soft leather binding is worn, and many pages bear the telltale creases of dog-ears and stains of spilled wine.",
+    "Spells": {
+      "6th": ["mass eagle’s splendor", "transformation"],
+      "5th": ["baleful polymorph", "shadow evocation", "telekinesis", "teleport", "vampiric shadow shield", "wall of force"],
+      "4th": ["black tentacles", "charm monster", "greater flaming sphere", "mass enlarge person", "mass reduce person", "tough crowd", "wreath of blades"],
+      "3rd": ["burst of speed", "dispel magic", "fly", "heckle", "major image", "stage fright"],
+      "2nd": ["alter self", "darkness", "hold person", "minor image", "pilfering hand", "scorching ray"],
+      "1st": ["charm person", "flare burst", "grease", "jump", "mirror strike", "mount", "negative reaction", "silent image", "true strike", "unseen servant"]
+    },
+    "Ritual": {
+      "Name": "Devilishly Reasonable",
+      "Type": "Su",
+      "Effect": "Spend this boon to gain a +5 bonus on a Diplomacy check against a target that is friendly or helpful to request aid in the form of the target revealing an important secret."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Sarini%27s+Workbook"
+  },
+  {
+    "Name": "Arctic Call",
+    "Cost": "4,335 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 11 Evoker",
+    "Source": "Ultimate Magic",
+    "Value": "4,335 gp",
+    "Value With Preparation Ritual": "5,985 gp",
+    "Opposition Schools": "Illusion, necromancy",
+    "Protection": "fire trap modified to inflict cold damage (Reflex DC 17)",
+    "Description": "Fine vellum sheets fill these two well-worn books. Beautiful illustrations depict the effects of each spell, many with a distinctly arctic theme. Though the pages and their wintry illustrations are of high quality, the protective leather case that encloses both books smells and feels greasy, as if the hide has been crudely waterproofed with animal fat.",
+    "Spells": {
+      "6th": ["contingency", "freezing sphere", "repulsion"],
+      "5th": ["cone of cold", "mage’s private sanctum", "permanency", "teleport", "wall of force"],
+      "4th": ["ice storm", "shout", "stoneskin", "symbol of revelation", "wall of ice"],
+      "3rd": ["arcane sight", "dispel magic", "elemental aura", "fire trap", "heroism", "lightning bolt", "phantom steed", "seek thoughts"],
+      "2nd": ["bull’s strength", "false life", "glitterdust", "hideous laughter", "make whole", "resist energy", "rope trick"],
+      "1st": ["detect secret doors", "endure elements", "enlarge person", "feather fall", "mage armor", "magic missile", "obscuring mist", "shield", "shocking grasp"]
+    },
+    "Ritual": {
+      "Name": "Rime Bite",
+      "Type": "Su",
+      "Effect": "Spend this boon as a free action when you cast a spell with the cold descriptor. Any damage from that spell ignores all resistance to cold, but does not ignore immunity to cold."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Arctic+Call"
+  },
+  {
+    "Name": "Tome of Stone Wards",
+    "Cost": "4,385 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 17 Abjurer",
+    "Source": "Arcane Anthology",
+    "Value": "4,385 gp",
+    "Value With Preparation Ritual": "8,385 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This heavy book is bound between a pair of thin stone tablets, its title carved in gold lettering. Scribed completely in the Dwarven tongue, the text contains numerous tips regarding the construction and upkeep of nearly every corridor, path, and tunnel in the Five Kings Mountains.",
+    "Spells": {
+      "9th": ["imprisonment"],
+      "8th": ["dimensional lock", "protection from spells"],
+      "7th": ["banishment", "spell turning"],
+      "6th": ["greater make whole", "guards and wards", "move earth", "symbol of sealing"],
+      "5th": ["life bubble", "major creation", "passwall", "wall of stone", "wreath of blades"],
+      "4th": ["curse of magic negation", "make whole", "stone shape", "stoneskin"],
+      "3rd": ["burrow", "communal spider climb", "dispel magic", "explosive runes", "shrink item", "spiked pit", "stunning barrier"],
+      "2nd": ["arcane lock", "certain grip", "communal ant haul", "create pit", "knock", "resist energy", "spider climb", "stone call", "warding weapon"],
+      "1st": ["alarm", "ant haul", "expeditious excavation", "invisibility alarm"]
+    },
+    "Ritual": {
+      "Name": "Keeper of Stone",
+      "Type": "Ex/Su",
+      "Effect": "This boon is not spent. It grants a +1 insight bonus on Knowledge (dungeoneering), Knowledge (geography), Knowledge (nature), and Survival checks in hills, mountains, and underground terrain until you next prepare spells. In addition, whenever you cast mending, make whole, or greater make whole on an object made entirely from stone, add 1d6 to the hit points restored."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Tome+of+Stone+Wards"
+  },
+  {
+    "Name": "Cyrusian Codex",
+    "Cost": "4,425 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 11 Transmuter",
+    "Source": "Arcane Anthology",
+    "Value": "4,425 gp",
+    "Value With Preparation Ritual": "9,125 gp",
+    "Opposition Schools": "—",
+    "Protection": "Good lock with arcane lock (DC 40)",
+    "Description": "This heavy tome bears a handsome leather cover over thick metal plates. The front cover displays a dozen tiny dials arranged in a semicircle around the locking mechanism.",
+    "Spells": {
+      "6th": ["age resistance", "disintegrate", "greater heroism", "wall of iron"],
+      "5th": ["dissolution", "major creation", "open arms", "treasure stitching"],
+      "4th": ["adjustable polymorph", "calcific touch", "greater darkvision", "liquefy", "rags to riches", "shout"],
+      "3rd": ["anthropomorphic animal", "deft digits", "disable construct", "dispel magic", "fly", "lightning bolt"],
+      "2nd": ["arcane lock", "darkness", "detect thoughts", "full pouch", "masterwork transformation", "shatter", "silk to steel", "twisted space"],
+      "1st": ["ant haul", "burning hands", "endure elements", "jump", "mage armor", "mirror strike", "true strike", "vocal alteration"]
+    },
+    "Ritual": {
+      "Name": "Enduring Alteration",
+      "Type": "Su",
+      "Effect": "Spend this boon to apply Extend Spell to a transmutation spell as you cast it, and increase the DC to dispel that spell by 4. This doesn’t change spell level or casting time."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Cyrusian+Codex"
+  },
+  {
+    "Name": "Insights of Far-Seeing Taernis",
+    "Cost": "4,555 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 12 Conjurer",
+    "Source": "Arcane Anthology",
+    "Value": "4,555 gp",
+    "Value With Preparation Ritual": "7,055 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This slim tome is bound in green leather embossed with geometric constellations. The text focuses on summoning magic and the philosophy of calling allies rather than enslaving them.",
+    "Spells": {
+      "6th": ["planar binding", "summon monster VI"],
+      "5th": ["cloudkill", "interposing hand", "summon monster V", "teleport"],
+      "4th": ["black tentacles", "dimension door", "minor creation", "summon monster IV"],
+      "3rd": ["phantom steed", "sleet storm", "stinking cloud", "summon monster III"],
+      "2nd": ["create pit", "fog cloud", "glitterdust", "summon monster II"],
+      "1st": ["grease", "mage armor", "obscuring mist", "summon monster I"]
+    },
+    "Ritual": {
+      "Name": "Cooperative Summons",
+      "Type": "Su",
+      "Effect": "Spend this boon when casting a summon monster spell. The summoned creature gains a +1 morale bonus on attack rolls and saving throws for the duration of the spell."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Insights+of+Far-Seeing+Taernis"
+  },
+  {
+    "Name": "Wisdom of Jatembe (Six Warriors Edition)",
+    "Cost": "4,725 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 11 Diviner",
+    "Source": "Arcane Anthology",
+    "Value": "4,725 gp",
+    "Value With Preparation Ritual": "8,225 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "This edition of Wisdom of Jatembe includes six legendary warriors' stories illustrating the dangers of arrogance and the rewards of insight.",
+    "Spells": {
+      "6th": ["analyze dweomer", "true seeing"],
+      "5th": ["contact other plane", "prying eyes", "telepathic bond"],
+      "4th": ["arcane eye", "detect scrying", "divination", "scrying"],
+      "3rd": ["clairaudience/clairvoyance", "heroism", "tongues"],
+      "2nd": ["detect thoughts", "locate object", "see invisibility"],
+      "1st": ["comprehend languages", "detect undead", "identify", "true strike"]
+    },
+    "Ritual": {
+      "Name": "Guided Foresight",
+      "Type": "Su",
+      "Effect": "Spend this boon as a free action when casting a divination spell to gain a +2 insight bonus to AC and saving throws for 1 round."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Wisdom+of+Jatembe+%28Six+Warriors+Edition%29"
+  },
+  {
+    "Name": "Quest Eternal",
+    "Cost": "6,475 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 13 Diviner",
+    "Source": "Arcane Anthology",
+    "Value": "6,475 gp",
+    "Value With Preparation Ritual": "10,475 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "Bound in dark leather etched with silver stars, this book details philosophical musings on destiny and fate.",
+    "Spells": {
+      "7th": ["greater scrying", "plane shift"],
+      "6th": ["analyze dweomer", "legend lore", "true seeing"],
+      "5th": ["contact other plane", "dream", "telepathic bond"],
+      "4th": ["arcane eye", "divination", "locate creature"],
+      "3rd": ["clairaudience/clairvoyance", "tongues"],
+      "2nd": ["detect thoughts", "see invisibility"],
+      "1st": ["identify", "true strike"]
+    },
+    "Ritual": {
+      "Name": "Destined Strike",
+      "Type": "Su",
+      "Effect": "Spend this boon before making an attack roll to gain a +4 insight bonus on that roll."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Quest+Eternal"
+  },
+  {
+    "Name": "The Formulae of Master Gebr",
+    "Cost": "6,615 gp",
+    "Book Type": "Formula Book",
+    "Class Requirements": "Level 20 Alchemist",
+    "Source": "Ultimate Magic",
+    "Value": "6,615 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "Arcane lock (DC 40)",
+    "Description": "This formula book contains advanced and dangerous alchemical research attributed to the infamous Master Gebr.",
+    "Spells": {
+      "6th": ["greater heroism", "heal", "true seeing"],
+      "5th": ["breath of life", "greater restoration", "magic jar", "spell resistance"],
+      "4th": ["freedom of movement", "greater invisibility", "restoration", "stoneskin"],
+      "3rd": ["haste", "heroism", "protection from energy"],
+      "2nd": ["alter self", "bear’s endurance", "false life"],
+      "1st": ["cure light wounds", "enlarge person", "shield"]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=The+Formulae+of+Master+Gebr"
+  },
+  {
+    "Name": "The Last Azlanti's Analects",
+    "Cost": "7,030 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 15 Universalist",
+    "Source": "Arcane Anthology",
+    "Value": "7,030 gp",
+    "Value With Preparation Ritual": "11,530 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "Bound in deep blue leather embossed with ancient Azlanti sigils, this tome preserves arcane theory from a lost age.",
+    "Spells": {
+      "8th": ["moment of prescience", "maze"],
+      "7th": ["limited wish", "spell turning"],
+      "6th": ["analyze dweomer", "greater dispel magic", "true seeing"],
+      "5th": ["teleport", "wall of force"],
+      "4th": ["dimension door", "stoneskin"],
+      "3rd": ["dispel magic", "haste"],
+      "2nd": ["mirror image", "see invisibility"],
+      "1st": ["mage armor", "shield"]
+    },
+    "Ritual": {
+      "Name": "Azlanti Precision",
+      "Type": "Su",
+      "Effect": "Spend this boon when casting a spell to treat your caster level as 2 higher for that spell."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=The+Last+Azlanti%27s+Analects"
+  },
+  {
+    "Name": "Grandfather's Legacy",
+    "Cost": "7,635 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 14 Necromancer",
+    "Source": "Arcane Anthology",
+    "Value": "7,635 gp",
+    "Value With Preparation Ritual": "12,135 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "A somber black tome filled with generational notes on the manipulation of life force and undeath.",
+    "Spells": {
+      "7th": ["control undead", "finger of death"],
+      "6th": ["create undead", "circle of death"],
+      "5th": ["magic jar", "waves of fatigue"],
+      "4th": ["enervation", "fear"],
+      "3rd": ["vampiric touch"],
+      "2nd": ["ghoul touch"],
+      "1st": ["ray of enfeeblement"]
+    },
+    "Ritual": {
+      "Name": "Legacy of Bones",
+      "Type": "Su",
+      "Effect": "Spend this boon when casting a necromancy spell to gain temporary hit points equal to the spell’s level."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Grandfather%27s+Legacy"
+  },
+  {
+    "Name": "Guardian Grimoire",
+    "Cost": "10,055 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 15 Abjurer",
+    "Source": "Arcane Anthology",
+    "Value": "10,055 gp",
+    "Value With Preparation Ritual": "16,055 gp",
+    "Opposition Schools": "—",
+    "Protection": "Arcane lock (DC 40)",
+    "Description": "A thick iron-bound tome detailing the ultimate wards and protective enchantments.",
+    "Spells": {
+      "8th": ["mind blank"],
+      "7th": ["greater teleport", "spell turning"],
+      "6th": ["greater dispel magic", "guards and wards"],
+      "5th": ["wall of force"],
+      "4th": ["stoneskin"],
+      "3rd": ["dispel magic"]
+    },
+    "Ritual": {
+      "Name": "Shielded Casting",
+      "Type": "Su",
+      "Effect": "Spend this boon when casting an abjuration spell to gain a +2 deflection bonus to AC for 1 minute."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Guardian+Grimoire"
+  },
+  {
+    "Name": "Mysteries of Shadow",
+    "Cost": "11,865 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 16 Illusionist",
+    "Source": "Arcane Anthology",
+    "Value": "11,865 gp",
+    "Value With Preparation Ritual": "18,365 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "A velvet-bound tome exploring shadow magic and illusion theory.",
+    "Spells": {
+      "8th": ["greater shadow evocation"],
+      "7th": ["shadow walk"],
+      "6th": ["mislead"],
+      "5th": ["shadow evocation"],
+      "4th": ["greater invisibility"],
+      "3rd": ["major image"],
+      "2nd": ["minor image"],
+      "1st": ["silent image"]
+    },
+    "Ritual": {
+      "Name": "Veil of Darkness",
+      "Type": "Su",
+      "Effect": "Spend this boon to gain concealment (20% miss chance) for 1 round."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Mysteries+of+Shadow"
+  },
+  {
+    "Name": "Master Books of Rul Thaven",
+    "Cost": "12,725 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 17 Diviner",
+    "Source": "Ultimate Magic",
+    "Value": "12,725 gp",
+    "Value With Preparation Ritual": "19,225 gp",
+    "Opposition Schools": "Illusion, transmutation",
+    "Protection": "Arcane lock and symbol of death",
+    "Description": "The culmination of Rul Thaven’s research, this tome brims with deep planar secrets.",
+    "Spells": {
+      "9th": ["foresight"],
+      "8th": ["moment of prescience"],
+      "7th": ["greater scrying"],
+      "6th": ["true seeing"],
+      "5th": ["telepathic bond"],
+      "4th": ["scrying"],
+      "3rd": ["clairaudience/clairvoyance"]
+    },
+    "Ritual": {
+      "Name": "Perfect Insight",
+      "Type": "Su",
+      "Effect": "Spend this boon before rolling any d20 to roll twice and take the better result."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Master+Books+of+Rul+Thaven"
+  },
+  {
+    "Name": "Wisdom of Jatembe (Nine Warriors Edition)",
+    "Cost": "13,415 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 17 Diviner",
+    "Source": "Arcane Anthology",
+    "Value": "13,415 gp",
+    "Value With Preparation Ritual": "21,915 gp",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "The most complete edition of Jatembe’s teachings, recounting nine legendary heroes.",
+    "Spells": {
+      "9th": ["foresight"],
+      "8th": ["moment of prescience"],
+      "7th": ["greater scrying"],
+      "6th": ["analyze dweomer"],
+      "5th": ["contact other plane"]
+    },
+    "Ritual": {
+      "Name": "Warrior’s Insight",
+      "Type": "Su",
+      "Effect": "Spend this boon when casting a divination spell to gain a +4 insight bonus on your next attack roll."
+    },
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Wisdom+of+Jatembe+%28Nine+Warriors+Edition%29"
+  },
+  {
+    "Name": "Library of the Dancer of Skins",
+    "Cost": "16,435 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 19 Universalist",
+    "Source": "Ultimate Magic",
+    "Value": "16,435 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "A disturbing compendium rumored to contain polymorphic secrets.",
+    "Spells": {
+      "9th": ["shapechange"],
+      "8th": ["polymorph any object"],
+      "7th": ["statue"],
+      "6th": ["disintegrate"]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Library+of+the+Dancer+of+Skins"
+  },
+  {
+    "Name": "Manual of Binding",
+    "Cost": "17,165 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 18 Conjurer",
+    "Source": "Ultimate Magic",
+    "Value": "17,165 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "An advanced treatise on planar binding and extraplanar negotiations.",
+    "Spells": {
+      "9th": ["gate"],
+      "8th": ["greater planar binding"],
+      "7th": ["planar binding"],
+      "6th": ["planar ally"]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Manual+of+Binding"
+  },
+  {
+    "Name": "Mastery of Word and Thought",
+    "Cost": "22,675 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 20 Enchanter",
+    "Source": "Ultimate Magic",
+    "Value": "22,675 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "—",
+    "Description": "A supreme volume on mental domination and psychic control.",
+    "Spells": {
+      "9th": ["dominate monster"],
+      "8th": ["mass charm monster"],
+      "7th": ["insanity"],
+      "6th": ["mass suggestion"]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Mastery+of+Word+and+Thought"
+  },
+  {
+    "Name": "Runes of Wealth",
+    "Cost": "26,365 gp",
+    "Book Type": "Spellbook",
+    "Class Requirements": "Level 18 Transmuter",
+    "Source": "Ultimate Magic",
+    "Value": "26,365 gp",
+    "Value With Preparation Ritual": "—",
+    "Opposition Schools": "—",
+    "Protection": "Arcane lock (DC 40)",
+    "Description": "A gold-etched tome describing transmutations that generate and manipulate wealth.",
+    "Spells": {
+      "9th": ["wish"],
+      "8th": ["polymorph any object"],
+      "7th": ["limited wish"],
+      "6th": ["disintegrate"]
+    },
+    "Ritual": null,
+    "Reference": "https://aonprd.com/SpellbookDisplay.aspx?ItemName=Runes+of+Wealth"
+  }
+]

@@ -1,0 +1,3890 @@
+[
+  {
+    "Name": "Allosaurus",
+    "Cost": "3850 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Allosaurus"
+    },
+    "Description": "A huge, swift hunter, the allosaurus measures 30 feet in length and weighs 10,000 pounds."
+  },
+  {
+    "Name": "Ankylosaurus",
+    "Cost": "3000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Ankylosaurus"
+    },
+    "Description": "The ankylosaurus is a powerful, squat dinosaur more than capable of defending itself against enemies. Its back is heavily armored with thick bony plates and spikes."
+  },
+  {
+    "Name": "Antelope",
+    "Cost": "45 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "herd"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Antelope"
+    },
+    "Description": "A typical antelope stands a bit less than 3 feet at the shoulder, measures 4 feet in length, and weighs 60 pounds."
+  },
+  {
+    "Name": "Archelon",
+    "Cost": "1750 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Gargantuan",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Archelon"
+    },
+    "Description": "An ancient relative of the smaller leatherback sea turtle, the archelon can grow up to 13 feet long and 16 feet from flipper to flipper."
+  },
+  {
+    "Name": "Arsinoitherium",
+    "Cost": "3150 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "megafauna", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A massive, exotic beast sometimes trained as a mount; availability depends on region and specialized handlers."
+  },
+  {
+    "Name": "Aurochs (combat-trained)",
+    "Cost": "450 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "herd", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A powerful herd animal trained to remain steady and controllable in battle."
+  },
+  {
+    "Name": "Aurochs (common)",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "herd", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large bovine herd animal used as livestock or as a mount in some regions."
+  },
+  {
+    "Name": "Axe beak (combat trained)",
+    "Cost": "1500 gp",
+    "Weight": "500 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large, flightless bird trained to accept a rider and tolerate combat."
+  },
+  {
+    "Name": "Axe beak egg",
+    "Cost": "1000 gp",
+    "Weight": "10 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "egg"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "An egg that can hatch into an axe beak if properly incubated and raised."
+  },
+  {
+    "Name": "Baboon",
+    "Cost": "15 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A clever, aggressive primate sometimes kept as a pet or trained animal."
+  },
+  {
+    "Name": "Badger",
+    "Cost": "15 gp",
+    "Weight": "20 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet", "familiar"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small burrowing mammal sometimes kept as a pet or trained animal."
+  },
+  {
+    "Name": "Baluchitherium",
+    "Cost": "4800 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "megafauna", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A gigantic megafauna beast used as an exotic heavy mount; difficult to acquire and train."
+  },
+  {
+    "Name": "Basilosaurus",
+    "Cost": "10200 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A massive aquatic predator; availability is rare and typically limited to specialized coastal markets."
+  },
+  {
+    "Name": "Bat",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet", "familiar"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small nocturnal animal sometimes kept as a pet or used as a familiar."
+  },
+  {
+    "Name": "Bat (Uskwood)",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet", "familiar"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A larger, uncommon bat variety from remote regions, sometimes kept as a pet or used as a familiar."
+  },
+  {
+    "Name": "Behemoth hippopotamus",
+    "Cost": "7900 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "megafauna"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Behemoth+Hippopotamus"
+    },
+    "Description": "This immense behemoth of a hippo is larger than an elephant. Its teeth are like scimitars, and it moves with an indomitable gait."
+  },
+  {
+    "Name": "Bison (combat-trained)",
+    "Cost": "75 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "herd", "combat-trained", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Bison"
+    },
+    "Description": "Bison are large herd animals. They can grow as long as 12 feet and as tall as 7 feet at the shoulder. Average bison weigh 2,200 pounds."
+  },
+  {
+    "Name": "Bison (common)",
+    "Cost": "50 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "herd", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Bison"
+    },
+    "Description": "Bison are large herd animals. They can grow as long as 12 feet and as tall as 7 feet at the shoulder. Average bison weigh 2,200 pounds."
+  },
+  {
+    "Name": "Blue whale",
+    "Cost": "12500 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cetacean"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Blue+Whale"
+    },
+    "Description": "The imposing blue whale is one of the largest animals in the sea, though it is generally docile toward anything it doesn’t perceive as a threat."
+  },
+  {
+    "Name": "Boar (combat-trained)",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "combat-trained", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Boar"
+    },
+    "Description": "This ill-tempered beast’s tiny, bloodshot eyes glare angrily above a mouth filled with sharp tusks."
+  },
+  {
+    "Name": "Boar (common)",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Boar"
+    },
+    "Description": "This ill-tempered beast’s tiny, bloodshot eyes glare angrily above a mouth filled with sharp tusks."
+  },
+  {
+    "Name": "Brachiosaurus",
+    "Cost": "9000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "megafauna"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Brachiosaurus"
+    },
+    "Description": "A long tail counterbalances this reptile’s equally long neck, at the end of which a relatively small head pulls food from the treetop."
+  },
+  {
+    "Name": "Camel",
+    "Cost": "150 gp",
+    "Weight": "1500 lbs",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "herd", "mount", "desert"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Camel"
+    },
+    "Description": "Camels are large, desert-dwelling herd animals noted for their stamina and ill tempers."
+  },
+  {
+    "Name": "Canary",
+    "Cost": "4 cp",
+    "Weight": "9 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet", "bird"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small songbird commonly kept as a pet."
+  },
+  {
+    "Name": "Cat (common)",
+    "Cost": "3 cp",
+    "Weight": "8 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet", "familiar"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Cat"
+    },
+    "Description": "A small domesticated feline commonly kept as a pet (and sometimes as a familiar)."
+  },
+  {
+    "Name": "Cat (hunting)",
+    "Cost": "100 gp",
+    "Weight": "100 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "trained", "hunting"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A larger cat bred and trained to aid hunters by tracking, flushing, or bringing down prey."
+  },
+  {
+    "Name": "Cat (Osirian wise-eye)",
+    "Cost": "6 gp",
+    "Weight": "8 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet", "osirion"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A prized Osirian cat reputed for keen senses and an uncanny awareness, commonly kept as a companion animal."
+  },
+  {
+    "Name": "Cattle",
+    "Cost": "10-50 gp",
+    "Weight": "1500 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "herd", "livestock"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "Common livestock raised for milk, meat, hides, and labor, depending on breed and region."
+  },
+  {
+    "Name": "Centipede (house)",
+    "Cost": "1 cp",
+    "Weight": "3 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["vermin"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=House+Centipede"
+    },
+    "Description": "A small centipede sometimes found in homes; rarely kept intentionally except by those who don’t mind vermin."
+  },
+  {
+    "Name": "Cheetah",
+    "Cost": "160 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "cat"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Cheetah"
+    },
+    "Description": "The cheetah is a swift and deadly predator capable of moving with incredible speed, allowing it to run down unsuspecting foes hundreds of feet away."
+  },
+  {
+    "Name": "Chicken",
+    "Cost": "1 gp",
+    "Weight": "6 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet", "livestock", "bird"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Chicken"
+    },
+    "Description": "This fowl has a compact body, a short beak flanked by red wattles, and a crimson comb on the crown of its head."
+  },
+  {
+    "Name": "Compsognathus",
+    "Cost": "25 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "pet", "familiar"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://aonprd.com/MonsterDisplay.aspx?ItemName=Compsognathus"
+    },
+    "Description": "The compsognathus is a small dinosaur that moves in swift, darting motions. Its bite injects a venom that causes numbness and weakness."
+  },
+  {
+    "Name": "Constrictor snake",
+    "Cost": "90 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "snake"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Constrictor+Snake"
+    },
+    "Description": "Be they jungle-dwelling pythons or swamp-dwelling boas like the anaconda, constrictor snakes are among the most deadly predatory animals of the tropical wilds."
+  },
+  {
+    "Name": "Crab",
+    "Cost": "20 gp",
+    "Weight": "5–7 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A hardy aquatic crustacean sometimes kept in tanks or used as a common trade animal in coastal markets."
+  },
+  {
+    "Name": "Crimson whale",
+    "Cost": "8000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cetacean"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Crimson+Whale"
+    },
+    "Description": "While many cetaceans are docile, the crimson whale is an aggressive hunter that evolved to quickly kill even the largest and most powerful of prey."
+  },
+  {
+    "Name": "Crocodile",
+    "Cost": "55 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "reptile"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Crocodile"
+    },
+    "Description": "This reptile lunges out of the placid water with shocking speed. Its jaw gapes open in a roar, its powerful tail lashing behind."
+  },
+  {
+    "Name": "Deinonychus",
+    "Cost": "600 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Deinonychus"
+    },
+    "Description": "As swift and agile as it is deadly, the deinonychus is a pack hunter, running with several of its kind to take down prey and rip it apart with their gutting talons."
+  },
+  {
+    "Name": "Dimetrodon",
+    "Cost": "600 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["prehistoric", "reptile", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dimetrodon"
+    },
+    "Description": "A dimetrodon is a quadrupedal reptile similar in shape to a crocodile, but with a blunter snout filled with jagged, sharp teeth."
+  },
+  {
+    "Name": "Dire ape",
+    "Cost": "450 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "ape"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Ape+%28Gigantopithecus%29"
+    },
+    "Description": "Known to many scholars as the gigantopithecus, the dire ape is a much more dangerous and bestial creature than the relatively peaceful gorilla."
+  },
+  {
+    "Name": "Dire badger",
+    "Cost": "125 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Badger"
+    },
+    "Description": "A dire badger is a larger, more aggressive version of its common cousin, known for ferocity when enraged."
+  },
+  {
+    "Name": "Dire bat (common)",
+    "Cost": "220 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Bat"
+    },
+    "Description": "A dire bat is a massive bat with a wingspan exceeding 15 feet, capable of carrying riders when properly trained."
+  },
+  {
+    "Name": "Dire bat (riding)",
+    "Cost": "300 gp",
+    "Weight": "400 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "flying", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Bat"
+    },
+    "Description": "A massive bat trained to accept riders and perform basic aerial maneuvers."
+  },
+  {
+    "Name": "Dire bat (riding combat trained)",
+    "Cost": "450 gp",
+    "Weight": "450 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Bat"
+    },
+    "Description": "A dire bat specially trained to remain steady and obedient in the chaos of combat."
+  },
+  {
+    "Name": "Dire bear",
+    "Cost": "1750 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Bear"
+    },
+    "Description": "Dire bears are massive predators with thick fur and immense strength, feared even among other large beasts."
+  },
+  {
+    "Name": "Dire boar",
+    "Cost": "370 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Boar"
+    },
+    "Description": "A dire boar is larger and more aggressive than a normal boar, with enormous tusks and a thick hide."
+  },
+  {
+    "Name": "Dire crocodile",
+    "Cost": "2700 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Crocodile"
+    },
+    "Description": "Dire crocodiles are monstrous reptiles lurking in rivers and swamps, capable of dragging even large prey into the water."
+  },
+  {
+    "Name": "Dire hyena",
+    "Cost": "250 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Hyena"
+    },
+    "Description": "Dire hyenas are larger and more aggressive than common hyenas, with a chilling laugh echoing across the plains."
+  },
+  {
+    "Name": "Dire lion",
+    "Cost": "1000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "cat"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Lion"
+    },
+    "Description": "Dire lions are powerful predators of the savanna, larger and more fearsome than their common kin."
+  },
+  {
+    "Name": "Dire shark",
+    "Cost": "3375 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Shark"
+    },
+    "Description": "A dire shark is a massive aquatic predator with rows of jagged teeth and relentless hunting instincts."
+  },
+  {
+    "Name": "Dire tiger",
+    "Cost": "1055 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "cat"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Tiger"
+    },
+    "Description": "Dire tigers are larger and stronger than common tigers, ambushing prey with terrifying strength."
+  },
+  {
+    "Name": "Dire wolf",
+    "Cost": "380 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "canine"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Wolf"
+    },
+    "Description": "A dire wolf is a large and cunning predator, often hunting in coordinated packs."
+  },
+  {
+    "Name": "Dire wolverine",
+    "Cost": "500 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Wolverine"
+    },
+    "Description": "Dire wolverines are aggressive and tenacious predators known for their ferocity and relentless attacks."
+  },
+  {
+    "Name": "Dodo",
+    "Cost": "5 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A flightless bird known for its docile temperament and awkward gait."
+  },
+  {
+    "Name": "Dog (guard)",
+    "Cost": "25 gp",
+    "Weight": "25 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine", "guard", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dog"
+    },
+    "Description": "A dog bred and trained to guard property or individuals, remaining alert and aggressive toward intruders."
+  },
+  {
+    "Name": "Dog (lap)",
+    "Cost": "15 gp",
+    "Weight": "5 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dog"
+    },
+    "Description": "A small companion dog kept primarily as a pet rather than for work or combat."
+  },
+  {
+    "Name": "Dog (riding)",
+    "Cost": "150 gp",
+    "Weight": "50 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dog"
+    },
+    "Description": "A large dog suitable for use as a mount by Small riders."
+  },
+  {
+    "Name": "Dolphin",
+    "Cost": "105 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dolphin"
+    },
+    "Description": "Dolphins are intelligent aquatic mammals sometimes trained to carry riders underwater or assist fishermen."
+  },
+  {
+    "Name": "Donkey or mule",
+    "Cost": "8 gp",
+    "Weight": "600–800 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pack", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Donkey"
+    },
+    "Description": "Hardy and stubborn beasts of burden commonly used for carrying loads or pulling carts."
+  },
+  {
+    "Name": "Donkey rat",
+    "Cost": "1 gp",
+    "Weight": "50 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "rodent"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large rat bred for use as a pack or riding animal in certain regions."
+  },
+  {
+    "Name": "Duck",
+    "Cost": "2 gp",
+    "Weight": "3 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "livestock"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A common waterfowl kept for eggs, meat, or as a simple pet."
+  },
+  {
+    "Name": "Dwarf caiman",
+    "Cost": "7 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "reptile"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small crocodilian sometimes kept in exotic menageries or as an unusual pet."
+  },
+  {
+    "Name": "Eagle",
+    "Cost": "40 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Eagle"
+    },
+    "Description": "A powerful bird of prey with keen eyesight, sometimes trained for hunting or messaging."
+  },
+  {
+    "Name": "Elasmosaurus",
+    "Cost": "3500 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["prehistoric", "aquatic", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Elasmosaurus"
+    },
+    "Description": "This enormous aquatic reptile has a long neck and powerful flippers, allowing it to glide through the water with ease."
+  },
+  {
+    "Name": "Electric eel",
+    "Cost": "125 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Electric+Eel"
+    },
+    "Description": "An aquatic predator capable of delivering powerful electrical shocks."
+  },
+  {
+    "Name": "Elephant",
+    "Cost": "1000 gp",
+    "Weight": "5 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "herd"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Elephant"
+    },
+    "Description": "Elephants are massive herd animals prized as mounts and beasts of burden in many cultures."
+  },
+  {
+    "Name": "Elk (combat-trained)",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Elk"
+    },
+    "Description": "Elk are large deer with impressive antlers, sometimes trained as mounts or pack animals."
+  },
+  {
+    "Name": "Elk (common)",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Elk"
+    },
+    "Description": "A large deer species valued for transport and labor in forested regions."
+  },
+  {
+    "Name": "Emperor cobra",
+    "Cost": "1600 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "snake", "venomous"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Emperor+Cobra"
+    },
+    "Description": "A massive venomous serpent feared for its size and deadly bite."
+  },
+  {
+    "Name": "Falcon",
+    "Cost": "40 gp",
+    "Weight": "2 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying", "hunting"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Falcon"
+    },
+    "Description": "A swift bird of prey commonly trained for hunting and falconry."
+  },
+  {
+    "Name": "Fox",
+    "Cost": "8 gp",
+    "Weight": "12 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Fox"
+    },
+    "Description": "A cunning woodland predator known for intelligence and adaptability."
+  },
+  {
+    "Name": "Gar",
+    "Cost": "90 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "fish"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Gar"
+    },
+    "Description": "A large freshwater fish with a long snout full of sharp teeth."
+  },
+  {
+    "Name": "Gecko (riding)",
+    "Cost": "300 gp",
+    "Weight": "1200 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Gecko"
+    },
+    "Description": "A large gecko trained to carry riders, prized for its ability to cling to walls and ceilings."
+  },
+  {
+    "Name": "Gecko (riding combat trained)",
+    "Cost": "400 gp",
+    "Weight": "1500 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Gecko"
+    },
+    "Description": "A giant gecko conditioned to remain steady and responsive in battle."
+  },
+  {
+    "Name": "Giant anaconda",
+    "Cost": "6300 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "snake", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Anaconda"
+    },
+    "Description": "A massive constrictor snake dwelling in swamps and rivers, capable of crushing large prey."
+  },
+  {
+    "Name": "Giant chameleon (combat-trained)",
+    "Cost": "350 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Chameleon"
+    },
+    "Description": "A large reptile able to change color to blend with surroundings, trained to carry riders."
+  },
+  {
+    "Name": "Giant chameleon (common)",
+    "Cost": "225 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Chameleon"
+    },
+    "Description": "A color-shifting reptile sometimes used as a mount in tropical regions."
+  },
+  {
+    "Name": "Giant frilled lizard (combat-trained)",
+    "Cost": "550 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large lizard with a dramatic neck frill, trained for use as a mount."
+  },
+  {
+    "Name": "Giant frilled lizard (common)",
+    "Cost": "375 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A frilled-neck reptile sometimes used as an exotic mount."
+  },
+  {
+    "Name": "Giant frog",
+    "Cost": "75 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "amphibian"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Frog"
+    },
+    "Description": "A large amphibian capable of powerful leaps and snatching prey with its sticky tongue."
+  },
+  {
+    "Name": "Giant gar",
+    "Cost": "1200 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A massive freshwater predator with armored scales and sharp teeth."
+  },
+  {
+    "Name": "Giant gecko (combat-trained)",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Gecko"
+    },
+    "Description": "A giant gecko trained to remain steady and responsive in battle."
+  },
+  {
+    "Name": "Giant gecko (common)",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Gecko"
+    },
+    "Description": "A wall-clinging reptile used as a mount in some regions."
+  },
+  {
+    "Name": "Giant moray eel",
+    "Cost": "1000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large aquatic predator with a serpentine body and powerful jaws."
+  },
+  {
+    "Name": "Giant octopus",
+    "Cost": "1800 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cephalopod"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Octopus"
+    },
+    "Description": "A massive cephalopod capable of grappling prey with powerful tentacles."
+  },
+  {
+    "Name": "Giant owl (combat-trained)",
+    "Cost": "9000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Owl"
+    },
+    "Description": "Giant owls are intelligent and powerful nocturnal hunters, capable of carrying riders when properly trained."
+  },
+  {
+    "Name": "Giant owl (common)",
+    "Cost": "6000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "flying", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Owl"
+    },
+    "Description": "A large owl known for keen eyesight and silent flight, sometimes used as an aerial mount."
+  },
+  {
+    "Name": "Giant porcupine",
+    "Cost": "135 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Porcupine"
+    },
+    "Description": "A large porcupine bristling with sharp quills used for defense."
+  },
+  {
+    "Name": "Giant seahorse (combat trained)",
+    "Cost": "500 gp",
+    "Weight": "1200 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["animal", "aquatic", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large aquatic mount trained for underwater travel and combat."
+  },
+  {
+    "Name": "Giant seahorse (normal)",
+    "Cost": "350 gp",
+    "Weight": "1100 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["animal", "aquatic", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large seahorse suitable for underwater riding in coastal regions."
+  },
+  {
+    "Name": "Giant skunk",
+    "Cost": "190 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Skunk"
+    },
+    "Description": "A large skunk capable of spraying a foul-smelling defensive musk."
+  },
+  {
+    "Name": "Giant snapping turtle",
+    "Cost": "5200 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Snapping+Turtle"
+    },
+    "Description": "A massive turtle with a powerful beak capable of crushing bone."
+  },
+  {
+    "Name": "Giant squid",
+    "Cost": "2500 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cephalopod"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Squid"
+    },
+    "Description": "A massive deep-sea predator with long tentacles used to grasp prey."
+  },
+  {
+    "Name": "Giant toad",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "amphibian"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Toad"
+    },
+    "Description": "A large amphibian capable of swallowing smaller creatures whole."
+  },
+  {
+    "Name": "Giant vulture (combat-trained)",
+    "Cost": "1125 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Vulture"
+    },
+    "Description": "A large carrion bird trained for aerial travel and battle."
+  },
+  {
+    "Name": "Giant vulture (common)",
+    "Cost": "750 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "flying", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Vulture"
+    },
+    "Description": "A large scavenging bird sometimes used as a mount in arid regions."
+  },
+  {
+    "Name": "Glyptodon",
+    "Cost": "2700 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["prehistoric", "animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A heavily armored prehistoric mammal resembling a massive armadillo."
+  },
+  {
+    "Name": "Goat",
+    "Cost": "1-6 gp",
+    "Weight": "50 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "livestock"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A hardy livestock animal valued for milk, meat, and climbing ability."
+  },
+  {
+    "Name": "Goblin dog (combat-trained)",
+    "Cost": "50 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Goblin+Dog"
+    },
+    "Description": "A mangy, vicious canine favored by goblins and trained for aggression."
+  },
+  {
+    "Name": "Goblin dog (common)",
+    "Cost": "35 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Goblin+Dog"
+    },
+    "Description": "A scrawny goblin-bred canine known for its unpleasant temperament."
+  },
+  {
+    "Name": "Gorilla",
+    "Cost": "175 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "ape"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Gorilla"
+    },
+    "Description": "Gorillas are powerful primates that defend their territory fiercely but are otherwise generally peaceful."
+  },
+  {
+    "Name": "Great horned owl",
+    "Cost": "22 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A nocturnal bird of prey known for its keen hearing and distinctive horn-like feather tufts."
+  },
+  {
+    "Name": "Great white whale",
+    "Cost": "12600 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Gargantuan",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cetacean"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Great+White+Whale"
+    },
+    "Description": "An enormous whale whose pale coloration and immense size inspire awe and fear in equal measure."
+  },
+  {
+    "Name": "Griffon (combat trained)",
+    "Cost": "8000 gp",
+    "Weight": "500 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["magical beast", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Griffon"
+    },
+    "Description": "Griffons are majestic creatures with the body of a lion and the head and wings of an eagle, often trained as powerful aerial mounts."
+  },
+  {
+    "Name": "Griffon egg",
+    "Cost": "3500 gp",
+    "Weight": "10 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["magical beast", "egg"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A griffon egg that may be raised into a mount if properly cared for and trained."
+  },
+  {
+    "Name": "Grizzly bear",
+    "Cost": "740 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bear"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Bear"
+    },
+    "Description": "A large and powerful bear known for its strength and territorial nature."
+  },
+  {
+    "Name": "Hawk",
+    "Cost": "18 gp",
+    "Weight": "2 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Hawk"
+    },
+    "Description": "A keen-eyed bird of prey often used for hunting small game."
+  },
+  {
+    "Name": "Hedgehog",
+    "Cost": "5 gp",
+    "Weight": "3 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small spiny mammal sometimes kept as an exotic pet."
+  },
+  {
+    "Name": "Hippocampus (combat-trained)",
+    "Cost": "750 gp",
+    "Weight": "1300 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["magical beast", "aquatic", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Hippocampus"
+    },
+    "Description": "A magical aquatic creature resembling a horse with a fish's tail, trained for underwater riding."
+  },
+  {
+    "Name": "Hippocampus (common)",
+    "Cost": "500 gp",
+    "Weight": "1000 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["magical beast", "aquatic", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Hippocampus"
+    },
+    "Description": "An aquatic mount resembling a horse with a scaled tail."
+  },
+  {
+    "Name": "Hippogriff (combat trained)",
+    "Cost": "5000 gp",
+    "Weight": "500 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["magical beast", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Hippogriff"
+    },
+    "Description": "A powerful creature with the forequarters of an eagle and the hindquarters of a horse, trained for aerial combat."
+  },
+  {
+    "Name": "Hippogriff egg",
+    "Cost": "200 gp",
+    "Weight": "10 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["magical beast", "egg"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "An egg that may hatch into a hippogriff if properly incubated."
+  },
+  {
+    "Name": "Hippopotamus",
+    "Cost": "1050 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Hippopotamus"
+    },
+    "Description": "A massive river-dwelling herbivore with powerful jaws and a territorial temperament."
+  },
+  {
+    "Name": "Horse (heavy)",
+    "Cost": "200 gp",
+    "Weight": "2000 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "horse"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Horse"
+    },
+    "Description": "A strong draft or war horse suitable for carrying heavily armored riders or hauling loads."
+  },
+  {
+    "Name": "Horse (heavy combat trained)",
+    "Cost": "300 gp",
+    "Weight": "3000 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "horse", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Horse"
+    },
+    "Description": "A heavy warhorse conditioned to remain calm and responsive in battle."
+  },
+  {
+    "Name": "Horse (light)",
+    "Cost": "75 gp",
+    "Weight": "900 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "horse"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Horse"
+    },
+    "Description": "A lighter riding horse valued for speed and endurance."
+  },
+  {
+    "Name": "Horse (light combat trained)",
+    "Cost": "110 gp",
+    "Weight": "1200 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "horse", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Horse"
+    },
+    "Description": "A light warhorse trained for mounted combat and battlefield maneuvering."
+  },
+  {
+    "Name": "Horse (pony)",
+    "Cost": "30 gp",
+    "Weight": "800 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "horse"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Pony"
+    },
+    "Description": "A small, sturdy horse suitable as a mount for Small riders."
+  },
+  {
+    "Name": "Horse (pony combat trained)",
+    "Cost": "45 gp",
+    "Weight": "900 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "horse", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Pony"
+    },
+    "Description": "A small war pony trained to withstand the chaos of battle."
+  },
+  {
+    "Name": "Hyena",
+    "Cost": "80 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Hyena"
+    },
+    "Description": "A scavenging predator known for its eerie laughter and strong bite."
+  },
+  {
+    "Name": "Iguanodon",
+    "Cost": "2700 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Iguanodon"
+    },
+    "Description": "A large herbivorous dinosaur capable of moving both on two legs and four."
+  },
+  {
+    "Name": "Jellyfish luminous",
+    "Cost": "2 gp",
+    "Weight": "1 lb.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small jellyfish that emits a soft natural glow."
+  },
+  {
+    "Name": "Kangaroo",
+    "Cost": "30 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A powerful marsupial known for its long leaps and strong hind legs."
+  },
+  {
+    "Name": "Leopard",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "cat"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Leopard"
+    },
+    "Description": "A stealthy spotted predator adept at climbing and ambushing prey."
+  },
+  {
+    "Name": "Lion (combat-trained)",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "cat", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Lion"
+    },
+    "Description": "A powerful big cat trained to fight alongside its handler."
+  },
+  {
+    "Name": "Lion (common)",
+    "Cost": "200 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "cat"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Lion"
+    },
+    "Description": "A large predatory cat known for strength and pride-based hunting."
+  },
+  {
+    "Name": "Lizard (common)",
+    "Cost": "5 cp",
+    "Weight": "2 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small reptile often kept as a simple companion."
+  },
+  {
+    "Name": "Lizard (Nex gecko)",
+    "Cost": "12 gp",
+    "Weight": "4 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "An exotic gecko prized for its coloration and rarity."
+  },
+  {
+    "Name": "Mammoth (combat-trained)",
+    "Cost": "2250 gp",
+    "Weight": "8 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "megafauna", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Mammoth"
+    },
+    "Description": "A massive, shaggy elephant-like creature trained for war and heavy labor in cold regions."
+  },
+  {
+    "Name": "Mammoth (common)",
+    "Cost": "2000 gp",
+    "Weight": "8 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "megafauna"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Mammoth"
+    },
+    "Description": "A colossal prehistoric elephant adapted to frigid climates."
+  },
+  {
+    "Name": "Manta ray",
+    "Cost": "25 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Manta+Ray"
+    },
+    "Description": "A broad-winged sea creature that glides gracefully through coastal waters."
+  },
+  {
+    "Name": "Marine iguana",
+    "Cost": "6 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small coastal reptile that swims in the ocean to feed."
+  },
+  {
+    "Name": "Mastodon",
+    "Cost": "2000 gp",
+    "Weight": "8 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "megafauna"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Mastodon"
+    },
+    "Description": "A prehistoric relative of the elephant, known for its curved tusks and immense size."
+  },
+  {
+    "Name": "Megalania",
+    "Cost": "3500 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile", "prehistoric"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Megalania"
+    },
+    "Description": "A massive monitor lizard with powerful jaws and venomous bite."
+  },
+  {
+    "Name": "Megaloceros",
+    "Cost": "800 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A giant prehistoric deer with enormous antlers."
+  },
+  {
+    "Name": "Megatherium",
+    "Cost": "1750 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "prehistoric"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Megatherium"
+    },
+    "Description": "A massive ground sloth capable of standing upright and swiping with powerful claws."
+  },
+  {
+    "Name": "Mongoose",
+    "Cost": "4 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Mongoose"
+    },
+    "Description": "A small, agile predator known for its ability to fight snakes."
+  },
+  {
+    "Name": "Monitor lizard",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Monitor+Lizard"
+    },
+    "Description": "A large lizard with a long tail and sharp claws."
+  },
+  {
+    "Name": "Monkey",
+    "Cost": "3 gp",
+    "Weight": "5 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Monkey"
+    },
+    "Description": "A clever and dexterous primate often kept as a companion."
+  },
+  {
+    "Name": "Narwhal",
+    "Cost": "350 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cetacean"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A whale-like creature distinguished by its long spiral tusk."
+  },
+  {
+    "Name": "Octopus",
+    "Cost": "25 gp",
+    "Weight": "2 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cephalopod"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Octopus"
+    },
+    "Description": "A small cephalopod known for intelligence and dexterity."
+  },
+  {
+    "Name": "Orca",
+    "Cost": "1350 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cetacean"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Orca"
+    },
+    "Description": "A powerful marine predator, also known as a killer whale, prized in some coastal regions as an aquatic mount."
+  },
+  {
+    "Name": "Osprey",
+    "Cost": "45 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A fish-hunting bird of prey known for diving into water to seize its catch."
+  },
+  {
+    "Name": "Otter",
+    "Cost": "20 gp",
+    "Weight": "10 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A playful aquatic mammal known for agility in water."
+  },
+  {
+    "Name": "Owl (common)",
+    "Cost": "20 gp",
+    "Weight": "1–3 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Owl"
+    },
+    "Description": "A nocturnal bird of prey with exceptional hearing and vision."
+  },
+  {
+    "Name": "Owl (Verduran)",
+    "Cost": "20 gp",
+    "Weight": "3 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A forest-dwelling owl native to the Verduran region."
+  },
+  {
+    "Name": "Pachycephalosaurus",
+    "Cost": "1000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Pachycephalosaurus"
+    },
+    "Description": "A bipedal dinosaur with a thick, domed skull used for headbutting."
+  },
+  {
+    "Name": "Pack animal (donkey/mule)",
+    "Cost": "8 gp",
+    "Weight": "600 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pack"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A dependable beast of burden used to carry supplies."
+  },
+  {
+    "Name": "Pack animal (musk ox)",
+    "Cost": "24 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pack"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A hardy arctic herd animal used for hauling goods."
+  },
+  {
+    "Name": "Pack animal (ox)",
+    "Cost": "15 gp",
+    "Weight": "1 ton",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pack"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A strong draft animal commonly used to pull plows and wagons."
+  },
+  {
+    "Name": "Pack animal (yak)",
+    "Cost": "24 gp",
+    "Weight": "2 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pack"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A shaggy mountain beast used to carry goods across high altitudes."
+  },
+  {
+    "Name": "Parasaurolophus",
+    "Cost": "1200 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Parasaurolophus"
+    },
+    "Description": "A large herbivorous dinosaur with a distinctive curved cranial crest."
+  },
+  {
+    "Name": "Parrot",
+    "Cost": "50 gp",
+    "Weight": "4 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A brightly colored bird known for mimicry and intelligence."
+  },
+  {
+    "Name": "Pig",
+    "Cost": "3-10 gp",
+    "Weight": "100–300 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "livestock"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A common farm animal raised for meat."
+  },
+  {
+    "Name": "Poison frog",
+    "Cost": "60 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "amphibian", "venomous"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small, brightly colored frog whose skin secretes potent toxins."
+  },
+  {
+    "Name": "Porcupine",
+    "Cost": "5 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small rodent covered in sharp defensive quills."
+  },
+  {
+    "Name": "Pseudodragon",
+    "Cost": "200 gp",
+    "Weight": "7 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "Conditional",
+    "Legal Note": "Not legal for purchase unless the buyer is a wizard with the Improved Familiar feat.",
+    "Tags": ["magical beast", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Pseudodragon"
+    },
+    "Description": "A small dragon-like magical beast with a venomous tail and keen intelligence."
+  },
+  {
+    "Name": "Pteranodon",
+    "Cost": "750 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "flying", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Pteranodon"
+    },
+    "Description": "A large flying reptile capable of carrying riders across great distances."
+  },
+  {
+    "Name": "Rabbit",
+    "Cost": "2 gp",
+    "Weight": "3 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pet"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small, quick-breeding herbivore often kept as a pet or livestock."
+  },
+  {
+    "Name": "Raccoon",
+    "Cost": "5 gp",
+    "Weight": "7 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A clever, dexterous mammal known for its masked face and curiosity."
+  },
+  {
+    "Name": "Ram (combat-trained)",
+    "Cost": "50 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "livestock", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A horned sheep trained to charge and fight."
+  },
+  {
+    "Name": "Ram (common)",
+    "Cost": "25 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "livestock"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A domesticated male sheep raised for wool and meat."
+  },
+  {
+    "Name": "Rat (blue)",
+    "Cost": "1 gp",
+    "Weight": "1 lb.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "rodent"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A domesticated blue-furred rat sometimes kept as a pet."
+  },
+  {
+    "Name": "Rat (common)",
+    "Cost": "1 cp",
+    "Weight": "1 lb.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "rodent"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A common small rodent found in cities and countryside alike."
+  },
+  {
+    "Name": "Rat (dire)",
+    "Cost": "5 gp",
+    "Weight": "50 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "dire", "rodent"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Dire+Rat"
+    },
+    "Description": "A much larger and more aggressive rat often found in sewers and ruins."
+  },
+  {
+    "Name": "Raven",
+    "Cost": "2 gp",
+    "Weight": "3 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Raven"
+    },
+    "Description": "An intelligent black bird capable of mimicry."
+  },
+  {
+    "Name": "Reindeer",
+    "Cost": "75 gp",
+    "Weight": "450 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A hardy northern deer used as a mount and draft animal in cold climates."
+  },
+  {
+    "Name": "Rhinoceros (combat-trained)",
+    "Cost": "1500 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Rhinoceros"
+    },
+    "Description": "A massive horned beast trained for devastating battlefield charges."
+  },
+  {
+    "Name": "Rhinoceros (common)",
+    "Cost": "1000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Rhinoceros"
+    },
+    "Description": "A massive horned herbivore known for powerful charges and thick hide."
+  },
+  {
+    "Name": "Riding bee (combat-trained queen)",
+    "Cost": "12000 gp",
+    "Weight": "140 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["vermin", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A massive queen bee bred and trained as an aerial combat mount."
+  },
+  {
+    "Name": "Riding bee (combat-trained worker)",
+    "Cost": "450 gp",
+    "Weight": "60 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "Yes",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["vermin", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large worker bee trained to carry riders and fight in aerial combat."
+  },
+  {
+    "Name": "Riding bee (queen)",
+    "Cost": "8000 gp",
+    "Weight": "140 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["vermin", "flying", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A giant queen bee capable of carrying a rider through the air."
+  },
+  {
+    "Name": "Riding bee (worker)",
+    "Cost": "300 gp",
+    "Weight": "60 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "No",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["vermin", "flying", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large worker bee used as a flying mount."
+  },
+  {
+    "Name": "Riding rat (combat trained)",
+    "Cost": "75 gp",
+    "Weight": "50 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "Yes",
+    "PFS Legal": "Conditional",
+    "Legal Note": "Legal only for Ratfolk PCs.",
+    "Tags": ["animal", "rodent", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large rat trained as a combat mount, typically used by ratfolk."
+  },
+  {
+    "Name": "Riding rat (common)",
+    "Cost": "50 gp",
+    "Weight": "50 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "No",
+    "PFS Legal": "Conditional",
+    "Legal Note": "Legal only for Ratfolk PCs.",
+    "Tags": ["animal", "rodent", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A large domesticated rat used as a mount by ratfolk."
+  },
+  {
+    "Name": "Roc (combat-trained)",
+    "Cost": "10800 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Gargantuan",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "flying", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Roc"
+    },
+    "Description": "An enormous bird capable of carrying massive loads, trained for aerial warfare."
+  },
+  {
+    "Name": "Roc (common)",
+    "Cost": "7200 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Gargantuan",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "flying", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Roc"
+    },
+    "Description": "A colossal bird of prey capable of lifting elephants into the sky."
+  },
+  {
+    "Name": "Scavenger beetle colony",
+    "Cost": "3 gp",
+    "Weight": "1 lb.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "Yes",
+    "Legal Note": "PFS Legal",
+    "Tags": ["vermin"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A container of flesh-eating beetles used for cleaning bones or disposing of organic waste."
+  },
+  {
+    "Name": "Scorpion (greensting)",
+    "Cost": "15 gp",
+    "Weight": "9 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["vermin", "venomous"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Scorpion"
+    },
+    "Description": "A small venomous scorpion with a painful sting."
+  },
+  {
+    "Name": "Sea krait",
+    "Cost": "5 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "snake", "aquatic", "venomous"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A venomous sea snake found in warm coastal waters."
+  },
+  {
+    "Name": "Seal",
+    "Cost": "45 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A coastal marine mammal comfortable both on land and in water."
+  },
+  {
+    "Name": "Shark",
+    "Cost": "325 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Shark"
+    },
+    "Description": "A fearsome marine predator with rows of razor-sharp teeth."
+  },
+  {
+    "Name": "Sheep",
+    "Cost": "2-20 gp",
+    "Weight": "150 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "livestock"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A domesticated wool-bearing herd animal raised for meat and textiles."
+  },
+  {
+    "Name": "Skunk",
+    "Cost": "10 gp",
+    "Weight": "10 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small mammal capable of spraying a pungent defensive musk."
+  },
+  {
+    "Name": "Snail kite",
+    "Cost": "18 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A slender bird of prey that feeds primarily on snails."
+  },
+  {
+    "Name": "Snake (constrictor)",
+    "Cost": "5 gp",
+    "Weight": "60 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "snake"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Constrictor+Snake"
+    },
+    "Description": "A large snake that subdues prey by coiling and crushing it."
+  },
+  {
+    "Name": "Snake (viper)",
+    "Cost": "5 gp",
+    "Weight": "10 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "snake", "venomous"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Viper"
+    },
+    "Description": "A small venomous snake with a quick, deadly bite."
+  },
+  {
+    "Name": "Snapping turtle",
+    "Cost": "5 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "reptile"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small turtle known for its aggressive snap when threatened."
+  },
+  {
+    "Name": "Spider",
+    "Cost": "25 gp",
+    "Weight": "8 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["vermin"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Giant+Spider"
+    },
+    "Description": "A large spider capable of spinning webs and delivering venomous bites."
+  },
+  {
+    "Name": "Spinosaurus",
+    "Cost": "11000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Spinosaurus"
+    },
+    "Description": "A towering predatory dinosaur with a distinctive sail along its back."
+  },
+  {
+    "Name": "Squid",
+    "Cost": "25 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cephalopod"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Squid"
+    },
+    "Description": "A tentacled marine predator capable of rapid jet-propelled movement."
+  },
+  {
+    "Name": "Squirrel (common)",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small tree-dwelling rodent known for gathering nuts."
+  },
+  {
+    "Name": "Squirrel (flying)",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small gliding squirrel capable of leaping between trees."
+  },
+  {
+    "Name": "Stegosaurus",
+    "Cost": "4200 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Stegosaurus"
+    },
+    "Description": "A large herbivorous dinosaur with bony plates along its back and a spiked tail."
+  },
+  {
+    "Name": "Stingray",
+    "Cost": "18 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A flat-bodied marine creature with a venomous tail spine."
+  },
+  {
+    "Name": "Stirge",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["magical beast", "flying"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Stirge"
+    },
+    "Description": "A small, blood-sucking creature resembling a cross between a bat and a mosquito."
+  },
+  {
+    "Name": "Thrush",
+    "Cost": "1 sp",
+    "Weight": "7 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small songbird known for its melodic calls."
+  },
+  {
+    "Name": "Thylacine",
+    "Cost": "18 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A striped marsupial predator sometimes called the Tasmanian tiger."
+  },
+  {
+    "Name": "Tiger (combat-trained)",
+    "Cost": "500 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "cat", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Tiger"
+    },
+    "Description": "A powerful striped predator trained to fight alongside its handler."
+  },
+  {
+    "Name": "Tiger (common)",
+    "Cost": "325 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "cat"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Tiger"
+    },
+    "Description": "A large striped feline known for strength and stealth."
+  },
+  {
+    "Name": "Toad",
+    "Cost": "2 cp",
+    "Weight": "7 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "amphibian"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small warty amphibian often found near water."
+  },
+  {
+    "Name": "Toad (vision)",
+    "Cost": "10 gp",
+    "Weight": "5 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "amphibian"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A specially bred toad prized for its keen eyesight."
+  },
+  {
+    "Name": "Toucan",
+    "Cost": "40 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A brightly colored tropical bird with a large distinctive beak."
+  },
+  {
+    "Name": "Triceratops",
+    "Cost": "5600 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Triceratops"
+    },
+    "Description": "A massive three-horned dinosaur often used as a powerful mount."
+  },
+  {
+    "Name": "Turtle",
+    "Cost": "3 gp",
+    "Weight": "4 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "reptile"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small shelled reptile kept as a pet or food source."
+  },
+  {
+    "Name": "Tylosaurus",
+    "Cost": "4000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["prehistoric", "aquatic"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A massive prehistoric marine reptile."
+  },
+  {
+    "Name": "Tyrannosaurus",
+    "Cost": "8100 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["dinosaur", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Tyrannosaurus"
+    },
+    "Description": "A towering carnivorous dinosaur with immense jaws and fearsome presence."
+  },
+  {
+    "Name": "Vulture",
+    "Cost": "30 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "bird"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A scavenging bird that feeds on carrion."
+  },
+  {
+    "Name": "Weasel",
+    "Cost": "2 gp",
+    "Weight": "8 oz.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Tiny",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A small agile predator known for ferocity despite its size."
+  },
+  {
+    "Name": "Whale",
+    "Cost": "10000 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Gargantuan",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "aquatic", "cetacean"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "An enormous marine mammal inhabiting the open seas."
+  },
+  {
+    "Name": "Wolf",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Medium",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "canine"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "https://www.aonprd.com/MonsterDisplay.aspx?ItemName=Wolf"
+    },
+    "Description": "A pack-hunting predator known for loyalty and keen senses."
+  },
+  {
+    "Name": "Wolverine",
+    "Cost": "125 gp",
+    "Weight": "—",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Small",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A fierce mustelid known for tenacity and aggression."
+  },
+  {
+    "Name": "Woolly mammoth (combat-trained)",
+    "Cost": "4500 gp",
+    "Weight": "6 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A shaggy prehistoric elephant trained for battle."
+  },
+  {
+    "Name": "Woolly mammoth (normal)",
+    "Cost": "3000 gp",
+    "Weight": "6 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A massive woolly elephant adapted to cold climates."
+  },
+  {
+    "Name": "Woolly rhinoceros (combat-trained)",
+    "Cost": "3000 gp",
+    "Weight": "3 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "Yes",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount", "combat-trained"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A shaggy prehistoric rhinoceros trained for war."
+  },
+  {
+    "Name": "Woolly rhinoceros (normal)",
+    "Cost": "2000 gp",
+    "Weight": "3 tons",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Huge",
+    "Combat Trained": "No",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "mount"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A cold-adapted rhinoceros with thick fur and massive horn."
+  },
+  {
+    "Name": "Yak",
+    "Cost": "24 gp",
+    "Weight": "1000 lbs.",
+    "Type": "mount/pet",
+    "Category": "Mounts/Pets",
+    "Source": "Ultimate Equipment",
+    "Size": "Large",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["animal", "pack"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx?Category=MountsPets",
+      "AON Page": "—"
+    },
+    "Description": "A shaggy mountain bovine used as a pack animal in high elevations."
+  }
+]

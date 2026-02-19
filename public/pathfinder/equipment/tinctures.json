@@ -1,0 +1,290 @@
+[
+  {
+    "Name": "Alluring Philter",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 2,
+      "applies_to": "skill",
+      "subtype": "Charisma-based skill checks"
+    },
+    "Description": "Grants a +2 alchemical bonus on Charisma-based skill checks for 1 hour after drinking.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Alluring%20Philter"
+  },
+  {
+    "Name": "Artistic Ale",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 5,
+      "applies_to": "skill",
+      "subtype": "Perform checks"
+    },
+    "Description": "Grants a +5 alchemical bonus on Perform checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Artistic%20Ale"
+  },
+  {
+    "Name": "Brawler's Brew",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 2,
+      "applies_to": "save",
+      "subtype": "Fortitude saves"
+    },
+    "Description": "Grants a +2 alchemical bonus on Fortitude saves for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Brawler%27s%20Brew"
+  },
+  {
+    "Name": "Dodger's Draught",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 5,
+      "applies_to": "skill",
+      "subtype": "Acrobatics checks"
+    },
+    "Description": "Grants a +5 alchemical bonus on Acrobatics checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Dodger%27s%20Draught"
+  },
+  {
+    "Name": "Explorer's Emulsion",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 2,
+      "applies_to": "skill",
+      "subtype": "Survival checks"
+    },
+    "Description": "Grants a +2 alchemical bonus on Survival checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Explorer%27s%20Emulsion"
+  },
+  {
+    "Name": "Leaper's Libation",
+    "Cost": "200 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "enhancement",
+      "value": 10,
+      "applies_to": "movement",
+      "subtype": "jump distance (feet)"
+    },
+    "Description": "Grants a +10-foot enhancement bonus to all jump distances for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Leaper%27s%20Libation"
+  },
+  {
+    "Name": "Liquid Courage",
+    "Cost": "175 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 2,
+      "applies_to": "save",
+      "subtype": "Will saves vs fear"
+    },
+    "Description": "Grants a +2 alchemical bonus on Will saves against fear effects for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Liquid%20Courage"
+  },
+  {
+    "Name": "Mage's Assistant",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 2,
+      "applies_to": "skill",
+      "subtype": "Spellcraft checks"
+    },
+    "Description": "Grants a +2 alchemical bonus on Spellcraft checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Mage%27s%20Assistant"
+  },
+  {
+    "Name": "Mirage Mixture",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 5,
+      "applies_to": "skill",
+      "subtype": "Bluff checks"
+    },
+    "Description": "Grants a +5 alchemical bonus on Bluff checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Mirage%20Mixture"
+  },
+  {
+    "Name": "Nimble Nectar",
+    "Cost": "200 gp",
+    "Weight": "—",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 5,
+      "applies_to": "skill",
+      "subtype": "Sleight of Hand checks"
+    },
+    "Description": "Grants a +5 alchemical bonus on Sleight of Hand checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Nimble%20Nectar"
+  },
+  {
+    "Name": "Prowler's Palliative",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 5,
+      "applies_to": "skill",
+      "subtype": "Stealth checks"
+    },
+    "Description": "Grants a +5 alchemical bonus on Stealth checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Prowler%27s%20Palliative"
+  },
+  {
+    "Name": "Sorcerer's Spirits",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 30,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 5,
+      "applies_to": "skill",
+      "subtype": "Use Magic Device checks"
+    },
+    "Description": "Grants a +5 alchemical bonus on Use Magic Device checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sorcerer%27s%20Spirits"
+  },
+  {
+    "Name": "Starlight Juice",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 30,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "vision",
+      "subtype": "low-light vision (gain or double range)"
+    },
+    "Description": "Grants low-light vision (or doubles its range if already possessed) for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Starlight%20Juice"
+  },
+  {
+    "Name": "Stout Solution",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Craft DC": 15,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 2,
+      "applies_to": "check",
+      "subtype": "Constitution-based checks"
+    },
+    "Description": "Grants a +2 alchemical bonus on Constitution-based checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Stout%20Solution"
+  },
+  {
+    "Name": "Thinker's Tipple",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 5,
+      "applies_to": "skill",
+      "subtype": "Knowledge checks"
+    },
+    "Description": "Grants a +5 alchemical bonus on Knowledge checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thinker%27s%20Tipple"
+  },
+  {
+    "Name": "Titan's Tonic",
+    "Cost": "200 gp",
+    "Weight": "—",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Tincture",
+    "Source": "Ultimate Equipment",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "alchemical",
+      "value": 2,
+      "applies_to": "skill",
+      "subtype": "Strength-based skill checks"
+    },
+    "Description": "Grants a +2 alchemical bonus on Strength-based skill checks for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Titan%27s%20Tonic"
+  }
+]

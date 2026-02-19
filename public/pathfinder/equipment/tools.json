@@ -1,0 +1,3066 @@
+[
+  {
+    "Name": "Abacus",
+    "Cost": "2 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, Adventurer's Armory pg. 19, Advanced Player's Guide pg. 184",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "This device helps you perform mathematical calculations.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Abacus"
+  },
+  {
+    "Name": "Acrobat's pillar",
+    "Cost": "50 gp",
+    "Weight": "40 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "This training contraption consists of a stout, 7-foot-tall wooden pillar with spring-powered woodand- brass arms jutting sideways at different heights. When the springs are wound, the arms wave erratically through the area within 10 feet of the pillar. The arms don’t swing with sufficient force to cause damage, but you can practice your acrobatic technique by moving up to and around the pillar while the arms are in motion, attempting to avoid being tagged.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Acrobat%27s+pillar"
+  },
+  {
+    "Name": "Alchemical sling bullet",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Monster Codex pg. 32",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "Used by hobgoblin alchemists to equip their comrades, these spherical glass vials can each be filled with 1 dose of an alchemical splash weapon, allowing them to be used as ammunition for a sling. On a hit, an alchemical sling bullet shatters, affecting the target with the alchemical solution within. This deals only the splash weapon’s damage (if any), not the damage a sling bullet would normally deal.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Alchemical+sling+bullet"
+  },
+  {
+    "Name": "Alchemist's lab",
+    "Cost": "200 gp",
+    "Weight": "40 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Craft (alchemy) checks",
+      "subtype": ""
+    },
+    "Description": "This lab is used for making alchemical items, and provides a +2 circumstance bonus on Craft (alchemy) checks. It has no bearing on the costs related to the Craft (alchemy) skill. Without this lab, a character with the Craft (alchemy) skill is assumed to have enough tools to use the skill but not enough to get the +2 bonus that the lab provides.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Alchemist%27s+lab"
+  },
+  {
+    "Name": "Alchemy crafting kit",
+    "Cost": "25 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "An alchemist with an alchemy crafting kit is assumed to have all the material components needed for his extracts, mutagens, and bombs, except for those components that have a specific cost. An alchemy crafting kit provides no bonuses on Craft (alchemy) checks. (This item was called an “alchemist’s kit” in the Advanced Player’s Guide, and was renamed to avoid confusion with this book’s pre-selected set of adventuring gear called an “alchemist’s kit.”)",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Alchemy+crafting+kit"
+  },
+  {
+    "Name": "Anchoring balloon",
+    "Cost": "300 gp",
+    "Weight": "25 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "People of the Stars pg. 19",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "An anchoring balloon is a single-use alchemical device designed to provide a standing platform on a gaseous planet. When a cord is pulled as a standard action, an alchemical reaction fills the balloon with hydrogen gas almost instantly. Twenty-foot-long ropes attach the balloon to a lightweight, collapsible 10-foot-square steel basket with 5-foot-high sides. The inflated balloon is a Gargantuan object. Although it moves with the wind horizontally, the basket maintains its initial altitude to within a few feet so long as its load is less than 2,000 pounds (divided by the planet’s gravity multiplier). Beyond that weight limit, the balloon may sink or the basket may break (at the GM’s discretion). The balloon remains inflated for 24 hours before its seals fail.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Anchoring+balloon"
+  },
+  {
+    "Name": "Animal disguise kit",
+    "Cost": "100 gp",
+    "Weight": "8 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Blood of the Moon pg. 30",
+    "Duration": "",
+    "Bonus": [
+      {
+        "type": "circumstance",
+        "value": 4,
+        "applies_to": "Disguise checks to disguise an animal as another specific animal of the same species",
+        "subtype": ""
+      },
+      {
+        "type": "circumstance",
+        "value": 2,
+        "applies_to": "Disguise checks to disguise an animal as an animal of a different species",
+        "subtype": ""
+      }
+    ],
+    "Description": "This leather pouch contains dyes, odorous balsams, colorchanging eye drops, reversible collars, and a host of other tools to disguise one animal as another. The kit grants a +4 circumstance bonus on Disguise checks to disguise an animal as another specific animal of the same species, and a +2 circumstance bonus on Disguise checks to disguise an animal as an animal of a different species. An animal disguise kit is exhausted after 10 uses.",
+    "Reference": "https://www.aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Animal+disguise+kit"
+  },
+  {
+    "Name": "Antidote kit",
+    "Cost": "100 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 3,
+      "applies_to": "Heal checks made to treat poison",
+      "subtype": ""
+    },
+    "Description": "This small box contains a wide variety of remedies and treatments against not only specific poisons but also their most common methods of delivery, including such things as purgatives to eliminate ingested toxins. It grants a +3 circumstance bonus on Heal checks made to treat poison. An antidote kit is exhausted after 10 uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Antidote+kit"
+  },
+  {
+    "Name": "Anvil",
+    "Cost": "5 gp",
+    "Weight": "10–100 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, Adventurer's Armory pg. 19, Advanced Player's Guide pg. 184",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "While anvil sizes vary depending on the type of smithing for which they are used, all anvils have the same basic shape and construction. Blacksmith anvils are much heavier and larger (100 pounds) than farrier anvils (50 pounds), which in turn are much bigger than silver- or goldsmith anvils (10 pounds). Many metalworking tasks are impossible without the proper anvil.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Anvil"
+  },
+  {
+    "Name": "Arcane family workbook",
+    "Cost": "300 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Advanced Race Guide pg. 27",
+    "Duration": "",
+    "Bonus": [
+      {
+        "type": "circumstance",
+        "value": 2,
+        "applies_to": "Spellcraft checks (when used as a reference; typically takes 1d4 full rounds of searching the text)",
+        "subtype": ""
+      },
+      {
+        "type": "circumstance",
+        "value": 4,
+        "applies_to": "Spellcraft checks (if 1d4 hours are spent referencing the book)",
+        "subtype": ""
+      }
+    ],
+    "Description": "The elven predilection for becoming wizards and the social benefits that elven wizards enjoy often encourages families to dedicate themselves to wizardly studies for multiple generations. Older elven wizards take note of their own insights into the secrets of arcane magic and compile these thoughts with the ideas of earlier generations to form family workbooks. When used as a reference (an action that typically takes 1d4 full rounds of searching the text), an arcane family workbook grants a +2 circumstance bonus on a Spellcraft checks. This bonus increases to +4 if 1d4 hours are spent referencing the book.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Arcane+family+workbook"
+  },
+  {
+    "Name": "Armor truss",
+    "Cost": "30 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Melee Tactics Toolbox pg. 20",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Donning armor",
+      "subtype": ""
+    },
+    "Description": "This collection of flexible strips of wood, durable shims, and thin cords allows you to prop open the buckles, padding, and plates of armor for easy entry. If you take at least 15 minutes preparing an empty suit of armor with an armor truss, you are considered to have help in putting on the armor and can don the armor in the time it usually takes to don the armor hastily without worsening armor check penalties or decreasing armor bonuses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Armor+truss"
+  },
+  {
+    "Name": "Artificer's lab (portable)",
+    "Cost": "300 gp",
+    "Weight": "40 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Advanced Race Guide pg. 27",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Crafting magic items",
+      "subtype": ""
+    },
+    "Description": "The portable artificer's lab contains everything needed to create magic items, though many of the tools and implements are of only the most basic type. This lab allows the artificer to spend 4 hours crafting each night while out adventuring, and net 3 hours' worth of work (instead of 2). However, because the tools are all designed to fulfill multiple functions and the portable lab lacks the space and quiet that provide ideal circumstances for creating magic items, the skill check to complete a magic item that had any of its work done using a portable lab takes a –5 penalty.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Artificer%27s+lab+%28portable%29"
+  },
+  {
+    "Name": "Artisan's tools (common)",
+    "Cost": "5 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Craft checks (tool requirement)",
+      "subtype": ""
+    },
+    "Description": "These special tools include the items needed to pursue any single craft. Without them, you have to use improvised tools (–2 penalty on Craft checks), if you can do the job at all.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Artisan%27s+tools+%28masterwork%29"
+  },
+  {
+    "Name": "Artisan's tools (masterwork)",
+    "Cost": "55 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Craft checks (tool requirement)",
+      "subtype": ""
+    },
+    "Description": "These special tools include the items needed to pursue any single craft. Without them, you have to use improvised tools (–2 penalty on Craft checks), if you can do the job at all.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Artisan%27s+tools+%28masterwork%29"
+  },
+  {
+    "Name": "Balancing pole",
+    "Cost": "8 sp",
+    "Weight": "12 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, Advanced Player's Guide pg. 184, Adventurer's Armory pg. 19",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Acrobatics checks made to traverse a narrow surface",
+      "subtype": ""
+    },
+    "Description": "This flexible pole can be anywhere from 15 to 30 feet in length. When used properly, it helps you keep your balance when crossing narrow walkways. Using a balancing pole grants you a +1 circumstance bonus on Acrobatics checks made to traverse a narrow surface.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Balancing+pole"
+  },
+  {
+    "Name": "Barbed troll claws",
+    "Cost": "20 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Monster Codex pg. 225",
+    "Duration": "",
+    "Bonus": [
+      {
+        "type": "untyped",
+        "value": 1,
+        "applies_to": "damage rolls with troll claw attacks (option: keep sheaths on the hand after a hit)",
+        "subtype": ""
+      },
+      {
+        "type": "special",
+        "value": null,
+        "applies_to": "troll claw attacks (option: embed sheaths to cause bleed damage instead of extra damage)",
+        "subtype": ""
+      }
+    ],
+    "Description": "These metal sheaths slide onto the claws of a troll. When a troll hits with a claw attack while wearing the sheaths, it can either keep the sheaths on its hand (in which case the claw attack deals 1 extra point of damage) or allow the four sheaths on that hand to slide off and become embedded in the wound (in which case the claw attack deals 1 point of bleed damage). The listed price is for a set of 8 sheaths (one for each claw on both of a troll’s four-fingered hands).",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Barbed+troll+claws"
+  },
+  {
+    "Name": "Bear trap",
+    "Cost": "2 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, Advanced Player's Guide pg. 184, Adventurer's Armory pg. 19",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "Although intended for trapping large animals, bear traps work as well for trapping humanoids or monsters. The hinged jaws of the trap are attached to a chain, which in turn is secured to a spike driven into the ground to ensure that the victim cannot simply crawl away. Prying open the jaws or pulling the spike from the ground requires a DC 20 Strength check.\n\nBear Trap - CR 1\nType mechanical; Perception DC 15; Disable Device DC 20\nEffects\nTrigger location; Reset manual\nEffect Atk +10 melee (2d6+3); sharp jaws spring shut around the creature’s ankle and halve the creature’s base speed (or hold the creature immobile if the trap is attached to a solid object); the creature can escape with a DC 20 Disable Device check, DC 22 Escape Artist check, or DC 26 Strength check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Bear+trap"
+  },
+  {
+    "Name": "Bear trap (offset)",
+    "Cost": "3 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Adventurer's Armory 2 pg. 16",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "An offset bear trap is a specialized variety of a bear trap constructed with offset jaws coated in resin. It inflicts less damage on captured creatures but holds them more securely, and is therefore primarily used by trappers or bounty hunters who do not want to risk killing their prey. Offset bear traps are almost always secured to the ground by a heavy spike and chain so the captured creature can’t wander far.\n\nOffset Bear Trap - CR 1/2\nType mechanical; Perception DC 15; Disable Device DC 20\nEffects\nTrigger location; Reset manual\nEffect Atk +10 melee (1d6+2); jaws spring shut around the creature’s ankle and hold the creature immobile; the creature can escape with a DC 20 Disable Device check, DC 24 Escape Artist check, or DC 28 Strength check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Bear+trap+%28offset%29"
+  },
+  {
+    "Name": "Bear trap (sawtooth)",
+    "Cost": "1,800 gp",
+    "Weight": "20 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Adventurer's Armory 2 pg. 16",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "",
+      "subtype": ""
+    },
+    "Description": "A sawtooth bear trap has vicious jaws and tighter springs. Used primarily against humanoids or monsters rather than animals, sawtooth bear traps are often painted in camouflaged colors to blend in with the trap site. Most include locking plates over the spring mechanisms to prevent tampering by intelligent victims.\n\nSawtooth Bear Trap - CR 5\nType mechanical; Perception DC 25; Disable Device DC 25\nEffects\nTrigger location; Reset manual\nEffect Atk +15 melee (3d6+9); serrated jaws spring shut around the creature’s ankle and halve the creature’s base speed (or hold the creature immobile if the trap is attached to a solid object); the creature can escape with a DC 25 Disable Device check, DC 28 Escape Artist check, or DC 32 Strength check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Bear+trap+%28offset%29"
+  },
+  {
+    "Name": "Belled Catsuit",
+    "Cost": "30 gp",
+    "Weight": "12 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Martial Arts Handbook pg. 30",
+    "Duration": "24 hours or until you fail a Stealth check",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Stealth checks to hide (after successful training with the catsuit)",
+      "subtype": "training"
+    },
+    "Description": "This form-fitting garment is strung all around with dozens of small bells. You can practice your sneaking technique by donning a belled catsuit and then attempting to move without letting any of the bells ring. Old thieves sometimes call a belled catsuit a Billy-Jacket. Training with a belled catsuit requires 1 hour of practice and a DC 25 Stealth check. If you succeed at the check, you gain a +2 circumstance bonus on Stealth checks to hide. This bonus lasts for 24 hours or until you fail a Stealth check.",
+    "Reference": "https://www.aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Belled+Catsuit"
+  },
+  {
+    "Name": "Bellows",
+    "Cost": "1 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 77, Advanced Player's Guide pg. 184, Adventurer's Armory pg. 19",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Survival checks to start or maintain fires",
+      "subtype": ""
+    },
+    "Description": "Bellows are useful for starting fires, providing a +1 circumstance bonus on Survival checks to start or maintain fires.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Bellows"
+  },
+  {
+    "Name": "Billy Ten-Bells",
+    "Cost": "50 gp",
+    "Weight": "6 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Martial Arts Handbook pg. 30",
+    "Duration": "24 hours or until you fail a Sleight of Hand check",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Sleight of Hand checks to pick pockets (after successful training with Billy Ten-Bells)",
+      "subtype": "training"
+    },
+    "Description": "Bearing a marked resemblance to an anthropomorphic wind chime, this complicated arrangement of strings, sticks, and bells is hung from a ceiling or branch and has a purse or money-pouch deep inside. The trick is to silently steal a coin from Billy Ten-Bells, as the slightest movement will set the bells ringing. Veteran thieves sometimes decorate Billy with scraps of stolen clothing for good luck. Training with Billy Ten-Bells requires 1 hour of practice and a DC 20 Sleight of Hand check. If you succeed at the check, you gain a +2 circumstance bonus on Sleight of Hand checks to pick pockets. This bonus lasts for 24 hours or until you fail a Sleight of Hand check.",
+    "Reference": "https://www.aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Billy+Ten-Bells"
+  },
+  {
+    "Name": "Blackwood figurehead",
+    "Cost": "650 gp",
+    "Weight": "25 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Merchant's Manifest pg. 9",
+    "Duration": "",
+    "Bonus": {
+      "type": "morale",
+      "value": 2,
+      "applies_to": "Profession (sailor) checks while on board its ship (its ship’s crew)",
+      "subtype": ""
+    },
+    "Description": "Carved in the likeness of a sea creature or another form desired by the one commissioning it, this item grants its ship’s crew a +2 morale bonus on Profession (sailor) checks while on board.",
+    "Reference": "https://www.aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Blackwood+figurehead"
+  },
+  {
+    "Name": "Boline",
+    "Cost": "10 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Adventurer's Armory 2 pg. 16",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Heal checks to treat deadly wounds (healer's kit usage interaction)",
+      "subtype": ""
+    },
+    "Description": "Bolines are hook-shaped knives commonly used by herbalists and spellcasters to harvest ingredients for their craft. A boline’s blade is typically 5 inches long, and is too small and irregular to use as a weapon. You can use a boline to finely slice the herbs in a healer’s kit, so you can treat deadly wounds with only a single use from a healer’s kit rather than two uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Boline"
+  },
+  {
+    "Name": "Bombchucker",
+    "Cost": "12 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Monster Codex pg. 117",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "range increment of thrown splash weapons",
+      "subtype": ""
+    },
+    "Description": "This curved wicker basket is worn like a glove over one hand. The basket extends approximately 2 feet in a steady curve, allowing you to launch a thrown splash weapon at incredible speeds and over long distances. Using a bombchucker increases the range increment of any thrown splash weapon by 10 feet. Loading a bombchucker requires a free hand, as the hand wielding the bombchucker can’t be used for any other purpose. A bombchucker doesn’t get in the way of preparing and throwing a bomb created with the bomb class feature.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Bombchucker"
+  },
+  {
+    "Name": "Celestial censer",
+    "Cost": "50 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Advanced Race Guide pg. 87",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "creatures with the evil subtype (dazzled condition interaction with smoke)",
+      "subtype": ""
+    },
+    "Description": "This blessed thurible holds up to 10 pieces of incense, and burns at a rate of 1 stick per hour. If a smokestick is added to the incense in the censer while it burns, creatures with the evil subtype are dazzled for as long as they remain within the area of the resulting smoke.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Celestial+censer"
+  },
+  {
+    "Name": "Celestial lamp",
+    "Cost": "300 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Advanced Race Guide pg. 87",
+    "Duration": "24 hours (when sanctified)",
+    "Bonus": {
+      "type": "untyped",
+      "value": 1,
+      "applies_to": "save DC of channeled positive energy or energy channeled to harm evil outsiders within a 30-foot radius (while the lamp’s light is sanctified)",
+      "subtype": ""
+    },
+    "Description": "This polished lantern contains a continual flame and sheds light as a common lamp. If its font of consecrated crystal and metalwork is filled with holy water, the lamp's light is sanctified for 24 hours, adding a +1 bonus to the save DC of channeled positive energy or energy channeled to harm evil outsiders within a 30-foot radius.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Celestial+lamp"
+  },
+  {
+    "Name": "Cheat sheath",
+    "Cost": "100 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Advanced Class Guide pg. 203",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Spellcraft checks to learn a spell from a spellbook or scroll; prepare a spell from a borrowed spellbook; identify the properties of a magic item using detect magic; or decipher a scroll",
+      "subtype": ""
+    },
+    "Description": "This ornate leather sheath is covered in tables of magical notation and arcane formulae, as well as common spell triggers and reagents. Referring to these handy bits of notation grants you a +2 circumstance bonus on Spellcraft checks made to learn a spell from a spellbook or scroll, prepare a spell from a borrowed spellbook, identify the properties of a magic item using detect magic, or decipher a scroll.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Cheat+sheath"
+  },
+  {
+    "Name": "Climber's kit",
+    "Cost": "80 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 78, Advanced Player's Guide pg. 184",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Climb checks",
+      "subtype": ""
+    },
+    "Description": "This kit includes a grappling hook, 50 feet of hemp rope, pitons, a belt, and gloves. It grants a +2 circumstance bonus on Climb checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Climber%27s+kit"
+  },
+  {
+    "Name": "Compact spellbook",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Spellbooks",
+    "Source": "Ultimate Equipment pg. 78",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Spellbook capacity",
+      "subtype": ""
+    },
+    "Description": "A compact spellbook holds as many spells as a normal spellbook but is much smaller. It uses specially treated pages and compressed notation to fit more spells in less space. It functions as a normal spellbook in all other ways.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Compact+spellbook"
+  },
+  {
+    "Name": "Compressed air",
+    "Cost": "50 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Alchemical",
+    "Source": "People of the River pg. 27",
+    "Duration": "1 round",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Underwater actions (breathing and propulsion)",
+      "subtype": ""
+    },
+    "Description": "This sealed metal cylinder contains highly compressed air. As a standard action, you can release the air in a controlled burst, allowing you to breathe underwater for 1 round or gain a +10-foot enhancement bonus to your swim speed for 1 round. Each cylinder contains 1 use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Compressed+air"
+  },
+  {
+    "Name": "Convocation bells",
+    "Cost": "100 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Inner Sea Gods pg. 233",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Perform (oratory) or Diplomacy checks made during a religious gathering",
+      "subtype": ""
+    },
+    "Description": "These silver bells are rung to signal the beginning of a religious convocation. When used as part of a formal gathering lasting at least 10 minutes, they grant a +2 circumstance bonus on Perform (oratory) or Diplomacy checks made during the event. The effect lasts for the duration of the gathering, up to 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Convocation+bells"
+  },
+  {
+    "Name": "Cosmogram",
+    "Cost": "200 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Occult Adventures pg. 249",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (planes) checks",
+      "subtype": ""
+    },
+    "Description": "This intricate diagram depicts the planes and their relationships. Studying a cosmogram for 10 minutes grants a +2 circumstance bonus on the next Knowledge (planes) check made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Cosmogram"
+  },
+  {
+    "Name": "Darkwood Mwangi harp",
+    "Cost": "130 gp",
+    "Weight": "1-1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Musical Instruments",
+    "Source": "Inner Sea World Guide pg. 294",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Perform (string instruments) checks",
+      "subtype": ""
+    },
+    "Description": "Crafted from rare darkwood, this Mwangi harp produces rich tones. It grants a +2 circumstance bonus on Perform (string instruments) checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Darkwood+Mwangi+harp"
+  },
+  {
+    "Name": "Decoy trigger (decoy pressure switch)",
+    "Cost": "60 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Traps",
+    "Source": "Ultimate Equipment pg. 78",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Perception and Disable Device checks against traps",
+      "subtype": ""
+    },
+    "Description": "This false trigger is used to mislead those attempting to locate or disable traps. A decoy pressure switch resembles a standard pressure plate trigger and can be installed alongside a real trigger. Creatures attempting to locate or disable the trap must succeed at a Perception check opposed by the installer’s Craft (traps) check to identify the real trigger. If the decoy trigger is disabled instead of the real one, the trap activates as normal.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Decoy+trigger+%28decoy+pressure+switch%29"
+  },
+  {
+    "Name": "Decoy trigger (decoy trap door)",
+    "Cost": "120 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Traps",
+    "Source": "Ultimate Equipment pg. 78",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Perception and Disable Device checks against traps",
+      "subtype": ""
+    },
+    "Description": "This false trap door is constructed to resemble a real trap door but does not open. When installed near a real trap door, it confuses those attempting to locate or disable the true mechanism. Creatures attempting to locate or disable the trap must succeed at a Perception check opposed by the installer’s Craft (traps) check to identify the real trigger. Disabling the decoy instead of the real trigger causes the actual trap to activate.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Decoy+trigger+%28decoy+trap+door%29"
+  },
+  {
+    "Name": "Decoy trigger (decoy tripwire)",
+    "Cost": "25 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Traps",
+    "Source": "Ultimate Equipment pg. 78",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Perception and Disable Device checks against traps",
+      "subtype": ""
+    },
+    "Description": "This false tripwire mimics a real trap trigger but is not connected to any mechanism. When installed near an actual tripwire, it forces creatures attempting to locate or disable the trap to succeed at a Perception check opposed by the installer’s Craft (traps) check to determine the true trigger. Disabling the decoy instead of the real trigger activates the actual trap.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Decoy+trigger+%28decoy+tripwire%29"
+  },
+  {
+    "Name": "Disguise kit",
+    "Cost": "50 gp",
+    "Weight": "8 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 78, PRPG Core Rulebook pg. 158",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disguise checks",
+      "subtype": ""
+    },
+    "Description": "This kit contains cosmetics, hair dye, small props, and a few simple garments. The kit is good for 10 uses. It grants a +2 circumstance bonus on Disguise checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Disguise+kit"
+  },
+  {
+    "Name": "Dissipating fan",
+    "Cost": "150 gp",
+    "Weight": "6 lbs.",
+    "Craft DC": 25,
+    "Type": "adventuring gear",
+    "Category": "Alchemical",
+    "Source": "Ultimate Equipment pg. 78",
+    "Duration": "1 round",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Fog, smoke, or similar vapors in a 10-foot cube",
+      "subtype": ""
+    },
+    "Description": "This large collapsible fan is reinforced with alchemical compounds. As a standard action, you can use it to disperse fog, smoke, or similar vapors in a 10-foot cube adjacent to you. The dispersed vapors remain cleared for 1 round before returning, unless naturally dispersed.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Dissipating+fan"
+  },
+  {
+    "Name": "Doctor's mask",
+    "Cost": "50 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Horror Adventures pg. 19",
+    "Duration": "",
+    "Bonus": [
+      {
+        "type": "circumstance",
+        "value": 2,
+        "applies_to": "Saves against inhaled diseases",
+        "subtype": ""
+      },
+      {
+        "type": "circumstance",
+        "value": 2,
+        "applies_to": "Heal checks to treat disease",
+        "subtype": ""
+      }
+    ],
+    "Description": "This beaked mask is stuffed with aromatic herbs. It grants a +2 circumstance bonus on saves against inhaled diseases and on Heal checks to treat disease.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Doctor%27s+mask"
+  },
+  {
+    "Name": "Doctor's outfit",
+    "Cost": "150 gp",
+    "Weight": "6 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Horror Adventures pg. 19",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks",
+      "subtype": ""
+    },
+    "Description": "This professional outfit includes protective clothing, gloves, and tools appropriate for medical practice. It grants a +2 circumstance bonus on Heal checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Doctor%27s+outfit"
+  },
+  {
+    "Name": "Dragoncrafting kit",
+    "Cost": "40 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Crafting",
+    "Source": "Advanced Race Guide pg. 95",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Craft checks related to dragoncraft items",
+      "subtype": ""
+    },
+    "Description": "This kit contains specialized tools for crafting items from dragon parts. It grants a +2 circumstance bonus on Craft checks made to create dragoncraft items.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Dragoncrafting+kit"
+  },
+  {
+    "Name": "Drowner's helm",
+    "Cost": "35 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Armor Accessories",
+    "Source": "People of the River pg. 27",
+    "Duration": "10 minutes",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Holding breath underwater",
+      "subtype": ""
+    },
+    "Description": "This heavy metal helmet is sealed with pitch and fitted with a limited air supply. It allows the wearer to breathe underwater for up to 10 minutes before the air is exhausted.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Drowner%27s+helm"
+  },
+  {
+    "Name": "Eyeglasses",
+    "Cost": "5 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Personal Gear",
+    "Source": "Ultimate Equipment pg. 78",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Vision correction",
+      "subtype": ""
+    },
+    "Description": "These lenses correct common vision problems. They negate penalties for poor eyesight at the GM’s discretion but provide no bonus to vision-based checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Eyeglasses"
+  },
+  {
+    "Name": "Fetish, tribal",
+    "Cost": "5 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Religious",
+    "Source": "Goblins of Golarion pg. 20",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Saving throws against fear effects (goblins only)",
+      "subtype": ""
+    },
+    "Description": "This small charm is constructed of bones, feathers, and scrap metal tied together with string. A goblin who carries a tribal fetish gains a +1 circumstance bonus on saving throws against fear effects. The fetish must be replaced after 24 hours to maintain its benefit. Only legal goblin PCs are allowed to select this item.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Fetish%2C+tribal"
+  },
+  {
+    "Name": "Fire carrier",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Goblins of Golarion pg. 20",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Carrying and preserving open flames",
+      "subtype": ""
+    },
+    "Description": "This small clay or metal container is used to safely transport a small open flame. A fire carrier can keep a small flame burning for up to 1 hour, even in moderate wind or rain. Only legal goblin PCs are allowed to select this item.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Fire+carrier"
+  },
+  {
+    "Name": "Flotation device",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Survival",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Swim checks to stay afloat",
+      "subtype": ""
+    },
+    "Description": "This inflated bladder or cork-filled vest is designed to help keep a creature afloat. It grants a +2 circumstance bonus on Swim checks made to stay afloat.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Flotation+device"
+  },
+  {
+    "Name": "Footprint book",
+    "Cost": "50 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Investigation",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Survival checks to track",
+      "subtype": ""
+    },
+    "Description": "This book contains drawings and descriptions of various footprints. Studying the book for 10 minutes grants a +2 circumstance bonus on the next Survival check made to track within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Footprint+book"
+  },
+  {
+    "Name": "Footprint cast",
+    "Cost": "2 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Investigation",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Preserving footprints for later examination",
+      "subtype": ""
+    },
+    "Description": "This kit contains plaster and tools used to create a mold of a footprint. Creating a cast takes 10 minutes and preserves the footprint for later examination.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Footprint+cast"
+  },
+  {
+    "Name": "Forecast station",
+    "Cost": "150 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Wilderness pg. 243",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Survival checks to predict weather",
+      "subtype": ""
+    },
+    "Description": "This portable collection of barometric, thermal, and wind-measuring instruments allows a user to better anticipate weather changes. Using the forecast station for 10 minutes grants a +2 circumstance bonus on Survival checks made to predict weather within the next 24 hours.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Forecast+station"
+  },
+  {
+    "Name": "Forger's kit",
+    "Cost": "200 gp",
+    "Weight": "6 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Linguistics checks to forge documents",
+      "subtype": ""
+    },
+    "Description": "This kit contains inks, quills, paper, seals, and tools necessary to create forged documents. It grants a +2 circumstance bonus on Linguistics checks made to forge documents and contains enough materials for 10 forgeries.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Forger%27s+kit"
+  },
+  {
+    "Name": "Formula book",
+    "Cost": "15 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Spellbooks",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Alchemist formula storage",
+      "subtype": ""
+    },
+    "Description": "A formula book holds the written formulae for an alchemist’s extracts. It functions like a wizard’s spellbook, except it stores extract formulae instead of spells.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Formula+book"
+  },
+  {
+    "Name": "Fortune-teller's deck (common)",
+    "Cost": "1 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Profession (fortune-teller) checks",
+      "subtype": ""
+    },
+    "Description": "This deck of illustrated cards is used for entertainment and simple fortune-telling. It grants a +2 circumstance bonus on Profession (fortune-teller) checks when used as part of a reading.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Fortune-teller%27s+deck+%28common%29"
+  },
+  {
+    "Name": "Fortune-teller's deck (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 4,
+      "applies_to": "Profession (fortune-teller) checks",
+      "subtype": ""
+    },
+    "Description": "This finely crafted deck features gilded edges and detailed illustrations. It grants a +4 circumstance bonus on Profession (fortune-teller) checks when used as part of a reading.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Fortune-teller%27s+deck+%28masterwork%29"
+  },
+  {
+    "Name": "Fortune-teller's deck (quality)",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 3,
+      "applies_to": "Profession (fortune-teller) checks",
+      "subtype": ""
+    },
+    "Description": "This deck is of higher quality than a common set and features sturdy cards and improved artwork. It grants a +3 circumstance bonus on Profession (fortune-teller) checks when used as part of a reading.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Fortune-teller%27s+deck+%28quality%29"
+  },
+  {
+    "Name": "Gabion",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Siege",
+    "Source": "Ultimate Combat pg. 160",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Cover (when filled and positioned)",
+      "subtype": ""
+    },
+    "Description": "A gabion is a cylindrical wicker basket filled with earth or stones to provide cover in battle. When filled and positioned, it provides cover as determined by the GM, typically granting cover bonuses to AC against ranged attacks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Gabion"
+  },
+  {
+    "Name": "Grappler's grease",
+    "Cost": "5 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Alchemical",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Escape Artist checks to escape a grapple",
+      "subtype": ""
+    },
+    "Description": "This slippery alchemical grease can be applied to your skin or clothing as a standard action. For 1 hour, it grants a +2 circumstance bonus on Escape Artist checks made to escape a grapple.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Grappler%27s+grease"
+  },
+  {
+    "Name": "Half-orc disguise kit",
+    "Cost": "75 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Advanced Race Guide pg. 129",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disguise checks to appear as a full orc or human",
+      "subtype": ""
+    },
+    "Description": "This specialized disguise kit contains cosmetics and prosthetics designed to help a half-orc pass as either a full orc or a human. It grants a +2 circumstance bonus on Disguise checks made for that purpose. The kit contains enough materials for 10 uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Half-orc+disguise+kit"
+  },
+  {
+    "Name": "Halteres",
+    "Cost": "8 gp",
+    "Weight": "24 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Martial Arts Handbook pg. 30",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Acrobatics checks to jump (after 1 hour of training and successful DC 20 Acrobatics check)",
+      "subtype": "training"
+    },
+    "Description": "These weighted stones are used in jump training. After 1 hour of practice and succeeding at a DC 20 Acrobatics check, you gain a +2 circumstance bonus on Acrobatics checks to jump for 24 hours or until you fail a jump check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Halteres"
+  },
+  {
+    "Name": "Hand rotary quern",
+    "Cost": "10 gp",
+    "Weight": "20 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Grinding grain or similar materials",
+      "subtype": ""
+    },
+    "Description": "This hand-powered grinding stone is used to mill grain or similar materials into flour. It requires manual effort and time to operate, typically taking 1 hour to grind enough grain for a day’s rations.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Hand+rotary+quern"
+  },
+  {
+    "Name": "Handle harness",
+    "Cost": "25 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 79",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Strength checks to lift or drag heavy objects (when properly secured)",
+      "subtype": ""
+    },
+    "Description": "This arrangement of straps, buckles, and reinforced grips is designed to distribute weight across the shoulders and torso. When used to help lift or drag a heavy object and properly secured, it grants a +2 circumstance bonus on Strength checks made to lift or drag heavy objects.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Handle+harness"
+  },
+  {
+    "Name": "Hanging board",
+    "Cost": "75 gp",
+    "Weight": "7 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Martial Arts Handbook pg. 30",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Climb checks (after 1 hour of training and successful DC 20 Climb check)",
+      "subtype": "training"
+    },
+    "Description": "This sturdy wooden board is fitted with small ledges and grips for climbing practice and is typically suspended from a beam or tree branch. After 1 hour of training and succeeding at a DC 20 Climb check, you gain a +2 circumstance bonus on Climb checks for 24 hours or until you fail a Climb check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Hanging+board"
+  },
+  {
+    "Name": "Healer's kit",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "PRPG Core Rulebook pg. 158, Ultimate Equipment pg. 80",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks",
+      "subtype": ""
+    },
+    "Description": "This kit contains bandages, salves, and simple surgical tools. It is good for 10 uses. It grants a +2 circumstance bonus on Heal checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Healer%27s+kit"
+  },
+  {
+    "Name": "Holly and mistletoe",
+    "Cost": "0 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Divine Focus",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Divine focus for druid spells",
+      "subtype": ""
+    },
+    "Description": "Holly and mistletoe serve as a divine focus for druid spells.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Holly+and+mistletoe"
+  },
+  {
+    "Name": "Hunter's sight",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Vision",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Perception checks to notice tracks or signs of passage",
+      "subtype": ""
+    },
+    "Description": "This herbal preparation is applied around the eyes. For 1 hour after application, it grants a +2 circumstance bonus on Perception checks to notice tracks or signs of passage.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Hunter%27s+sight"
+  },
+  {
+    "Name": "Juggler's kit",
+    "Cost": "15 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Performance",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Perform (act) checks involving juggling",
+      "subtype": ""
+    },
+    "Description": "This kit includes weighted balls, clubs, and rings designed for juggling practice. It grants a +2 circumstance bonus on Perform (act) checks involving juggling.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Juggler%27s+kit"
+  },
+  {
+    "Name": "Leeching kit",
+    "Cost": "5 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks to treat poison or disease (when using leeches)",
+      "subtype": ""
+    },
+    "Description": "This kit includes several medicinal leeches and tools for applying them. When used as part of a Heal check to treat poison or disease, it grants a +2 circumstance bonus. The leeches are consumed after 1 use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Leeching+kit"
+  },
+  {
+    "Name": "Leg stabilizers (pair)",
+    "Cost": "1,000 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 25,
+    "Type": "adventuring gear",
+    "Category": "Prosthetics",
+    "Source": "Ultimate Combat pg. 137",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Standing and walking when missing legs",
+      "subtype": ""
+    },
+    "Description": "These articulated metal braces attach to a character’s thighs and hips. When fitted to a creature missing one or both legs, they allow the creature to stand and move at half its normal land speed. The GM may adjust mobility penalties as appropriate.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Leg+stabilizers"
+  },
+  {
+    "Name": "Linguist's codex (expanded)",
+    "Cost": "200 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Books",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 4,
+      "applies_to": "Linguistics checks",
+      "subtype": ""
+    },
+    "Description": "This large reference book contains detailed grammatical notes and translations for numerous languages. Consulting it for 10 minutes grants a +4 circumstance bonus on the next Linguistics check made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Linguist%27s+codex+%28expanded%29"
+  },
+  {
+    "Name": "Linguist's codex (standard)",
+    "Cost": "50 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Books",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Linguistics checks",
+      "subtype": ""
+    },
+    "Description": "This reference book contains common phrases, alphabets, and grammatical notes for a selection of languages. Consulting it for 10 minutes grants a +2 circumstance bonus on the next Linguistics check made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Linguist%27s+codex+%28standard%29"
+  },
+  {
+    "Name": "Mapmaker’s kit",
+    "Cost": "10 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Profession (cartographer) checks",
+      "subtype": ""
+    },
+    "Description": "This kit contains parchment, inks, measuring tools, and drafting implements for creating maps. It grants a +2 circumstance bonus on Profession (cartographer) checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Mapmaker%E2%80%99s+kit"
+  },
+  {
+    "Name": "Marlinspike",
+    "Cost": "8 sp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Nautical",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Profession (sailor) checks to tie or untie complex knots",
+      "subtype": ""
+    },
+    "Description": "This pointed metal tool is used to separate strands of rope and untie tight knots. It grants a +2 circumstance bonus on Profession (sailor) checks to tie or untie complex knots.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Marlinspike"
+  },
+  {
+    "Name": "Masterwork flippers",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Swimming",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Swim checks",
+      "subtype": ""
+    },
+    "Description": "These finely crafted swimming fins fit securely over the feet and are balanced for efficient movement in water. They grant a +2 circumstance bonus on Swim checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Masterwork+flippers"
+  },
+  {
+    "Name": "Masterwork tool",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "A specific skill associated with the tool",
+      "subtype": ""
+    },
+    "Description": "This well-crafted tool is perfect for its intended purpose. It grants a +2 circumstance bonus on a specific skill check related to its use (such as a masterwork thieves’ tool for Disable Device).",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Masterwork+tool"
+  },
+  {
+    "Name": "Meels",
+    "Cost": "10 gp",
+    "Weight": "30 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Martial Arts Handbook pg. 30",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Strength checks (after 1 hour of training and successful DC 20 Strength check)",
+      "subtype": "training"
+    },
+    "Description": "Meels are heavy wooden clubs used for strength training. After 1 hour of practice and succeeding at a DC 20 Strength check, you gain a +2 circumstance bonus on Strength checks for 24 hours or until you fail a Strength check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Meels"
+  },
+  {
+    "Name": "Mending kit",
+    "Cost": "5 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Craft checks to repair items",
+      "subtype": ""
+    },
+    "Description": "This kit includes needles, thread, patches, glue, and small tools for making minor repairs. It grants a +2 circumstance bonus on Craft checks made to repair items and contains enough supplies for 10 uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Mending+kit"
+  },
+  {
+    "Name": "Merchant's scale",
+    "Cost": "2 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Trade",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Appraise checks involving small trade goods or coins",
+      "subtype": ""
+    },
+    "Description": "This small balance scale is used to weigh coins and small goods. It grants a +2 circumstance bonus on Appraise checks involving small trade goods or coins.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Merchant%27s+scale"
+  },
+  {
+    "Name": "Midwife's kit",
+    "Cost": "10 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Ultimate Equipment pg. 80",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks related to childbirth or treating infants",
+      "subtype": ""
+    },
+    "Description": "This kit contains linens, herbal preparations, and simple tools for assisting childbirth. It grants a +2 circumstance bonus on Heal checks related to childbirth or treating infants and contains enough supplies for 10 uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Midwife%27s+kit"
+  },
+  {
+    "Name": "Monster dummy",
+    "Cost": "10 gp",
+    "Weight": "40 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Combat training",
+      "subtype": ""
+    },
+    "Description": "This roughly humanoid straw-and-wood dummy is used for martial training. It can be constructed to resemble a specific type of creature, though a character cannot select from the humanoid type, subtypes, or varieties. The dummy provides a sturdy target for practicing attacks and maneuvers.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Monster+dummy"
+  },
+  {
+    "Name": "Musical instrument (common)",
+    "Cost": "5 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Musical Instruments",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Perform skill usage",
+      "subtype": ""
+    },
+    "Description": "This common instrument (such as a drum, flute, or lute) is suitable for basic performance. It is required for certain Perform skill uses but provides no additional bonus.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Musical+instrument"
+  },
+  {
+    "Name": "Musical instrument (masterwork)",
+    "Cost": "100 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Musical Instruments",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Perform checks using this instrument",
+      "subtype": ""
+    },
+    "Description": "This finely crafted instrument is perfectly balanced and produces superior sound. It grants a +2 circumstance bonus on Perform checks made with this instrument.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Musical+instrument"
+  },
+  {
+    "Name": "Nature climbing harness",
+    "Cost": "60 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Climbing",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Climb checks made in natural environments",
+      "subtype": ""
+    },
+    "Description": "This harness is constructed from natural fibers and shaped to mimic vines and branches. It grants a +2 circumstance bonus on Climb checks made in natural environments.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Nature+climbing+harness"
+  },
+  {
+    "Name": "Obsession log",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Occult Adventures pg. 249",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge checks related to a chosen obsession topic",
+      "subtype": ""
+    },
+    "Description": "This journal is dedicated to a specific topic of intense personal study. If you spend 10 minutes consulting your obsession log, you gain a +2 circumstance bonus on the next Knowledge check related to the chosen topic made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Obsession+log"
+  },
+  {
+    "Name": "Occult reference material",
+    "Cost": "80 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Occult Adventures pg. 249",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (arcana) or Knowledge (planes) checks",
+      "subtype": ""
+    },
+    "Description": "This collection of scrolls and pamphlets discusses occult lore. Consulting the materials for 10 minutes grants a +2 circumstance bonus on the next Knowledge (arcana) or Knowledge (planes) check made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Occult+reference+material"
+  },
+  {
+    "Name": "Occultist's implement",
+    "Cost": "10 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Occult Adventures pg. 48",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Occultist class features",
+      "subtype": ""
+    },
+    "Description": "This object serves as a focus for an occultist’s mental focus. It must be of a type appropriate to one of the occultist’s implements and functions as a vessel for storing and expending mental focus.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Occultist%27s+implement"
+  },
+  {
+    "Name": "Orrery (calculating grand)",
+    "Cost": "2,000 gp",
+    "Weight": "12 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 4,
+      "applies_to": "Knowledge (planes) checks related to planetary motion",
+      "subtype": ""
+    },
+    "Description": "This elaborate mechanical model of the solar system includes complex calculating components. Studying it for 1 hour grants a +4 circumstance bonus on Knowledge (planes) checks related to planetary motion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Orrery"
+  },
+  {
+    "Name": "Orrery (calculating standard)",
+    "Cost": "1,500 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (planes) checks related to planetary motion",
+      "subtype": ""
+    },
+    "Description": "This mechanical model of the solar system includes basic calculating components. Studying it for 1 hour grants a +2 circumstance bonus on Knowledge (planes) checks related to planetary motion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Orrery"
+  },
+  {
+    "Name": "Orrery (calculating tellurium)",
+    "Cost": "200 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Knowledge (planes) checks related to planetary motion",
+      "subtype": ""
+    },
+    "Description": "This small tellurium model demonstrates the motion of a planet and its moon. Studying it for 1 hour grants a +1 circumstance bonus on Knowledge (planes) checks related to planetary motion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Orrery"
+  },
+  {
+    "Name": "Orrery (grand)",
+    "Cost": "1,000 gp",
+    "Weight": "12 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (planes) checks related to planetary motion",
+      "subtype": ""
+    },
+    "Description": "This large mechanical model of the solar system illustrates planetary positions. Studying it for 1 hour grants a +2 circumstance bonus on Knowledge (planes) checks related to planetary motion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Orrery"
+  },
+  {
+    "Name": "Orrery (standard)",
+    "Cost": "750 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Knowledge (planes) checks related to planetary motion",
+      "subtype": ""
+    },
+    "Description": "This mechanical model shows simplified planetary positions. Studying it for 1 hour grants a +1 circumstance bonus on Knowledge (planes) checks related to planetary motion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Orrery"
+  },
+  {
+    "Name": "Orrery (tellurium)",
+    "Cost": "100 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Knowledge (planes) checks related to planetary motion",
+      "subtype": ""
+    },
+    "Description": "This simple tellurium demonstrates the motion of a planet and its moon. Studying it for 1 hour grants a +1 circumstance bonus on Knowledge (planes) checks related to planetary motion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Orrery"
+  },
+  {
+    "Name": "Pain wheel",
+    "Cost": "50 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Torture",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This small spiked wheel is rolled across exposed skin to inflict pain without causing serious injury. When used as part of torture, it grants a +2 circumstance bonus on Intimidate checks. Each use causes 1 point of nonlethal damage.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Pain+wheel"
+  },
+  {
+    "Name": "Palm paws",
+    "Cost": "80 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Climbing",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Climb checks on trees",
+      "subtype": ""
+    },
+    "Description": "These strapped wooden grips fit over the hands and provide better traction on tree bark. They grant a +2 circumstance bonus on Climb checks made to climb trees.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Palm+paws"
+  },
+  {
+    "Name": "Parasol (common)",
+    "Cost": "1 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Personal Gear",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Saving throws against severe sun exposure",
+      "subtype": ""
+    },
+    "Description": "This collapsible sunshade protects against intense sunlight. It grants a +1 circumstance bonus on saving throws against severe sun exposure while held overhead.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Parasol"
+  },
+  {
+    "Name": "Parasol (umbrella)",
+    "Cost": "2 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Personal Gear",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Saving throws against rain-related exposure",
+      "subtype": ""
+    },
+    "Description": "This sturdy umbrella protects against rain. It grants a +1 circumstance bonus on saving throws against exposure to heavy rain while held overhead.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Parasol"
+  },
+  {
+    "Name": "Pig grease",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Craft DC": 15,
+    "Type": "alchemical item",
+    "Category": "Alchemical",
+    "Source": "Goblins of Golarion pg. 20",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Escape Artist checks to escape a grapple",
+      "subtype": ""
+    },
+    "Description": "This foul-smelling grease is applied to the body as a standard action. For 1 hour, it grants a +2 circumstance bonus on Escape Artist checks to escape a grapple. Only legal goblin PCs are allowed to select this item.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Pig+grease"
+  },
+  {
+    "Name": "Pnakotic record",
+    "Cost": "2,000 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Occult Adventures pg. 249",
+    "Duration": "",
+    "Bonus": [
+      {
+        "type": "circumstance",
+        "value": 4,
+        "applies_to": "Knowledge (arcana) checks",
+        "subtype": ""
+      },
+      {
+        "type": "circumstance",
+        "value": 4,
+        "applies_to": "Knowledge (planes) checks",
+        "subtype": ""
+      }
+    ],
+    "Description": "This dense tome contains esoteric lore attributed to ancient civilizations. Studying the record for 1 hour grants a +4 circumstance bonus on the next Knowledge (arcana) or Knowledge (planes) check made within 24 hours.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Pnakotic+record"
+  },
+  {
+    "Name": "Poison belcher",
+    "Cost": "50 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Poison",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Delivering inhaled poison",
+      "subtype": ""
+    },
+    "Description": "This small metal tube is designed to spray inhaled poisons. Loading a dose of inhaled poison into the belcher takes a standard action. As a standard action, the user can release the poison in a 5-foot cone. The poison belcher holds 1 dose at a time.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Poison+belcher"
+  },
+  {
+    "Name": "Poison sponge",
+    "Cost": "150 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 25,
+    "Type": "adventuring gear",
+    "Category": "Poison",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Safely applying poison to objects",
+      "subtype": ""
+    },
+    "Description": "This alchemically treated sponge can absorb one dose of poison. Once saturated, it can be pressed against a weapon or object as a standard action to apply the poison without risk of accidental exposure. The sponge is ruined after 1 use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Poison+sponge"
+  },
+  {
+    "Name": "Poisoned locket",
+    "Cost": "75 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Poison",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Delivering contact poison",
+      "subtype": ""
+    },
+    "Description": "This small ornamental locket contains a hidden compartment for a dose of contact poison. Opening the locket as a move action exposes the poison to anyone handling it. The poison is expended after 1 use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Poisoned+locket"
+  },
+  {
+    "Name": "Poisoned quill",
+    "Cost": "30 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Poison",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Delivering injury poison",
+      "subtype": ""
+    },
+    "Description": "This writing quill contains a concealed reservoir for a dose of injury poison. When used to write, it can deliver the poison to a creature pricked by the nib. The poison is expended after 1 use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Poisoned+quill"
+  },
+  {
+    "Name": "Poisoner's goblet",
+    "Cost": "100 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Poison",
+    "Source": "Ultimate Equipment pg. 81",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Delivering ingested poison",
+      "subtype": ""
+    },
+    "Description": "This ornate goblet contains a hidden reservoir for a dose of ingested poison. As a move action, the user can release the poison into the contents of the goblet. The poison is expended after 1 use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Poisoner%27s+goblet"
+  },
+  {
+    "Name": "Portable alchemist's lab",
+    "Cost": "75 gp",
+    "Weight": "20 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Craft (alchemy) checks",
+      "subtype": ""
+    },
+    "Description": "This portable version of an alchemist’s lab provides the same +2 circumstance bonus on Craft (alchemy) checks as a standard alchemist’s lab, but it is easier to transport. It has no effect on the cost of crafting alchemical items.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Portable+alchemist%27s+lab"
+  },
+  {
+    "Name": "Portable altar",
+    "Cost": "250 gp",
+    "Weight": "40 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Religious",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 1,
+      "applies_to": "Channel Energy DC when using channel energy within 10 feet of the altar",
+      "subtype": ""
+    },
+    "Description": "This sturdy wooden altar can be assembled in 10 minutes. When a cleric or other character capable of channeling energy uses that ability within 10 feet of the altar, the save DC of the channel energy increases by +1. The altar must be dedicated to a specific deity and blessed before use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Portable+altar"
+  },
+  {
+    "Name": "Portable altar (masterwork)",
+    "Cost": "400 gp",
+    "Weight": "40 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Religious",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Channel Energy DC when using channel energy within 10 feet of the altar",
+      "subtype": ""
+    },
+    "Description": "This finely crafted portable altar is made of superior materials and workmanship. When a cleric or other character capable of channeling energy uses that ability within 10 feet of the altar, the save DC of the channel energy increases by +2. The altar must be dedicated to a specific deity and blessed before use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Portable+altar"
+  },
+  {
+    "Name": "Portable solarium",
+    "Cost": "800 gp",
+    "Weight": "35 lbs.",
+    "Craft DC": 25,
+    "Type": "adventuring gear",
+    "Category": "Alchemical",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "8 hours",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Sunlight exposure requirements",
+      "subtype": ""
+    },
+    "Description": "This alchemically treated canvas tent amplifies available sunlight. When set up in direct sunlight, it creates an area inside that counts as full daylight for 8 hours. This is sufficient to satisfy creatures or abilities that require exposure to natural sunlight.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Portable+solarium"
+  },
+  {
+    "Name": "Portable sweat lodge",
+    "Cost": "25 gp",
+    "Weight": "25 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Survival",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Fortitude saves against cold exposure (after 1 hour use)",
+      "subtype": ""
+    },
+    "Description": "This collapsible tent is used to create a heated enclosure with hot stones and steam. After spending 1 hour inside a properly heated sweat lodge, a creature gains a +2 circumstance bonus on Fortitude saves against cold exposure for the next 24 hours.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Portable+sweat+lodge"
+  },
+  {
+    "Name": "Portable terrarium",
+    "Cost": "100 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Alchemy",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Survival checks to harvest plants",
+      "subtype": ""
+    },
+    "Description": "This glass-and-brass container provides a controlled environment for delicate plants. It grants a +2 circumstance bonus on Survival checks made to harvest or preserve rare plants.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Portable+terrarium"
+  },
+  {
+    "Name": "Portrait book",
+    "Cost": "10 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Books",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (nobility) checks to identify individuals depicted",
+      "subtype": ""
+    },
+    "Description": "This illustrated book contains portraits of notable individuals. Consulting it for 10 minutes grants a +2 circumstance bonus on Knowledge (nobility) checks to identify individuals depicted within the book.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Portrait+book"
+  },
+  {
+    "Name": "Powder ball (empty)",
+    "Cost": "400 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 25,
+    "Type": "adventuring gear",
+    "Category": "Siege",
+    "Source": "Ultimate Combat pg. 161",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Siege engine ammunition",
+      "subtype": ""
+    },
+    "Description": "This hollow metal sphere is designed to be filled with alchemical or flammable materials for use as ammunition in certain siege engines. It must be filled separately before use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Powder+ball"
+  },
+  {
+    "Name": "Powder ball (fuel)",
+    "Cost": "300 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 25,
+    "Type": "alchemical item",
+    "Category": "Siege",
+    "Source": "Ultimate Combat pg. 161",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Igniting powder ball ammunition",
+      "subtype": ""
+    },
+    "Description": "This volatile alchemical compound is used to fill a powder ball. When ignited as part of siege ammunition, it creates a fiery explosion determined by the siege engine’s statistics. One dose fills one powder ball.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Powder+ball"
+  },
+  {
+    "Name": "Practice straitjacket",
+    "Cost": "100 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Escape Artist checks (after 1 hour of training and successful DC 20 Escape Artist check)",
+      "subtype": "training"
+    },
+    "Description": "This heavy canvas jacket is fitted with reinforced straps and buckles designed for escape practice. After 1 hour of training and succeeding at a DC 20 Escape Artist check to free yourself, you gain a +2 circumstance bonus on Escape Artist checks for 24 hours or until you fail an Escape Artist check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Practice+straitjacket"
+  },
+  {
+    "Name": "Printing press (1-page)",
+    "Cost": "250 gp",
+    "Weight": "150 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Crafting",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Profession (printer) checks",
+      "subtype": ""
+    },
+    "Description": "This small manual printing press can print a single page at a time. It grants a +2 circumstance bonus on Profession (printer) checks and significantly reduces the time required to produce multiple identical documents compared to hand copying.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Printing+press"
+  },
+  {
+    "Name": "Prognostication manual",
+    "Cost": "30 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (arcana) or Knowledge (religion) checks related to divination",
+      "subtype": ""
+    },
+    "Description": "This book contains instructions and theory regarding divination practices. Studying it for 10 minutes grants a +2 circumstance bonus on the next Knowledge (arcana) or Knowledge (religion) check related to divination made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Prognostication+manual"
+  },
+  {
+    "Name": "Psychometrist's gloves",
+    "Cost": "10 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Occult Adventures pg. 249",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Appraise checks made to determine the history of an object",
+      "subtype": ""
+    },
+    "Description": "These thin gloves are marked with occult symbols. When worn while examining an object for at least 1 minute, they grant a +2 circumstance bonus on Appraise checks made to determine the object’s history or origin.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Psychometrist%27s+gloves"
+  },
+  {
+    "Name": "Quintain",
+    "Cost": "40 gp",
+    "Weight": "30 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Mounted combat training",
+      "subtype": ""
+    },
+    "Description": "This rotating practice target consists of a mounted figure with a shield on one side and a weighted arm on the other. It is used to train mounted warriors in charging and striking without being struck in return.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Quintain"
+  },
+  {
+    "Name": "Reagent extractor",
+    "Cost": "1,000 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 25,
+    "Type": "adventuring gear",
+    "Category": "Alchemy",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Craft (alchemy) checks to extract reagents",
+      "subtype": ""
+    },
+    "Description": "This complex apparatus is used to extract alchemical reagents from harvested materials. It grants a +2 circumstance bonus on Craft (alchemy) checks made to extract reagents from plants or creatures.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Reagent+extractor"
+  },
+  {
+    "Name": "Ritual disk",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Occult",
+    "Source": "Occult Adventures pg. 249",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (arcana) checks related to ritual magic",
+      "subtype": ""
+    },
+    "Description": "This engraved metal disk is used as a focus during occult rituals. Studying it for 10 minutes grants a +2 circumstance bonus on the next Knowledge (arcana) check related to ritual magic made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Ritual+disk"
+  },
+  {
+    "Name": "Roar cord",
+    "Cost": "15 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Signal",
+    "Source": "Ultimate Equipment pg. 82",
+    "Duration": "1 round",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Auditory signals",
+      "subtype": ""
+    },
+    "Description": "This cord, when swung rapidly in a circle, produces a loud roaring sound audible at a great distance. It can be used to signal allies or intimidate animals, at the GM’s discretion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Roar+cord"
+  },
+  {
+    "Name": "Roperunner",
+    "Cost": "50 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Climbing",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Acrobatics checks to balance on a rope",
+      "subtype": ""
+    },
+    "Description": "This small wheeled device clamps onto a rope and allows a user to roll along it while maintaining balance. When properly secured to a taut rope, it grants a +2 circumstance bonus on Acrobatics checks made to balance while moving along the rope.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Roperunner"
+  },
+  {
+    "Name": "Rust repellent",
+    "Cost": "25 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 20,
+    "Type": "alchemical item",
+    "Category": "Alchemical",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Protection of metal items from rust effects",
+      "subtype": ""
+    },
+    "Description": "This thick alchemical paste can be applied to one metal object as a standard action. For 24 hours, the treated object gains a +4 circumstance bonus on saving throws against rust attacks and similar corrosive effects.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Rust+repellent"
+  },
+  {
+    "Name": "Samsaran life wheel",
+    "Cost": "25 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Religious",
+    "Source": "Advanced Race Guide pg. 193",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (religion) checks related to samsaran beliefs",
+      "subtype": ""
+    },
+    "Description": "This small circular diagram depicts the samsaran cycle of reincarnation. Consulting it for 10 minutes grants a +2 circumstance bonus on the next Knowledge (religion) check related to samsaran beliefs made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Samsaran+life+wheel"
+  },
+  {
+    "Name": "Sentry mannequin (masterwork)",
+    "Cost": "80 gp",
+    "Weight": "35 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Bluff checks to create a diversion or feint using the mannequin",
+      "subtype": ""
+    },
+    "Description": "This articulated, lifelike mannequin is crafted with exceptional detail. When positioned appropriately, it can be used to create convincing diversions. It grants a +2 circumstance bonus on Bluff checks made to create a diversion or feint using the mannequin.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sentry+mannequin"
+  },
+  {
+    "Name": "Shadow stencil set",
+    "Cost": "30 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Stealth",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Stealth checks in dim light or shadowy illumination",
+      "subtype": ""
+    },
+    "Description": "This set of cut-out templates and dark pigments is used to apply disruptive patterns to clothing and gear. Applying the stencil takes 10 minutes and grants a +2 circumstance bonus on Stealth checks made in dim light or shadowy illumination for 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Shadow+stencil+set"
+  },
+  {
+    "Name": "Shears (adamantine)",
+    "Cost": "3,003 gp",
+    "Weight": "8 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Cutting hard materials",
+      "subtype": ""
+    },
+    "Description": "These heavy-duty shears are crafted from adamantine. They can cut through most materials, including objects with hardness less than 20, as determined by the GM.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Shears"
+  },
+  {
+    "Name": "Shears (lopping)",
+    "Cost": "3 gp",
+    "Weight": "8 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Survival checks to gather wood or clear vegetation",
+      "subtype": ""
+    },
+    "Description": "These large shears are designed for cutting branches and thick vegetation. They grant a +2 circumstance bonus on Survival checks made to gather wood or clear vegetation.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Shears"
+  },
+  {
+    "Name": "Shears (small)",
+    "Cost": "5 sp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Cutting cloth or small materials",
+      "subtype": ""
+    },
+    "Description": "These small shears are useful for cutting cloth, leather, or other light materials.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Shears"
+  },
+  {
+    "Name": "Skis and poles",
+    "Cost": "15 gp",
+    "Weight": "6 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Travel",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Overland movement across snow",
+      "subtype": ""
+    },
+    "Description": "These wooden skis and matching poles allow a character to travel efficiently across snow and ice. When worn, they reduce movement penalties for deep snow as determined by the GM.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Skis+and+poles"
+  },
+  {
+    "Name": "Sky mine",
+    "Cost": "1,000 gp",
+    "Weight": "500 lbs.",
+    "Craft DC": 25,
+    "Type": "adventuring gear",
+    "Category": "Siege",
+    "Source": "Ultimate Combat pg. 162",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Aerial explosive device",
+      "subtype": ""
+    },
+    "Description": "This massive alchemical explosive is suspended beneath a balloon or other aerial conveyance and detonated at altitude. When triggered, it explodes in a large radius as determined by the siege weapon rules in Ultimate Combat. A sky mine is destroyed after detonation.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sky+mine"
+  },
+  {
+    "Name": "Sleeve holster",
+    "Cost": "100 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Concealment",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Sleight of Hand checks to conceal a small weapon",
+      "subtype": ""
+    },
+    "Description": "This cleverly designed leather sheath fits inside a sleeve and allows the wearer to conceal a small weapon. It grants a +2 circumstance bonus on Sleight of Hand checks made to conceal the weapon.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sleeve+holster"
+  },
+  {
+    "Name": "Speaking trumpet",
+    "Cost": "6 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Signal",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Perception checks to hear speech projected through the trumpet",
+      "subtype": ""
+    },
+    "Description": "This conical metal device amplifies the user’s voice. When used to project speech, it grants a +2 circumstance bonus on Perception checks made to hear the speech at a distance.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Speaking+trumpet"
+  },
+  {
+    "Name": "Spell component pouch",
+    "Cost": "5 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Spellcasting",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Spellcasting (material components)",
+      "subtype": ""
+    },
+    "Description": "A spell component pouch is a small, waterproof leather belt pouch that has compartments to hold all the material components and focuses needed for spellcasting, except for those components that have a specific cost.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Spell+component+pouch"
+  },
+  {
+    "Name": "Spellbook",
+    "Cost": "15 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Spellbooks",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Wizard spell storage",
+      "subtype": ""
+    },
+    "Description": "A spellbook has 100 pages of parchment. Each spell occupies one page per spell level (one page for cantrips). A wizard can use a spellbook to prepare spells.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Spellbook"
+  },
+  {
+    "Name": "Star charts",
+    "Cost": "200 gp",
+    "Weight": "1/2 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Survival checks to navigate by the stars",
+      "subtype": ""
+    },
+    "Description": "These detailed charts map constellations and celestial movements. Consulting them for 10 minutes grants a +2 circumstance bonus on Survival checks made to navigate by the stars.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Star+charts"
+  },
+  {
+    "Name": "Statue disguise kit",
+    "Cost": "50 gp",
+    "Weight": "8 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Disguise",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disguise checks to appear as a statue",
+      "subtype": ""
+    },
+    "Description": "This kit includes pigments, powders, and stiffened garments used to make a creature resemble a statue. It grants a +2 circumstance bonus on Disguise checks made to appear as a statue and contains enough materials for 10 uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Statue+disguise+kit"
+  },
+  {
+    "Name": "Stretcher",
+    "Cost": "1 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Transporting injured creatures",
+      "subtype": ""
+    },
+    "Description": "This simple canvas-and-wood stretcher allows two creatures to carry an injured or unconscious creature without reducing its speed as much as carrying the creature normally would, at the GM’s discretion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Stretcher"
+  },
+  {
+    "Name": "Sugar glass bottle",
+    "Cost": "1 gp",
+    "Weight": "—",
+    "Craft DC": 15,
+    "Type": "adventuring gear",
+    "Category": "Props",
+    "Source": "Ultimate Equipment pg. 83",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Breaking without causing serious injury",
+      "subtype": ""
+    },
+    "Description": "This fragile bottle is made from hardened sugar and is designed to shatter easily without causing serious harm. It is often used in staged performances or diversions.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Sugar+glass+bottle"
+  },
+  {
+    "Name": "Surefoot training blocks",
+    "Cost": "50 gp",
+    "Weight": "25 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Acrobatics checks to balance (after 1 hour of training and successful DC 20 Acrobatics check)",
+      "subtype": "training"
+    },
+    "Description": "These wooden blocks of varying heights are arranged to create uneven surfaces for balance practice. After 1 hour of training and succeeding at a DC 20 Acrobatics check, you gain a +2 circumstance bonus on Acrobatics checks to balance for 24 hours or until you fail a balance check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Surefoot+training+blocks"
+  },
+  {
+    "Name": "Surgeon's tools",
+    "Cost": "20 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks to perform surgery or treat deadly wounds",
+      "subtype": ""
+    },
+    "Description": "This set of specialized blades, saws, clamps, and needles is used for surgical procedures. It grants a +2 circumstance bonus on Heal checks made to perform surgery or treat deadly wounds.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Surgeon%27s+tools"
+  },
+  {
+    "Name": "Swim fins",
+    "Cost": "1 sp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Swimming",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Swim checks",
+      "subtype": ""
+    },
+    "Description": "These simple wooden or leather fins strap onto the feet and help propel the wearer through water. They grant a +2 circumstance bonus on Swim checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Swim+fins"
+  },
+  {
+    "Name": "Symptom kit",
+    "Cost": "25 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks to diagnose disease or poison",
+      "subtype": ""
+    },
+    "Description": "This kit contains reference materials and diagnostic tools for identifying ailments. It grants a +2 circumstance bonus on Heal checks made to diagnose disease or poison and contains enough supplies for 10 uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Symptom+kit"
+  },
+  {
+    "Name": "Telescope (x10)",
+    "Cost": "2,000 gp",
+    "Weight": "12 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Perception checks to see distant objects",
+      "subtype": ""
+    },
+    "Description": "This telescope magnifies distant objects up to 10 times. When using it to observe distant objects, it grants a +2 circumstance bonus on Perception checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Telescope"
+  },
+  {
+    "Name": "Telescope (x50)",
+    "Cost": "4,000 gp",
+    "Weight": "23 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 4,
+      "applies_to": "Perception checks to see distant objects",
+      "subtype": ""
+    },
+    "Description": "This powerful telescope magnifies distant objects up to 50 times. When using it to observe distant objects, it grants a +4 circumstance bonus on Perception checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Telescope"
+  },
+  {
+    "Name": "Telescope (x250)",
+    "Cost": "8,000 gp",
+    "Weight": "44 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 6,
+      "applies_to": "Perception checks to see distant objects",
+      "subtype": ""
+    },
+    "Description": "This extremely powerful telescope magnifies distant objects up to 250 times. When using it to observe distant objects, it grants a +6 circumstance bonus on Perception checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Telescope"
+  },
+  {
+    "Name": "The Prophecies of Kalistrade",
+    "Cost": "75 gp",
+    "Weight": "10 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Books",
+    "Source": "Inner Sea World Guide pg. 284",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (religion) checks related to Kalistocracy",
+      "subtype": ""
+    },
+    "Description": "This sacred text outlines the teachings and economic philosophies of the Kalistocracy. Studying it for 1 hour grants a +2 circumstance bonus on Knowledge (religion) checks related to the Kalistocracy made within 24 hours.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=The+Prophecies+of+Kalistrade"
+  },
+  {
+    "Name": "Thermometer",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Measuring temperature",
+      "subtype": ""
+    },
+    "Description": "This glass-and-mercury instrument accurately measures temperature, allowing a user to determine environmental conditions more precisely at the GM’s discretion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thermometer"
+  },
+  {
+    "Name": "Thief trainer",
+    "Cost": "200 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "24 hours",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disable Device checks (after 1 hour of training and successful DC 20 Disable Device check)",
+      "subtype": "training"
+    },
+    "Description": "This compact training device contains a variety of small locks and trap mechanisms. After 1 hour of practice and succeeding at a DC 20 Disable Device check, you gain a +2 circumstance bonus on Disable Device checks for 24 hours or until you fail a Disable Device check.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thief+trainer"
+  },
+  {
+    "Name": "Thieves' ring",
+    "Cost": "300 gp",
+    "Weight": "—",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Concealment",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Concealing small objects or poison",
+      "subtype": ""
+    },
+    "Description": "This hollow ring contains a tiny hidden compartment capable of holding a small item such as a key fragment or a single dose of poison. Retrieving or placing an item in the ring is a move action.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thieves%27+ring"
+  },
+  {
+    "Name": "Thieves' tool extenders (common)",
+    "Cost": "70 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disable Device checks at reach (using extenders)",
+      "subtype": ""
+    },
+    "Description": "These long, flexible shafts attach to thieves’ tools, allowing the user to manipulate locks or traps from up to 5 feet away. They grant a +2 circumstance bonus on Disable Device checks made while using them at reach.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thieves%27+tool+extenders"
+  },
+  {
+    "Name": "Thieves' tool extenders (mithral)",
+    "Cost": "820 gp",
+    "Weight": "1 1/2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disable Device checks at reach (using extenders)",
+      "subtype": ""
+    },
+    "Description": "These lightweight mithral shafts attach to thieves’ tools, allowing manipulation of locks or traps from up to 5 feet away. They grant a +2 circumstance bonus on Disable Device checks made while using them at reach.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thieves%27+tool+extenders"
+  },
+  {
+    "Name": "Thieves' tools (common)",
+    "Cost": "30 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Disable Device checks (tool requirement)",
+      "subtype": ""
+    },
+    "Description": "This kit contains picks, tension wrenches, and other tools needed to open locks and disable traps. Without thieves’ tools, you cannot attempt Disable Device checks on locks and traps.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thieves%27+tools"
+  },
+  {
+    "Name": "Thieves' tools (masterwork)",
+    "Cost": "100 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "PRPG Core Rulebook pg. 158",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disable Device checks",
+      "subtype": ""
+    },
+    "Description": "These finely crafted thieves’ tools grant a +2 circumstance bonus on Disable Device checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thieves%27+tools"
+  },
+  {
+    "Name": "Tinker's cap",
+    "Cost": "200 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Crafting",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Craft (mechanical) checks",
+      "subtype": ""
+    },
+    "Description": "This leather cap is fitted with adjustable lenses and small tool holders. It grants a +2 circumstance bonus on Craft (mechanical) checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Tinker%27s+cap"
+  },
+  {
+    "Name": "Tome of epics",
+    "Cost": "50 gp",
+    "Weight": "3 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Books",
+    "Source": "Ultimate Equipment pg. 84",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Knowledge (history) checks related to legendary heroes",
+      "subtype": ""
+    },
+    "Description": "This book contains tales of legendary heroes and epic deeds. Studying it for 10 minutes grants a +2 circumstance bonus on the next Knowledge (history) check related to legendary heroes made within 1 hour.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Tome+of+epics"
+  },
+  {
+    "Name": "Tossglove",
+    "Cost": "1 sp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Tools",
+    "Source": "Goblins of Golarion pg. 20",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Throwing small objects",
+      "subtype": ""
+    },
+    "Description": "This crude leather glove has a reinforced sling-like extension used to hurl small objects farther than by hand alone. It increases the range increment of improvised thrown objects by 10 feet. Only legal goblin PCs are allowed to select this item.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Tossglove"
+  },
+  {
+    "Name": "Toxic censer",
+    "Cost": "115 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Poison",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "1 hour",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Delivering inhaled poison via incense smoke",
+      "subtype": ""
+    },
+    "Description": "This metal censer can hold one dose of inhaled poison mixed with incense. When burned, it releases the poison in a 10-foot-radius spread for 1 hour. The poison is expended after 1 use.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Toxic+censer"
+  },
+  {
+    "Name": "Trapped item (trapped disguise kit)",
+    "Cost": "50 gp",
+    "Weight": "8 lbs.",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Traps",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Delivering a hidden trap when the item is opened",
+      "subtype": ""
+    },
+    "Description": "This disguise kit has been fitted with a concealed mechanical trap, typically delivering a small blade or poison when opened. The trap’s statistics are determined by the installer. The trap is expended after triggering once.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Trapped+item"
+  },
+  {
+    "Name": "Trapped item (trapped scroll case)",
+    "Cost": "40 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Traps",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "1 use",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Delivering a hidden trap when the case is opened",
+      "subtype": ""
+    },
+    "Description": "This scroll case has been modified with a concealed mechanical trap, such as a needle delivering poison when the lid is opened. The trap’s statistics are determined by the installer. The trap is expended after triggering once.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Trapped+item"
+  },
+  {
+    "Name": "Traveler's pocket watch",
+    "Cost": "1,000 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Scientific",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Timekeeping",
+      "subtype": ""
+    },
+    "Description": "This finely crafted mechanical watch keeps accurate time and can track hours, minutes, and seconds. It allows precise measurement of time for spell durations, travel pacing, and similar effects.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Traveler%27s+pocket+watch"
+  },
+  {
+    "Name": "Traveling formula book",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Spellbooks",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Alchemist formula storage (reduced capacity)",
+      "subtype": ""
+    },
+    "Description": "This compact version of a formula book is designed for travel. It holds fewer formulae than a standard formula book but functions the same way in all other respects.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Traveling+formula+book"
+  },
+  {
+    "Name": "Traveling spellbook",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Spellbooks",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Wizard spell storage (reduced capacity)",
+      "subtype": ""
+    },
+    "Description": "This compact spellbook is designed for ease of transport. It holds fewer spells than a standard spellbook but otherwise functions identically.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Traveling+spellbook"
+  },
+  {
+    "Name": "Trespasser's boot",
+    "Cost": "8 sp",
+    "Weight": "2 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Stealth",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Stealth checks to move silently",
+      "subtype": ""
+    },
+    "Description": "These soft-soled boots are designed to muffle footsteps. They grant a +2 circumstance bonus on Stealth checks made to move silently.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Trespasser%27s+boot"
+  },
+  {
+    "Name": "Tribal standard",
+    "Cost": "50 gp",
+    "Weight": "20 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Religious",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "morale",
+      "value": 2,
+      "applies_to": "Saving throws against fear (allies within 30 feet who can see the standard)",
+      "subtype": ""
+    },
+    "Description": "This large banner displays the symbols and colors of a tribe. When mounted or carried into battle, allies within 30 feet who can see it gain a +2 morale bonus on saving throws against fear effects.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Tribal+standard"
+  },
+  {
+    "Name": "Veterinarian's kit",
+    "Cost": "25 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Medical",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "10 uses",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks made to treat animals",
+      "subtype": ""
+    },
+    "Description": "This kit contains salves, bandages, and tools designed for treating animals. It grants a +2 circumstance bonus on Heal checks made to treat animals and contains enough supplies for 10 uses.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Veterinarian%27s+kit"
+  },
+  {
+    "Name": "Vigil cap",
+    "Cost": "400 gp",
+    "Weight": "4 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Disguise",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Disguise checks to conceal identity",
+      "subtype": ""
+    },
+    "Description": "This soft leather cap is fitted with concealed compartments and subtle facial-adjustment elements. When worn as part of a disguise, it grants a +2 circumstance bonus on Disguise checks made to conceal the wearer’s identity.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Vigil+cap"
+  },
+  {
+    "Name": "Wand of misery",
+    "Cost": "5 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "3.5 Material",
+    "Source": "3.5 Material",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Improvised wand-shaped club",
+      "subtype": ""
+    },
+    "Description": "This simple wooden rod resembles a wand but contains no magical power. It is typically used as a prop or as an improvised club, dealing damage as a light improvised weapon at the GM’s discretion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Wand+of+misery"
+  },
+  {
+    "Name": "Waster",
+    "Cost": "1 gp",
+    "Weight": "varies",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Training",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "special",
+      "value": null,
+      "applies_to": "Weapon training",
+      "subtype": ""
+    },
+    "Description": "A waster is a practice weapon made of wood, shaped like a real weapon but blunted and balanced for training. It is used for sparring and drills without causing lethal harm.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Waster"
+  },
+  {
+    "Name": "Wing hooks",
+    "Cost": "150 gp",
+    "Weight": "2 lbs.",
+    "Craft DC": 20,
+    "Type": "adventuring gear",
+    "Category": "Climbing",
+    "Source": "Ultimate Equipment pg. 85",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Climb checks while using wing hooks",
+      "subtype": ""
+    },
+    "Description": "These hooked metal attachments strap to the forearms and provide additional grip while climbing. When properly secured and used, they grant a +2 circumstance bonus on Climb checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Wing+hooks"
+  }
+]

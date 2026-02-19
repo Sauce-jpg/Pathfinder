@@ -1,0 +1,164 @@
+[
+  {
+    "Name": "Branding iron (common)",
+    "Cost": "2 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This metal rod ends in a simple mark or symbol and is designed to be heated and pressed against flesh. When used as part of torture, a branding iron grants a +2 circumstance bonus on Intimidate checks. Using a heated branding iron deals 1d3 points of fire damage and 1 point of bleed damage at the GM’s discretion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Branding+iron"
+  },
+  {
+    "Name": "Branding iron (custom shape)",
+    "Cost": "10 gp",
+    "Weight": "5 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This branding iron bears a custom-designed mark or symbol. When heated and used as part of torture, it grants a +2 circumstance bonus on Intimidate checks. A heated branding iron deals 1d3 points of fire damage and 1 point of bleed damage at the GM’s discretion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Branding+iron"
+  },
+  {
+    "Name": "Heretic's fork",
+    "Cost": "10 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This cruel metal implement has two prongs on either end and is strapped between the chin and chest or chin and sternum, forcing the victim to remain in an uncomfortable position. When used as part of torture, it grants a +2 circumstance bonus on Intimidate checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Heretic%27s+fork"
+  },
+  {
+    "Name": "Iron maiden",
+    "Cost": "500 gp",
+    "Weight": "300 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 4,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This upright sarcophagus-like device is lined with inward-pointing spikes. When closed with a creature inside, it deals 1d6 points of piercing damage per round. When used as part of torture, it grants a +4 circumstance bonus on Intimidate checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Iron+maiden"
+  },
+  {
+    "Name": "Rack",
+    "Cost": "300 gp",
+    "Weight": "500 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 4,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This large wooden frame is fitted with rollers and cranks used to stretch a victim’s limbs. Each round a creature is stretched on the rack, it takes 1d4 points of nonlethal damage and must succeed at a DC 15 Fortitude save or take 1 point of Strength damage. When used as part of torture, it grants a +4 circumstance bonus on Intimidate checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Rack"
+  },
+  {
+    "Name": "Rat cage",
+    "Cost": "5 gp",
+    "Weight": "15 lbs.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This metal cage is designed to hold small animals such as rats. When placed against a restrained victim and heated or agitated, the trapped animal attempts to burrow through the victim to escape. Each round used in this manner deals 1d3 points of piercing damage. When used as part of torture, it grants a +2 circumstance bonus on Intimidate checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Rat+cage"
+  },
+  {
+    "Name": "Thumbscrews (common)",
+    "Cost": "15 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "These metal clamps are tightened around a victim’s fingers or thumbs. Each round the screws are tightened, the victim takes 1 point of nonlethal damage. When used as part of torture, common thumbscrews grant a +2 circumstance bonus on Intimidate checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thumbscrews"
+  },
+  {
+    "Name": "Thumbscrews (masterwork)",
+    "Cost": "50 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 4,
+      "applies_to": "Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "These finely crafted clamps apply more precise and painful pressure to a victim’s fingers or thumbs. Each round the screws are tightened, the victim takes 1d2 points of nonlethal damage. When used as part of torture, masterwork thumbscrews grant a +4 circumstance bonus on Intimidate checks.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Thumbscrews"
+  },
+  {
+    "Name": "Trephine",
+    "Cost": "20 gp",
+    "Weight": "1 lb.",
+    "Craft DC": 0,
+    "Type": "adventuring gear",
+    "Category": "Torture Implements",
+    "Source": "Ultimate Equipment pg. 86",
+    "Duration": "",
+    "Bonus": {
+      "type": "circumstance",
+      "value": 2,
+      "applies_to": "Heal checks to perform trepanation or Intimidate checks during torture",
+      "subtype": ""
+    },
+    "Description": "This small surgical drill is used to bore holes into the skull. It can be used as part of a dangerous medical procedure or as an instrument of torture. When used in torture, it grants a +2 circumstance bonus on Intimidate checks. Improper use may deal 1d4 points of damage and require a DC 15 Fortitude save to avoid 1 point of Intelligence damage, at the GM’s discretion.",
+    "Reference": "https://aonprd.com/EquipmentMiscDisplay.aspx?ItemName=Trephine"
+  }
+]

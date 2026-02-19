@@ -1,0 +1,110 @@
+[
+  {
+    "Name": "Chronicles - Volume 1",
+    "Cost": "200 gp",
+    "Weight": "—",
+    "Type": "equipment",
+    "Category": "Chronicles",
+    "Source": "Adventurer’s Armory 2",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["book", "chronicle"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx",
+      "AON Page": "—"
+    },
+    "Description": "A bound volume of Pathfinder Society chronicles detailing missions, discoveries, and historical accounts collected by field agents."
+  },
+  {
+    "Name": "Chronicles - Volume 2",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Type": "equipment",
+    "Category": "Chronicles",
+    "Source": "Adventurer’s Armory 2",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["book", "chronicle"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx",
+      "AON Page": "—"
+    },
+    "Description": "A chronicle volume containing detailed reports of Pathfinder expeditions and notable field operations."
+  },
+  {
+    "Name": "Chronicles - Volume 11",
+    "Cost": "100 gp",
+    "Weight": "—",
+    "Type": "equipment",
+    "Category": "Chronicles",
+    "Source": "Adventurer’s Armory 2",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["book", "chronicle"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx",
+      "AON Page": "—"
+    },
+    "Description": "A later installment of the Pathfinder Society’s collected chronicles, compiling mission accounts and discoveries."
+  },
+  {
+    "Name": "Chronicles - Volume 14",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Type": "equipment",
+    "Category": "Chronicles",
+    "Source": "Adventurer’s Armory 2",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["book", "chronicle"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx",
+      "AON Page": "—"
+    },
+    "Description": "A compiled volume of Pathfinder Society expedition logs and scholarly annotations."
+  },
+  {
+    "Name": "Chronicles - Volume 27",
+    "Cost": "150 gp",
+    "Weight": "—",
+    "Type": "equipment",
+    "Category": "Chronicles",
+    "Source": "Adventurer’s Armory 2",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["book", "chronicle"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx",
+      "AON Page": "—"
+    },
+    "Description": "A bound chronicle documenting Pathfinder Society missions and accumulated field knowledge."
+  },
+  {
+    "Name": "Chronicles - Volume 44",
+    "Cost": "200 gp",
+    "Weight": "—",
+    "Type": "equipment",
+    "Category": "Chronicles",
+    "Source": "Adventurer’s Armory 2",
+    "Size": "—",
+    "Combat Trained": "—",
+    "PFS Legal": "—",
+    "Legal Note": "—",
+    "Tags": ["book", "chronicle"],
+    "Reference": {
+      "AON List": "https://aonprd.com/EquipmentMisc.aspx",
+      "AON Page": "—"
+    },
+    "Description": "A later-volume chronicle compiling detailed mission records and scholarly observations of the Pathfinder Society."
+  }
+]
