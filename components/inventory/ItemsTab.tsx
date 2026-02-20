@@ -5,7 +5,6 @@ import { supabase } from "@/lib/supabaseClient";
 import { ItemBonusesEditor } from "./ItemBonusesEditor";
 import EquipmentBrowser from "../EquipmentBrowser";
 import { mapItemToInventory } from "@/lib/equipmentMappers";
-import type { EquipmentCategory } from "@/types/equipment-types";
 import "../../styles/EquipmentBrowser.css";
 
 interface ItemsTabProps {
@@ -17,8 +16,7 @@ interface ItemsTabProps {
 export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
-  const [showBrowser, setShowBrowser] = useState(false); // NEW: Equipment Browser state
-  const [browserCategory, setBrowserCategory] = useState<EquipmentCategory>("adventuring-gear"); // NEW: Browser category
+  const [showBrowser, setShowBrowser] = useState(false);
 
   // Form state
   const [itemName, setItemName] = useState("");
@@ -34,7 +32,7 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
 
-  // NEW: Handle item selection from Equipment Browser
+  // Handle item selection from Equipment Browser
   async function handleSelectFromLibrary(item: any) {
     const itemData = mapItemToInventory(item, characterId);
     const { error } = await supabase.from("character_inventory").insert(itemData);
@@ -44,12 +42,6 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
       setShowBrowser(false);
       onUpdate();
     }
-  }
-
-  // NEW: Open browser with specific category
-  function openBrowser(category: EquipmentCategory) {
-    setBrowserCategory(category);
-    setShowBrowser(true);
   }
 
   function openAddModal() {
@@ -168,10 +160,10 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
   return (
     <div>
-      {/* MODIFIED: Button group with Browse buttons */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", marginBottom: "1.5rem" }}>
+      {/* SIMPLIFIED: Single browse button */}
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
         <button
-          onClick={() => openBrowser("adventuring-gear")}
+          onClick={() => setShowBrowser(true)}
           style={{
             padding: "0.75rem 1.5rem",
             background: "#10b981",
@@ -180,138 +172,12 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
             borderRadius: "8px",
             cursor: "pointer",
             fontWeight: 600,
-            fontSize: "0.9rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
           }}
         >
-          📖 Browse Gear (433)
-        </button>
-
-        <button
-          onClick={() => openBrowser("alchemical-tools")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          📖 Browse Alchemical
-        </button>
-
-        <button
-          onClick={() => openBrowser("kits")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          📖 Browse Kits (122)
-        </button>
-
-        <button
-          onClick={() => openBrowser("food-drink")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          📖 Browse Food
-        </button>
-
-        <button
-          onClick={() => openBrowser("tools")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          📖 Browse Tools (168)
-        </button>
-
-        <button
-          onClick={() => openBrowser("tinctures")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          📖 Browse Tinctures (16)
-        </button>
-
-        <button
-          onClick={() => openBrowser("spellbooks")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          📖 Browse Spellbooks (42)
-        </button>
-
-        <button
-          onClick={() => openBrowser("mounts-pets")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          🐴 Browse Mounts & Pets (216)
-        </button>
-
-        <button
-          onClick={() => openBrowser("transport")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            fontSize: "0.9rem",
-          }}
-        >
-          📖 Browse Transport (25)
+          📖 Browse Equipment Library (2,380 items)
         </button>
 
         <button
@@ -804,12 +670,12 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
         </div>
       )}
 
-      {/* NEW: Equipment Browser Modal */}
+      {/* Unified Equipment Browser Modal */}
       {showBrowser && (
         <EquipmentBrowser
-          category={browserCategory}
           onSelect={handleSelectFromLibrary}
           onClose={() => setShowBrowser(false)}
+          initialCategory="adventuring-gear"
         />
       )}
     </div>
