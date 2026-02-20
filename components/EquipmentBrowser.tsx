@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import type { EquipmentItem, EquipmentCategory } from "@/types/equipment-types";
 import { parseCostToGold, parseWeightToPounds } from "@/types/equipment-types";
+import "../styles/EquipmentBrowser.css";
 
 interface EquipmentBrowserProps {
   onSelect: (item: EquipmentItem) => void;
