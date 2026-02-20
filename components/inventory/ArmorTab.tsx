@@ -4,7 +4,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
 import { mapArmorToCharacter, mapShieldToCharacter } from "@/lib/equipmentMappers";
-import "../../styles/EquipmentBrowser.css";
+import "../styles/EquipmentBrowser.css";
 
 interface ArmorTabProps {
   characterId: string;
@@ -578,7 +578,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
       {/* NEW: Equipment Browser Modals */}
       {showArmorBrowser && (
         <EquipmentBrowser
-          category="armor"
+          initialCategory="armor"
           onSelect={handleSelectArmor}
           onClose={() => setShowArmorBrowser(false)}
         />
@@ -586,7 +586,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
 
       {showShieldBrowser && (
         <EquipmentBrowser
-          category="shields"
+          initialCategory="shields"
           onSelect={handleSelectShield}
           onClose={() => setShowShieldBrowser(false)}
         />
