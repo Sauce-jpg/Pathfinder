@@ -4,7 +4,6 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
 import { mapWeaponToCharacter } from "@/lib/equipmentMappers";
-import "../styles/EquipmentBrowser.css";
 
 interface WeaponsTabProps {
   characterId: string;
