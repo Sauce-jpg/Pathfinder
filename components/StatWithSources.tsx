@@ -15,12 +15,19 @@ interface StatSource {
   is_active: boolean;
 }
 
+interface BreakdownRow {
+  label: string;
+  value: number;
+}
+
 interface StatWithSourcesProps {
   characterId: string;
   statCategory: string; // e.g., 'save_fort', 'ac', 'skill_perception'
   displayValue: number;
   label: string; // e.g., 'Fortitude Save', 'AC'
   editable?: boolean;
+  /** Optional computed rows (e.g. base 10, DEX mod) to show alongside DB sources */
+  breakdown?: BreakdownRow[];
 }
 
 export function StatWithSources({
@@ -29,6 +36,7 @@ export function StatWithSources({
   displayValue,
   label,
   editable = false,
+  breakdown,
 }: StatWithSourcesProps) {
   const [showTooltip, setShowTooltip] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
@@ -89,7 +97,7 @@ export function StatWithSources({
         onClick={() => editable && setShowEditor(true)}
         style={{
           cursor: editable ? "pointer" : "default",
-          borderBottom: sources.length > 0 ? "2px dotted #0070f3" : "none",
+          borderBottom: (sources.length > 0 || (breakdown && breakdown.length > 0)) ? "2px dotted #0070f3" : "none",
           paddingBottom: "2px",
         }}
         title={sources.length > 0 ? "Click to manage sources" : undefined}
@@ -98,7 +106,7 @@ export function StatWithSources({
       </div>
 
       {/* Hover Tooltip */}
-      {showTooltip && !showEditor && sources.length > 0 && (
+      {showTooltip && !showEditor && (sources.length > 0 || (breakdown && breakdown.length > 0)) && (
         <div
           style={{
             position: "absolute",
@@ -126,6 +134,26 @@ export function StatWithSources({
             <div style={{ fontSize: "0.9rem", color: "#999" }}>Loading...</div>
           ) : (
             <>
+              {/* Computed breakdown rows (base values, ability mods, etc.) */}
+              {breakdown && breakdown.map((row, i) => (
+                <div
+                  key={`breakdown-${i}`}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "0.5rem 0",
+                    borderBottom: "1px solid #f0f0f0",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  <div style={{ color: "#555" }}>{row.label}</div>
+                  <div style={{ fontWeight: 600, color: row.value >= 0 ? "#10b981" : "#ef4444" }}>
+                    {row.value >= 0 ? "+" : ""}{row.value}
+                  </div>
+                </div>
+              ))}
+
+              {/* DB-sourced bonuses */}
               {activeSources.map((source) => (
                 <div
                   key={source.id}
@@ -151,6 +179,10 @@ export function StatWithSources({
                 </div>
               ))}
 
+              {breakdown?.length === 0 && activeSources.length === 0 && (
+                <div style={{ fontSize: "0.9rem", color: "#999", padding: "0.5rem 0" }}>No bonuses yet</div>
+              )}
+
               <div
                 style={{
                   display: "flex",
@@ -162,7 +194,7 @@ export function StatWithSources({
                 }}
               >
                 <div>Total</div>
-                <div style={{ color: "#0070f3" }}>{calculatedTotal}</div>
+                <div style={{ color: "#0070f3" }}>{displayValue}</div>
               </div>
 
               {editable && (
