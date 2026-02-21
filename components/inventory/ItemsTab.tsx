@@ -4,7 +4,9 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { ItemBonusesEditor } from "./ItemBonusesEditor";
 import EquipmentBrowser from "../EquipmentBrowser";
+import MagicItemBrowser, { type MagicItem } from "../MagicItemBrowser";
 import { mapItemToInventory } from "@/lib/equipmentMappers";
+import { mapMagicItemToInventory } from "@/lib/magicItemMapper";
 import "../../styles/EquipmentBrowser.css";
 
 interface ItemsTabProps {
@@ -17,6 +19,7 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const [showBrowser, setShowBrowser] = useState(false);
+  const [showMagicBrowser, setShowMagicBrowser] = useState(false);
 
   // Form state
   const [itemName, setItemName] = useState("");
@@ -80,6 +83,17 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
     setGrantsSlotCount(0);
   }
 
+  async function handleSelectFromMagicLibrary(item: MagicItem) {
+    const itemData = mapMagicItemToInventory(item, characterId);
+    const { error } = await supabase.from("character_inventory").insert(itemData);
+    if (error) {
+      alert("Error adding magic item: " + error.message);
+    } else {
+      setShowMagicBrowser(false);
+      onUpdate();
+    }
+  }
+  
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -162,6 +176,27 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
     <div>
       {/* SIMPLIFIED: Single browse button */}
       <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
+
+        <button
+          onClick={() => setShowMagicBrowser(true)}
+          style={{
+            padding: "0.75rem 1.5rem",
+            background: "linear-gradient(135deg, #312e81, #4338ca)",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          🪄 Browse Magic Items (1,091 items)
+        </button>
+
+
+        
         <button
           onClick={() => setShowBrowser(true)}
           style={{
@@ -678,6 +713,14 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
           initialCategory="adventuring-gear"
         />
       )}
+
+      {showMagicBrowser && (
+        <MagicItemBrowser
+          onSelect={handleSelectFromMagicLibrary}
+          onClose={() => setShowMagicBrowser(false)}
+        />
+      )}
+
     </div>
   );
 }
