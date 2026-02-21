@@ -2,7 +2,7 @@
   {
     "Name": "Armored Kilt",
     "Cost": "20 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": 6,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "0%",
@@ -15,7 +15,7 @@
   {
     "Name": "Haramaki",
     "Cost": "3 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "0%",
@@ -28,7 +28,7 @@
   {
     "Name": "Martial Arts Training Gear",
     "Cost": "45 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": 8,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "5%",
@@ -41,7 +41,7 @@
   {
     "Name": "Padded",
     "Cost": "5 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": 8,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "5%",
@@ -54,7 +54,7 @@
   {
     "Name": "Quilted Cloth",
     "Cost": "100 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": 8,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "10%",
@@ -67,7 +67,7 @@
   {
     "Name": "Reinforced Tunic",
     "Cost": "1 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": 5,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "5%",
@@ -80,7 +80,7 @@
   {
     "Name": "Silken Ceremonial",
     "Cost": "30 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "0%",
@@ -93,7 +93,7 @@
   {
     "Name": "Lamellar Cuirass",
     "Cost": "15 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": 4,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "5%",
@@ -106,7 +106,7 @@
   {
     "Name": "Leather",
     "Cost": "10 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": 6,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "10%",
@@ -119,7 +119,7 @@
   {
     "Name": "Rosewood Armor",
     "Cost": "50 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": 6,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "10%",
@@ -132,7 +132,7 @@
   {
     "Name": "Varisian Dancing Scarves",
     "Cost": "150 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "0%",
@@ -145,7 +145,7 @@
   {
     "Name": "Hellknight Leather",
     "Cost": "30 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+3",
     "Max Dex": 5,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "15%",
@@ -158,7 +158,7 @@
   {
     "Name": "Hide Shirt",
     "Cost": "20 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+3",
     "Max Dex": 4,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "15%",
@@ -171,7 +171,7 @@
   {
     "Name": "Leaf Armor",
     "Cost": "500 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+3",
     "Max Dex": 5,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "15%",
@@ -184,7 +184,7 @@
   {
     "Name": "Parade",
     "Cost": "25 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+3",
     "Max Dex": 5,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "15%",
@@ -197,7 +197,7 @@
   {
     "Name": "Spider-Silk Bodysuit",
     "Cost": "850 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+3",
     "Max Dex": 6,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "10%",
@@ -210,7 +210,7 @@
   {
     "Name": "Studded Leather",
     "Cost": "25 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+3",
     "Max Dex": 5,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "15%",
@@ -223,7 +223,7 @@
   {
     "Name": "Wooden",
     "Cost": "20 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+3",
     "Max Dex": 3,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "15%",
@@ -236,7 +236,7 @@
   {
     "Name": "Chain Shirt",
     "Cost": "100 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+4",
     "Max Dex": 4,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "20%",
@@ -249,7 +249,7 @@
   {
     "Name": "Lamellar (Leather)",
     "Cost": "60 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+4",
     "Max Dex": 3,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "20%",
@@ -262,7 +262,7 @@
   {
     "Name": "Armored Coat",
     "Cost": "50 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+4",
     "Max Dex": 3,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "20%",
@@ -275,7 +275,7 @@
   {
     "Name": "Chain Coat",
     "Cost": "75 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+4",
     "Max Dex": 5,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "30%",
@@ -288,7 +288,7 @@
   {
     "Name": "Erutaki Coat",
     "Cost": "80 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+4",
     "Max Dex": 3,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "20%",
@@ -301,7 +301,7 @@
   {
     "Name": "Hide",
     "Cost": "15 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+4",
     "Max Dex": 4,
     "Armor Check Penalty": -3,
     "Arcane Spell Failure": "20%",
@@ -314,7 +314,7 @@
   {
     "Name": "Do-Maru",
     "Cost": "200 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+5",
     "Max Dex": 4,
     "Armor Check Penalty": -4,
     "Arcane Spell Failure": "25%",
@@ -327,7 +327,7 @@
   {
     "Name": "Kikko",
     "Cost": "250 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+5",
     "Max Dex": 4,
     "Armor Check Penalty": -3,
     "Arcane Spell Failure": "20%",
@@ -340,7 +340,7 @@
   {
     "Name": "Lamellar (Horn)",
     "Cost": "100 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+5",
     "Max Dex": 3,
     "Armor Check Penalty": -4,
     "Arcane Spell Failure": "25%",
@@ -353,7 +353,7 @@
   {
     "Name": "Scale Mail",
     "Cost": "50 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+5",
     "Max Dex": 3,
     "Armor Check Penalty": -4,
     "Arcane Spell Failure": "25%",
@@ -366,7 +366,7 @@
   {
     "Name": "Agile Breastplate",
     "Cost": "400 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+6",
     "Max Dex": 3,
     "Armor Check Penalty": -4,
     "Arcane Spell Failure": "25%",
@@ -379,7 +379,7 @@
   {
     "Name": "Breastplate",
     "Cost": "200 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+6",
     "Max Dex": 3,
     "Armor Check Penalty": -4,
     "Arcane Spell Failure": "25%",
@@ -392,7 +392,7 @@
   {
     "Name": "Chainmail",
     "Cost": "150 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+6",
     "Max Dex": 2,
     "Armor Check Penalty": -5,
     "Arcane Spell Failure": "30%",
@@ -418,7 +418,7 @@
   {
     "Name": "Lamellar (Steel)",
     "Cost": "150 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+6",
     "Max Dex": 3,
     "Armor Check Penalty": -5,
     "Arcane Spell Failure": "25%",
@@ -431,7 +431,7 @@
   {
     "Name": "Mountain Pattern",
     "Cost": "250 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+6",
     "Max Dex": 3,
     "Armor Check Penalty": -4,
     "Arcane Spell Failure": "30%",
@@ -444,7 +444,7 @@
   {
     "Name": "Banded Mail",
     "Cost": "250 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+7",
     "Max Dex": 1,
     "Armor Check Penalty": -6,
     "Arcane Spell Failure": "35%",
@@ -457,7 +457,7 @@
   {
     "Name": "Field Plate",
     "Cost": "1200 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+7",
     "Max Dex": 1,
     "Armor Check Penalty": -5,
     "Arcane Spell Failure": "35%",
@@ -470,7 +470,7 @@
   {
     "Name": "Kusari Gusoku",
     "Cost": "350 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+7",
     "Max Dex": 1,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "35%",
@@ -483,7 +483,7 @@
   {
     "Name": "Lamellar (Iron)",
     "Cost": "200 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+7",
     "Max Dex": 0,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "40%",
@@ -496,7 +496,7 @@
   {
     "Name": "Splint Mail",
     "Cost": "200 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+7",
     "Max Dex": 0,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "40%",
@@ -509,7 +509,7 @@
   {
     "Name": "Tatami-Do",
     "Cost": "1000 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+7",
     "Max Dex": 3,
     "Armor Check Penalty": -6,
     "Arcane Spell Failure": "35%",
@@ -522,7 +522,7 @@
   {
     "Name": "Agile Half-Plate",
     "Cost": "850 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+8",
     "Max Dex": 0,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "40%",
@@ -535,7 +535,7 @@
   {
     "Name": "Alkenstar Fortress Plate",
     "Cost": "2100 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+8",
     "Max Dex": 0,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "40%",
@@ -548,7 +548,7 @@
   {
     "Name": "Half-Plate",
     "Cost": "600 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+8",
     "Max Dex": 0,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "40%",
@@ -561,7 +561,7 @@
   {
     "Name": "Hellknight Half-Plate",
     "Cost": "850 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+8",
     "Max Dex": 0,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "40%",
@@ -574,7 +574,7 @@
   {
     "Name": "Lamellar (Stone)",
     "Cost": "500 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+8",
     "Max Dex": 0,
     "Armor Check Penalty": -7,
     "Arcane Spell Failure": "40%",
@@ -587,7 +587,7 @@
   {
     "Name": "O-Yoroi",
     "Cost": "1700 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+8",
     "Max Dex": 2,
     "Armor Check Penalty": -6,
     "Arcane Spell Failure": "35%",
@@ -600,7 +600,7 @@
   {
     "Name": "Full Plate",
     "Cost": "1500 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+9",
     "Max Dex": 1,
     "Armor Check Penalty": -6,
     "Arcane Spell Failure": "35%",
@@ -613,7 +613,7 @@
   {
     "Name": "Gray Maiden Plate",
     "Cost": "1500 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+9",
     "Max Dex": 1,
     "Armor Check Penalty": -6,
     "Arcane Spell Failure": "35%",
@@ -626,7 +626,7 @@
   {
     "Name": "Hellknight Plate",
     "Cost": "2000 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+9",
     "Max Dex": 1,
     "Armor Check Penalty": -5,
     "Arcane Spell Failure": "35%",
@@ -639,7 +639,7 @@
   {
     "Name": "Stoneplate",
     "Cost": "1800 gp",
-    "AC Bonus": "+0",
+    "AC Bonus": "+9",
     "Max Dex": 1,
     "Armor Check Penalty": -6,
     "Arcane Spell Failure": "35%",
