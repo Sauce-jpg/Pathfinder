@@ -8,7 +8,7 @@ import MagicItemBrowser, { type MagicItem } from "../MagicItemBrowser";
 import { mapItemToInventory } from "@/lib/equipmentMappers";
 import { mapMagicItemToInventory } from "@/lib/magicItemMapper";
 import "../../styles/EquipmentBrowser.css";
-import "../../styles/MagicItemBrowser.module.css";
+
 
 interface ItemsTabProps {
   characterId: string;
