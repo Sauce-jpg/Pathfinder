@@ -37,6 +37,7 @@ export default function CharacterSheetPage() {
   // Sources for calculated stats
   const [statSources, setStatSources] = useState<any>({});
   const [equippedAcp, setEquippedAcp] = useState<number>(0);
+  const [equippedArmorAcBonus, setEquippedArmorAcBonus] = useState<number>(0);
 
   // Editable state
   const [editData, setEditData] = useState<any>(null);
@@ -97,15 +98,17 @@ export default function CharacterSheetPage() {
 
     setStatSources(grouped);
 
-    // Load equipped armor's armor check penalty (sum across all equipped pieces)
+    // Load equipped armor stats (ACP and AC bonus) across all equipped pieces
     const { data: equippedArmors } = await supabase
       .from("character_armor")
-      .select("armor_check_penalty")
+      .select("armor_check_penalty, ac_bonus, enhancement_bonus")
       .eq("character_id", characterId)
       .eq("is_equipped", true);
 
     const totalAcp = (equippedArmors || []).reduce((sum, a) => sum + (a.armor_check_penalty ?? 0), 0);
+    const totalArmorAc = (equippedArmors || []).reduce((sum, a) => sum + (a.ac_bonus ?? 0) + (a.enhancement_bonus ?? 0), 0);
     setEquippedAcp(totalAcp);
+    setEquippedArmorAcBonus(totalArmorAc);
 
     setLoading(false);
   }
@@ -184,9 +187,9 @@ export default function CharacterSheetPage() {
   const wisMod = calculateMod(wisTotal, 0);
   const chaMod = calculateMod(chaTotal, 0);
 
-  // Calculate AC from sources
+  // Calculate AC from sources + equipped armor
   const acFromSources = getStatTotal("ac");
-  const acTotal = 10 + dexMod + acFromSources;
+  const acTotal = 10 + dexMod + equippedArmorAcBonus + acFromSources;
   const acTouch = 10 + dexMod + getStatTotal("ac_touch_bonus");
   const acFlatFooted = acTotal - dexMod;
 
@@ -461,7 +464,8 @@ export default function CharacterSheetPage() {
                     editable={true}
                     breakdown={[
                       { label: "Base", value: 10 },
-                      { label: `DEX mod`, value: dexMod },
+                      { label: "DEX mod", value: dexMod },
+                      ...(equippedArmorAcBonus !== 0 ? [{ label: "Armor/Shield", value: equippedArmorAcBonus }] : []),
                     ]}
                   />
                 </div>
