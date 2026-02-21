@@ -569,7 +569,7 @@ export default function CharacterSheetPage() {
             characterId={characterId}
             characterLevel={char.level || 1}
             abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
-            armorCheckPenalty={-equippedAcp}
+            armorCheckPenalty={equippedAcp > 0 ? -equippedAcp : 0}
           />
         </div>
       )}
