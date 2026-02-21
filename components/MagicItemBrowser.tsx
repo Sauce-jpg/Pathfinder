@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import styles from "./MagicItemBrowser.module.css";
+import styles from "../styles/MagicItemBrowser.module.css";
 
 // ============================================================================
 // TYPES
