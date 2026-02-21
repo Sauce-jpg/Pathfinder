@@ -97,15 +97,15 @@ export default function CharacterSheetPage() {
 
     setStatSources(grouped);
 
-    // Load equipped armor's armor check penalty
-    const { data: equippedArmor } = await supabase
+    // Load equipped armor's armor check penalty (sum across all equipped pieces)
+    const { data: equippedArmors } = await supabase
       .from("character_armor")
       .select("armor_check_penalty")
       .eq("character_id", characterId)
-      .eq("is_equipped", true)
-      .single();
+      .eq("is_equipped", true);
 
-    setEquippedAcp(equippedArmor?.armor_check_penalty ?? 0);
+    const totalAcp = (equippedArmors || []).reduce((sum, a) => sum + (a.armor_check_penalty ?? 0), 0);
+    setEquippedAcp(totalAcp);
 
     setLoading(false);
   }
