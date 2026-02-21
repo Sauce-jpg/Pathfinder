@@ -447,10 +447,11 @@ export default function CharacterSheetPage() {
                     displayValue={acTotal}
                     label="Armor Class"
                     editable={true}
+                    breakdown={[
+                      { label: "Base", value: 10 },
+                      { label: `DEX mod`, value: dexMod },
+                    ]}
                   />
-                </div>
-                <div style={{ fontSize: "0.85rem", color: "#999", marginTop: "0.5rem" }}>
-                  10 + DEX {formatMod(dexMod)} + bonuses
                 </div>
               </div>
               <div style={{ textAlign: "center" }}>
@@ -463,9 +464,6 @@ export default function CharacterSheetPage() {
               </div>
             </div>
 
-            <div style={{ padding: "1rem", background: "#f0f9ff", borderRadius: "8px", fontSize: "0.9rem" }}>
-              <strong>💡 Tip:</strong> Click the AC number to manage armor, shield, natural armor, deflection, and other bonuses via sources.
-            </div>
           </section>
 
           {/* Saving Throws */}
@@ -515,16 +513,36 @@ export default function CharacterSheetPage() {
               </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>CMB</div>
-                <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>{formatMod(cmb)}</div>
-                <div style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-                  BAB + STR {formatMod(strMod)}
+                <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>
+                  <StatWithSources
+                    characterId={characterId}
+                    statCategory="cmb"
+                    displayValue={cmb}
+                    label="CMB"
+                    editable={true}
+                    breakdown={[
+                      { label: "BAB", value: babFromSources },
+                      { label: "STR mod", value: strMod },
+                    ]}
+                  />
                 </div>
               </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>CMD</div>
-                <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>{cmd}</div>
-                <div style={{ color: "#666", fontSize: "0.9rem", marginTop: "0.5rem" }}>
-                  10 + BAB + STR + DEX
+                <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>
+                  <StatWithSources
+                    characterId={characterId}
+                    statCategory="cmd"
+                    displayValue={cmd}
+                    label="CMD"
+                    editable={true}
+                    breakdown={[
+                      { label: "Base", value: 10 },
+                      { label: "BAB", value: babFromSources },
+                      { label: "STR mod", value: strMod },
+                      { label: "DEX mod", value: dexMod },
+                    ]}
+                  />
                 </div>
               </div>
             </div>
