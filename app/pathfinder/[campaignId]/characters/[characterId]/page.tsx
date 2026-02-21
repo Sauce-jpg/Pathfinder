@@ -98,13 +98,15 @@ export default function CharacterSheetPage() {
     setStatSources(grouped);
 
     // Load equipped armor's armor check penalty
-    const { data: equippedArmor } = await supabase
+    const { data: equippedArmor, error: acpError } = await supabase
       .from("character_armor")
-      .select("armor_check_penalty")
+      .select("armor_check_penalty, armor_name, is_equipped")
       .eq("character_id", characterId)
       .eq("is_equipped", true)
       .single();
 
+    console.log("[ACP Debug] equippedArmor:", equippedArmor, "error:", acpError);
+    console.log("[ACP Debug] setting equippedAcp to:", equippedArmor?.armor_check_penalty ?? 0);
     setEquippedAcp(equippedArmor?.armor_check_penalty ?? 0);
 
     setLoading(false);
@@ -569,7 +571,7 @@ export default function CharacterSheetPage() {
             characterId={characterId}
             characterLevel={char.level || 1}
             abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
-            armorCheckPenalty={equippedAcp > 0 ? -equippedAcp : 0}
+            armorCheckPenalty={(() => { const acp = equippedAcp > 0 ? -equippedAcp : 0; console.log("[ACP Debug] passing armorCheckPenalty to Skills:", acp, "equippedAcp state:", equippedAcp); return acp; })()}
           />
         </div>
       )}
