@@ -50,6 +50,9 @@ export default function CharacterSheetPage() {
   const [levelUpFeats, setLevelUpFeats] = useState<any[]>([]);
   const [levelUpShowFeatBrowser, setLevelUpShowFeatBrowser] = useState(false);
   const [levelUpSaving, setLevelUpSaving] = useState(false);
+  // Existing data loaded when wizard opens
+  const [existingSkills, setExistingSkills] = useState<Record<string, { ranks: number; is_class_skill: boolean }>>({});
+  const [existingFeats, setExistingFeats] = useState<any[]>([]);
 
   // Editable state
   const [editData, setEditData] = useState<any>(null);
@@ -125,7 +128,26 @@ export default function CharacterSheetPage() {
     setLoading(false);
   }
 
-  async function handleSave() {
+  async function openLevelUpWizard() {
+    // Load existing skills and feats before opening
+    const [{ data: skillsData }, { data: featsData }] = await Promise.all([
+      supabase.from("character_skills").select("skill_name, ranks, is_class_skill").eq("character_id", characterId),
+      supabase.from("character_features").select("name, description, prerequisites, category, feature_type, obtained_level").eq("character_id", characterId).eq("feature_type", "feat").eq("is_active", true),
+    ]);
+
+    const skillMap: Record<string, { ranks: number; is_class_skill: boolean }> = {};
+    (skillsData || []).forEach((s: any) => { skillMap[s.skill_name] = { ranks: s.ranks || 0, is_class_skill: s.is_class_skill || false }; });
+    setExistingSkills(skillMap);
+    setExistingFeats(featsData || []);
+
+    // Reset wizard state
+    setLevelUpStep("hp");
+    setLevelUpHpMethod("average");
+    setLevelUpHpRoll(0);
+    setLevelUpSkillRanks({});
+    setLevelUpFeats([]);
+    setShowLevelUp(true);
+  }
     setSaving(true);
 
     const { error } = await supabase
@@ -417,7 +439,7 @@ export default function CharacterSheetPage() {
           ) : (
             <>
               <button
-                onClick={() => setShowLevelUp(true)}
+                onClick={() => openLevelUpWizard()}
                 style={{
                   padding: "0.75rem 1.5rem",
                   background: "#f59e0b",
@@ -925,31 +947,58 @@ export default function CharacterSheetPage() {
                         {skillRanksUsed_} / {skillRanksAvailable_} used
                       </div>
                     </div>
-                    <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "1rem" }}>
+                    <p style={{ color: "#666", fontSize: "0.85rem", marginBottom: "0.5rem" }}>
                       {skillRanksAvailable_} rank{skillRanksAvailable_ !== 1 ? "s" : ""} this level
                       {humanSkillBonus_ > 0 && <span style={{ color: "#7c3aed" }}> (+{humanSkillBonus_} {isHalfElf ? "Half-Elf" : "Human"})</span>}.
                       Max ranks in any skill = character level ({newLevel}).
                     </p>
+                    <p style={{ color: "#888", fontSize: "0.8rem", marginBottom: "1rem" }}>
+                      <span style={{ background: "#dbeafe", color: "#1e40af", padding: "0.1rem 0.4rem", borderRadius: 4, fontWeight: 600, fontSize: "0.72rem", marginRight: "0.4rem" }}>CS</span> = class skill (+3 bonus when ranked)
+                    </p>
 
-                    <div style={{ display: "grid", gap: "0.35rem", maxHeight: 280, overflowY: "auto" }}>
+                    <div style={{ display: "grid", gap: "0.35rem", maxHeight: 310, overflowY: "auto" }}>
                       {["Acrobatics","Appraise","Bluff","Climb","Diplomacy","Disable Device","Disguise","Escape Artist","Fly","Handle Animal","Heal","Intimidate","Knowledge (Arcana)","Knowledge (Dungeoneering)","Knowledge (Engineering)","Knowledge (Geography)","Knowledge (History)","Knowledge (Local)","Knowledge (Nature)","Knowledge (Nobility)","Knowledge (Planes)","Knowledge (Religion)","Linguistics","Perception","Ride","Sense Motive","Sleight of Hand","Spellcraft","Stealth","Survival","Swim","Use Magic Device"].map(skillName => {
+                        const existing = existingSkills[skillName] ?? { ranks: 0, is_class_skill: false };
                         const addedRanks = levelUpSkillRanks[skillName] ?? 0;
+                        const totalAfter = existing.ranks + addedRanks;
+                        const atCap = totalAfter >= newLevel;
+                        const isCS = existing.is_class_skill;
                         return (
-                          <div key={skillName} style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "0.4rem 0.75rem", background: addedRanks > 0 ? "#eff6ff" : "#f9fafb", borderRadius: 6 }}>
-                            <span style={{ flex: 1, fontSize: "0.88rem" }}>{skillName}</span>
-                            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                              <button onClick={() => setLevelUpSkillRanks(p => ({ ...p, [skillName]: Math.max(0, (p[skillName] ?? 0) - 1) }))}
-                                style={{ width: 26, height: 26, border: "1px solid #ddd", borderRadius: 4, background: "white", cursor: "pointer", fontWeight: 700 }}>−</button>
-                              <span style={{ width: 20, textAlign: "center", fontWeight: 700 }}>{addedRanks}</span>
+                          <div key={skillName} style={{
+                            display: "flex", alignItems: "center", gap: "0.75rem",
+                            padding: "0.4rem 0.75rem",
+                            background: addedRanks > 0 ? "#eff6ff" : isCS ? "#f0fdf4" : "#f9fafb",
+                            borderRadius: 6,
+                          }}>
+                            <span style={{ flex: 1, fontSize: "0.88rem", fontWeight: addedRanks > 0 ? 600 : 400 }}>
+                              {skillName}
+                              {isCS && <span style={{ marginLeft: "0.4rem", padding: "0.05rem 0.35rem", background: "#dbeafe", color: "#1e40af", borderRadius: 3, fontSize: "0.7rem", fontWeight: 700 }}>CS</span>}
+                            </span>
+                            {/* Existing ranks display */}
+                            <span style={{ fontSize: "0.78rem", color: "#999", minWidth: 54, textAlign: "right" }}>
+                              {existing.ranks > 0 ? `${existing.ranks} now` : "none"}
+                            </span>
+                            {/* +/- controls */}
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.35rem" }}>
+                              <button
+                                onClick={() => setLevelUpSkillRanks(p => ({ ...p, [skillName]: Math.max(0, (p[skillName] ?? 0) - 1) }))}
+                                disabled={addedRanks === 0}
+                                style={{ width: 26, height: 26, border: "1px solid #ddd", borderRadius: 4, background: addedRanks === 0 ? "#f3f4f6" : "white", cursor: addedRanks === 0 ? "not-allowed" : "pointer", fontWeight: 700 }}>−</button>
+                              <span style={{ width: 22, textAlign: "center", fontWeight: 700, color: addedRanks > 0 ? "#0070f3" : "#999" }}>+{addedRanks}</span>
                               <button
                                 onClick={() => {
-                                  if (skillRanksUsed_ < skillRanksAvailable_) {
+                                  if (skillRanksUsed_ < skillRanksAvailable_ && !atCap) {
                                     setLevelUpSkillRanks(p => ({ ...p, [skillName]: (p[skillName] ?? 0) + 1 }));
                                   }
                                 }}
-                                disabled={skillRanksUsed_ >= skillRanksAvailable_}
-                                style={{ width: 26, height: 26, border: "1px solid #ddd", borderRadius: 4, background: skillRanksUsed_ >= skillRanksAvailable_ ? "#f3f4f6" : "white", cursor: skillRanksUsed_ >= skillRanksAvailable_ ? "not-allowed" : "pointer", fontWeight: 700 }}>+</button>
+                                disabled={skillRanksUsed_ >= skillRanksAvailable_ || atCap}
+                                title={atCap ? `Max ranks at level ${newLevel} reached` : skillRanksUsed_ >= skillRanksAvailable_ ? "No ranks remaining" : ""}
+                                style={{ width: 26, height: 26, border: "1px solid #ddd", borderRadius: 4, background: (skillRanksUsed_ >= skillRanksAvailable_ || atCap) ? "#f3f4f6" : "white", cursor: (skillRanksUsed_ >= skillRanksAvailable_ || atCap) ? "not-allowed" : "pointer", fontWeight: 700 }}>+</button>
                             </div>
+                            {/* Total after */}
+                            <span style={{ fontSize: "0.78rem", fontWeight: 700, color: atCap ? "#ef4444" : "#10b981", minWidth: 40, textAlign: "right" }}>
+                              → {totalAfter}{atCap ? " (cap)" : ""}
+                            </span>
                           </div>
                         );
                       })}
@@ -967,6 +1016,22 @@ export default function CharacterSheetPage() {
                         : `Level ${newLevel} doesn't grant a general feat, but you may have bonus feats from your class.`}
                     </p>
 
+                    {/* Existing feats reference */}
+                    {existingFeats.length > 0 && (
+                      <div style={{ marginBottom: "1.25rem" }}>
+                        <div style={{ fontWeight: 700, fontSize: "0.85rem", color: "#666", marginBottom: "0.5rem" }}>
+                          Already have ({existingFeats.length}):
+                        </div>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem", padding: "0.75rem", background: "#f9fafb", borderRadius: 8, maxHeight: 110, overflowY: "auto" }}>
+                          {existingFeats.map((f: any, i: number) => (
+                            <span key={i} style={{ padding: "0.2rem 0.6rem", background: "#e5e7eb", borderRadius: 6, fontSize: "0.8rem", color: "#374151" }}>{f.name}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* New feats being added */}
+                    <div style={{ fontWeight: 700, fontSize: "0.85rem", marginBottom: "0.5rem" }}>Add new feats:</div>
                     <button onClick={() => setLevelUpShowFeatBrowser(true)}
                       style={{ padding: "0.6rem 1.25rem", background: "#0070f3", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "1rem" }}>
                       ⚔️ Browse Feats
@@ -986,8 +1051,8 @@ export default function CharacterSheetPage() {
                         ))}
                       </div>
                     ) : (
-                      <div style={{ padding: "1.5rem", textAlign: "center", color: "#999", border: "2px dashed #ddd", borderRadius: 8, fontSize: "0.9rem" }}>
-                        No feats selected — or skip if none gained this level.
+                      <div style={{ padding: "1.25rem", textAlign: "center", color: "#999", border: "2px dashed #ddd", borderRadius: 8, fontSize: "0.9rem" }}>
+                        No new feats selected — skip if none gained this level.
                       </div>
                     )}
                   </div>
