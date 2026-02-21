@@ -55,10 +55,6 @@ interface SkillsProps {
   armorCheckPenalty: number;
 }
 
-function formatMod(mod: number): string {
-  return mod >= 0 ? `+${mod}` : `${mod}`;
-}
-
 export function Skills({ characterId, characterLevel, abilityMods, armorCheckPenalty }: SkillsProps) {
   const [skills, setSkills] = useState<any[]>([]);
   const [statSources, setStatSources] = useState<any>({});
@@ -238,7 +234,6 @@ export function Skills({ characterId, characterLevel, abilityMods, armorCheckPen
               <th style={{ padding: "1rem", textAlign: "center", fontWeight: 600, width: "100px" }}>Ranks</th>
               <th style={{ padding: "1rem", textAlign: "center", fontWeight: 600, width: "80px" }}>Class?</th>
               <th style={{ padding: "1rem", textAlign: "center", fontWeight: 600, width: "60px" }}>Ability</th>
-              <th style={{ padding: "1rem", textAlign: "left", fontWeight: 600 }}>Breakdown</th>
             </tr>
           </thead>
           <tbody>
@@ -273,6 +268,12 @@ export function Skills({ characterId, characterLevel, abilityMods, armorCheckPen
                         displayValue={total}
                         label={skill.name}
                         editable={true}
+                        breakdown={[
+                          { label: "Ranks", value: skill.ranks },
+                          { label: `${skill.ability} mod`, value: abilityMod },
+                          ...(classSkillBonus > 0 ? [{ label: "Class skill", value: classSkillBonus }] : []),
+                          ...(penalty !== 0 ? [{ label: "Armor check penalty", value: penalty }] : []),
+                        ]}
                       />
                     </div>
                   </td>
@@ -303,13 +304,6 @@ export function Skills({ characterId, characterLevel, abilityMods, armorCheckPen
                   </td>
                   <td style={{ padding: "0.75rem", textAlign: "center", fontWeight: 600 }}>
                     {skill.ability}
-                  </td>
-                  <td style={{ padding: "0.75rem", fontSize: "0.9rem", color: "#666" }}>
-                    {skill.ranks} ranks
-                    {classSkillBonus > 0 && ` + ${classSkillBonus} class`}
-                    {` + ${formatMod(abilityMod)} ${skill.ability}`}
-                    {miscBonus !== 0 && ` + ${formatMod(miscBonus)} misc`}
-                    {penalty !== 0 && ` ${formatMod(penalty)} ACP`}
                   </td>
                 </tr>
               );
