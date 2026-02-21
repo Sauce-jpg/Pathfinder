@@ -36,6 +36,7 @@ export default function CharacterSheetPage() {
 
   // Sources for calculated stats
   const [statSources, setStatSources] = useState<any>({});
+  const [equippedAcp, setEquippedAcp] = useState<number>(0);
 
   // Editable state
   const [editData, setEditData] = useState<any>(null);
@@ -95,6 +96,17 @@ export default function CharacterSheetPage() {
     });
 
     setStatSources(grouped);
+
+    // Load equipped armor's armor check penalty
+    const { data: equippedArmor } = await supabase
+      .from("character_armor")
+      .select("armor_check_penalty")
+      .eq("character_id", characterId)
+      .eq("is_equipped", true)
+      .single();
+
+    setEquippedAcp(equippedArmor?.armor_check_penalty ?? 0);
+
     setLoading(false);
   }
 
@@ -557,7 +569,7 @@ export default function CharacterSheetPage() {
             characterId={characterId}
             characterLevel={char.level || 1}
             abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
-            armorCheckPenalty={-(char.ac_armor || 0)}
+            armorCheckPenalty={-equippedAcp}
           />
         </div>
       )}
