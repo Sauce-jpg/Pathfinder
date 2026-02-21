@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "../../../../../lib/supabaseClient";
 import Link from "next/link";
+import { FeatBrowser } from "../../../../../components/FeatBrowser";
+import { TraitBrowser } from "../../../../../components/TraitBrowser";
 import {
   RACES, CLASSES,
   getBabAtLevel, getGoodSaveAtLevel, getPoorSaveAtLevel,
@@ -14,7 +16,7 @@ import {
 // TYPES
 // ─────────────────────────────────────────────
 
-type Step = "basics" | "scores" | "race" | "class" | "details" | "review";
+type Step = "basics" | "scores" | "race" | "class" | "details" | "feats" | "traits" | "review";
 
 interface AbilityScores {
   str: number; dex: number; con: number;
@@ -26,6 +28,21 @@ interface SelectedClass {
   isPrimary: boolean;
 }
 
+interface SelectedFeat {
+  name: string;
+  description: string;
+  prerequisites: string;
+  category: string;
+  source: string;
+}
+
+interface SelectedTrait {
+  name: string;
+  description: string;
+  type: string;
+  source: string;
+}
+
 // ─────────────────────────────────────────────
 // CONSTANTS
 // ─────────────────────────────────────────────
@@ -35,7 +52,9 @@ const STEPS: { id: Step; label: string; icon: string }[] = [
   { id: "scores",  label: "Ability Scores", icon: "💪" },
   { id: "race",    label: "Race",           icon: "🧝" },
   { id: "class",   label: "Class",          icon: "⚔️" },
-  { id: "details", label: "Level 1",        icon: "🎯" },
+  { id: "details", label: "Level Details",  icon: "🎯" },
+  { id: "feats",   label: "Feats",          icon: "⚔️" },
+  { id: "traits",  label: "Traits",         icon: "✨" },
   { id: "review",  label: "Review",         icon: "✅" },
 ];
 
@@ -114,11 +133,20 @@ export default function NewCharacterPage() {
 
   // ── STEP 5: Details ──
   const [hpMethod, setHpMethod] = useState<"max"|"average"|"manual">("max");
-  const [manualHp, setManualHp] = useState<number>(0);
+  // Per-level manual HP rolls: index 0 = level 1, index 1 = level 2, etc.
+  const [manualHpRolls, setManualHpRolls] = useState<number[]>([]);
   // skill ranks: skillName -> ranks
   const [skillRanks, setSkillRanks] = useState<Record<string, number>>({});
   const [classSkillsChecked, setClassSkillsChecked] = useState<Record<string, boolean>>({});
-  const [startingFeat, setStartingFeat] = useState("");
+  // ── STEP 6: Feats ──
+  const [selectedFeats, setSelectedFeats] = useState<SelectedFeat[]>([]);
+  const [showFeatBrowser, setShowFeatBrowser] = useState(false);
+
+  // ── STEP 7: Traits ──
+  const [selectedTraits, setSelectedTraits] = useState<SelectedTrait[]>([]);
+  const [showTraitBrowser, setShowTraitBrowser] = useState(false);
+
+  // Backstory (in Level Details step)
   const [backstory, setBackstory] = useState("");
 
   // ─────────────────────────────────────────────
@@ -171,13 +199,24 @@ export default function NewCharacterPage() {
   const conMod = calcMod(effectiveScores.con);
   const intMod = calcMod(effectiveScores.int);
 
-  // HP calculation
+  // Class / HP derived values
   const primaryClass = selectedClasses.find(c => c.isPrimary)?.cls ?? selectedClasses[0]?.cls;
   const hitDie = primaryClass?.hitDie ?? 8;
-  const averageHpRoll = Math.ceil(hitDie / 2) + 1; // standard average
+  const averageHpRoll = Math.ceil(hitDie / 2) + 1;
+
+  // HP per level: level 1 always max, subsequent levels use chosen method
+  function hpRollForLevel(lvl: number): number {
+    if (lvl === 1) return hitDie; // always max at level 1
+    if (hpMethod === "max") return hitDie;
+    if (hpMethod === "average") return averageHpRoll;
+    return Math.max(1, manualHpRolls[lvl - 1] ?? Math.ceil(hitDie / 2));
+  }
   const calculatedHp = (() => {
-    const roll = hpMethod === "max" ? hitDie : hpMethod === "average" ? averageHpRoll : manualHp;
-    return Math.max(1, roll + conMod);
+    let total = 0;
+    for (let lvl = 1; lvl <= level; lvl++) {
+      total += hpRollForLevel(lvl) + conMod;
+    }
+    return Math.max(level, total); // minimum 1 HP per level
   })();
 
   // Skill ranks available
@@ -220,7 +259,7 @@ export default function NewCharacterPage() {
   // NAVIGATION HELPERS
   // ─────────────────────────────────────────────
 
-  const stepOrder: Step[] = ["basics","scores","race","class","details","review"];
+  const stepOrder: Step[] = ["basics","scores","race","class","details","feats","traits","review"];
   const currentIndex = stepOrder.indexOf(step);
 
   function canAdvance(): { ok: boolean; reason?: string } {
@@ -341,10 +380,15 @@ export default function NewCharacterPage() {
         }
       }
 
-      // HP
-      const hpRoll = hpMethod === "max" ? hitDie : hpMethod === "average" ? averageHpRoll : manualHp;
-      addSource("hp_max", `${primaryClass?.name ?? "Class"} HD (level 1)`, "class", hpRoll, "untyped", `d${hitDie}`);
-      if (conMod !== 0) addSource("hp_max", "CON modifier", "ability", conMod, "untyped");
+      // HP — one source per level
+      for (let lvl = 1; lvl <= level; lvl++) {
+        const roll = hpRollForLevel(lvl);
+        addSource("hp_max", `${primaryClass?.name ?? "Class"} HD (level ${lvl})`, "class", roll, "untyped", `d${hitDie}`);
+      }
+      if (conMod !== 0) {
+        // CON mod applies once per level
+        addSource("hp_max", `CON modifier (×${level})`, "ability", conMod * level, "untyped");
+      }
 
       // BAB
       if (isGestalt && selectedClasses.length > 1) {
@@ -408,16 +452,70 @@ export default function NewCharacterPage() {
         await supabase.from("character_skills").insert(skillInserts);
       }
 
-      // 4. Starting feat as a feature
-      if (startingFeat.trim()) {
-        await supabase.from("character_features").insert({
+      // 4. Features — feats, traits, racial traits, class features
+      const featureInserts: any[] = [];
+
+      // Starting feats from FeatBrowser
+      selectedFeats.forEach(f => {
+        featureInserts.push({
           character_id: charId,
-          feature_name: startingFeat.trim(),
           feature_type: "feat",
+          name: f.name,
+          description: f.description || null,
+          prerequisites: f.prerequisites || null,
+          category: f.category || null,
+          source: f.source || null,
           obtained_level: 1,
-          description: "",
           is_active: true,
         });
+      });
+
+      // Traits from TraitBrowser
+      selectedTraits.forEach(t => {
+        featureInserts.push({
+          character_id: charId,
+          feature_type: "trait",
+          name: t.name,
+          description: t.description || null,
+          category: t.type || null,
+          source: t.source || null,
+          obtained_level: 1,
+          is_active: true,
+        });
+      });
+
+      // Racial traits
+      if (selectedRace && selectedRace.id !== "custom") {
+        selectedRace.traits.forEach(t => {
+          featureInserts.push({
+            character_id: charId,
+            feature_type: "racial",
+            name: t.name,
+            description: t.description || null,
+            source: selectedRace.name,
+            obtained_level: 1,
+            is_active: true,
+          });
+        });
+      }
+
+      // Class features (level 1)
+      selectedClasses.forEach(({ cls }) => {
+        cls.level1Features.forEach(f => {
+          featureInserts.push({
+            character_id: charId,
+            feature_type: "class",
+            name: f.name,
+            description: f.description || null,
+            source: cls.name,
+            obtained_level: 1,
+            is_active: true,
+          });
+        });
+      });
+
+      if (featureInserts.length > 0) {
+        await supabase.from("character_features").insert(featureInserts);
       }
 
       router.push(`/pathfinder/${campaignId}/characters/${charId}`);
@@ -1006,14 +1104,14 @@ export default function NewCharacterPage() {
             {primaryClass && (
               <p style={{ color: "#666", marginBottom: "1rem" }}>
                 {primaryClass.name} uses a <strong>d{hitDie}</strong> hit die.
-                {level === 1 && " At level 1, you always get maximum HP for your hit die."}
+                Level 1 always grants maximum HP. {level > 1 && `Levels 2–${level} use your chosen method below.`}
               </p>
             )}
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1rem", marginBottom: "1rem" }}>
               {([
-                { id:"max",     label:"Maximum",  desc:`Always ${hitDie} (recommended for level 1)` },
-                { id:"average", label:"Average",  desc:`${averageHpRoll} (rounded up)` },
-                { id:"manual",  label:"Manual",   desc:"Enter a custom value" },
+                { id:"max",     label:"Maximum",  desc:`Always ${hitDie} per level` },
+                { id:"average", label:"Average",  desc:`${averageHpRoll} per level (rounded up)` },
+                { id:"manual",  label:"Manual",   desc:"Roll each level individually" },
               ] as const).map(m => (
                 <div key={m.id} onClick={() => setHpMethod(m.id)}
                   style={{ ...card, cursor:"pointer", padding:"1rem",
@@ -1024,17 +1122,51 @@ export default function NewCharacterPage() {
                 </div>
               ))}
             </div>
-            {hpMethod === "manual" && (
+
+            {/* Manual: one input per level */}
+            {hpMethod === "manual" && level > 1 && (
               <div style={{ marginBottom: "1rem" }}>
-                <label style={label}>HP Roll (before CON modifier)</label>
-                <input type="number" value={manualHp} min={1} max={hitDie}
-                  onChange={e => setManualHp(parseInt(e.target.value)||1)} style={{ ...input, width: 100 }} />
+                <div style={{ fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>HP rolls per level (1–{hitDie}):</div>
+                <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                  {Array.from({ length: level }, (_, i) => i + 1).map(lvl => (
+                    <div key={lvl} style={{ textAlign: "center" }}>
+                      <div style={{ fontSize: "0.75rem", color: "#666", marginBottom: "0.25rem" }}>
+                        Lv {lvl}{lvl === 1 ? " (max)" : ""}
+                      </div>
+                      <input type="number"
+                        value={lvl === 1 ? hitDie : (manualHpRolls[lvl - 1] ?? Math.ceil(hitDie / 2))}
+                        disabled={lvl === 1}
+                        min={1} max={hitDie}
+                        onChange={e => {
+                          const val = Math.min(hitDie, Math.max(1, parseInt(e.target.value) || 1));
+                          setManualHpRolls(prev => {
+                            const next = [...prev];
+                            next[lvl - 1] = val;
+                            return next;
+                          });
+                        }}
+                        style={{ ...input, width: 52, textAlign: "center", fontWeight: 700,
+                          background: lvl === 1 ? "#f3f4f6" : "white" }} />
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
-            <div style={{ padding: "1rem", background: "#f0fdf4", borderRadius: 8, display: "flex", gap: "2rem" }}>
-              <div><span style={{ color: "#666" }}>HP roll: </span><strong>{hpMethod === "max" ? hitDie : hpMethod === "average" ? averageHpRoll : manualHp}</strong></div>
-              <div><span style={{ color: "#666" }}>CON modifier: </span><strong style={{ color: conMod >= 0 ? "#10b981" : "#ef4444" }}>{fmtMod(conMod)}</strong></div>
-              <div><span style={{ color: "#666" }}>Total HP: </span><strong style={{ fontSize: "1.2rem", color: "#0070f3" }}>{calculatedHp}</strong></div>
+
+            <div style={{ padding: "1rem", background: "#f0fdf4", borderRadius: 8, display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+              {level > 1 && (
+                <div style={{ fontSize: "0.85rem", color: "#555" }}>
+                  {Array.from({ length: level }, (_, i) => i + 1).map(lvl => (
+                    <span key={lvl} style={{ marginRight: "0.75rem" }}>
+                      Lv{lvl}: <strong>{hpRollForLevel(lvl)}{conMod !== 0 ? `${fmtMod(conMod)}` : ""}</strong>
+                    </span>
+                  ))}
+                </div>
+              )}
+              <div style={{ marginLeft: "auto", display: "flex", gap: "2rem" }}>
+                <div><span style={{ color: "#666" }}>CON modifier: </span><strong style={{ color: conMod >= 0 ? "#10b981" : "#ef4444" }}>{fmtMod(conMod)}</strong></div>
+                <div><span style={{ color: "#666" }}>Total HP: </span><strong style={{ fontSize: "1.2rem", color: "#0070f3" }}>{calculatedHp}</strong></div>
+              </div>
             </div>
           </section>
 
@@ -1091,17 +1223,6 @@ export default function NewCharacterPage() {
             </div>
           </section>
 
-          {/* Feats */}
-          <section style={card}>
-            <h2 style={cardTitle}>Starting Feat</h2>
-            <p style={{ color: "#666", marginBottom: "1rem", fontSize: "0.9rem" }}>
-              All characters receive one feat at 1st level. Enter the feat name — you can look up details on d20pfsrd.com.
-              {selectedClasses.some(c => ["fighter","wizard"].includes(c.cls.id)) && " Your class also grants a bonus feat — add that separately on the character sheet."}
-            </p>
-            <input value={startingFeat} onChange={e => setStartingFeat(e.target.value)}
-              placeholder="e.g., Power Attack, Improved Initiative, Toughness..." style={input} />
-          </section>
-
           {/* Backstory */}
           <section style={card}>
             <h2 style={cardTitle}>Backstory & Notes <span style={{ fontWeight: 400, color: "#999", fontSize: "0.85rem" }}>(optional)</span></h2>
@@ -1113,7 +1234,139 @@ export default function NewCharacterPage() {
       )}
 
       {/* ═══════════════════════════════════════════
-          STEP 6: REVIEW
+          STEP 6: FEATS
+      ═══════════════════════════════════════════ */}
+      {step === "feats" && (
+        <div style={{ display: "grid", gap: "1.5rem" }}>
+          <section style={card}>
+            <h2 style={cardTitle}>Starting Feat{level >= 3 ? "s" : ""}</h2>
+            <p style={{ color: "#666", marginBottom: "1rem", fontSize: "0.9rem" }}>
+              All characters receive one feat at 1st level, then every odd level (3, 5, 7...).
+              At level {level} you get <strong>{1 + Math.floor((level - 1) / 2)} feat{1 + Math.floor((level - 1) / 2) > 1 ? "s" : ""}</strong> from leveling.
+              {selectedClasses.some(c => ["fighter"].includes(c.cls.id)) && " Fighters also get bonus combat feats — add those here too."}
+              {selectedClasses.some(c => ["wizard"].includes(c.cls.id)) && " Wizards get Scribe Scroll for free — it'll be added with your class features."}
+            </p>
+
+            <button onClick={() => setShowFeatBrowser(true)}
+              style={{ padding: "0.75rem 1.5rem", background: "#0070f3", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "1.5rem" }}>
+              ⚔️ Open Feat Browser
+            </button>
+
+            {selectedFeats.length > 0 ? (
+              <div style={{ display: "grid", gap: "0.5rem" }}>
+                {selectedFeats.map((f, i) => (
+                  <div key={i} style={{ padding: "0.75rem 1rem", background: "#eff6ff", borderRadius: 8, display: "flex", justifyContent: "space-between", alignItems: "start", borderLeft: "3px solid #0070f3" }}>
+                    <div>
+                      <div style={{ fontWeight: 700 }}>{f.name}</div>
+                      {f.prerequisites && <div style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.2rem" }}>Req: {f.prerequisites}</div>}
+                      {f.description && <div style={{ fontSize: "0.85rem", color: "#555", marginTop: "0.25rem" }}>{f.description.slice(0, 120)}{f.description.length > 120 ? "…" : ""}</div>}
+                    </div>
+                    <button onClick={() => setSelectedFeats(prev => prev.filter((_, j) => j !== i))}
+                      style={{ background: "none", border: "none", cursor: "pointer", color: "#999", marginLeft: "0.5rem", flexShrink: 0 }}>✕</button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{ padding: "2rem", textAlign: "center", color: "#999", border: "2px dashed #ddd", borderRadius: 8 }}>
+                No feats selected yet. Open the Feat Browser above to choose.
+              </div>
+            )}
+
+            <div style={{ marginTop: "1rem", padding: "0.75rem 1rem", background: "#fefce8", border: "1px solid #fef08a", borderRadius: 8, fontSize: "0.85rem", color: "#713f12" }}>
+              💡 You can always add more feats from the Feats &amp; Abilities tab on the character sheet after creation.
+            </div>
+          </section>
+
+          <FeatBrowser
+            isOpen={showFeatBrowser}
+            onClose={() => setShowFeatBrowser(false)}
+            onSelectFeat={(feat: any) => {
+              setSelectedFeats(prev => [...prev, {
+                name: feat.name,
+                description: feat.benefit || "",
+                prerequisites: feat.prerequisites || "",
+                category: (feat.types || []).join(", "),
+                source: feat.source || "",
+              }]);
+            }}
+          />
+        </div>
+      )}
+
+      {/* ═══════════════════════════════════════════
+          STEP 7: TRAITS
+      ═══════════════════════════════════════════ */}
+      {step === "traits" && (
+        <div style={{ display: "grid", gap: "1.5rem" }}>
+          <section style={card}>
+            <h2 style={cardTitle}>Character Traits</h2>
+            <p style={{ color: "#666", marginBottom: "1rem", fontSize: "0.9rem" }}>
+              Characters typically choose <strong>2 traits</strong> at character creation. You may take 1 drawback to gain a 3rd trait.
+            </p>
+
+            <button onClick={() => setShowTraitBrowser(true)}
+              style={{ padding: "0.75rem 1.5rem", background: "#10b981", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "1.5rem" }}>
+              ✨ Open Trait Browser
+            </button>
+
+            {selectedTraits.length > 0 ? (
+              <div style={{ display: "grid", gap: "0.5rem" }}>
+                {selectedTraits.map((t, i) => {
+                  const isDrawback = t.type === "drawback";
+                  return (
+                    <div key={i} style={{ padding: "0.75rem 1rem", borderRadius: 8, display: "flex", justifyContent: "space-between", alignItems: "start",
+                      background: isDrawback ? "#fef2f2" : "#f0fdf4",
+                      borderLeft: `3px solid ${isDrawback ? "#ef4444" : "#10b981"}` }}>
+                      <div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                          <span style={{ fontWeight: 700 }}>{t.name}</span>
+                          <span style={{ fontSize: "0.72rem", padding: "0.1rem 0.4rem", borderRadius: 4,
+                            background: isDrawback ? "#fee2e2" : "#dcfce7",
+                            color: isDrawback ? "#991b1b" : "#166534", fontWeight: 600 }}>
+                            {t.type}
+                          </span>
+                        </div>
+                        {t.description && <div style={{ fontSize: "0.85rem", color: "#555", marginTop: "0.25rem" }}>{t.description.slice(0, 120)}{t.description.length > 120 ? "…" : ""}</div>}
+                      </div>
+                      <button onClick={() => setSelectedTraits(prev => prev.filter((_, j) => j !== i))}
+                        style={{ background: "none", border: "none", cursor: "pointer", color: "#999", marginLeft: "0.5rem", flexShrink: 0 }}>✕</button>
+                    </div>
+                  );
+                })}
+                {selectedTraits.filter(t => t.type !== "drawback").length > 2 && (
+                  <div style={{ padding: "0.75rem 1rem", background: "#fef3c7", border: "1px solid #fbbf24", borderRadius: 8, fontSize: "0.9rem", color: "#713f12" }}>
+                    ⚠️ You have {selectedTraits.filter(t => t.type !== "drawback").length} non-drawback traits. Standard characters get 2 (or 3 with a drawback).
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ padding: "2rem", textAlign: "center", color: "#999", border: "2px dashed #ddd", borderRadius: 8 }}>
+                No traits selected. Open the Trait Browser to choose.
+              </div>
+            )}
+
+            <div style={{ marginTop: "1rem", padding: "0.75rem 1rem", background: "#fefce8", border: "1px solid #fef08a", borderRadius: 8, fontSize: "0.85rem", color: "#713f12" }}>
+              💡 Traits are optional — you can skip this step and add traits later on the character sheet.
+            </div>
+          </section>
+
+          <TraitBrowser
+            isOpen={showTraitBrowser}
+            onClose={() => setShowTraitBrowser(false)}
+            onSelectTrait={(trait: any) => {
+              setSelectedTraits(prev => [...prev, {
+                name: trait.name,
+                description: trait.benefit || "",
+                type: trait.type || "general",
+                source: trait.source || "",
+              }]);
+            }}
+          />
+        </div>
+      )}
+
+      {/* ═══════════════════════════════════════════
+          STEP 8: REVIEW
       ═══════════════════════════════════════════ */}
       {step === "review" && (
         <div style={{ display: "grid", gap: "1.5rem" }}>
@@ -1196,8 +1449,10 @@ export default function NewCharacterPage() {
                 <SourceRow key={`custom-${k}`} category={STAT_LABELS[k]} name={`${customRaceName || "Race"} racial`} value={customRaceMods[k]} type="racial" />
               ))}
               {/* HP */}
-              <SourceRow category="HP Max" name={`${primaryClass?.name ?? "Class"} HD`} value={hpMethod === "max" ? hitDie : hpMethod === "average" ? averageHpRoll : manualHp} type="class" />
-              {conMod !== 0 && <SourceRow category="HP Max" name="CON modifier" value={conMod} type="ability" />}
+              {Array.from({ length: level }, (_, i) => i + 1).map(lvl => (
+                <SourceRow key={`hp-${lvl}`} category="HP Max" name={`${primaryClass?.name ?? "Class"} HD (lv ${lvl})`} value={hpRollForLevel(lvl)} type="class" />
+              ))}
+              {conMod !== 0 && <SourceRow category="HP Max" name={`CON modifier (×${level})`} value={conMod * level} type="ability" />}
               {/* BAB */}
               <SourceRow category="BAB" name={`${primaryClass?.name ?? "Class"} BAB`} value={babValue} type="class" />
               {/* Saves */}
@@ -1232,15 +1487,58 @@ export default function NewCharacterPage() {
             </section>
           )}
 
-          {startingFeat && (
+          {selectedFeats.length > 0 && (
             <section style={card}>
-              <h2 style={cardTitle}>Starting Feat</h2>
-              <span style={{ padding: "0.4rem 1rem", background: "#f3f4f6", borderRadius: 8, fontWeight: 600 }}>{startingFeat}</span>
+              <h2 style={cardTitle}>Feats ({selectedFeats.length})</h2>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {selectedFeats.map((f, i) => (
+                  <span key={i} style={{ padding: "0.3rem 0.75rem", background: "#eff6ff", borderRadius: 6, fontWeight: 600, fontSize: "0.85rem" }}>{f.name}</span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {selectedTraits.length > 0 && (
+            <section style={card}>
+              <h2 style={cardTitle}>Traits ({selectedTraits.length})</h2>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {selectedTraits.map((t, i) => (
+                  <span key={i} style={{ padding: "0.3rem 0.75rem", borderRadius: 6, fontWeight: 600, fontSize: "0.85rem",
+                    background: t.type === "drawback" ? "#fee2e2" : "#f0fdf4",
+                    color: t.type === "drawback" ? "#991b1b" : "#166534" }}>
+                    {t.name} <span style={{ fontWeight: 400, opacity: 0.7 }}>({t.type})</span>
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {selectedRace && selectedRace.traits.length > 0 && (
+            <section style={card}>
+              <h2 style={cardTitle}>Racial Traits ({selectedRace.traits.length})</h2>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {selectedRace.traits.map(t => (
+                  <span key={t.name} style={{ padding: "0.3rem 0.75rem", background: "#ede9fe", borderRadius: 6, fontWeight: 600, fontSize: "0.85rem", color: "#5b21b6" }}>{t.name}</span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {selectedClasses.length > 0 && (
+            <section style={card}>
+              <h2 style={cardTitle}>Class Features</h2>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                {selectedClasses.flatMap(({ cls }) => cls.level1Features.map(f => (
+                  <span key={`${cls.name}-${f.name}`} style={{ padding: "0.3rem 0.75rem", background: "#fef3c7", borderRadius: 6, fontWeight: 600, fontSize: "0.85rem", color: "#713f12" }}>
+                    {f.name} <span style={{ fontWeight: 400, opacity: 0.7 }}>({cls.name})</span>
+                  </span>
+                )))}
+              </div>
             </section>
           )}
 
           <div style={{ padding: "1rem", background: "#fffbeb", border: "1px solid #fef08a", borderRadius: 8, fontSize: "0.9rem", color: "#713f12" }}>
-            💡 After creation, you can add armor, weapons, feats, spells, and more from the character sheet. Racial traits and class features can be added in the Feats & Abilities tab.
+            💡 After creation, you can add armor, weapons, spells, and more from the character sheet.
           </div>
         </div>
       )}
