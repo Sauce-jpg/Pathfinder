@@ -43,7 +43,7 @@ export default function CharacterSheetPage() {
 
   // Level up wizard
   const [showLevelUp, setShowLevelUp] = useState(false);
-  const [levelUpStep, setLevelUpStep] = useState<"hp"|"skills"|"feats"|"confirm">("hp");
+  const [levelUpStep, setLevelUpStep] = useState<"hp" | "skills" | "feats" | "confirm">("hp");
   const [levelUpHpMethod, setLevelUpHpMethod] = useState<"max"|"average"|"manual">("average");
   const [levelUpHpRoll, setLevelUpHpRoll] = useState<number>(0);
   const [levelUpSkillRanks, setLevelUpSkillRanks] = useState<Record<string, number>>({});
@@ -1042,7 +1042,7 @@ export default function CharacterSheetPage() {
               <div style={{ padding: "1rem 2rem 1.5rem", borderTop: "1px solid #e5e7eb", display: "flex", justifyContent: "space-between", gap: "0.75rem" }}>
                 <button
                   onClick={() => {
-                    const order: typeof levelUpStep[] = ["hp","skills","feats","confirm"];
+                    const order: ("hp" | "skills" | "feats" | "confirm")[] = ["hp","skills","feats","confirm"];
                     const i = order.indexOf(levelUpStep);
                     if (i > 0) setLevelUpStep(order[i - 1]);
                     else setShowLevelUp(false);
@@ -1054,7 +1054,7 @@ export default function CharacterSheetPage() {
                 {levelUpStep !== "confirm" ? (
                   <button
                     onClick={() => {
-                      const order: typeof levelUpStep[] = ["hp","skills","feats","confirm"];
+                      const order: ("hp" | "skills" | "feats" | "confirm")[] = ["hp","skills","feats","confirm"];
                       const i = order.indexOf(levelUpStep);
                       setLevelUpStep(order[i + 1]);
                     }}
