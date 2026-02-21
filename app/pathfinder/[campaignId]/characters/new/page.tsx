@@ -219,8 +219,10 @@ export default function NewCharacterPage() {
     return Math.max(level, total); // minimum 1 HP per level
   })();
 
-  // Skill ranks available
-  const skillRanksPerLevel = primaryClass ? primaryClass.skillsPerLevel + intMod : 2 + intMod;
+  // Skill ranks per level — humans (and half-humans with Skilled trait) get +1/level
+  const isHumanLineage = selectedRace?.id === "human" || selectedRace?.id === "half-elf";
+  const humanSkillBonus = isHumanLineage ? 1 : 0; // Human: Skilled trait (+1/level). Half-elf also gets Skilled.
+  const skillRanksPerLevel = primaryClass ? primaryClass.skillsPerLevel + intMod + humanSkillBonus : 2 + intMod + humanSkillBonus;
   const totalSkillRanks = Math.max(1, skillRanksPerLevel) * level;
   const usedSkillRanks = Object.values(skillRanks).reduce((a, b) => a + b, 0);
 
@@ -1184,7 +1186,10 @@ export default function NewCharacterPage() {
             </div>
             {primaryClass && (
               <p style={{ color: "#666", marginBottom: "1rem", fontSize: "0.9rem" }}>
-                {primaryClass.skillsPerLevel} base + {intMod >= 0 ? "+" : ""}{intMod} INT modifier = {Math.max(1,skillRanksPerLevel)} ranks/level × {level} level{level > 1 ? "s" : ""} = <strong>{totalSkillRanks} total</strong>
+                {primaryClass.skillsPerLevel} base
+                {intMod !== 0 && ` ${intMod >= 0 ? "+" : ""}${intMod} INT`}
+                {humanSkillBonus > 0 && <span style={{ color: "#7c3aed" }}> +{humanSkillBonus} {selectedRace?.id === "half-elf" ? "Half-Elf" : "Human"} (Skilled)</span>}
+                {" "}= <strong>{Math.max(1, skillRanksPerLevel)}/level</strong> × {level} level{level > 1 ? "s" : ""} = <strong>{totalSkillRanks} total</strong>
               </p>
             )}
             <div style={{ display: "grid", gap: "0.4rem", maxHeight: 400, overflowY: "auto" }}>
@@ -1246,6 +1251,13 @@ export default function NewCharacterPage() {
               {selectedClasses.some(c => ["fighter"].includes(c.cls.id)) && " Fighters also get bonus combat feats — add those here too."}
               {selectedClasses.some(c => ["wizard"].includes(c.cls.id)) && " Wizards get Scribe Scroll for free — it'll be added with your class features."}
             </p>
+
+            {/* Human / half-elf bonus feat callout */}
+            {(selectedRace?.id === "human" || selectedRace?.id === "half-elf") && (
+              <div style={{ padding: "0.75rem 1rem", background: "#ede9fe", border: "1px solid #c4b5fd", borderRadius: 8, marginBottom: "1.25rem", fontSize: "0.9rem", color: "#5b21b6" }}>
+                🎁 <strong>{selectedRace.name} bonus:</strong> {selectedRace.id === "human" ? "Humans receive one extra feat at 1st level" : "Half-Elves gain Skill Focus as a bonus feat (Adaptability)"} — add it below!
+              </div>
+            )}
 
             <button onClick={() => setShowFeatBrowser(true)}
               style={{ padding: "0.75rem 1.5rem", background: "#0070f3", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "1.5rem" }}>
