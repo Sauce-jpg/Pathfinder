@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "../../../../../lib/supabaseClient";
 import Link from "next/link";
@@ -1208,10 +1208,12 @@ export default function NewCharacterPage() {
                 const abKey: Record<string,keyof AbilityScores> = { fort:"con", ref:"dex", will:"wis" };
                 const abMod = calcMod(effectiveScores[abKey[s]]);
                 const saveLabel = { fort:"Fortitude", ref:"Reflex", will:"Will" }[s];
-                return [
-                  <SourceRow key={`save-base-${s}`} category={saveLabel!} name={`${cls.name} base`} value={base} type="class" />,
-                  abMod !== 0 && <SourceRow key={`save-ab-${s}`} category={saveLabel!} name={`${s === "fort" ? "CON" : s === "ref" ? "DEX" : "WIS"} mod`} value={abMod} type="ability" />,
-                ];
+                return (
+                  <React.Fragment key={s}>
+                    <SourceRow category={saveLabel!} name={`${cls.name} base`} value={base} type="class" />
+                    {abMod !== 0 && <SourceRow category={saveLabel!} name={`${s === "fort" ? "CON" : s === "ref" ? "DEX" : "WIS"} mod`} value={abMod} type="ability" />}
+                  </React.Fragment>
+                );
               })}
             </div>
           </section>
@@ -1221,7 +1223,7 @@ export default function NewCharacterPage() {
             <section style={card}>
               <h2 style={cardTitle}>Skill Ranks ({usedSkillRanks} assigned)</h2>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                {Object.entries(skillRanks).filter(([,r]) => r > 0).map(([name, ranks]) => (
+                {Object.entries(skillRanks).filter(([_name, r]) => r > 0).map(([name, ranks]) => (
                   <span key={name} style={{ padding: "0.25rem 0.6rem", borderRadius: 6, background: "#eff6ff", fontSize: "0.85rem" }}>
                     {name} <strong>{ranks}</strong>{allClassSkills.has(name) && <span style={{ color: "#10b981", marginLeft: 2 }}>+CS</span>}
                   </span>
@@ -1360,5 +1362,3 @@ const navBtn: React.CSSProperties = {
   padding: "0.75rem 1.75rem", border: "none", borderRadius: 8,
   cursor: "pointer", fontWeight: 700, fontSize: "1rem",
 };
-
-}
