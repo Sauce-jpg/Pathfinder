@@ -148,6 +148,8 @@ export default function CharacterSheetPage() {
     setLevelUpFeats([]);
     setShowLevelUp(true);
   }
+
+  async function handleSave() {
     setSaving(true);
 
     const { error } = await supabase
