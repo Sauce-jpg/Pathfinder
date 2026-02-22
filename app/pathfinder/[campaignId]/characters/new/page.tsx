@@ -17,7 +17,7 @@ import {
 // TYPES
 // ─────────────────────────────────────────────
 
-type Step = "basics" | "scores" | "race" | "class" | "details" | "feats" | "traits" | "review";
+type Step = "basics" | "scores" | "race" | "class" | "choices" | "details" | "feats" | "traits" | "review";
 
 interface AbilityScores {
   str: number; dex: number; con: number;
@@ -49,11 +49,12 @@ interface SelectedTrait {
 // CONSTANTS
 // ─────────────────────────────────────────────
 
-const STEPS: { id: Step; label: string; icon: string }[] = [
+const ALL_STEPS: { id: Step; label: string; icon: string }[] = [
   { id: "basics",  label: "Basics",        icon: "📋" },
   { id: "scores",  label: "Ability Scores", icon: "💪" },
   { id: "race",    label: "Race",           icon: "🧝" },
   { id: "class",   label: "Class",          icon: "⚔️" },
+  { id: "choices", label: "Class Choices",  icon: "🔮" },
   { id: "details", label: "Level Details",  icon: "🎯" },
   { id: "feats",   label: "Feats",          icon: "⚔️" },
   { id: "traits",  label: "Traits",         icon: "✨" },
@@ -130,6 +131,14 @@ export default function NewCharacterPage() {
 
   // ── STEP 4: Class ──
   const [selectedClasses, setSelectedClasses] = useState<SelectedClass[]>([]);
+
+  // Class feature choices (Arcane School, Arcane Bond, Bloodline etc.)
+  const [arcaneSchool, setArcaneSchool] = useState<string>("");
+  const [arcaneForbidden1, setArcaneForbidden1] = useState<string>("");
+  const [arcaneForbidden2, setArcaneForbidden2] = useState<string>("");
+  const [arcaneBondType, setArcaneBondType] = useState<"familiar"|"bonded_item"|"">("");
+  const [arcaneBondFamiliar, setArcaneBondFamiliar] = useState<string>("");
+  const [arcaneBondItem, setArcaneBondItem] = useState<string>("");
   const [classSearch, setClassSearch] = useState("");
   const [classTag, setClassTag] = useState<string>("all");
 
@@ -264,7 +273,14 @@ export default function NewCharacterPage() {
   // NAVIGATION HELPERS
   // ─────────────────────────────────────────────
 
-  const stepOrder: Step[] = ["basics","scores","race","class","details","feats","traits","review"];
+  // Does any selected class have features requiring a choice?
+  const hasChoiceFeatures = selectedClasses.some(({ cls }) =>
+    cls.level1Features.some(f => f.requiresChoice)
+  );
+  const stepOrder: Step[] = hasChoiceFeatures
+    ? ["basics","scores","race","class","choices","details","feats","traits","review"]
+    : ["basics","scores","race","class","details","feats","traits","review"];
+  const STEPS = ALL_STEPS.filter(s => stepOrder.includes(s.id));
   const currentIndex = stepOrder.indexOf(step);
 
   function canAdvance(): { ok: boolean; reason?: string } {
@@ -274,6 +290,17 @@ export default function NewCharacterPage() {
       if (unassigned.length > 0) return { ok:false, reason:`Assign all scores first (${unassigned.length} remaining).` };
     }
     if (step === "class" && selectedClasses.length === 0) return { ok:false, reason:"Select at least one class." };
+    if (step === "choices") {
+      const hasWizard = selectedClasses.some(c => c.cls.id === "wizard");
+      if (hasWizard) {
+        if (!arcaneSchool) return { ok:false, reason:"Choose an Arcane School for your Wizard." };
+        if (!arcaneForbidden1 || !arcaneForbidden2) return { ok:false, reason:"Choose 2 forbidden schools." };
+        if (arcaneForbidden1 === arcaneForbidden2) return { ok:false, reason:"Forbidden schools must be different." };
+        if (!arcaneBondType) return { ok:false, reason:"Choose Familiar or Bonded Item for Arcane Bond." };
+        if (arcaneBondType === "familiar" && !arcaneBondFamiliar) return { ok:false, reason:"Choose a familiar." };
+        if (arcaneBondType === "bonded_item" && !arcaneBondItem) return { ok:false, reason:"Choose a bonded item type." };
+      }
+    }
     return { ok: true };
   }
 
@@ -510,8 +537,9 @@ export default function NewCharacterPage() {
         });
       });
 
-      // Racial traits
+      // Racial traits — write feature rows + stat bonus source rows
       if (selectedRace && selectedRace.id !== "custom") {
+        const statSourceInserts: any[] = [];
         selectedRace.traits.forEach(t => {
           featureInserts.push({
             character_id: charId,
@@ -522,7 +550,23 @@ export default function NewCharacterPage() {
             obtained_level: 1,
             is_active: true,
           });
+          // Write stat bonuses from this racial trait
+          (t.statBonuses || []).forEach(bonus => {
+            statSourceInserts.push({
+              character_id: charId,
+              stat_category: bonus.statCategory,
+              source_name: `${t.name} (${selectedRace.name})`,
+              source_type: "racial",
+              bonus_value: bonus.value,
+              bonus_type: bonus.bonusType,
+              is_active: true,
+              obtained_level: 1,
+            });
+          });
         });
+        if (statSourceInserts.length > 0) {
+          await supabase.from("character_stat_sources").insert(statSourceInserts);
+        }
       }
 
       // Class features (level 1)
@@ -571,6 +615,44 @@ export default function NewCharacterPage() {
 
       if (featureInserts.length > 0) {
         await supabase.from("character_features").insert(featureInserts);
+      }
+
+      // Write class choices (Arcane School, Arcane Bond, etc.)
+      const hasWizard = selectedClasses.some(c => c.cls.id === "wizard");
+      if (hasWizard && arcaneSchool) {
+        const choiceInserts: any[] = [
+          {
+            character_id: charId,
+            feature_type: "class",
+            name: `Arcane School: ${arcaneSchool}`,
+            description: `Specializes in ${arcaneSchool} magic. Forbidden schools: ${arcaneForbidden1}, ${arcaneForbidden2}.`,
+            source: "Wizard",
+            obtained_level: 1,
+            is_active: true,
+          },
+        ];
+        if (arcaneBondType === "familiar" && arcaneBondFamiliar) {
+          choiceInserts.push({
+            character_id: charId,
+            feature_type: "class",
+            name: `Arcane Bond: Familiar (${arcaneBondFamiliar})`,
+            description: `Bonded familiar: ${arcaneBondFamiliar}. Grants special abilities depending on familiar type.`,
+            source: "Wizard",
+            obtained_level: 1,
+            is_active: true,
+          });
+        } else if (arcaneBondType === "bonded_item" && arcaneBondItem) {
+          choiceInserts.push({
+            character_id: charId,
+            feature_type: "class",
+            name: `Arcane Bond: Bonded Item (${arcaneBondItem})`,
+            description: `Bonded item: ${arcaneBondItem}. Can be used once per day to cast any spell in your spellbook.`,
+            source: "Wizard",
+            obtained_level: 1,
+            is_active: true,
+          });
+        }
+        await supabase.from("character_features").insert(choiceInserts);
       }
 
       router.push(`/pathfinder/${campaignId}/characters/${charId}`);
@@ -1149,6 +1231,142 @@ export default function NewCharacterPage() {
       )}
 
       {/* ═══════════════════════════════════════════
+          STEP: CLASS CHOICES (conditional — Wizard, Sorcerer, etc.)
+      ═══════════════════════════════════════════ */}
+      {step === "choices" && (() => {
+        const hasWizard = selectedClasses.some(c => c.cls.id === "wizard");
+        const ARCANE_SCHOOLS = ["Abjuration","Conjuration","Divination","Enchantment","Evocation","Illusion","Necromancy","Transmutation"];
+        const FAMILIARS = ["Bat","Cat","Hawk","Lizard","Monkey","Owl","Rat","Raven","Toad","Viper","Weasel"];
+        const BONDED_ITEMS = ["Amulet","Crystal ball","Ring","Rod","Staff","Wand","Weapon"];
+        return (
+          <div style={{ display: "grid", gap: "1.5rem" }}>
+            {hasWizard && (
+              <>
+                {/* Arcane School */}
+                <section style={card}>
+                  <h2 style={cardTitle}>🔮 Arcane School</h2>
+                  <p style={{ color: "#666", marginBottom: "1.25rem", fontSize: "0.95rem" }}>
+                    Choose your school of specialization. You gain bonus spells and powers from this school. You must also choose 2 <strong>forbidden schools</strong> — you cannot learn spells from those schools.
+                  </p>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: "0.6rem", marginBottom: "1.5rem" }}>
+                    {[...ARCANE_SCHOOLS, "Universalist"].map(school => (
+                      <div
+                        key={school}
+                        onClick={() => {
+                          setArcaneSchool(school);
+                          // Clear forbidden if they become invalid
+                          if (arcaneForbidden1 === school) setArcaneForbidden1("");
+                          if (arcaneForbidden2 === school) setArcaneForbidden2("");
+                        }}
+                        style={{
+                          padding: "0.75rem", borderRadius: 8, cursor: "pointer", textAlign: "center",
+                          border: `2px solid ${arcaneSchool === school ? "#7c3aed" : "#ddd"}`,
+                          background: arcaneSchool === school ? "#ede9fe" : "white",
+                          fontWeight: arcaneSchool === school ? 700 : 400,
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        {school}
+                      </div>
+                    ))}
+                  </div>
+
+                  {arcaneSchool && arcaneSchool !== "Universalist" && (
+                    <div style={{ padding: "1rem", background: "#f9fafb", borderRadius: 8 }}>
+                      <div style={{ fontWeight: 700, marginBottom: "0.75rem", color: "#374151" }}>Forbidden Schools (choose 2)</div>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                        {(["First forbidden school", "Second forbidden school"] as const).map((label, idx) => {
+                          const current = idx === 0 ? arcaneForbidden1 : arcaneForbidden2;
+                          const other = idx === 0 ? arcaneForbidden2 : arcaneForbidden1;
+                          const setter = idx === 0 ? setArcaneForbidden1 : setArcaneForbidden2;
+                          return (
+                            <div key={label}>
+                              <div style={{ fontSize: "0.82rem", color: "#666", marginBottom: "0.35rem" }}>{label}</div>
+                              <select
+                                value={current}
+                                onChange={e => setter(e.target.value)}
+                                style={{ width: "100%", padding: "0.6rem", border: "1px solid #ddd", borderRadius: 6, fontSize: "0.9rem" }}
+                              >
+                                <option value="">— choose —</option>
+                                {ARCANE_SCHOOLS.filter(s => s !== arcaneSchool && s !== other).map(s => (
+                                  <option key={s} value={s}>{s}</option>
+                                ))}
+                              </select>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </section>
+
+                {/* Arcane Bond */}
+                <section style={card}>
+                  <h2 style={cardTitle}>🔗 Arcane Bond</h2>
+                  <p style={{ color: "#666", marginBottom: "1.25rem", fontSize: "0.95rem" }}>
+                    Bond with a <strong>familiar</strong> that grants special abilities, or a <strong>bonded item</strong> that lets you cast any spell from your spellbook once per day.
+                  </p>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "1.25rem" }}>
+                    {(["familiar", "bonded_item"] as const).map(bt => (
+                      <div
+                        key={bt}
+                        onClick={() => { setArcaneBondType(bt); setArcaneBondFamiliar(""); setArcaneBondItem(""); }}
+                        style={{
+                          padding: "1.25rem", borderRadius: 10, cursor: "pointer", textAlign: "center",
+                          border: `2px solid ${arcaneBondType === bt ? "#7c3aed" : "#ddd"}`,
+                          background: arcaneBondType === bt ? "#ede9fe" : "white",
+                        }}
+                      >
+                        <div style={{ fontSize: "1.75rem", marginBottom: "0.4rem" }}>{bt === "familiar" ? "🐱" : "💎"}</div>
+                        <div style={{ fontWeight: 700 }}>{bt === "familiar" ? "Familiar" : "Bonded Item"}</div>
+                        <div style={{ fontSize: "0.8rem", color: "#666", marginTop: "0.3rem" }}>
+                          {bt === "familiar" ? "Animal companion granting special abilities" : "Magic item usable to cast any spellbook spell 1/day"}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {arcaneBondType === "familiar" && (
+                    <div>
+                      <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>Choose familiar:</div>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "0.5rem" }}>
+                        {FAMILIARS.map(f => (
+                          <div key={f} onClick={() => setArcaneBondFamiliar(f)}
+                            style={{ padding: "0.6rem", textAlign: "center", borderRadius: 7, cursor: "pointer",
+                              border: `2px solid ${arcaneBondFamiliar === f ? "#7c3aed" : "#e5e7eb"}`,
+                              background: arcaneBondFamiliar === f ? "#ede9fe" : "#f9fafb",
+                              fontWeight: arcaneBondFamiliar === f ? 700 : 400, fontSize: "0.88rem" }}>
+                            {f}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {arcaneBondType === "bonded_item" && (
+                    <div>
+                      <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>Choose item type:</div>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(110px, 1fr))", gap: "0.5rem" }}>
+                        {BONDED_ITEMS.map(item => (
+                          <div key={item} onClick={() => setArcaneBondItem(item)}
+                            style={{ padding: "0.6rem", textAlign: "center", borderRadius: 7, cursor: "pointer",
+                              border: `2px solid ${arcaneBondItem === item ? "#7c3aed" : "#e5e7eb"}`,
+                              background: arcaneBondItem === item ? "#ede9fe" : "#f9fafb",
+                              fontWeight: arcaneBondItem === item ? 700 : 400, fontSize: "0.88rem" }}>
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </section>
+              </>
+            )}
+          </div>
+        );
+      })()}
+
+      {/* ═══════════════════════════════════════════
           STEP 5: LEVEL 1 DETAILS
       ═══════════════════════════════════════════ */}
       {step === "details" && (
@@ -1427,14 +1645,15 @@ export default function NewCharacterPage() {
             <FeatBrowser
               isOpen={showFeatBrowser}
               onClose={() => setShowFeatBrowser(false)}
-              filterType={(() => {
+              filterTypes={(() => {
                 const slot = slots2[featBrowserSlotIdx];
                 if (!slot) return undefined;
                 const label = slot.label.toLowerCase();
-                if (label.includes("combat")) return "combat";
-                if (label.includes("metamagic")) return "metamagic";
-                if (label.includes("item creation")) return "item creation";
-                if (label.includes("style")) return "style";
+                if (label.includes("combat")) return ["combat"];
+                if (label.includes("metamagic") || label.includes("item creation") || label.includes("spell mastery")) {
+                  return ["metamagic", "item creation", "spell mastery"];
+                }
+                if (label.includes("style")) return ["style"];
                 return undefined;
               })()}
               characterContext={{
