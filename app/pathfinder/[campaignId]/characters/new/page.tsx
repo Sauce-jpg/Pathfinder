@@ -340,8 +340,9 @@ export default function NewCharacterPage() {
         bonus_type: string = "untyped",
         notes?: string,
         obtainedLevel?: number,
+        allowZero?: boolean,
       ) => {
-        if (bonus_value === 0) return;
+        if (bonus_value === 0 && !allowZero) return;
         sources.push({
           character_id: charId,
           stat_category,
@@ -435,13 +436,13 @@ export default function NewCharacterPage() {
         if (isGestalt && selectedClasses.length > 1) {
           selectedClasses.forEach(c => {
             const base = c.cls.saves[type] === "good" ? getGoodSaveAtLevel(level) : getPoorSaveAtLevel(level);
-            addSource(cat, `${c.cls.name} base ${label}`, "class", base, "untyped");
+            addSource(cat, `${c.cls.name} base ${label}`, "class", base, "untyped", undefined, undefined, true);
           });
         } else {
           const cls = selectedClasses[0]?.cls;
           if (cls) {
             const base = cls.saves[type] === "good" ? getGoodSaveAtLevel(level) : getPoorSaveAtLevel(level);
-            addSource(cat, `${cls.name} base ${label}`, "class", base, "untyped");
+            addSource(cat, `${cls.name} base ${label}`, "class", base, "untyped", undefined, undefined, true);
           }
         }
         if (abMod !== 0) addSource(cat, `${type === "fort" ? "CON" : type === "ref" ? "DEX" : "WIS"} modifier`, "ability", abMod, "untyped");
