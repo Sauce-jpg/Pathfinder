@@ -41,6 +41,11 @@ export default function CharacterSheetPage() {
   const [equippedAcp, setEquippedAcp] = useState<number>(0);
   const [equippedArmorAcBonus, setEquippedArmorAcBonus] = useState<number>(0);
 
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteInput, setDeleteInput] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  const [showStatusMenu, setShowStatusMenu] = useState(false);
+
   // Level up wizard
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [levelUpStep, setLevelUpStep] = useState<"class" | "hp" | "skills" | "feats" | "confirm">("class");
@@ -166,7 +171,6 @@ export default function CharacterSheetPage() {
   }
 
   async function handleSave() {
-    setSaving(true);
 
     const { error } = await supabase
       .from("characters")
@@ -181,6 +185,32 @@ export default function CharacterSheetPage() {
     }
 
     setSaving(false);
+  }
+
+  async function handleDelete() {
+    if (deleteInput.trim().toUpperCase() !== "DELETE") return;
+    setDeleting(true);
+    try {
+      // Delete all related data first
+      await Promise.all([
+        supabase.from("character_stat_sources").delete().eq("character_id", characterId),
+        supabase.from("character_features").delete().eq("character_id", characterId),
+        supabase.from("character_skills").delete().eq("character_id", characterId),
+      ]);
+      await supabase.from("characters").delete().eq("id", characterId);
+      router.push(`/pathfinder/${char.campaign_id ?? ""}`);
+    } catch (err: any) {
+      alert("Error deleting character: " + err.message);
+      setDeleting(false);
+    }
+  }
+
+  async function handleSetStatus(status: string) {
+    const baseType = (character.character_type || "PC").split(":")[0];
+    const newType = status === "active" ? baseType : `${baseType}:${status}`;
+    await supabase.from("characters").update({ character_type: newType }).eq("id", characterId);
+    setCharacter((prev: any) => ({ ...prev, character_type: newType }));
+    setShowStatusMenu(false);
   }
 
   async function handleLevelUp() {
@@ -273,7 +303,6 @@ export default function CharacterSheetPage() {
       for (const saveKey of ["save_fort", "save_ref", "save_will"] as const) {
         const saveType = saveKey.replace("save_", "") as "fort" | "ref" | "will";
         let totalBase = 0;
-        // For multiclass, take the best progression for each class independently
         Object.entries(newClassMap).forEach(([cid, cd]) => {
           const cls = CLASSES.find(c => c.id === cid);
           if (cls) {
@@ -282,13 +311,30 @@ export default function CharacterSheetPage() {
               : getPoorSaveAtLevel(cd.level);
           }
         });
-        // Multiclass save stacking bonus: -2 for each additional class beyond first (to avoid stacking)
+        // Multiclass stacking adjustment
         const extraClasses = Object.keys(newClassMap).length - 1;
         if (extraClasses > 0) totalBase -= extraClasses * 2;
+        const finalBase = Math.max(0, totalBase);
+
         const saveSources = statSources[saveKey] || [];
         const classSaveSrc = saveSources.find((s: any) => s.source_type === "class");
         if (classSaveSrc) {
-          await supabase.from("character_stat_sources").update({ bonus_value: Math.max(0, totalBase), obtained_level: newCharLevel }).eq("id", classSaveSrc.id);
+          await supabase.from("character_stat_sources")
+            .update({ bonus_value: finalBase, obtained_level: newCharLevel })
+            .eq("id", classSaveSrc.id);
+        } else {
+          // Row was never created (poor save = 0 at level 1 was skipped) — insert it now
+          const saveLabel = saveType === "fort" ? "Fortitude" : saveType === "ref" ? "Reflex" : "Will";
+          await supabase.from("character_stat_sources").insert({
+            character_id: characterId,
+            stat_category: saveKey,
+            source_name: `${chosenClass.name} base ${saveLabel}`,
+            source_type: "class",
+            bonus_value: finalBase,
+            bonus_type: "untyped",
+            is_active: true,
+            obtained_level: newCharLevel,
+          });
         }
       }
 
@@ -434,7 +480,26 @@ export default function CharacterSheetPage() {
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: "2rem" }}>
         <div>
-          <h1 style={{ margin: 0 }}>{char.name}</h1>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <h1 style={{ margin: 0 }}>{char.name}</h1>
+            {/* Status badge */}
+            {(() => {
+              const status = (character.character_type || "").split(":")[1];
+              if (!status) return null;
+              const colors: Record<string, { bg: string; color: string }> = {
+                dead: { bg: "#fee2e2", color: "#991b1b" },
+                departed: { bg: "#fef3c7", color: "#92400e" },
+                retired: { bg: "#e5e7eb", color: "#374151" },
+                missing: { bg: "#ede9fe", color: "#5b21b6" },
+              };
+              const c = colors[status] ?? { bg: "#f3f4f6", color: "#666" };
+              return (
+                <span style={{ padding: "0.2rem 0.7rem", borderRadius: 20, fontSize: "0.78rem", fontWeight: 700, textTransform: "capitalize", background: c.bg, color: c.color }}>
+                  {status}
+                </span>
+              );
+            })()}
+          </div>
           <p style={{ margin: "0.5rem 0 0", color: "#666", fontSize: "1.1rem" }}>
             {char.race} {char.classes}
           </p>
@@ -443,69 +508,54 @@ export default function CharacterSheetPage() {
           )}
         </div>
 
-        <div style={{ display: "flex", gap: "0.75rem" }}>
+        <div style={{ display: "flex", gap: "0.75rem", alignItems: "start" }}>
           {editing ? (
             <>
-              <button
-                onClick={handleSave}
-                disabled={saving}
-                style={{
-                  padding: "0.75rem 1.5rem",
-                  background: "#10b981",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                }}
-              >
+              <button onClick={handleSave} disabled={saving}
+                style={{ padding: "0.75rem 1.5rem", background: "#10b981", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
                 {saving ? "Saving..." : "Save Changes"}
               </button>
-              <button
-                onClick={() => {
-                  setEditing(false);
-                  setEditData(character);
-                }}
-                style={{
-                  padding: "0.75rem 1.5rem",
-                  background: "#eee",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                }}
-              >
+              <button onClick={() => { setEditing(false); setEditData(character); }}
+                style={{ padding: "0.75rem 1.5rem", background: "#eee", border: "none", borderRadius: "8px", cursor: "pointer" }}>
                 Cancel
               </button>
             </>
           ) : (
             <>
-              <button
-                onClick={() => openLevelUpWizard()}
-                style={{
-                  padding: "0.75rem 1.5rem",
-                  background: "#f59e0b",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                }}
-              >
+              <button onClick={() => openLevelUpWizard()}
+                style={{ padding: "0.75rem 1.5rem", background: "#f59e0b", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
                 ⬆ Level Up
               </button>
-              <button
-                onClick={() => setEditing(true)}
-                style={{
-                  padding: "0.75rem 1.5rem",
-                  background: "#0070f3",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                }}
-              >
+              {/* Status menu */}
+              <div style={{ position: "relative" }}>
+                <button onClick={() => setShowStatusMenu(s => !s)}
+                  style={{ padding: "0.75rem 1rem", background: "#f3f4f6", border: "1px solid #ddd", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+                  ◉ Status
+                </button>
+                {showStatusMenu && (
+                  <div style={{ position: "absolute", right: 0, top: "calc(100% + 0.4rem)", background: "white", border: "1px solid #ddd", borderRadius: 8, boxShadow: "0 4px 16px rgba(0,0,0,0.12)", zIndex: 100, minWidth: 160 }}>
+                    {[
+                      { id: "active", label: "✅ Active", color: "#166534" },
+                      { id: "departed", label: "🚪 Departed", color: "#92400e" },
+                      { id: "retired", label: "🏡 Retired", color: "#374151" },
+                      { id: "missing", label: "❓ Missing", color: "#5b21b6" },
+                      { id: "dead", label: "💀 Dead", color: "#991b1b" },
+                    ].map(s => (
+                      <button key={s.id} onClick={() => handleSetStatus(s.id)}
+                        style={{ display: "block", width: "100%", padding: "0.6rem 1rem", background: "none", border: "none", cursor: "pointer", textAlign: "left", fontSize: "0.9rem", color: s.color, fontWeight: 600 }}>
+                        {s.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <button onClick={() => setEditing(true)}
+                style={{ padding: "0.75rem 1.5rem", background: "#0070f3", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
                 Edit Character
+              </button>
+              <button onClick={() => { setShowDeleteConfirm(true); setDeleteInput(""); }}
+                style={{ padding: "0.75rem 1rem", background: "#fee2e2", color: "#991b1b", border: "1px solid #fca5a5", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+                🗑
               </button>
             </>
           )}
@@ -815,6 +865,7 @@ export default function CharacterSheetPage() {
           <Spells
             characterId={characterId}
             characterLevel={char.level || 1}
+            characterClasses={char.classes || ""}
             abilityMods={{ str: strMod, dex: dexMod, con: conMod, int: intMod, wis: wisMod, cha: chaMod }}
           />
         </div>
@@ -862,6 +913,41 @@ export default function CharacterSheetPage() {
               {char.backstory || <span style={{ color: "#999" }}>No backstory written yet.</span>}
             </div>
           )}
+        </div>
+      )}
+
+      {/* ── DELETE CONFIRMATION MODAL ── */}
+      {showDeleteConfirm && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 3000 }}
+          onClick={() => setShowDeleteConfirm(false)}>
+          <div style={{ background: "white", borderRadius: 16, padding: "2rem", width: "90%", maxWidth: 420 }}
+            onClick={e => e.stopPropagation()}>
+            <h2 style={{ margin: "0 0 0.5rem", color: "#991b1b" }}>🗑 Delete Character</h2>
+            <p style={{ color: "#555", marginBottom: "0.5rem" }}>
+              This will permanently delete <strong>{char.name}</strong> and all their data. This cannot be undone.
+            </p>
+            <p style={{ color: "#555", marginBottom: "1rem" }}>
+              Type <strong style={{ fontFamily: "monospace" }}>DELETE</strong> to confirm:
+            </p>
+            <input
+              type="text"
+              value={deleteInput}
+              onChange={e => setDeleteInput(e.target.value)}
+              placeholder="Type DELETE to confirm"
+              autoFocus
+              style={{ width: "100%", padding: "0.65rem 0.9rem", border: `2px solid ${deleteInput.toUpperCase() === "DELETE" ? "#ef4444" : "#ddd"}`, borderRadius: 8, fontSize: "1rem", boxSizing: "border-box", marginBottom: "1rem" }}
+            />
+            <div style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-end" }}>
+              <button onClick={() => setShowDeleteConfirm(false)}
+                style={{ padding: "0.65rem 1.25rem", background: "#f3f4f6", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600 }}>
+                Cancel
+              </button>
+              <button onClick={handleDelete} disabled={deleteInput.trim().toUpperCase() !== "DELETE" || deleting}
+                style={{ padding: "0.65rem 1.25rem", background: deleteInput.trim().toUpperCase() === "DELETE" ? "#ef4444" : "#fca5a5", color: "white", border: "none", borderRadius: 8, cursor: deleteInput.trim().toUpperCase() === "DELETE" ? "pointer" : "not-allowed", fontWeight: 700 }}>
+                {deleting ? "Deleting..." : "Delete Forever"}
+              </button>
+            </div>
+          </div>
         </div>
       )}
 
