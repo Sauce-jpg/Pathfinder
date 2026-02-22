@@ -51,6 +51,7 @@ export default function CharacterSheetPage() {
   const [levelUpFeats, setLevelUpFeats] = useState<any[]>([]);
   const [levelUpShowFeatBrowser, setLevelUpShowFeatBrowser] = useState(false);
   const [levelUpSaving, setLevelUpSaving] = useState(false);
+  const [levelUpFeatSlots, setLevelUpFeatSlots] = useState<{label:string;source:string}[]>([]);
   // Existing data loaded when wizard opens
   const [existingSkills, setExistingSkills] = useState<Record<string, { ranks: number; is_class_skill: boolean }>>({});
   const [existingFeats, setExistingFeats] = useState<any[]>([]);
@@ -305,14 +306,14 @@ export default function CharacterSheetPage() {
       // ── New feats ──
       if (levelUpFeats.length > 0) {
         await supabase.from("character_features").insert(
-          levelUpFeats.map(f => ({
+          levelUpFeats.map((f, i) => ({
             character_id: characterId,
             feature_type: "feat",
             name: f.name,
             description: f.benefit || f.description || null,
             prerequisites: f.prerequisites || null,
             category: f.slotLabel || f.category || null,
-            source: `${chosenClass.name} level ${newClassLevel}`,
+            source: f.slotSource || levelUpFeatSlots[i]?.source || `${chosenClass.name} level ${newClassLevel}`,
             obtained_level: newCharLevel,
             is_active: true,
           }))
@@ -1225,7 +1226,16 @@ export default function CharacterSheetPage() {
                 </button>
                 {levelUpStep !== "confirm" ? (
                   <button
-                    onClick={() => { const i = stepOrder.indexOf(levelUpStep); setLevelUpStep(stepOrder[i + 1]); }}
+                    onClick={() => {
+                      const i = stepOrder.indexOf(levelUpStep);
+                      const nextStep = stepOrder[i + 1];
+                      // When advancing to feats step, snapshot the current feat slots into state
+                      // so the external FeatBrowser onSelectFeat can access them
+                      if (nextStep === "feats") {
+                        setLevelUpFeatSlots(featSlots.map(s => ({ label: s.label, source: s.source })));
+                      }
+                      setLevelUpStep(nextStep);
+                    }}
                     disabled={levelUpStep === "class" && !levelUpChosenClassId || (levelUpStep === "hp" && levelUpHpMethod === "manual" && !levelUpHpRoll)}
                     style={{ padding: "0.65rem 1.5rem", background: (!levelUpChosenClassId && levelUpStep === "class") ? "#d1d5db" : "#f59e0b", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 700 }}>
                     Next →
@@ -1246,7 +1256,10 @@ export default function CharacterSheetPage() {
         isOpen={levelUpShowFeatBrowser}
         onClose={() => setLevelUpShowFeatBrowser(false)}
         onSelectFeat={(feat: any) => {
-          setLevelUpFeats(prev => [...prev, feat]);
+          setLevelUpFeats(prev => {
+            const slotSource = levelUpFeatSlots[prev.length]?.source ?? "";
+            return [...prev, { ...feat, slotSource }];
+          });
           setLevelUpShowFeatBrowser(false);
         }}
       />
