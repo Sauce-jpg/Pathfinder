@@ -399,10 +399,10 @@ export function Spells({ characterId, characterLevel, characterClasses, abilityM
           <strong>Ability:</strong> {activeClass!.spellcasting_ability}
         </div>
         <div>
-          <strong>Spell DC:</strong> {activeClass!.base_spell_dc} + spell level + {abilityMod}
+          <strong>Spell DC:</strong> {activeClass!.base_spell_dc} + spell level + ({abilityMod >= 0 ? "+" : ""}{abilityMod})
         </div>
         <div>
-          <strong>Concentration:</strong> +{activeClass!.caster_level + abilityMod}
+          <strong>Concentration:</strong> +{activeClass!.caster_level + abilityMod} (CL {activeClass!.caster_level} + {abilityMod >= 0 ? "+" : ""}{abilityMod})
         </div>
         {activeClass!.notes && (
           <div>
