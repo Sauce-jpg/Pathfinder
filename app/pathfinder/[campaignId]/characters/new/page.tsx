@@ -536,6 +536,23 @@ export default function NewCharacterPage() {
             is_active: true,
           });
         });
+        // Also write featuresByLevel for levels 2..level (if creating above level 1)
+        if (cls.featuresByLevel && level > 1) {
+          for (let lvl = 2; lvl <= level; lvl++) {
+            const features = cls.featuresByLevel[lvl] || [];
+            features.forEach((f: any) => {
+              featureInserts.push({
+                character_id: charId,
+                feature_type: "class",
+                name: f.name,
+                description: f.description || null,
+                source: cls.name,
+                obtained_level: lvl,
+                is_active: true,
+              });
+            });
+          }
+        }
       });
 
       if (featureInserts.length > 0) {
