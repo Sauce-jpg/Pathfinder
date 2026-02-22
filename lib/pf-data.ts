@@ -37,6 +37,11 @@ export interface ClassSkill {
   ability: string;
 }
 
+export interface ClassFeature {
+  name: string;
+  description: string;
+}
+
 export interface PFClass {
   id: string;
   name: string;
@@ -49,10 +54,10 @@ export interface PFClass {
   proficiencies: string[];
   level1Features: RacialTrait[]; // reuse same shape
   tags: string[]; // "core", "base", "hybrid", "occult", "prestige", "npc"
-  // Levels at which this class grants bonus feats (in addition to standard odd-level feats)
   bonusFeatLevels?: number[];
-  // Label for the bonus feat type (e.g. "Combat Feat", "Metamagic or Item Creation Feat")
   bonusFeatLabel?: string;
+  // Features granted at each class level (beyond level 1)
+  featuresByLevel?: Record<number, ClassFeature[]>;
 }
 
 // ============================================================================
@@ -387,6 +392,27 @@ export const CLASSES: PFClass[] = [
       { name: "Fast Movement", description: "+10 ft. land speed (in light or no armor)." },
       { name: "Rage", description: "Rage for a number of rounds per day equal to 4 + CON modifier. +4 morale bonus to STR and CON, +2 morale bonus on Will saves, –2 penalty to AC." },
     ],
+    featuresByLevel: {
+      2:  [{ name: "Uncanny Dodge", description: "Cannot be caught flat-footed, even if the attacker is invisible." }],
+      3:  [{ name: "Trap Sense +1", description: "+1 bonus on Reflex saves and AC against traps." }],
+      4:  [{ name: "Rage Power", description: "Gain a rage power. Can use during rage." }],
+      5:  [{ name: "Improved Uncanny Dodge", description: "Cannot be flanked. Immune to the flanking condition for sneak attacks (unless rogue 4+ levels higher)." }],
+      6:  [{ name: "Trap Sense +2", description: "+2 bonus on Reflex saves and AC against traps." }],
+      7:  [{ name: "Damage Reduction 1/—", description: "DR 1/— while raging." }],
+      8:  [{ name: "Rage Power", description: "Gain another rage power." }],
+      9:  [{ name: "Trap Sense +3", description: "+3 bonus on Reflex saves and AC against traps." }],
+      10: [{ name: "Damage Reduction 2/—", description: "DR 2/— while raging." }],
+      11: [{ name: "Greater Rage", description: "+6 to STR and CON, +3 Will saves while raging (up from +4/+4/+2)." }],
+      12: [{ name: "Rage Power", description: "Gain another rage power." }, { name: "Trap Sense +4", description: "+4 bonus on Reflex saves and AC against traps." }],
+      13: [{ name: "Damage Reduction 3/—", description: "DR 3/— while raging." }],
+      14: [{ name: "Indomitable Will", description: "+4 bonus on Will saves to resist enchantment spells while raging." }],
+      15: [{ name: "Trap Sense +5", description: "+5 bonus on Reflex saves and AC against traps." }],
+      16: [{ name: "Rage Power", description: "Gain another rage power." }, { name: "Damage Reduction 4/—", description: "DR 4/— while raging." }],
+      17: [{ name: "Tireless Rage", description: "No longer fatigued after raging." }],
+      18: [{ name: "Trap Sense +6", description: "+6 bonus on Reflex saves and AC against traps." }],
+      19: [{ name: "Damage Reduction 5/—", description: "DR 5/— while raging." }],
+      20: [{ name: "Mighty Rage", description: "+8 to STR and CON, +4 Will saves while raging." }],
+    },
     tags: ["core"],
   },
   {
@@ -462,6 +488,23 @@ export const CLASSES: PFClass[] = [
     ],
     bonusFeatLevels: [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
     bonusFeatLabel: "Combat Feat",
+    featuresByLevel: {
+      2:  [{ name: "Bravery +1", description: "+1 Will save vs. fear. Increases by +1 every 4 levels." }],
+      3:  [{ name: "Armor Training 1", description: "Reduce armor check penalty by 1 and increase max Dex bonus by 1. Can move at full speed in medium armor." }],
+      5:  [{ name: "Weapon Training 1", description: "+1 attack and damage with one weapon group of your choice." }],
+      6:  [{ name: "Bravery +2", description: "+2 Will save vs. fear." }],
+      7:  [{ name: "Armor Training 2", description: "Reduce armor check penalty by 2 and increase max Dex bonus by 2. Can move at full speed in heavy armor." }],
+      9:  [{ name: "Weapon Training 2", description: "+2 attack and damage with primary weapon group; +1 with secondary group." }],
+      10: [{ name: "Bravery +3", description: "+3 Will save vs. fear." }],
+      11: [{ name: "Armor Training 3", description: "Reduce armor check penalty by 3 and increase max Dex bonus by 3." }],
+      13: [{ name: "Weapon Training 3", description: "+3/+2/+1 attack and damage across weapon groups." }],
+      14: [{ name: "Bravery +4", description: "+4 Will save vs. fear." }],
+      15: [{ name: "Armor Training 4", description: "Reduce armor check penalty by 4 and increase max Dex bonus by 4." }],
+      17: [{ name: "Weapon Training 4", description: "+4/+3/+2/+1 attack and damage across weapon groups." }],
+      18: [{ name: "Bravery +5", description: "+5 Will save vs. fear." }],
+      19: [{ name: "Armor Mastery", description: "DR 5/— whenever wearing armor or using a shield." }],
+      20: [{ name: "Weapon Mastery", description: "Choose one weapon: always confirm critical hits, ×3 critical multiplier if lower, never dropped on disarm." }],
+    },
     tags: ["core"],
   },
   {
@@ -532,6 +575,27 @@ export const CLASSES: PFClass[] = [
       { name: "Sneak Attack +1d6", description: "+1d6 precision damage when flanking or target is flat-footed." },
       { name: "Trapfinding", description: "+1/2 rogue level on Perception to find traps and Disable Device. Can disarm magic traps." },
     ],
+    featuresByLevel: {
+      2:  [{ name: "Evasion", description: "On a successful Reflex save vs. an area effect, take no damage instead of half." }, { name: "Rogue Talent", description: "Gain a rogue talent." }],
+      3:  [{ name: "Sneak Attack +2d6", description: "Sneak attack increases to +2d6." }, { name: "Trap Sense +1", description: "+1 bonus on Reflex saves and AC against traps." }],
+      4:  [{ name: "Uncanny Dodge", description: "Cannot be caught flat-footed, even if the attacker is invisible." }, { name: "Rogue Talent", description: "Gain a rogue talent." }],
+      5:  [{ name: "Sneak Attack +3d6", description: "Sneak attack increases to +3d6." }],
+      6:  [{ name: "Trap Sense +2", description: "+2 bonus on Reflex saves and AC against traps." }, { name: "Rogue Talent", description: "Gain a rogue talent." }],
+      7:  [{ name: "Sneak Attack +4d6", description: "Sneak attack increases to +4d6." }, { name: "Improved Uncanny Dodge", description: "Cannot be flanked (unless rogue 4+ levels higher)." }],
+      8:  [{ name: "Rogue Talent", description: "Gain a rogue talent." }],
+      9:  [{ name: "Sneak Attack +5d6", description: "Sneak attack increases to +5d6." }, { name: "Trap Sense +3", description: "+3 bonus on Reflex saves and AC against traps." }],
+      10: [{ name: "Advanced Talents", description: "Can now select advanced rogue talents." }, { name: "Rogue Talent", description: "Gain a rogue talent (advanced available)." }],
+      11: [{ name: "Sneak Attack +6d6", description: "Sneak attack increases to +6d6." }],
+      12: [{ name: "Trap Sense +4", description: "+4 bonus on Reflex saves and AC against traps." }, { name: "Rogue Talent", description: "Gain a rogue talent." }],
+      13: [{ name: "Sneak Attack +7d6", description: "Sneak attack increases to +7d6." }],
+      14: [{ name: "Rogue Talent", description: "Gain a rogue talent." }],
+      15: [{ name: "Sneak Attack +8d6", description: "Sneak attack increases to +8d6." }, { name: "Trap Sense +5", description: "+5 bonus on Reflex saves and AC against traps." }],
+      16: [{ name: "Rogue Talent", description: "Gain a rogue talent." }],
+      17: [{ name: "Sneak Attack +9d6", description: "Sneak attack increases to +9d6." }],
+      18: [{ name: "Trap Sense +6", description: "+6 bonus on Reflex saves and AC against traps." }, { name: "Rogue Talent", description: "Gain a rogue talent." }],
+      19: [{ name: "Sneak Attack +10d6", description: "Sneak attack increases to +10d6." }],
+      20: [{ name: "Master Strike", description: "On a successful sneak attack, target must make a Fort save or fall asleep, be paralyzed, or die (your choice, DC 10 + half rogue level + INT mod)." }, { name: "Rogue Talent", description: "Gain a rogue talent." }],
+    },
     tags: ["core"],
   },
   {
@@ -570,6 +634,10 @@ export const CLASSES: PFClass[] = [
     ],
     bonusFeatLevels: [1, 5, 10, 15, 20],
     bonusFeatLabel: "Metamagic, Item Creation, or Spell Mastery Feat",
+    featuresByLevel: {
+      2:  [{ name: "Arcane School Power", description: "Gain an additional school power from your chosen arcane school." }],
+      10: [{ name: "Spell Mastery (if bonus feat taken)", description: "Can prepare chosen mastered spells without a spellbook." }],
+    },
     tags: ["core"],
   },
   {
