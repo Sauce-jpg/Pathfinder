@@ -463,6 +463,9 @@ export const CLASSES: PFClass[] = [
     bonusFeatLevels: [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
     bonusFeatLabel: "Combat Feat",
     tags: ["core"],
+  },
+  {
+    id: "monk",
     name: "Monk",
     description: "A master of martial arts who uses ki to achieve extraordinary feats.",
     hitDie: 8,
