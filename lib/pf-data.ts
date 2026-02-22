@@ -565,6 +565,7 @@ export const CLASSES: PFClass[] = [
     bonusFeatLevels: [1, 5, 10, 15, 20],
     bonusFeatLabel: "Metamagic, Item Creation, or Spell Mastery Feat",
     tags: ["core"],
+  },
   {
     id: "alchemist",
     name: "Alchemist",
