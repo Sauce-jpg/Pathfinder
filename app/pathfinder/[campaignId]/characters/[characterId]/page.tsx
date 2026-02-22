@@ -435,7 +435,7 @@ export default function CharacterSheetPage() {
         <div>
           <h1 style={{ margin: 0 }}>{char.name}</h1>
           <p style={{ margin: "0.5rem 0 0", color: "#666", fontSize: "1.1rem" }}>
-            {char.race} {char.classes} {char.level}
+            {char.race} {char.classes}
           </p>
           {char.alignment && (
             <p style={{ margin: "0.25rem 0 0", color: "#999" }}>{char.alignment}</p>
