@@ -211,15 +211,35 @@ export function Spells({ characterId, characterLevel, characterClasses, abilityM
     loadSpellData();
   }
 
+  // Parse arcane school from spellcasting class notes (stored as "Arcane School: Evocation | ...")
+  function getArcaneSchool(cls: typeof activeClass): string | null {
+    if (!cls?.notes) return null;
+    const match = cls.notes.match(/Arcane School:\s*([A-Za-z]+)/i);
+    return match ? match[1] : null;
+  }
+
   async function prepareSpell(spellKnownId: string, spellLevel: number) {
     const slot = spellSlots.find((s) => s.spell_level === spellLevel);
-    const preparedCount = spellsPrepared.filter(
+    const preparedAtLevel = spellsPrepared.filter(
       (p) => p.spell_level === spellLevel && !p.is_cast
-    ).length;
+    );
+    const preparedCount = preparedAtLevel.length;
 
     if (preparedCount >= (slot?.slots_total || 0)) {
       alert(`All level ${spellLevel} slots are already prepared!`);
       return;
+    }
+
+    // School bonus slot enforcement: if we're filling the LAST slot and class has a school,
+    // that slot must be a spell of the chosen school
+    const arcaneSchool = getArcaneSchool(activeClass);
+    if (arcaneSchool && slot && preparedCount === slot.slots_total - 1) {
+      // This is the last (bonus school) slot — check spell school
+      const spell = spellsKnown.find(s => s.id === spellKnownId);
+      if (spell && spell.school.toLowerCase() !== arcaneSchool.toLowerCase()) {
+        alert(`The last slot at each level is reserved for your Arcane School bonus spell.\nYou must prepare a ${arcaneSchool} spell in this slot.\n\nChoose a different slot or add a ${arcaneSchool} spell to your spellbook.`);
+        return;
+      }
     }
 
     await supabase.from("character_spells_prepared").insert({
@@ -435,6 +455,8 @@ export function Spells({ characterId, characterLevel, characterClasses, abilityM
           {spellSlots.map((slot) => {
             const available = slot.slots_total - slot.slots_used;
             const isCantrip = slot.spell_level === 0;
+            const arcaneSchool = getArcaneSchool(activeClass);
+            const hasSchoolBonus = arcaneSchool && slot.spell_level >= 1 && slot.slots_total > 0;
 
             return (
               <div
@@ -456,26 +478,37 @@ export function Spells({ characterId, characterLevel, characterClasses, abilityM
                   <div style={{ fontSize: "1.5rem" }}>∞</div>
                 ) : (
                   <>
-                    <div style={{ flex: 1, display: "flex", gap: "0.25rem" }}>
-                      {Array.from({ length: slot.slots_total }).map((_, i) => (
-                        <div
-                          key={i}
-                          onClick={() => {
-                            if (i < slot.slots_used) restoreSpellSlot(slot.spell_level);
-                            else useSpellSlot(slot.spell_level);
-                          }}
-                          style={{
-                            width: "24px",
-                            height: "24px",
-                            borderRadius: "50%",
-                            background: i < slot.slots_used ? "#6b7280" : "#8b5cf6",
-                            cursor: "pointer",
-                            transition: "transform 0.1s",
-                          }}
-                          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
-                          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-                        />
-                      ))}
+                    <div style={{ flex: 1, display: "flex", gap: "0.25rem", alignItems: "center" }}>
+                      {Array.from({ length: slot.slots_total }).map((_, i) => {
+                        const isSchoolSlot = hasSchoolBonus && i === slot.slots_total - 1;
+                        return (
+                          <div key={i} style={{ position: "relative" }}>
+                            <div
+                              onClick={() => {
+                                if (i < slot.slots_used) restoreSpellSlot(slot.spell_level);
+                                else useSpellSlot(slot.spell_level);
+                              }}
+                              style={{
+                                width: "24px",
+                                height: "24px",
+                                borderRadius: "50%",
+                                background: i < slot.slots_used ? "#6b7280" : isSchoolSlot ? "#7c3aed" : "#8b5cf6",
+                                cursor: "pointer",
+                                transition: "transform 0.1s",
+                                border: isSchoolSlot ? "2px solid #4c1d95" : "none",
+                              }}
+                              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.2)")}
+                              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                              title={isSchoolSlot ? `${arcaneSchool} school bonus slot` : undefined}
+                            />
+                          </div>
+                        );
+                      })}
+                      {hasSchoolBonus && (
+                        <span style={{ fontSize: "0.72rem", color: "#7c3aed", fontWeight: 600, marginLeft: "0.25rem", whiteSpace: "nowrap" }}>
+                          +1 {arcaneSchool}
+                        </span>
+                      )}
                     </div>
 
                     <div style={{ fontSize: "0.9rem", color: "#666", minWidth: "80px", textAlign: "right" }}>
@@ -563,14 +596,21 @@ export function Spells({ characterId, characterLevel, characterClasses, abilityM
               const levelPrepared = spellsPrepared.filter((p) => p.spell_level === level);
               const slot = spellSlots.find((s) => s.spell_level === level);
               if (!slot) return null;
+              const arcaneSchool = getArcaneSchool(activeClass);
+              const hasSchoolBonus = arcaneSchool && level >= 1;
 
               return (
                 <div key={level} style={{ marginBottom: "1.5rem" }}>
-                  <h4 style={{ margin: "0 0 0.75rem 0", color: "#8b5cf6" }}>
-                    {level === 0 ? "Cantrips" : `Level ${level}`}{" "}
-                    <span style={{ fontSize: "0.85rem", color: "#666" }}>
+                  <h4 style={{ margin: "0 0 0.75rem 0", color: "#8b5cf6", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span>{level === 0 ? "Cantrips" : `Level ${level}`}{" "}
+                    <span style={{ fontSize: "0.85rem", color: "#666", fontWeight: 400 }}>
                       ({levelPrepared.filter((p) => !p.is_cast).length} / {slot.slots_total} prepared)
-                    </span>
+                    </span></span>
+                    {hasSchoolBonus && (
+                      <span style={{ fontSize: "0.7rem", background: "#ede9fe", color: "#7c3aed", padding: "0.1rem 0.4rem", borderRadius: 4, fontWeight: 700 }}>
+                        incl. {arcaneSchool} bonus slot
+                      </span>
+                    )}
                   </h4>
 
                   {levelPrepared.length === 0 ? (
