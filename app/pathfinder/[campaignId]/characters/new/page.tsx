@@ -4,11 +4,12 @@ import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "../../../../../lib/supabaseClient";
 import Link from "next/link";
-import { FeatBrowser } from "../../../../../components/FeatBrowser";
+import { FeatBrowser, CharacterContext } from "../../../../../components/FeatBrowser";
 import { TraitBrowser } from "../../../../../components/TraitBrowser";
 import {
   RACES, CLASSES,
   getBabAtLevel, getGoodSaveAtLevel, getPoorSaveAtLevel,
+  expandClassSkills,
   type Race, type PFClass,
 } from "../../../../../lib/pf-data";
 
@@ -142,6 +143,7 @@ export default function NewCharacterPage() {
   // ── STEP 6: Feats ──
   const [selectedFeats, setSelectedFeats] = useState<SelectedFeat[]>([]);
   const [showFeatBrowser, setShowFeatBrowser] = useState(false);
+  const [featBrowserSlotIdx, setFeatBrowserSlotIdx] = useState(0);
 
   // ── STEP 7: Traits ──
   const [selectedTraits, setSelectedTraits] = useState<SelectedTrait[]>([]);
@@ -255,8 +257,8 @@ export default function NewCharacterPage() {
     return base + abilityMod;
   }
 
-  // All class skills combined
-  const allClassSkills = new Set(selectedClasses.flatMap(c => c.cls.classSkills));
+  // All class skills combined — expand "Knowledge (All)" to individual skills
+  const allClassSkills = new Set(selectedClasses.flatMap(c => expandClassSkills(c.cls.classSkills)));
 
   // ─────────────────────────────────────────────
   // NAVIGATION HELPERS
@@ -535,6 +537,18 @@ export default function NewCharacterPage() {
             obtained_level: 1,
             is_active: true,
           });
+          // Auto-grant specific feats (Scribe Scroll, Brew Potion, Eschew Materials, etc.)
+          if (f.autoGrantFeat) {
+            featureInserts.push({
+              character_id: charId,
+              feature_type: "feat",
+              name: f.autoGrantFeat,
+              description: f.description || null,
+              source: cls.name,
+              obtained_level: 1,
+              is_active: true,
+            });
+          }
         });
         // Also write featuresByLevel for levels 2..level (if creating above level 1)
         if (cls.featuresByLevel && level > 1) {
@@ -1110,9 +1124,9 @@ export default function NewCharacterPage() {
               </div>
 
               <div style={{ marginBottom: "1.5rem" }}>
-                <div style={{ fontWeight: 700, marginBottom: "0.5rem" }}>Class Skills ({cls.classSkills.length})</div>
+                <div style={{ fontWeight: 700, marginBottom: "0.5rem" }}>Class Skills ({expandClassSkills(cls.classSkills).length})</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
-                  {cls.classSkills.map(s => (
+                  {expandClassSkills(cls.classSkills).map(s => (
                     <span key={s} style={{ padding: "0.2rem 0.5rem", borderRadius: 6, background: "#eff6ff", fontSize: "0.8rem", color: "#1e40af" }}>{s}</span>
                   ))}
                 </div>
@@ -1372,7 +1386,7 @@ export default function NewCharacterPage() {
                 </div>
               </div>
 
-              <button onClick={() => setShowFeatBrowser(true)}
+              <button onClick={() => { setFeatBrowserSlotIdx(selectedFeats.length); setShowFeatBrowser(true); }}
                 style={{ padding: "0.75rem 1.5rem", background: "#0070f3", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "1.5rem" }}>
                 ⚔️ Open Feat Browser
               </button>
@@ -1413,6 +1427,30 @@ export default function NewCharacterPage() {
             <FeatBrowser
               isOpen={showFeatBrowser}
               onClose={() => setShowFeatBrowser(false)}
+              filterType={(() => {
+                const slot = slots2[featBrowserSlotIdx];
+                if (!slot) return undefined;
+                const label = slot.label.toLowerCase();
+                if (label.includes("combat")) return "combat";
+                if (label.includes("metamagic")) return "metamagic";
+                if (label.includes("item creation")) return "item creation";
+                if (label.includes("style")) return "style";
+                return undefined;
+              })()}
+              characterContext={{
+                feats: selectedFeats.map(f => f.name),
+                classFeatures: selectedClasses.flatMap(({ cls }) => cls.level1Features.map(f => f.name)),
+                bab: selectedClasses.reduce((total, { cls }) => total + getBabAtLevel(cls.babProgression, level), 0),
+                level,
+                abilities: {
+                  str: effectiveScores.str,
+                  dex: effectiveScores.dex,
+                  con: effectiveScores.con,
+                  int: effectiveScores.int,
+                  wis: effectiveScores.wis,
+                  cha: effectiveScores.cha,
+                },
+              }}
               onSelectFeat={(feat: any) => {
                 setSelectedFeats(prev => {
                   const nextSlot = slots2[prev.length];
