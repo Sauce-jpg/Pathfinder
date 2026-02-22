@@ -34,6 +34,7 @@ interface SelectedFeat {
   prerequisites: string;
   category: string;
   source: string;
+  slotSource?: string;
 }
 
 interface SelectedTrait {
