@@ -83,7 +83,7 @@ export interface PFClass {
   skillsPerLevel: number; // base, before INT mod
   classSkills: string[];
   proficiencies: string[];
-  level1Features: RacialTrait[]; // reuse same shape
+  level1Features: ClassFeature[]; // uses ClassFeature to support autoGrantFeat and requiresChoice
   tags: string[]; // "core", "base", "hybrid", "occult", "prestige", "npc"
   bonusFeatLevels?: number[];
   bonusFeatLabel?: string;
