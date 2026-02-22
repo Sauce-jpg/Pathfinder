@@ -1376,15 +1376,15 @@ export default function CharacterSheetPage() {
       {/* FeatBrowser for level up */}
       {(() => {
         const currentSlot = levelUpFeatSlots[levelUpFeatBrowserSlotIdx];
-        // Derive filterType from slot label — "Combat Feat" → "combat", "Metamagic … Feat" → "metamagic" etc.
-        let levelUpFeatFilterType: string | undefined;
+        // Derive filterTypes from slot label — "Combat Feat" → ["combat"], "Metamagic or Item Creation…" → ["metamagic","item creation","spell mastery"]
+        let levelUpFeatFilterTypes: string[] | undefined;
         if (currentSlot?.label) {
           const label = currentSlot.label.toLowerCase();
-          if (label.includes("combat")) levelUpFeatFilterType = "combat";
-          else if (label.includes("metamagic")) levelUpFeatFilterType = "metamagic";
-          else if (label.includes("item creation")) levelUpFeatFilterType = "item creation";
-          else if (label.includes("style")) levelUpFeatFilterType = "style";
-          // Standard feat / racial / other = no filter
+          if (label.includes("combat")) levelUpFeatFilterTypes = ["combat"];
+          else if (label.includes("metamagic") || label.includes("item creation") || label.includes("spell mastery")) {
+            levelUpFeatFilterTypes = ["metamagic", "item creation", "spell mastery"];
+          } else if (label.includes("style")) levelUpFeatFilterTypes = ["style"];
+          // Standard / racial / other = no filter (any feat)
         }
         const charContext = character ? {
           feats: existingFeats.map((f: any) => f.name),
@@ -1397,7 +1397,7 @@ export default function CharacterSheetPage() {
           <FeatBrowser
             isOpen={levelUpShowFeatBrowser}
             onClose={() => setLevelUpShowFeatBrowser(false)}
-            filterType={levelUpFeatFilterType}
+            filterTypes={levelUpFeatFilterTypes}
             characterContext={charContext}
             onSelectFeat={(feat: any) => {
               setLevelUpFeats(prev => {
