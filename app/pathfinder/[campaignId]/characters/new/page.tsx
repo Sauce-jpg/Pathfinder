@@ -1241,69 +1241,152 @@ export default function NewCharacterPage() {
       {/* ═══════════════════════════════════════════
           STEP 6: FEATS
       ═══════════════════════════════════════════ */}
-      {step === "feats" && (
-        <div style={{ display: "grid", gap: "1.5rem" }}>
-          <section style={card}>
-            <h2 style={cardTitle}>Starting Feat{level >= 3 ? "s" : ""}</h2>
-            <p style={{ color: "#666", marginBottom: "1rem", fontSize: "0.9rem" }}>
-              All characters receive one feat at 1st level, then every odd level (3, 5, 7...).
-              At level {level} you get <strong>{1 + Math.floor((level - 1) / 2)} feat{1 + Math.floor((level - 1) / 2) > 1 ? "s" : ""}</strong> from leveling.
-              {selectedClasses.some(c => ["fighter"].includes(c.cls.id)) && " Fighters also get bonus combat feats — add those here too."}
-              {selectedClasses.some(c => ["wizard"].includes(c.cls.id)) && " Wizards get Scribe Scroll for free — it'll be added with your class features."}
-            </p>
+      {step === "feats" && (() => {
+        // Build explicit feat slot list so the player knows exactly what to pick
+        const featSlots: { label: string; source: string; color: string; bg: string; border: string }[] = [];
 
-            {/* Human / half-elf bonus feat callout */}
-            {(selectedRace?.id === "human" || selectedRace?.id === "half-elf") && (
-              <div style={{ padding: "0.75rem 1rem", background: "#ede9fe", border: "1px solid #c4b5fd", borderRadius: 8, marginBottom: "1.25rem", fontSize: "0.9rem", color: "#5b21b6" }}>
-                🎁 <strong>{selectedRace.name} bonus:</strong> {selectedRace.id === "human" ? "Humans receive one extra feat at 1st level" : "Half-Elves gain Skill Focus as a bonus feat (Adaptability)"} — add it below!
-              </div>
-            )}
+        // Standard level feats: 1st level, then every odd level (3, 5, 7…)
+        for (let lvl = 1; lvl <= level; lvl += (lvl === 1 ? 2 : 2)) {
+          featSlots.push({ label: "Standard Feat", source: `Level ${lvl}`, color: "#0070f3", bg: "#eff6ff", border: "#bfdbfe" });
+          if (lvl === 1) lvl--; // correct for the += 2 on first iteration making it go 1→3
+        }
+        // Simpler: build the list properly
+        const slots2: typeof featSlots = [];
+        for (let i = 0; i < 1 + Math.floor((level - 1) / 2); i++) {
+          const atLevel = i === 0 ? 1 : i * 2 + 1;
+          slots2.push({ label: "Standard Feat", source: `Level ${atLevel}`, color: "#0070f3", bg: "#eff6ff", border: "#bfdbfe" });
+        }
 
-            <button onClick={() => setShowFeatBrowser(true)}
-              style={{ padding: "0.75rem 1.5rem", background: "#0070f3", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "1.5rem" }}>
-              ⚔️ Open Feat Browser
-            </button>
+        // Race bonus feats
+        if (selectedRace?.id === "human") {
+          slots2.push({ label: "Bonus Feat (any)", source: "Human — Bonus Feat racial trait", color: "#7c3aed", bg: "#ede9fe", border: "#c4b5fd" });
+        }
+        if (selectedRace?.id === "half-elf") {
+          slots2.push({ label: "Skill Focus (any skill)", source: "Half-Elf — Adaptability", color: "#7c3aed", bg: "#ede9fe", border: "#c4b5fd" });
+        }
 
-            {selectedFeats.length > 0 ? (
-              <div style={{ display: "grid", gap: "0.5rem" }}>
-                {selectedFeats.map((f, i) => (
-                  <div key={i} style={{ padding: "0.75rem 1rem", background: "#eff6ff", borderRadius: 8, display: "flex", justifyContent: "space-between", alignItems: "start", borderLeft: "3px solid #0070f3" }}>
-                    <div>
-                      <div style={{ fontWeight: 700 }}>{f.name}</div>
-                      {f.prerequisites && <div style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.2rem" }}>Req: {f.prerequisites}</div>}
-                      {f.description && <div style={{ fontSize: "0.85rem", color: "#555", marginTop: "0.25rem" }}>{f.description.slice(0, 120)}{f.description.length > 120 ? "…" : ""}</div>}
+        // Class bonus feats at each applicable class level up to current level
+        selectedClasses.forEach(({ cls }) => {
+          (cls.bonusFeatLevels || []).forEach(clsLvl => {
+            if (clsLvl <= level) {
+              slots2.push({
+                label: `Bonus Feat${cls.bonusFeatLabel ? ` — ${cls.bonusFeatLabel}` : ""}`,
+                source: `${cls.name} level ${clsLvl}`,
+                color: "#b45309",
+                bg: "#fefce8",
+                border: "#fde68a",
+              });
+            }
+          });
+        });
+
+        const total = slots2.length;
+
+        return (
+          <div style={{ display: "grid", gap: "1.5rem" }}>
+            <section style={card}>
+              <h2 style={cardTitle}>Feats</h2>
+
+              {/* Slot breakdown header */}
+              <div style={{ marginBottom: "1.25rem" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.75rem" }}>
+                  <span style={{ fontWeight: 700, fontSize: "0.95rem", color: "#374151" }}>
+                    Pick <strong style={{ fontSize: "1.2rem", color: "#0070f3" }}>{total}</strong> feat{total !== 1 ? "s" : ""} total:
+                  </span>
+                  <span style={{
+                    padding: "0.3rem 0.8rem", borderRadius: 8, fontWeight: 700, fontSize: "0.85rem",
+                    background: selectedFeats.length > total ? "#fee2e2" : selectedFeats.length === total ? "#dcfce7" : "#eff6ff",
+                    color: selectedFeats.length > total ? "#991b1b" : selectedFeats.length === total ? "#166534" : "#1e40af",
+                  }}>
+                    {selectedFeats.length} / {total} chosen
+                  </span>
+                </div>
+
+                <div style={{ display: "grid", gap: "0.35rem" }}>
+                  {slots2.map((slot, i) => (
+                    <div key={i} style={{
+                      display: "flex", alignItems: "center", gap: "0.65rem",
+                      padding: "0.5rem 0.75rem", borderRadius: 6,
+                      background: slot.bg, border: `1px solid ${slot.border}`,
+                    }}>
+                      <div style={{
+                        width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
+                        background: selectedFeats[i] ? "#10b981" : slot.color,
+                        color: "white", display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: "0.75rem", fontWeight: 700,
+                      }}>
+                        {selectedFeats[i] ? "✓" : i + 1}
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <span style={{ fontWeight: 700, color: slot.color, fontSize: "0.88rem" }}>{slot.label}</span>
+                        <span style={{ color: "#6b7280", fontSize: "0.8rem", marginLeft: "0.4rem" }}>from {slot.source}</span>
+                      </div>
+                      {selectedFeats[i] ? (
+                        <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#065f46", background: "#d1fae5", padding: "0.15rem 0.5rem", borderRadius: 4, whiteSpace: "nowrap" }}>
+                          {selectedFeats[i].name}
+                        </span>
+                      ) : (
+                        <span style={{ fontSize: "0.75rem", color: "#9ca3af", whiteSpace: "nowrap" }}>not chosen</span>
+                      )}
                     </div>
-                    <button onClick={() => setSelectedFeats(prev => prev.filter((_, j) => j !== i))}
-                      style={{ background: "none", border: "none", cursor: "pointer", color: "#999", marginLeft: "0.5rem", flexShrink: 0 }}>✕</button>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            ) : (
-              <div style={{ padding: "2rem", textAlign: "center", color: "#999", border: "2px dashed #ddd", borderRadius: 8 }}>
-                No feats selected yet. Open the Feat Browser above to choose.
+
+              <button onClick={() => setShowFeatBrowser(true)}
+                style={{ padding: "0.75rem 1.5rem", background: "#0070f3", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "1.5rem" }}>
+                ⚔️ Open Feat Browser
+              </button>
+
+              {selectedFeats.length > 0 && (
+                <div style={{ display: "grid", gap: "0.5rem", marginBottom: "1rem" }}>
+                  {selectedFeats.map((f, i) => (
+                    <div key={i} style={{ padding: "0.75rem 1rem", background: "#f0fdf4", borderRadius: 8, display: "flex", justifyContent: "space-between", alignItems: "start", borderLeft: `3px solid ${slots2[i]?.color || "#10b981"}` }}>
+                      <div style={{ display: "flex", gap: "0.65rem", alignItems: "start" }}>
+                        <div style={{ width: 22, height: 22, borderRadius: "50%", background: slots2[i]?.color || "#10b981", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.72rem", fontWeight: 700, flexShrink: 0 }}>
+                          {i + 1}
+                        </div>
+                        <div>
+                          <div style={{ fontWeight: 700 }}>{f.name}</div>
+                          <div style={{ fontSize: "0.78rem", color: "#6b7280", marginTop: "0.1rem" }}>{slots2[i]?.source}</div>
+                          {f.prerequisites && <div style={{ fontSize: "0.8rem", color: "#888", marginTop: "0.15rem" }}>Req: {f.prerequisites}</div>}
+                          {f.description && <div style={{ fontSize: "0.82rem", color: "#555", marginTop: "0.2rem" }}>{f.description.slice(0, 100)}{f.description.length > 100 ? "…" : ""}</div>}
+                        </div>
+                      </div>
+                      <button onClick={() => setSelectedFeats(prev => prev.filter((_, j) => j !== i))}
+                        style={{ background: "none", border: "none", cursor: "pointer", color: "#999", marginLeft: "0.5rem", flexShrink: 0 }}>✕</button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {selectedFeats.length === 0 && (
+                <div style={{ padding: "1.5rem", textAlign: "center", color: "#999", border: "2px dashed #ddd", borderRadius: 8, marginBottom: "1rem" }}>
+                  No feats chosen yet — open the browser above.
+                </div>
+              )}
+
+              <div style={{ padding: "0.75rem 1rem", background: "#fefce8", border: "1px solid #fef08a", borderRadius: 8, fontSize: "0.85rem", color: "#713f12" }}>
+                💡 You can add more feats any time from the Feats &amp; Abilities tab on the character sheet.
               </div>
-            )}
+            </section>
 
-            <div style={{ marginTop: "1rem", padding: "0.75rem 1rem", background: "#fefce8", border: "1px solid #fef08a", borderRadius: 8, fontSize: "0.85rem", color: "#713f12" }}>
-              💡 You can always add more feats from the Feats &amp; Abilities tab on the character sheet after creation.
-            </div>
-          </section>
-
-          <FeatBrowser
-            isOpen={showFeatBrowser}
-            onClose={() => setShowFeatBrowser(false)}
-            onSelectFeat={(feat: any) => {
-              setSelectedFeats(prev => [...prev, {
-                name: feat.name,
-                description: feat.benefit || "",
-                prerequisites: feat.prerequisites || "",
-                category: (feat.types || []).join(", "),
-                source: feat.source || "",
-              }]);
-            }}
-          />
-        </div>
-      )}
+            <FeatBrowser
+              isOpen={showFeatBrowser}
+              onClose={() => setShowFeatBrowser(false)}
+              onSelectFeat={(feat: any) => {
+                setSelectedFeats(prev => [...prev, {
+                  name: feat.name,
+                  description: feat.benefit || "",
+                  prerequisites: feat.prerequisites || "",
+                  category: (feat.types || []).join(", "),
+                  source: feat.source || "",
+                }]);
+              }}
+            />
+          </div>
+        );
+      })()}
 
       {/* ═══════════════════════════════════════════
           STEP 7: TRAITS
