@@ -2,7 +2,7 @@
   {
     "Name": "Buckler",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "5%",
@@ -15,7 +15,7 @@
   {
     "Name": "Klar",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "5%",
@@ -28,7 +28,7 @@
   {
     "Name": "Shield, Light Steel",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "5%",
@@ -39,7 +39,7 @@
   {
     "Name": "Shield, Light Steel Quickdraw",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "5%",
@@ -52,7 +52,7 @@
   {
     "Name": "Shield, Light Wooden",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "5%",
@@ -63,7 +63,7 @@
   {
     "Name": "Shield, Light Wooden Quickdraw",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "5%",
@@ -76,7 +76,7 @@
   {
     "Name": "Madu (Leather)",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "5%",
@@ -90,7 +90,7 @@
   {
     "Name": "Madu (Steel)",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "5%",
@@ -104,7 +104,7 @@
   {
     "Name": "Poisoner's Buckler",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": 0,
     "Arcane Spell Failure": "0%",
@@ -117,7 +117,7 @@
   {
     "Name": "War-Shield, Dwarven",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
     "Arcane Spell Failure": "20%",
@@ -131,7 +131,7 @@
   {
     "Name": "Shield, Heavy Steel",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "15%",
@@ -142,7 +142,7 @@
   {
     "Name": "Shield, Heavy Wooden",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -2,
     "Arcane Spell Failure": "15%",
@@ -153,7 +153,7 @@
   {
     "Name": "Snarlshield, Steel",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -3,
     "Arcane Spell Failure": "15%",
@@ -166,7 +166,7 @@
   {
     "Name": "Snarlshield, Wooden",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -3,
     "Arcane Spell Failure": "15%",
@@ -179,7 +179,7 @@
   {
     "Name": "Tower Shield",
     "Cost": "\u2014",
-    "AC Bonus": "+0",
+    "AC Bonus": "+4",
     "Max Dex": 2,
     "Armor Check Penalty": -10,
     "Arcane Spell Failure": "50%",
