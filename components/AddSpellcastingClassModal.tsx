@@ -76,9 +76,12 @@ export function AddSpellcastingClassModal({
   const [className, setClassName] = useState("Wizard");
   const [casterLevel, setCasterLevel] = useState(Math.min(characterLevel, 20));
   const [notes, setNotes] = useState("");
+  const [arcaneSchool, setArcaneSchool] = useState("Universalist");
   const [saving, setSaving] = useState(false);
 
   if (!isOpen) return null;
+
+  const ARCANE_SCHOOLS = ["Universalist","Abjuration","Conjuration","Divination","Enchantment","Evocation","Illusion","Necromancy","Transmutation"];
 
   const meta = CLASS_DEFAULTS[className] ?? CLASS_DEFAULTS.Wizard;
   const castingType = meta.castingType;
@@ -89,13 +92,20 @@ export function AddSpellcastingClassModal({
   const clampedLevel = Math.max(1, Math.min(20, casterLevel));
   const baseSlots = (SPELL_SLOTS[className] ?? SPELL_SLOTS.Wizard)[clampedLevel] ?? [0, 3];
 
+  const hasSchoolBonus = className === "Wizard" && arcaneSchool !== "Universalist";
+
   function buildSlots(): { level: number; total: number }[] {
     return baseSlots
       .map((total, level) => {
+        let adjusted = total;
         if (className === "Wizard" && level === 0) {
-          return { level, total: Math.max(3, 3 + abilityMod) };
+          adjusted = Math.max(3, 3 + abilityMod);
         }
-        return { level, total };
+        // Arcane school grants +1 slot per spell level 1–9
+        if (hasSchoolBonus && level >= 1 && adjusted > 0) {
+          adjusted += 1;
+        }
+        return { level, total: adjusted };
       })
       .filter(({ level, total }) => !(level === 0 && total === 0));
   }
@@ -107,6 +117,9 @@ export function AddSpellcastingClassModal({
 
   async function handleSubmit() {
     setSaving(true);
+    const schoolNotes = className === "Wizard" && arcaneSchool !== "Universalist"
+      ? `Arcane School: ${arcaneSchool}` + (notes ? ` | ${notes}` : "")
+      : notes || null;
     const { data: classData, error: classError } = await supabase
       .from("character_spellcasting_classes")
       .insert({
@@ -117,7 +130,7 @@ export function AddSpellcastingClassModal({
         caster_level: clampedLevel,
         concentration_bonus: clampedLevel + abilityMod,
         base_spell_dc: 10,
-        notes: notes || null,
+        notes: schoolNotes,
       })
       .select().single();
 
@@ -148,12 +161,35 @@ export function AddSpellcastingClassModal({
 
           <div>
             <label style={{ display:"block",fontWeight:600,marginBottom:"0.4rem" }}>Class *</label>
-            <select value={className} onChange={e=>setClassName(e.target.value)}
+            <select value={className} onChange={e=>{ setClassName(e.target.value); setArcaneSchool("Universalist"); }}
               style={{ width:"100%",padding:"0.75rem",border:"1px solid #ddd",borderRadius:6,fontSize:"1rem" }}>
               {sortedClasses.map(c=><option key={c} value={c}>{c}</option>)}
               <option value="Other">Other (Custom)</option>
             </select>
           </div>
+
+          {/* Arcane School picker — Wizard only */}
+          {className === "Wizard" && (
+            <div style={{ padding:"1rem",background:"#faf5ff",border:"1px solid #e9d5ff",borderRadius:8 }}>
+              <label style={{ display:"block",fontWeight:700,marginBottom:"0.5rem",color:"#7c3aed" }}>🔮 Arcane School</label>
+              <div style={{ fontSize:"0.82rem",color:"#666",marginBottom:"0.6rem" }}>
+                Specialists gain +1 bonus spell slot per spell level (1–9). Universalists get no bonus but have no forbidden schools.
+              </div>
+              <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"0.4rem" }}>
+                {ARCANE_SCHOOLS.map(school => (
+                  <div key={school} onClick={() => setArcaneSchool(school)}
+                    style={{
+                      padding:"0.5rem 0.4rem",textAlign:"center",borderRadius:6,cursor:"pointer",fontSize:"0.82rem",
+                      border:`2px solid ${arcaneSchool===school?"#7c3aed":"#e5e7eb"}`,
+                      background:arcaneSchool===school?"#ede9fe":"white",
+                      fontWeight:arcaneSchool===school?700:400,
+                    }}>
+                    {school}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0.75rem",padding:"0.75rem",background:"#f0fdf4",borderRadius:8,fontSize:"0.9rem" }}>
             <div><span style={{ color:"#666" }}>Type: </span><strong>{castingType==="spontaneous"?"Spontaneous":"Prepared"}</strong></div>
@@ -178,7 +214,7 @@ export function AddSpellcastingClassModal({
           <div style={{ background:"#eff6ff",border:"1px solid #bfdbfe",borderRadius:8,padding:"1rem",fontSize:"0.9rem" }}>
             <strong>📋 Will create:</strong>
             <div style={{ marginTop:"0.5rem",display:"grid",gap:"0.3rem" }}>
-              <div>• Spell DC: 10 + spell level + {abilityMod}</div>
+              <div>• Spell DC: 10 + spell level + ({abilityMod >= 0 ? "+" : ""}{abilityMod})</div>
               {cantripSlot && (cantripSlot.total===999
                 ? <div>• Cantrips: <strong>∞ unlimited</strong> (cast any number of times)</div>
                 : <div>• Cantrips: <strong>{cantripSlot.total} prepared</strong> (3 + INT {abilityMod>=0?"+":""}{abilityMod}), castable unlimited times</div>
@@ -186,8 +222,9 @@ export function AddSpellcastingClassModal({
               {!cantripSlot && <div>• No cantrips</div>}
               <div>• Highest spell level: {maxSpellLevel > 0 ? maxSpellLevel : "none yet at this level"}</div>
               {slotsPreview.filter(s=>s.level>0).slice(0,3).map(s=>(
-                <div key={s.level}>• Level {s.level} slots: {s.total}</div>
+                <div key={s.level}>• Level {s.level} slots: {s.total}{hasSchoolBonus ? <span style={{ color:"#7c3aed" }}> (incl. +1 {arcaneSchool} school)</span> : ""}</div>
               ))}
+              {hasSchoolBonus && <div style={{ color:"#7c3aed",fontStyle:"italic" }}>• +1 bonus {arcaneSchool} school slot at each spell level</div>}
             </div>
           </div>
 
