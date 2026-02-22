@@ -9,6 +9,7 @@ import { AddSpellcastingClassModal } from "./AddSpellcastingClassModal";
 interface SpellsProps {
   characterId: string;
   characterLevel: number;
+  characterClasses?: string; // e.g. "Wizard 3 / Fighter 1"
   abilityMods: {
     str: number;
     dex: number;
@@ -55,7 +56,7 @@ interface PreparedSpell {
   spell_known: SpellKnown;
 }
 
-export function Spells({ characterId, characterLevel, abilityMods }: SpellsProps) {
+export function Spells({ characterId, characterLevel, characterClasses, abilityMods }: SpellsProps) {
   const [classes, setClasses] = useState<SpellcastingClass[]>([]);
   const [activeClass, setActiveClass] = useState<SpellcastingClass | null>(null);
   const [spellsKnown, setSpellsKnown] = useState<SpellKnown[]>([]);
@@ -251,41 +252,66 @@ export function Spells({ characterId, characterLevel, abilityMods }: SpellsProps
   }
 
   if (classes.length === 0) {
+    // Detect which spellcasting classes the character has from their class string
+    const KNOWN_SPELLCASTERS = ["Wizard","Sorcerer","Cleric","Druid","Oracle","Bard","Witch","Magus",
+      "Inquisitor","Shaman","Psychic","Mesmerist","Spiritualist","Alchemist","Occultist","Ranger","Paladin","Summoner"];
+    const detectedClasses: { name: string; level: number }[] = [];
+    if (characterClasses) {
+      characterClasses.split("/").forEach(part => {
+        const trimmed = part.trim();
+        const match = trimmed.match(/^(.+?)\s+(\d+)$/);
+        const clsName = match ? match[1].trim() : trimmed;
+        const clsLevel = match ? parseInt(match[2]) : characterLevel;
+        if (KNOWN_SPELLCASTERS.includes(clsName)) {
+          detectedClasses.push({ name: clsName, level: clsLevel });
+        }
+      });
+    }
+
     return (
       <div style={{ padding: "2rem" }}>
         <div style={{ background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "12px", padding: "2rem", marginBottom: "2rem" }}>
-          <h3 style={{ marginTop: 0, color: "#16a34a" }}>No Spellcasting Classes</h3>
-          <p style={{ color: "#666", marginBottom: "1.5rem" }}>
-            Add your first spellcasting class (Oracle, Wizard, Cleric, etc.) to start managing spells!
-          </p>
+          <h3 style={{ marginTop: 0, color: "#16a34a" }}>No Spellcasting Classes Set Up</h3>
+          {detectedClasses.length > 0 ? (
+            <>
+              <p style={{ color: "#555", marginBottom: "1rem" }}>
+                Your character has spellcasting classes but hasn't been set up in the spell system yet.
+              </p>
+              <div style={{ display: "grid", gap: "0.75rem", marginBottom: "1.5rem" }}>
+                {detectedClasses.map(dc => (
+                  <div key={dc.name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0.75rem 1rem", background: "white", borderRadius: 8, border: "1px solid #86efac" }}>
+                    <div>
+                      <strong>{dc.name}</strong>
+                      <span style={{ color: "#666", marginLeft: "0.5rem" }}>Level {dc.level}</span>
+                    </div>
+                    <button
+                      onClick={() => { setShowAddClassModal(true); }}
+                      style={{ padding: "0.5rem 1rem", background: "#8b5cf6", color: "white", border: "none", borderRadius: 6, cursor: "pointer", fontWeight: 600, fontSize: "0.9rem" }}>
+                      Set Up Spells →
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p style={{ color: "#666", marginBottom: "1.5rem" }}>
+              Add your spellcasting class (Wizard, Oracle, Cleric, etc.) to start managing spells!
+            </p>
+          )}
           <button
             onClick={() => setShowAddClassModal(true)}
-            style={{
-              padding: "0.75rem 1.5rem",
-              background: "#8b5cf6",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "1rem",
-            }}
-          >
+            style={{ padding: "0.75rem 1.5rem", background: "#8b5cf6", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600, fontSize: "1rem" }}>
             + Add Spellcasting Class
           </button>
         </div>
 
-        {/* Add Class Modal */}
         <AddSpellcastingClassModal
           characterId={characterId}
           characterLevel={characterLevel}
           abilityMods={abilityMods}
           isOpen={showAddClassModal}
           onClose={() => setShowAddClassModal(false)}
-          onClassAdded={() => {
-            setShowAddClassModal(false);
-            loadClasses();
-          }}
+          onClassAdded={() => { setShowAddClassModal(false); loadClasses(); }}
         />
       </div>
     );
