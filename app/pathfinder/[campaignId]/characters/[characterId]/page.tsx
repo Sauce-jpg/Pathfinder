@@ -494,6 +494,13 @@ export default function CharacterSheetPage() {
   const cmb = babFromSources + strMod + getStatTotal("cmb");
   const cmd = 10 + babFromSources + strMod + dexMod + getStatTotal("cmd");
 
+  // Initiative = DEX mod + misc bonuses (Improved Initiative, Reactionary trait, etc.)
+  const initiativeMisc = getStatTotal("initiative");
+  const initiativeTotal = dexMod + initiativeMisc;
+
+  // Spell Resistance from sources (Drow racial, spells, items, etc.)
+  const spellResistance = getStatTotal("spell_resistance");
+
   return (
     <main style={{ maxWidth: 1200, margin: "0 auto", padding: "2rem" }}>
       {/* Breadcrumb */}
@@ -821,7 +828,23 @@ export default function CharacterSheetPage() {
           {/* Combat Stats */}
           <section style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
             <h2 style={{ marginTop: 0 }}>Combat Stats</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem" }}>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ color: "#666", marginBottom: "0.5rem" }}>Initiative</div>
+                <div style={{ fontSize: "2.5rem", fontWeight: 700, color: "#f59e0b" }}>
+                  <StatWithSources
+                    characterId={characterId}
+                    statCategory="initiative"
+                    displayValue={initiativeTotal}
+                    label="Initiative"
+                    editable={true}
+                    breakdown={[
+                      { label: "DEX mod", value: dexMod },
+                    ]}
+                  />
+                </div>
+                <div style={{ fontSize: "0.75rem", color: "#999", marginTop: "0.25rem" }}>DEX{initiativeMisc !== 0 ? ` + ${initiativeMisc} misc` : ""}</div>
+              </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ color: "#666", marginBottom: "0.5rem" }}>Base Attack Bonus</div>
                 <div style={{ fontSize: "2.5rem", fontWeight: 700 }}>
@@ -870,6 +893,45 @@ export default function CharacterSheetPage() {
               </div>
             </div>
           </section>
+
+          {/* Spell Resistance */}
+          {spellResistance > 0 && (
+            <section style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
+              <h2 style={{ marginTop: 0 }}>Spell Resistance</h2>
+              <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+                <div style={{ textAlign: "center" }}>
+                  <div style={{ fontSize: "3rem", fontWeight: 700, color: "#8b5cf6" }}>
+                    <StatWithSources
+                      characterId={characterId}
+                      statCategory="spell_resistance"
+                      displayValue={spellResistance}
+                      label="Spell Resistance"
+                      editable={true}
+                    />
+                  </div>
+                  <div style={{ color: "#666", fontSize: "0.9rem" }}>SR</div>
+                </div>
+                <div style={{ fontSize: "0.9rem", color: "#555", lineHeight: 1.5 }}>
+                  Attackers must roll <strong>1d20 + caster level ≥ {spellResistance}</strong> to affect you with spells.
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* SR editable even if 0 — shown via the tip */}
+          {spellResistance === 0 && (
+            <section style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1rem 1.5rem", display: "flex", alignItems: "center", gap: "1rem" }}>
+              <span style={{ color: "#999", fontSize: "0.9rem" }}>Spell Resistance: none</span>
+              <StatWithSources
+                characterId={characterId}
+                statCategory="spell_resistance"
+                displayValue={0}
+                label="Spell Resistance"
+                editable={true}
+              />
+              <span style={{ fontSize: "0.8rem", color: "#aaa" }}>— click to add SR sources</span>
+            </section>
+          )}
         </div>
       )}
 
