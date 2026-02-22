@@ -567,7 +567,7 @@ export default function NewCharacterPage() {
           is_active: true,
         });
         // Auto-write stat sources for well-known trait bonuses
-        const benefit = (t.benefit || t.description || "").toLowerCase();
+        const benefit = (t.description || "").toLowerCase();
         const traitStatMap: { pattern: RegExp; category: string; value: number }[] = [
           { pattern: /\+2.*(trait|morale).*initiative/i, category: "initiative", value: 2 },
           { pattern: /\+4.*(trait|morale).*initiative/i, category: "initiative", value: 4 },
