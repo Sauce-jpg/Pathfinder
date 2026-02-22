@@ -9,9 +9,19 @@ export interface RacialModifier {
   label: string;
 }
 
+export interface RacialStatBonus {
+  // stat_category in character_stat_sources, e.g. "save_fort", "skill_perception", "bab"
+  statCategory: string;
+  value: number;
+  bonusType: string; // "racial" usually
+  label: string; // displayed in sources list
+}
+
 export interface RacialTrait {
   name: string;
   description: string;
+  // Optional: stat bonuses this trait grants, written to character_stat_sources
+  statBonuses?: RacialStatBonus[];
 }
 
 export interface Race {
@@ -146,9 +156,21 @@ export const RACES: Race[] = [
     ],
     traits: [
       { name: "Low-Light Vision", description: "Elves can see twice as far as humans in conditions of dim light." },
-      { name: "Elven Immunities", description: "+2 racial saving throw bonus against enchantment spells and effects; immune to magic sleep effects." },
-      { name: "Elven Magic", description: "+2 racial bonus on caster level checks to overcome spell resistance. +2 racial bonus on Spellcraft to identify magic item properties." },
-      { name: "Keen Senses", description: "+2 racial bonus on Perception checks." },
+      { name: "Elven Immunities", description: "+2 racial saving throw bonus against enchantment spells and effects; immune to magic sleep effects.",
+        statBonuses: [
+          { statCategory: "save_fort", value: 2, bonusType: "racial", label: "Elven Immunities (vs enchantment — conditional)" },
+        ]
+      },
+      { name: "Elven Magic", description: "+2 racial bonus on caster level checks to overcome spell resistance. +2 racial bonus on Spellcraft to identify magic item properties.",
+        statBonuses: [
+          { statCategory: "skill_spellcraft", value: 2, bonusType: "racial", label: "Elven Magic — Spellcraft" },
+        ]
+      },
+      { name: "Keen Senses", description: "+2 racial bonus on Perception checks.",
+        statBonuses: [
+          { statCategory: "skill_perception", value: 2, bonusType: "racial", label: "Keen Senses (racial)" },
+        ]
+      },
       { name: "Weapon Familiarity", description: "Proficient with longbows, longswords, rapiers, and shortbows." },
     ],
     favoredClass: "Wizard",
@@ -168,10 +190,22 @@ export const RACES: Race[] = [
     traits: [
       { name: "Darkvision 60 ft.", description: "Dwarves can see in the dark up to 60 feet." },
       { name: "Defensive Training", description: "+4 dodge bonus to AC against monsters of the giant subtype." },
-      { name: "Greed", description: "+2 racial bonus on Appraise checks for nonmagical goods containing precious metals or gemstones." },
-      { name: "Hardy", description: "+2 racial bonus on saving throws against poison, spells, and spell-like abilities." },
+      { name: "Greed", description: "+2 racial bonus on Appraise checks for nonmagical goods containing precious metals or gemstones.",
+        statBonuses: [
+          { statCategory: "skill_appraise", value: 2, bonusType: "racial", label: "Greed — Appraise (precious metals/gems, conditional)" },
+        ]
+      },
+      { name: "Hardy", description: "+2 racial bonus on saving throws against poison, spells, and spell-like abilities.",
+        statBonuses: [
+          { statCategory: "save_fort", value: 2, bonusType: "racial", label: "Hardy — Fort (vs poison/spells, conditional)" },
+        ]
+      },
       { name: "Stability", description: "+4 racial bonus to CMD against bull rush and trip while standing on the ground." },
-      { name: "Stonecunning", description: "+2 bonus on Perception checks to notice unusual stonework. Automatic check within 10 ft." },
+      { name: "Stonecunning", description: "+2 bonus on Perception checks to notice unusual stonework. Automatic check within 10 ft.",
+        statBonuses: [
+          { statCategory: "skill_perception", value: 2, bonusType: "racial", label: "Stonecunning — Perception (stonework, conditional)" },
+        ]
+      },
       { name: "Weapon Familiarity", description: "Proficient with battleaxes, heavy picks, and warhammers." },
     ],
     favoredClass: "Fighter",
@@ -189,13 +223,21 @@ export const RACES: Race[] = [
       { stat: "ability_str", value: -2, label: "STR (Gnome)" },
     ],
     traits: [
-      { name: "Small Size", description: "+1 size bonus to AC and attack rolls, +4 size bonus on Stealth checks, –1 penalty to CMB and CMD." },
+      { name: "Small Size", description: "+1 size bonus to AC and attack rolls, +4 size bonus on Stealth checks, –1 penalty to CMB and CMD.",
+        statBonuses: [
+          { statCategory: "skill_stealth", value: 4, bonusType: "size", label: "Small Size — Stealth" },
+        ]
+      },
       { name: "Low-Light Vision", description: "Gnomes can see twice as far as humans in conditions of dim light." },
       { name: "Defensive Training", description: "+4 dodge bonus to AC against monsters of the giant subtype." },
       { name: "Gnome Magic", description: "+1 DC to illusion spells. 1/day: dancing lights, ghost sound, prestidigitation, speak with animals (CHA ≥11)." },
       { name: "Hatred", description: "+1 racial bonus on attack rolls against humanoids of the reptilian and goblinoid subtypes." },
       { name: "Illusion Resistance", description: "+2 racial saving throw bonus against illusion spells and effects." },
-      { name: "Keen Senses", description: "+2 racial bonus on Perception checks." },
+      { name: "Keen Senses", description: "+2 racial bonus on Perception checks.",
+        statBonuses: [
+          { statCategory: "skill_perception", value: 2, bonusType: "racial", label: "Keen Senses (racial)" },
+        ]
+      },
       { name: "Weapon Familiarity", description: "Proficient with gnome hooked hammers." },
     ],
     favoredClass: "Bard",
@@ -213,11 +255,30 @@ export const RACES: Race[] = [
       { stat: "ability_str", value: -2, label: "STR (Halfling)" },
     ],
     traits: [
-      { name: "Small Size", description: "+1 size bonus to AC and attack rolls, +4 size bonus on Stealth checks, –1 penalty to CMB and CMD." },
+      { name: "Small Size", description: "+1 size bonus to AC and attack rolls, +4 size bonus on Stealth checks, –1 penalty to CMB and CMD.",
+        statBonuses: [
+          { statCategory: "skill_stealth", value: 4, bonusType: "size", label: "Small Size — Stealth" },
+        ]
+      },
       { name: "Fearless", description: "+2 racial bonus on all saving throws against fear effects." },
-      { name: "Halfling Luck", description: "+1 racial bonus on all saving throws." },
-      { name: "Keen Senses", description: "+2 racial bonus on Perception checks." },
-      { name: "Sure-Footed", description: "+2 racial bonus on Acrobatics and Climb checks." },
+      { name: "Halfling Luck", description: "+1 racial bonus on all saving throws.",
+        statBonuses: [
+          { statCategory: "save_fort", value: 1, bonusType: "racial", label: "Halfling Luck (racial)" },
+          { statCategory: "save_ref",  value: 1, bonusType: "racial", label: "Halfling Luck (racial)" },
+          { statCategory: "save_will", value: 1, bonusType: "racial", label: "Halfling Luck (racial)" },
+        ]
+      },
+      { name: "Keen Senses", description: "+2 racial bonus on Perception checks.",
+        statBonuses: [
+          { statCategory: "skill_perception", value: 2, bonusType: "racial", label: "Keen Senses (racial)" },
+        ]
+      },
+      { name: "Sure-Footed", description: "+2 racial bonus on Acrobatics and Climb checks.",
+        statBonuses: [
+          { statCategory: "skill_acrobatics", value: 2, bonusType: "racial", label: "Sure-Footed (racial)" },
+          { statCategory: "skill_climb",      value: 2, bonusType: "racial", label: "Sure-Footed (racial)" },
+        ]
+      },
       { name: "Weapon Familiarity", description: "Proficient with slings and treat any weapon with 'halfling' in its name as a martial weapon." },
     ],
     favoredClass: "Rogue",
@@ -229,13 +290,15 @@ export const RACES: Race[] = [
     description: "Half-elves stand between the worlds of their elven and human parents.",
     size: "Medium",
     speed: 30,
-    abilityMods: [
-      // +2 to any one stat — handled specially in UI
-    ],
+    abilityMods: [],
     traits: [
       { name: "Adaptability", description: "Skill Focus as a bonus feat at 1st level." },
       { name: "Elven Immunities", description: "+2 racial saving throw bonus against enchantment spells and effects; immune to magic sleep effects." },
-      { name: "Keen Senses", description: "+2 racial bonus on Perception checks." },
+      { name: "Keen Senses", description: "+2 racial bonus on Perception checks.",
+        statBonuses: [
+          { statCategory: "skill_perception", value: 2, bonusType: "racial", label: "Keen Senses (racial)" },
+        ]
+      },
       { name: "Low-Light Vision", description: "Can see twice as far as humans in dim light." },
       { name: "Multitalented", description: "Choose two favored classes at 1st level." },
     ],
@@ -248,12 +311,14 @@ export const RACES: Race[] = [
     description: "Half-orcs are monstrous humanoids that stand between two worlds.",
     size: "Medium",
     speed: 30,
-    abilityMods: [
-      // +2 to any one stat — handled specially in UI
-    ],
+    abilityMods: [],
     traits: [
       { name: "Darkvision 60 ft.", description: "Half-orcs can see in the dark up to 60 feet." },
-      { name: "Intimidating", description: "+2 racial bonus on Intimidate checks." },
+      { name: "Intimidating", description: "+2 racial bonus on Intimidate checks.",
+        statBonuses: [
+          { statCategory: "skill_intimidate", value: 2, bonusType: "racial", label: "Intimidating (racial)" },
+        ]
+      },
       { name: "Orc Blood", description: "Counts as both human and orc for effects relating to race." },
       { name: "Orc Ferocity", description: "1/day: remain conscious and continue fighting when below 0 HP, but is staggered. Falls unconscious on next turn if not healed above 0." },
       { name: "Weapon Familiarity", description: "Proficient with greataxes and falchions; treat weapons with 'orc' in name as martial weapons." },
@@ -275,7 +340,12 @@ export const RACES: Race[] = [
     traits: [
       { name: "Darkvision 60 ft.", description: "Aasimars can see in the dark up to 60 feet." },
       { name: "Celestial Resistance", description: "Acid resistance 5, cold resistance 5, electricity resistance 5." },
-      { name: "Skilled", description: "+2 racial bonus on Diplomacy and Perception checks." },
+      { name: "Skilled", description: "+2 racial bonus on Diplomacy and Perception checks.",
+        statBonuses: [
+          { statCategory: "skill_diplomacy",  value: 2, bonusType: "racial", label: "Skilled — Diplomacy (racial)" },
+          { statCategory: "skill_perception", value: 2, bonusType: "racial", label: "Skilled — Perception (racial)" },
+        ]
+      },
       { name: "Spell-Like Ability", description: "1/day: daylight (CL = character level)." },
     ],
     favoredClass: "Paladin",
@@ -295,7 +365,12 @@ export const RACES: Race[] = [
     traits: [
       { name: "Darkvision 60 ft.", description: "Tieflings can see in the dark up to 60 feet." },
       { name: "Fiendish Resistance", description: "Cold resistance 5, electricity resistance 5, fire resistance 5." },
-      { name: "Skilled", description: "+2 racial bonus on Bluff and Stealth checks." },
+      { name: "Skilled", description: "+2 racial bonus on Bluff and Stealth checks.",
+        statBonuses: [
+          { statCategory: "skill_bluff",   value: 2, bonusType: "racial", label: "Skilled — Bluff (racial)" },
+          { statCategory: "skill_stealth", value: 2, bonusType: "racial", label: "Skilled — Stealth (racial)" },
+        ]
+      },
       { name: "Spell-Like Ability", description: "1/day: darkness (CL = character level)." },
     ],
     favoredClass: "Rogue",
@@ -338,7 +413,11 @@ export const RACES: Race[] = [
     traits: [
       { name: "Darkvision 120 ft.", description: "Drow can see in the dark up to 120 feet." },
       { name: "Drow Immunities", description: "Immune to magical sleep effects. +2 racial bonus on saves against enchantment spells and effects." },
-      { name: "Keen Senses", description: "+2 racial bonus on Perception checks." },
+      { name: "Keen Senses", description: "+2 racial bonus on Perception checks.",
+        statBonuses: [
+          { statCategory: "skill_perception", value: 2, bonusType: "racial", label: "Keen Senses (racial)" },
+        ]
+      },
       { name: "Light Blindness", description: "Abruptly exposed to bright light, drow are blinded for 1 round; on subsequent rounds, dazzled." },
       { name: "Poison Use", description: "Drow are skilled in the use of poison and never risk accidentally poisoning themselves." },
       { name: "Spell Resistance", description: "11 + class level spell resistance." },
@@ -364,7 +443,12 @@ export const RACES: Race[] = [
       { name: "Low-Light Vision", description: "Can see twice as far in dim light." },
       { name: "Shadow Blending", description: "Attacks in dim light have a 50% miss chance instead of 20%." },
       { name: "Shadowy Resistance", description: "Cold resistance 5 and electricity resistance 5." },
-      { name: "Skilled", description: "+2 racial bonus on Knowledge (planes) and Stealth checks." },
+      { name: "Skilled", description: "+2 racial bonus on Knowledge (planes) and Stealth checks.",
+        statBonuses: [
+          { statCategory: "skill_knowledge__planes_", value: 2, bonusType: "racial", label: "Skilled — Knowledge (Planes) (racial)" },
+          { statCategory: "skill_stealth",            value: 2, bonusType: "racial", label: "Skilled — Stealth (racial)" },
+        ]
+      },
       { name: "Spell-Like Ability", description: "1/day: disguise self (CL = character level)." },
     ],
     favoredClass: "Rogue",
