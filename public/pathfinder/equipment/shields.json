@@ -1,7 +1,7 @@
 [
   {
     "Name": "Buckler",
-    "Cost": "\u2014",
+    "Cost": "5",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
@@ -14,7 +14,7 @@
   },
   {
     "Name": "Klar",
-    "Cost": "\u2014",
+    "Cost": "12",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
@@ -27,7 +27,7 @@
   },
   {
     "Name": "Shield, Light Steel",
-    "Cost": "\u2014",
+    "Cost": "9",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
@@ -38,7 +38,7 @@
   },
   {
     "Name": "Shield, Light Steel Quickdraw",
-    "Cost": "\u2014",
+    "Cost": "59",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
@@ -51,7 +51,7 @@
   },
   {
     "Name": "Shield, Light Wooden",
-    "Cost": "\u2014",
+    "Cost": "3",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
@@ -62,7 +62,7 @@
   },
   {
     "Name": "Shield, Light Wooden Quickdraw",
-    "Cost": "\u2014",
+    "Cost": "53",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
@@ -75,7 +75,7 @@
   },
   {
     "Name": "Madu (Leather)",
-    "Cost": "\u2014",
+    "Cost": "30",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
@@ -89,7 +89,7 @@
   },
   {
     "Name": "Madu (Steel)",
-    "Cost": "\u2014",
+    "Cost": "40",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -2,
@@ -103,7 +103,7 @@
   },
   {
     "Name": "Poisoner's Buckler",
-    "Cost": "\u2014",
+    "Cost": "1506",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": 0,
@@ -116,7 +116,7 @@
   },
   {
     "Name": "War-Shield, Dwarven",
-    "Cost": "\u2014",
+    "Cost": "50",
     "AC Bonus": "+1",
     "Max Dex": null,
     "Armor Check Penalty": -1,
@@ -130,7 +130,7 @@
   },
   {
     "Name": "Shield, Heavy Steel",
-    "Cost": "\u2014",
+    "Cost": "20",
     "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -2,
@@ -141,7 +141,7 @@
   },
   {
     "Name": "Shield, Heavy Wooden",
-    "Cost": "\u2014",
+    "Cost": "7",
     "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -2,
@@ -152,7 +152,7 @@
   },
   {
     "Name": "Snarlshield, Steel",
-    "Cost": "\u2014",
+    "Cost": "50",
     "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -3,
@@ -165,7 +165,7 @@
   },
   {
     "Name": "Snarlshield, Wooden",
-    "Cost": "\u2014",
+    "Cost": "37",
     "AC Bonus": "+2",
     "Max Dex": null,
     "Armor Check Penalty": -3,
@@ -178,7 +178,7 @@
   },
   {
     "Name": "Tower Shield",
-    "Cost": "\u2014",
+    "Cost": "30",
     "AC Bonus": "+4",
     "Max Dex": 2,
     "Armor Check Penalty": -10,
