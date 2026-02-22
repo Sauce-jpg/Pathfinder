@@ -15,19 +15,15 @@ interface StatSource {
   is_active: boolean;
 }
 
-interface BreakdownRow {
-  label: string;
-  value: number;
-}
-
 interface StatWithSourcesProps {
   characterId: string;
   statCategory: string; // e.g., 'save_fort', 'ac', 'skill_perception'
   displayValue: number;
   label: string; // e.g., 'Fortitude Save', 'AC'
   editable?: boolean;
-  /** Optional computed rows (e.g. base 10, DEX mod) to show alongside DB sources */
-  breakdown?: BreakdownRow[];
+  // Optional: situational/conditional bonuses to show in tooltip (not included in total)
+  conditionalNotes?: { text: string; from: string }[];
+  breakdown?: { label: string; value: number }[];
 }
 
 export function StatWithSources({
@@ -36,6 +32,7 @@ export function StatWithSources({
   displayValue,
   label,
   editable = false,
+  conditionalNotes,
   breakdown,
 }: StatWithSourcesProps) {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -84,8 +81,9 @@ export function StatWithSources({
     loadSources();
   }
 
-  const activeSources = sources.filter((s) => s.is_active);
+  const activeSources = sources.filter((s) => s.is_active && s.bonus_type !== "situational");
   const inactiveSources = sources.filter((s) => !s.is_active);
+  const situationalSources = sources.filter((s) => s.bonus_type === "situational");
   const calculatedTotal = activeSources.reduce((sum, s) => sum + s.bonus_value, 0);
 
   return (
@@ -97,16 +95,16 @@ export function StatWithSources({
         onClick={() => editable && setShowEditor(true)}
         style={{
           cursor: editable ? "pointer" : "default",
-          borderBottom: (sources.length > 0 || (breakdown && breakdown.length > 0)) ? "2px dotted #0070f3" : "none",
+          borderBottom: (sources.length > 0 || situationalSources.length > 0 || (conditionalNotes && conditionalNotes.length > 0)) ? "2px dotted #0070f3" : "none",
           paddingBottom: "2px",
         }}
-        title={sources.length > 0 ? "Click to manage sources" : undefined}
+        title={(sources.length > 0 || situationalSources.length > 0 || (conditionalNotes && conditionalNotes.length > 0)) ? "Hover for breakdown" : undefined}
       >
         {displayValue}
       </div>
 
       {/* Hover Tooltip */}
-      {showTooltip && !showEditor && (sources.length > 0 || (breakdown && breakdown.length > 0)) && (
+      {showTooltip && !showEditor && (sources.length > 0 || situationalSources.length > 0 || (conditionalNotes && conditionalNotes.length > 0)) && (
         <div
           style={{
             position: "absolute",
@@ -134,26 +132,20 @@ export function StatWithSources({
             <div style={{ fontSize: "0.9rem", color: "#999" }}>Loading...</div>
           ) : (
             <>
-              {/* Computed breakdown rows (base values, ability mods, etc.) */}
-              {breakdown && breakdown.map((row, i) => (
-                <div
-                  key={`breakdown-${i}`}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "0.5rem 0",
-                    borderBottom: "1px solid #f0f0f0",
-                    fontSize: "0.9rem",
-                  }}
-                >
-                  <div style={{ color: "#555" }}>{row.label}</div>
-                  <div style={{ fontWeight: 600, color: row.value >= 0 ? "#10b981" : "#ef4444" }}>
-                    {row.value >= 0 ? "+" : ""}{row.value}
-                  </div>
-                </div>
-              ))}
+              {/* Static breakdown (base values etc.) */}
+              {breakdown && breakdown.length > 0 && (
+                <>
+                  {breakdown.map((item, i) => (
+                    <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "0.3rem 0", borderBottom: "1px solid #f5f5f5", fontSize: "0.85rem", color: "#555" }}>
+                      <div>{item.label}</div>
+                      <div style={{ fontWeight: 600, color: item.value >= 0 ? "#10b981" : "#ef4444" }}>
+                        {item.value >= 0 ? "+" : ""}{item.value}
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
 
-              {/* DB-sourced bonuses */}
               {activeSources.map((source) => (
                 <div
                   key={source.id}
@@ -172,16 +164,17 @@ export function StatWithSources({
                         Level {source.obtained_level}
                       </div>
                     )}
+                    {source.obtained_notes && (
+                      <div style={{ fontSize: "0.75rem", color: "#f59e0b", fontStyle: "italic", marginTop: "0.1rem" }}>
+                        ⚠️ {source.obtained_notes}
+                      </div>
+                    )}
                   </div>
                   <div style={{ fontWeight: 600, color: source.bonus_value >= 0 ? "#10b981" : "#ef4444" }}>
                     {source.bonus_value >= 0 ? "+" : ""}{source.bonus_value}
                   </div>
                 </div>
               ))}
-
-              {breakdown?.length === 0 && activeSources.length === 0 && (
-                <div style={{ fontSize: "0.9rem", color: "#999", padding: "0.5rem 0" }}>No bonuses yet</div>
-              )}
 
               <div
                 style={{
@@ -194,8 +187,43 @@ export function StatWithSources({
                 }}
               >
                 <div>Total</div>
-                <div style={{ color: "#0070f3" }}>{displayValue}</div>
+                <div style={{ color: "#0070f3" }}>{calculatedTotal}</div>
               </div>
+
+              {/* Conditional / situational bonuses section — from DB sources with bonus_type "situational" */}
+              {situationalSources.length > 0 && (
+                <div style={{ marginTop: "0.75rem", paddingTop: "0.75rem", borderTop: "1px dashed #e5e7eb" }}>
+                  <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#f59e0b", marginBottom: "0.4rem", letterSpacing: "0.02em" }}>
+                    ⚡ SITUATIONAL (not in total):
+                  </div>
+                  {situationalSources.map((source) => (
+                    <div key={source.id} style={{ fontSize: "0.8rem", color: "#555", padding: "0.2rem 0", display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                      <span style={{ color: "#f59e0b", flexShrink: 0, marginTop: "1px" }}>•</span>
+                      <div>
+                        <span style={{ fontWeight: 600, color: "#374151" }}>{source.source_name}</span>
+                        {source.obtained_notes && (
+                          <span style={{ color: "#6b7280" }}> — {source.obtained_notes}</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Conditional / situational bonuses section — from prop */}
+              {conditionalNotes && conditionalNotes.length > 0 && (
+                <div style={{ marginTop: "0.75rem", paddingTop: "0.75rem", borderTop: "1px dashed #e5e7eb" }}>
+                  <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#f59e0b", marginBottom: "0.4rem" }}>
+                    ⚡ SITUATIONAL (not in total):
+                  </div>
+                  {conditionalNotes.map((note, i) => (
+                    <div key={i} style={{ fontSize: "0.8rem", color: "#555", padding: "0.2rem 0", display: "flex", gap: "0.4rem", alignItems: "flex-start" }}>
+                      <span style={{ color: "#f59e0b", flexShrink: 0 }}>•</span>
+                      <span><strong style={{ color: "#374151" }}>{note.from}:</strong> {note.text}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {editable && (
                 <button
