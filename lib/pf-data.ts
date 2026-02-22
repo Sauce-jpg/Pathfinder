@@ -40,6 +40,37 @@ export interface ClassSkill {
 export interface ClassFeature {
   name: string;
   description: string;
+  // If set, this feature auto-grants a specific feat (e.g. "Scribe Scroll")
+  autoGrantFeat?: string;
+  // If set, this feature requires a player choice during creation
+  requiresChoice?: "arcane_school" | "arcane_bond" | "bloodline" | "mystery" | "domain" | "familiar";
+}
+
+// All individual Knowledge skills — used to expand "Knowledge (All)" class skills
+export const ALL_KNOWLEDGE_SKILLS = [
+  "Knowledge (Arcana)",
+  "Knowledge (Dungeoneering)",
+  "Knowledge (Engineering)",
+  "Knowledge (Geography)",
+  "Knowledge (History)",
+  "Knowledge (Local)",
+  "Knowledge (Nature)",
+  "Knowledge (Nobility)",
+  "Knowledge (Planes)",
+  "Knowledge (Religion)",
+];
+
+// Expand class skills — replaces "Knowledge (All)" with all individual Knowledge skills
+export function expandClassSkills(classSkills: string[]): string[] {
+  const result: string[] = [];
+  for (const skill of classSkills) {
+    if (skill === "Knowledge (All)") {
+      result.push(...ALL_KNOWLEDGE_SKILLS);
+    } else {
+      result.push(skill);
+    }
+  }
+  return result;
 }
 
 export interface PFClass {
@@ -609,9 +640,9 @@ export const CLASSES: PFClass[] = [
     classSkills: ["Appraise", "Bluff", "Craft", "Fly", "Intimidate", "Knowledge (Arcana)", "Profession", "Spellcraft", "Use Magic Device"],
     proficiencies: ["All simple weapons", "No armor", "No shields"],
     level1Features: [
-      { name: "Bloodline", description: "Choose a sorcerer bloodline. Gain a class skill, bloodline arcana, bloodline powers, bonus spells, and bonus feats." },
+      { name: "Bloodline", description: "Choose a sorcerer bloodline. Gain a class skill, bloodline arcana, bloodline powers, bonus spells, and bonus feats.", requiresChoice: "bloodline" },
       { name: "Cantrips", description: "Cast 0-level spells an unlimited number of times." },
-      { name: "Eschew Materials", description: "Bonus feat: Eschew Materials." },
+      { name: "Eschew Materials", description: "Bonus feat: Eschew Materials.", autoGrantFeat: "Eschew Materials" },
     ],
     tags: ["core"],
   },
@@ -626,10 +657,10 @@ export const CLASSES: PFClass[] = [
     classSkills: ["Appraise", "Craft", "Fly", "Knowledge (All)", "Linguistics", "Profession", "Spellcraft"],
     proficiencies: ["Club", "Dagger", "Heavy crossbow", "Light crossbow", "Quarterstaff", "No armor", "No shields"],
     level1Features: [
-      { name: "Arcane Bond", description: "Bond with a familiar or an object (staff, wand, or weapon)." },
-      { name: "Arcane School", description: "Specialize in a school of magic, gaining bonus spells and powers. Forbidden schools lose 2 spell slots per level." },
+      { name: "Arcane Bond", description: "Bond with a familiar or an object (staff, wand, or weapon). Familiar grants special abilities; bonded object can be used to cast any one spell per day.", requiresChoice: "arcane_bond" },
+      { name: "Arcane School", description: "Specialize in a school of magic, gaining bonus spells and powers. Choose 2 forbidden schools.", requiresChoice: "arcane_school" },
       { name: "Cantrips", description: "Prepare 0-level spells as cantrips. Cast an unlimited number per day." },
-      { name: "Scribe Scroll", description: "Bonus feat: Scribe Scroll at 1st level." },
+      { name: "Scribe Scroll", description: "Bonus feat: Scribe Scroll at 1st level.", autoGrantFeat: "Scribe Scroll" },
       { name: "Spellbook", description: "Record spells in a spellbook. 3+INT modifier 1st-level spells at start. Copy additional spells from scrolls and other spellbooks." },
     ],
     bonusFeatLevels: [1, 5, 10, 15, 20],
@@ -653,9 +684,9 @@ export const CLASSES: PFClass[] = [
     level1Features: [
       { name: "Alchemy", description: "Create alchemical items with Craft (Alchemy) at +level on checks." },
       { name: "Bomb", description: "1d6 + INT modifier fire damage. 3 + INT modifier bombs per day. Splash damage. Range increment 20 ft." },
-      { name: "Brew Potion", description: "Bonus feat: Brew Potion." },
+      { name: "Brew Potion", description: "Bonus feat: Brew Potion.", autoGrantFeat: "Brew Potion" },
       { name: "Mutagen", description: "+4 alchemical bonus to one physical ability score, +2 natural armor bonus, –2 penalty to associated mental ability score. Lasts 10 min./level." },
-      { name: "Throw Anything", description: "Bonus feat: Throw Anything." },
+      { name: "Throw Anything", description: "Bonus feat: Throw Anything.", autoGrantFeat: "Throw Anything" },
     ],
     tags: ["base"],
   },
@@ -905,7 +936,7 @@ export const CLASSES: PFClass[] = [
     level1Features: [
       { name: "Cantrips", description: "Cast 0-level spells unlimited times per day." },
       { name: "Raging Song", description: "Inspire allies to rage. Affected allies gain +2 morale to STR and CON, +1 Will saves, –1 AC. 6 + CHA modifier rounds/day." },
-      { name: "Scribe Scroll", description: "Bonus feat: Scribe Scroll." },
+      { name: "Scribe Scroll", description: "Bonus feat: Scribe Scroll.", autoGrantFeat: "Scribe Scroll" },
     ],
     tags: ["hybrid"],
   },
