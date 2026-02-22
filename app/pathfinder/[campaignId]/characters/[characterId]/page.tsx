@@ -10,7 +10,7 @@ import { Features } from "@/components/Features";
 import { Spells } from "@/components/Spells";
 import { Inventory } from "@/components/Inventory";
 import { Equipment } from "@/components/Equipment";
-import { FeatBrowser } from "@/components/FeatBrowser";
+import { FeatBrowser, CharacterContext } from "@/components/FeatBrowser";
 import { getBabAtLevel, getGoodSaveAtLevel, getPoorSaveAtLevel, CLASSES } from "@/lib/pf-data";
 
 // Utility functions
@@ -55,6 +55,7 @@ export default function CharacterSheetPage() {
   const [levelUpSkillRanks, setLevelUpSkillRanks] = useState<Record<string, number>>({});
   const [levelUpFeats, setLevelUpFeats] = useState<any[]>([]);
   const [levelUpShowFeatBrowser, setLevelUpShowFeatBrowser] = useState(false);
+  const [levelUpFeatBrowserSlotIdx, setLevelUpFeatBrowserSlotIdx] = useState(0);
   const [levelUpSaving, setLevelUpSaving] = useState(false);
   const [levelUpFeatSlots, setLevelUpFeatSlots] = useState<{label:string;source:string}[]>([]);
   // Existing data loaded when wizard opens
@@ -1271,7 +1272,7 @@ export default function CharacterSheetPage() {
 
                     {featSlots.length > 0 && (
                       <>
-                        <button onClick={() => setLevelUpShowFeatBrowser(true)}
+                        <button onClick={() => { setLevelUpFeatBrowserSlotIdx(levelUpFeats.length); setLevelUpShowFeatBrowser(true); }}
                           style={{ padding: "0.6rem 1.25rem", background: "#0070f3", color: "white", border: "none", borderRadius: 8, cursor: "pointer", fontWeight: 600, marginBottom: "0.75rem" }}>
                           ⚔️ Browse Feats
                         </button>
@@ -1373,17 +1374,41 @@ export default function CharacterSheetPage() {
         );
       })()}
       {/* FeatBrowser for level up */}
-      <FeatBrowser
-        isOpen={levelUpShowFeatBrowser}
-        onClose={() => setLevelUpShowFeatBrowser(false)}
-        onSelectFeat={(feat: any) => {
-          setLevelUpFeats(prev => {
-            const slotSource = levelUpFeatSlots[prev.length]?.source ?? "";
-            return [...prev, { ...feat, slotSource }];
-          });
-          setLevelUpShowFeatBrowser(false);
-        }}
-      />
+      {(() => {
+        const currentSlot = levelUpFeatSlots[levelUpFeatBrowserSlotIdx];
+        // Derive filterType from slot label — "Combat Feat" → "combat", "Metamagic … Feat" → "metamagic" etc.
+        let levelUpFeatFilterType: string | undefined;
+        if (currentSlot?.label) {
+          const label = currentSlot.label.toLowerCase();
+          if (label.includes("combat")) levelUpFeatFilterType = "combat";
+          else if (label.includes("metamagic")) levelUpFeatFilterType = "metamagic";
+          else if (label.includes("item creation")) levelUpFeatFilterType = "item creation";
+          else if (label.includes("style")) levelUpFeatFilterType = "style";
+          // Standard feat / racial / other = no filter
+        }
+        const charContext = character ? {
+          feats: existingFeats.map((f: any) => f.name),
+          classFeatures: (statSources["class_features"] || []).map((f: any) => f.source_name || ""),
+          bab: getStatTotal("bab"),
+          level: character.level || 1,
+          abilities: { str: strTotal, dex: dexTotal, con: conTotal, int: intTotal, wis: wisTotal, cha: chaTotal },
+        } : undefined;
+        return (
+          <FeatBrowser
+            isOpen={levelUpShowFeatBrowser}
+            onClose={() => setLevelUpShowFeatBrowser(false)}
+            filterType={levelUpFeatFilterType}
+            characterContext={charContext}
+            onSelectFeat={(feat: any) => {
+              setLevelUpFeats(prev => {
+                const slotSource = levelUpFeatSlots[prev.length]?.source ?? "";
+                return [...prev, { ...feat, slotSource }];
+              });
+              setLevelUpShowFeatBrowser(false);
+            }}
+          />
+        );
+      })()}
     </main>
   );
 }
