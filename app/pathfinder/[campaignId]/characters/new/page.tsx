@@ -511,6 +511,7 @@ export default function NewCharacterPage() {
       const featureInserts: any[] = [];
 
       // Starting feats from FeatBrowser — source is stored on each feat during selection
+      const featStatInserts: any[] = [];
       selectedFeats.forEach((f, i) => {
         featureInserts.push({
           character_id: charId,
@@ -523,9 +524,37 @@ export default function NewCharacterPage() {
           obtained_level: 1,
           is_active: true,
         });
+        // Auto-write stat sources for well-known feats
+        const FEAT_STAT_MAP: Record<string, { category: string; value: number; bonusType: string }> = {
+          "Improved Initiative":   { category: "initiative",   value: 4,  bonusType: "feat" },
+          "Toughness":             { category: "hp_max",       value: 3,  bonusType: "feat" },
+          "Dodge":                 { category: "ac",           value: 1,  bonusType: "dodge" },
+          "Lightning Reflexes":    { category: "save_ref",     value: 2,  bonusType: "feat" },
+          "Iron Will":             { category: "save_will",    value: 2,  bonusType: "feat" },
+          "Great Fortitude":       { category: "save_fort",    value: 2,  bonusType: "feat" },
+          "Skill Focus (Perception)": { category: "skill_perception", value: 3, bonusType: "feat" },
+          "Skill Focus (Stealth)":    { category: "skill_stealth",    value: 3, bonusType: "feat" },
+        };
+        const statBonus = FEAT_STAT_MAP[f.name];
+        if (statBonus) {
+          featStatInserts.push({
+            character_id: charId,
+            stat_category: statBonus.category,
+            source_name: `${f.name} (feat)`,
+            source_type: "feat",
+            bonus_value: statBonus.value,
+            bonus_type: statBonus.bonusType,
+            is_active: true,
+            obtained_level: 1,
+          });
+        }
       });
+      if (featStatInserts.length > 0) {
+        await supabase.from("character_stat_sources").insert(featStatInserts);
+      }
 
-      // Traits from TraitBrowser
+      // Traits from TraitBrowser — auto-parse known numeric bonuses into stat sources
+      const traitStatInserts: any[] = [];
       selectedTraits.forEach(t => {
         featureInserts.push({
           character_id: charId,
@@ -537,7 +566,36 @@ export default function NewCharacterPage() {
           obtained_level: 1,
           is_active: true,
         });
+        // Auto-write stat sources for well-known trait bonuses
+        const benefit = (t.benefit || t.description || "").toLowerCase();
+        const traitStatMap: { pattern: RegExp; category: string; value: number }[] = [
+          { pattern: /\+2.*(trait|morale).*initiative/i, category: "initiative", value: 2 },
+          { pattern: /\+4.*(trait|morale).*initiative/i, category: "initiative", value: 4 },
+          { pattern: /\+2.*(trait).*perception/i, category: "skill_perception", value: 2 },
+          { pattern: /\+2.*(trait).*bluff/i, category: "skill_bluff", value: 2 },
+          { pattern: /\+1.*(trait).*(fort|fortitude)/i, category: "save_fort", value: 1 },
+          { pattern: /\+1.*(trait).*(ref|reflex)/i, category: "save_ref", value: 1 },
+          { pattern: /\+1.*(trait).*(will)/i, category: "save_will", value: 1 },
+        ];
+        for (const rule of traitStatMap) {
+          if (rule.pattern.test(benefit)) {
+            traitStatInserts.push({
+              character_id: charId,
+              stat_category: rule.category,
+              source_name: `${t.name} (trait)`,
+              source_type: "trait",
+              bonus_value: rule.value,
+              bonus_type: "trait",
+              is_active: true,
+              obtained_level: 1,
+            });
+            break; // only match first rule per trait to avoid doubles
+          }
+        }
       });
+      if (traitStatInserts.length > 0) {
+        await supabase.from("character_stat_sources").insert(traitStatInserts);
+      }
 
       // Racial traits — write feature rows + stat bonus source rows
       if (selectedRace && selectedRace.id !== "custom") {
@@ -554,13 +612,17 @@ export default function NewCharacterPage() {
           });
           // Write stat bonuses from this racial trait
           (t.statBonuses || []).forEach(bonus => {
+            const isConditional = bonus.label.toLowerCase().includes("conditional");
             statSourceInserts.push({
               character_id: charId,
               stat_category: bonus.statCategory,
               source_name: `${t.name} (${selectedRace.name})`,
               source_type: "racial",
-              bonus_value: bonus.value,
-              bonus_type: bonus.bonusType,
+              // Conditional bonuses have bonus_value 0 and are stored as "situational"
+              // so they show up as notes in the tooltip but don't inflate the total
+              bonus_value: isConditional ? 0 : bonus.value,
+              bonus_type: isConditional ? "situational" : bonus.bonusType,
+              obtained_notes: isConditional ? bonus.label.replace(/\s*\(conditional\)\s*/i, "").trim() + ` (+${bonus.value} ${bonus.bonusType})` : null,
               is_active: true,
               obtained_level: 1,
             });
