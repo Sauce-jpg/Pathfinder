@@ -116,7 +116,7 @@ export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterTypes, charac
   const [selectedType, setSelectedType] = useState("");
   const [selectedFeat, setSelectedFeat] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [hideUnmetPrereqs, setHideUnmetPrereqs] = useState(false);
+  const [hideUnmetPrereqs, setHideUnmetPrereqs] = useState(true);
 
   useEffect(() => {
     if (isOpen) {
