@@ -294,8 +294,10 @@ export default function NewCharacterPage() {
       const hasWizard = selectedClasses.some(c => c.cls.id === "wizard");
       if (hasWizard) {
         if (!arcaneSchool) return { ok:false, reason:"Choose an Arcane School for your Wizard." };
-        if (!arcaneForbidden1 || !arcaneForbidden2) return { ok:false, reason:"Choose 2 forbidden schools." };
-        if (arcaneForbidden1 === arcaneForbidden2) return { ok:false, reason:"Forbidden schools must be different." };
+        if (arcaneSchool !== "Universalist") {
+          if (!arcaneForbidden1 || !arcaneForbidden2) return { ok:false, reason:"Choose 2 forbidden schools." };
+          if (arcaneForbidden1 === arcaneForbidden2) return { ok:false, reason:"Forbidden schools must be different." };
+        }
         if (!arcaneBondType) return { ok:false, reason:"Choose Familiar or Bonded Item for Arcane Bond." };
         if (arcaneBondType === "familiar" && !arcaneBondFamiliar) return { ok:false, reason:"Choose a familiar." };
         if (arcaneBondType === "bonded_item" && !arcaneBondItem) return { ok:false, reason:"Choose a bonded item type." };
@@ -618,14 +620,17 @@ export default function NewCharacterPage() {
       }
 
       // Write class choices (Arcane School, Arcane Bond, etc.)
-      const hasWizard = selectedClasses.some(c => c.cls.id === "wizard");
-      if (hasWizard && arcaneSchool) {
+      const hasWizardClass = selectedClasses.some(c => c.cls.id === "wizard");
+      if (hasWizardClass && arcaneSchool) {
+        const forbiddenText = arcaneSchool === "Universalist"
+          ? "No forbidden schools (Universalist)"
+          : `Forbidden schools: ${arcaneForbidden1}, ${arcaneForbidden2}`;
         const choiceInserts: any[] = [
           {
             character_id: charId,
             feature_type: "class",
             name: `Arcane School: ${arcaneSchool}`,
-            description: `Specializes in ${arcaneSchool} magic. Forbidden schools: ${arcaneForbidden1}, ${arcaneForbidden2}.`,
+            description: `Specializes in ${arcaneSchool} magic. ${forbiddenText}. Gains +1 bonus spell slot per spell level 1–9 in the chosen school.`,
             source: "Wizard",
             obtained_level: 1,
             is_active: true,
@@ -1777,6 +1782,8 @@ export default function NewCharacterPage() {
               <ReviewRow label="Deity" value={deity || "—"} />
               <ReviewRow label="Homeland" value={homeland || "—"} />
               {isGestalt && <ReviewRow label="Gestalt" value="Yes" />}
+              {arcaneSchool && <ReviewRow label="Arcane School" value={arcaneSchool + (arcaneSchool !== "Universalist" ? ` (forbidden: ${arcaneForbidden1}, ${arcaneForbidden2})` : "")} />}
+              {arcaneBondType && <ReviewRow label="Arcane Bond" value={arcaneBondType === "familiar" ? `Familiar — ${arcaneBondFamiliar}` : `Bonded Item — ${arcaneBondItem}`} />}
             </div>
           </section>
 
