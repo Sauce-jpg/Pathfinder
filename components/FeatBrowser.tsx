@@ -14,8 +14,8 @@ interface FeatBrowserProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectFeat: (feat: any) => void;
-  // If set, only show feats matching this type (e.g. "combat", "metamagic")
-  filterType?: string;
+  // If set, only show feats matching ANY of these types (e.g. ["metamagic","item creation","spell mastery"])
+  filterTypes?: string[];
   // If provided, enables prerequisite checking with ⚠️ warnings
   characterContext?: CharacterContext;
 }
@@ -109,11 +109,11 @@ const TYPE_COLORS: Record<string, { bg: string; text: string }> = {
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterType, characterContext }: FeatBrowserProps) {
+export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterTypes, characterContext }: FeatBrowserProps) {
   const [feats, setFeats] = useState<any[]>([]);
   const [filteredFeats, setFilteredFeats] = useState<any[]>([]);
   const [searchText, setSearchText] = useState("");
-  const [selectedType, setSelectedType] = useState(filterType || "");
+  const [selectedType, setSelectedType] = useState("");
   const [selectedFeat, setSelectedFeat] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [hideUnmetPrereqs, setHideUnmetPrereqs] = useState(false);
@@ -121,11 +121,11 @@ export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterType, charact
   useEffect(() => {
     if (isOpen) {
       loadFeats();
-      setSelectedType(filterType || "");
+      setSelectedType("");
       setSelectedFeat(null);
       setSearchText("");
     }
-  }, [isOpen, filterType]);
+  }, [isOpen, filterTypes?.join(",")]);
 
   useEffect(() => {
     filterFeats();
@@ -155,10 +155,13 @@ export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterType, charact
       );
     }
 
-    // filterType locks the type — selectedType can refine further when no filterType
-    const activeType = filterType || selectedType;
-    if (activeType) {
-      filtered = filtered.filter(f => f.types?.includes(activeType));
+    // If filterTypes is locked, filter to feats matching ANY of those types
+    if (filterTypes && filterTypes.length > 0) {
+      filtered = filtered.filter(f =>
+        f.types?.some((t: string) => filterTypes.includes(t))
+      );
+    } else if (selectedType) {
+      filtered = filtered.filter(f => f.types?.includes(selectedType));
     }
 
     if (hideUnmetPrereqs && characterContext) {
@@ -176,9 +179,9 @@ export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterType, charact
     ? checkPrerequisites(selectedFeat.prerequisites, characterContext)
     : null;
 
-  // Label for the locked filter type banner
-  const filterLabel = filterType
-    ? filterType.charAt(0).toUpperCase() + filterType.slice(1)
+  const isLocked = filterTypes && filterTypes.length > 0;
+  const filterLabel = isLocked
+    ? filterTypes!.map(t => t.charAt(0).toUpperCase() + t.slice(1)).join(" / ")
     : null;
 
   return (
@@ -197,14 +200,14 @@ export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterType, charact
               <h2 style={{ margin: 0, display: "flex", alignItems: "center", gap: "0.6rem" }}>
                 Feat Browser
                 {filterLabel && (
-                  <span style={{ fontSize: "0.8rem", fontWeight: 700, padding: "0.2rem 0.65rem", background: TYPE_COLORS[filterType!]?.bg ?? "#6b7280", color: "white", borderRadius: 6 }}>
+                  <span style={{ fontSize: "0.8rem", fontWeight: 700, padding: "0.2rem 0.65rem", background: "#8b5cf6", color: "white", borderRadius: 6 }}>
                     {filterLabel} only
                   </span>
                 )}
               </h2>
               {filterLabel && (
                 <div style={{ fontSize: "0.83rem", color: "#666", marginTop: "0.2rem" }}>
-                  This slot requires a <strong>{filterLabel}</strong> feat
+                  This slot requires one of: <strong>{filterLabel}</strong>
                 </div>
               )}
             </div>
@@ -223,10 +226,10 @@ export function FeatBrowser({ isOpen, onClose, onSelectFeat, filterType, charact
               style={{ padding: "0.65rem 0.9rem", border: "1px solid #ddd", borderRadius: 6, fontSize: "1rem" }}
             />
             <select
-              value={filterType ? filterType : selectedType}
-              onChange={e => !filterType && setSelectedType(e.target.value)}
-              disabled={!!filterType}
-              style={{ padding: "0.65rem 0.9rem", border: "1px solid #ddd", borderRadius: 6, fontSize: "1rem", minWidth: 190, opacity: filterType ? 0.6 : 1, cursor: filterType ? "not-allowed" : "auto" }}
+              value={isLocked ? "" : selectedType}
+              onChange={e => !isLocked && setSelectedType(e.target.value)}
+              disabled={!!isLocked}
+              style={{ padding: "0.65rem 0.9rem", border: "1px solid #ddd", borderRadius: 6, fontSize: "1rem", minWidth: 190, opacity: isLocked ? 0.6 : 1, cursor: isLocked ? "not-allowed" : "auto" }}
             >
               <option value="">All Types</option>
               {featTypes.map(t => (
