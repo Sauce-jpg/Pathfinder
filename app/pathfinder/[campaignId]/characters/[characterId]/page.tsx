@@ -366,6 +366,41 @@ export default function CharacterSheetPage() {
         );
       }
 
+      // ── Class features at this class level ──
+      const classFeatures = chosenClass.featuresByLevel?.[newClassLevel] || [];
+      if (classFeatures.length > 0) {
+        await supabase.from("character_features").insert(
+          classFeatures.map((f: any) => ({
+            character_id: characterId,
+            feature_type: "class",
+            name: f.name,
+            description: f.description || null,
+            source: chosenClass.name,
+            obtained_level: newCharLevel,
+            is_active: true,
+          }))
+        );
+      }
+
+      // ── Update spellcasting caster level if this class has a spellcasting entry ──
+      const { data: spellClasses } = await supabase
+        .from("character_spellcasting_classes")
+        .select("id, caster_level, class_name")
+        .eq("character_id", characterId);
+      if (spellClasses) {
+        const matchingSpellClass = spellClasses.find(
+          (sc: any) => sc.class_name.toLowerCase() === chosenClass.name.toLowerCase()
+        );
+        if (matchingSpellClass) {
+          const newCL = matchingSpellClass.caster_level + 1;
+          const clampedCL = Math.min(20, newCL);
+          // Update caster level and concentration bonus
+          await supabase.from("character_spellcasting_classes")
+            .update({ caster_level: clampedCL, concentration_bonus: clampedCL })
+            .eq("id", matchingSpellClass.id);
+        }
+      }
+
       // ── Update character level and classes string ──
       await supabase.from("characters").update({ level: newCharLevel, classes: classesString }).eq("id", characterId);
 
