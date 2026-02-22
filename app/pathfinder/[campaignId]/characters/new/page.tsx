@@ -301,7 +301,8 @@ export default function NewCharacterPage() {
       const raceName = selectedRace?.id === "custom"
         ? (customRaceName || "Custom")
         : (selectedRace?.name ?? "");
-      const classNames = selectedClasses.map(c => c.cls.name).join(" / ");
+      // Classes string includes level: "Fighter 1" or "Fighter 1 / Rogue 1" for multiclass
+      const classNames = selectedClasses.map(c => `${c.cls.name} ${level}`).join(" / ");
 
       // 1. Insert character row
       const { data: char, error: charErr } = await supabase
@@ -336,7 +337,8 @@ export default function NewCharacterPage() {
         source_type: string,
         bonus_value: number,
         bonus_type: string = "untyped",
-        notes?: string
+        notes?: string,
+        obtainedLevel?: number,
       ) => {
         if (bonus_value === 0) return;
         sources.push({
@@ -347,10 +349,28 @@ export default function NewCharacterPage() {
           bonus_value,
           bonus_type,
           is_active: true,
-          obtained_level: 1,
+          obtained_level: obtainedLevel ?? 1,
           obtained_notes: notes ?? null,
         });
       };
+
+      // Class level tracking — one row per character level, recording which class was leveled
+      // For character creation, all levels go into the primary (first) class
+      if (primaryClass) {
+        for (let lvl = 1; lvl <= level; lvl++) {
+          sources.push({
+            character_id: charId,
+            stat_category: "class_level",
+            source_name: `${primaryClass.name} level ${lvl}`,
+            source_type: "class",
+            bonus_value: lvl,
+            bonus_type: "untyped",
+            is_active: true,
+            obtained_level: lvl,
+            obtained_notes: primaryClass.id,
+          });
+        }
+      }
 
       // Ability scores — base scores
       const baseScores = scoreMethod === "standard"
@@ -457,8 +477,8 @@ export default function NewCharacterPage() {
       // 4. Features — feats, traits, racial traits, class features
       const featureInserts: any[] = [];
 
-      // Starting feats from FeatBrowser
-      selectedFeats.forEach(f => {
+      // Starting feats from FeatBrowser — source is stored on each feat during selection
+      selectedFeats.forEach((f, i) => {
         featureInserts.push({
           character_id: charId,
           feature_type: "feat",
@@ -466,7 +486,7 @@ export default function NewCharacterPage() {
           description: f.description || null,
           prerequisites: f.prerequisites || null,
           category: f.category || null,
-          source: f.source || null,
+          source: f.slotSource || f.source || null,
           obtained_level: 1,
           is_active: true,
         });
@@ -1375,13 +1395,17 @@ export default function NewCharacterPage() {
               isOpen={showFeatBrowser}
               onClose={() => setShowFeatBrowser(false)}
               onSelectFeat={(feat: any) => {
-                setSelectedFeats(prev => [...prev, {
-                  name: feat.name,
-                  description: feat.benefit || "",
-                  prerequisites: feat.prerequisites || "",
-                  category: (feat.types || []).join(", "),
-                  source: feat.source || "",
-                }]);
+                setSelectedFeats(prev => {
+                  const nextSlot = slots2[prev.length];
+                  return [...prev, {
+                    name: feat.name,
+                    description: feat.benefit || "",
+                    prerequisites: feat.prerequisites || "",
+                    category: (feat.types || []).join(", "),
+                    source: feat.source || "",
+                    slotSource: nextSlot?.source || "",
+                  }];
+                });
               }}
             />
           </div>
