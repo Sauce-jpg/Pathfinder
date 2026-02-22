@@ -49,6 +49,10 @@ export interface PFClass {
   proficiencies: string[];
   level1Features: RacialTrait[]; // reuse same shape
   tags: string[]; // "core", "base", "hybrid", "occult", "prestige", "npc"
+  // Levels at which this class grants bonus feats (in addition to standard odd-level feats)
+  bonusFeatLevels?: number[];
+  // Label for the bonus feat type (e.g. "Combat Feat", "Metamagic or Item Creation Feat")
+  bonusFeatLabel?: string;
 }
 
 // ============================================================================
@@ -456,10 +460,9 @@ export const CLASSES: PFClass[] = [
     level1Features: [
       { name: "Bonus Feat", description: "Gain a bonus combat feat at 1st level and every even fighter level thereafter." },
     ],
+    bonusFeatLevels: [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
+    bonusFeatLabel: "Combat Feat",
     tags: ["core"],
-  },
-  {
-    id: "monk",
     name: "Monk",
     description: "A master of martial arts who uses ki to achieve extraordinary feats.",
     hitDie: 8,
@@ -474,10 +477,9 @@ export const CLASSES: PFClass[] = [
       { name: "Stunning Fist", description: "1/round: attempt to stun foe (Fort DC 10 + 1/2 monk level + WIS mod negates)." },
       { name: "Unarmed Strike", description: "1d6 unarmed strike damage. Treated as both natural and manufactured weapons." },
     ],
+    bonusFeatLevels: [1, 2, 6, 10, 14, 18],
+    bonusFeatLabel: "Combat or Style Feat",
     tags: ["core"],
-  },
-  {
-    id: "paladin",
     name: "Paladin",
     description: "A holy warrior bound to a sacred oath.",
     hitDie: 10,
@@ -560,9 +562,9 @@ export const CLASSES: PFClass[] = [
       { name: "Scribe Scroll", description: "Bonus feat: Scribe Scroll at 1st level." },
       { name: "Spellbook", description: "Record spells in a spellbook. 3+INT modifier 1st-level spells at start. Copy additional spells from scrolls and other spellbooks." },
     ],
+    bonusFeatLevels: [1, 5, 10, 15, 20],
+    bonusFeatLabel: "Metamagic, Item Creation, or Spell Mastery Feat",
     tags: ["core"],
-  },
-  // ── BASE ──
   {
     id: "alchemist",
     name: "Alchemist",
@@ -759,6 +761,8 @@ export const CLASSES: PFClass[] = [
       { name: "Martial Training", description: "Counts as fighter and monk for feat prerequisites." },
       { name: "Unarmed Strike", description: "1d6 unarmed strike damage." },
     ],
+    bonusFeatLevels: [1, 2, 5, 8, 11, 14, 17, 20],
+    bonusFeatLabel: "Combat Feat",
     tags: ["hybrid"],
   },
   {
