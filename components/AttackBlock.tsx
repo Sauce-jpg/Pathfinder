@@ -174,8 +174,9 @@ export default function AttackBlock({
     const { mod: ablAtk, label: ablAtkLabel } = atkAbilityMod(w);
     const { mod: ablDmg, label: ablDmgLabel } = dmgAbilityMod(w, isOffHand);
 
-    // Power Attack scaling: −1 attack / +2 damage per 4 BAB (min 1)
-    const paSteps = Math.max(1, Math.floor(bab / 4));
+    // Power Attack scaling: −1 attack / +2 damage per 4 BAB, minimum −1/+2 at BAB 1
+    // Thresholds: BAB 1 = −1/+2, BAB 4 = −2/+4, BAB 8 = −3/+6, BAB 12 = −4/+8, BAB 16 = −5/+10
+    const paSteps = 1 + Math.floor(Math.max(0, bab - 1) / 4);
     const paPenalty   = powerAtk && !isRanged(w) && !isFirearm(w) ? -paSteps : 0;
     const paDmgBonus  = powerAtk && !isRanged(w) && !isFirearm(w) ? paSteps * 2 : 0;
 
@@ -191,7 +192,10 @@ export default function AttackBlock({
     // Rapid Shot penalty (all ranged attacks −2, gain 1 extra)
     const rsAll = rapidShot && hasRapidShot && (isRanged(w) || isFirearm(w)) ? -2 : 0;
 
-    const totalAtkMod = bab + ablAtk + enh + miscAtkBonus + paPenalty + daPenalty + twfPen + rsAll;
+    // Haste: +1 to all attack rolls (in addition to the extra attack)
+    const hasteAtk = haste ? 1 : 0;
+
+    const totalAtkMod = bab + ablAtk + enh + miscAtkBonus + paPenalty + daPenalty + twfPen + rsAll + hasteAtk;
     const totalDmgMod = ablDmg + enh + miscDmgBonus + paDmgBonus + daDmgBonus;
 
     // Number of attacks
@@ -226,6 +230,7 @@ export default function AttackBlock({
       daPenalty !== 0 ? `Deadly Aim ${fmtMod(daPenalty)}` : null,
       twfPen !== 0 ? `TWF ${fmtMod(twfPen)}` : null,
       rsAll !== 0 ? `Rapid Shot ${fmtMod(rsAll)}` : null,
+      hasteAtk > 0 ? `Haste +1` : null,
       miscAtkBonus !== 0 ? `Misc ${fmtMod(miscAtkBonus)}` : null,
     ].filter(Boolean).join(" · ");
 
