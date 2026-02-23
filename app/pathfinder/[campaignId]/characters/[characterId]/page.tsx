@@ -40,6 +40,8 @@ export default function CharacterSheetPage() {
   const [statSources, setStatSources] = useState<any>({});
   const [equippedAcp, setEquippedAcp] = useState<number>(0);
   const [equippedArmorAcBonus, setEquippedArmorAcBonus] = useState<number>(0);
+  const [weapons, setWeapons] = useState<any[]>([]);
+  const [selectedWeaponId, setSelectedWeaponId] = useState<string>("unarmed");
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteInput, setDeleteInput] = useState("");
@@ -134,6 +136,18 @@ export default function CharacterSheetPage() {
     const totalArmorAc = (equippedArmors || []).reduce((sum, a) => sum + (a.ac_bonus ?? 0) + (a.enhancement_bonus ?? 0), 0);
     setEquippedAcp(totalAcp);
     setEquippedArmorAcBonus(totalArmorAc);
+
+    // Load all weapons
+    const { data: weaponsData } = await supabase
+      .from("character_weapons")
+      .select("*")
+      .eq("character_id", characterId)
+      .order("is_primary", { ascending: false });
+    setWeapons(weaponsData || []);
+    // Auto-select primary, else first weapon, else unarmed
+    const primary = (weaponsData || []).find((w: any) => w.is_primary);
+    const first = (weaponsData || [])[0];
+    setSelectedWeaponId(primary?.id ?? first?.id ?? "unarmed");
 
     setLoading(false);
   }
@@ -501,6 +515,60 @@ export default function CharacterSheetPage() {
   // Spell Resistance from sources (Drow racial, spells, items, etc.)
   const spellResistance = getStatTotal("spell_resistance");
 
+  // ── Attack calculations ──────────────────────────────────────────────────
+  // Build the virtual "Unarmed" weapon always available
+  const UNARMED_WEAPON = {
+    id: "unarmed",
+    weapon_name: "Unarmed Strike",
+    weapon_type: "melee",
+    weapon_category: "simple",
+    damage_dice: "1d3",
+    damage_type: "B",
+    critical_range: "20",
+    critical_multiplier: "x2",
+    range_increment: null,
+    enhancement_bonus: 0,
+    properties: [],
+  };
+
+  const allWeaponOptions = [...weapons, UNARMED_WEAPON];
+  const selectedWeapon = allWeaponOptions.find(w => w.id === selectedWeaponId) ?? UNARMED_WEAPON;
+
+  function calcAttack(weapon: any): { attacks: string; abilityUsed: string } {
+    const isRanged = weapon.weapon_type?.toLowerCase() === "ranged";
+    const abilityMod = isRanged ? dexMod : strMod;
+    const abilityUsed = isRanged ? "DEX" : "STR";
+    const enh = weapon.enhancement_bonus ?? 0;
+    const miscAtk = getStatTotal("attack_bonus");
+    const base = babFromSources + abilityMod + enh + miscAtk;
+
+    // Iterative attacks: every 5 points of BAB above 0 gives another attack at -5
+    const iteratives: number[] = [base];
+    if (babFromSources >= 6)  iteratives.push(base - 5);
+    if (babFromSources >= 11) iteratives.push(base - 10);
+    if (babFromSources >= 16) iteratives.push(base - 15);
+
+    const fmt = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
+    return { attacks: iteratives.map(fmt).join(" / "), abilityUsed };
+  }
+
+  function calcDamage(weapon: any): string {
+    const isRanged = weapon.weapon_type?.toLowerCase() === "ranged";
+    const abilityMod = isRanged ? 0 : strMod; // ranged weapons don't add STR (unless thrown — simplified)
+    const enh = weapon.enhancement_bonus ?? 0;
+    const miscDmg = getStatTotal("damage_bonus");
+    const totalMod = abilityMod + enh + miscDmg;
+    const dice = weapon.damage_dice || "1d4";
+    if (totalMod === 0) return dice;
+    return `${dice}${totalMod >= 0 ? "+" : ""}${totalMod}`;
+  }
+
+  function critDisplay(weapon: any): string {
+    const range = weapon.critical_range || "20";
+    const mult = weapon.critical_multiplier || "x2";
+    return range === "20" ? mult : `${range}/${mult}`;
+  }
+
   return (
     <main style={{ maxWidth: 1200, margin: "0 auto", padding: "2rem" }}>
       {/* Breadcrumb */}
@@ -763,6 +831,95 @@ export default function CharacterSheetPage() {
 
       {activeTab === "combat" && (
         <div style={{ display: "grid", gap: "2rem" }}>
+
+          {/* ── Attacks ── */}
+          <section style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
+            <h2 style={{ marginTop: 0, marginBottom: "1rem" }}>Attacks</h2>
+
+            {/* Weapon selector */}
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem", flexWrap: "wrap" }}>
+              <label style={{ fontWeight: 600, color: "#555", fontSize: "0.9rem", whiteSpace: "nowrap" }}>Weapon:</label>
+              <select
+                value={selectedWeaponId}
+                onChange={e => setSelectedWeaponId(e.target.value)}
+                style={{
+                  padding: "0.5rem 0.75rem",
+                  border: "2px solid #e5e7eb",
+                  borderRadius: "8px",
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                  background: "white",
+                  cursor: "pointer",
+                  minWidth: "180px",
+                }}
+              >
+                {weapons.map(w => (
+                  <option key={w.id} value={w.id}>
+                    {w.weapon_name}{w.is_primary ? " ★" : ""}{w.enhancement_bonus > 0 ? ` (+${w.enhancement_bonus})` : ""}
+                  </option>
+                ))}
+                <option value="unarmed">Unarmed Strike</option>
+              </select>
+              <span style={{ fontSize: "0.8rem", color: "#999" }}>
+                {selectedWeapon.weapon_category} {selectedWeapon.weapon_type}
+                {selectedWeapon.range_increment ? ` · ${selectedWeapon.range_increment} ft range` : ""}
+              </span>
+            </div>
+
+            {/* Attack block */}
+            {(() => {
+              const { attacks, abilityUsed } = calcAttack(selectedWeapon);
+              const damage = calcDamage(selectedWeapon);
+              const crit = critDisplay(selectedWeapon);
+              const isRanged = selectedWeapon.weapon_type?.toLowerCase() === "ranged";
+              const enh = selectedWeapon.enhancement_bonus ?? 0;
+              const abilityMod = isRanged ? dexMod : strMod;
+              const iterativeCount = attacks.split("/").length;
+
+              return (
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  {/* Attack bonus block */}
+                  <div style={{ background: "#f8faff", border: "2px solid #bfdbfe", borderRadius: "10px", padding: "1rem" }}>
+                    <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#3b82f6", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.4rem" }}>
+                      Attack Roll{iterativeCount > 1 ? "s" : ""}
+                    </div>
+                    <div style={{ fontSize: "2rem", fontWeight: 800, color: "#1d4ed8", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                      {attacks}
+                    </div>
+                    <div style={{ fontSize: "0.78rem", color: "#6b7280", marginTop: "0.5rem", lineHeight: 1.6 }}>
+                      <span style={{ color: "#374151" }}>BAB</span> {babFromSources >= 0 ? `+${babFromSources}` : babFromSources}
+                      {" · "}<span style={{ color: "#374151" }}>{abilityUsed}</span> {abilityMod >= 0 ? `+${abilityMod}` : abilityMod}
+                      {enh > 0 && <>{" · "}<span style={{ color: "#7c3aed" }}>Enh</span> +{enh}</>}
+                      {iterativeCount > 1 && <><br /><span style={{ color: "#9ca3af" }}>{iterativeCount} attacks (BAB {babFromSources >= 0 ? `+${babFromSources}` : babFromSources})</span></>}
+                    </div>
+                  </div>
+
+                  {/* Damage block */}
+                  <div style={{ background: "#fff8f0", border: "2px solid #fed7aa", borderRadius: "10px", padding: "1rem" }}>
+                    <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "#f97316", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.4rem" }}>
+                      Damage
+                    </div>
+                    <div style={{ fontSize: "2rem", fontWeight: 800, color: "#c2410c", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                      {damage}
+                    </div>
+                    <div style={{ fontSize: "0.78rem", color: "#6b7280", marginTop: "0.5rem", lineHeight: 1.6 }}>
+                      <span style={{ color: "#374151" }}>Crit:</span> {crit}
+                      {selectedWeapon.damage_type && <>{" · "}<span style={{ color: "#374151" }}>{selectedWeapon.damage_type}</span></>}
+                      {enh > 0 && <>{" · "}<span style={{ color: "#7c3aed" }}>+{enh} Enh</span></>}
+                      {!isRanged && strMod !== 0 && <>{" · "}<span style={{ color: "#374151" }}>STR</span> {strMod >= 0 ? `+${strMod}` : strMod}</>}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Empty state */}
+            {weapons.length === 0 && (
+              <p style={{ color: "#999", fontSize: "0.9rem", marginTop: "0.75rem" }}>
+                No weapons added yet — go to the Equipment tab to add weapons. Unarmed strike is always available.
+              </p>
+            )}
+          </section>
           {/* Armor Class */}
           <section style={{ background: "white", border: "1px solid #ddd", borderRadius: "12px", padding: "1.5rem" }}>
             <h2 style={{ marginTop: 0 }}>Armor Class</h2>
