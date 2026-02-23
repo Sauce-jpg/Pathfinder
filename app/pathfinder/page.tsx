@@ -164,21 +164,6 @@ export default function PathfinderPage() {
         </div>
       </div>
 
-      {/* Debug Info */}
-      <div style={{ 
-        background: "#fff3cd", 
-        border: "1px solid #ffc107", 
-        borderRadius: "8px", 
-        padding: "1rem",
-        marginBottom: "1.5rem",
-        fontSize: "0.9rem"
-      }}>
-        <strong>Debug Info:</strong>
-        <div>User ID: {session?.user?.id}</div>
-        <div>Campaigns loaded: {campaigns.length}</div>
-        <div>Session active: {session ? "Yes" : "No"}</div>
-      </div>
-
       {/* New Campaign Button */}
       <button
         onClick={() => setShowNewCampaign(true)}
