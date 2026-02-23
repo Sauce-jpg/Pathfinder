@@ -86,6 +86,9 @@ export function StatWithSources({
   const situationalSources = sources.filter((s) => s.bonus_type === "situational");
   const calculatedTotal = activeSources.reduce((sum, s) => sum + s.bonus_value, 0);
 
+  // Show tooltip trigger whenever: editable, has a breakdown, has DB sources, has situational sources, or has conditional notes
+  const hasAnything = editable || (breakdown && breakdown.length > 0) || sources.length > 0 || situationalSources.length > 0 || (conditionalNotes && conditionalNotes.length > 0);
+
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
       {/* The stat display */}
@@ -95,16 +98,16 @@ export function StatWithSources({
         onClick={() => editable && setShowEditor(true)}
         style={{
           cursor: editable ? "pointer" : "default",
-          borderBottom: (sources.length > 0 || situationalSources.length > 0 || (conditionalNotes && conditionalNotes.length > 0)) ? "2px dotted #0070f3" : "none",
+          borderBottom: hasAnything ? "2px dotted #0070f3" : "none",
           paddingBottom: "2px",
         }}
-        title={(sources.length > 0 || situationalSources.length > 0 || (conditionalNotes && conditionalNotes.length > 0)) ? "Hover for breakdown" : undefined}
+        title={hasAnything ? (editable ? "Click to manage · hover for breakdown" : "Hover for breakdown") : undefined}
       >
         {displayValue}
       </div>
 
       {/* Hover Tooltip */}
-      {showTooltip && !showEditor && (sources.length > 0 || situationalSources.length > 0 || (conditionalNotes && conditionalNotes.length > 0)) && (
+      {showTooltip && !showEditor && hasAnything && (
         <div
           style={{
             position: "absolute",
@@ -187,7 +190,7 @@ export function StatWithSources({
                 }}
               >
                 <div>Total</div>
-                <div style={{ color: "#0070f3" }}>{calculatedTotal}</div>
+                <div style={{ color: "#0070f3" }}>{displayValue}</div>
               </div>
 
               {/* Conditional / situational bonuses section — from DB sources with bonus_type "situational" */}
