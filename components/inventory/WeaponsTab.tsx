@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
-import { mapWeaponToCharacter } from "@/lib/equipmentMappers";
+import { mapWeaponToCharacter, mapMagicWeaponToCharacter } from "@/lib/equipmentMappers";
 
 interface WeaponsTabProps {
   characterId: string;
@@ -15,6 +15,7 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingWeapon, setEditingWeapon] = useState<any>(null);
   const [showBrowser, setShowBrowser] = useState(false); // NEW: Equipment Browser state
+  const [showMagicWeaponBrowser, setShowMagicWeaponBrowser] = useState(false);
 
   // Form state
   const [weaponName, setWeaponName] = useState("");
@@ -34,17 +35,16 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   // NEW: Handle weapon selection from Equipment Browser
   async function handleSelectFromLibrary(weapon: any) {
     const weaponData = mapWeaponToCharacter(weapon, characterId);
+    const { error } = await supabase.from("character_weapons").insert(weaponData);
+    if (error) { alert("Error adding weapon: " + error.message); }
+    else { setShowBrowser(false); onUpdate(); }
+  }
 
-    const { error } = await supabase
-      .from("character_weapons")
-      .insert(weaponData);
-
-    if (error) {
-      alert("Error adding weapon: " + error.message);
-    } else {
-      setShowBrowser(false);
-      onUpdate();
-    }
+  async function handleSelectMagicWeapon(weapon: any) {
+    const weaponData = mapMagicWeaponToCharacter(weapon, characterId);
+    const { error } = await supabase.from("character_weapons").insert(weaponData);
+    if (error) { alert("Error adding magic weapon: " + error.message); }
+    else { setShowMagicWeaponBrowser(false); onUpdate(); }
   }
 
   function openAddModal() {
@@ -157,23 +157,14 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   return (
     <div>
       {/* MODIFIED: Add button group with Browse Library button */}
-      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
-        <button
-          onClick={() => setShowBrowser(true)}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          📖 Browse Weapons Library
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
+        <button onClick={() => setShowBrowser(true)}
+          style={{ padding: "0.75rem 1.25rem", background: "#10b981", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          📖 Weapons
+        </button>
+        <button onClick={() => setShowMagicWeaponBrowser(true)}
+          style={{ padding: "0.75rem 1.25rem", background: "#7c3aed", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}>
+          ✨ Magic Weapons
         </button>
 
         <button
@@ -678,6 +669,13 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
           initialCategory="weapons"
           onSelect={handleSelectFromLibrary}
           onClose={() => setShowBrowser(false)}
+        />
+      )}
+      {showMagicWeaponBrowser && (
+        <EquipmentBrowser
+          initialCategory="magic-weapons"
+          onSelect={handleSelectMagicWeapon}
+          onClose={() => setShowMagicWeaponBrowser(false)}
         />
       )}
     </div>
