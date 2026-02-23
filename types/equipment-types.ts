@@ -146,9 +146,12 @@ export type EquipmentItem = Weapon | Firearm | Armor | Shield | AlchemicalReagen
 
 export type EquipmentCategory = 
   | "weapons"
+  | "magic-weapons"
   | "firearms"
   | "armor"
+  | "magic-armor"
   | "shields"
+  | "magic-shields"
   | "alchemical-reagents"
   | "alchemical-remedies"
   | "alchemical-tools"
