@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
-import { mapArmorToCharacter, mapShieldToCharacter } from "@/lib/equipmentMappers";
+import { mapArmorToCharacter, mapShieldToCharacter, mapMagicArmorToCharacter, mapMagicShieldToCharacter } from "@/lib/equipmentMappers";
 
 interface ArmorTabProps {
   characterId: string;
@@ -16,6 +16,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   const [editingArmor, setEditingArmor] = useState<any>(null);
   const [showArmorBrowser, setShowArmorBrowser] = useState(false); // NEW: Equipment Browser state for armor
   const [showShieldBrowser, setShowShieldBrowser] = useState(false); // NEW: Equipment Browser state for shields
+  const [showMagicArmorBrowser, setShowMagicArmorBrowser] = useState(false);
+  const [showMagicShieldBrowser, setShowMagicShieldBrowser] = useState(false);
 
   // Form state
   const [armorName, setArmorName] = useState("");
@@ -51,6 +53,20 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
       setShowShieldBrowser(false);
       onUpdate();
     }
+  }
+
+  async function handleSelectMagicArmor(item: any) {
+    const armorData = mapMagicArmorToCharacter(item, characterId);
+    const { error } = await supabase.from("character_armor").insert(armorData);
+    if (error) { alert("Error adding magic armor: " + error.message); }
+    else { setShowMagicArmorBrowser(false); onUpdate(); }
+  }
+
+  async function handleSelectMagicShield(item: any) {
+    const shieldData = mapMagicShieldToCharacter(item, characterId);
+    const { error } = await supabase.from("character_armor").insert(shieldData);
+    if (error) { alert("Error adding magic shield: " + error.message); }
+    else { setShowMagicShieldBrowser(false); onUpdate(); }
   }
 
   function openAddModal() {
@@ -141,35 +157,22 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   return (
     <div>
       {/* MODIFIED: Button group with Browse buttons */}
-      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
-        <button
-          onClick={() => setShowArmorBrowser(true)}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          📖 Browse Armor Library
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
+        <button onClick={() => setShowArmorBrowser(true)}
+          style={{ padding: "0.75rem 1.25rem", background: "#10b981", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+          📖 Armor
         </button>
-
-        <button
-          onClick={() => setShowShieldBrowser(true)}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          📖 Browse Shields
+        <button onClick={() => setShowMagicArmorBrowser(true)}
+          style={{ padding: "0.75rem 1.25rem", background: "#7c3aed", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+          ✨ Magic Armor
+        </button>
+        <button onClick={() => setShowShieldBrowser(true)}
+          style={{ padding: "0.75rem 1.25rem", background: "#10b981", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+          🔰 Shields
+        </button>
+        <button onClick={() => setShowMagicShieldBrowser(true)}
+          style={{ padding: "0.75rem 1.25rem", background: "#7c3aed", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+          ✨ Magic Shields
         </button>
 
         <button
@@ -582,12 +585,25 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
           onClose={() => setShowArmorBrowser(false)}
         />
       )}
-
       {showShieldBrowser && (
         <EquipmentBrowser
           initialCategory="shields"
           onSelect={handleSelectShield}
           onClose={() => setShowShieldBrowser(false)}
+        />
+      )}
+      {showMagicArmorBrowser && (
+        <EquipmentBrowser
+          initialCategory="magic-armor"
+          onSelect={handleSelectMagicArmor}
+          onClose={() => setShowMagicArmorBrowser(false)}
+        />
+      )}
+      {showMagicShieldBrowser && (
+        <EquipmentBrowser
+          initialCategory="magic-shields"
+          onSelect={handleSelectMagicShield}
+          onClose={() => setShowMagicShieldBrowser(false)}
         />
       )}
     </div>
