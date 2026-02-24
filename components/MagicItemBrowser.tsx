@@ -188,7 +188,7 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
 
   return (
     <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={e => e.stopPropagation()}>
+      <div className={styles.modal} style={{ height: "92vh" }} onClick={e => e.stopPropagation()}>
 
         {/* ── HEADER ── */}
         <div className={styles.header}>
