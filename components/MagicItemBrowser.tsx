@@ -315,7 +315,7 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
         )}
 
         {/* ── ITEM LIST ── */}
-        <div className={styles.itemList}>
+        <div className={styles.itemList} style={{ display: "block", overflowY: "auto", flex: 1, minHeight: 0 }}>
           {loading && (
             <div className={styles.center}>
               <div className={styles.spinner} />
@@ -355,6 +355,7 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
               <div
                 key={item.id}
                 className={`${styles.item} ${isExpanded ? styles.itemExpanded : ""}`}
+                style={{ marginBottom: "6px" }}
               >
                 {/* Item header row */}
                 <div
