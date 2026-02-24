@@ -128,6 +128,16 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
 
   // Filter + sort
   const filtered = useMemo(() => {
+    // Show nothing until the user applies at least one filter or types a search
+    const hasActiveFilter =
+      selectedSlots.size > 0 ||
+      selectedPowers.size > 0 ||
+      selectedRarities.size > 0 ||
+      selectedTypes.size > 0 ||
+      searchTerm.trim().length > 0;
+
+    if (!hasActiveFilter) return [];
+
     let result = allItems;
 
     if (selectedSlots.size > 0)
@@ -324,9 +334,18 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
 
           {!loading && !error && filtered.length === 0 && (
             <div className={styles.center}>
-              <p style={{ fontSize: "1.5rem" }}>🔍</p>
-              <p>No items match your filters.</p>
-              <button className={styles.clearBtn} onClick={clearFilters}>Clear filters</button>
+              {activeFilterCount === 0 && !searchTerm.trim() ? (
+                <>
+                  <p style={{ fontSize: "1.5rem" }}>🪄</p>
+                  <p>Use the filters or search above to find magic items.</p>
+                </>
+              ) : (
+                <>
+                  <p style={{ fontSize: "1.5rem" }}>🔍</p>
+                  <p>No items match your filters.</p>
+                  <button className={styles.clearBtn} onClick={clearFilters}>Clear filters</button>
+                </>
+              )}
             </div>
           )}
 
