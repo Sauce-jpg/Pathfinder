@@ -14,6 +14,8 @@
       "Cost": 25170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Absorbing+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -42,6 +44,8 @@
       "Cost": 9670
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Avalanche+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -72,6 +76,8 @@
       "Cost": 8180
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Battlement+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -100,6 +106,8 @@
       "Cost": 18170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Belligerent+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -128,6 +136,8 @@
       "Cost": 9385
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Bloodfeast+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -156,6 +166,8 @@
       "Cost": 9582
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Broadside+Bulwark",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -184,6 +196,8 @@
       "Cost": 2219
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Bronze+Whisperer%27s+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Minor",
     "BaseArmor": "Light Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -212,6 +226,8 @@
       "Cost": 2450
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Burglar%27s+Buckler",
+    "PowerLevel": "Greater",
+    "Rarity": "Minor",
     "BaseArmor": "Buckler",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -240,6 +256,8 @@
       "Cost": 1653
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Caster%27s+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Minor",
     "BaseArmor": "Light Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -268,6 +286,8 @@
       "Cost": 5153
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Caster%27s+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Medium",
     "BaseArmor": "Light Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -296,6 +316,8 @@
       "Cost": 6670
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Celestial+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -326,6 +348,8 @@
       "Cost": 3670
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Celestial+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -354,6 +378,8 @@
       "Cost": 4158
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Clawhand+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "mithral",
@@ -382,6 +408,8 @@
       "Cost": 4170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Collapsible+Tower",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -410,6 +438,8 @@
       "Cost": 0
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Darkwood+Buckler",
+    "PowerLevel": "Least",
+    "Rarity": "Minor",
     "BaseArmor": "Buckler",
     "ArmorCategory": "Shield",
     "Material": "darkwood",
@@ -438,6 +468,8 @@
       "Cost": 0
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Darkwood+Shield",
+    "PowerLevel": "Least",
+    "Rarity": "Minor",
     "BaseArmor": "Heavy Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "darkwood",
@@ -466,6 +498,8 @@
       "Cost": 3670
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Dragonslayer%27s+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -494,6 +528,8 @@
       "Cost": 1342
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Driftwood+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Minor",
     "BaseArmor": "Heavy Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -522,6 +558,8 @@
       "Cost": 10840
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Elephant+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Leather Madu",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -550,6 +588,8 @@
       "Cost": 26390
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Elysian+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -580,6 +620,8 @@
       "Cost": 60930
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Equalizer+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "mithral",
@@ -608,6 +650,8 @@
       "Cost": 23530
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Force+Tower",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "mithral",
@@ -639,6 +683,8 @@
       "Cost": 9680
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Fortress+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -667,6 +713,8 @@
       "Cost": 8680
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Guard+of+Man",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -695,6 +743,8 @@
       "Cost": 5155
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Gunner%E2%80%99s+Buckler",
+    "PowerLevel": "Greater",
+    "Rarity": "Medium",
     "BaseArmor": "Buckler",
     "ArmorCategory": "Shield",
     "Material": "mithral",
@@ -723,6 +773,8 @@
       "Cost": 13170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Gunner%E2%80%99s+Buckler",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -751,6 +803,8 @@
       "Cost": 15670
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Lens+of+the+Void",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield?",
     "ArmorCategory": "Shield",
     "Material": "Voidglass",
@@ -779,6 +833,8 @@
       "Cost": 4670
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Lion%27s+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -807,6 +863,8 @@
       "Cost": 10037
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Lion-Skull+Klar",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Klar",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -835,6 +893,8 @@
       "Cost": 0
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Lion-Skull+Klar",
+    "PowerLevel": "Least",
+    "Rarity": "Minor",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "Living Steel",
@@ -863,6 +923,8 @@
       "Cost": 3659
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Lockpick+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Light Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -891,6 +953,8 @@
       "Cost": 7170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Maelstrom+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -919,6 +983,8 @@
       "Cost": 4670
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Maiden%27s+Aegis",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -947,6 +1013,8 @@
       "Cost": 0
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Mithral+Heavy+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Minor",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "mithral",
@@ -975,6 +1043,8 @@
       "Cost": 9580
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Phalanx+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Medium",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "adamantine",
@@ -1003,6 +1073,8 @@
       "Cost": 0
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Poisoner%27s+Buckler",
+    "PowerLevel": "Greater",
+    "Rarity": "Minor",
     "BaseArmor": "Buckler",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1031,6 +1103,8 @@
       "Cost": 18155
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Quick+Block+Buckler",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Buckler",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1061,6 +1135,8 @@
       "Cost": 4157
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Shield+of+Covered+Retreat",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1091,6 +1167,8 @@
       "Cost": 10713
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Shield+of+Hags",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Light Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1119,6 +1197,8 @@
       "Cost": 3909
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Shield+of+Hags",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Light Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1149,6 +1229,8 @@
       "Cost": 9170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Shield+of+the+Mazeborn",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1179,6 +1261,8 @@
       "Cost": 2890
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Slaver%27s+Madu",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Leather Madu",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1207,6 +1291,8 @@
       "Cost": 12680
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Spell+Ward+Tower+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1237,6 +1323,8 @@
       "Cost": 39680
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Spellbane+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Major",
     "BaseArmor": "Tower Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1265,6 +1353,8 @@
       "Cost": 2875
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Spined+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1293,6 +1383,8 @@
       "Cost": 9733
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Spirit+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Light Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1323,6 +1415,8 @@
       "Cost": 8170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Tempest+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1353,6 +1447,8 @@
       "Cost": 7170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Volcanic+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Medium",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1383,6 +1479,8 @@
       "Cost": 8707
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Winged+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Wooden Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1411,6 +1509,8 @@
       "Cost": 10170
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Winged+Shield",
+    "PowerLevel": "Lesser",
+    "Rarity": "Major",
     "BaseArmor": "Heavy Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
@@ -1439,6 +1539,8 @@
       "Cost": 1159
     },
     "Reference": "https://www.aonprd.com/MagicArmorDisplay.aspx?ItemName=Zombie+Skin+Shield",
+    "PowerLevel": "Greater",
+    "Rarity": "Minor",
     "BaseArmor": "Light Steel Shield",
     "ArmorCategory": "Shield",
     "Material": "",
