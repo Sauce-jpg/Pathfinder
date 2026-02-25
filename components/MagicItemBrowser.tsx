@@ -41,6 +41,7 @@ export interface MagicItem {
 interface MagicItemBrowserProps {
   onSelect: (item: MagicItem) => void;
   onClose: () => void;
+  initialTypes?: string[];  // pre-select type filter chips on open
 }
 
 // ============================================================================
@@ -118,7 +119,7 @@ function deriveRarity(gp: number): string {
 // MAIN COMPONENT
 // ============================================================================
 
-export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowserProps) {
+export default function MagicItemBrowser({ onSelect, onClose, initialTypes }: MagicItemBrowserProps) {
   const [allItems, setAllItems] = useState<MagicItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -129,7 +130,7 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
   const [selectedSlots, setSelectedSlots] = useState<Set<string>>(new Set());
   const [selectedPowers, setSelectedPowers] = useState<Set<string>>(new Set());
   const [selectedRarities, setSelectedRarities] = useState<Set<string>>(new Set());
-  const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set());
+  const [selectedTypes, setSelectedTypes] = useState<Set<string>>(new Set(initialTypes ?? []));
   const [sortBy, setSortBy] = useState<"name-asc" | "cost-asc" | "cost-desc" | "cl-asc" | "cl-desc">("name-asc");
   const [showFilters, setShowFilters] = useState(true);
 
