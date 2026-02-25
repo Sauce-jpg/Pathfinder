@@ -11,21 +11,31 @@ export interface MagicItem {
   id: string;
   Name: string;
   Cost: number;
-  Aura: string;
-  CL: number;
+  Aura?: string;
+  CL?: number;
   Slot: string;
-  Weight: string;
-  Source: string;
+  Weight?: string;
+  Source?: string;
   Description: string;
   RollRange?: string;
   Reference?: string;
-  PowerLevel: string;   // "Least" | "Lesser" | "Greater"
-  Rarity: string;       // "Minor" | "Medium" | "Major"
-  ItemType: string;     // "Wondrous Item" | "Rod" | "Staff"
+  PowerLevel: string;
+  Rarity: string;
+  ItemType: string;
   Construction?: {
     Requirements: string;
     Cost: number;
   };
+  // Armor / shield fields
+  "AC Bonus"?: string;
+  "Max Dex"?: string;
+  "Armor Check Penalty"?: string;
+  "Arcane Spell Failure"?: string;
+  // Weapon fields
+  "Damage (M)"?: string;
+  Critical?: string;
+  Range?: string;
+  Type?: string;
 }
 
 interface MagicItemBrowserProps {
@@ -44,16 +54,18 @@ const ALL_SLOTS = [
 
 const POWER_LEVELS = ["Least", "Lesser", "Greater"];
 const RARITIES = ["Minor", "Medium", "Major"];
-const ITEM_TYPES = ["Wondrous Item", "Rod", "Staff"];
+const ITEM_TYPES = ["Wondrous Item", "Rod", "Staff", "Magic Armor", "Magic Shield", "Magic Weapon"];
 
 const SLOT_ICONS: Record<string, string> = {
   Belt: "🔰", Body: "👘", Chest: "🎽", Eyes: "👁️", Feet: "👟",
   Hands: "🧤", Head: "⛑️", Headband: "🎀", Neck: "📿",
   Ring: "💍", Shoulders: "🧥", Slotless: "✨", Wrists: "⌚",
+  Armor: "🛡️", Weapon: "⚔️",
 };
 
 const TYPE_ICONS: Record<string, string> = {
   "Wondrous Item": "✨", Rod: "🪄", Staff: "🔱",
+  "Magic Armor": "🛡️", "Magic Shield": "🔰", "Magic Weapon": "⚔️",
 };
 
 // ============================================================================
@@ -83,6 +95,25 @@ function getRarityColor(rarity: string): string {
   }
 }
 
+function parseGp(raw: string | number | undefined): number {
+  if (typeof raw === "number") return raw;
+  if (!raw || raw === "—") return 0;
+  const match = String(raw).replace(/,/g, "").match(/[\d.]+/);
+  return match ? parseFloat(match[0]) : 0;
+}
+
+function derivePowerLevel(gp: number): string {
+  if (gp <= 500)   return "Least";
+  if (gp <= 10000) return "Lesser";
+  return "Greater";
+}
+
+function deriveRarity(gp: number): string {
+  if (gp <= 1000)  return "Minor";
+  if (gp <= 30000) return "Medium";
+  return "Major";
+}
+
 // ============================================================================
 // MAIN COMPONENT
 // ============================================================================
@@ -102,14 +133,55 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
   const [sortBy, setSortBy] = useState<"name-asc" | "cost-asc" | "cost-desc" | "cl-asc" | "cl-desc">("name-asc");
   const [showFilters, setShowFilters] = useState(true);
 
-  // Load magic items JSON
+  // Load all magic item sources
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("/pathfinder/equipment/magic-items.json");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data: MagicItem[] = await res.json();
-        setAllItems(data);
+        const sources = [
+          { file: "magic-items.json",   itemType: "",              defaultSlot: "Slotless" },
+          { file: "magic-armor.json",   itemType: "Magic Armor",   defaultSlot: "Armor"   },
+          { file: "magic-weapons.json", itemType: "Magic Weapon",  defaultSlot: "Weapon"  },
+          { file: "magic-shields.json", itemType: "Magic Shield",  defaultSlot: "Armor"   },
+        ];
+
+        const allLoaded: MagicItem[] = [];
+
+        for (const src of sources) {
+          const res = await fetch(`/pathfinder/equipment/${src.file}`);
+          if (!res.ok) continue;
+          const raw: any[] = await res.json();
+
+          raw.forEach((item, idx) => {
+            const gp = parseGp(item.Cost ?? item.cost);
+            allLoaded.push({
+              id:          `${src.file}-${idx}`,
+              Name:        item.Name ?? "",
+              Cost:        gp,
+              Aura:        item.Aura ?? item.aura ?? "",
+              CL:          item.CL ?? item.cl ?? 0,
+              Slot:        item.Slot ?? item.slot ?? src.defaultSlot,
+              Weight:      item.Weight ?? item.weight ?? "—",
+              Source:      item.Source ?? item.source ?? "",
+              Description: item.Description ?? item.description ?? "",
+              RollRange:   item.RollRange,
+              Reference:   item.Reference ?? item.reference,
+              PowerLevel:  item.PowerLevel ?? derivePowerLevel(gp),
+              Rarity:      item.Rarity    ?? deriveRarity(gp),
+              ItemType:    src.itemType || item.ItemType || "Wondrous Item",
+              Construction: item.Construction,
+              "AC Bonus":             item["AC Bonus"],
+              "Max Dex":              item["Max Dex"],
+              "Armor Check Penalty":  item["Armor Check Penalty"],
+              "Arcane Spell Failure": item["Arcane Spell Failure"],
+              "Damage (M)":           item["Damage (M)"],
+              Critical:               item.Critical,
+              Range:                  item.Range,
+              Type:                   item.Type,
+            });
+          });
+        }
+
+        setAllItems(allLoaded);
       } catch (e: any) {
         setError(e.message);
       } finally {
@@ -396,6 +468,27 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
                 {/* Expanded description */}
                 {isExpanded && (
                   <div className={styles.itemBody}>
+
+                    {/* Magic armor / shield stats */}
+                    {item["AC Bonus"] && (
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", padding: "0.5rem 0.75rem", marginBottom: "0.75rem", background: "#f0f9ff", border: "1px solid #bae6fd", borderRadius: "6px", fontSize: "0.85rem" }}>
+                        <span>AC Bonus: <strong>{item["AC Bonus"]}</strong></span>
+                        {item["Max Dex"] && <span>Max Dex: <strong>{item["Max Dex"]}</strong></span>}
+                        {item["Armor Check Penalty"] && <span>ACP: <strong>{item["Armor Check Penalty"]}</strong></span>}
+                        {item["Arcane Spell Failure"] && <span>ASF: <strong>{item["Arcane Spell Failure"]}</strong></span>}
+                      </div>
+                    )}
+
+                    {/* Magic weapon stats */}
+                    {item["Damage (M)"] && (
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", padding: "0.5rem 0.75rem", marginBottom: "0.75rem", background: "#fff7ed", border: "1px solid #fed7aa", borderRadius: "6px", fontSize: "0.85rem" }}>
+                        <span>Damage: <strong>{item["Damage (M)"]}</strong></span>
+                        {item.Critical && <span>Crit: <strong>{item.Critical}</strong></span>}
+                        {item.Range && item.Range !== "—" && <span>Range: <strong>{item.Range}</strong></span>}
+                        {item.Type && <span>Type: <strong>{item.Type}</strong></span>}
+                      </div>
+                    )}
+
                     <p className={styles.description}>{item.Description}</p>
 
                     {item.Construction && (
@@ -433,7 +526,7 @@ export default function MagicItemBrowser({ onSelect, onClose }: MagicItemBrowser
         {/* ── FOOTER ── */}
         <div className={styles.footer}>
           <span className={styles.footerCount}>
-            {filtered.length.toLocaleString()} of {allItems.length.toLocaleString()} items
+            {filtered.length.toLocaleString()} of {allItems.length.toLocaleString()} magic items
             {activeFilterCount > 0 && ` · ${activeFilterCount} filter${activeFilterCount !== 1 ? "s" : ""} active`}
           </span>
           <button className={styles.footerClose} onClick={onClose}>Close</button>
