@@ -61,19 +61,31 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   }
 
   async function handleSelectMagicArmorOrShield(item: MagicItem) {
+    const parseNum = (v: any): number => {
+      if (v === undefined || v === null || v === "—" || v === "") return 0;
+      const n = parseInt(String(v).replace(/[^\d-]/g, ""));
+      return isNaN(n) ? 0 : n;
+    };
+    const parseMaxDex = (v: any): number | null => {
+      if (v === undefined || v === null || v === "—" || v === "") return null;
+      const n = parseInt(String(v).replace(/\D/g, ""));
+      return isNaN(n) ? null : n;
+    };
+
     const armorData = {
       character_id: characterId,
       armor_name: item.Name,
-      armor_type: item.ItemType === "Magic Shield" ? "shield" : "medium",
-      ac_bonus: parseInt(String(item["AC Bonus"] ?? "0").replace(/[^0-9-]/g, "")) || 0,
-      max_dex_bonus: item["Max Dex"] && item["Max Dex"] !== "—" ? parseInt(item["Max Dex"]) : null,
-      armor_check_penalty: parseInt(String(item["Armor Check Penalty"] ?? "0").replace(/[^0-9-]/g, "")) || 0,
-      arcane_spell_failure: parseInt(String(item["Arcane Spell Failure"] ?? "0").replace(/[^0-9%]/g, "")) || 0,
-      enhancement_bonus: 0,
+      armor_type: item.ItemType === "Magic Shield" ? "shield" : "light",
+      ac_bonus: parseNum(item["AC Bonus"]),
+      enhancement_bonus: parseNum(item["Enhancement Bonus"]),
+      max_dex_bonus: parseMaxDex(item["Max Dex"]),
+      armor_check_penalty: parseNum(item["Armor Check Penalty"]),
+      arcane_spell_failure: parseNum(item["Arcane Spell Failure"]),
       properties: [],
       notes: [item.Aura && `Aura: ${item.Aura}`, item.CL && `CL ${item.CL}`].filter(Boolean).join(" · ") || null,
       is_equipped: false,
     };
+
     const { error } = await supabase.from("character_armor").insert(armorData);
     if (error) { alert("Error adding magic armor/shield: " + error.message); }
     else { setShowMagicBrowser(false); onUpdate(); }
