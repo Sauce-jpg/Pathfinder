@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { ItemBonusesEditor } from "./ItemBonusesEditor";
 import EquipmentBrowser from "../EquipmentBrowser";
@@ -21,6 +21,18 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [editingItem, setEditingItem] = useState<any>(null);
   const [showBrowser, setShowBrowser] = useState(false);
   const [showMagicBrowser, setShowMagicBrowser] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Form state
   const [itemName, setItemName] = useState("");
@@ -175,61 +187,33 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
   return (
     <div>
-      {/* SIMPLIFIED: Single browse button */}
-      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem" }}>
-
-        <button
-          onClick={() => setShowMagicBrowser(true)}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "linear-gradient(135deg, #312e81, #4338ca)",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          🪄 Browse Magic Items (1,091 items)
-        </button>
-
-
-        
-        <button
-          onClick={() => setShowBrowser(true)}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#10b981",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
-        >
-          📖 Browse Equipment Library (2,380 items)
-        </button>
-
-        <button
-          onClick={openAddModal}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#f59e0b",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          + Add Custom Item
-        </button>
+      {/* Add Item dropdown button */}
+      <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
+        <div ref={dropdownRef} style={{ position: "relative" }}>
+          <button
+            onClick={() => setShowDropdown(v => !v)}
+            style={{ padding: "0.75rem 1.25rem", background: "#10b981", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            + Add Item ▾
+          </button>
+          {showDropdown && (
+            <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, background: "white", border: "1px solid #ddd", borderRadius: "8px", boxShadow: "0 4px 16px rgba(0,0,0,0.12)", zIndex: 100, minWidth: "240px", overflow: "hidden" }}>
+              {[
+                { label: "🪄 Browse Magic Items", action: () => { setShowMagicBrowser(true); setShowDropdown(false); } },
+                { label: "📖 Browse Equipment Library", action: () => { setShowBrowser(true); setShowDropdown(false); } },
+                { label: "✏️ Add Custom Item", action: () => { openAddModal(); setShowDropdown(false); } },
+              ].map(({ label, action }) => (
+                <button key={label} onClick={action}
+                  style={{ display: "block", width: "100%", padding: "0.75rem 1rem", background: "none", border: "none", textAlign: "left", cursor: "pointer", fontSize: "0.95rem", borderBottom: "1px solid #f0f0f0" }}
+                  onMouseEnter={e => (e.currentTarget.style.background = "#f9fafb")}
+                  onMouseLeave={e => (e.currentTarget.style.background = "none")}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {items.length === 0 ? (
