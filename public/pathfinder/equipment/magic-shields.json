@@ -150,9 +150,7 @@
     "Weight": "10 lbs.",
     "Source": "Ultimate Equipment pg. 131",
     "RollRange": "",
-    "Description": "The front of this +2 heavy wooden shield has several small holes that resemble the gun ports on a naval ship. There are seven such holes in total on the front of shield, each varying in size, with an equal number of thin hemp strings on the reverse side. As a standard action, the wielder of the broadside bulwark can pull one of the strings, causing a small red bead to fly out from the associated gun port. This bead travels 30 feet forward and detonates as a fireball spell (Reflex DC 14 half), leaving the wielder outside the blast radius unless it contacts something before reaching 30 feet. After a string is pulled, its associated gun port is permanently closes and can no longer be used.
-The gun ports are different sizes, and include three small ports that deal 3d6 points of fire damage, three larger ports that deal 6d6 points of fire damage, and one massive port in the center of the shield that deals 9d6 points of fire damage.
-Once all the gun ports have been fired, the shield takes on a blackened, charred look and grants the wielder fire resistance 5.",
+    "Description": "The front of this +2 heavy wooden shield has several small holes that resemble the gun ports on a naval ship. There are seven such holes in total on the front of shield, each varying in size, with an equal number of thin hemp strings on the reverse side. As a standard action, the wielder of the broadside bulwark can pull one of the strings, causing a small red bead to fly out from the associated gun port. This bead travels 30 feet forward and detonates as a fireball spell (Reflex DC 14 half), leaving the wielder outside the blast radius unless it contacts something before reaching 30 feet. After a string is pulled, its associated gun port is permanently closes and can no longer be used. The gun ports are different sizes, and include three small ports that deal 3d6 points of fire damage, three larger ports that deal 6d6 points of fire damage, and one massive port in the center of the shield that deals 9d6 points of fire damage. Once all the gun ports have been fired, the shield takes on a blackened, charred look and grants the wielder fire resistance 5.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, fireball, resist energy",
       "Cost": 9582
@@ -180,8 +178,7 @@ Once all the gun ports have been fired, the shield takes on a blackened, charred
     "Weight": "6 lbs.",
     "Source": "Ultimate Equipment pg. 131",
     "RollRange": "",
-    "Description": "This +1 light steel shield is decorated with bronze gears and vaguely resembles a feminine metal mask with a rune on its forehead.
-As a standard action, the wearer can command it to noisily transform into a buckler or back into its light shield form. Once per day, the wearer can use it to deliver a shocking grasp.",
+    "Description": "This +1 light steel shield is decorated with bronze gears and vaguely resembles a feminine metal mask with a rune on its forehead. As a standard action, the wearer can command it to noisily transform into a buckler or back into its light shield form. Once per day, the wearer can use it to deliver a shocking grasp.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, minor creation, shocking grasp",
       "Cost": 2219
@@ -237,8 +234,7 @@ As a standard action, the wearer can command it to noisily transform into a buck
     "Weight": "5 lbs.",
     "Source": "Ultimate Equipment pg. 132",
     "RollRange": "",
-    "Description": "This +1 light wooden shield has a leather strip on the back on which a spellcaster can scribe a single spell as on a scroll. A spell so scribed requires half the normal cost in raw materials. The strip cannot accommodate spells of higher than 3rd level. The strip is reusable.
-A random caster’s shield has a 50% chance of having a single medium scroll spell on it. The spell is divine (01–80 on d%) or arcane (81–100). A caster’s shield has a 5% arcane spell failure chance. The price of the shield is modified by the value of the scroll spell if one is currently scribed.",
+    "Description": "This +1 light wooden shield has a leather strip on the back on which a spellcaster can scribe a single spell as on a scroll. A spell so scribed requires half the normal cost in raw materials. The strip cannot accommodate spells of higher than 3rd level. The strip is reusable. A random caster’s shield has a 50% chance of having a single medium scroll spell on it. The spell is divine (01–80 on d%) or arcane (81–100). A caster’s shield has a 5% arcane spell failure chance. The price of the shield is modified by the value of the scroll spell if one is currently scribed.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, Scribe Scroll, Level 6",
       "Cost": 1653
@@ -266,8 +262,7 @@ A random caster’s shield has a 50% chance of having a single medium scroll spe
     "Weight": "5 lbs.",
     "Source": "Ultimate Equipment pg. 132",
     "RollRange": "",
-    "Description": "This +3 light wooden shield has a leather strip on the back on which a spellcaster can scribe a single spell as on a scroll. A spell so scribed requires half the normal cost in raw materials. The strip cannot accommodate spells of higher than 5rd level. The strip is reusable.
-A random caster’s shield has a 50% chance of having a single medium scroll spell on it. The spell is divine (01–80 on d%) or arcane (81–100). A caster’s shield has a 5% arcane spell failure chance. The price of the shield is modified by the value of the scroll spell if one is currently scribed.",
+    "Description": "This +3 light wooden shield has a leather strip on the back on which a spellcaster can scribe a single spell as on a scroll. A spell so scribed requires half the normal cost in raw materials. The strip cannot accommodate spells of higher than 5rd level. The strip is reusable. A random caster’s shield has a 50% chance of having a single medium scroll spell on it. The spell is divine (01–80 on d%) or arcane (81–100). A caster’s shield has a 5% arcane spell failure chance. The price of the shield is modified by the value of the scroll spell if one is currently scribed.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, Scribe Scroll, Level 6",
       "Cost": 5153
@@ -323,8 +318,7 @@ A random caster’s shield has a 50% chance of having a single medium scroll spe
     "Weight": "15 lbs.",
     "Source": "Ultimate Equipment pg. 132",
     "RollRange": "",
-    "Description": "When this +1 heavy steel shield is in the hands of a character with the challenge class feature, this shield grants additional abilities.
-By spending one use of her challenge class feature as an immediate action, the wearer of a challenging shield can apply her Charisma bonus to her shield bonus to AC against a target of her challenge for 1 minute.",
+    "Description": "When this +1 heavy steel shield is in the hands of a character with the challenge class feature, this shield grants additional abilities. By spending one use of her challenge class feature as an immediate action, the wearer of a challenging shield can apply her Charisma bonus to her shield bonus to AC against a target of her challenge for 1 minute.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, nereid's grace",
       "Cost": 3670
@@ -352,8 +346,7 @@ By spending one use of her challenge class feature as an immediate action, the w
     "Weight": "8 lbs.",
     "Source": "Ultimate Equipment pg. 132",
     "RollRange": "",
-    "Description": "This shield is made of bone and ivory, and is imbued with magic to function as a +2 mithral heavy steel shield (though it is not considered to be made of metal). The shield has stylized animal claws encircling its outer rim. If the wearer is grappled, pinned, or swallowed whole, as a standard action he can cause the claws to animate and make a single melee attack dealing 1d8 points of damage + the wielder’s Strength modifier (1d6 + his Strength modifier for a Small wielder) without requiring a successful combat maneuver check. This attack is considered a weapon attack with a one-handed weapon the wielder is proficient with, not a shield bash.
-Additionally, the claws can animate to perform the somatic component of a spell as long as the arm holding the shield would be able to provide this component if it weren’t carrying a shield. As a result, the shield has no arcane spell failure chance.",
+    "Description": "This shield is made of bone and ivory, and is imbued with magic to function as a +2 mithral heavy steel shield (though it is not considered to be made of metal). The shield has stylized animal claws encircling its outer rim. If the wearer is grappled, pinned, or swallowed whole, as a standard action he can cause the claws to animate and make a single melee attack dealing 1d8 points of damage + the wielder’s Strength modifier (1d6 + his Strength modifier for a Small wielder) without requiring a successful combat maneuver check. This attack is considered a weapon attack with a one-handed weapon the wielder is proficient with, not a shield bash. Additionally, the claws can animate to perform the somatic component of a spell as long as the arm holding the shield would be able to provide this component if it weren’t carrying a shield. As a result, the shield has no arcane spell failure chance.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, summon nature's ally I",
       "Cost": 4158
@@ -493,8 +486,7 @@ Additionally, the claws can animate to perform the somatic component of a spell 
     "Weight": "10 lbs.",
     "Source": "Ultimate Equipment pg. 134",
     "RollRange": "",
-    "Description": "This +1 heavy wooden shield looks like it is made from pieces of driftwood lashed together with seaweed.
-The bearer may use know direction at will. Once per day when s truck by a melee attack, the bearer of a driftwood shield can use warp wood as an immediate action, affecting one Small or smaller wooden object wielded, held, or carried by the opponent who attacked her",
+    "Description": "This +1 heavy wooden shield looks like it is made from pieces of driftwood lashed together with seaweed. The bearer may use know direction at will. Once per day when s truck by a melee attack, the bearer of a driftwood shield can use warp wood as an immediate action, affecting one Small or smaller wooden object wielded, held, or carried by the opponent who attacked her",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, know direction, warp wood",
       "Cost": 1342
@@ -578,8 +570,7 @@ The bearer may use know direction at will. Once per day when s truck by a melee 
     "Weight": "23 lbs.",
     "Source": "Ultimate Equipment pg. 134",
     "RollRange": "",
-    "Description": "This massive shield is shined to a mirror finish and fitted with supple leather straps.
-This +1 mithral tower shield displays no decoration or markings on its highly reflective surface. Once per day, the bearer of this shield can issue a challenge to a foe and ring the shield like a gong, resulting in a resonating blast that negates all magic in a 10-foot radius, as per antimagic field. This effect lasts for 1 minute.",
+    "Description": "This massive shield is shined to a mirror finish and fitted with supple leather straps. This +1 mithral tower shield displays no decoration or markings on its highly reflective surface. Once per day, the bearer of this shield can issue a challenge to a foe and ring the shield like a gong, resulting in a resonating blast that negates all magic in a 10-foot radius, as per antimagic field. This effect lasts for 1 minute.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, antimagic field",
       "Cost": 60930
@@ -663,8 +654,7 @@ This +1 mithral tower shield displays no decoration or markings on its highly re
     "Weight": "45 lbs.",
     "Source": "Ultimate Equipment pg. 135",
     "RollRange": "",
-    "Description": "This massive, imposing +2 spell resistance (13) tower shield is a metal bulwark engraved with the main edicts of the Laws of Man. The spell resistance special ability of this shield works only against divine spells and does not ward the bearer against arcane magic. While held, the shield grants a +4 resistance bonus on Fortitude saving throws against divine spells and spell-like abilities.
-Three times per day as a swift action, when the wielder of a guard of man is in the area of channeled energy (regardless of whether she is excluded by an effect such as Selective Channeling), she can rebuke the god powering the ability. Using this ability causes the text on the guard of man to glow and decreases the amount of channeled energy by half (minimum 1). This reduction affects the channeled energy itself, and thus reduces the effect on all targets within its area. The power of the channeled energy can be further reduced with a successful Will saving throw, as normal.",
+    "Description": "This massive, imposing +2 spell resistance (13) tower shield is a metal bulwark engraved with the main edicts of the Laws of Man. The spell resistance special ability of this shield works only against divine spells and does not ward the bearer against arcane magic. While held, the shield grants a +4 resistance bonus on Fortitude saving throws against divine spells and spell-like abilities. Three times per day as a swift action, when the wielder of a guard of man is in the area of channeled energy (regardless of whether she is excluded by an effect such as Selective Channeling), she can rebuke the god powering the ability. Using this ability causes the text on the guard of man to glow and decreases the amount of channeled energy by half (minimum 1). This reduction affects the channeled energy itself, and thus reduces the effect on all targets within its area. The power of the channeled energy can be further reduced with a successful Will saving throw, as normal.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, spell resistance, creator must be an atheist",
       "Cost": 8680
@@ -720,9 +710,7 @@ Three times per day as a swift action, when the wielder of a guard of man is in 
     "Weight": "15 lbs.",
     "Source": "Ultimate Equipment pg. 135",
     "RollRange": "",
-    "Description": "An icon of order is a +2 heavy steel shield that typically displays a sword-and-sunburst symbol on a white field.
-The wielder of an icon of order gains a +2 sacred bonus on saves against spells and effects with the chaotic descriptor.
-Once per day, the wielder can cast protection from chaos as a swift action.",
+    "Description": "An icon of order is a +2 heavy steel shield that typically displays a sword-and-sunburst symbol on a white field. The wielder of an icon of order gains a +2 sacred bonus on saves against spells and effects with the chaotic descriptor. Once per day, the wielder can cast protection from chaos as a swift action.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, quicken spell, protection from chaos",
       "Cost": 13170
@@ -750,8 +738,7 @@ Once per day, the wielder can cast protection from chaos as a swift action.",
     "Weight": "30 lbs.",
     "Source": "Ultimate Equipment pg. 136",
     "RollRange": "",
-    "Description": "The matte surface of this +1 voidglass heavy shield is cold to the touch. The shield’s face contains a disorienting field of flickering stars.
-On command, the wearer of this shield can take 1 point of Wisdom drain to banish a single creature within 30 feet into the void. The target of this ability must succeed at a DC 16 Will save or be teleported into the airless void of space. The target can attempt a new saving throw as a full-round action each round to return. While banished in this way, the target takes 3d6 points of cold damage per round and must hold its breath or begin to suffocate. If the Wisdom damage is negated or does not occur, the ability does not function. If the Wisdom drain is healed, any banished creature returns, and the shield becomes permanently non-magical.",
+    "Description": "The matte surface of this +1 voidglass heavy shield is cold to the touch. The shield’s face contains a disorienting field of flickering stars. On command, the wearer of this shield can take 1 point of Wisdom drain to banish a single creature within 30 feet into the void. The target of this ability must succeed at a DC 16 Will save or be teleported into the airless void of space. The target can attempt a new saving throw as a full-round action each round to return. While banished in this way, the target takes 3d6 points of cold damage per round and must hold its breath or begin to suffocate. If the Wisdom damage is negated or does not occur, the ability does not function. If the Wisdom drain is healed, any banished creature returns, and the shield becomes permanently non-magical.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, teleport",
       "Cost": 15670
@@ -807,9 +794,7 @@ On command, the wearer of this shield can take 1 point of Wisdom drain to banish
     "Weight": "6 lbs.",
     "Source": "Ultimate Equipment pg. 136",
     "RollRange": "",
-    "Description": "This +2 klar is shaped from the skull of a lion.
-The shape of the skull allows the wielder to properly hold and shoot a shortbow (though not a longbow) while still benefiting from the Lion-Skull klar’s shield bonus.
-Up to three times per day as a free action, the wielder of a Lion-Skull klar can utter praise to the nature totem of the moon. The next arrow fired after the prayer trails a line of shimmering stars in its wake. If a creature is struck by this arrow, the stars orbit it for the next 8 rounds, negating any concealment for the target and causing it to emit light as if it were holding a sunrod.",
+    "Description": "This +2 klar is shaped from the skull of a lion. The shape of the skull allows the wielder to properly hold and shoot a shortbow (though not a longbow) while still benefiting from the Lion-Skull klar’s shield bonus. Up to three times per day as a free action, the wielder of a Lion-Skull klar can utter praise to the nature totem of the moon. The next arrow fired after the prayer trails a line of shimmering stars in its wake. If a creature is struck by this arrow, the stars orbit it for the next 8 rounds, negating any concealment for the target and causing it to emit light as if it were holding a sunrod.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, wandering star motes, creator must be proficient with shortbow",
       "Cost": 10037
@@ -865,9 +850,7 @@ Up to three times per day as a free action, the wielder of a Lion-Skull klar can
     "Weight": "6 lbs.",
     "Source": "Ultimate Equipment pg. 137",
     "RollRange": "",
-    "Description": "With a command word, the bearer of this +2 light steel shield can cause a series of lockpicks and tiny tools to extend from the front of the shield and begin picking a lock or disabling a detected trap. The shield attempts a Disable Device check with a +10 total skill bonus. The shield is treated as using thieves’ tools, and can’t gain any additional bonuses on the check from spells, the aid another action, or other abilities.
-The shield performs the work on the wearer’s behalf, freeing her to take other actions. She must still remain in contact with the target of the Disable Device attempt for the normal number of rounds, but can move around the target, as long as she never breaks contact. The wearer is still the subject of any effects that result from the success or failure of the Disable Device check.
-While picking a lock or disabling a device with the shield, the wearer loses her shield bonus to Armor Class, though the bonus does apply against any result of the Disable Device check that targets Armor Class (such as an attack from a trap triggered by the shield failing its check by 5 or more).",
+    "Description": "With a command word, the bearer of this +2 light steel shield can cause a series of lockpicks and tiny tools to extend from the front of the shield and begin picking a lock or disabling a detected trap. The shield attempts a Disable Device check with a +10 total skill bonus. The shield is treated as using thieves’ tools, and can’t gain any additional bonuses on the check from spells, the aid another action, or other abilities. The shield performs the work on the wearer’s behalf, freeing her to take other actions. She must still remain in contact with the target of the Disable Device attempt for the normal number of rounds, but can move around the target, as long as she never breaks contact. The wearer is still the subject of any effects that result from the success or failure of the Disable Device check. While picking a lock or disabling a device with the shield, the wearer loses her shield bonus to Armor Class, though the bonus does apply against any result of the Disable Device check that targets Armor Class (such as an attack from a trap triggered by the shield failing its check by 5 or more).",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, animate objects",
       "Cost": 3659
@@ -1063,8 +1046,7 @@ While picking a lock or disabling a device with the shield, the wearer loses her
     "Weight": "10 lbs.",
     "Source": "Ultimate Equipment pg. 139",
     "RollRange": "",
-    "Description": "A shield of covered retreat is a wide wooden kite shield emblazoned with the image of a mighty tree.
-Three times per day as a swift action, the bearer of this +1 arrow deflection heavy wooden shield can select a single square within 5 feet (including the square occupied by the bearer) and extend a barrier of protective force around the square that lasts for 1d4 rounds. The barrier appears as a shimmer in the air, but it does not impede vision, movement, or other actions. As long as this barrier is in place, the creature occupying the square can stand up from prone or leave the square without provoking attacks of opportunity, even if the square is threatened by another creature. Other actions provoke attacks of opportunity as normal. Large or larger creatures cannot benefit from this effect. A creature occupying the square is not hindered by the barrier and may make attacks of opportunity normally.",
+    "Description": "A shield of covered retreat is a wide wooden kite shield emblazoned with the image of a mighty tree. Three times per day as a swift action, the bearer of this +1 arrow deflection heavy wooden shield can select a single square within 5 feet (including the square occupied by the bearer) and extend a barrier of protective force around the square that lasts for 1d4 rounds. The barrier appears as a shimmer in the air, but it does not impede vision, movement, or other actions. As long as this barrier is in place, the creature occupying the square can stand up from prone or leave the square without provoking attacks of opportunity, even if the square is threatened by another creature. Other actions provoke attacks of opportunity as normal. Large or larger creatures cannot benefit from this effect. A creature occupying the square is not hindered by the barrier and may make attacks of opportunity normally.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, shield",
       "Cost": 4157
@@ -1092,9 +1074,7 @@ Three times per day as a swift action, the bearer of this +1 arrow deflection he
     "Weight": "5 lbs.",
     "Source": "Ultimate Equipment pg. 139",
     "RollRange": "",
-    "Description": "Found with disturbing frequency amid treasure caches, this +1 light wooden shield has what appears to be a human face stretched across its front, with the weathered skin held in place by thick iron studs. Three times per day on command, the open mouth of the face can emit one of the two following effects:
-A burst of terrified screams that causes creatures in a 30-foot cone to become panicked as if by the fear spell. A successful DC 16 Will save causes a creature to become shaken for 1 round instead.
-A tortured voice pleading for help. Anyone within 60 feet of the shield hears the voice in her own language, spoken as if by a member of her own race.",
+    "Description": "Found with disturbing frequency amid treasure caches, this +1 light wooden shield has what appears to be a human face stretched across its front, with the weathered skin held in place by thick iron studs. Three times per day on command, the open mouth of the face can emit one of the two following effects: A burst of terrified screams that causes creatures in a 30-foot cone to become panicked as if by the fear spell. A successful DC 16 Will save causes a creature to become shaken for 1 round instead. A tortured voice pleading for help. Anyone within 60 feet of the shield hears the voice in her own language, spoken as if by a member of her own race.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, fear, tongues",
       "Cost": 10713
@@ -1122,9 +1102,7 @@ A tortured voice pleading for help. Anyone within 60 feet of the shield hears th
     "Weight": "6 lbs.",
     "Source": "Ultimate Equipment pg. 139",
     "RollRange": "",
-    "Description": "This +1 bashing light steel shield features a brilliant sun motif, and always seems comfortably warm to the touch.
-Once per day when the shield’s bearer successfully hits a creature with a shield bash attack, he may activate the shield as a swift action to mark the target with radiant energy. This radiant energy lasts for 1d4 rounds. During this time, the marked creature shines like a sunrod, and the wielder’s allies gain a +1 insight bonus on attack rolls against the marked creature as long as they are within 30 feet of it. If the marked creature is vulnerable to light, this insight bonus increases to +3.
-When a marked creature is hit by a melee or ranged attack, the radiant energy discharges in a burst of light, dealing 1d6 points of damage to the marked creature and ending the marking effect. If the creature is vulnerable to light, it is also dazed for 1 round.",
+    "Description": "This +1 bashing light steel shield features a brilliant sun motif, and always seems comfortably warm to the touch. Once per day when the shield’s bearer successfully hits a creature with a shield bash attack, he may activate the shield as a swift action to mark the target with radiant energy. This radiant energy lasts for 1d4 rounds. During this time, the marked creature shines like a sunrod, and the wielder’s allies gain a +1 insight bonus on attack rolls against the marked creature as long as they are within 30 feet of it. If the marked creature is vulnerable to light, this insight bonus increases to +3. When a marked creature is hit by a melee or ranged attack, the radiant energy discharges in a burst of light, dealing 1d6 points of damage to the marked creature and ending the marking effect. If the creature is vulnerable to light, it is also dazed for 1 round.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, daybreak arrow, tactical acumen",
       "Cost": 3909
@@ -1152,8 +1130,7 @@ When a marked creature is hit by a melee or ranged attack, the radiant energy di
     "Weight": "15 lbs.",
     "Source": "Ultimate Equipment pg. 140",
     "RollRange": "",
-    "Description": "This +1 bashing heavy steel shield resembles a bull’s head with a complex, maze-like rune inscribed on the creature’s forehead.
-In addition to the shield’s bashing ability, the shield allows the wielder to use know direction at will and find the path once per week. As long as the shield is equipped, it also grants the wearer immunity to the maze spell.",
+    "Description": "This +1 bashing heavy steel shield resembles a bull’s head with a complex, maze-like rune inscribed on the creature’s forehead. In addition to the shield’s bashing ability, the shield allows the wielder to use know direction at will and find the path once per week. As long as the shield is equipped, it also grants the wearer immunity to the maze spell.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, bull's strength, find the path, know direction",
       "Cost": 9170
@@ -1181,9 +1158,7 @@ In addition to the shield’s bashing ability, the shield allows the wielder to 
     "Weight": "5 lbs.",
     "Source": "Ultimate Equipment pg. 140",
     "RollRange": "",
-    "Description": "A common sight among slavers, this +1 leather madu is adorned with body parts—ranging from fingers and toes to severed heads—each one crudely affixed to the shield’s spikes.
-The wielder of the shield gains a +4 competence bonus on Intimidate checks while the shield is visible. The wearer and any associated companions take a –4 penalty on all Diplomacy checks made against good-aligned creatures while the shield is visible.
-Once per day as a standard action, the wielder of a slaver’s madu can shake the shield, causing the fetishes to rattle uncontrollably for 3 rounds. When he shakes the shield, the wielder can choose one creature within 35 feet to suffer the effects of the spell castigate as long as the fetishes continue shaking.",
+    "Description": "A common sight among slavers, this +1 leather madu is adorned with body parts—ranging from fingers and toes to severed heads—each one crudely affixed to the shield’s spikes. The wielder of the shield gains a +4 competence bonus on Intimidate checks while the shield is visible. The wearer and any associated companions take a –4 penalty on all Diplomacy checks made against good-aligned creatures while the shield is visible. Once per day as a standard action, the wielder of a slaver’s madu can shake the shield, causing the fetishes to rattle uncontrollably for 3 rounds. When he shakes the shield, the wielder can choose one creature within 35 feet to suffer the effects of the spell castigate as long as the fetishes continue shaking.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, castigate",
       "Cost": 2890
@@ -1295,9 +1270,7 @@ Once per day as a standard action, the wielder of a slaver’s madu can shake th
     "Weight": "5 lbs.",
     "Source": "Ultimate Equipment pg. 142",
     "RollRange": "",
-    "Description": "This large wood-and-hide shield has a totem animal painted on the shield’s face that seems to move when the shield is carried.
-Crafted by shamans to grant its wielder the power of tribal totem spirits, a spirit shield functions as a +1 ghost touch light wooden shield. Once per day on command, the shield can grant its bearer bull’s strength for 1 minute.
-Other versions of the spirit shields exist; some are known to grant cat’s grace or bear’s endurance to their wielders instead of bull’s strength.",
+    "Description": "This large wood-and-hide shield has a totem animal painted on the shield’s face that seems to move when the shield is carried. Crafted by shamans to grant its wielder the power of tribal totem spirits, a spirit shield functions as a +1 ghost touch light wooden shield. Once per day on command, the shield can grant its bearer bull’s strength for 1 minute. Other versions of the spirit shields exist; some are known to grant cat’s grace or bear’s endurance to their wielders instead of bull’s strength.",
     "Construction": {
       "Requirements": "Craft Magic Arms and Armor, bull's strength, etherealness",
       "Cost": 9733
