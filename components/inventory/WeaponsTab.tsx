@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
-import { mapWeaponToCharacter, mapMagicWeaponToCharacter } from "@/lib/equipmentMappers";
+import MagicItemBrowser, { type MagicItem } from "../MagicItemBrowser";
+import { mapWeaponToCharacter } from "@/lib/equipmentMappers";
 
 interface WeaponsTabProps {
   characterId: string;
@@ -14,8 +15,10 @@ interface WeaponsTabProps {
 export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingWeapon, setEditingWeapon] = useState<any>(null);
-  const [showBrowser, setShowBrowser] = useState(false); // NEW: Equipment Browser state
-  const [showMagicWeaponBrowser, setShowMagicWeaponBrowser] = useState(false);
+  const [showBrowser, setShowBrowser] = useState(false);
+  const [showMagicBrowser, setShowMagicBrowser] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Form state
   const [weaponName, setWeaponName] = useState("");
@@ -32,6 +35,17 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   // NEW: Handle weapon selection from Equipment Browser
   async function handleSelectFromLibrary(weapon: any) {
     const weaponData = mapWeaponToCharacter(weapon, characterId);
@@ -40,11 +54,27 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
     else { setShowBrowser(false); onUpdate(); }
   }
 
-  async function handleSelectMagicWeapon(weapon: any) {
-    const weaponData = mapMagicWeaponToCharacter(weapon, characterId);
+  async function handleSelectMagicWeapon(item: MagicItem) {
+    const weaponData = {
+      character_id: characterId,
+      weapon_name: item.Name,
+      weapon_type: "melee",
+      weapon_category: "martial",
+      damage_dice: item["Damage (M)"] ?? "1d6",
+      damage_type: item.Type ?? "slashing",
+      attack_bonus: 0,
+      damage_bonus: 0,
+      critical_range: "20",
+      critical_multiplier: "x2",
+      range_increment: null,
+      properties: [],
+      notes: [item.Aura && `Aura: ${item.Aura}`, item.CL && `CL ${item.CL}`].filter(Boolean).join(" · ") || null,
+      is_primary: false,
+      is_equipped: false,
+    };
     const { error } = await supabase.from("character_weapons").insert(weaponData);
     if (error) { alert("Error adding magic weapon: " + error.message); }
-    else { setShowMagicWeaponBrowser(false); onUpdate(); }
+    else { setShowMagicBrowser(false); onUpdate(); }
   }
 
   function openAddModal() {
@@ -156,31 +186,33 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
 
   return (
     <div>
-      {/* MODIFIED: Add button group with Browse Library button */}
+      {/* Add Item dropdown button */}
       <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
-        <button onClick={() => setShowBrowser(true)}
-          style={{ padding: "0.75rem 1.25rem", background: "#10b981", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          📖 Weapons
-        </button>
-        <button onClick={() => setShowMagicWeaponBrowser(true)}
-          style={{ padding: "0.75rem 1.25rem", background: "#7c3aed", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          ✨ Magic Weapons
-        </button>
-
-        <button
-          onClick={openAddModal}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#f59e0b",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          + Add Custom Weapon
-        </button>
+        <div ref={dropdownRef} style={{ position: "relative" }}>
+          <button
+            onClick={() => setShowDropdown(v => !v)}
+            style={{ padding: "0.75rem 1.25rem", background: "#10b981", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            + Add Weapon ▾
+          </button>
+          {showDropdown && (
+            <div style={{ position: "absolute", top: "calc(100% + 4px)", left: 0, background: "white", border: "1px solid #ddd", borderRadius: "8px", boxShadow: "0 4px 16px rgba(0,0,0,0.12)", zIndex: 100, minWidth: "200px", overflow: "hidden" }}>
+              {[
+                { label: "📖 Browse Weapons", action: () => { setShowBrowser(true); setShowDropdown(false); } },
+                { label: "⚔️ Browse Magic Weapons", action: () => { setShowMagicBrowser(true); setShowDropdown(false); } },
+                { label: "✏️ Add Custom Weapon", action: () => { openAddModal(); setShowDropdown(false); } },
+              ].map(({ label, action }) => (
+                <button key={label} onClick={action}
+                  style={{ display: "block", width: "100%", padding: "0.75rem 1rem", background: "none", border: "none", textAlign: "left", cursor: "pointer", fontSize: "0.95rem", borderBottom: "1px solid #f0f0f0" }}
+                  onMouseEnter={e => (e.currentTarget.style.background = "#f9fafb")}
+                  onMouseLeave={e => (e.currentTarget.style.background = "none")}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {weapons.length === 0 ? (
@@ -663,7 +695,6 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
         </div>
       )}
 
-      {/* NEW: Equipment Browser Modal */}
       {showBrowser && (
         <EquipmentBrowser
           initialCategory="weapons"
@@ -671,11 +702,11 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
           onClose={() => setShowBrowser(false)}
         />
       )}
-      {showMagicWeaponBrowser && (
-        <EquipmentBrowser
-          initialCategory="magic-weapons"
+      {showMagicBrowser && (
+        <MagicItemBrowser
+          initialTypes={["Magic Weapon"]}
           onSelect={handleSelectMagicWeapon}
-          onClose={() => setShowMagicWeaponBrowser(false)}
+          onClose={() => setShowMagicBrowser(false)}
         />
       )}
     </div>
