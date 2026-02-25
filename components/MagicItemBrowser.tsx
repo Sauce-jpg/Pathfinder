@@ -27,10 +27,11 @@ export interface MagicItem {
     Cost: number;
   };
   // Armor / shield fields
-  "AC Bonus"?: string;
-  "Max Dex"?: string;
-  "Armor Check Penalty"?: string;
-  "Arcane Spell Failure"?: string;
+  "AC Bonus"?: string | number;
+  "Enhancement Bonus"?: number;
+  "Max Dex"?: string | number | null;
+  "Armor Check Penalty"?: string | number;
+  "Arcane Spell Failure"?: string | number;
   // Weapon fields
   "Damage (M)"?: string;
   Critical?: string;
@@ -170,10 +171,12 @@ export default function MagicItemBrowser({ onSelect, onClose, initialTypes }: Ma
               Rarity:      item.Rarity    ?? deriveRarity(gp),
               ItemType:    src.itemType || item.ItemType || "Wondrous Item",
               Construction: item.Construction,
-              "AC Bonus":             item["AC Bonus"],
-              "Max Dex":              item["Max Dex"],
-              "Armor Check Penalty":  item["Armor Check Penalty"],
-              "Arcane Spell Failure": item["Arcane Spell Failure"],
+              // Support both camelCase (magic-armor/shields JSON) and spaced keys (other sources)
+              "AC Bonus":             item.ArmorBonus      ?? item["AC Bonus"],
+              "Enhancement Bonus":    item.EnhancementBonus ?? 0,
+              "Max Dex":              item.MaxDex           ?? item["Max Dex"],
+              "Armor Check Penalty":  item.ArmorCheckPenalty ?? item["Armor Check Penalty"],
+              "Arcane Spell Failure": item.ArcaneSpellFailure ?? item["Arcane Spell Failure"],
               "Damage (M)":           item["Damage (M)"],
               Critical:               item.Critical,
               Range:                  item.Range,
