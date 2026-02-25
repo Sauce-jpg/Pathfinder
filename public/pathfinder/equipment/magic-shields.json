@@ -307,7 +307,9 @@
     "ArcaneSpellFailure": "15%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [blinding]
+    "SpecialAbilities": [
+      "blinding"
+    ]
   },
   {
     "Name": "Challenging Shield",
@@ -559,7 +561,9 @@
     "ArcaneSpellFailure": "50%",
     "Speed30": "20 ft.",
     "Speed20": "15 ft.",
-    "SpecialAbilities": [ghost touch]
+    "SpecialAbilities": [
+      "ghost touch"
+    ]
   },
   {
     "Name": "Equalizer Shield",
@@ -615,7 +619,10 @@
     "ArcaneSpellFailure": "40%",
     "Speed30": "20 ft.",
     "Speed20": "15 ft.",
-    "SpecialAbilities": [arrow deflection, ghost touch]
+    "SpecialAbilities": [
+      "arrow deflection",
+      "ghost touch"
+    ]
   },
   {
     "Name": "Fortress Shield",
@@ -1035,7 +1042,9 @@
     "ArcaneSpellFailure": "5%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [arrow deflection]
+    "SpecialAbilities": [
+      "arrow deflection"
+    ]
   },
   {
     "Name": "Shield of Covered Retreat",
@@ -1063,7 +1072,9 @@
     "ArcaneSpellFailure": "15%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [arrow deflection]
+    "SpecialAbilities": [
+      "arrow deflection"
+    ]
   },
   {
     "Name": "Shield of Hags",
@@ -1119,7 +1130,9 @@
     "ArcaneSpellFailure": "5%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [bashing]
+    "SpecialAbilities": [
+      "bashing"
+    ]
   },
   {
     "Name": "Shield of the Mazeborn",
@@ -1147,7 +1160,9 @@
     "ArcaneSpellFailure": "15%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [bashing]
+    "SpecialAbilities": [
+      "bashing"
+    ]
   },
   {
     "Name": "Slaver's Madu",
@@ -1203,7 +1218,9 @@
     "ArcaneSpellFailure": "50%",
     "Speed30": "20 ft.",
     "Speed20": "15 ft.",
-    "SpecialAbilities": [spell resistance (13)]
+    "SpecialAbilities": [
+      "spell resistance (13)"
+    ]
   },
   {
     "Name": "Spellbane Shield",
@@ -1287,7 +1304,9 @@
     "ArcaneSpellFailure": "5%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [ghost touch]
+    "SpecialAbilities": [
+      "ghost touch"
+    ]
   },
   {
     "Name": "Tempest Shield",
@@ -1315,7 +1334,9 @@
     "ArcaneSpellFailure": "15%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [bashing]
+    "SpecialAbilities": [
+      "bashing"
+    ]
   },
   {
     "Name": "Volcanic Shield",
@@ -1343,7 +1364,9 @@
     "ArcaneSpellFailure": "15%",
     "Speed30": null,
     "Speed20": null,
-    "SpecialAbilities": [bashing]
+    "SpecialAbilities": [
+      "bashing"
+    ]
   },
   {
     "Name": "Winged Shield",
