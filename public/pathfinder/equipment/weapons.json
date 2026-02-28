@@ -93,20 +93,237 @@
     "SpecialAbilities": []
   },
   {
-    "Name": "Ammunition",
-    "Cost": 0,
+    "Name": "Ammunition (Crossbow): Bolt(s)",
+    "Cost": 1,
     "Aura": "no aura (nonmagical)",
     "CL": 0,
     "Slot": "none",
-    "Weight": "",
-    "Source": "",
+    "Weight": "1 lbs",
+    "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "Bolts come in a case or quiver that holds 10 bolts (or 5 for a repeating crossbow). A crossbow bolt used as a melee weapon is treated as a light improvised weapon (–4 penalty on attack rolls) and deals damage as a dagger of its size (crit ×2).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
     },
-    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/",
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Crossbow): Bolt(s), Acid",
+    "Cost": 40,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "0.1 lbs",
+    "Source": "Pathfinder #15 Second Darkness: The Armageddon Echo",
+    "RollRange": "",
+    "Description": "These metal bolts have a glass section in the middle, filled with acid. On a successful hit, acid bolts deal normal damage and 1d4 points of additional acid damage. Acid bolts do not cause any splash damage. Note: Price is for single bolt.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Crossbow): Bolt(s), Drow Poison",
+    "Cost": 100,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "0.1 lbs",
+    "Source": "Pathfinder #15 Second Darkness: The Armageddon Echo",
+    "RollRange": "",
+    "Description": "Anyone struck by a drow poison bolt must make a DC 13 Fortitude save or become affected by drow poison. Those using drow poison bolts do not risk poisoning themselves.  The strange tip affects the bolts’ accuracy. Double the range penalties when using a drow poison bolt. Note: Price is for single bolt.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Crossbow): Bolt(s), Fire",
+    "Cost": 50,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "0.1 lbs",
+    "Source": "Pathfinder #15 Second Darkness: The Armageddon Echo",
+    "RollRange": "",
+    "Description": "On a successful hit, fire bolts deal normal damage plus 1d4 points of fire damage. Alchemical fire bolts do not cause any splash damage, and the fire burst isn’t enough to ignite targets (unless they are particularly flammable). Note: Price is for single bolt.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Sling): Bullets, Groaning",
+    "Cost": 2,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "5 lbs",
+    "Source": "Pathfinder #15 Second Darkness: The Armageddon Echo",
+    "RollRange": "",
+    "Description": "Pack Size: 10. These sling bullets are honeycombed with overlapping perforations that cause them to emit an eerie moan audible within 500 feet of their flight path.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Sling): Bullets",
+    "Cost": 2,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "5 lbs",
+    "Source": "Pathfinder RPG Core Rulebook",
+    "RollRange": "",
+    "Description": "Pack Size: 10. Bullets come in a leather pouch that holds 10 bullets.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Sling): Bullets, Smoke",
+    "Cost": 100,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "5 lbs",
+    "Source": "Pathfinder Chronicals: Campaign Setting",
+    "RollRange": "",
+    "Description": "Pack Size: 10. Smoke bullets require only a successful touch attack to release the smoke. When they strike a target, they burst, releasing a cloud of noxious gas that requires the creature struck to attempt a DC 13 Fortitude save. If the save fails, the target is nauseated for 2 rounds.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Blowgun): Darts",
+    "Cost": 5,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "0 lbs",
+    "Source": "Pathfinder Chronicals: Campaign Setting",
+    "RollRange": "",
+    "Description": "Pack Size: 10. These light darts have tiny grooves behind the tips. A character can apply poison to a blowgun dart without risk of poisoning himself.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
     "PowerLevel": "",
     "Rarity": "",
     "BaseWeapon": "Ammunition",
@@ -535,7 +752,7 @@
     "Weight": "4 lbs.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "Named for the common aspergillum, a mace-like tool used by priests to sprinkle holy water, this light mace has a hollow head and a metal plug to fit the hollow’s neck. Benefit: When the mace strikes a creature, holy water sprinkles out through tiny holes throughout the weapon’s head; creatures subject to damage from holy water take 1 point of damage in addition to the normal effect of being struck by the mace (a nonmagical aspergillum can deal holy water damage to an incorporeal creature in this manner, even if the mace itself deals no damage). After 5 hits, the battle aspergillum is empty and needs to be refilled. Filling it with holy water is a standard action that provokes an attack of opportunity (like drinking a potion). A filled aspergillum is normally carried upright, otherwise the holy water leaks out as the weapon moves.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -628,7 +845,7 @@
     "Weight": "1 lb.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms.",
+    "Description": "Bayonets are close combat weapons designed to fit into the grooves or muzzles of crossbows and firearms. Bayonets allow you to make melee attacks with these weapons but render them temporarily useless as ranged weapons. Attaching or removing a bayonet is a move action.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -783,7 +1000,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired.",
+    "Description": "Blowguns are generally used to deliver debilitating (but rarely fatal) poisons from a distance. They are nearly silent when fired. For a list of appropriate poisons, see Poison.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -938,7 +1155,7 @@
     "Weight": "1 lb.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch.",
+    "Description": "These close combat weapons are designed to fit comfortably around the knuckles, narrowing the contact area and therefore magnifying the amount of force delivered by a punch. Benefit: Brass knuckles allow you to deal lethal damage. Drawback: You may hold, but not wield, a weapon or other object in a hand wearing brass knuckles. You may cast a spell with a somatic component while wearing brass knuckles if you make a concentration check (DC 10 + the level of the spell you’re casting).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -958,7 +1175,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "close, monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk"
+    ]
   },
   {
     "Name": "Breech-Loader",
@@ -1093,7 +1312,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm. The close combat weapon is reinforced with metal plates over the fingers and often lined with wicked spikes along the backs of the hands and wrists.",
+    "Description": "The cestus is a glove of leather or thick cloth that covers the wielder from mid-finger to mid-forearm. The close combat weapon is reinforced with metal plates over the fingers and often lined with wicked spikes along the backs of the hands and wrists. Benefit: While wearing a cestus, you are considered armed and your unarmed attacks deal normal damage. If you are proficient with a cestus, your unarmed strikes may deal bludgeoning or piercing damage. Monks are proficient with the cestus. Drawback: When using a cestus, your fingers are mostly exposed, allowing you to wield or carry items in that hand, but the constriction of the weapon at your knuckles gives you a –2 penalty on all precision-based tasks involving that hand (such as opening locks).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1113,7 +1332,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "close, monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk"
+    ]
   },
   {
     "Name": "Chain Spear",
@@ -1682,7 +1903,7 @@
     "Weight": "8 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "Load: Loading a heavy crossbow is a full-round action that provokes attacks of opportunity. You draw a heavy crossbow back by turning a small winch. Normally, operating a heavy crossbow requires two hands. However, you can shoot, but not load, a heavy crossbow with one hand at a –4 penalty on attack rolls. You can shoot a heavy crossbow with each hand, but you take a penalty on attack rolls as if attacking with two one-handed weapons. This penalty is cumulative with the penalty for one-handed firing.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1713,7 +1934,7 @@
     "Weight": "8 lbs.",
     "Source": "Pathfinder Roleplaying Game Advanced Race Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "Race Merfolk. An underwater crossbow functions like its normal counterpart above water, and can be used underwater. When fired underwater, the crossbow has a range increment of 20 feet. Anyone proficient with a normal crossbow can use an underwater crossbow.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1775,7 +1996,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "Load: Loading a light crossbow is a move action that provokes attacks of opportunity. You draw a light crossbow back by pulling a lever. Normally, operating a light crossbow requires two hands. However, you can shoot, but not load, a light crossbow with one hand at a –2 penalty on attack rolls. You can shoot a light crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons. This penalty is cumulative with the penalty for one-handed firing.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1806,7 +2027,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Roleplaying Game Advanced Race Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "An underwater light crossbow functions like its normal counterpart above water, and can be used underwater. When fired underwater, the crossbow has a range increment of 20 feet. Anyone proficient with a normal light crossbow can use an underwater light crossbow.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2023,7 +2244,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A dagger has a blade that is about 1 foot in length.",
+    "Description": "A dagger has a blade that is about 1 foot in length. Benefit: You get a +2 bonus on Sleight of Hand skill checks made to conceal a dagger on your body (see Using Skills).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3108,7 +3329,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "Benefit: An attack with a spiked gauntlet is considered an armed attack. Your opponent cannot use a disarm action to disarm you of spiked gauntlets. Note: The cost and weight given are for a single gauntlet.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3604,7 +3825,7 @@
     "Weight": "–",
     "Source": "Pathfinder Player Companion: Martial Arts Handbook",
     "RollRange": "",
-    "Description": "",
+    "Description": "Many unarmed fighters wrap their hands in cloth to minimize injuries to their fists. Some martial artists also weave small coins or metal bars into their handwraps, adding special material effects as well. Handwraps don’t alter the damage a character’s unarmed attacks deal. However, masterwork handwraps can be enchanted as weapons, providing their benefits on unarmed attacks the character makes with her hands. A character can’t benefit from both handwraps and other items that provide enhancement bonuses or weapon special abilities (such as an amulet of mighty fists) on the same attack.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3697,7 +3918,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Player Companion: Pirates of the Inner Sea",
     "RollRange": "",
-    "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists.",
+    "Description": "Pirates who lose a hand in the course of their adventures sometimes attach hooks to their wrists. Your opponent cannot use a disarm action to disarm you of a hook hand. Hook hands generally do not interfere with routine activities, but you cannot use another weapon two-handed if you have a hook hand attached. You cannot use any type of weapon if both your hands are hook hands, and you may have trouble with routine activities. Hook hands presume that the wrist joint is intact. If the wrist joint is not intact, use the prosthesis statistics instead. It takes 1 minute to attach or detach a hook hand.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3717,7 +3938,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "close",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      Disarm
+    ]
   },
   {
     "Name": "Hornbow, Orc",
@@ -3883,7 +4106,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A javelin is a thin throwing spear.",
+    "Description": "A javelin is a thin throwing spear. Since a javelin is not designed for melee, you are treated as non-proficient with it and take a –4 penalty on attack rolls if you use a javelin as a melee weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4255,7 +4478,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Player Companion: Pirates of the Inner Sea",
     "RollRange": "",
-    "Description": "",
+    "Description": "Pirates often carry long brass knives for working aboard a ship. Though brass doesn’t hold as sharp an edge as steel, it isn’t vulnerable to rust like steel is. In a pinch, a pirate can use his brass knife as a weapon. Mostly, though, they are used for cutting ropes, cleaning fish, and other sundry tasks.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4275,7 +4498,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "light blades, thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Fragile"
+    ]
   },
   {
     "Name": "Knife, Butterfly",
@@ -4472,7 +4697,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as agrappling hook. When a kumade is secured to a surface, such as a rafter or window sill, its handle can be climbed as a 5-foot length ofrope.",
+    "Description": "Adapted from a garden rake, the kumade consists of a wood or bamboo pole topped with a metal claw. The rake head doubles as agrappling hook. When a kumade is secured to a surface, such as a rafter or window sill, its handle can be climbed as a 5-foot length of rope.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4492,7 +4717,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "axes",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Grapple"
+    ]
   },
   {
     "Name": "Kumade, Collapsible",
@@ -4503,7 +4730,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "",
+    "Description": "This weapon acts as a kumade, but the handle consists of bamboo sections held together by a taut rope running through the center. Releasing the rope is a standard action that provokes attacks of opportunity and causes the weapon to collapse into a bundle that fits into a backpack. Reassembling the collapsible kumade requires a full-round action that provokes attacks of opportunity.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4523,7 +4750,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "axes",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Grapple"
+    ]
   },
   {
     "Name": "Kunai",
@@ -4534,7 +4763,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Player Companion: Ranged Tactics Toolbox",
     "RollRange": "",
-    "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip.",
+    "Description": "Crafted from a single piece of iron, a kunai has a leaf-shaped blade and a ring for a pommel. Adapted from the common trowel, the kunai has a thick blade that is sharpened only near the tip. Benefit: Unlike finer weapons, the kunai can readily substitute for a crowbar or piton without being damaged in the process.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4895,7 +5124,10 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "spears",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace",
+      "Reach"
+    ]
   },
   {
     "Name": "Longsword",
@@ -5267,7 +5499,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "close, hammers",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Fragile"
+    ]
   },
   {
     "Name": "Meteor Hammer",
@@ -5980,7 +6214,10 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "polearm",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace",
+      "Reach"
+    ]
   },
   {
     "Name": "Pilum",
@@ -6414,7 +6651,10 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "double, monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double",
+      "Monk"
+    ]
   },
   {
     "Name": "Ram Hammer, Dwarven",
@@ -7530,7 +7770,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "blades, light",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      Trip
+    ]
   },
   {
     "Name": "Sickle-sword",
@@ -7603,7 +7845,7 @@
     "Weight": "—",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A sling is little more than a leather cup attached to a pair of strings.",
+    "Description": "A sling is little more than a leather cup attached to a pair of strings. Your Strength modifier applies to damage rolls when you use a sling, just as it does for thrown weapons. You can fire, but not load, a sling with one hand. Loading a sling is a move action that requires two hands and provokes attacks of opportunity. You can hurl ordinary stones with a sling, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7778,7 +8020,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "spears, thrown, tribal",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace"
+    ]
   },
   {
     "Name": "Spear, Boar",
@@ -7789,7 +8033,7 @@
     "Weight": "8 lb.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length.",
+    "Description": "This spear with a spiraling blade has a metal crossbar approximately halfway down its length. Benefit:If you ready a boar spear against a charge and your attack hits, you get a +2 shield bonus to your AC against that creature until your next turn.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7809,7 +8053,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "spears",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace"
+    ]
   },
   {
     "Name": "Spear, Elven Branched",
@@ -7913,7 +8159,7 @@
     "Weight": "8 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "",
+    "Description": "This pole has a spear head at one end and a mace head at the other. It can be wielded like a standard spear (though it isn’t balanced for throwing), or it can be used as a double weapon, alternately thrusting and bashing.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7933,7 +8179,10 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "double, spears",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace",
+      "Double"
+    ]
   },
   {
     "Name": "Spear-Sling",
@@ -8099,7 +8348,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Roleplaying Game Ultimate Intrigue",
     "RollRange": "",
-    "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded. With a click of a switch, a spring thrusts the blade outward, where it locks into place until it is reset.",
+    "Description": "This 4-inch blade is attached via a hinge to a wooden handle with a slot in the center, into which the blade can be folded. With a click of a switch, a spring thrusts the blade outward, where it locks into place until it is reset. Releasing the blade is a free action, and resetting it is a move action. The handle must be in your hand for the blade to be released; placing it in your hand requires the same type of action as drawing a weapon. A spring blade is easy to conceal: an observer must succeed at a DC 20 Perception check to notice the blade hidden within the wooden handle, and you gain a +4 bonus on Sleight of Hand checks to conceal a spring blade on your body.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8161,7 +8410,7 @@
     "Weight": "9 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "",
+    "Description": "This long metal staff has reservoirs for lamp oil, and a lantern-like structure at its head. The lantern staff is fuelled as and provides light as a hooded lantern. While lit, attacks with the lantern staff deal 1 point of fire damage in addition to the normal damage. Any effects that apply to a quarterstaff, except those that require it be used as a double weapon, also apply to a lantern staff.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8192,7 +8441,7 @@
     "Weight": "1 lb.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "This close combat weapon is just a sharpened piece of wood.",
+    "Description": "This close combat weapon is just a sharpened piece of wood. Note: Iron spikes used as weapons deal damage as wooden stakes.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8254,7 +8503,7 @@
     "Weight": "9 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown.",
+    "Description": "A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown. Normally filled with biting vermin, a stingchuck acts as a splash weapon. When it hits, the vermin bite and sting the target, dealing 1d6 points of damage and forcing a DC 11 Fortitude save to avoid being nauseated for 1d3 rounds. Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin. All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8267,13 +8516,13 @@
     "WeaponType": "",
     "Damage": "1d3 (small), 1d4 (medium)",
     "Critical": "x2",
-    "Range": "10 ft. (thrown) Category ranged Proficiency simple Weapon Group thrown A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown. Normally filled with biting vermin, a stingchuck acts as a splash weapon. When it hits, the vermin bite and sting the target, dealing 1d6 points of damage and forcing a DC 11 Fortitude save to avoid being nauseated for 1d3 rounds. Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin. All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated. Editor’s Note The weapon group was not provided in the source material but can be assumed to be thrown.",
-    "DamageType": "bludgeoning Range Increment 10 ft. (thrown) Category ranged Proficiency simple Weapon Group thrown A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown. Normally filled with biting vermin, a stingchuck acts as a splash weapon. When it hits, the vermin bite and sting the target, dealing 1d6 points of damage and forcing a DC 11 Fortitude save to avoid being nauseated for 1d3 rounds. Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin. All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated. Editor’s Note The weapon group was not provided in the source material but can be assumed to be thrown.",
+    "Range": "10 ft. (thrown)",
+    "DamageType": "bludgeoning",
     "EnhancementBonus": 0,
     "Material": "",
     "IsMasterwork": false,
     "Proficiency": "simple",
-    "WeaponGroups": "thrown A stingchuck is a foul bag made of a humanoid’s head with the brain removed and the skull heavily scored so that it bursts open when thrown. Normally filled with biting vermin, a stingchuck acts as a splash weapon. When it hits, the vermin bite and sting the target, dealing 1d6 points of damage and forcing a DC 11 Fortitude save to avoid being nauseated for 1d3 rounds. Each round a creature remains nauseated by a stingchuck, it takes 1 additional point of damage from the biting vermin. All creatures within the splash effect take 1 point of damage from the vermin but do not risk being nauseated. Editor’s Note The weapon group was not provided in the source material but can be assumed to be thrown.",
+    "WeaponGroups": "thrown",
     "SpecialAbilities": []
   },
   {
@@ -8285,7 +8534,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Player Companion: Ranged Tactics Toolbox",
     "RollRange": "",
-    "Description": "A stonebow, or bullet crossbow, resembles alight crossbowexcept for the distinct U-shaped bend in the stock.",
+    "Description": "A stonebow, or bullet crossbow, resembles alight crossbowexcept for the distinct U-shaped bend in the stock. Instead of bolts, the stonebow shoots sling bullets. The bow has two strings with a leather pocket between them to hold the bullet. Loading: Loading a stonebow is a move action (a free action if you have the Rapid Reload feat) that provokes attacks of opportunity. Firing: You can shoot, but not load, a stonebow with one hand, but doing so imposes a –2 penalty on your attack rolls. You can shoot a stonebow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons. This penalty is cumulative with the penalty for firing one-handed. You can shoot ordinary stones with a stonebow, but stones aren’t as dense or as round as bullets. When using stones, you take a –1 penalty on attack rolls and deal damage as if the weapon were designed for a creature one size category smaller than you.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9122,7 +9371,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Player Companion: Martial Arts Handbook",
     "RollRange": "",
-    "Description": "",
+    "Description": "These small tea kettles are made with clamping lids and heavily reinforced handles, allowing them to be swung like a club. A traveling kettle with boiling water inside deals an additional 1 point of fire damage on a hit. Boiling water cools to a non-damaging temperature after 5 minutes.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9142,7 +9391,9 @@
     "IsMasterwork": false,
     "Proficiency": "simple",
     "WeaponGroups": "monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk"
+    ]
   },
   {
     "Name": "Trident",
