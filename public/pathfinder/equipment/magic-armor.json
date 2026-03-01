@@ -3765,7 +3765,7 @@
     "EnhancementBonus": 1,
     "ArmorBonus": 6,
     "MaxDex": 2,
-    "ArmorCheckPenalty": +4,
+    "ArmorCheckPenalty": -4,
     "ArcaneSpellFailure": "30%",
     "Speed30": "20 ft.",
     "Speed20": "15 ft.",
