@@ -900,7 +900,7 @@
     "ArmorCategory": "Heavy",
     "Material": "",
     "IsMasterwork": true,
-    "EnhancementBonus": ,
+    "EnhancementBonus": 0,
     "ArmorBonus": 13,
     "MaxDex": 1,
     "ArmorCheckPenalty": -5,
