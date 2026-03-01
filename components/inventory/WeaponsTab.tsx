@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
+import { ItemBonusesEditor } from "./ItemBonusesEditor";
 import MagicItemBrowser, { type MagicItem } from "../MagicItemBrowser";
 import { mapWeaponToCharacter } from "@/lib/equipmentMappers";
 
@@ -670,6 +671,12 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
                   }}
                 />
               </div>
+
+              {/* Auto-Apply Stat Bonuses When Equipped */}
+              <ItemBonusesEditor
+                itemId={editingWeapon?.id || null}
+                onUpdate={onUpdate}
+              />
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
