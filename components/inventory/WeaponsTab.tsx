@@ -277,20 +277,50 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
 
               {/* Expanded details */}
               {isExpanded && (
-                <div style={{ padding: "0 1.5rem 1.25rem", borderTop: "1px solid #f3f4f6", background: "#fafbff" }}>
-                  {/* Full stats grid */}
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.75rem", padding: "0.75rem 0", fontSize: "0.9rem" }}>
-                    <div><strong>Attack:</strong> {weapon.attack_bonus >= 0 ? "+" : ""}{weapon.attack_bonus}</div>
-                    <div><strong>Damage:</strong> {weapon.damage_dice}{weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""} ({weapon.damage_type})</div>
-                    <div><strong>Critical:</strong> {weapon.critical_range}/{weapon.critical_multiplier}</div>
-                    {weapon.range_increment && <div><strong>Range:</strong> {weapon.range_increment} ft</div>}
-                    {weapon.properties?.length > 0 && <div><strong>Properties:</strong> {weapon.properties.join(", ")}</div>}
-                  </div>
-                  {weapon.notes && (
-                    <div style={{ padding: "0.5rem 0.75rem", background: "#fef3c7", border: "1px solid #fde68a", borderRadius: "6px", fontSize: "0.82rem", color: "#92400e" }}>
-                      {weapon.notes}
+                <div style={{ borderTop: "1px solid #e5e7eb", background: "#fafbff" }}>
+                  {/* Combat stats bar */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0", borderBottom: "1px solid #e5e7eb" }}>
+                    {[
+                      { label: "Attack", value: `${weapon.attack_bonus >= 0 ? "+" : ""}${weapon.attack_bonus}` },
+                      { label: "Damage", value: `${weapon.damage_dice}${weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""}` },
+                      { label: "Type", value: weapon.damage_type },
+                      { label: "Critical", value: `${weapon.critical_range}/${weapon.critical_multiplier}` },
+                      ...(weapon.range_increment ? [{ label: "Range", value: `${weapon.range_increment} ft` }] : []),
+                    ].map(({ label, value }) => (
+                      <div key={label} style={{ padding: "0.6rem 1.25rem", borderRight: "1px solid #e5e7eb", textAlign: "center", minWidth: "80px" }}>
+                        <div style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#9ca3af" }}>{label}</div>
+                        <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111827", marginTop: "0.1rem" }}>{value}</div>
+                      </div>
+                    ))}
+                    <div style={{ padding: "0.6rem 1.25rem", textAlign: "center", minWidth: "80px" }}>
+                      <div style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#9ca3af" }}>Category</div>
+                      <div style={{ fontSize: "0.85rem", fontWeight: 600, color: "#374151", marginTop: "0.1rem" }}>{weapon.weapon_category} {weapon.weapon_type}</div>
                     </div>
-                  )}
+                  </div>
+
+                  <div style={{ padding: "1rem 1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    {/* Properties */}
+                    {weapon.properties?.length > 0 && (
+                      <div>
+                        <div style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.3rem" }}>Special Properties</div>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                          {weapon.properties.map((p: string) => (
+                            <span key={p} style={{ padding: "0.2rem 0.65rem", background: "#ede9fe", color: "#5b21b6", borderRadius: "999px", fontSize: "0.8rem", fontWeight: 600 }}>{p}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Notes / description (magic item info lives here) */}
+                    {weapon.notes && (
+                      <div>
+                        <div style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.3rem" }}>Notes</div>
+                        <div style={{ fontSize: "0.875rem", color: "#374151", lineHeight: 1.6, background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "6px", padding: "0.6rem 0.85rem", whiteSpace: "pre-line" }}>
+                          {weapon.notes}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
