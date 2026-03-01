@@ -19,6 +19,7 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   const [showMagicBrowser, setShowMagicBrowser] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Form state
   const [weaponName, setWeaponName] = useState("");
@@ -230,155 +231,71 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
         </div>
       ) : (
         <div style={{ display: "grid", gap: "1rem" }}>
-          {weapons.map((weapon) => (
+          {weapons.map((weapon) => {
+            const isExpanded = expandedId === weapon.id;
+            return (
             <div
               key={weapon.id}
               style={{
                 background: weapon.is_equipped ? "#fffbeb" : "white",
-                border: `2px solid ${weapon.is_primary ? "#f59e0b" : weapon.is_equipped ? "#fbbf24" : "#ddd"}`,
+                border: `2px solid ${weapon.is_primary ? "#f59e0b" : isExpanded ? "#818cf8" : weapon.is_equipped ? "#fbbf24" : "#ddd"}`,
                 borderRadius: "12px",
-                padding: "1.5rem",
+                overflow: "hidden",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
+              {/* Clickable header */}
+              <div
+                onClick={() => setExpandedId(isExpanded ? null : weapon.id)}
+                style={{ padding: "1rem 1.5rem", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+              >
                 <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.5rem" }}>
-                    <h3 style={{ margin: 0, color: "#f59e0b" }}>{weapon.weapon_name}</h3>
-                    {weapon.is_primary && (
-                      <span
-                        style={{
-                          padding: "0.25rem 0.75rem",
-                          background: "#f59e0b",
-                          color: "white",
-                          borderRadius: "12px",
-                          fontSize: "0.75rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        PRIMARY
-                      </span>
-                    )}
-                    {weapon.is_equipped && !weapon.is_primary && (
-                      <span
-                        style={{
-                          padding: "0.25rem 0.75rem",
-                          background: "#10b981",
-                          color: "white",
-                          borderRadius: "12px",
-                          fontSize: "0.75rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        EQUIPPED
-                      </span>
-                    )}
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+                    <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#f59e0b" }}>{weapon.weapon_name}</span>
+                    {weapon.is_primary && <span style={{ padding: "0.15rem 0.6rem", background: "#f59e0b", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600 }}>PRIMARY</span>}
+                    {weapon.is_equipped && !weapon.is_primary && <span style={{ padding: "0.15rem 0.6rem", background: "#10b981", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600 }}>EQUIPPED</span>}
                   </div>
-
-                  <div style={{ fontSize: "0.9rem", color: "#666", marginBottom: "1rem" }}>
-                    {weapon.weapon_category} {weapon.weapon_type} weapon
+                  <div style={{ fontSize: "0.82rem", color: "#888", marginTop: "0.2rem" }}>
+                    {weapon.weapon_category} {weapon.weapon_type} · Atk {weapon.attack_bonus >= 0 ? "+" : ""}{weapon.attack_bonus} · {weapon.damage_dice}{weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""} {weapon.damage_type} · Crit {weapon.critical_range}/{weapon.critical_multiplier}
                   </div>
+                </div>
+                <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", marginLeft: "1rem", flexShrink: 0 }}>
+                  <button onClick={e => { e.stopPropagation(); togglePrimary(weapon.id, weapon.is_primary); }}
+                    style={{ padding: "0.3rem 0.6rem", background: weapon.is_primary ? "#fbbf24" : "#eee", color: weapon.is_primary ? "white" : "#666", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>
+                    {weapon.is_primary ? "★" : "☆"}
+                  </button>
+                  <button onClick={e => { e.stopPropagation(); toggleEquipped(weapon.id, weapon.is_equipped); }}
+                    style={{ padding: "0.3rem 0.6rem", background: weapon.is_equipped ? "#10b981" : "#eee", color: weapon.is_equipped ? "white" : "#666", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>
+                    {weapon.is_equipped ? "✓" : "Equip"}
+                  </button>
+                  <button onClick={e => { e.stopPropagation(); openEditModal(weapon); }}
+                    style={{ padding: "0.3rem 0.6rem", background: "#6366f1", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>✏️</button>
+                  <button onClick={e => { e.stopPropagation(); deleteWeapon(weapon.id); }}
+                    style={{ padding: "0.3rem 0.6rem", background: "#ef4444", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>🗑️</button>
+                  <span style={{ fontSize: "0.7rem", color: "#9ca3af", marginLeft: "0.25rem" }}>{isExpanded ? "▲" : "▼"}</span>
+                </div>
+              </div>
 
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-                      gap: "1rem",
-                      fontSize: "0.95rem",
-                    }}
-                  >
-                    <div>
-                      <strong>Attack:</strong> {weapon.attack_bonus >= 0 ? "+" : ""}
-                      {weapon.attack_bonus}
-                    </div>
-                    <div>
-                      <strong>Damage:</strong> {weapon.damage_dice}
-                      {weapon.damage_bonus > 0 && `+${weapon.damage_bonus}`}{" "}
-                      ({weapon.damage_type})
-                    </div>
-                    <div>
-                      <strong>Critical:</strong> {weapon.critical_range}/{weapon.critical_multiplier}
-                    </div>
-                    {weapon.range_increment && (
-                      <div>
-                        <strong>Range:</strong> {weapon.range_increment} ft
-                      </div>
-                    )}
+              {/* Expanded details */}
+              {isExpanded && (
+                <div style={{ padding: "0 1.5rem 1.25rem", borderTop: "1px solid #f3f4f6", background: "#fafbff" }}>
+                  {/* Full stats grid */}
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "0.75rem", padding: "0.75rem 0", fontSize: "0.9rem" }}>
+                    <div><strong>Attack:</strong> {weapon.attack_bonus >= 0 ? "+" : ""}{weapon.attack_bonus}</div>
+                    <div><strong>Damage:</strong> {weapon.damage_dice}{weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""} ({weapon.damage_type})</div>
+                    <div><strong>Critical:</strong> {weapon.critical_range}/{weapon.critical_multiplier}</div>
+                    {weapon.range_increment && <div><strong>Range:</strong> {weapon.range_increment} ft</div>}
+                    {weapon.properties?.length > 0 && <div><strong>Properties:</strong> {weapon.properties.join(", ")}</div>}
                   </div>
-
-                  {weapon.properties && weapon.properties.length > 0 && (
-                    <div style={{ marginTop: "0.75rem", fontSize: "0.9rem" }}>
-                      <strong>Properties:</strong> {weapon.properties.join(", ")}
-                    </div>
-                  )}
-
                   {weapon.notes && (
-                    <div style={{ marginTop: "0.75rem", fontSize: "0.9rem", color: "#999", fontStyle: "italic" }}>
+                    <div style={{ padding: "0.5rem 0.75rem", background: "#fef3c7", border: "1px solid #fde68a", borderRadius: "6px", fontSize: "0.82rem", color: "#92400e" }}>
                       {weapon.notes}
                     </div>
                   )}
                 </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginLeft: "1rem" }}>
-                  <button
-                    onClick={() => togglePrimary(weapon.id, weapon.is_primary)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: weapon.is_primary ? "#fbbf24" : "#eee",
-                      color: weapon.is_primary ? "white" : "#666",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    {weapon.is_primary ? "★ Primary" : "☆ Set Primary"}
-                  </button>
-                  <button
-                    onClick={() => toggleEquipped(weapon.id, weapon.is_equipped)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: weapon.is_equipped ? "#10b981" : "#eee",
-                      color: weapon.is_equipped ? "white" : "#666",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    {weapon.is_equipped ? "Equipped" : "Equip"}
-                  </button>
-                  <button
-                    onClick={() => openEditModal(weapon)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: "#0070f3",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => deleteWeapon(weapon.id)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: "#ef4444",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
+              )}
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
