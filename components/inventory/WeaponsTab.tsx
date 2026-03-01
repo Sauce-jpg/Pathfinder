@@ -56,20 +56,42 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   }
 
   async function handleSelectMagicWeapon(item: MagicItem) {
+    // Store all rich metadata in notes as a parseable JSON blob
+    const meta = {
+      _magic: true,
+      description: item.Description,
+      aura: item.Aura,
+      cl: item.CL,
+      source: item.Source,
+      reference: item.Reference,
+      baseWeapon: (item as any).BaseWeapon,
+      proficiency: (item as any).Proficiency,
+      weaponGroups: (item as any).WeaponGroups,
+      specialAbilities: (item as any).SpecialAbilities,
+      construction: (item as any).Construction,
+      powerLevel: item.PowerLevel,
+      rarity: item.Rarity,
+      damageSml: (item as any)["Damage (S)"],
+      damageMed: item["Damage (M)"],
+      damageType: (item as any).DamageType ?? item.Type,
+      enhancementBonus: (item as any).EnhancementBonus ?? 0,
+      material: (item as any).Material,
+    };
+
     const weaponData = {
       character_id: characterId,
       weapon_name: item.Name,
       weapon_type: "melee",
-      weapon_category: "martial",
+      weapon_category: (item as any).Proficiency ?? "martial",
       damage_dice: item["Damage (M)"] ?? "1d6",
-      damage_type: item.Type ?? "slashing",
-      attack_bonus: 0,
-      damage_bonus: 0,
-      critical_range: "20",
-      critical_multiplier: "x2",
-      range_increment: null,
-      properties: [],
-      notes: [item.Aura && `Aura: ${item.Aura}`, item.CL && `CL ${item.CL}`].filter(Boolean).join(" · ") || null,
+      damage_type: (item as any).DamageType ?? item.Type ?? "slashing",
+      attack_bonus: (item as any).EnhancementBonus ?? 0,
+      damage_bonus: (item as any).EnhancementBonus ?? 0,
+      critical_range: item.Critical?.split("/")[0] ?? "20",
+      critical_multiplier: item.Critical?.includes("x") ? item.Critical.split("/")[1] : "x2",
+      range_increment: item.Range && item.Range !== "—" ? parseInt(item.Range) || null : null,
+      properties: (item as any).SpecialAbilities ?? [],
+      notes: JSON.stringify(meta),
       is_primary: false,
       is_equipped: false,
     };
@@ -276,53 +298,91 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
               </div>
 
               {/* Expanded details */}
-              {isExpanded && (
+              {isExpanded && (() => {
+                // Try to parse magic item metadata from notes JSON blob
+                let meta: any = null;
+                try { if (weapon.notes?.startsWith("{")) meta = JSON.parse(weapon.notes); } catch {}
+
+                return (
                 <div style={{ borderTop: "1px solid #e5e7eb", background: "#fafbff" }}>
-                  {/* Combat stats bar */}
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0", borderBottom: "1px solid #e5e7eb" }}>
+                  {/* Stats bar */}
+                  <div style={{ display: "flex", flexWrap: "wrap", borderBottom: "1px solid #e5e7eb" }}>
                     {[
                       { label: "Attack", value: `${weapon.attack_bonus >= 0 ? "+" : ""}${weapon.attack_bonus}` },
-                      { label: "Damage", value: `${weapon.damage_dice}${weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""}` },
-                      { label: "Type", value: weapon.damage_type },
+                      { label: "Damage (M)", value: `${weapon.damage_dice}${weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""}` },
+                      ...(meta?.damageSml ? [{ label: "Damage (S)", value: meta.damageSml }] : []),
+                      { label: "Dmg Type", value: weapon.damage_type },
                       { label: "Critical", value: `${weapon.critical_range}/${weapon.critical_multiplier}` },
                       ...(weapon.range_increment ? [{ label: "Range", value: `${weapon.range_increment} ft` }] : []),
+                      ...(meta?.enhancementBonus > 0 ? [{ label: "Enhancement", value: `+${meta.enhancementBonus}` }] : []),
+                      { label: "Category", value: weapon.weapon_category },
+                      ...(meta?.baseWeapon ? [{ label: "Base Weapon", value: meta.baseWeapon }] : []),
+                      ...(meta?.powerLevel ? [{ label: "Power", value: meta.powerLevel }] : []),
+                      ...(meta?.rarity ? [{ label: "Rarity", value: meta.rarity }] : []),
                     ].map(({ label, value }) => (
-                      <div key={label} style={{ padding: "0.6rem 1.25rem", borderRight: "1px solid #e5e7eb", textAlign: "center", minWidth: "80px" }}>
-                        <div style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#9ca3af" }}>{label}</div>
-                        <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111827", marginTop: "0.1rem" }}>{value}</div>
+                      <div key={label} style={{ padding: "0.6rem 1.25rem", borderRight: "1px solid #e5e7eb", textAlign: "center" }}>
+                        <div style={{ fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#9ca3af" }}>{label}</div>
+                        <div style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827", marginTop: "0.1rem" }}>{value}</div>
                       </div>
                     ))}
-                    <div style={{ padding: "0.6rem 1.25rem", textAlign: "center", minWidth: "80px" }}>
-                      <div style={{ fontSize: "0.68rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#9ca3af" }}>Category</div>
-                      <div style={{ fontSize: "0.85rem", fontWeight: 600, color: "#374151", marginTop: "0.1rem" }}>{weapon.weapon_category} {weapon.weapon_type}</div>
-                    </div>
                   </div>
 
-                  <div style={{ padding: "1rem 1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                    {/* Properties */}
-                    {weapon.properties?.length > 0 && (
+                  <div style={{ padding: "1rem 1.5rem", display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                    {/* Aura / CL / Source row */}
+                    {(meta?.aura || meta?.cl || meta?.source) && (
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", fontSize: "0.82rem", color: "#6b7280" }}>
+                        {meta.aura && <span>🌀 <strong>Aura:</strong> {meta.aura}</span>}
+                        {meta.cl && <span>⚡ <strong>CL:</strong> {meta.cl}</span>}
+                        {meta.source && <span>📖 <strong>Source:</strong> {meta.source}</span>}
+                        {meta.reference && <a href={meta.reference} target="_blank" rel="noreferrer" style={{ color: "#6366f1", fontWeight: 600 }}>PFSRD ↗</a>}
+                      </div>
+                    )}
+
+                    {/* Description */}
+                    {(meta?.description || (!meta && weapon.notes)) && (
                       <div>
-                        <div style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.3rem" }}>Special Properties</div>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.35rem" }}>Description</div>
+                        <p style={{ margin: 0, fontSize: "0.875rem", color: "#374151", lineHeight: 1.65, whiteSpace: "pre-line" }}>
+                          {meta?.description ?? weapon.notes}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Special abilities */}
+                    {(weapon.properties?.length > 0 || meta?.specialAbilities?.length > 0) && (
+                      <div>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.35rem" }}>Special Abilities</div>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
-                          {weapon.properties.map((p: string) => (
+                          {(meta?.specialAbilities?.length > 0 ? meta.specialAbilities : weapon.properties).map((p: string) => (
                             <span key={p} style={{ padding: "0.2rem 0.65rem", background: "#ede9fe", color: "#5b21b6", borderRadius: "999px", fontSize: "0.8rem", fontWeight: 600 }}>{p}</span>
                           ))}
                         </div>
                       </div>
                     )}
 
-                    {/* Notes / description (magic item info lives here) */}
-                    {weapon.notes && (
-                      <div>
-                        <div style={{ fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.3rem" }}>Notes</div>
-                        <div style={{ fontSize: "0.875rem", color: "#374151", lineHeight: 1.6, background: "#fffbeb", border: "1px solid #fde68a", borderRadius: "6px", padding: "0.6rem 0.85rem", whiteSpace: "pre-line" }}>
-                          {weapon.notes}
-                        </div>
+                    {/* Weapon groups */}
+                    {meta?.weaponGroups && (
+                      <div style={{ fontSize: "0.82rem", color: "#6b7280" }}>
+                        <strong>Weapon Groups:</strong> {meta.weaponGroups}
                       </div>
+                    )}
+
+                    {/* Construction */}
+                    {meta?.construction?.Requirements && (
+                      <div style={{ padding: "0.6rem 0.85rem", background: "#fef3c7", border: "1px solid #fde68a", borderRadius: "6px", fontSize: "0.82rem", color: "#92400e" }}>
+                        <strong>Construction:</strong> {meta.construction.Requirements}
+                        {meta.construction.Cost > 0 && <span> · Cost: {meta.construction.Cost.toLocaleString()} gp</span>}
+                      </div>
+                    )}
+
+                    {/* Material */}
+                    {meta?.material && (
+                      <div style={{ fontSize: "0.82rem", color: "#6b7280" }}>⚗️ <strong>Material:</strong> {meta.material}</div>
                     )}
                   </div>
                 </div>
-              )}
+                );
+              })()}
             </div>
             );
           })}
