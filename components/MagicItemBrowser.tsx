@@ -34,9 +34,29 @@ export interface MagicItem {
   "Arcane Spell Failure"?: string | number;
   // Weapon fields
   "Damage (M)"?: string;
+  "Damage (S)"?: string;
   Critical?: string;
   Range?: string;
   Type?: string;
+  EnhancementBonus?: number;
+  IsMasterwork?: boolean;
+  BaseWeapon?: string;
+  WeaponCategory?: string;
+  WeaponType?: string;
+  DamageType?: string;
+  Proficiency?: string;
+  WeaponGroups?: string;
+  SpecialAbilities?: string[];
+  Material?: string;
+  // Armor/shield camelCase fields
+  BaseArmor?: string;
+  ArmorCategory?: string;
+  ArmorBonus?: number;
+  MaxDex?: number | null;
+  ArmorCheckPenalty?: number;
+  ArcaneSpellFailure?: string;
+  Speed30?: string;
+  Speed20?: string;
 }
 
 interface MagicItemBrowserProps {
@@ -178,9 +198,30 @@ export default function MagicItemBrowser({ onSelect, onClose, initialTypes }: Ma
               "Armor Check Penalty":  item.ArmorCheckPenalty ?? item["Armor Check Penalty"],
               "Arcane Spell Failure": item.ArcaneSpellFailure ?? item["Arcane Spell Failure"],
               "Damage (M)":           item["Damage (M)"],
+              "Damage (S)":           item["Damage (S)"],
               Critical:               item.Critical,
               Range:                  item.Range,
               Type:                   item.Type,
+              // Weapon-specific camelCase fields
+              EnhancementBonus:       item.EnhancementBonus ?? 0,
+              IsMasterwork:           item.IsMasterwork ?? false,
+              BaseWeapon:             item.BaseWeapon,
+              WeaponCategory:         item.WeaponCategory,
+              WeaponType:             item.WeaponType,
+              DamageType:             item.DamageType,
+              Proficiency:            item.Proficiency,
+              WeaponGroups:           item.WeaponGroups,
+              SpecialAbilities:       item.SpecialAbilities ?? [],
+              Material:               item.Material,
+              // Armor-specific camelCase fields
+              BaseArmor:              item.BaseArmor,
+              ArmorCategory:          item.ArmorCategory,
+              ArmorBonus:             item.ArmorBonus,
+              MaxDex:                 item.MaxDex,
+              ArmorCheckPenalty:      item.ArmorCheckPenalty,
+              ArcaneSpellFailure:     item.ArcaneSpellFailure,
+              Speed30:                item.Speed30,
+              Speed20:                item.Speed20,
             });
           });
         }
