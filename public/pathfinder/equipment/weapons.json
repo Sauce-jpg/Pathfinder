@@ -1063,6 +1063,132 @@
     "SpecialAbilities": []
   },
   {
+    "Name": "Ammunition (Sling): Stone, Little Startstones",
+    "Cost": 0.05,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "2 lbs",
+    "Source": "Pathfinder Player Companion: Halflings of Golarion",
+    "RollRange": "",
+    "Description": "Pack Size: 10. Though they are technically sling ammunition, these thread- or cloth-wrapped pebbles are mainly used for signaling or celebration rather than battle, as they barely hit hard enough to sting. When soaked in oil or strong alcohol, they burn brightly for 1 round, illuminating an area like a candle and creating brief streaks of light as they fly through the air. They generally aren’t hot enough and burn out too quickly to ignite combustibles.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/little-starstones",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "1 (small), 1 (medium)",
+    "Critical": "0",
+    "Range": "",
+    "DamageType": "bludgeoning",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Sling): Bullet, Sharpstones",
+    "Cost": 1,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "5 lbs",
+    "Source": "Pathfinder Player Companion: Halflings of Golarion",
+    "RollRange": "",
+    "Description": "Pack Size: 10. A thin layer of baked clay covers the spikes and jagged ridges covering this specially designed bullet. A proficient user knows how to crack the clay (a free action) so that it peels off from either the spikes or ridges when fired, dealing either piercing or slashing damage.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/sharpstones",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "1d3 (small), 1d4 (medium)",
+    "Critical": "0",
+    "Range": "",
+    "DamageType": "piercing or shlashing",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Sling): Bullet, Softstones",
+    "Cost": 0.1,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "4 lbs",
+    "Source": "Pathfinder Player Companion: Halflings of Golarion",
+    "RollRange": "",
+    "Description": "Pack Size: 10. These tight bundles of elastic fibers deal nonlethal damage when fired from a sling.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/softstones",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "1d3 (small), 1d4 (medium)",
+    "Critical": "0",
+    "Range": "",
+    "DamageType": "bludgeoning",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": [
+      "Nonlethal"
+    ]
+  },
+  {
+    "Name": "Ammunition (Sling): Bullet, Soakstone",
+    "Cost": 10,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "5 lbs",
+    "Source": "Pathfinder Player Companion: Halflings of Golarion",
+    "RollRange": "",
+    "Description": "Pack Size: 10. These bullets are actually made from a porous stone or heavy wood that absorbs liquids and shatters on impact. Soakstones are often used to deliver poison or burning oil. A flask of oil completely saturates 10 soakstones. When ignited (a free action if fire is available), a burning, oil-soaked soakstone deals +1d2 fire damage and can ignite combustible materials (such as a thatched roof ). Allowing a soakstone to burn in a sling’s cup for more than 1d3 rounds gives the sling the broken condition.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/spongestone",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "bludgeoning",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
     "Name": "Ammunition (Blowgun): Darts",
     "Cost": 5,
     "Aura": "no aura (nonmagical)",
@@ -1092,6 +1218,70 @@
     "Proficiency": "",
     "WeaponGroups": "",
     "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Blowgun): Dart, Featherweight",
+    "Cost": 1,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "0.05 lbs",
+    "Source": "Pathfinder Chronicals: Campaign Setting",
+    "RollRange": "",
+    "Description": "Pack Size: 10. These extremely small and lightweight darts function like blowgun darts, except they are used to deliver poisons surreptitiously instead of dealing damage. When you hit with a dart, the poison is injected into the target while the dart breaks off and falls away, leaving the wound hard to spot. Any amount of damage reduction, hardness, or similar protection prevents the featherweight dart from delivering its injected poison. Anyone examining the target must succeed at a DC 20 Perception check to find the puncture wound, while finding the dart itself at the location where it fell requires a successful DC 15 Perception check. This ammunition can be used in both blowguns and wrist launchers.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "",
+    "WeaponType": "",
+    "Damage": "",
+    "Critical": "",
+    "Range": "",
+    "DamageType": "",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "",
+    "SpecialAbilities": []
+  },
+  {
+    "Name": "Ammunition (Thrown): Shuriken",
+    "Cost": 1,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "0.5 lbs",
+    "Source": "Pathfinder Roleplaying Game: Core Rulebook",
+    "RollRange": "",
+    "Description": "A shuriken is a small piece of metal with sharpened edges, designed for throwing. A shuriken can’t be used as a melee weapon. Although they are thrown weapons, shuriken are treated as ammunition for the purposes of drawing them and crafting masterwork or otherwise special versions of them, and of what happens to them after they are thrown.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/ammunition/ammunition-crossbow-bolts-or-quarrels",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "Ammunition",
+    "WeaponCategory": "ranged",
+    "WeaponType": "",
+    "Damage": "1 (small), 1d2 (medium)",
+    "Critical": "x2",
+    "Range": "10 ft",
+    "DamageType": "Piercing",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "",
+    "WeaponGroups": "monk, thrown",
+    "SpecialAbilities": [
+      "Monk"
+    ]
   },
   {
     "Name": "Ankus",
@@ -1842,7 +2032,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Campaign Setting: The Inner Sea World Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "These bolas function as standard bolas, but they deal lethal damage rather than nonlethal damage.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1862,7 +2052,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Trip"
+    ]
   },
   {
     "Name": "Bolas",
@@ -1871,9 +2063,9 @@
     "CL": 0,
     "Slot": "none",
     "Weight": "2 lbs.",
-    "Source": "Pathfinder RPG Core Rulebook",
+    "Source": "Pathfinder RPG Core Rulebook, Pathfinder Roleplaying Game: Ultimate Equipment (OGL) ",
     "RollRange": "",
-    "Description": "A bolas is a pair of wooden, stone, or metal weights connected by a thin rope or cord.",
+    "Description": "A bolas is a pair of wooden, stone, or metal weights connected by a thin rope or cord. You can whirl and throw this weapon to make a ranged trip attack against an opponent. You can’t be tripped during your own trip attempt when using a bolas.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1893,7 +2085,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Nonlethal",
+      "Trip"
+    ]
   },
   {
     "Name": "Boomerang",
@@ -2444,7 +2639,7 @@
     "Weight": "12 lbs.",
     "Source": "Pathfinder Player Companion: Ranged Tactics Toolbox",
     "RollRange": "",
-    "Description": "This heavy crossbow has a winch mounted below the stock.",
+    "Description": "This heavy crossbow has a winch mounted below the stock. Up to 50 feet of silk rope can be wound onto the winch as a full-round action that provokes attacks of opportunity. The wound rope can be attached to a barbed bolt or grappling bolt as part of a loading action. After firing such a bolt, the wielder can use the winch to retract the rope or pull herself along the rope if the bolt is secure. When used with a barbed bolt, the winch provides a +2 bonus on grapple combat maneuver checks to pull the target toward you. When used with a grappling bolt, the winch provides a +2 bonus on Climb checks.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2475,7 +2670,7 @@
     "Weight": "6 lbs.",
     "Source": "Pathfinder Player Companion: Ranged Tactics Toolbox",
     "RollRange": "",
-    "Description": "",
+    "Description": "This weapon functions as a heavy crank crossbow, except that its damage, critical, and range values are equivalent to those of a light crossbow. Its lighter construction means it provides only a +1 bonus on Climb checks and grapple combat maneuver checks to pull the target toward you.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2602,7 +2797,7 @@
     "Weight": "18 lbs.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "This heavy weapon fires a pair of iron-tipped bolts with a single squeeze of the trigger.",
+    "Description": "This heavy weapon fires a pair of iron-tipped bolts with a single squeeze of the trigger. Due to its size and weight, you take a –4 penalty on your attack roll if you’re proficient with it, or –8 if you’re not. If the attack hits, the target takes damage from both bolts. Critical hits, sneak attack damage, and other precision-based damage apply to only the first bolt. Reloading one bolt is a standard action; the Rapid Reload feat reduces this to a move action. Crossbow Mastery allows you to reload both bolts as a move action. A double crossbow fires crossbow bolts.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2664,7 +2859,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "You can draw a hand crossbow back by hand.",
+    "Description": "You can draw a hand crossbow back by hand. Loading a hand crossbow is a move action that provokes attacks of opportunity. You can shoot, but not load, a hand crossbow with one hand at no penalty. You can shoot a hand crossbow with each hand, but you take a penalty on attack rolls as if attacking with two light weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2757,7 +2952,7 @@
     "Weight": "8 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "A launching crossbow is designed to launch splash weapons.",
+    "Description": "A launching crossbow is designed to launch splash weapons. Loading a launching crossbow is a full-round action that provokes attacks of opportunity.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2850,7 +3045,7 @@
     "Weight": "12 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "The repeating heavy crossbow holds 5 repeating crossbow bolts. As long as it holds bolts, you can reload it by pulling the reloading lever (a free action). Loading a new case of 5 bolts is a full-round action that provokes attacks of opportunity. You can fire a repeating crossbow with one hand or fire a repeating crossbow in each hand in the same manner as you would a normal crossbow of the same size. However, you must fire the weapon with two hands in order to use the reloading lever, and you must use two hands to load a new case of bolts.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2881,7 +3076,7 @@
     "Weight": "6 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "This weapon functions identically to a repeating heavy crossbow, except that its damage, critical, and range values are equivalent to those of a light crossbow instead of a heavy crossbow. Its significantly lighter construction and pull make it both more portable and more useful to those who rely on stealth or speed.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4812,7 +5007,7 @@
     "Weight": "7 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "Larger even than alongbow, these bows are often made from the horns of great beasts. Though they have a shorter range than other bows, their greater destructive power is highly favored byorcsand their kin.",
+    "Description": "Larger even than a longbow, these bows are often made from the horns of great beasts. Though they have a shorter range than other bows, their greater destructive power is highly favored byorcsand their kin. All hornbows are composite bows and can be modified to benefit from high Strength scores in the same way as other composite bows. Any effect that applies to both longbows and shortbows also applies to hornbows.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -5001,7 +5196,7 @@
     "Weight": "3 lbs.",
     "Source": "Pathfinder Companion: Gnomes of Golarion",
     "RollRange": "",
-    "Description": "This single-use javelin bears athunderstonejust behind the head.",
+    "Description": "This single-use javelin bears athunderstonejust behind the head. If you successfully strike a target with one of these javelins, the creature takes damage as normal and is the center of the thunderstone’s effect. If you miss, roll to see where the javelin lands (as if determining a miss with a splash weapon); that square becomes the center of the thunderstone’s effect.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -5032,7 +5227,7 @@
     "Weight": "3 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "This single-use javelin bears athunderstonejust behind the head.",
+    "Description": "This single-use javelin bears athunderstonejust behind the head. If you successfully strike a target with one of these javelins, the creature takes damage as normal and is the center of the thunderstone’s effect. If you miss, roll to see where the javelin lands (as if determining a miss with a splash weapon); that square becomes the center of the thunderstone’s effect.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -5920,7 +6115,7 @@
     "Weight": "5 lbs.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "This thrown weapon is a length of rope with a simple open knot on one end that allows you to entangle a foe like you would using a net.",
+    "Description": "This thrown weapon is a length of rope with a simple open knot on one end that allows you to entangle a foe like you would using a net. On a successful hit, the lasso tightens; to use it again you must spend a standard action sliding the knot to enlarge the loop. The DC to cast a spell while entangled with a lasso is 10 + the spell level being cast. An entangled creature can slip free with a successful DC 15 Escape Artist check as a full-round action. The lasso has 2 hit points and AC 10, and requires a DC 23 Strength check to break.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -6961,7 +7156,7 @@
     "Weight": "6 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "When you throw a net, you make a ranged touch attack against your target. A net’s maximum range is 10 feet. If you hit, the target is entangled. If you control the trailing rope by succeeding on an opposed Strength check while holding it, the entangled creature can move only within the limits that the rope allows. If the entangled creature attempts to cast a spell, it must make a concentration check with a DC of 15 + the spell’s level or be unable to cast the spell. An entangled creature can escape with a DC 20 Escape Artist check (a full-round action). The net has 5 hit points and can be burst with a DC 25 Strength check (also a full-round action). A net is useful only against creatures within one size category of you. A net must be folded to be thrown effectively. The first time you throw your net in a fight, you make a normal ranged touch attack roll. After the net is unfolded, you take a –4 penalty on attack rolls with it. It takes 2 rounds for a proficient user to fold a net and twice that long for a non-proficient one to do so.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -6992,7 +7187,7 @@
     "Weight": "10 lbs.",
     "Source": "Pathfinder Roleplaying Game Advanced Race Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "This short, wide net is covered in barbed loops and slipknots. Benefit: A snag net works like a typical net exotic weapon, except it has the trip weapon special feature. If you entangle an opponent and hold the trailing rope, on your turn in place of a melee attack you may make a trip combat maneuver check against that opponent; if you succeed, you may trip the opponent or deal 1 point of piercing damage to the opponent. The concentration DC to cast while entangled in a snag net is 17 + the spell’s level. The Escape Artist DC to escape a snag net is 22.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7012,7 +7207,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Trip"
+    ]
   },
   {
     "Name": "Nodachi",
@@ -7185,7 +7382,7 @@
     "Weight": "8 lbs.",
     "Source": "Pathfinder Player Companion: Heroes from the Fringe",
     "RollRange": "",
-    "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and firesslingbullets rather than bolts.",
+    "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and firesslingbullets rather than bolts. A dwarven heavy pelletbow takes the same amount of time and effort to load as a light crossbow (normally a move action). Normally a pelletbow takes two hands to operate, but you can shoot (but not load) a pelletbow with one hand by taking a –2 penalty on attack rolls. You can shoot one pelletbow with each hand, but you take a penalty on attack rolls for attacking with two one-handed weapons. Feats and special abilities that don’t involve proficiency (that don’t depend on dealing piercing damage or firing bolts) that apply to a heavy crossbow also apply to a dwarven heavy pelletbow.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7216,7 +7413,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Player Companion: Heroes from the Fringe",
     "RollRange": "",
-    "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and firesslingbullets rather than bolts.",
+    "Description": "The dwarven pelletbow is a crossbowlike weapon that is loaded with and firesslingbullets rather than bolts. A dwarven light pelletbow can be reloaded as a free action (allowing characters to attack with it multiple times in a round). Normally a pelletbow takes two hands to operate, but you can shoot (but not load) a pelletbow with one hand by taking a –2 penalty on attack rolls. You can shoot one pelletbow with each hand, but you take a penalty on attack rolls for attacking with two light weapons. Feats and special abilities that don’t involve proficiency (that don’t depend on dealing piercing damage or firing bolts) that apply to a light crossbow also apply to a dwarven light pelletbow.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9273,7 +9470,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "",
+    "Description": "Loading a sling glove is a free action that does not provoke an attack of opportunity so long as you have a free hand. You take –4 penalty when throwing a stone at an adjacent target and cannot use the weapon to attack creatures in your space.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9304,7 +9501,7 @@
     "Weight": "3 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "Made from a specially designed sling attached to a short club, a halfling sling staff can be used by a proficient wielder to devastating effect.",
+    "Description": "Made from a specially designed sling attached to a short club, a halfling sling staff can be used by a proficient wielder to devastating effect. Your Strength modifier applies to damage rolls when you use a halfling sling staff just as it does for thrown weapons. You can fire, but not load, a halfling sling staff with one hand. You can hurl ordinary stones with a halfling sling staff, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you and you take a –1 penalty on attack rolls. A halfling sling staff can be used as a simple weapon that deals bludgeoning damage equal to that of a club of its size. Loading a halfling sling staff is a move action that requires two hands and provokes attacks of opportunity. Halflings treat halfling sling staves as martial weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9333,9 +9530,9 @@
     "CL": 0,
     "Slot": "none",
     "Weight": "1 lb.",
-    "Source": "– Pathfinder Player Companion: Halflings of Golarion Pathfinder Player Companion: Halflings of Golarion",
+    "Source": "– Pathfinder Player Companion: Halflings of Golarion",
     "RollRange": "",
-    "Description": "",
+    "Description": "At first glance resembling a baton-like stick with a sling dangling from each end, this weapon requires extraordinary skill, or halfling acrobatics, to use to full effect. You can use a double sling as a normal sling, or use the second end to make one additional ranged attack each round. You take the normal penalties for fighting with two weapons when you use both ends of a double sling (as if it were a double weapon); the Two- Weapon Fighting feat reduces these penalties as normal. Reloading one end of a double sling is a move action ( just like a normal sling), so unless you have an ability or feat (such as Ammo Drop) that allows you to quickly reload a sling, you cannot normally make multiple attacks per round for several consecutive rounds with this weapon. You can hurl ordinary stones with a double sling, but stones are not as dense or as round as bullets. Thus, such an attack deals damage as if the weapon were designed for a creature one size category smaller than you, and you take a –1 penalty on attack rolls.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9355,7 +9552,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double"
+    ]
   },
   {
     "Name": "Sling, Stitched",
@@ -9366,7 +9565,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Player Companion: Halflings of Golarion",
     "RollRange": "",
-    "Description": "Technically not a unique kind of weapon, a stitched sling is a sling, staff sling, or double sling whose cup is sewn closed around the ammunition, creating a weak sort of light flail.",
+    "Description": "Technically not a unique kind of weapon, a stitched sling is a sling, staff sling, or double sling whose cup is sewn closed around the ammunition, creating a weak sort of light flail. The ammunition sewn into the sling is irrelevant to the type and amount of damage it causes. A stitched sling cannot be used to fire ammunition unless the thread or cord holding the cup closed is cut open (a full-round action that provokes attacks of opportunity).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9386,7 +9585,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Trip"
+    ]
   },
   {
     "Name": "Spear",
@@ -10565,7 +10767,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "This polished rosewood bow is studded with thorns and tiny flowers.",
+    "Description": "This polished rosewood bow is studded with thorns and tiny flowers. Treat this weapon as a shortbow.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -10658,7 +10860,7 @@
     "Weight": "—",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "",
+    "Description": "This shield is designed for throwing and has specially designed straps allowing you to unclasp and throw it as a free action. Tower shields cannot be throwing shields. Neither a shield’s enhancement bonus to AC nor its shield spikes apply on your attack or damage rolls. A throwing shield can’t be disarmed.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -10678,7 +10880,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Performance",
+      "Trip"
+    ]
   },
   {
     "Name": "Tiger Fork",
@@ -11426,7 +11631,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Roleplaying Game Ultimate Intrigue",
     "RollRange": "",
-    "Description": "This slender tube is strapped to one forearm and designed to be concealed beneath the sleeve, where the wielder can fire a featherweightdartwith a twist of the wrist.",
+    "Description": "This slender tube is strapped to one forearm and designed to be concealed beneath the sleeve, where the wielder can fire a featherweightdartwith a twist of the wrist. The launcher functions by means of a tightly compressed spring, and must be reloaded and re-cocked with a separate ramrod as a full-round action. After firing, the wearer can attempt a Sleight of Hand check opposed by opponents’ Perception checks to keep the wrist launcher concealed. If you are proficient with hand crossbows, you are also proficient with wrist launchers.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -11457,7 +11662,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Intrigue",
     "RollRange": "",
-    "Description": "",
+    "Description": "A larger version of the wrist launcher, this device fires a single crossbow bolt instead of a featherweight dart. If you are proficient with hand crossbows, you are also proficient with heavy wrist launchers.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
