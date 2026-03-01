@@ -1215,7 +1215,7 @@
     "Name": "Elven Chain",
     "Cost": 5150,
     "Aura": "no aura (non.magical)",
-    "CL": ,
+    "CL": 0,
     "Slot": "Armor",
     "Weight": "20 lbs.",
     "Source": "Ultimate Equipment pg. 131",
