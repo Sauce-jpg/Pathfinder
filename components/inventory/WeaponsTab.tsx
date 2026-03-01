@@ -56,7 +56,12 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   }
 
   async function handleSelectMagicWeapon(item: MagicItem) {
-    // Store all rich metadata in notes as a parseable JSON blob
+    const enhBonus = item.EnhancementBonus ?? 0;
+    const isMasterwork = item.IsMasterwork ?? false;
+    // Enhancement bonus supersedes masterwork (+1 atk only, never to dmg)
+    const attackBonus = enhBonus > 0 ? enhBonus : (isMasterwork ? 1 : 0);
+    const damageBonus = enhBonus;
+
     const meta = {
       _magic: true,
       description: item.Description,
@@ -64,33 +69,34 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
       cl: item.CL,
       source: item.Source,
       reference: item.Reference,
-      baseWeapon: (item as any).BaseWeapon,
-      proficiency: (item as any).Proficiency,
-      weaponGroups: (item as any).WeaponGroups,
-      specialAbilities: (item as any).SpecialAbilities,
-      construction: (item as any).Construction,
+      baseWeapon: item.BaseWeapon,
+      proficiency: item.Proficiency,
+      weaponGroups: item.WeaponGroups,
+      specialAbilities: item.SpecialAbilities,
+      construction: item.Construction,
       powerLevel: item.PowerLevel,
       rarity: item.Rarity,
-      damageSml: (item as any)["Damage (S)"],
+      damageSml: item["Damage (S)"],
       damageMed: item["Damage (M)"],
-      damageType: (item as any).DamageType ?? item.Type,
-      enhancementBonus: (item as any).EnhancementBonus ?? 0,
-      material: (item as any).Material,
+      damageType: item.DamageType ?? item.Type,
+      enhancementBonus: enhBonus,
+      isMasterwork,
+      material: item.Material,
     };
 
     const weaponData = {
       character_id: characterId,
       weapon_name: item.Name,
       weapon_type: "melee",
-      weapon_category: (item as any).Proficiency ?? "martial",
+      weapon_category: item.Proficiency ?? "martial",
       damage_dice: item["Damage (M)"] ?? "1d6",
-      damage_type: (item as any).DamageType ?? item.Type ?? "slashing",
-      attack_bonus: (item as any).EnhancementBonus ?? 0,
-      damage_bonus: (item as any).EnhancementBonus ?? 0,
+      damage_type: item.DamageType ?? item.Type ?? "slashing",
+      attack_bonus: attackBonus,
+      damage_bonus: damageBonus,
       critical_range: item.Critical?.split("/")[0] ?? "20",
       critical_multiplier: item.Critical?.includes("x") ? item.Critical.split("/")[1] : "x2",
       range_increment: item.Range && item.Range !== "—" ? parseInt(item.Range) || null : null,
-      properties: (item as any).SpecialAbilities ?? [],
+      properties: item.SpecialAbilities ?? [],
       notes: JSON.stringify(meta),
       is_primary: false,
       is_equipped: false,
