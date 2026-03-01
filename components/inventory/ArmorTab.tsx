@@ -625,7 +625,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
               </div>
 
               {/* Auto-Apply Stat Bonuses When Equipped */}
-              <ItemBonusesEditor itemId={editingArmor?.id || null} onUpdate={onUpdate} />
+              <ItemBonusesEditor itemId={editingArmor?.id || null} onUpdate={onUpdate} sourceTable="armor" />
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
