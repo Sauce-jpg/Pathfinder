@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
+import { ItemBonusesEditor } from "./ItemBonusesEditor";
 import MagicItemBrowser, { type MagicItem } from "../MagicItemBrowser";
 import { mapArmorToCharacter, mapShieldToCharacter } from "@/lib/equipmentMappers";
 
@@ -32,6 +33,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   const [enhancementBonus, setEnhancementBonus] = useState(0);
   const [properties, setProperties] = useState("");
   const [notes, setNotes] = useState("");
+  const [grantsSlotType, setGrantsSlotType] = useState("");
+  const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
 
   // Close dropdown on outside click
@@ -131,6 +134,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     setEnhancementBonus(armor.enhancement_bonus || 0);
     setProperties(armor.properties?.join(", ") || "");
     setNotes(armor.notes || "");
+    setGrantsSlotType(armor.grants_slot_type || "");
+    setGrantsSlotCount(armor.grants_slot_count || 0);
     setShowAddModal(true);
   }
 
@@ -144,6 +149,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     setEnhancementBonus(0);
     setProperties("");
     setNotes("");
+    setGrantsSlotType("");
+    setGrantsSlotCount(0);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -161,6 +168,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
       enhancement_bonus: enhancementBonus,
       properties: properties ? properties.split(",").map(p => p.trim()) : [],
       notes: notes || null,
+      grants_slot_type: grantsSlotType || null,
+      grants_slot_count: grantsSlotCount || 0,
       is_equipped: false,
     };
 
@@ -582,6 +591,41 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
                   }}
                 />
               </div>
+
+              {/* Bonus Slot Granting */}
+              <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px" }}>
+                <div style={{ marginBottom: "0.75rem", fontWeight: 600 }}>
+                  ✨ Does this item grant additional equipment slots?
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Slot Type</label>
+                    <select value={grantsSlotType} onChange={(e) => setGrantsSlotType(e.target.value)}
+                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }}>
+                      <option value="">None</option>
+                      <option value="ring">Ring</option>
+                      <option value="head">Head</option>
+                      <option value="neck">Neck</option>
+                      <option value="belt">Belt</option>
+                      <option value="feet">Feet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Quantity</label>
+                    <input type="number" value={grantsSlotCount} onChange={(e) => setGrantsSlotCount(parseInt(e.target.value) || 0)}
+                      min="0" disabled={!grantsSlotType} placeholder="0"
+                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }} />
+                  </div>
+                </div>
+                {grantsSlotType && grantsSlotCount > 0 && (
+                  <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "#10b981" }}>
+                    💡 When equipped, this item will grant +{grantsSlotCount} {grantsSlotType} slots
+                  </div>
+                )}
+              </div>
+
+              {/* Auto-Apply Stat Bonuses When Equipped */}
+              <ItemBonusesEditor itemId={editingArmor?.id || null} onUpdate={onUpdate} />
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
