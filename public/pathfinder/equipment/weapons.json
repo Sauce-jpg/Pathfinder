@@ -2155,37 +2155,6 @@
     ]
   },
   {
-    "Name": "Breech-Loader",
-    "Cost": 0,
-    "Aura": "no aura (nonmagical)",
-    "CL": 0,
-    "Slot": "none",
-    "Weight": "",
-    "Source": "Pathfinder Player Companion: Heroes of Golarion",
-    "RollRange": "",
-    "Description": "",
-    "Construction": {
-      "Requirements": "",
-      "Cost": 0
-    },
-    "Reference": "https://www.d20pfsrd.com/equipment/weapons/weapon-descriptions/breech-loader/",
-    "PowerLevel": "",
-    "Rarity": "",
-    "BaseWeapon": "Breech-Loader",
-    "WeaponCategory": "",
-    "WeaponType": "",
-    "Damage": "",
-    "Critical": "",
-    "Range": "",
-    "DamageType": "",
-    "EnhancementBonus": 0,
-    "Material": "",
-    "IsMasterwork": false,
-    "Proficiency": "",
-    "WeaponGroups": "",
-    "SpecialAbilities": []
-  },
-  {
     "Name": "Broadsword, Nine-Ring",
     "Cost": 0,
     "Aura": "no aura (nonmagical)",
