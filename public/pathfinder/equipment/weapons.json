@@ -39,7 +39,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "The aklys is a hooked throwing club with a 20-foot-long cord, usually of woven leather. Some aklyses have holes drilled through them and whistle when flung.",
+    "Description": "The aklys is a hooked throwing club with a 20-foot-long cord, usually of woven leather. Some aklyses have holes drilled through them and whistle when flung. You can retrieve the aklys after throwing it as a move action. The hook allows you to make trip attacks at range.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -59,7 +59,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "hammers, thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Performance",
+      "Trip"
+    ]
   },
   {
     "Name": "Amentum",
@@ -1226,7 +1229,7 @@
     "Weight": "25 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "A creation oforcsmiths, this axe has an oversized head bristling with spikes and a long, thick haft that only barely counterbalances its weight.",
+    "Description": "A creation oforcsmiths, this axe has an oversized head bristling with spikes and a long, thick haft that only barely counterbalances its weight. If your Strength is less than 19 (or 17 for a Small or smaller butchering axe), you take a –2 penalty on attacks with it, as you’re unable to maneuver its daunting size and weight.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1257,7 +1260,7 @@
     "Weight": "7 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "",
+    "Description": "The hooked end of this axe’s blade can be used to disarm foes or pull them off balance. A hooked axe can be used as a martial weapon (in which case it functions like a battleaxe).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1277,7 +1280,11 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "axes",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Performance",
+      "Trip"
+    ]
   },
   {
     "Name": "Axe, Knuckle",
@@ -1288,7 +1295,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "Knuckle axes, usually used in pairs, resemble axe blades mounted on brass knuckles.",
+    "Description": "Knuckle axes, usually used in pairs, resemble axe blades mounted on brass knuckles. You may hold, but not wield, a weapon or other object in a hand wearing a knuckle axe. Unlike when wearing brass knuckles, you cannot use a hand wearing a knuckle axe for spellcasting.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1308,7 +1315,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "axes",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk",
+      "Performance"
+    ]
   },
   {
     "Name": "Axe, Orc Double",
@@ -1339,7 +1349,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "axes, double",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double"
+    ]
   },
   {
     "Name": "Axe, Throwing",
@@ -1381,7 +1393,7 @@
     "Weight": "5 lbs.",
     "Source": "Pathfinder Player Companion: Heroes from the Fringe",
     "RollRange": "",
-    "Description": "An axe-gauntlet is a lockedgauntletcovering the hand and forearm up to and over the elbow, with an axe blade built around thegauntlet’s permanently closed fist. Axe-gauntlets were developed when dwarven warriors often had to engage in running fights against larger, stronger opponents in areas thedwarvesdid not intend to ever return to. Losing a weapon in such circumstances often made it irretrievable, and the axe-gauntlet became popular with rearguard warriors. Though these weapons have seen significantly less use since thedwarvesreached the surface, some dwarven warriors still appreciate the reliability of such designs.",
+    "Description": "An axe-gauntlet is a lockedgauntletcovering the hand and forearm up to and over the elbow, with an axe blade built around thegauntlet’s permanently closed fist. Axe-gauntlets were developed when dwarven warriors often had to engage in running fights against larger, stronger opponents in areas thedwarvesdid not intend to ever return to. Losing a weapon in such circumstances often made it irretrievable, and the axe-gauntlet became popular with rearguard warriors. Though these weapons have seen significantly less use since thedwarvesreached the surface, some dwarven warriors still appreciate the reliability of such designs. An axe-gauntlet takes a full-round action to don, and it gives you a +10 bonus to your CMD against disarm attempts. You can’t use the hand on which an axe-gauntlet is worn for anything else.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1401,7 +1413,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "axes, close",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Blocking",
+      "Disarm"
+    ]
   },
   {
     "Name": "Axe-Gauntlet, Dwarven Light",
@@ -1443,7 +1458,7 @@
     "Weight": "5 lbs",
     "Source": "Pathfinder Chronicles – Cheliax: Empire of Devils",
     "RollRange": "",
-    "Description": "",
+    "Description": "A barbazu beard is an intimidating helm with a full facemask wrought to look like a snarling barbazu’s head. Extending from the chin area of the face guard is a razor-sharp blade much like an actual barbazu’s beard, usually 8 inches long but sometimes longer. A barbazu beard can be used as an off-hand weapon that requires no hands to use; thus, a warrior could combine use of a barbazu beard with a two-handed weapon. Attacking with a barbazu beard provokes an attack of opportunity. Because it is so close to the wearer’s face, using a barbazu beard against creatures harmful to touch (such as fire elementals and acidic oozes) has the same risks as using a natural weapon or unarmed strike against these creatures.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -1559,7 +1574,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "double",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Trip"
+    ]
   },
   {
     "Name": "Battle Poi",
@@ -1570,7 +1587,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "",
+    "Description": "The weight of the poi is insufficient to deal physical damage, but the burning fuel deals fire damage. If you are proficient in battle poi, you are treated as if you have the Two-Weapon Fighting feat for the purposes of making poi attacks. Poi can be extinguished by spending a full round action smothering them in sand or submerging them in water.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2013,7 +2030,7 @@
     "Weight": "4 lb.",
     "Source": "Pathfinder Player Companion: Martial Arts Handbook",
     "RollRange": "",
-    "Description": "",
+    "Description": "Seaxes are straight, single-edged blades. The broken-back seax is the size of a short sword, and has a broad blade with a distinctive trapezoidal shape. If your Strength score is less than 15, you take a –2 penalty on attack rolls with a broken-back seax, as you’re unable to put enough force into the blows to land them effectively.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2139,7 +2156,7 @@
     "Weight": "10 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A spiked chain is about 4 feet in length, covered in wicked barbs.",
+    "Description": "A spiked chain is about 4 feet in length, covered in wicked barbs. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a spiked chain sized for you, even though it isn’t a light weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2159,7 +2176,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Trip"
+    ]
   },
   {
     "Name": "Chain-flail, Dwarven",
@@ -2170,7 +2190,7 @@
     "Weight": "15 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "This 10-foot-long chain is weighted at the end by a ball of solid iron the size of a large fist.",
+    "Description": "This 10-foot-long chain is weighted at the end by a ball of solid iron the size of a large fist. By adjusting the slack of the chain, the weapon can be used either with or without reach. Changing between using it as a normal weapon and a reach weapon is a move action.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2190,7 +2210,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach"
+    ]
   },
   {
     "Name": "Chain-Hammer",
@@ -2221,7 +2243,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "double, hammers, thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double"
+    ]
   },
   {
     "Name": "Chakram, Common",
@@ -2513,7 +2537,7 @@
     "Weight": "5 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "This common herder’s tool is a wooden pole with a hooked end.",
+    "Description": "This common herder’s tool is a wooden pole with a hooked end. When using a crook, you can ignore the penalty for not having two hands free when making a combat maneuver check to initiate a grapple against a creature you threaten.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -2533,7 +2557,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "polearms",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach",
+      "Trip"
+    ]
   },
   {
     "Name": "Crossbow of the Crab",
@@ -2916,7 +2943,7 @@
     "Weight": "7 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "Essentially a longer version of a scimitar, but with a thinner blade, the elven curve blade is exceptionally rare.",
+    "Description": "Essentially a longer version of a scimitar, but with a thinner blade, the elven curve blade is exceptionally rare. You receive a +2 circumstance bonus to your Combat Maneuver Defense whenever a foe attempts to sunder your elven curve blade due to its flexible metal. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with an elven curve blade sized for you, even though it isn’t a light weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3102,7 +3129,7 @@
     "Weight": "3 lbs.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "If you are proficient with this weapon, add +4 on your disarm or sunder attempts against bladed weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3122,7 +3149,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "light blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Sunder"
+    ]
   },
   {
     "Name": "Dan Bong",
@@ -3321,7 +3351,7 @@
     "Weight": "12 lb.",
     "Source": "Pathfinder Player Companion: Martial Arts Handbook",
     "RollRange": "",
-    "Description": "",
+    "Description": "This long, heavy spear has a point at each end, allowing it to be used as a double weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3341,7 +3371,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "Spears",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double"
+    ]
   },
   {
     "Name": "Double Walking Stick Katana",
@@ -3507,7 +3539,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "An estoc is a sword about as long as abastard sword, but designed exclusively for thrusting attacks. Its “blade” is a steel spike with a triangular, square, or hexagonal cross-section.",
+    "Description": "An estoc is a sword about as long as abastard sword, but designed exclusively for thrusting attacks. Its “blade” is a steel spike with a triangular, square, or hexagonal cross-section. Like the bastard sword, an estoc requires special training to use it one handed, but it can also be wielded as a two-handed martial weapon. When you wield an estoc with one hand, treat it as a one-handed weapon; when you wield an estoc with two hands, treat it as a two-handed weapon. If you can use the estoc proficiently with one hand, you can also use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier on attack rolls when wielding an estoc sized for you with one or two hands, even though it isn’t a light weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3600,7 +3632,7 @@
     "Weight": "10 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "Like aglaive, the fauchard is a curved blade at the end of a pole. However, the cutting edge of a fauchard is along the concave side, like that of asickleorscythe.",
+    "Description": "Like aglaive, the fauchard is a curved blade at the end of a pole. However, the cutting edge of a fauchard is along the concave side, like that of a sickle or scythe.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3620,7 +3652,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "polearms",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach",
+      "Trip"
+    ]
   },
   {
     "Name": "Fighting Fan",
@@ -3693,7 +3728,7 @@
     "Weight": "10 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A dire flail consists of two spheres of spiked iron dangling from chains at opposite ends of a long haft. This weapon excels at short but powerful strikes, and is typically swung in a constant",
+    "Description": "A dire flail consists of two spheres of spiked iron dangling from chains at opposite ends of a long haft. This weapon excels at short but powerful strikes, and is typically swung in a constant churning motion. The wielder of a dire flail must have great strength, both to use the weapon effectively and to keep from tiring out.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3713,7 +3748,11 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "double, flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Double",
+      "Trip"
+    ]
   },
   {
     "Name": "Flail, Heavy",
@@ -3778,7 +3817,11 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Reach",
+      "Trip"
+    ]
   },
   {
     "Name": "Flambard",
@@ -3789,7 +3832,7 @@
     "Weight": "6 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "This two-handed sword has a wavy blade that is especially useful for cutting through wooden weapons.",
+    "Description": "This two-handed sword has a wavy blade that is especially useful for cutting through wooden weapons. If you are proficient with this weapon, you gain a +4 bonus on any sunder attempts made against weapons with a wooden haft; otherwise you may use this sword as a bastard sword.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3809,7 +3852,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "heavy blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Sunder"
+    ]
   },
   {
     "Name": "Flask Thrower",
@@ -3851,7 +3896,7 @@
     "Weight": "10 lb",
     "Source": "Pathfinder Player Companion: Weapon Master’s Handbook",
     "RollRange": "",
-    "Description": "",
+    "Description": "The innovation behind a flick-mace, which has an ordinary mace head, lies within its spring-loaded haft and protruding handles. When the mace is compressed, removing the handles instantly springs the mace to its full size. While it is extended, a quick flick of the wrist allows the weapon to be compressed.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3871,7 +3916,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach",
+      "Trip"
+    ]
   },
   {
     "Name": "Flindbar",
@@ -3902,7 +3950,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Trip"
+    ]
   },
   {
     "Name": "Flying Blade",
@@ -3913,7 +3964,7 @@
     "Weight": "12 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "A flying blade is a large, crescent-shaped blade anchored to a 10-foot chain. You fight with a flying blade by spinning it about your head or by snapping it toward an opponent.",
+    "Description": "A flying blade is a large, crescent-shaped blade anchored to a 10-foot chain. You fight with a flying blade by spinning it about your head or by snapping it toward an opponent. The flying blade is a clumsy weapon and receives a –2 penalty on attack rolls, but when you make attacks of opportunity provoked by movement, you receive a +2 bonus on attack rolls instead of the penalty.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3933,7 +3984,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Performance",
+      "Reach"
+    ]
   },
   {
     "Name": "Flying Talon",
@@ -3944,7 +3998,7 @@
     "Weight": "5 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "This weapon consists of a three-pronged, barbed hook attached to a length of chain.",
+    "Description": "This weapon consists of a three-pronged, barbed hook attached to a length of chain. Due to the weapon’s unwieldiness, you cannot make attacks of opportunity with a flying talon and do not threaten any squares with it.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -3964,7 +4018,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Trip"
+    ]
   },
   {
     "Name": "Gaff, Boarding",
@@ -3995,7 +4052,11 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "double, polearms",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double",
+      "Reach",
+      "Trip"
+    ]
   },
   {
     "Name": "Gandasa",
@@ -4037,7 +4098,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "",
+    "Description": "In order to use a garrote, your opponent must be helpless or unaware of you. You must make a grapple check (though you avoid the –4 penalty for not having two hands free) to successfully begin garroting your opponent. Sneak attack damage does not apply to a garrote. Your garroted opponent must make a concentration check (DC 20 + your CMB + level of the spell he’s casting) to cast a spell with a verbal component, use a command word item, or use any magic requiring speech. You gain the following additional option when grappling with a garrote. Choke: You cut off your target’s air supply so he has to hold his breath (see Suffocation, and the Swim skill for additional information). Any round you do not maintain the choke, your opponent can take a breath and restart when he has to begin making Constitution checks.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4057,7 +4118,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Grapple"
+    ]
   },
   {
     "Name": "Gauntlet",
@@ -4150,7 +4213,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "polearms",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace",
+      "Reach"
+    ]
   },
   {
     "Name": "Gladius",
@@ -4261,7 +4327,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "This odd weapon is a 2-foot rod topped with four blunt claws. Squeezing the handle causes the claws to close.",
+    "Description": "This odd weapon is a 2-foot rod topped with four blunt claws. Squeezing the handle causes the claws to close. You can use the gnome pincher to attempt a disarm or steal combat maneuver with a +2 bonus. You can transfer an object from the pincher to your free hand as a free action. Gnomes treat gnome pinchers as martial weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4281,7 +4347,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm"
+    ]
   },
   {
     "Name": "Greataxe",
@@ -4422,7 +4490,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "One end of this short rope has a sling bullet wrapped in a monkey’s fist knot, and the other end is tied in a small loop.",
+    "Description": "One end of this short rope has a sling bullet wrapped in a monkey’s fist knot, and the other end is tied in a small loop. You wrap the loop around your wrist as a full-round action and swing the weighted end like a flail. If the loop is properly attached to your wrist and you drop the rope-shot or are disarmed, you can recover it as a swift action. Removing the weapon’s loop is a full-round action. You get a +2 bonus on Sleight of Hand checks made to conceal a rope-shot on your body. Halflings treat rope-shots as martial weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4442,7 +4510,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm"
+    ]
   },
   {
     "Name": "Hammer, Gnome Hooked",
@@ -4453,7 +4523,7 @@
     "Weight": "6 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A gnome hooked hammer is a double weapon—an ingenious tool with a hammer head at one end of its haft and a long, curved pick at the other.",
+    "Description": "A gnome hooked hammer is a double weapon—an ingenious tool with a hammer head at one end of its haft and a long, curved pick at the other. The hammer’s blunt head is a bludgeoning weapon that deals 1d6 points of damage (crit ×3). Its hook is a piercing weapon that deals 1d4 points of damage (crit ×4). You can use either head as the primary weapon. Gnomes treat hooked hammers as martial weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4473,7 +4543,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "double",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double",
+      "Trip"
+    ]
   },
   {
     "Name": "Hammer, Light",
@@ -4642,7 +4715,7 @@
     "Weight": "16 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "A harpoon is a barbed spear with an attached rope 50 feet or less in length. Most harpoons have metal points, but some use ivory or are made entirely of wood.",
+    "Description": "A harpoon is a barbed spear with an attached rope 50 feet or less in length. Most harpoons have metal points, but some use ivory or are made entirely of wood. If you are proficient in the harpoon, it is a grappling weapon. A harpoon’s weight includes 10 pounds for the weight of 50 feet of hemp rope. The weight can be reduced by using shorter or lighter rope. If you are not proficient with a harpoon, treat it like a spear.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -4662,7 +4735,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "spears, thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Grapple"
+    ]
   },
   {
     "Name": "Helmet, Dwarven Boulder",
@@ -4673,7 +4748,7 @@
     "Weight": "10 lbs.",
     "Source": "Pathfinder Roleplaying Game Advanced Race Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "This heavy, reinforced helmet can be used to make melee attacks. The wearer may use the helmet when attempting bull rush maneuvers, granting a +2 circumstance bonus on the check, but after completing the maneuver (whether successful or not), the wearer is staggered until the end of his next turn. In addition, a dwarven boulder helmet grants a +2 circumstance bonus to the wearer’s AC against critical hit confirmation rolls. A dwarven boulder helmet can be enchanted as a weapon (not as armor, despite providing some protection). A dwarven boulder helmet adds 20% to the wearer’s arcane spell failure chance. It occupies the head slot and is made of metal, not stone, meaning that it can be crafted from unusual materials as a metal weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -5039,7 +5114,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "light blades, monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk",
+      "Trip"
+    ]
   },
   {
     "Name": "Kama, Double-Chained",
@@ -5225,7 +5303,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "heavy blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Trip"
+    ]
   },
   {
     "Name": "Klar",
@@ -5300,7 +5380,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "A butterfly knife has a blade concealed between two halves of the handle that can be brought to bear quickly.",
+    "Description": "A butterfly knife has a blade concealed between two halves of the handle that can be brought to bear quickly. If you are proficient with the butterfly knife (or have the Quick Draw feat) and are holding it in your hand, you may open it as a free action; a nonproficient user must spend a move action to open it. Otherwise, treat this weapon as a dagger. When it’s closed, you gain a +2 bonus on Sleight of Hand checks made to conceal it on your body.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -5351,7 +5431,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "light blades, monk, thrown",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Blocking",
+      "Monk"
+    ]
   },
   {
     "Name": "Knife, Switchblade",
@@ -5393,7 +5476,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Player Companion: Ranged Tactics Toolbox",
     "RollRange": "",
-    "Description": "A knobkerrie, or iwisa, is carved from a single piece of hardwood with a shaft 2 to 4 feet long surmounted by a bulbous knob. The knobkerrie is a traditional hunting weapon, but it’s also used as a symbol of authority. Many tribal elders use decorated knobkerries as scepters or canes. A knobkerrie is thrown end-over-end.",
+    "Description": "A knobkerrie, or iwisa, is carved from a single piece of hardwood with a shaft 2 to 4 feet long surmounted by a bulbous knob. The knobkerrie is a traditional hunting weapon, but it’s also used as a symbol of authority. Many tribal elders use decorated knobkerries as scepters or canes. A knobkerrie is thrown end-over-end. If you are proficient, you gain a +1 bonus on ranged attack rolls with a knobkerrie against opponents using bucklers, light shields, or heavy shields. If you aren’t proficient with a knobkerrie, treat it as a club.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -5902,7 +5985,7 @@
     "Weight": "14 lbs.",
     "Source": "Pathfinder Roleplaying Game Advanced Race Guide",
     "RollRange": "",
-    "Description": "These ornate and heavy blades are mounted atop a long, steel-shod haft for greater reach. They are rare among cave-dwellingdwarvesbut common in mountaindwarfclans that commonly feud withgiants.",
+    "Description": "These ornate and heavy blades are mounted atop a long, steel-shod haft for greater reach. They are rare among cave-dwelling dwarves but common in mountain dwarf clans that commonly feud with giants.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -5922,7 +6005,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach"
+    ]
   },
   {
     "Name": "Longbow",
@@ -6170,7 +6255,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach"
+    ]
   },
   {
     "Name": "Longspear",
@@ -6401,7 +6488,7 @@
     "Weight": "10 lbs.",
     "Source": "Advanced Player’s Guide",
     "RollRange": "",
-    "Description": "This polearm consists of two curved metal bands that close around a target when you attack, allowing you to bind an opponent.",
+    "Description": "This polearm consists of two curved metal bands that close around a target when you attack, allowing you to bind an opponent. A mancatcher is built to capture a creature of a particular size category (such as Small or Medium) and doesn’t work on creatures of the wrong size. Make a touch attack to hit an opponent and a combat maneuver check to grapple him (without the –4 penalty for not having two hands free); success means you and the target are grappled. Once the target is grappled, you can perform a move or damage grapple action against him. The mancatcher has hardness 10 and 5 hit points; breaking it requires a DC 26 Strength check. If you drop the mancatcher, the target can free himself as a standard action.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -6421,7 +6508,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "polearms",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Grapple",
+      "Reach"
+    ]
   },
   {
     "Name": "Manople",
@@ -6528,7 +6618,7 @@
     "Weight": "5 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "This versatile weapon appears like a heavy-headed axe, but a skilled wielder can strike equally well with its chopping edge as with the forged sledge that backs the blade.",
+    "Description": "This versatile weapon appears like a heavy-headed axe, but a skilled wielder can strike equally well with its chopping edge as with the forged sledge that backs the blade. A dwarven maulaxe is a martial weapon for dwarves and an exotic weapon for members of other races. It is not a double weapon, and any enchantments applied to the weapon operate normally regardless of which part of the weapon’s head is used to deliver the blow, except for enhancements that apply only to blunt or sharp weapons. Such enhancements apply only to attacks dealing the appropriate type of damage.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -6984,7 +7074,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails, monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Monk"
+    ]
   },
   {
     "Name": "Ogre Hook",
@@ -7028,7 +7121,7 @@
     "Weight": "20 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "This weapon consists of a wooden log with a shoulder strap to carry some of the weight. The name comes from theorctradition of making the ram’s head out of a large skull.",
+    "Description": "This weapon consists of a wooden log with a shoulder strap to carry some of the weight. The name comes from theorctradition of making the ram’s head out of a large skull. On a successful critical hit with a skull ram, you can attempt a combat maneuver check to bull rush your opponent as a free action.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7048,7 +7141,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "spears",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach"
+    ]
   },
   {
     "Name": "Pata",
@@ -7589,7 +7684,7 @@
     "Weight": "15 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "An alchemically fired piston in the head of this two-handed hammer strikes targets with astounding force.",
+    "Description": "An alchemically fired piston in the head of this two-handed hammer strikes targets with astounding force. Successful sunder attacks made with a piston maul deal an additional 4 points of damage. A piston maul requires a thunderstone to function; otherwise, it functions as a greatclub. Inserting a thunderstone into the weapon’s compartment is a standard action, and powers the weapon for 24 hours, after which the thunderstone is consumed.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7684,7 +7779,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "A quadrens looks similar to a sturdy dagger, but with four spikes mounted in a square pattern in place of a blade.",
+    "Description": "A quadrens looks similar to a sturdy dagger, but with four spikes mounted in a square pattern in place of a blade. When you score a critical hit with a quadrens, the resulting gaping wound causes 1 point of bleed damage. In addition to punching through hide and armor, the spikes can also be used to snag opponents’ blades and twist them out of their grips.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7704,7 +7799,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "light blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Performance"
+    ]
   },
   {
     "Name": "Quarterstaff",
@@ -7847,7 +7944,7 @@
     "Weight": "3 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "This rapier like weapon has a thicker blade than normal, which is shaped into a corkscrewing spiral of sharpened edges. These edges can catch enemy weapons, making it ideal for disarming or parrying.",
+    "Description": "This rapier like weapon has a thicker blade than normal, which is shaped into a corkscrewing spiral of sharpened edges. These edges can catch enemy weapons, making it ideal for disarming or parrying. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a spiral rapier sized for you, even though it isn’t a light weapon. You can’t wield a spiral rapier in two hands in order to apply 1-1/2 times your Strength modifier to its damage. Any effects that apply to rapiers also apply to a spiral rapier.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -7867,7 +7964,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "light blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Blocking",
+      "Disarm"
+    ]
   },
   {
     "Name": "Razor, Drow",
@@ -7878,7 +7978,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "Meant for quick strikes and slashes, this long, slender knife is incredibly sharp along one edge.Drowswashbucklersand assassins are particularly fond of these weapons.",
+    "Description": "Meant for quick strikes and slashes, this long, slender knife is incredibly sharp along one edge.Drowswashbucklersand assassins are particularly fond of these weapons. A confirmed critical hit or successful sneak attack with a drow razor deals an additional 2 points of damage; this damage is precision damage and is not multiplied on a critical hit. A character with the drow’s weapon familiarity racial trait treats the drow razor as a martial weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8064,7 +8164,7 @@
     "Weight": "12 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "The blade of this glaive is serrated and mounted on an axle, around which a heavy cord is wrapped.",
+    "Description": "The blade of this glaive is serrated and mounted on an axle, around which a heavy cord is wrapped. When the cord is pulled as a move action, the blade spins rapidly for a number of rounds equal to your Strength bonus. While the blade is spinning, you gain a +2 bonus on damage rolls with the weapon. When the blade is not spinning, treat this weapon as a glaive.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8084,7 +8184,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "polearms",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Reach"
+    ]
   },
   {
     "Name": "Rope Dart",
@@ -8126,7 +8228,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Companion: Adventurer’s Armory",
     "RollRange": "",
-    "Description": "",
+    "Description": "By wrapping your hands and forearms in thin but tough hemp ropes and then soaking the makeshift gloves in water for weight and expansion, you can transform your fists into rockhard weapons easily capable of killing in a fistfight. Description: Each rope gauntlet takes a full minute to wrap and another minute to soak, but once applied can be worn for a day; removing a rope gauntlet takes 1 full round. When wearing rope gauntlets, you are considered armed and your attacks deal normal damage. If you are proficient with rope gauntlets, you may use the rough edges of the ropes to deal slashing damage rather than bludgeoning damage. Your fingers are mostly exposed, allowing you to wield or carry items in your hands while wearing rope gauntlets, but the constriction of the weapon at your knuckles gives you a –2 penalty on all precision based tasks involving your hands (such as opening locks).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8157,7 +8259,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Roleplaying Game Adventurer’s Guide",
     "RollRange": "",
-    "Description": "",
+    "Description": "A sawtooth sabre may be used as a Martial Weapon (in which case it functions identically to a longsword). If you have the Exotic Weapon Proficiency (sawtooth sabre) feat, for the purpose of two-weapon fighting you can treat it as a light melee weapon; for all other purposes, it is a one-handed melee weapon. Note: Adventurer’s Armory 1 (2010) has the weapon listed as a light weapon for all purposes if you possess the Exotic Weapon Proficiency (sawtooth sabre) feat.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8188,7 +8290,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A sai is a metal spike flanked by a pair of prongs used to trap an enemy’s weapon. Though pointed, a sai is not usually used for stabbing. Instead, it is used primarily to bludgeon foes, punching with the hilt, or else to catch and disarm weapons between its tines. Sais are often wielded in pairs.",
+    "Description": "A sai is a metal spike flanked by a pair of prongs used to trap an enemy’s weapon. Though pointed, a sai is not usually used for stabbing. Instead, it is used primarily to bludgeon foes, punching with the hilt, or else to catch and disarm weapons between its tines. Sais are often wielded in pairs. When wielding a sai, you get a +2 bonus on combat maneuver checks to sunder an enemy’s weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8208,7 +8310,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Monk"
+    ]
   },
   {
     "Name": "Sanpkhang",
@@ -8219,7 +8324,7 @@
     "Weight": "1 lb.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "This elaborate knife is carved with special barbs and grooves, meant to channel toxins into the bloodstream.",
+    "Description": "This elaborate knife is carved with special barbs and grooves, meant to channel toxins into the bloodstream. Any injury poison delivered with a sanpkhang has its DC increased by 1, or by 2 if delivered as part of a critical hit or sneak attack. The vishkanya’s weapon familiarity racial trait grants proficiency with the sanpkhang.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8239,7 +8344,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "light blades, monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk"
+    ]
   },
   {
     "Name": "Sansetsukon (Three-Section Staff)",
@@ -8314,7 +8421,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Campaign Setting: The Inner Sea World Guide",
     "RollRange": "",
-    "Description": "The skill required in using bladed scarves effectively and not revealing their deadly nature makes them exotic weapons.",
+    "Description": "The skill required in using bladed scarves effectively and not revealing their deadly nature makes them exotic weapons. If you are proficient with a bladed scarf, you deal 1d4 points of slashing damage to any creature that makes a successful grapple check against you while you wield the scarf. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier on attack rolls with a bladed scarf sized for you, even though it isn’t a light weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8334,7 +8441,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Trip"
+    ]
   },
   {
     "Name": "Scimitar",
@@ -8843,7 +8953,7 @@
     "Weight": "3 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "The shotel is a downward-curving sword designed to reach over or around an opponent’s shield. The curve of a shotel’s blade varies from sword to sword, and some models are double-edged, while others are single-edged, with the back edge able to be braced against a shield for additional power. Shotels are particularly useful for hooking mounted combatants and ripping them from their steeds.",
+    "Description": "The shotel is a downward-curving sword designed to reach over or around an opponent’s shield. The curve of a shotel’s blade varies from sword to sword, and some models are double-edged, while others are single-edged, with the back edge able to be braced against a shield for additional power. Shotels are particularly useful for hooking mounted combatants and ripping them from their steeds. You gain a +1 bonus on attack rolls with a shotel against opponents using bucklers, light shields, or heavy shields.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -8863,7 +8973,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "heavy blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Performance"
+    ]
   },
   {
     "Name": "Shotgun",
@@ -8956,7 +9068,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk"
+    ]
   },
   {
     "Name": "Sibat",
@@ -8998,7 +9112,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "This blade is a smaller, lighter version of the shotel.",
+    "Description": "This blade is a smaller, lighter version of the shotel. You gain a +1 bonus on attack rolls with a sica against opponents using bucklers, light shields, or heavy shields.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9018,7 +9132,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "light blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Performance"
+    ]
   },
   {
     "Name": "Sickle",
@@ -9062,7 +9178,7 @@
     "Weight": "4 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "",
+    "Description": "Favored by those with no talent for witchcraft, this exotic blade curves multiple times along its 3-1/2 feet. The sickle-sword’s hilt is long and curved, and its blade bears a small secondary grip partway up its length. These allow a wielder with a free hand to rapidly twist the sword in unpredictable ways. When wielding a sickle-sword in one hand and nothing in the other, you can spend a swift action to gain a +2 bonus on your next attack roll before the end of your turn.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9082,7 +9198,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "heavy blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Distracting"
+    ]
   },
   {
     "Name": "Sickle-Sword",
@@ -9345,7 +9463,7 @@
     "Weight": "10 lbs.",
     "Source": "Pathfinder Player Companion: Melee Tactics Toolbox",
     "RollRange": "",
-    "Description": "Behind this long pole weapon’s spearhead, several short branches project from the shaft at irregular intervals, each angled forward and tipped with a smaller leaf-like blade.",
+    "Description": "Behind this long pole weapon’s spearhead, several short branches project from the shaft at irregular intervals, each angled forward and tipped with a smaller leaf-like blade. When you make attacks of opportunity provoked by movement, you gain a +2 bonus on attack rolls. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier on attack rolls with an elven branched spear sized for you, even though it isn’t a light weapon. Elves treat elven branched spears as martial weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9365,7 +9483,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "spears",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace",
+      "Reach"
+    ]
   },
   {
     "Name": "Spear, Syringe",
@@ -9409,7 +9530,7 @@
     "Weight": "6 lbs.",
     "Source": "Pathfinder #10 Curse of the Crimson Throne: A History of Ashes",
     "RollRange": "",
-    "Description": "",
+    "Description": "If the user is trained in the spear’s use, a totem spear can be used by bards to create bardic music effects using Perform (wind instrument). The spear itself has a strong, flexible shaft, and in the hands of one trained in its use, grants a +2 circumstance bonus on Acrobatics checks. The spear’s relatively wide head allows it to be used as a slashing weapon, swung side to side, or as a piercing weapon in a more traditional spear-fighting technique.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9629,7 +9750,7 @@
     "Weight": "8 lb.",
     "Source": "Pathfinder Player Companion: Martial Arts Handbook",
     "RollRange": "",
-    "Description": "",
+    "Description": "Patterned after the fiery blades masterfully wielded by some angels, the split-blade sword is both a holy symbol and a difficult-yet-effective weapon. A split-blade sword resembles a large scimitar whose blade splits into two about two-thirds of the way toward the tip. If your Dexterity score is less than 15, you take a –2 penalty on attacks rolls with a split-blade sword, as you’re unable to maneuver its unusual blade.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9649,7 +9770,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "heavy swords",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Trip"
+    ]
   },
   {
     "Name": "Spring Blade",
@@ -9908,7 +10032,7 @@
     "Weight": "10 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "This scythe has a spring-loaded blade that folds down into the weapon’s handle.",
+    "Description": "This scythe has a spring-loaded blade that folds down into the weapon’s handle. Opening the scythe blade is a swift action, and closing it again is a standard action. You can use Bluff or Sleight of Hand to treat a closed switchscythe as a hidden weapon; the apparatus can be disguised with 1 minute of work, which grants a +5 bonus on such checks. This disguise is ruined when the weapon is opened and must be reapplied to hide the weapon again. Any effects that apply to a scythe also apply to a switchscythe.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -9928,7 +10052,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "heavy blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Trip"
+    ]
   },
   {
     "Name": "Sword cane",
@@ -9970,7 +10096,7 @@
     "Weight": "6 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "A bastard sword is about 4 feet in length, making it too large to use in one hand without special training; thus, it is an exotic weapon. A character can use a bastard sword two-handed as a martial weapon.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -10032,7 +10158,7 @@
     "Weight": "3 lbs",
     "Source": "Pathfinder Roleplaying Game Adventurer’s Guide",
     "RollRange": "",
-    "Description": "These slightly curved swords measure just over 3 feet in length.",
+    "Description": "These slightly curved swords measure just over 3 feet in length. An dueling sword can be used as a martial weapon (in which case it functions as a longsword), but if you have the feat Exotic Weapon Proficiency (dueling sword), you can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a dueling sword sized for you, even though it isn’t a light weapon. You can also wield a dueling sword in two hands to apply 1-1/2 times your Strength bonus to damage rolls.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -10176,7 +10302,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "double, heavy blades",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Double"
+    ]
   },
   {
     "Name": "Taiaha",
@@ -10468,7 +10596,7 @@
     "Weight": "3 lbs.",
     "Source": "Pathfinder Chronicals: Campaign Setting",
     "RollRange": "",
-    "Description": "",
+    "Description": "A thorn bracer can be used to make an offhand attack if you aren’t wielding a weapon or shield in that hand. You can attack with these bracers even while holding objects in your hands. When attacking with thorn bracers, you lose any shield bonus to AC gained from a readied shield until your next action.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -10815,7 +10943,7 @@
     "Weight": "12 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "",
+    "Description": "A dwarven urgrosh is a double weapon—an axe head and a spear point on opposite ends of a long haft. The urgrosh’s axe head is a slashing weapon that deals 1d8 points of damage. Its spear head is a piercing weapon that deals 1d6 points of damage. You can use either head as the primary weapon. The other becomes the off-hand weapon. If you use an urgrosh against a charging character, the spear head is the part of the weapon that deals damage. Dwarves treat dwarven urgroshes as martial weapons.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -10835,7 +10963,10 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "double",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Brace",
+      "Double"
+    ]
   },
   {
     "Name": "Urumi",
@@ -10962,6 +11093,37 @@
     "SpecialAbilities": []
   },
   {
+    "Name": "War-Shield, Dwarven",
+    "Cost": 50,
+    "Aura": "no aura (nonmagical)",
+    "CL": 0,
+    "Slot": "none",
+    "Weight": "8 lbs.",
+    "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
+    "RollRange": "",
+    "Description": "This shield’s sides are cut into jagged angles and honed to razor sharpness. Dwarven skirmishers often wield these shields in pairs, savagely hacking opponents to pieces, while some dwarven scoundrels enjoy the shields’ imposing appearance and ease of use. If you have the Two-Weapon Fighting feat and are wielding two dwarven war-shields, increase the higher of the two shield bonuses by 1. You lose this benefit for 1 round when you make a shield bash with one or both dwarven war-shields (unless you have the Improved Shield Bash feat or a similar benefit). A hand holding a dwarven war-shield can’t be used for anything else. A dwarven war-shield gains no benefit from shield spikes.",
+    "Construction": {
+      "Requirements": "",
+      "Cost": 0
+    },
+    "Reference": "https://www.d20pfsrd.com/equipment/armor/war-shield-dwarven/",
+    "PowerLevel": "",
+    "Rarity": "",
+    "BaseWeapon": "War-Shield, Dwarven",
+    "WeaponCategory": "light",
+    "WeaponType": "",
+    "Damage": "1d4 (small), 1d6 (medium)",
+    "Critical": "x2",
+    "Range": "",
+    "DamageType": "piercing or slashing",
+    "EnhancementBonus": 0,
+    "Material": "",
+    "IsMasterwork": false,
+    "Proficiency": "exotic",
+    "WeaponGroups": "close",
+    "SpecialAbilities": []
+  },
+  {
     "Name": "Waraxe, Dwarven",
     "Cost": 30,
     "Aura": "no aura (nonmagical)",
@@ -10970,7 +11132,7 @@
     "Weight": "8 lbs.",
     "Source": "Pathfinder RPG Core Rulebook",
     "RollRange": "",
-    "Description": "A dwarven waraxe has a large, ornate head mounted to a thick handle, making it too large to use in one hand without special training.",
+    "Description": "A dwarven waraxe has a large, ornate head mounted to a thick handle, making it too large to use in one hand without special training. Due to its size, a dwarven waraxe is an exotic weapon. A Medium character can use a dwarven waraxe two-handed as a martial weapon, or a Large creature can use it one-handed in the same way. A dwarf treats a dwarven waraxe as a martial weapon even when using it in one hand.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -11001,7 +11163,7 @@
     "Weight": "12 lbs.",
     "Source": "Pathfinder Roleplaying Game Advanced Race Guide",
     "RollRange": "",
-    "Description": "This hefty waraxe is similar to the commondwarven waraxe, but its recurved blade spans forward and back from its head like a deadly butterfly.",
+    "Description": "This hefty waraxe is similar to the commondwarven waraxe, but its recurved blade spans forward and back from its head like a deadly butterfly. A dwarven double waraxe grants a +1 bonus on all attack rolls after the first when using Cleave or Great Cleave.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -11063,7 +11225,7 @@
     "Weight": "2 lbs.",
     "Source": "Pathfinder Player Companion: Adventurer’s Armory 2",
     "RollRange": "",
-    "Description": "Also known as a “scorpion’s tail” due to its unique, stinger-like shape, this short, double-curved blade has no hilt but features a knuckle guard.",
+    "Description": "Also known as a “scorpion’s tail” due to its unique, stinger-like shape, this short, double-curved blade has no hilt but features a knuckle guard. You gain a +2 bonus to your CMD against disarm attempts made to disarm you of a waveblade.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -11083,7 +11245,9 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "close, monk",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Monk"
+    ]
   },
   {
     "Name": "Whip",
@@ -11092,9 +11256,9 @@
     "CL": 0,
     "Slot": "none",
     "Weight": "2 lbs.",
-    "Source": "Pathfinder RPG Core Rulebook",
+    "Source": "Pathfinder RPG Core Rulebook, Pathfinder Roleplaying Game: Ultimate Equipment ",
     "RollRange": "",
-    "Description": "",
+    "Description": "A whip deals no damage to any creature with an armor bonus of +1 or higher or a natural armor bonus of +3 or higher. The whip is treated as a melee weapon with 15-foot reach, though you don’t threaten the area into which you can make an attack. In addition, unlike most other weapons with reach, you can use it against foes anywhere within your reach (including adjacent foes). Using a whip provokes an attack of opportunity, just as if you had used a ranged weapon. You can use the Weapon Finesse feat to apply your Dexterity modifier instead of your Strength modifier to attack rolls with a whip sized for you, even though it isn’t a light weapon. Wielding a whip in two hands does not add 1-1/2 times your Strength modifier to damage rolls as with other weapons (UE update).",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -11114,7 +11278,12 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Nonlethal",
+      "Reach",
+      "Trip"
+    ]
   },
   {
     "Name": "Whip, Cat-o’-Nine-Tails",
@@ -11190,7 +11359,7 @@
     "Weight": "3 lbs.",
     "Source": "Pathfinder Roleplaying Game Ultimate Combat",
     "RollRange": "",
-    "Description": "This whip has a series of razor-sharp blades and fangs inset along its tip.",
+    "Description": "This whip has a series of razor-sharp blades and fangs inset along its tip. It deals lethal damage, even to creatures with armor bonuses. If you are proficient with both the scorpion whip and whip, you can use a scorpion whip in either the normal way (as a light performance weapon) or as a whip. When you use a scorpion whip as a whip, it is equivalent to a whip, but deals lethal damage and can harm creatures regardless of their armor bonus.",
     "Construction": {
       "Requirements": "",
       "Cost": 0
@@ -11210,7 +11379,12 @@
     "IsMasterwork": false,
     "Proficiency": "exotic",
     "WeaponGroups": "flails",
-    "SpecialAbilities": []
+    "SpecialAbilities": [
+      "Disarm",
+      "Performance",
+      "Reach",
+      "Trip"
+    ]
   },
   {
     "Name": "Whip, Training",
