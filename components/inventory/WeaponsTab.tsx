@@ -713,7 +713,7 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
               </div>
 
               {/* Auto-Apply Stat Bonuses When Equipped */}
-              <ItemBonusesEditor itemId={editingWeapon?.id || null} onUpdate={onUpdate} />
+              <ItemBonusesEditor itemId={editingWeapon?.id || null} onUpdate={onUpdate} sourceTable="weapon" />
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
