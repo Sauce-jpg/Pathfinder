@@ -5,27 +5,31 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This reservoir holds compressed air for use with an air repeater."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Dragon's Breath)",
     "Cost": "40 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This cartridge releases a gout of flame on impact."
+    "Description": "This cartridge contains alchemical compounds that, when fired, produce a cone of fire instead of the normal attack of a one-handed or two-handed firearm with the scatter weapon quality. The nonmagical flame deals 2d6 points of fire damage to all targets within the cone of the scatter firearm (DC 15 Reflex save for half). These cartridges cannot be used in firearms that don’t have the scatter weapon quality. Because this ammunition forces a saving throw instead of making an attack roll, the misfire rules are slightly different. If you roll a 1 with either of the damage dice, the firearm misfires."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Entangling Shot)",
     "Cost": "40 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This cartridge entangles the target in sticky strands."
+    "Description": "This mix of black powder and an alchemically treated resin strong enough to survive the shot can only be loaded into a blunderbuss, a dragon pistol, or other scatter weapon. It deals half damage to those hit by a cone attack made with this weapon, but any creature hit by the shot must succeed at a DC 15 Reflex saving throw or become entangled for 2d4 rounds. An entangling shot cartridge increases the firearm’s misfire value by 2."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Flare)",
     "Cost": "10 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This cartridge creates a bright flare for signaling."
+    "Description": "When a flare cartridge hits its target, it only deals half damage, but the creature struck is blinded for 1 round (Fort DC 15 reduces this to dazzled), and creatures within a 20-foot burst are dazzled for 1 round (Fort DC 15 negates the effect). Flare cartridges are also useful for sending up signal flares. Firing a flare cartridge increases the firearm’s misfire value by 2 unless it is fired from a blunderbuss or a dragon pistol, in which case doing so only increases the firearm’s misfire value by 1. Flares can only be used to attack single creatures; they do not work as a shot for a cone scatter attack."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Gray Dust Shot)",
@@ -33,6 +37,7 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This cartridge releases a cloud of gray dust."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Gray Dust)",
@@ -40,6 +45,7 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This cartridge contains gray dust."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Molten Shot)",
@@ -47,13 +53,15 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This cartridge deals additional fire damage."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Paper, Bullet or Pellet)",
     "Cost": "12 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This is a pre-made paper cartridge containing a bullet or pellet and black powder. Reduces reload time by one step."
+    "Description": "This simple mix of black powder and either pellets or a bullet increases the misfire value by 1."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Repellent)",
@@ -61,13 +69,15 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This cartridge repels certain creatures."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Salt Shot)",
     "Cost": "12 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This cartridge is effective against certain undead and incorporeal creatures."
+    "Description": "This mix of black powder and rock salt can only be loaded into a blunderbuss, a dragon pistol, or other scatter weapon. It deals nonlethal instead of lethal damage, and increases the misfire value by 1. You can only use it with a scatter weapon’s cone attack."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Smoke)",
@@ -75,6 +85,7 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This cartridge creates a cloud of smoke."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Alchemical Cartridge (Toxin)",
@@ -82,27 +93,31 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This cartridge delivers poison on a hit."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Black Powder (Dose)",
     "Cost": "10 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "A single dose of black powder is enough to power a single shot from most one-handed and two-handed firearms."
+    "Description": "Black powder is the key explosive component within a firearm that enables it to function, but in larger amounts this alchemical material can be quite destructive on its own as well. A single dose of black powder is enough to power a single shot from most one-handed and two-handed firearms, while 10 doses are required to fire a cannon. Black powder is often stored and transported in kegs (which hold 100 doses), but in this quantity the powder itself becomes dangerous. Exposure to fire, electricity, or a misfire explosion causes black powder to explode—a single keg that explodes in this manner deals 5d6 points of fire damage to anyone within a 20-foot burst (DC 15 Reflex half ). Storing black powder in a powder horn protects the powder from explosion."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Black Powder (Keg)",
     "Cost": "1000 gp",
     "Weight": 5,
     "Type": "firearm_ammunition",
-    "Description": "A keg of black powder contains 100 doses."
+    "Description": "Black powder is the key explosive component within a firearm that enables it to function, but in larger amounts this alchemical material can be quite destructive on its own as well. A single dose of black powder is enough to power a single shot from most one-handed and two-handed firearms, while 10 doses are required to fire a cannon. Black powder is often stored and transported in kegs (which hold 100 doses), but in this quantity the powder itself becomes dangerous. Exposure to fire, electricity, or a misfire explosion causes black powder to explode—a single keg that explodes in this manner deals 5d6 points of fire damage to anyone within a 20-foot burst (DC 15 Reflex half ). Storing black powder in a powder horn protects the powder from explosion."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Bullet, Adamantine",
     "Cost": "61 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This bullet is made of adamantine and can overcome hardness and DR."
+    "Description": "These expensive bullets are crafted from adamantine. They ignore hardness 20 or less when attacking objects."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Bullet, Screaming",
@@ -110,69 +125,79 @@
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
     "Description": "This bullet makes a terrifying screaming sound when fired."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Dragoon Cartridge",
     "Cost": "30 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This is a metal cartridge designed for dragoon firearms."
+    "Description": "These clips of alchemical cartridges hold three bullets and fit the slot of either the dragoon musket or the dragoon pistol. They allow the wielder of those firearms to fire up to three shots in quick succession without the need to reload. Once the cartridge is spent, reloading another dragoon cartridge takes a full-round action, no matter the type of dragoon firearm in question. Rapid Reload can reduce the action time required, but abilities like the musket master’s fast musket have no effect. Unlike other alchemical cartridges, dragoon cartridges don’t increase a dragoon firearm’s misfire chance by 1. Dragoon cartridges can be used only with dragoon firearms."
+    "Source": "Pathfinder Roleplaying Game Villain Codex.",
   },
   {
     "Name": "Firearm Bullet (1)",
     "Cost": "1 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "A standard metal bullet for firearms."
+    "Description": "The ammunition of most one-handed and two-handed firearms, firearm bullets typically take the form of small balls of lead or some other metal."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Firearm Bullet (30)",
     "Cost": "30 gp",
     "Weight": 0.5,
     "Type": "firearm_ammunition",
-    "Description": "30 standard metal bullets for firearms."
+    "Description": "30 standard metal bullets for firearms. The ammunition of most one-handed and two-handed firearms, firearm bullets typically take the form of small balls of lead or some other metal."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Firearm Bullet, Silver",
     "Cost": "25 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This silver bullet is effective against creatures vulnerable to silver."
+    "Description": "This ammunition is specifically crafted from silver, and though nonmagical, it is particularly detrimental to lycanthropes, automatically confirming any critical threats against such creatures. A firearm that is shooting a silver bullet takes a –1 penalty on damage rolls (with a minimum of 1 point of damage)."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Metal Cartridge",
     "Cost": "15 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "Metal cartridges are pre-made rounds containing a bullet, black powder, and a primer. Required for advanced firearms."
+    "Description": "These sturdier versions of alchemical cartridges serve as the ammunition for advanced firearms. They can hold either bullets or pellets."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Pellets (Handful)",
     "Cost": "1 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "A handful of pellets is ammunition for firearms with the scatter weapon quality."
+    "Description": "A handful of pellets, along with a dose of black powder, is commonly used as ammunition for one-handed and two-handed firearms with the scatter weapon quality, though rocks or other small bits of hard material can be used in the pellets’ place. Using anything other than pellets or alchemical cartridges when firing off a cone attack with a scatter weapon increases the weapon’s misfire range by 1 (though this increase can be removed by switching back to standard ammunition)."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Pellets (30 Handfuls)",
     "Cost": "30 gp",
     "Weight": 0.5,
     "Type": "firearm_ammunition",
-    "Description": "30 handfuls of pellets for scatter weapons."
+    "Description": "30 handfuls of pellets for scatter weapons. A handful of pellets, along with a dose of black powder, is commonly used as ammunition for one-handed and two-handed firearms with the scatter weapon quality, though rocks or other small bits of hard material can be used in the pellets’ place. Using anything other than pellets or alchemical cartridges when firing off a cone attack with a scatter weapon increases the weapon’s misfire range by 1 (though this increase can be removed by switching back to standard ammunition)."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Pitted Bullet",
     "Cost": "5 gp",
     "Weight": "\u2014",
     "Type": "firearm_ammunition",
-    "Description": "This bullet has grooves that make it more deadly but also more fragile."
+    "Description": "This ammunition is pitted with a pattern of small pocks into which specially formulated poison compounds can be applied. A poison compound is a derivative of a standard toxin that is alchemically reduced to a solid form. These can be made from any standard injury or contact poison with a Craft (poison) check equal to the poison’s DC + 4. The cost of purchasing an already prepared poison compound for the purpose of treating pitted bullets is equal to the poison’s base cost + 20 gp. Once crafted, the compound can be pasted into the ammunition’s pitted design and allowed to harden. Upon completion, the bullet can be fired from an appropriate firearm, releasing the poison compound into its target upon impact, but the poison’s DC is reduced by 2. A pitted bullet cannot be used with an alchemical cartridge."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Gunsmith's Kit",
     "Cost": "15 gp",
     "Weight": 2,
     "Type": "firearm_gear",
-    "Description": "This kit contains all the tools needed to maintain and repair firearms."
+    "Description": "This small kit has all the tools a person needs to create, repair, and restore firearms, except for the necessary raw materials. Without such a kit, you cannot properly construct or provide upkeep for firearms."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Powder Horn",
@@ -180,6 +205,7 @@
     "Weight": 1,
     "Type": "firearm_gear",
     "Description": "This horn can hold 10 doses of black powder."
+    "Source": "Pathfinder Roleplaying Game Ultimate Combat",
   },
   {
     "Name": "Lawrence 1917 Flamethrower Fuel Tank",
@@ -187,6 +213,7 @@
     "Weight": 9,
     "Type": "firearm_gear",
     "Description": "This fuel tank provides ammunition for the Lawrence 1917 flamethrower."
+    "Source": "",
   },
   {
     "Name": "Aasen Mortar",
@@ -194,6 +221,7 @@
     "Weight": 50,
     "Type": "siege_firearms_modern",
     "Description": "This modern mortar launches explosive shells in an arc."
+    "Source": "",
   },
   {
     "Name": "Hotchkiss 6 Pounder",
@@ -201,6 +229,7 @@
     "Weight": "\u2014",
     "Type": "siege_firearms_modern",
     "Description": "This artillery piece fires explosive shells."
+    "Source": "",
   },
   {
     "Name": "Gas Cylinder",
@@ -208,6 +237,7 @@
     "Weight": 50,
     "Type": "explosives_modern",
     "Description": "This cylinder releases poisonous gas when opened."
+    "Source": "",
   },
   {
     "Name": "M1914 Grenade (Concussion)",
@@ -215,6 +245,7 @@
     "Weight": 1,
     "Type": "explosives_modern",
     "Description": "This grenade deals concussion damage in a 15-foot radius."
+    "Source": "",
   },
   {
     "Name": "M1914 Grenade (Fragmentation)",
@@ -222,6 +253,7 @@
     "Weight": 1,
     "Type": "explosives_modern",
     "Description": "This grenade explodes into deadly fragments in a 15-foot radius."
+    "Source": "",
   },
   {
     "Name": "M1917 Chemical Grenade",
@@ -229,5 +261,6 @@
     "Weight": 2,
     "Type": "explosives_modern",
     "Description": "This grenade releases a cloud of toxic chemicals."
+    "Source": "",
   }
 ]
