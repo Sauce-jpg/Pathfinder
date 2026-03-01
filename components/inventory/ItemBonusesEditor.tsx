@@ -6,6 +6,8 @@ import { supabase } from "@/lib/supabaseClient";
 interface ItemBonusesEditorProps {
   itemId: string | null;
   onUpdate?: () => void;
+  // Which table this item belongs to — determines which FK column to use
+  sourceTable?: "inventory" | "weapon" | "armor";
 }
 
 const STAT_CATEGORIES = [
@@ -44,9 +46,24 @@ const BONUS_TYPES = [
   "untyped",
 ];
 
-export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) {
+// Map sourceTable to the FK column name in item_stat_bonuses
+function getFkColumn(sourceTable: "inventory" | "weapon" | "armor") {
+  switch (sourceTable) {
+    case "weapon": return "weapon_id";
+    case "armor": return "armor_id";
+    default: return "inventory_item_id";
+  }
+}
+
+export function ItemBonusesEditor({
+  itemId,
+  onUpdate,
+  sourceTable = "inventory",
+}: ItemBonusesEditorProps) {
   const [bonuses, setBonuses] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const fkColumn = getFkColumn(sourceTable);
 
   useEffect(() => {
     if (itemId) {
@@ -58,32 +75,27 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
 
   async function loadBonuses() {
     if (!itemId) return;
-    
     setLoading(true);
     const { data } = await supabase
       .from("item_stat_bonuses")
       .select("*")
-      .eq("inventory_item_id", itemId);
-
+      .eq(fkColumn, itemId);
     setBonuses(data || []);
     setLoading(false);
   }
 
   async function addBonus() {
     if (!itemId) return;
-
     const { error } = await supabase.from("item_stat_bonuses").insert({
-      inventory_item_id: itemId,
+      [fkColumn]: itemId,
       stat_category: "ability_str",
       bonus_value: 2,
       bonus_type: "enhancement",
     });
-
     if (error) {
       alert("Error adding bonus: " + error.message);
     } else {
       loadBonuses();
-      // Don't call onUpdate here - it closes the modal
     }
   }
 
@@ -92,15 +104,12 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
       .from("item_stat_bonuses")
       .update({ [field]: value })
       .eq("id", bonusId);
-
     loadBonuses();
-    // Don't call onUpdate here - it closes the modal
   }
 
   async function deleteBonus(bonusId: string) {
     await supabase.from("item_stat_bonuses").delete().eq("id", bonusId);
     loadBonuses();
-    // Don't call onUpdate here - it closes the modal
   }
 
   if (!itemId) {
@@ -151,17 +160,10 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
                 value={bonus.stat_category}
                 onChange={(e) => updateBonus(bonus.id, "stat_category", e.target.value)}
                 onClick={(e) => e.stopPropagation()}
-                style={{
-                  padding: "0.5rem",
-                  border: "1px solid #ddd",
-                  borderRadius: "4px",
-                  fontSize: "0.85rem",
-                }}
+                style={{ padding: "0.5rem", border: "1px solid #ddd", borderRadius: "4px", fontSize: "0.85rem" }}
               >
                 {STAT_CATEGORIES.map((cat) => (
-                  <option key={cat.value} value={cat.value}>
-                    {cat.label}
-                  </option>
+                  <option key={cat.value} value={cat.value}>{cat.label}</option>
                 ))}
               </select>
 
@@ -170,47 +172,24 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
                 value={bonus.bonus_value}
                 onChange={(e) => updateBonus(bonus.id, "bonus_value", parseInt(e.target.value) || 0)}
                 onClick={(e) => e.stopPropagation()}
-                style={{
-                  padding: "0.5rem",
-                  border: "1px solid #ddd",
-                  borderRadius: "4px",
-                  fontSize: "0.85rem",
-                }}
+                style={{ padding: "0.5rem", border: "1px solid #ddd", borderRadius: "4px", fontSize: "0.85rem" }}
               />
 
               <select
                 value={bonus.bonus_type}
                 onChange={(e) => updateBonus(bonus.id, "bonus_type", e.target.value)}
                 onClick={(e) => e.stopPropagation()}
-                style={{
-                  padding: "0.5rem",
-                  border: "1px solid #ddd",
-                  borderRadius: "4px",
-                  fontSize: "0.85rem",
-                }}
+                style={{ padding: "0.5rem", border: "1px solid #ddd", borderRadius: "4px", fontSize: "0.85rem" }}
               >
                 {BONUS_TYPES.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
+                  <option key={type} value={type}>{type}</option>
                 ))}
               </select>
 
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteBonus(bonus.id);
-                }}
+                onClick={(e) => { e.stopPropagation(); deleteBonus(bonus.id); }}
                 type="button"
-                style={{
-                  padding: "0.5rem",
-                  background: "#ef4444",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  fontSize: "0.85rem",
-                }}
+                style={{ padding: "0.5rem", background: "#ef4444", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}
               >
                 ✕
               </button>
@@ -220,21 +199,9 @@ export function ItemBonusesEditor({ itemId, onUpdate }: ItemBonusesEditorProps) 
       )}
 
       <button
-        onClick={(e) => {
-          e.stopPropagation();
-          addBonus();
-        }}
+        onClick={(e) => { e.stopPropagation(); addBonus(); }}
         type="button"
-        style={{
-          padding: "0.5rem 1rem",
-          background: "#10b981",
-          color: "white",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontSize: "0.85rem",
-          fontWeight: 600,
-        }}
+        style={{ padding: "0.5rem 1rem", background: "#10b981", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.85rem", fontWeight: 600 }}
       >
         + Add Bonus
       </button>
