@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import EquipmentBrowser from "../EquipmentBrowser";
+import { ItemBonusesEditor } from "./ItemBonusesEditor";
 import MagicItemBrowser, { type MagicItem } from "../MagicItemBrowser";
 import { mapWeaponToCharacter } from "@/lib/equipmentMappers";
 
@@ -19,6 +20,7 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   const [showMagicBrowser, setShowMagicBrowser] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Form state
   const [weaponName, setWeaponName] = useState("");
@@ -33,6 +35,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   const [rangeIncrement, setRangeIncrement] = useState<number | null>(null);
   const [properties, setProperties] = useState("");
   const [notes, setNotes] = useState("");
+  const [grantsSlotType, setGrantsSlotType] = useState("");
+  const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
 
   // Close dropdown on outside click
@@ -55,20 +59,48 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   }
 
   async function handleSelectMagicWeapon(item: MagicItem) {
+    const enhBonus = item.EnhancementBonus ?? 0;
+    const isMasterwork = item.IsMasterwork ?? false;
+    // Enhancement bonus supersedes masterwork (+1 atk only, never to dmg)
+    const attackBonus = enhBonus > 0 ? enhBonus : (isMasterwork ? 1 : 0);
+    const damageBonus = enhBonus;
+
+    const meta = {
+      _magic: true,
+      description: item.Description,
+      aura: item.Aura,
+      cl: item.CL,
+      source: item.Source,
+      reference: item.Reference,
+      baseWeapon: item.BaseWeapon,
+      proficiency: item.Proficiency,
+      weaponGroups: item.WeaponGroups,
+      specialAbilities: item.SpecialAbilities,
+      construction: item.Construction,
+      powerLevel: item.PowerLevel,
+      rarity: item.Rarity,
+      damageSml: item["Damage (S)"],
+      damageMed: item["Damage (M)"],
+      damageType: item.DamageType ?? item.Type,
+      enhancementBonus: enhBonus,
+      isMasterwork,
+      material: item.Material,
+    };
+
     const weaponData = {
       character_id: characterId,
       weapon_name: item.Name,
       weapon_type: "melee",
-      weapon_category: "martial",
+      weapon_category: item.Proficiency ?? "martial",
       damage_dice: item["Damage (M)"] ?? "1d6",
-      damage_type: item.Type ?? "slashing",
-      attack_bonus: 0,
-      damage_bonus: 0,
-      critical_range: "20",
-      critical_multiplier: "x2",
-      range_increment: null,
-      properties: [],
-      notes: [item.Aura && `Aura: ${item.Aura}`, item.CL && `CL ${item.CL}`].filter(Boolean).join(" · ") || null,
+      damage_type: item.DamageType ?? item.Type ?? "slashing",
+      attack_bonus: attackBonus,
+      damage_bonus: damageBonus,
+      critical_range: item.Critical?.split("/")[0] ?? "20",
+      critical_multiplier: item.Critical?.includes("x") ? item.Critical.split("/")[1] : "x2",
+      range_increment: item.Range && item.Range !== "—" ? parseInt(item.Range) || null : null,
+      properties: item.SpecialAbilities ?? [],
+      notes: JSON.stringify(meta),
       is_primary: false,
       is_equipped: false,
     };
@@ -97,6 +129,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
     setRangeIncrement(weapon.range_increment);
     setProperties(weapon.properties?.join(", ") || "");
     setNotes(weapon.notes || "");
+    setGrantsSlotType(weapon.grants_slot_type || "");
+    setGrantsSlotCount(weapon.grants_slot_count || 0);
     setShowAddModal(true);
   }
 
@@ -113,6 +147,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
     setRangeIncrement(null);
     setProperties("");
     setNotes("");
+    setGrantsSlotType("");
+    setGrantsSlotCount(0);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -133,6 +169,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
       range_increment: rangeIncrement,
       properties: properties ? properties.split(",").map(p => p.trim()) : [],
       notes: notes || null,
+      grants_slot_type: grantsSlotType || null,
+      grants_slot_count: grantsSlotCount || 0,
       is_primary: false,
       is_equipped: false,
     };
@@ -230,155 +268,139 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
         </div>
       ) : (
         <div style={{ display: "grid", gap: "1rem" }}>
-          {weapons.map((weapon) => (
+          {weapons.map((weapon) => {
+            const isExpanded = expandedId === weapon.id;
+            return (
             <div
               key={weapon.id}
               style={{
                 background: weapon.is_equipped ? "#fffbeb" : "white",
-                border: `2px solid ${weapon.is_primary ? "#f59e0b" : weapon.is_equipped ? "#fbbf24" : "#ddd"}`,
+                border: `2px solid ${weapon.is_primary ? "#f59e0b" : isExpanded ? "#818cf8" : weapon.is_equipped ? "#fbbf24" : "#ddd"}`,
                 borderRadius: "12px",
-                padding: "1.5rem",
+                overflow: "hidden",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
+              {/* Clickable header */}
+              <div
+                onClick={() => setExpandedId(isExpanded ? null : weapon.id)}
+                style={{ padding: "1rem 1.5rem", cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" }}
+              >
                 <div style={{ flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.5rem" }}>
-                    <h3 style={{ margin: 0, color: "#f59e0b" }}>{weapon.weapon_name}</h3>
-                    {weapon.is_primary && (
-                      <span
-                        style={{
-                          padding: "0.25rem 0.75rem",
-                          background: "#f59e0b",
-                          color: "white",
-                          borderRadius: "12px",
-                          fontSize: "0.75rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        PRIMARY
-                      </span>
-                    )}
-                    {weapon.is_equipped && !weapon.is_primary && (
-                      <span
-                        style={{
-                          padding: "0.25rem 0.75rem",
-                          background: "#10b981",
-                          color: "white",
-                          borderRadius: "12px",
-                          fontSize: "0.75rem",
-                          fontWeight: 600,
-                        }}
-                      >
-                        EQUIPPED
-                      </span>
-                    )}
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+                    <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#f59e0b" }}>{weapon.weapon_name}</span>
+                    {weapon.is_primary && <span style={{ padding: "0.15rem 0.6rem", background: "#f59e0b", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600 }}>PRIMARY</span>}
+                    {weapon.is_equipped && !weapon.is_primary && <span style={{ padding: "0.15rem 0.6rem", background: "#10b981", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600 }}>EQUIPPED</span>}
                   </div>
-
-                  <div style={{ fontSize: "0.9rem", color: "#666", marginBottom: "1rem" }}>
-                    {weapon.weapon_category} {weapon.weapon_type} weapon
+                  <div style={{ fontSize: "0.82rem", color: "#888", marginTop: "0.2rem" }}>
+                    {weapon.weapon_category} {weapon.weapon_type} · Atk {weapon.attack_bonus >= 0 ? "+" : ""}{weapon.attack_bonus} · {weapon.damage_dice}{weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""} {weapon.damage_type} · Crit {weapon.critical_range}/{weapon.critical_multiplier}
                   </div>
-
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-                      gap: "1rem",
-                      fontSize: "0.95rem",
-                    }}
-                  >
-                    <div>
-                      <strong>Attack:</strong> {weapon.attack_bonus >= 0 ? "+" : ""}
-                      {weapon.attack_bonus}
-                    </div>
-                    <div>
-                      <strong>Damage:</strong> {weapon.damage_dice}
-                      {weapon.damage_bonus > 0 && `+${weapon.damage_bonus}`}{" "}
-                      ({weapon.damage_type})
-                    </div>
-                    <div>
-                      <strong>Critical:</strong> {weapon.critical_range}/{weapon.critical_multiplier}
-                    </div>
-                    {weapon.range_increment && (
-                      <div>
-                        <strong>Range:</strong> {weapon.range_increment} ft
-                      </div>
-                    )}
-                  </div>
-
-                  {weapon.properties && weapon.properties.length > 0 && (
-                    <div style={{ marginTop: "0.75rem", fontSize: "0.9rem" }}>
-                      <strong>Properties:</strong> {weapon.properties.join(", ")}
-                    </div>
-                  )}
-
-                  {weapon.notes && (
-                    <div style={{ marginTop: "0.75rem", fontSize: "0.9rem", color: "#999", fontStyle: "italic" }}>
-                      {weapon.notes}
-                    </div>
-                  )}
                 </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginLeft: "1rem" }}>
-                  <button
-                    onClick={() => togglePrimary(weapon.id, weapon.is_primary)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: weapon.is_primary ? "#fbbf24" : "#eee",
-                      color: weapon.is_primary ? "white" : "#666",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    {weapon.is_primary ? "★ Primary" : "☆ Set Primary"}
+                <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", marginLeft: "1rem", flexShrink: 0 }}>
+                  <button onClick={e => { e.stopPropagation(); togglePrimary(weapon.id, weapon.is_primary); }}
+                    style={{ padding: "0.3rem 0.6rem", background: weapon.is_primary ? "#fbbf24" : "#eee", color: weapon.is_primary ? "white" : "#666", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>
+                    {weapon.is_primary ? "★" : "☆"}
                   </button>
-                  <button
-                    onClick={() => toggleEquipped(weapon.id, weapon.is_equipped)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: weapon.is_equipped ? "#10b981" : "#eee",
-                      color: weapon.is_equipped ? "white" : "#666",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    {weapon.is_equipped ? "Equipped" : "Equip"}
+                  <button onClick={e => { e.stopPropagation(); toggleEquipped(weapon.id, weapon.is_equipped); }}
+                    style={{ padding: "0.3rem 0.6rem", background: weapon.is_equipped ? "#10b981" : "#eee", color: weapon.is_equipped ? "white" : "#666", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>
+                    {weapon.is_equipped ? "✓" : "Equip"}
                   </button>
-                  <button
-                    onClick={() => openEditModal(weapon)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: "#0070f3",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => deleteWeapon(weapon.id)}
-                    style={{
-                      padding: "0.5rem 1rem",
-                      background: "#ef4444",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    Delete
-                  </button>
+                  <button onClick={e => { e.stopPropagation(); openEditModal(weapon); }}
+                    style={{ padding: "0.3rem 0.6rem", background: "#6366f1", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>✏️</button>
+                  <button onClick={e => { e.stopPropagation(); deleteWeapon(weapon.id); }}
+                    style={{ padding: "0.3rem 0.6rem", background: "#ef4444", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>🗑️</button>
+                  <span style={{ fontSize: "0.7rem", color: "#9ca3af", marginLeft: "0.25rem" }}>{isExpanded ? "▲" : "▼"}</span>
                 </div>
               </div>
+
+              {/* Expanded details */}
+              {isExpanded && (() => {
+                // Try to parse magic item metadata from notes JSON blob
+                let meta: any = null;
+                try { if (weapon.notes?.startsWith("{")) meta = JSON.parse(weapon.notes); } catch {}
+
+                return (
+                <div style={{ borderTop: "1px solid #e5e7eb", background: "#fafbff" }}>
+                  {/* Stats bar */}
+                  <div style={{ display: "flex", flexWrap: "wrap", borderBottom: "1px solid #e5e7eb" }}>
+                    {[
+                      { label: "Attack", value: `${weapon.attack_bonus >= 0 ? "+" : ""}${weapon.attack_bonus}` },
+                      { label: "Damage (M)", value: `${weapon.damage_dice}${weapon.damage_bonus > 0 ? `+${weapon.damage_bonus}` : ""}` },
+                      ...(meta?.damageSml ? [{ label: "Damage (S)", value: meta.damageSml }] : []),
+                      { label: "Dmg Type", value: weapon.damage_type },
+                      { label: "Critical", value: `${weapon.critical_range}/${weapon.critical_multiplier}` },
+                      ...(weapon.range_increment ? [{ label: "Range", value: `${weapon.range_increment} ft` }] : []),
+                      ...(meta?.enhancementBonus > 0 ? [{ label: "Enhancement", value: `+${meta.enhancementBonus}` }] : []),
+                      { label: "Category", value: weapon.weapon_category },
+                      ...(meta?.baseWeapon ? [{ label: "Base Weapon", value: meta.baseWeapon }] : []),
+                      ...(meta?.powerLevel ? [{ label: "Power", value: meta.powerLevel }] : []),
+                      ...(meta?.rarity ? [{ label: "Rarity", value: meta.rarity }] : []),
+                    ].map(({ label, value }) => (
+                      <div key={label} style={{ padding: "0.6rem 1.25rem", borderRight: "1px solid #e5e7eb", textAlign: "center" }}>
+                        <div style={{ fontSize: "0.65rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#9ca3af" }}>{label}</div>
+                        <div style={{ fontSize: "0.9rem", fontWeight: 700, color: "#111827", marginTop: "0.1rem" }}>{value}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div style={{ padding: "1rem 1.5rem", display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                    {/* Aura / CL / Source row */}
+                    {(meta?.aura || meta?.cl || meta?.source) && (
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", fontSize: "0.82rem", color: "#6b7280" }}>
+                        {meta.aura && <span>🌀 <strong>Aura:</strong> {meta.aura}</span>}
+                        {meta.cl && <span>⚡ <strong>CL:</strong> {meta.cl}</span>}
+                        {meta.source && <span>📖 <strong>Source:</strong> {meta.source}</span>}
+                        {meta.reference && <a href={meta.reference} target="_blank" rel="noreferrer" style={{ color: "#6366f1", fontWeight: 600 }}>PFSRD ↗</a>}
+                      </div>
+                    )}
+
+                    {/* Description */}
+                    {(meta?.description || (!meta && weapon.notes)) && (
+                      <div>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.35rem" }}>Description</div>
+                        <p style={{ margin: 0, fontSize: "0.875rem", color: "#374151", lineHeight: 1.65, whiteSpace: "pre-line" }}>
+                          {meta?.description ?? weapon.notes}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Special abilities */}
+                    {(weapon.properties?.length > 0 || meta?.specialAbilities?.length > 0) && (
+                      <div>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "#6b7280", marginBottom: "0.35rem" }}>Special Abilities</div>
+                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                          {(meta?.specialAbilities?.length > 0 ? meta.specialAbilities : weapon.properties).map((p: string) => (
+                            <span key={p} style={{ padding: "0.2rem 0.65rem", background: "#ede9fe", color: "#5b21b6", borderRadius: "999px", fontSize: "0.8rem", fontWeight: 600 }}>{p}</span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Weapon groups */}
+                    {meta?.weaponGroups && (
+                      <div style={{ fontSize: "0.82rem", color: "#6b7280" }}>
+                        <strong>Weapon Groups:</strong> {meta.weaponGroups}
+                      </div>
+                    )}
+
+                    {/* Construction */}
+                    {meta?.construction?.Requirements && (
+                      <div style={{ padding: "0.6rem 0.85rem", background: "#fef3c7", border: "1px solid #fde68a", borderRadius: "6px", fontSize: "0.82rem", color: "#92400e" }}>
+                        <strong>Construction:</strong> {meta.construction.Requirements}
+                        {meta.construction.Cost > 0 && <span> · Cost: {meta.construction.Cost.toLocaleString()} gp</span>}
+                      </div>
+                    )}
+
+                    {/* Material */}
+                    {meta?.material && (
+                      <div style={{ fontSize: "0.82rem", color: "#6b7280" }}>⚗️ <strong>Material:</strong> {meta.material}</div>
+                    )}
+                  </div>
+                </div>
+                );
+              })()}
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
@@ -657,6 +679,41 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
                   }}
                 />
               </div>
+
+              {/* Auto-Apply Stat Bonuses When Equipped */}
+              <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px" }}>
+                <div style={{ marginBottom: "0.75rem", fontWeight: 600 }}>
+                  ✨ Does this item grant additional equipment slots?
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Slot Type</label>
+                    <select value={grantsSlotType} onChange={(e) => setGrantsSlotType(e.target.value)}
+                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }}>
+                      <option value="">None</option>
+                      <option value="ring">Ring</option>
+                      <option value="head">Head</option>
+                      <option value="neck">Neck</option>
+                      <option value="belt">Belt</option>
+                      <option value="feet">Feet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Quantity</label>
+                    <input type="number" value={grantsSlotCount} onChange={(e) => setGrantsSlotCount(parseInt(e.target.value) || 0)}
+                      min="0" disabled={!grantsSlotType} placeholder="0"
+                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }} />
+                  </div>
+                </div>
+                {grantsSlotType && grantsSlotCount > 0 && (
+                  <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "#10b981" }}>
+                    💡 When equipped, this item will grant +{grantsSlotCount} {grantsSlotType} slots
+                  </div>
+                )}
+              </div>
+
+              {/* Auto-Apply Stat Bonuses When Equipped */}
+              <ItemBonusesEditor itemId={editingWeapon?.id || null} onUpdate={onUpdate} />
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
