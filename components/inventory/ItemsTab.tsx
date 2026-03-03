@@ -165,8 +165,19 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
   async function handleSell() {
     if (!removingItem) return;
+    // Add gold to character currency
+    const { data: currencyData } = await supabase
+      .from("character_currency")
+      .select("gold")
+      .eq("character_id", characterId)
+      .single();
+    if (currencyData) {
+      await supabase
+        .from("character_currency")
+        .update({ gold: (currencyData.gold || 0) + sellAmount })
+        .eq("character_id", characterId);
+    }
     await supabase.from("character_inventory").delete().eq("id", removingItem.id);
-    // TODO: add sellAmount to character currency if desired
     setShowRemoveModal(false);
     setRemovingItem(null);
     onUpdate();
@@ -317,12 +328,6 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
                           style={{ padding: "0.25rem 0.75rem", background: "#0070f3", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}
                         >
                           Edit
-                        </button>
-                        <button
-                          onClick={() => openRemoveModal(item)}
-                          style={{ padding: "0.25rem 0.75rem", background: "#ef4444", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}
-                        >
-                          Remove
                         </button>
                       </div>
                     </div>
