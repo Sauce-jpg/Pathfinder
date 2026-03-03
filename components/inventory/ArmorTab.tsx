@@ -35,6 +35,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   const [notes, setNotes] = useState("");
   const [grantsSlotType, setGrantsSlotType] = useState("");
   const [grantsSlotCount, setGrantsSlotCount] = useState(0);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [saving, setSaving] = useState(false);
 
   // Close dropdown on outside click
@@ -120,6 +121,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   function openAddModal() {
     setEditingArmor(null);
     resetForm();
+    setShowAdvanced(false);
     setShowAddModal(true);
   }
 
@@ -136,6 +138,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     setNotes(armor.notes || "");
     setGrantsSlotType(armor.grants_slot_type || "");
     setGrantsSlotCount(armor.grants_slot_count || 0);
+    setShowAdvanced(false);
     setShowAddModal(true);
   }
 
@@ -151,6 +154,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     setNotes("");
     setGrantsSlotType("");
     setGrantsSlotCount(0);
+    setShowAdvanced(false);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -593,47 +597,67 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
               </div>
 
               {/* Auto-Apply Stat Bonuses When Equipped */}
-              {/* Bonus Slot Granting */}
-              <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px" }}>
-                <div style={{ marginBottom: "0.75rem", fontWeight: 600 }}>
-                  ✨ Does this item grant additional equipment slots?
-                </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                  <div>
-                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Slot Type</label>
-                    <select value={grantsSlotType} onChange={(e) => setGrantsSlotType(e.target.value)}
-                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }}>
-                      <option value="">None</option>
-                      <option value="ring">Ring</option>
-                      <option value="head">Head</option>
-                      <option value="headband">Headband</option>
-                      <option value="eyes">Eyes</option>
-                      <option value="neck">Neck</option>
-                      <option value="shoulders">Shoulders</option>
-                      <option value="body">Body</option>
-                      <option value="chest">Chest</option>
-                      <option value="belt">Belt</option>
-                      <option value="wrists">Wrists</option>
-                      <option value="hands">Hands</option>
-                      <option value="feet">Feet</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Quantity</label>
-                    <input type="number" value={grantsSlotCount}
-                      onChange={(e) => setGrantsSlotCount(parseInt(e.target.value) || 0)}
-                      min="0" disabled={!grantsSlotType} placeholder="0"
-                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }} />
-                  </div>
-                </div>
-                {grantsSlotType && grantsSlotCount > 0 && (
-                  <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "#10b981" }}>
-                    💡 When equipped, this item will grant +{grantsSlotCount} {grantsSlotType} slot{grantsSlotCount > 1 ? "s" : ""}
+              {/* Advanced Options (collapsible) */}
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setShowAdvanced(v => !v)}
+                  style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.5rem 1rem", background: "#f3f4f6", border: "1px solid #ddd", borderRadius: "8px", cursor: "pointer", fontSize: "0.9rem", fontWeight: 600, width: "100%" }}
+                >
+                  <span>{showAdvanced ? "▲" : "▼"}</span>
+                  <span>⚙️ Advanced Options</span>
+                  {grantsSlotType && (
+                    <span style={{ marginLeft: "auto", fontSize: "0.8rem", color: "#10b981", fontWeight: 400 }}>configured</span>
+                  )}
+                </button>
+
+                {showAdvanced && (
+                  <div style={{ display: "grid", gap: "1rem", marginTop: "1rem" }}>
+                    {/* Bonus Slot Granting */}
+                    <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px" }}>
+                      <div style={{ marginBottom: "0.75rem", fontWeight: 600 }}>
+                        ✨ Does this item grant additional equipment slots?
+                      </div>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                        <div>
+                          <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Slot Type</label>
+                          <select value={grantsSlotType} onChange={(e) => setGrantsSlotType(e.target.value)}
+                            style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }}>
+                            <option value="">None</option>
+                            <option value="ring">Ring</option>
+                            <option value="head">Head</option>
+                            <option value="headband">Headband</option>
+                            <option value="eyes">Eyes</option>
+                            <option value="neck">Neck</option>
+                            <option value="shoulders">Shoulders</option>
+                            <option value="body">Body</option>
+                            <option value="chest">Chest</option>
+                            <option value="belt">Belt</option>
+                            <option value="wrists">Wrists</option>
+                            <option value="hands">Hands</option>
+                            <option value="feet">Feet</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Quantity</label>
+                          <input type="number" value={grantsSlotCount}
+                            onChange={(e) => setGrantsSlotCount(parseInt(e.target.value) || 0)}
+                            min="0" disabled={!grantsSlotType} placeholder="0"
+                            style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }} />
+                        </div>
+                      </div>
+                      {grantsSlotType && grantsSlotCount > 0 && (
+                        <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "#10b981" }}>
+                          💡 When equipped, this item will grant +{grantsSlotCount} {grantsSlotType} slot{grantsSlotCount > 1 ? "s" : ""}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Auto-Apply Stat Bonuses When Equipped */}
+                                        <ItemBonusesEditor itemId={editingArmor?.id || null} onUpdate={onUpdate} sourceTable="armor" />
                   </div>
                 )}
               </div>
-
-              <ItemBonusesEditor itemId={editingArmor?.id || null} onUpdate={onUpdate} sourceTable="armor" />
 
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
