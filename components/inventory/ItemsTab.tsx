@@ -165,7 +165,8 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
   async function handleSell() {
     if (!removingItem) return;
-    // Add gold to character currency
+    const itemName = removingItem.item_name || "Unknown item";
+    // Add gold to currency
     const { data: currencyData } = await supabase
       .from("character_currency")
       .select("gold")
@@ -176,6 +177,16 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
         .from("character_currency")
         .update({ gold: (currencyData.gold || 0) + sellAmount })
         .eq("character_id", characterId);
+      // Record transaction
+      await supabase.from("character_currency_transactions").insert({
+        character_id: characterId,
+        platinum: 0,
+        gold: sellAmount,
+        silver: 0,
+        copper: 0,
+        note: `Sold ${itemName}`,
+        transaction_type: "sale",
+      });
     }
     await supabase.from("character_inventory").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
