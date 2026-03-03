@@ -48,6 +48,27 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [equippedItemIds, setEquippedItemIds] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    loadEquippedIds();
+  }, [characterId, items]);
+
+  async function loadEquippedIds() {
+    const { data } = await supabase
+      .from("character_equipped_items")
+      .select("inventory_item_id")
+      .eq("character_id", characterId);
+    setEquippedItemIds(new Set((data || []).map((r: any) => r.inventory_item_id)));
+  }
+
+  async function unequipForRemoval(itemId: string) {
+    // Deleting from character_equipped_items triggers DB cleanup of character_stat_sources
+    await supabase
+      .from("character_equipped_items")
+      .delete()
+      .eq("inventory_item_id", itemId);
+  }
   const [removingItem, setRemovingItem] = useState<any>(null);
   const [sellAmount, setSellAmount] = useState(0);
   const [showAdvanced, setShowAdvanced] = useState(false);
@@ -166,7 +187,9 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   async function handleSell() {
     if (!removingItem) return;
     const itemName = removingItem.item_name || "Unknown item";
-    // Add gold to currency
+    // Unequip first — DB trigger cleans up character_stat_sources
+    await unequipForRemoval(removingItem.id);
+    // Add gold to currency and record transaction
     const { data: currencyData } = await supabase
       .from("character_currency")
       .select("gold")
@@ -177,7 +200,6 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
         .from("character_currency")
         .update({ gold: (currencyData.gold || 0) + sellAmount })
         .eq("character_id", characterId);
-      // Record transaction
       await supabase.from("character_currency_transactions").insert({
         character_id: characterId,
         platinum: 0,
@@ -196,6 +218,8 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
   async function handleDelete() {
     if (!removingItem) return;
+    // Unequip first — DB trigger cleans up character_stat_sources
+    await unequipForRemoval(removingItem.id);
     await supabase.from("character_inventory").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
     setRemovingItem(null);
@@ -281,15 +305,20 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
                   <div
                     key={item.id}
                     style={{
-                      background: "white",
-                      border: "1px solid #ddd",
+                      background: equippedItemIds.has(item.id) ? "#f0fdf4" : "white",
+                      border: equippedItemIds.has(item.id) ? "2px solid #10b981" : "1px solid #ddd",
                       borderRadius: "8px",
                       padding: "1rem",
                     }}
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start" }}>
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 600, fontSize: "1.05rem" }}>{item.item_name}</div>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap", marginBottom: "0.1rem" }}>
+                          <div style={{ fontWeight: 600, fontSize: "1.05rem" }}>{item.item_name}</div>
+                          {equippedItemIds.has(item.id) && (
+                            <span style={{ padding: "0.1rem 0.5rem", background: "#10b981", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600, flexShrink: 0 }}>EQUIPPED</span>
+                          )}
+                        </div>
                         
                         {item.description && (
                           <div style={{ fontSize: "0.9rem", color: "#666", marginTop: "0.25rem" }}>
@@ -339,6 +368,12 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
                           style={{ padding: "0.25rem 0.75rem", background: "#0070f3", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}
                         >
                           Edit
+                        </button>
+                        <button
+                          onClick={() => openRemoveModal(item)}
+                          style={{ padding: "0.25rem 0.75rem", background: "#ef4444", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}
+                        >
+                          Remove
                         </button>
                       </div>
                     </div>
