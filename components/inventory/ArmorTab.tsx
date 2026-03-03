@@ -213,6 +213,18 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
 
   async function handleSell() {
     if (!removingItem) return;
+    // Add gold to character currency
+    const { data: currencyData } = await supabase
+      .from("character_currency")
+      .select("gold")
+      .eq("character_id", characterId)
+      .single();
+    if (currencyData) {
+      await supabase
+        .from("character_currency")
+        .update({ gold: (currencyData.gold || 0) + sellAmount })
+        .eq("character_id", characterId);
+    }
     await supabase.from("character_armor").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
     setRemovingItem(null);
@@ -337,8 +349,6 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
                   </button>
                   <button onClick={e => { e.stopPropagation(); openEditModal(item); }}
                     style={{ padding: "0.3rem 0.6rem", background: "#6366f1", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>✏️</button>
-                  <button onClick={e => { e.stopPropagation(); deleteArmor(item.id); }}
-                    style={{ padding: "0.3rem 0.6rem", background: "#ef4444", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>🗑️</button>
                   <span style={{ fontSize: "0.7rem", color: "#9ca3af", marginLeft: "0.25rem" }}>{isExpanded ? "▲" : "▼"}</span>
                 </div>
               </div>
@@ -750,6 +760,44 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
       {showShieldBrowser && (
         <EquipmentBrowser initialCategory="shields" onSelect={handleSelectShield} onClose={() => setShowShieldBrowser(false)} />
       )}
+
+      {/* Remove Modal */}
+      {showRemoveModal && removingItem && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 4000 }}
+          onClick={() => setShowRemoveModal(false)}>
+          <div style={{ background: "white", borderRadius: "12px", padding: "2rem", maxWidth: "420px", width: "90%" }}
+            onClick={e => e.stopPropagation()}>
+            <h3 style={{ marginTop: 0 }}>Remove Item</h3>
+            <p style={{ color: "#666" }}>What would you like to do with <strong>{removingItem.armor_name}</strong>?</p>
+            <div style={{ display: "grid", gap: "1rem" }}>
+              <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px" }}>
+                <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>💰 Sell</div>
+                <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                  <input type="number" step="0.01" min="0" value={sellAmount}
+                    onChange={e => setSellAmount(parseFloat(e.target.value) || 0)}
+                    placeholder="Amount (gp)"
+                    style={{ flex: 1, padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px" }} />
+                  <span style={{ color: "#666", fontSize: "0.9rem" }}>gp</span>
+                  <button onClick={handleSell} style={{ padding: "0.5rem 1rem", background: "#10b981", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontWeight: 600 }}>
+                    Sell
+                  </button>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: "0.75rem" }}>
+                <button onClick={handleDelete}
+                  style={{ flex: 1, padding: "0.75rem", background: "#ef4444", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+                  🗑️ Delete
+                </button>
+                <button onClick={() => setShowRemoveModal(false)}
+                  style={{ flex: 1, padding: "0.75rem", background: "#eee", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showMagicBrowser && (
         <MagicItemBrowser
           initialTypes={["Magic Armor", "Magic Shield"]}
