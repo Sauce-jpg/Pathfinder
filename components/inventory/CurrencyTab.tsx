@@ -61,36 +61,69 @@ export function CurrencyTab({ characterId, currency, onUpdate }: CurrencyTabProp
     }
     setTxSaving(true);
 
-    const sign = txType === "receive" ? 1 : -1;
+    if (txType === "receive") {
+      // Simple addition
+      const newValues = {
+        platinum: (currency?.platinum || 0) + txPlatinum,
+        gold:     (currency?.gold     || 0) + txGold,
+        silver:   (currency?.silver   || 0) + txSilver,
+        copper:   (currency?.copper   || 0) + txCopper,
+      };
 
-    const newValues = {
-      platinum: Math.max(0, (currency?.platinum || 0) + sign * txPlatinum),
-      gold:     Math.max(0, (currency?.gold     || 0) + sign * txGold),
-      silver:   Math.max(0, (currency?.silver   || 0) + sign * txSilver),
-      copper:   Math.max(0, (currency?.copper   || 0) + sign * txCopper),
-    };
+      const { error } = await supabase
+        .from("character_currency")
+        .update(newValues)
+        .eq("character_id", characterId);
 
-    const { error: currError } = await supabase
-      .from("character_currency")
-      .update(newValues)
-      .eq("character_id", characterId);
+      if (error) { alert("Error updating currency: " + error.message); setTxSaving(false); return; }
 
-    if (currError) {
-      alert("Error updating currency: " + currError.message);
-      setTxSaving(false);
-      return;
+      await supabase.from("character_currency_transactions").insert({
+        character_id: characterId,
+        platinum: txPlatinum, gold: txGold, silver: txSilver, copper: txCopper,
+        note: txNote || "Received",
+        transaction_type: "manual",
+      });
+
+    } else {
+      // Payment: convert everything to copper, subtract, convert back
+      const totalAvailCp =
+        (currency?.platinum || 0) * 1000 +
+        (currency?.gold     || 0) * 100 +
+        (currency?.silver   || 0) * 10 +
+        (currency?.copper   || 0);
+
+      const costCp =
+        txPlatinum * 1000 +
+        txGold     * 100 +
+        txSilver   * 10 +
+        txCopper;
+
+      if (costCp > totalAvailCp) {
+        alert("You do not have enough currency to make this payment.");
+        setTxSaving(false);
+        return;
+      }
+
+      let remainder = totalAvailCp - costCp;
+      const pp = Math.floor(remainder / 1000); remainder %= 1000;
+      const gp = Math.floor(remainder / 100);  remainder %= 100;
+      const sp = Math.floor(remainder / 10);   remainder %= 10;
+      const cp = remainder;
+
+      const { error } = await supabase
+        .from("character_currency")
+        .update({ platinum: pp, gold: gp, silver: sp, copper: cp })
+        .eq("character_id", characterId);
+
+      if (error) { alert("Error updating currency: " + error.message); setTxSaving(false); return; }
+
+      await supabase.from("character_currency_transactions").insert({
+        character_id: characterId,
+        platinum: -txPlatinum, gold: -txGold, silver: -txSilver, copper: -txCopper,
+        note: txNote || "Paid",
+        transaction_type: "manual",
+      });
     }
-
-    await supabase.from("character_currency_transactions").insert({
-      character_id: characterId,
-      platinum: sign * txPlatinum,
-      gold:     sign * txGold,
-      silver:   sign * txSilver,
-      copper:   sign * txCopper,
-      note: txNote || (txType === "receive" ? "Received" : "Paid"),
-      transaction_type: "manual",
-    });
-
     setShowTransactionModal(false);
     loadTransactions();
     onUpdate();
