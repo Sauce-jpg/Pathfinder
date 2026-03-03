@@ -214,6 +214,18 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
 
   async function handleSell() {
     if (!removingItem) return;
+    // Add gold to character currency
+    const { data: currencyData } = await supabase
+      .from("character_currency")
+      .select("gold")
+      .eq("character_id", characterId)
+      .single();
+    if (currencyData) {
+      await supabase
+        .from("character_currency")
+        .update({ gold: (currencyData.gold || 0) + sellAmount })
+        .eq("character_id", characterId);
+    }
     await supabase.from("character_weapons").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
     setRemovingItem(null);
@@ -335,8 +347,6 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
                   </button>
                   <button onClick={e => { e.stopPropagation(); openEditModal(weapon); }}
                     style={{ padding: "0.3rem 0.6rem", background: "#6366f1", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>✏️</button>
-                  <button onClick={e => { e.stopPropagation(); openRemoveModal(weapon); }}
-                    style={{ padding: "0.3rem 0.6rem", background: "#ef4444", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>Remove</button>
                   <span style={{ fontSize: "0.7rem", color: "#9ca3af", marginLeft: "0.25rem" }}>{isExpanded ? "▲" : "▼"}</span>
                 </div>
               </div>
