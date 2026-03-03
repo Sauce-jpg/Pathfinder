@@ -85,18 +85,14 @@ export function CurrencyTab({ characterId, currency, onUpdate }: CurrencyTabProp
       });
 
     } else {
-      // Payment: convert everything to copper, subtract, convert back
+      // Payment: subtract per-denomination, breaking higher coins only when needed.
+      // Check affordability first (total copper comparison).
       const totalAvailCp =
         (currency?.platinum || 0) * 1000 +
         (currency?.gold     || 0) * 100 +
         (currency?.silver   || 0) * 10 +
         (currency?.copper   || 0);
-
-      const costCp =
-        txPlatinum * 1000 +
-        txGold     * 100 +
-        txSilver   * 10 +
-        txCopper;
+      const costCp = txPlatinum * 1000 + txGold * 100 + txSilver * 10 + txCopper;
 
       if (costCp > totalAvailCp) {
         alert("You do not have enough currency to make this payment.");
@@ -104,11 +100,43 @@ export function CurrencyTab({ characterId, currency, onUpdate }: CurrencyTabProp
         return;
       }
 
-      let remainder = totalAvailCp - costCp;
-      const pp = Math.floor(remainder / 1000); remainder %= 1000;
-      const gp = Math.floor(remainder / 100);  remainder %= 100;
-      const sp = Math.floor(remainder / 10);   remainder %= 10;
-      const cp = remainder;
+      // Work with mutable coin pools
+      let pp = currency?.platinum || 0;
+      let gp = currency?.gold     || 0;
+      let sp = currency?.silver   || 0;
+      let cp = currency?.copper   || 0;
+
+      // Helper: ensure we have `need` coins of a denomination,
+      // breaking the next-higher coin if necessary (recursively up the chain).
+      function ensureCp(need: number) {
+        if (cp >= need) return;
+        const missing = need - cp;
+        const spNeeded = Math.ceil(missing / 10);
+        ensureSp(spNeeded);
+        sp -= spNeeded;
+        cp += spNeeded * 10;
+      }
+      function ensureSp(need: number) {
+        if (sp >= need) return;
+        const missing = need - sp;
+        const gpNeeded = Math.ceil(missing / 10);
+        ensureGp(gpNeeded);
+        gp -= gpNeeded;
+        sp += gpNeeded * 10;
+      }
+      function ensureGp(need: number) {
+        if (gp >= need) return;
+        const missing = need - gp;
+        const ppNeeded = Math.ceil(missing / 10);
+        pp -= ppNeeded;  // affordability already confirmed above
+        gp += ppNeeded * 10;
+      }
+
+      // Subtract each denomination, breaking higher coins as needed
+      if (txCopper > 0)   { ensureCp(txCopper);   cp -= txCopper; }
+      if (txSilver > 0)   { ensureSp(txSilver);   sp -= txSilver; }
+      if (txGold > 0)     { ensureGp(txGold);     gp -= txGold; }
+      if (txPlatinum > 0) { pp -= txPlatinum; }
 
       const { error } = await supabase
         .from("character_currency")
