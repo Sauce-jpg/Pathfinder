@@ -236,6 +236,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
         transaction_type: "sale",
       });
     }
+    // Unequip first so DB trigger cleans up character_stat_sources
+    await supabase.from("character_armor").update({ is_equipped: false, is_primary: false }).eq("id", removingItem.id);
     await supabase.from("character_armor").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
     setRemovingItem(null);
@@ -244,6 +246,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
 
   async function handleDelete() {
     if (!removingItem) return;
+    // Unequip first so DB trigger cleans up character_stat_sources
+    await supabase.from("character_armor").update({ is_equipped: false, is_primary: false }).eq("id", removingItem.id);
     await supabase.from("character_armor").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
     setRemovingItem(null);
