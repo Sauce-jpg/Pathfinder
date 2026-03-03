@@ -37,6 +37,9 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [removingItem, setRemovingItem] = useState<any>(null);
+  const [sellAmount, setSellAmount] = useState(0);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -174,6 +177,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
       notes: notes || null,
       grants_slot_type: grantsSlotType || null,
       grants_slot_count: grantsSlotCount || 0,
+      is_primary: false,
       is_equipped: false,
     };
 
@@ -201,6 +205,28 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     setSaving(false);
   }
 
+  function openRemoveModal(item: any) {
+    setRemovingItem(item);
+    setSellAmount(item.cost_gp || 0);
+    setShowRemoveModal(true);
+  }
+
+  async function handleSell() {
+    if (!removingItem) return;
+    await supabase.from("character_armor").delete().eq("id", removingItem.id);
+    setShowRemoveModal(false);
+    setRemovingItem(null);
+    onUpdate();
+  }
+
+  async function handleDelete() {
+    if (!removingItem) return;
+    await supabase.from("character_armor").delete().eq("id", removingItem.id);
+    setShowRemoveModal(false);
+    setRemovingItem(null);
+    onUpdate();
+  }
+
   async function deleteArmor(id: string) {
     if (!confirm("Delete this armor?")) return;
     await supabase.from("character_armor").delete().eq("id", id);
@@ -211,6 +237,17 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     await supabase.from("character_armor").update({ is_equipped: !currentState }).eq("id", id);
     onUpdate();
   }
+  async function togglePrimary(id: string, currentState: boolean) {
+    if (!currentState) {
+      await supabase
+        .from("character_armor")
+        .update({ is_primary: false })
+        .eq("character_id", characterId);
+    }
+    await supabase.from("character_armor").update({ is_primary: !currentState }).eq("id", id);
+    onUpdate();
+  }
+
 
   return (
     <div>
@@ -266,7 +303,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
               key={item.id}
               style={{
                 background: item.is_equipped ? "#fffbeb" : "white",
-                border: `2px solid ${isExpanded ? "#818cf8" : item.is_equipped ? "#fbbf24" : "#ddd"}`,
+                border: `2px solid ${item.is_primary ? "#f59e0b" : isExpanded ? "#818cf8" : item.is_equipped ? "#fbbf24" : "#ddd"}`,
                 borderRadius: "12px",
                 overflow: "hidden",
               }}
@@ -279,7 +316,8 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
                 <div style={{ flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
                     <span style={{ fontWeight: 700, fontSize: "1.05rem", color: "#f59e0b" }}>{item.armor_name}</span>
-                    {item.is_equipped && <span style={{ padding: "0.15rem 0.6rem", background: "#10b981", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600 }}>EQUIPPED</span>}
+                    {item.is_primary && <span style={{ padding: "0.15rem 0.6rem", background: "#f59e0b", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600 }}>PRIMARY</span>}
+                    {item.is_equipped && !item.is_primary && <span style={{ padding: "0.15rem 0.6rem", background: "#10b981", color: "white", borderRadius: "12px", fontSize: "0.72rem", fontWeight: 600 }}>EQUIPPED</span>}
                   </div>
                   <div style={{ fontSize: "0.82rem", color: "#888", marginTop: "0.2rem" }}>
                     {item.armor_type}{item.armor_type !== "shield" ? " armor" : ""} · AC +{item.ac_bonus + item.enhancement_bonus}
@@ -289,6 +327,10 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: "0.4rem", alignItems: "center", marginLeft: "1rem", flexShrink: 0 }}>
+                  <button onClick={e => { e.stopPropagation(); togglePrimary(item.id, item.is_primary); }}
+                    style={{ padding: "0.3rem 0.6rem", background: item.is_primary ? "#fbbf24" : "#eee", color: item.is_primary ? "white" : "#666", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>
+                    {item.is_primary ? "★" : "☆"}
+                  </button>
                   <button onClick={e => { e.stopPropagation(); toggleEquipped(item.id, item.is_equipped); }}
                     style={{ padding: "0.3rem 0.6rem", background: item.is_equipped ? "#10b981" : "#eee", color: item.is_equipped ? "white" : "#666", border: "none", borderRadius: "6px", cursor: "pointer", fontSize: "0.8rem" }}>
                     {item.is_equipped ? "✓" : "Equip"}
@@ -659,6 +701,12 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
                 )}
               </div>
 
+              {editingArmor && (
+                <button type="button" onClick={() => { setShowAddModal(false); openRemoveModal(editingArmor); }}
+                  style={{ width: "100%", padding: "0.6rem", background: "#fee2e2", color: "#dc2626", border: "1px solid #fca5a5", borderRadius: "8px", cursor: "pointer", fontWeight: 600, marginBottom: "0.25rem" }}>
+                  🗑️ Remove this armor...
+                </button>
+              )}
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
                   type="submit"
