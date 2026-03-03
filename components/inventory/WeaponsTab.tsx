@@ -35,6 +35,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
   const [rangeIncrement, setRangeIncrement] = useState<number | null>(null);
   const [properties, setProperties] = useState("");
   const [notes, setNotes] = useState("");
+  const [grantsSlotType, setGrantsSlotType] = useState("");
+  const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
 
   // Close dropdown on outside click
@@ -127,6 +129,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
     setRangeIncrement(weapon.range_increment);
     setProperties(weapon.properties?.join(", ") || "");
     setNotes(weapon.notes || "");
+    setGrantsSlotType(weapon.grants_slot_type || "");
+    setGrantsSlotCount(weapon.grants_slot_count || 0);
     setShowAddModal(true);
   }
 
@@ -143,6 +147,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
     setRangeIncrement(null);
     setProperties("");
     setNotes("");
+    setGrantsSlotType("");
+    setGrantsSlotCount(0);
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -163,6 +169,8 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
       range_increment: rangeIncrement,
       properties: properties ? properties.split(",").map(p => p.trim()) : [],
       notes: notes || null,
+      grants_slot_type: grantsSlotType || null,
+      grants_slot_count: grantsSlotCount || 0,
       is_primary: false,
       is_equipped: false,
     };
@@ -670,6 +678,46 @@ export function WeaponsTab({ characterId, weapons, onUpdate }: WeaponsTabProps) 
                     resize: "vertical",
                   }}
                 />
+              </div>
+
+              {/* Bonus Slot Granting */}
+              <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px" }}>
+                <div style={{ marginBottom: "0.75rem", fontWeight: 600 }}>
+                  ✨ Does this item grant additional equipment slots?
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Slot Type</label>
+                    <select value={grantsSlotType} onChange={(e) => setGrantsSlotType(e.target.value)}
+                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }}>
+                      <option value="">None</option>
+                      <option value="ring">Ring</option>
+                      <option value="head">Head</option>
+                      <option value="headband">Headband</option>
+                      <option value="eyes">Eyes</option>
+                      <option value="neck">Neck</option>
+                      <option value="shoulders">Shoulders</option>
+                      <option value="body">Body</option>
+                      <option value="chest">Chest</option>
+                      <option value="belt">Belt</option>
+                      <option value="wrists">Wrists</option>
+                      <option value="hands">Hands</option>
+                      <option value="feet">Feet</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.9rem" }}>Quantity</label>
+                    <input type="number" value={grantsSlotCount}
+                      onChange={(e) => setGrantsSlotCount(parseInt(e.target.value) || 0)}
+                      min="0" disabled={!grantsSlotType} placeholder="0"
+                      style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.9rem" }} />
+                  </div>
+                </div>
+                {grantsSlotType && grantsSlotCount > 0 && (
+                  <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "#10b981" }}>
+                    💡 When equipped, this item will grant +{grantsSlotCount} {grantsSlotType} slot{grantsSlotCount > 1 ? "s" : ""}
+                  </div>
+                )}
               </div>
 
               {/* Auto-Apply Stat Bonuses When Equipped */}
