@@ -47,6 +47,9 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
   const [grantsSlotType, setGrantsSlotType] = useState("");
   const [grantsSlotCount, setGrantsSlotCount] = useState(0);
   const [saving, setSaving] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [removingItem, setRemovingItem] = useState<any>(null);
+  const [sellAmount, setSellAmount] = useState(0);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
   // Handle item selection from Equipment Browser
@@ -154,23 +157,35 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
     setSaving(false);
   }
 
+  function openRemoveModal(item: any) {
+    setRemovingItem(item);
+    setSellAmount(item.cost_gp || 0);
+    setShowRemoveModal(true);
+  }
+
+  async function handleSell() {
+    if (!removingItem) return;
+    await supabase.from("character_inventory").delete().eq("id", removingItem.id);
+    // TODO: add sellAmount to character currency if desired
+    setShowRemoveModal(false);
+    setRemovingItem(null);
+    onUpdate();
+  }
+
+  async function handleDelete() {
+    if (!removingItem) return;
+    await supabase.from("character_inventory").delete().eq("id", removingItem.id);
+    setShowRemoveModal(false);
+    setRemovingItem(null);
+    onUpdate();
+  }
+
   async function deleteItem(id: string) {
     if (!confirm("Delete this item?")) return;
     await supabase.from("character_inventory").delete().eq("id", id);
     onUpdate();
   }
 
-  async function adjustQuantity(id: string, currentQty: number, delta: number) {
-    const newQty = Math.max(0, currentQty + delta);
-    if (newQty === 0) {
-      if (confirm("Quantity is 0. Delete this item?")) {
-        await supabase.from("character_inventory").delete().eq("id", id);
-      }
-    } else {
-      await supabase.from("character_inventory").update({ quantity: newQty }).eq("id", id);
-    }
-    onUpdate();
-  }
 
   // Group items by type
   const itemsByType = items.reduce((acc: any, item: any) => {
@@ -298,60 +313,16 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
 
                       <div style={{ display: "flex", gap: "0.5rem", marginLeft: "1rem" }}>
                         <button
-                          onClick={() => adjustQuantity(item.id, item.quantity, -1)}
-                          style={{
-                            padding: "0.25rem 0.5rem",
-                            background: "#ef4444",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                            fontSize: "1rem",
-                          }}
-                        >
-                          −
-                        </button>
-                        <button
-                          onClick={() => adjustQuantity(item.id, item.quantity, 1)}
-                          style={{
-                            padding: "0.25rem 0.5rem",
-                            background: "#10b981",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                            fontSize: "1rem",
-                          }}
-                        >
-                          +
-                        </button>
-                        <button
                           onClick={() => openEditModal(item)}
-                          style={{
-                            padding: "0.25rem 0.75rem",
-                            background: "#0070f3",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                            fontSize: "0.85rem",
-                          }}
+                          style={{ padding: "0.25rem 0.75rem", background: "#0070f3", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}
                         >
                           Edit
                         </button>
                         <button
-                          onClick={() => deleteItem(item.id)}
-                          style={{
-                            padding: "0.25rem 0.75rem",
-                            background: "#ef4444",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                            fontSize: "0.85rem",
-                          }}
+                          onClick={() => openRemoveModal(item)}
+                          style={{ padding: "0.25rem 0.75rem", background: "#ef4444", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}
                         >
-                          Delete
+                          Remove
                         </button>
                       </div>
                     </div>
@@ -648,6 +619,12 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
                 )}
               </div>
 
+              {editingItem && (
+                <button type="button" onClick={() => { setShowAddModal(false); openRemoveModal(editingItem); }}
+                  style={{ width: "100%", padding: "0.6rem", background: "#fee2e2", color: "#dc2626", border: "1px solid #fca5a5", borderRadius: "8px", cursor: "pointer", fontWeight: 600, marginBottom: "0.25rem" }}>
+                  🗑️ Remove this item...
+                </button>
+              )}
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.5rem" }}>
                 <button
                   type="submit"
@@ -681,6 +658,44 @@ export function ItemsTab({ characterId, items, onUpdate }: ItemsTabProps) {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+
+      {/* Remove Modal */}
+      {showRemoveModal && removingItem && (
+        <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 4000 }}
+          onClick={() => setShowRemoveModal(false)}>
+          <div style={{ background: "white", borderRadius: "12px", padding: "2rem", maxWidth: "420px", width: "90%" }}
+            onClick={e => e.stopPropagation()}>
+            <h3 style={{ marginTop: 0 }}>Remove Item</h3>
+            <p style={{ color: "#666" }}>What would you like to do with <strong>{removingItem.item_name}</strong>?</p>
+            <div style={{ display: "grid", gap: "1rem" }}>
+              <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "8px" }}>
+                <div style={{ fontWeight: 600, marginBottom: "0.5rem" }}>💰 Sell</div>
+                <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+                  <input type="number" step="0.01" min="0" value={sellAmount}
+                    onChange={e => setSellAmount(parseFloat(e.target.value) || 0)}
+                    placeholder="Amount (gp)"
+                    style={{ flex: 1, padding: "0.5rem", border: "1px solid #ddd", borderRadius: "6px" }} />
+                  <span style={{ color: "#666", fontSize: "0.9rem" }}>gp</span>
+                  <button onClick={handleSell} style={{ padding: "0.5rem 1rem", background: "#10b981", color: "white", border: "none", borderRadius: "6px", cursor: "pointer", fontWeight: 600 }}>
+                    Sell
+                  </button>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: "0.75rem" }}>
+                <button onClick={handleDelete}
+                  style={{ flex: 1, padding: "0.75rem", background: "#ef4444", color: "white", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+                  🗑️ Delete
+                </button>
+                <button onClick={() => setShowRemoveModal(false)}
+                  style={{ flex: 1, padding: "0.75rem", background: "#eee", border: "none", borderRadius: "8px", cursor: "pointer", fontWeight: 600 }}>
+                  Cancel
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}
