@@ -177,7 +177,6 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
       notes: notes || null,
       grants_slot_type: grantsSlotType || null,
       grants_slot_count: grantsSlotCount || 0,
-      is_primary: false,
       is_equipped: false,
     };
 
@@ -236,8 +235,6 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
         transaction_type: "sale",
       });
     }
-    // Unequip first so DB trigger cleans up character_stat_sources
-    await supabase.from("character_armor").update({ is_equipped: false, is_primary: false }).eq("id", removingItem.id);
     await supabase.from("character_armor").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
     setRemovingItem(null);
@@ -246,8 +243,17 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
 
   async function handleDelete() {
     if (!removingItem) return;
-    // Unequip first so DB trigger cleans up character_stat_sources
-    await supabase.from("character_armor").update({ is_equipped: false, is_primary: false }).eq("id", removingItem.id);
+    // Flip is_equipped to false — fires trigger that removes stat sources
+    await supabase.from("character_armor").update({ is_equipped: false }).eq("id", removingItem.id);
+    // Explicitly remove stat sources (belt-and-suspenders)
+    const { data: bonuses } = await supabase
+      .from("item_stat_bonuses")
+      .select("id")
+      .eq("armor_id", removingItem.id);
+    if (bonuses && bonuses.length > 0) {
+      const bonusIds = bonuses.map((b: any) => b.id);
+      await supabase.from("character_stat_sources").delete().in("item_stat_bonus_id", bonusIds);
+    }
     await supabase.from("character_armor").delete().eq("id", removingItem.id);
     setShowRemoveModal(false);
     setRemovingItem(null);
@@ -265,6 +271,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     onUpdate();
   }
   async function togglePrimary(id: string, currentState: boolean) {
+    try {
     if (!currentState) {
       await supabase
         .from("character_armor")
@@ -273,6 +280,7 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
     }
     await supabase.from("character_armor").update({ is_primary: !currentState }).eq("id", id);
     onUpdate();
+    } catch (_) { /* is_primary column pending migration */ }
   }
 
 
