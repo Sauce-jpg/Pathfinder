@@ -213,6 +213,17 @@ export function ArmorTab({ characterId, armor, onUpdate }: ArmorTabProps) {
   async function handleSell() {
     if (!removingItem) return;
     const itemName = removingItem.armor_name || "Unknown item";
+    // Flip is_equipped to false — fires trigger that removes stat sources
+    await supabase.from("character_armor").update({ is_equipped: false }).eq("id", removingItem.id);
+    // Explicitly remove stat sources (belt-and-suspenders)
+    const { data: bonuses } = await supabase
+      .from("item_stat_bonuses")
+      .select("id")
+      .eq("armor_id", removingItem.id);
+    if (bonuses && bonuses.length > 0) {
+      const bonusIds = bonuses.map((b: any) => b.id);
+      await supabase.from("character_stat_sources").delete().in("item_stat_bonus_id", bonusIds);
+    }
     // Add gold to currency
     const { data: currencyData } = await supabase
       .from("character_currency")
