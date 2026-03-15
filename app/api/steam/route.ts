@@ -40,35 +40,52 @@ async function getPlayerSummary(steamId: string): Promise<any> {
   return data?.response?.players?.[0] ?? null;
 }
 
-const appDetailsCache: Record<number, any> = {};
+// Fetch categories + genres for up to 100 games via store API
+// Returns a map of appId -> { categories: string[], genres: string[] }
+async function fetchAppDetails(appIds: number[]): Promise<Record<number, { categories: string[]; genres: string[] }>> {
+  const result: Record<number, { categories: string[]; genres: string[] }> = {};
 
-async function getAppDetails(appId: number): Promise<any> {
-  if (appDetailsCache[appId]) return appDetailsCache[appId];
-  try {
-    const res = await fetch(
-      `${STORE_API_BASE}/api/appdetails?appids=${appId}&filters=categories,genres`,
-      { signal: AbortSignal.timeout(4000) }
-    );
-    const data = await res.json();
-    const details = data?.[appId]?.data ?? null;
-    appDetailsCache[appId] = details;
-    return details;
-  } catch {
-    return null;
+  // Batch into groups of 20 to avoid hammering the store API
+  const batches: number[][] = [];
+  for (let i = 0; i < appIds.length; i += 20) {
+    batches.push(appIds.slice(i, i + 20));
   }
+
+  await Promise.all(
+    batches.map(async (batch) => {
+      await Promise.all(
+        batch.map(async (appId) => {
+          try {
+            const res = await fetch(
+              `${STORE_API_BASE}/api/appdetails?appids=${appId}&filters=categories,genres`,
+              { signal: AbortSignal.timeout(4000) }
+            );
+            const data = await res.json();
+            const d = data?.[appId]?.data;
+            if (d) {
+              result[appId] = {
+                categories: (d.categories ?? []).map((c: any) => c.description as string),
+                genres: (d.genres ?? []).map((g: any) => g.description as string),
+              };
+            }
+          } catch {
+            // skip on timeout
+          }
+        })
+      );
+    })
+  );
+
+  return result;
 }
 
-const MULTIPLAYER_CATEGORY_IDS = new Set([1, 9, 27, 36, 38, 49, 60]);
-
-async function isMultiplayer(appId: number): Promise<boolean> {
-  const details = await getAppDetails(appId);
-  if (!details?.categories) return false;
-  return details.categories.some((cat: any) => MULTIPLAYER_CATEGORY_IDS.has(cat.id));
-}
-
-function buildGameList(appIds: number[], gameMaps: Record<number, any>[], validUsers: any[]) {
+function buildGameList(
+  appIds: number[],
+  gameMaps: Record<number, any>[],
+  validUsers: { steamId: string; displayName: string; avatar: string | null }[],
+  appDetails: Record<number, { categories: string[]; genres: string[] }>
+) {
   return appIds.map((appId) => {
-    // Use the first map that has this game for base info
     const baseMap = gameMaps.find((m) => m[appId]);
     const base = baseMap?.[appId];
     const totalPlaytime = gameMaps.reduce(
@@ -76,6 +93,17 @@ function buildGameList(appIds: number[], gameMaps: Record<number, any>[], validU
       0
     );
     const ownersCount = gameMaps.filter((m) => !!m[appId]).length;
+
+    // Per-user playtime for modal
+    const userPlaytimes = validUsers.map((u, i) => ({
+      steamId: u.steamId,
+      displayName: u.displayName,
+      avatar: u.avatar,
+      playtime: gameMaps[i][appId]?.playtime_forever ?? null, // null = doesn't own
+    }));
+
+    const details = appDetails[appId];
+
     return {
       appId,
       name: base?.name ?? `App ${appId}`,
@@ -85,6 +113,9 @@ function buildGameList(appIds: number[], gameMaps: Record<number, any>[], validU
       totalPlaytime,
       ownersCount,
       storeUrl: `https://store.steampowered.com/app/${appId}`,
+      categories: details?.categories ?? [],
+      genres: details?.genres ?? [],
+      userPlaytimes,
     };
   });
 }
@@ -98,10 +129,7 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json();
-  const { users, filterMultiplayer } = body as {
-    users: string[];
-    filterMultiplayer: boolean;
-  };
+  const { users } = body as { users: string[] };
 
   if (!users || users.length < 2) {
     return NextResponse.json({ error: "Please provide at least 2 Steam users." }, { status: 400 });
@@ -127,6 +155,13 @@ export async function POST(req: NextRequest) {
     });
   }
 
+  const validUsers = valid.map((u) => ({
+    steamId: u.steamId!,
+    displayName: u.profile?.personaname ?? u.steamId!,
+    avatar: u.profile?.avatarmedium ?? null,
+    gameCount: u.games.length,
+  }));
+
   // Build per-user game maps
   const gameMaps = valid.map((u) => {
     const map: Record<number, any> = {};
@@ -144,48 +179,47 @@ export async function POST(req: NextRequest) {
 
   for (const appId of allAppIds) {
     const count = gameMaps.filter((m) => !!m[appId]).length;
-    if (count === valid.length) {
-      commonAppIds.push(appId);
-    } else if (count >= 2) {
-      partialAppIds.push(appId);
-    }
+    if (count === valid.length) commonAppIds.push(appId);
+    else if (count >= 2) partialAppIds.push(appId);
   }
 
-  let commonGames = buildGameList(commonAppIds, gameMaps, valid);
-  let partialGames = buildGameList(partialAppIds, gameMaps, valid);
+  // Fetch app details (categories + genres) for shared games only — cap at 150 to stay within time budget
+  const sharedIds = [...commonAppIds, ...partialAppIds].slice(0, 150);
+  const appDetails = await fetchAppDetails(sharedIds);
 
-  // Sort partial by most owners first, then least playtime
+  let commonGames = buildGameList(commonAppIds, gameMaps, validUsers, appDetails);
+  let partialGames = buildGameList(partialAppIds, gameMaps, validUsers, appDetails);
+
+  // Sort: least total playtime first (discover neglected games)
+  commonGames.sort((a, b) => a.totalPlaytime - b.totalPlaytime);
+  // Partial: most owners first, then least playtime
   partialGames.sort((a, b) => {
     if (b.ownersCount !== a.ownersCount) return b.ownersCount - a.ownersCount;
     return a.totalPlaytime - b.totalPlaytime;
   });
 
-  // Multiplayer filter
-  if (filterMultiplayer) {
-    const toCheckCommon = commonGames.slice(0, 80);
-    const commonFlags = await Promise.all(toCheckCommon.map((g) => isMultiplayer(g.appId)));
-    commonGames = toCheckCommon.filter((_, i) => commonFlags[i]);
-
-    const toCheckPartial = partialGames.slice(0, 80);
-    const partialFlags = await Promise.all(toCheckPartial.map((g) => isMultiplayer(g.appId)));
-    partialGames = toCheckPartial.filter((_, i) => partialFlags[i]);
-  }
-
-  // Sort common: least total playtime first (discover neglected games)
-  commonGames.sort((a, b) => a.totalPlaytime - b.totalPlaytime);
+  // Build per-user full library (sorted alphabetically) for individual view
+  const userLibraries = valid.map((u, i) => ({
+    steamId: u.steamId!,
+    games: u.games
+      .map((g: any) => ({
+        appId: g.appid,
+        name: g.name ?? `App ${g.appid}`,
+        iconUrl: g.img_icon_url
+          ? `https://media.steampowered.com/steamcommunity/public/images/apps/${g.appid}/${g.img_icon_url}.jpg`
+          : null,
+        playtime: g.playtime_forever ?? 0,
+        storeUrl: `https://store.steampowered.com/app/${g.appid}`,
+      }))
+      .sort((a: any, b: any) => a.name.localeCompare(b.name)),
+  }));
 
   return NextResponse.json({
-    users: valid.map((u) => ({
-      input: u.input,
-      steamId: u.steamId,
-      displayName: u.profile?.personaname ?? u.steamId,
-      avatar: u.profile?.avatarmedium ?? null,
-      gameCount: u.games.length,
-    })),
+    users: validUsers,
     failed: failed.map((f) => f.input),
     commonGames,
     partialGames,
+    userLibraries,
     totalCommon: commonGames.length,
-    filterMultiplayer,
   });
 }
