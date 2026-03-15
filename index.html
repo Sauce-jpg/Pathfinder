@@ -1,125 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daniel's Hub</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="hub.css">
-  <script src="hub.js" defer></script>
+  <title>Daniel’s Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js" defer></script>
 </head>
 <body>
+  <button class="toggle" onclick="toggleTheme()">Toggle Theme</button>
 
-  <button class="theme-btn" id="themeBtn" title="Toggle theme" onclick="hubToggleTheme()">
-    <span id="themeIcon">☽</span>
-  </button>
-
-  <div class="noise"></div>
-
-  <header class="hub-header">
-    <div class="hub-header-inner">
-      <p class="hub-eyebrow">Welcome back</p>
-      <h1 class="hub-title">Daniel's<br><em>Hub</em></h1>
-      <p class="hub-sub">Pick a branch and dive in.</p>
-    </div>
-    <div class="hub-header-deco" aria-hidden="true">
-      <div class="deco-circle deco-1"></div>
-      <div class="deco-circle deco-2"></div>
-      <div class="deco-circle deco-3"></div>
-    </div>
+  <header>
+    <h1>Daniel’s Hub</h1>
+    <p>Select a branch:</p>
   </header>
 
-  <main class="hub-grid">
-
-    <a href="pathfinder/index.html" class="hub-card" style="--card-hue: 28;">
-      <div class="card-glyph">⚔️</div>
-      <div class="card-body">
-        <h2 class="card-title">Pathfinder</h2>
-        <p class="card-desc">Character sheets, spells, inventory &amp; combat tracker</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
-    <a href="mtg/index.html" class="hub-card" style="--card-hue: 200;">
-      <div class="card-glyph">🃏</div>
-      <div class="card-body">
-        <h2 class="card-title">Magic: the Gathering</h2>
-        <p class="card-desc">Decks, cards &amp; collection browser</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
-    <a href="boardgames/index.html" class="hub-card" style="--card-hue: 140;">
-      <div class="card-glyph">🎲</div>
-      <div class="card-body">
-        <h2 class="card-title">Board Games</h2>
-        <p class="card-desc">Collection tracker &amp; session log</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
-    <a href="tt-minis/index.html" class="hub-card" style="--card-hue: 340;">
-      <div class="card-glyph">⚒️</div>
-      <div class="card-body">
-        <h2 class="card-title">TT Miniatures</h2>
-        <p class="card-desc">Projects, painting log &amp; gallery</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
-    <a href="recipes/index.html" class="hub-card" style="--card-hue: 50;">
-      <div class="card-glyph">🥘</div>
-      <div class="card-body">
-        <h2 class="card-title">Recipes</h2>
-        <p class="card-desc">Saved recipes &amp; meal ideas</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
-    <a href="inventory/index.html" class="hub-card" style="--card-hue: 260;">
-      <div class="card-glyph">📦</div>
-      <div class="card-body">
-        <h2 class="card-title">Inventory</h2>
-        <p class="card-desc">Physical item tracker &amp; storage manager</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
-    <a href="/steam" class="hub-card hub-card--featured" style="--card-hue: 160;">
-      <div class="card-glyph">🎮</div>
-      <div class="card-body">
-        <h2 class="card-title">Game Night</h2>
-        <p class="card-desc">Find games your whole crew owns on Steam &amp; let fate pick</p>
-      </div>
-      <span class="card-arrow">→</span>
-      <span class="card-new">New</span>
-    </a>
-
-    <a href="other/index.html" class="hub-card" style="--card-hue: 300;">
-      <div class="card-glyph">🧭</div>
-      <div class="card-body">
-        <h2 class="card-title">Other</h2>
-        <p class="card-desc">Miscellaneous links &amp; tools</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
-    <a href="timeline/index.html" class="hub-card" style="--card-hue: 185;">
-      <div class="card-glyph">⏳</div>
-      <div class="card-body">
-        <h2 class="card-title">Timeline</h2>
-        <p class="card-desc">Chronicle of events &amp; milestones</p>
-      </div>
-      <span class="card-arrow">→</span>
-    </a>
-
+  <main class="links">
+    <a href="pathfinder/index.html">⚔️ Pathfinder</a>
+    <a href="mtg/index.html">🃏 Magic the Gathering</a>
+    <a href="boardgames/index.html">🎲 Boardgames</a>
+    <a href="tt-minis/index.html">⚒️ TT Miniatures</a>
+    <a href="recipes/index.html">🥘 Recipes</a>
+    <a href="inventory/index.html">📦 Inventory</a>
+    <a href="other/index.html">🧭 Other</a>
+    <a href="timeline/index.html">⏳ Timeline</a>
   </main>
-
-  <footer class="hub-footer">
-    <span>danielhallberg.com</span>
-  </footer>
-
 </body>
 </html>
