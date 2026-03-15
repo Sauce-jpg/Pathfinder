@@ -1,0 +1,613 @@
+/* ============================================================
+   Steam Game Picker — steam.module.css
+   Dark gaming aesthetic: deep navy, electric blue accents,
+   crisp monospace touches. Clean, not generic.
+   ============================================================ */
+
+.page {
+  min-height: 100vh;
+  background: #0b0f1a;
+  color: #e8eaf0;
+  font-family: "DM Sans", "Helvetica Neue", sans-serif;
+}
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  padding: 80px 24px 64px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(56, 139, 253, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 20%, rgba(88, 166, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(56, 139, 253, 0.15);
+  border: 1px solid rgba(56, 139, 253, 0.35);
+  color: #58a6ff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: clamp(42px, 7vw, 80px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+  color: #f0f2f8;
+}
+
+.titleAccent {
+  color: #58a6ff;
+  display: block;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: #7d8896;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Main content ── */
+.main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Card ── */
+.card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardTitleIcon {
+  font-size: 18px;
+}
+
+/* ── Input list ── */
+.inputList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputIndex {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  background: #0d1117;
+  border: 1px solid #1f2937;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 14px;
+  color: #e8eaf0;
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: "DM Mono", "Fira Code", monospace;
+}
+
+.input::placeholder {
+  color: #374151;
+}
+
+.input:focus {
+  border-color: #388bfd;
+}
+
+.removeBtn {
+  background: none;
+  border: 1px solid #1f2937;
+  border-radius: 6px;
+  color: #6b7280;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.removeBtn:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* ── Input footer ── */
+.inputFooter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.addBtn {
+  background: none;
+  border: 1px dashed #374151;
+  border-radius: 8px;
+  color: #6b7280;
+  font-size: 13px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.addBtn:hover {
+  color: #58a6ff;
+  border-color: #58a6ff;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #9ca3af;
+  user-select: none;
+}
+
+.toggleTrack {
+  width: 40px;
+  height: 22px;
+  border-radius: 100px;
+  background: #1f2937;
+  border: 1px solid #374151;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.toggleOn {
+  background: #1d4ed8;
+  border-color: #3b82f6;
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #6b7280;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(18px);
+  background: #93c5fd;
+}
+
+/* ── Error ── */
+.errorBox {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* ── Search button ── */
+.searchBtn {
+  width: 100%;
+  background: #1d4ed8;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s;
+  margin-bottom: 16px;
+}
+
+.searchBtn:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.searchBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hint {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.hint code {
+  background: #0d1117;
+  border: 1px solid #1f2937;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: "DM Mono", monospace;
+  color: #6b7280;
+}
+
+/* ── User chips ── */
+.userChips {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.userChip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 8px 14px 8px 8px;
+}
+
+.userAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e8eaf0;
+}
+
+.userGames {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.failedChip {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #fca5a5;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Stats banner ── */
+.statsBanner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+  padding: 20px 28px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.statNum {
+  font-size: 28px;
+  font-weight: 800;
+  color: #58a6ff;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 3px;
+}
+
+.statDivider {
+  width: 1px;
+  height: 40px;
+  background: #1f2937;
+}
+
+.randomBtn {
+  margin-left: auto;
+  background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.randomBtn:hover {
+  opacity: 0.85;
+}
+
+/* ── Picked card ── */
+.pickedCard {
+  background: linear-gradient(135deg, #0f1e3d 0%, #1a0f3d 100%);
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pickedCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(56, 139, 253, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pickedLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #58a6ff;
+  margin-bottom: 16px;
+}
+
+.pickedContent {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pickedIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.pickedName {
+  font-size: 22px;
+  font-weight: 800;
+  color: #f0f2f8;
+  margin-bottom: 4px;
+}
+
+.pickedMeta {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.storeLink {
+  margin-left: auto;
+  color: #58a6ff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.storeLink:hover {
+  text-decoration: underline;
+}
+
+.rerollBtn {
+  background: rgba(56, 139, 253, 0.15);
+  border: 1px solid rgba(56, 139, 253, 0.3);
+  color: #58a6ff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background 0.15s;
+}
+
+.rerollBtn:hover {
+  background: rgba(56, 139, 253, 0.25);
+}
+
+/* ── Game grid ── */
+.gameGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.gameCard {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.gameCard:hover {
+  border-color: #388bfd;
+  transform: translateY(-2px);
+}
+
+.gameCardPicked {
+  border-color: #58a6ff !important;
+  background: rgba(56, 139, 253, 0.06);
+}
+
+.gameIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.gameIconPlaceholder {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: #1f2937;
+  border-radius: 8px;
+}
+
+.gameName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #d1d5db;
+  line-height: 1.4;
+}
+
+.gamePlaytime {
+  font-size: 11px;
+  color: #4b5563;
+}
+
+/* ── Empty state ── */
+.emptyState {
+  text-align: center;
+  padding: 64px 24px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.emptyText {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8eaf0;
+  margin-bottom: 8px;
+}
+
+.emptyHint {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .card {
+    padding: 20px;
+  }
+
+  .statsBanner {
+    padding: 16px 20px;
+  }
+
+  .randomBtn {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .pickedContent {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .storeLink {
+    margin-left: 0;
+  }
+}
