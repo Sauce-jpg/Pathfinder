@@ -7,8 +7,8 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap");
 
-/* ── Tokens ── */
-:root {
+/* ── Base ── */
+.page {
   --bg: #f5f2ec;
   --surface: #ffffff;
   --surface2: #f0ede7;
@@ -27,10 +27,7 @@
   --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
   --radius: 14px;
   --radius-sm: 8px;
-}
 
-/* ── Base ── */
-.page {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
