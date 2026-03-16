@@ -7,10 +7,13 @@ export async function GET(request: Request) {
   const code = requestUrl.searchParams.get("code");
 
   if (code) {
-    const supabase = createRouteHandlerClient({ cookies });
+    const cookieStore = cookies();
+    const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
     await supabase.auth.exchangeCodeForSession(code);
+    
+    const response = NextResponse.redirect(new URL("/", request.url));
+    return response;
   }
 
-  // Redirect to pathfinder or inventory based on where they came from
-  return NextResponse.redirect(new URL("/", requestUrl.origin));
+  return NextResponse.redirect(new URL("/auth/login", request.url));
 }
