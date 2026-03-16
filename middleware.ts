@@ -5,7 +5,6 @@ const PUBLIC_PATHS = [
   '/auth/login',
   '/auth/signup',
   '/auth/callback',
-  '/auth/confirm',
 ]
 
 export async function middleware(request: NextRequest) {
