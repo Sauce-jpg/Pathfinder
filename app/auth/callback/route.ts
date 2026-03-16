@@ -12,5 +12,5 @@ export async function GET(request: Request) {
   }
 
   // Redirect to pathfinder or inventory based on where they came from
-  return NextResponse.redirect(new URL("/pathfinder", requestUrl.origin));
+  return NextResponse.redirect(new URL("/", requestUrl.origin));
 }
