@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url)
   const code = requestUrl.searchParams.get('code')
+  const response = NextResponse.redirect(new URL('/', request.url))
 
   if (code) {
     const cookieStore = await cookies()
@@ -18,9 +19,11 @@ export async function GET(request: Request) {
             return cookieStore.getAll()
           },
           setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) =>
+            cookiesToSet.forEach(({ name, value, options }) => {
               cookieStore.set(name, value, options)
-            )
+              // Also set on the redirect response so browser receives them
+              response.cookies.set(name, value, options)
+            })
           },
         },
       }
@@ -29,5 +32,5 @@ export async function GET(request: Request) {
     await supabase.auth.exchangeCodeForSession(code)
   }
 
-  return NextResponse.redirect(new URL('/', request.url))
+  return response
 }
