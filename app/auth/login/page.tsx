@@ -25,7 +25,7 @@ export default function LoginPage() {
       });
 
       if (error) throw error;
-      router.push("/pathfinder");
+      router.push("/");
     } catch (err: any) {
       setError(err.message);
     } finally {
