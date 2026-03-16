@@ -1,4 +1,4 @@
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
+import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
@@ -10,31 +10,42 @@ const PUBLIC_PATHS = [
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  
-  console.log('[middleware] path:', pathname)
 
   const isPublicPath = PUBLIC_PATHS.some(p => pathname.startsWith(p))
-  console.log('[middleware] isPublicPath:', isPublicPath)
-  
-  if (isPublicPath) {
-    console.log('[middleware] allowing through:', pathname)
-    return NextResponse.next()
-  }
+  if (isPublicPath) return NextResponse.next()
 
-  const response = NextResponse.next()
-  const supabase = createMiddlewareClient({ req: request, res: response })
-  const { data: { session } } = await supabase.auth.getSession()
-  
-  console.log('[middleware] session:', session ? 'EXISTS' : 'NULL')
+  let supabaseResponse = NextResponse.next({ request })
 
-  if (!session) {
-    console.log('[middleware] redirecting to login')
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          )
+          supabaseResponse = NextResponse.next({ request })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          )
+        },
+      },
+    }
+  )
+
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
     const loginUrl = request.nextUrl.clone()
     loginUrl.pathname = '/auth/login'
     return NextResponse.redirect(loginUrl)
   }
 
-  return response
+  return supabaseResponse
 }
 
 export const config = {
