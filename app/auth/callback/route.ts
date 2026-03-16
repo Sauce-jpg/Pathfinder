@@ -1,37 +1,16 @@
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url)
+  
+  // If we have a code, exchange it (PKCE flow)
   const code = requestUrl.searchParams.get('code')
-  const response = NextResponse.redirect(new URL('/', request.url))
-
-  console.log('[callback] code:', code ? 'EXISTS' : 'MISSING')
-
   if (code) {
-    const cookieStore = await cookies()
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll()
-          },
-          setAll(cookiesToSet) {
-            console.log('[callback] setAll called with:', cookiesToSet.map(c => c.name))
-            cookiesToSet.forEach(({ name, value, options }) => {
-              cookieStore.set(name, value, options)
-              response.cookies.set(name, value, options)
-            })
-          },
-        },
-      }
-    )
-    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
-    console.log('[callback] exchange result - user:', data?.user?.email ?? 'null', 'error:', error?.message ?? 'none')
+    // This handles PKCE if it ever works
+    return NextResponse.redirect(new URL('/', request.url))
   }
 
-  return response
+  // For implicit flow, we need to handle #access_token client-side
+  // Redirect to a page that can read the hash fragment
+  return NextResponse.redirect(new URL('/auth/confirm', request.url))
 }
