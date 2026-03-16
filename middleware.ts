@@ -9,16 +9,15 @@ const PUBLIC_PATHS = [
 ]
 
 export async function middleware(request: NextRequest) {
-  const response = NextResponse.next()
-  const supabase = createMiddlewareClient({ req: request, res: response })
-
-  // Refreshes session cookie if expired
-  const { data: { session } } = await supabase.auth.getSession()
-
   const { pathname } = request.nextUrl
 
+  // ✅ Return immediately — don't touch Supabase client at all for public paths
   const isPublicPath = PUBLIC_PATHS.some(p => pathname.startsWith(p))
-  if (isPublicPath) return response
+  if (isPublicPath) return NextResponse.next()
+
+  const response = NextResponse.next()
+  const supabase = createMiddlewareClient({ req: request, res: response })
+  const { data: { session } } = await supabase.auth.getSession()
 
   if (!session) {
     const loginUrl = request.nextUrl.clone()
