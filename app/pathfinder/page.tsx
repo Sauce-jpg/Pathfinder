@@ -85,7 +85,7 @@ export default function PathfinderPage() {
   }
 
   // Loading state
-  if (loading) {
+  if (loading || !session) {
     return (
       <main style={{ maxWidth: 900, margin: "4rem auto", padding: "2rem", textAlign: "center" }}>
         <p>Loading...</p>
