@@ -10,16 +10,25 @@ const PUBLIC_PATHS = [
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+  
+  console.log('[middleware] path:', pathname)
 
-  // ✅ Return immediately — don't touch Supabase client at all for public paths
   const isPublicPath = PUBLIC_PATHS.some(p => pathname.startsWith(p))
-  if (isPublicPath) return NextResponse.next()
+  console.log('[middleware] isPublicPath:', isPublicPath)
+  
+  if (isPublicPath) {
+    console.log('[middleware] allowing through:', pathname)
+    return NextResponse.next()
+  }
 
   const response = NextResponse.next()
   const supabase = createMiddlewareClient({ req: request, res: response })
   const { data: { session } } = await supabase.auth.getSession()
+  
+  console.log('[middleware] session:', session ? 'EXISTS' : 'NULL')
 
   if (!session) {
+    console.log('[middleware] redirecting to login')
     const loginUrl = request.nextUrl.clone()
     loginUrl.pathname = '/auth/login'
     return NextResponse.redirect(loginUrl)
