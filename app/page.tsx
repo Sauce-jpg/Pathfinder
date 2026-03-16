@@ -236,12 +236,7 @@ export default function HubPage() {
             Daniel&apos;s<br />
             <em style={{
               fontStyle: "italic", fontWeight: 700,
-              background: d
-                ? "linear-gradient(135deg, #e8c97a 0%, #d4874a 100%)"
-                : "linear-gradient(135deg, #c8900a 0%, #b05a1a 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: d ? "#e8c97a" : "#c8900a",
             }}>Hub</em>
           </h1>
 
