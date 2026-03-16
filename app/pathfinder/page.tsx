@@ -93,46 +93,6 @@ export default function PathfinderPage() {
     );
   }
 
-  // Not logged in - redirect to auth
-  if (!session) {
-    return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: "2rem", textAlign: "center" }}>
-        <h1>⚔️ Pathfinder Campaign Manager</h1>
-        <p style={{ marginTop: "1rem", color: "#666" }}>
-          Track campaigns, characters, locations, and more.
-        </p>
-
-        <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", justifyContent: "center" }}>
-          <a
-            href="/auth/login"
-            style={{
-              padding: "0.75rem 1.5rem",
-              background: "#0070f3",
-              color: "white",
-              textDecoration: "none",
-              borderRadius: "8px",
-              fontWeight: 600,
-            }}
-          >
-            Sign In
-          </a>
-          <a
-            href="/auth/signup"
-            style={{
-              padding: "0.75rem 1.5rem",
-              background: "#10b981",
-              color: "white",
-              textDecoration: "none",
-              borderRadius: "8px",
-              fontWeight: 600,
-            }}
-          >
-            Create Account
-          </a>
-        </div>
-      </main>
-    );
-  }
 
   // Logged in - show campaigns
   return (
