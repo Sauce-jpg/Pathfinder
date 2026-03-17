@@ -7,7 +7,8 @@ export default function CallbackPage() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        // Hard redirect so middleware sees the session cookie
+        console.log('[callback] cookies:', document.cookie);
+        console.log('[callback] localStorage keys:', Object.keys(localStorage).filter(k => k.includes('sb-')));
         window.location.href = '/';
         return;
       }
@@ -15,6 +16,8 @@ export default function CallbackPage() {
       const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
         if (session) {
           subscription.unsubscribe();
+          console.log('[callback] cookies:', document.cookie);
+          console.log('[callback] localStorage keys:', Object.keys(localStorage).filter(k => k.includes('sb-')));
           window.location.href = '/';
         }
       });
