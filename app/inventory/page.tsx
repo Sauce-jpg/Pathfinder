@@ -328,6 +328,10 @@ export default function InventoryPage() {
     return () => sub.subscription.unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (session?.user?.id) loadAll();
+  }, [session?.user?.id]);
+
   // load saved views
   useEffect(() => {
     if (!session) return;
@@ -336,6 +340,8 @@ export default function InventoryPage() {
 
   async function logout() {
     await supabase.auth.signOut();
+    document.cookie = 'sb-session=; path=/; max-age=0';
+    window.location.href = '/auth/login';
   }
 
   // load from supabase
