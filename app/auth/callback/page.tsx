@@ -7,8 +7,8 @@ export default function CallbackPage() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        console.log('[callback] cookies:', document.cookie);
-        console.log('[callback] localStorage keys:', Object.keys(localStorage).filter(k => k.includes('sb-')));
+        // Manually set a cookie that middleware can read
+        document.cookie = `sb-session=1; path=/; max-age=3600; SameSite=Lax`;
         window.location.href = '/';
         return;
       }
@@ -16,8 +16,7 @@ export default function CallbackPage() {
       const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
         if (session) {
           subscription.unsubscribe();
-          console.log('[callback] cookies:', document.cookie);
-          console.log('[callback] localStorage keys:', Object.keys(localStorage).filter(k => k.includes('sb-')));
+          document.cookie = `sb-session=1; path=/; max-age=3600; SameSite=Lax`;
           window.location.href = '/';
         }
       });
