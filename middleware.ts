@@ -13,15 +13,12 @@ export async function middleware(request: NextRequest) {
   const isPublicPath = PUBLIC_PATHS.some(p => pathname.startsWith(p))
   if (isPublicPath) return NextResponse.next()
 
-  // Log ALL cookies so we can see what's actually there
   const allCookies = request.cookies.getAll()
-  console.log('[middleware] path:', pathname)
-  console.log('[middleware] cookies:', JSON.stringify(allCookies.map(c => c.name)))
-
   const hasSession = allCookies.some(
-    cookie => cookie.name.startsWith('sb-') && cookie.name.endsWith('-auth-token')
+    cookie => 
+      (cookie.name.startsWith('sb-') && cookie.name.endsWith('-auth-token')) ||
+      cookie.name === 'sb-session'
   )
-  console.log('[middleware] hasSession:', hasSession)
 
   if (!hasSession) {
     const loginUrl = request.nextUrl.clone()
