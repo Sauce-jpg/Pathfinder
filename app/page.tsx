@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 const links = [
   {
@@ -98,6 +99,15 @@ export default function HubPage() {
   };
 
   const d = theme === "dark";
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        document.cookie = 'sb-session=; path=/; max-age=0';
+        window.location.href = '/auth/login';
+      }
+    });
+  }, []);
 
   // Design tokens — all colours live here, nothing touches body/html
   const bg       = d ? "#0f0e0c"                : "#f7f4ef";
