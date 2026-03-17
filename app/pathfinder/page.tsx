@@ -82,6 +82,8 @@ export default function PathfinderPage() {
 
   async function logout() {
     await supabase.auth.signOut();
+    document.cookie = 'sb-session=; path=/; max-age=0';
+    window.location.href = '/auth/login';
   }
 
   // Loading state
