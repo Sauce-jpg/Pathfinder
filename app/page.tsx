@@ -102,10 +102,21 @@ export default function HubPage() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        document.cookie = 'sb-session=; path=/; max-age=0';
-        window.location.href = '/auth/login';
+      if (session) {
+        // Already have a session, set cookie and stay
+        document.cookie = 'sb-session=1; path=/; max-age=3600; SameSite=Lax';
+        return;
       }
+      // Check if there's a hash token to process (implicit flow landing here)
+      if (window.location.hash.includes('access_token')) {
+        document.cookie = 'sb-session=1; path=/; max-age=3600; SameSite=Lax';
+        // Remove the hash from URL without reload
+        window.history.replaceState(null, '', '/');
+        return;
+      }
+      // No session at all
+      document.cookie = 'sb-session=; path=/; max-age=0';
+      window.location.href = '/auth/login';
     });
   }, []);
 
