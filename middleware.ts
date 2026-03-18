@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 const PUBLIC_PATHS = [
+  '/',           // Hub handles its own auth check + token processing
   '/auth/login',
   '/auth/signup',
   '/auth/callback',
@@ -10,12 +11,12 @@ const PUBLIC_PATHS = [
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  const isPublicPath = PUBLIC_PATHS.some(p => pathname.startsWith(p))
+  const isPublicPath = PUBLIC_PATHS.some(p => pathname === p || pathname.startsWith(p + '/') && p !== '/')
   if (isPublicPath) return NextResponse.next()
 
   const allCookies = request.cookies.getAll()
   const hasSession = allCookies.some(
-    cookie => 
+    cookie =>
       (cookie.name.startsWith('sb-') && cookie.name.endsWith('-auth-token')) ||
       cookie.name === 'sb-session'
   )
