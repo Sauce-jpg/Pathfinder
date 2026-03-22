@@ -1,0 +1,193 @@
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+.th {
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.td {
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  vertical-align: middle;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.row {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.row:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.rowExpanded {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.expandChevron {
+  display: inline-block;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.18s ease;
+  transform: rotate(0deg);
+}
+
+.expandChevron[data-open="true"] {
+  transform: rotate(90deg);
+}
+
+/* Expanded detail row */
+.expandedRow {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+.expandedCell {
+  padding: 0 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.expandedInner {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 1.25rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  position: relative;
+}
+
+.expandedSection {
+  flex: 1;
+  min-width: 180px;
+}
+
+.expandedSectionTitle {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.kvTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.91rem;
+}
+
+.kvTable tr td {
+  padding: 0.2rem 0.5rem 0.2rem 0;
+  vertical-align: top;
+}
+
+.kvKey {
+  opacity: 0.65;
+  font-weight: 600;
+  white-space: nowrap;
+  padding-right: 0.75rem !important;
+  width: 90px;
+}
+
+.expandedActions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.25rem;
+}
+
+/* Tags */
+.tagPill {
+  display: inline-block;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+}
+
+/* Column picker dropdown */
+.columnPickerDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 100;
+  background: var(--color-background-primary, #fff);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  padding: 0.75rem;
+  min-width: 200px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.columnPickerTitle {
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+  margin-bottom: 0.6rem;
+}
+
+.columnPickerRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.2rem;
+  cursor: pointer;
+  font-size: 0.93rem;
+  border-radius: 6px;
+}
+
+.columnPickerRow:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.columnPickerReset {
+  margin-top: 0.6rem;
+  width: 100%;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.columnPickerReset:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
