@@ -343,7 +343,7 @@ export function ItemModal({
     if (!item) return;
     setDraft(draftFromItem(item));
     setSpecSections(specsToSections(item.specs));
-    setNewId(slugifyId(item.name + "-copy"));
+    setNewId("");
     setSpecsMode("builder");
     setIsCloning(true);
     setIsEditing(false);
