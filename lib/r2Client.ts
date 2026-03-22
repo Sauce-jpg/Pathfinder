@@ -54,12 +54,88 @@ export async function deleteImageFromR2(imageUrl: string): Promise<void> {
   }
 }
 
-// ── Inventory (new, private bucket via presigned URLs) ────────────────
+// ── Image compression (browser Canvas API, no dependencies) ───────────
+
+async function compressImage(
+  file: File,
+  {
+    maxWidth  = 1920,
+    maxHeight = 1920,
+    quality   = 0.82,
+    maxSizeKB = 800,
+  } = {}
+): Promise<File> {
+  // Only compress actual images; skip SVG / GIF
+  if (!file.type.startsWith("image/") || file.type === "image/gif") return file;
+  if (file.type === "image/svg+xml") return file;
+
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+
+      // Calculate scaled dimensions
+      let { width, height } = img;
+      const ratio = Math.min(maxWidth / width, maxHeight / height, 1);
+      width  = Math.round(width  * ratio);
+      height = Math.round(height * ratio);
+
+      const canvas = document.createElement("canvas");
+      canvas.width  = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) { resolve(file); return; }
+
+      ctx.drawImage(img, 0, 0, width, height);
+
+      // Try decreasing quality until under maxSizeKB
+      const tryQuality = (q: number) => {
+        canvas.toBlob(
+          (blob) => {
+            if (!blob) { resolve(file); return; }
+
+            // If still too large and quality can go lower, try again
+            if (blob.size > maxSizeKB * 1024 && q > 0.4) {
+              tryQuality(Math.round((q - 0.1) * 10) / 10);
+              return;
+            }
+
+            const compressed = new File(
+              [blob],
+              file.name.replace(/\.[^.]+$/, ".jpg"),
+              { type: "image/jpeg" }
+            );
+            resolve(compressed);
+          },
+          "image/jpeg",
+          q
+        );
+      };
+
+      tryQuality(quality);
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      resolve(file); // fall back to original on error
+    };
+
+    img.src = url;
+  });
+}
+
+// ── Inventory (private bucket via presigned URLs) ─────────────────────
 
 export async function uploadInventoryImage(
   file: File,
   accessToken: string
 ): Promise<string> {
+  // Compress before uploading
+  const compressed = await compressImage(file);
+
   // Step 1: get presigned URL from our API route
   const presignRes = await fetch("/api/inventory/presign", {
     method:  "POST",
@@ -68,8 +144,8 @@ export async function uploadInventoryImage(
       "Authorization": `Bearer ${accessToken}`,
     },
     body: JSON.stringify({
-      filename:    file.name,
-      contentType: file.type,
+      filename:    compressed.name,
+      contentType: compressed.type,
     }),
   });
 
@@ -83,8 +159,8 @@ export async function uploadInventoryImage(
   // Step 2: upload directly to R2
   const uploadRes = await fetch(uploadUrl, {
     method:  "PUT",
-    body:    file,
-    headers: { "Content-Type": file.type },
+    body:    compressed,
+    headers: { "Content-Type": compressed.type },
   });
 
   if (!uploadRes.ok) {
