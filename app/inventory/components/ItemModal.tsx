@@ -8,7 +8,8 @@ import { fmtMoney, safeText, slugifyId } from "../helpers";
 import { Modal } from "./Modal";
 import { Specs } from "./Specs";
 import { supabase } from "../../../lib/supabaseClient";
-import { ImageManager } from "./ImageManager";
+import { ImageManager, ImageUploadTrigger } from "./ImageManager";
+import { useRef } from "react";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -266,6 +267,7 @@ export function ItemModal({
   const [saveError, setSaveError]     = useState<string | null>(null);
   const [specsMode, setSpecsMode]     = useState<"builder" | "json">("builder");
   const [specSections, setSpecSections] = useState<SpecSection[]>([]);
+  const uploadTriggerRef              = useRef<HTMLInputElement>(null);
 
   const dlId = useId();
 
@@ -720,10 +722,9 @@ export function ItemModal({
         <ImageManager
           itemId={item.id}
           images={item.images || []}
-          onImagesChanged={(next) => {
-            onSaved();
-          }}
+          onImagesChanged={onSaved}
           session={session}
+          compact
         />
 
         <div className={styles.detailGrid}>
@@ -878,6 +879,20 @@ export function ItemModal({
                 <button className={styles.invBtn} onClick={onOpenLinkModal}>
                   + Link item
                 </button>
+                <button
+                  className={styles.invBtn}
+                  onClick={() => uploadTriggerRef.current?.click()}
+                  title="Upload images"
+                >
+                  🖼 Add image
+                </button>
+                <ImageUploadTrigger
+                  itemId={item!.id}
+                  images={item?.images || []}
+                  onImagesChanged={onSaved}
+                  session={session}
+                  triggerRef={uploadTriggerRef}
+                />
               </>
             )}
             {saveError && (
