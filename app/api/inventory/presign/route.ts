@@ -10,11 +10,13 @@ const r2 = new S3Client({
     accessKeyId:     process.env.R2_ACCESS_KEY_ID!,
     secretAccessKey: process.env.R2_SECRET_ACCESS_KEY!,
   },
+  // Disable checksum — R2 doesn't support CRC32 in presigned URLs
+  requestChecksumCalculation: "WHEN_REQUIRED",
+  responseChecksumValidation: "WHEN_REQUIRED",
 });
 
 export async function POST(req: NextRequest) {
   try {
-    // Verify the user is authenticated
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -41,7 +43,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate content type
     const allowed = ["image/jpeg", "image/png", "image/webp", "image/gif"];
     if (!allowed.includes(contentType)) {
       return NextResponse.json(
@@ -50,11 +51,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Build a unique key: inventory/{userId}/{timestamp}-{random}.{ext}
-    const ext         = filename.split(".").pop()?.toLowerCase() || "jpg";
-    const timestamp   = Date.now();
-    const random      = Math.random().toString(36).substring(2, 10);
-    const key         = `inventory/${user.id}/${timestamp}-${random}.${ext}`;
+    const ext       = filename.split(".").pop()?.toLowerCase() || "jpg";
+    const timestamp = Date.now();
+    const random    = Math.random().toString(36).substring(2, 10);
+    const key       = `inventory/${user.id}/${timestamp}-${random}.${ext}`;
 
     const command = new PutObjectCommand({
       Bucket:      process.env.R2_INVENTORY_BUCKET!,
@@ -62,10 +62,11 @@ export async function POST(req: NextRequest) {
       ContentType: contentType,
     });
 
-    // Presigned URL expires in 60 seconds
-    const uploadUrl = await getSignedUrl(r2, command, { expiresIn: 60 });
+    const uploadUrl = await getSignedUrl(r2, command, {
+      expiresIn:        60,
+      unhoistableHeaders: new Set(["x-amz-checksum-crc32"]),
+    });
 
-    // The final public URL served via your custom domain
     const publicUrl = `${process.env.NEXT_PUBLIC_R2_INVENTORY_URL}/${key}`;
 
     return NextResponse.json({ uploadUrl, publicUrl });
