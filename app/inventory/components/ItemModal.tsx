@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useId } from "react";
+import { useEffect, useState, useId, useRef } from "react";
 import styles from "../inventory.module.css";
 import m from "./ItemModal.module.css";
 import { DbItem, DbItemLink } from "../types";
@@ -9,7 +9,6 @@ import { Modal } from "./Modal";
 import { Specs } from "./Specs";
 import { supabase } from "../../../lib/supabaseClient";
 import { ImageManager, ImageUploadTrigger } from "./ImageManager";
-import { useRef } from "react";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -88,23 +87,23 @@ function sectionsToJson(sections: SpecSection[]): string {
 
 function draftFromItem(item: DbItem): EditDraft {
   return {
-    name:                   item.name             ?? "",
-    category:               item.category         ?? "",
-    type:                   item.type             ?? "",
-    brand:                  item.brand            ?? "",
-    model:                  item.model            ?? "",
-    quantity:               item.quantity         ?? 1,
-    location:               item.location         ?? "",
-    tags:                   (item.tags || []).join(", "),
-    notes:                  item.notes            ?? "",
-    purchase_date:          item.purchase?.date   ?? "",
-    purchase_price:         item.purchase?.price  ?? "",
-    purchase_currency:      item.purchase?.currency ?? "SEK",
-    purchase_store:         item.purchase?.store  ?? "",
-    purchase_orderRef:      item.purchase?.orderRef ?? "",
-    purchase_orderId:       item.purchase?.orderId  ?? "",
+    name:                    item.name              ?? "",
+    category:                item.category          ?? "",
+    type:                    item.type              ?? "",
+    brand:                   item.brand             ?? "",
+    model:                   item.model             ?? "",
+    quantity:                item.quantity          ?? 1,
+    location:                item.location          ?? "",
+    tags:                    (item.tags || []).join(", "),
+    notes:                   item.notes             ?? "",
+    purchase_date:           item.purchase?.date    ?? "",
+    purchase_price:          item.purchase?.price   ?? "",
+    purchase_currency:       item.purchase?.currency ?? "SEK",
+    purchase_store:          item.purchase?.store   ?? "",
+    purchase_orderRef:       item.purchase?.orderRef ?? "",
+    purchase_orderId:        item.purchase?.orderId  ?? "",
     purchase_orderId_manual: !!(item.purchase?.orderId),
-    specs_json:             JSON.stringify(item.specs ?? {}, null, 2),
+    specs_json:              JSON.stringify(item.specs ?? {}, null, 2),
   };
 }
 
@@ -258,16 +257,17 @@ export function ItemModal({
   onOpenLinkModal,
   session,
 }: Props) {
-  const open = !!item || isCreating;
-
-  const [isEditing, setIsEditing]     = useState(false);
-  const [draft, setDraft]             = useState<EditDraft>(emptyDraft);
-  const [newId, setNewId]             = useState("");
-  const [saving, setSaving]           = useState(false);
-  const [saveError, setSaveError]     = useState<string | null>(null);
-  const [specsMode, setSpecsMode]     = useState<"builder" | "json">("builder");
+  const [isCloning,    setIsCloning]    = useState(false);
+  const [isEditing,    setIsEditing]    = useState(false);
+  const [draft,        setDraft]        = useState<EditDraft>(emptyDraft);
+  const [newId,        setNewId]        = useState("");
+  const [saving,       setSaving]       = useState(false);
+  const [saveError,    setSaveError]    = useState<string | null>(null);
+  const [specsMode,    setSpecsMode]    = useState<"builder" | "json">("builder");
   const [specSections, setSpecSections] = useState<SpecSection[]>([]);
-  const uploadTriggerRef              = useRef<HTMLInputElement>(null);
+  const uploadTriggerRef = useRef<HTMLInputElement>(null);
+
+  const open = !!item || isCreating || isCloning;
 
   const dlId = useId();
 
@@ -278,13 +278,13 @@ export function ItemModal({
   const suggestBrands      = uniqSorted(allItems, (i) => i.brand);
   const suggestStores      = uniqSorted(allItems, (i) => i.purchase?.store ?? null);
 
-  // Sync draft when item changes
+  // Sync draft when item identity or isCreating changes
   useEffect(() => {
     if (isCreating) {
-      const d = emptyDraft();
-      setDraft(d);
+      setDraft(emptyDraft());
       setNewId("");
       setIsEditing(true);
+      setIsCloning(false);
       setSaveError(null);
       setSpecsMode("builder");
       setSpecSections([]);
@@ -292,17 +292,19 @@ export function ItemModal({
     }
     if (!item) {
       setIsEditing(false);
+      setIsCloning(false);
       setDraft(emptyDraft());
       setSaveError(null);
       return;
     }
     setIsEditing(false);
+    setIsCloning(false);
     setSaveError(null);
     const d = draftFromItem(item);
     setDraft(d);
     setSpecSections(specsToSections(item.specs));
     setSpecsMode("builder");
-  }, [item, isCreating]);
+  }, [item?.id, isCreating]);
 
   // Auto-compose orderId unless manually overridden
   useEffect(() => {
@@ -334,6 +336,21 @@ export function ItemModal({
   function set(patch: Partial<EditDraft>) {
     setDraft((d) => ({ ...d, ...patch }));
   }
+
+  // ── Clone ────────────────────────────────────────────────────────────
+
+  function handleClone() {
+    if (!item) return;
+    setDraft(draftFromItem(item));
+    setSpecSections(specsToSections(item.specs));
+    setNewId(slugifyId(item.name + "-copy"));
+    setSpecsMode("builder");
+    setIsCloning(true);
+    setIsEditing(false);
+    setSaveError(null);
+  }
+
+  // ── Payload builders ─────────────────────────────────────────────────
 
   function buildPurchase(base: any = {}) {
     const p: any = {
@@ -380,10 +397,13 @@ export function ItemModal({
       location: draft.location  || null,
       tags:     tagsArr,
       notes:    draft.notes     || null,
-      purchase: buildPurchase(item?.purchase),
+      // When cloning, don't inherit the original item's purchase base
+      purchase: buildPurchase(isCloning ? {} : item?.purchase),
       specs:    specsObj,
     };
   }
+
+  // ── CRUD handlers ────────────────────────────────────────────────────
 
   async function handleCreate() {
     if (!session?.user?.id) return;
@@ -404,6 +424,7 @@ export function ItemModal({
 
       const { error } = await supabase.from("inventory_items").insert(payload);
       if (error) throw new Error(error.message);
+      setIsCloning(false);
       onSaved();
       onNavigate(id);
     } catch (e: any) {
@@ -465,11 +486,11 @@ export function ItemModal({
     return (
       <div>
         {/* Datalists */}
-        <DL id={`${dlId}-cat`}      options={suggestCategories} />
-        <DL id={`${dlId}-type`}     options={suggestTypes} />
-        <DL id={`${dlId}-loc`}      options={suggestLocations} />
-        <DL id={`${dlId}-brand`}    options={suggestBrands} />
-        <DL id={`${dlId}-store`}    options={suggestStores} />
+        <DL id={`${dlId}-cat`}   options={suggestCategories} />
+        <DL id={`${dlId}-type`}  options={suggestTypes} />
+        <DL id={`${dlId}-loc`}   options={suggestLocations} />
+        <DL id={`${dlId}-brand`} options={suggestBrands} />
+        <DL id={`${dlId}-store`} options={suggestStores} />
 
         {/* Details section */}
         <div className={m.section}>
@@ -828,17 +849,24 @@ export function ItemModal({
     <Modal open={open} onClose={onClose}>
       {open && (
         <div>
+          {/* Title */}
           <h2 style={{ marginTop: 0 }}>
-            {isCreating ? "Add new item" : item!.name}
+            {isCreating
+              ? "Add new item"
+              : isCloning
+              ? `Clone — ${item!.name}`
+              : item!.name}
           </h2>
 
-          {!isCreating && (
+          {/* Subtitle (read mode only) */}
+          {!isCreating && !isCloning && (
             <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
               {[item!.brand, item!.model].filter(Boolean).map(safeText).join(" • ")}
             </p>
           )}
 
-          {isCreating && (
+          {/* ID input (create + clone mode) */}
+          {(isCreating || isCloning) && (
             <div style={{ display: "grid", gap: "0.35rem", margin: "0.5rem 0 0.75rem" }}>
               <div className={styles.muted}>ID (slug)</div>
               <input
@@ -853,13 +881,22 @@ export function ItemModal({
             </div>
           )}
 
+          {/* Action buttons */}
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
-            {isCreating ? (
+            {isCreating || isCloning ? (
               <>
                 <button className={styles.invBtn} onClick={handleCreate} disabled={saving}>
                   {saving ? "Creating…" : "Create"}
                 </button>
-                <button className={styles.invBtn} onClick={onClose} disabled={saving}>
+                <button
+                  className={styles.invBtn}
+                  onClick={() => {
+                    setIsCloning(false);
+                    setSaveError(null);
+                    if (isCreating) onClose();
+                  }}
+                  disabled={saving}
+                >
                   Cancel
                 </button>
               </>
@@ -886,6 +923,9 @@ export function ItemModal({
                 >
                   🖼 Add image
                 </button>
+                <button className={styles.invBtn} onClick={handleClone}>
+                  ⧉ Clone item
+                </button>
                 <ImageUploadTrigger
                   itemId={item!.id}
                   images={item?.images || []}
@@ -902,7 +942,7 @@ export function ItemModal({
             )}
           </div>
 
-          {isEditing || isCreating ? renderEditForm() : renderReadView()}
+          {isEditing || isCreating || isCloning ? renderEditForm() : renderReadView()}
         </div>
       )}
     </Modal>
