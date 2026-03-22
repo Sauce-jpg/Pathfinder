@@ -8,6 +8,7 @@ import { fmtMoney, safeText, slugifyId } from "../helpers";
 import { Modal } from "./Modal";
 import { Specs } from "./Specs";
 import { supabase } from "../../../lib/supabaseClient";
+import { ImageManager } from "./ImageManager";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -716,12 +717,14 @@ export function ItemModal({
 
     return (
       <>
-        {(item.images || []).map((src) => (
-          <img
-            key={src} src={src} alt=""
-            style={{ width: "100%", maxHeight: 320, objectFit: "cover", borderRadius: 12, margin: "0.5rem 0" }}
-          />
-        ))}
+        <ImageManager
+          itemId={item.id}
+          images={item.images || []}
+          onImagesChanged={(next) => {
+            onSaved();
+          }}
+          session={session}
+        />
 
         <div className={styles.detailGrid}>
           <div>
