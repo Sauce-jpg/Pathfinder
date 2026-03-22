@@ -145,7 +145,8 @@ export default function InventoryPage() {
         <h1>📦 Inventory</h1>
         <p>Sign in to sync across devices.</p>
         <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", justifyContent: "center" }}>
-          
+
+          <a
             href="/auth/login"
             style={{
               padding: "0.75rem 1.5rem", background: "#0070f3",
@@ -155,7 +156,8 @@ export default function InventoryPage() {
           >
             Sign In
           </a>
-          
+
+          <a
             href="/auth/signup"
             style={{
               padding: "0.75rem 1.5rem", background: "#10b981",
