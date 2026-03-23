@@ -22,6 +22,7 @@ type Props = {
   onDeleted: () => void;
   onNavigate: (id: string) => void;
   onOpenLinkModal: () => void;
+  onOpenOrder: (orderId: string) => void;
   session: any;
 };
 
@@ -765,7 +766,27 @@ export function ItemModal({
               {money                   && <li><b>Price:</b> {money}</li>}
               {item.purchase?.store    && <li><b>Store:</b> {safeText(item.purchase.store)}</li>}
               {item.purchase?.orderRef && <li><b>Order ref:</b> {safeText(item.purchase.orderRef)}</li>}
-              {item.purchase?.orderId  && <li><b>OrderId:</b> {safeText(item.purchase.orderId)}</li>}
+              {item.purchase?.orderId && (
+                <li>
+                  <b>OrderId:</b>{" "}
+                  <button
+                    onClick={() => onOpenOrder(item.purchase.orderId)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                      color: "inherit",
+                      textDecoration: "underline",
+                      textDecorationStyle: "dotted",
+                      font: "inherit",
+                      opacity: 0.8,
+                    }}
+                  >
+                    {safeText(item.purchase.orderId)}
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>
