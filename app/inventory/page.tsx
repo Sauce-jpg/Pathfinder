@@ -138,6 +138,15 @@ export default function InventoryPage() {
     [orders, modalOrderId]
   );
 
+  // ── Handlers ────────────────────────────────────────────────────────
+
+  // Called from ItemModal when user clicks a clickable OrderId
+  function handleOpenOrderFromItem(orderId: string) {
+    setModalItemId(null);
+    setIsCreating(false);
+    setModalOrderId(orderId);
+  }
+
   // ── Not signed in ───────────────────────────────────────────────────
   if (!session) {
     return (
@@ -145,7 +154,6 @@ export default function InventoryPage() {
         <h1>📦 Inventory</h1>
         <p>Sign in to sync across devices.</p>
         <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", justifyContent: "center" }}>
-
           <a
             href="/auth/login"
             style={{
@@ -156,7 +164,6 @@ export default function InventoryPage() {
           >
             Sign In
           </a>
-
           <a
             href="/auth/signup"
             style={{
@@ -260,6 +267,7 @@ export default function InventoryPage() {
         onDeleted={() => { setModalItemId(null); loadAll(); }}
         onNavigate={setModalItemId}
         onOpenLinkModal={() => setLinkModalOpen(true)}
+        onOpenOrder={handleOpenOrderFromItem}
         session={session}
       />
 
@@ -268,7 +276,7 @@ export default function InventoryPage() {
         setups={setups}
         allItems={items}
         onClose={() => setSetupModalOpen(false)}
-        onSaved={(newId) => { setSetupModalOpen(false); loadAll(); }}
+        onSaved={() => { setSetupModalOpen(false); loadAll(); }}
         session={session}
       />
 
