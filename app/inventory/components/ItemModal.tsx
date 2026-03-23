@@ -256,6 +256,7 @@ export function ItemModal({
   onDeleted,
   onNavigate,
   onOpenLinkModal,
+  onOpenOrder,
   session,
 }: Props) {
   const [isCloning,    setIsCloning]    = useState(false);
