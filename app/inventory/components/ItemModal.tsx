@@ -44,7 +44,96 @@ type EditDraft = {
   purchase_orderId: string;
   purchase_orderId_manual: boolean;
   specs_json: string;
+  // Wargame fields — stored in specs.wargame.* and specs.buildStatus / specs.paintStatus
+  wg_system: string;
+  wg_faction: string;
+  wg_subfaction: string;
+  wg_unitType: string;
+  wg_baseSize: string;
+  wg_scale: string;
+  wg_buildStatus: string;
+  wg_paintStatus: string;
+  wg_storage: string;
+  wg_priority: string;
+  wg_points: string;
+  wg_rules: string;
 };
+
+// ── Wargame helpers ────────────────────────────────────────────────────
+
+function isWargame(category: string) {
+  return category.trim().toLowerCase() === "wargame";
+}
+
+function wargameSuggest(allItems: DbItem[], field: string): string[] {
+  const vals = allItems
+    .filter((i) => isWargame(i.category || ""))
+    .map((i) => i.specs?.wargame?.[field] ?? "")
+    .filter(Boolean) as string[];
+  return [...new Set(vals)].sort((a, b) => a.localeCompare(b));
+}
+
+function wargameStatusSuggest(
+  allItems: DbItem[],
+  field: "buildStatus" | "paintStatus"
+): string[] {
+  const vals = allItems
+    .filter((i) => isWargame(i.category || ""))
+    .map((i) => i.specs?.[field] ?? "")
+    .filter(Boolean) as string[];
+  return [...new Set(vals)].sort((a, b) => a.localeCompare(b));
+}
+
+function wgFromItem(item: DbItem): Partial<EditDraft> {
+  const wg = item.specs?.wargame || {};
+  return {
+    wg_system:      wg.system      ?? "",
+    wg_faction:     wg.faction     ?? "",
+    wg_subfaction:  wg.subfaction  ?? "",
+    wg_unitType:    wg.unitType    ?? "",
+    wg_baseSize:    wg.baseSize    ?? "",
+    wg_scale:       wg.scale       ?? "",
+    wg_buildStatus: item.specs?.buildStatus ?? "",
+    wg_paintStatus: item.specs?.paintStatus ?? "",
+    wg_storage:     wg.storage     ?? "",
+    wg_priority:    wg.priority    ?? "",
+    wg_points:      wg.points != null ? String(wg.points) : "",
+    wg_rules:       wg.rules       ?? "",
+  };
+}
+
+function emptyWg(): Partial<EditDraft> {
+  return {
+    wg_system: "", wg_faction: "", wg_subfaction: "", wg_unitType: "",
+    wg_baseSize: "", wg_scale: "", wg_buildStatus: "", wg_paintStatus: "",
+    wg_storage: "", wg_priority: "", wg_points: "", wg_rules: "",
+  };
+}
+
+function mergeWargameIntoSpecs(specsObj: any, draft: EditDraft): any {
+  if (!isWargame(draft.category)) return specsObj;
+
+  const wg: Record<string, any> = {};
+  if (draft.wg_system)     wg.system     = draft.wg_system;
+  if (draft.wg_faction)    wg.faction    = draft.wg_faction;
+  if (draft.wg_subfaction) wg.subfaction = draft.wg_subfaction;
+  if (draft.wg_unitType)   wg.unitType   = draft.wg_unitType;
+  if (draft.wg_baseSize)   wg.baseSize   = draft.wg_baseSize;
+  if (draft.wg_scale)      wg.scale      = draft.wg_scale;
+  if (draft.wg_storage)    wg.storage    = draft.wg_storage;
+  if (draft.wg_priority)   wg.priority   = draft.wg_priority;
+  if (draft.wg_points)     wg.points     = draft.wg_points;
+  if (draft.wg_rules)      wg.rules      = draft.wg_rules;
+
+  const next = { ...specsObj };
+  if (Object.keys(wg).length) next.wargame = wg;
+
+  // buildStatus / paintStatus stay top-level for filter compatibility
+  if (draft.wg_buildStatus) next.buildStatus = draft.wg_buildStatus;
+  if (draft.wg_paintStatus) next.paintStatus = draft.wg_paintStatus;
+
+  return next;
+}
 
 // ── Spec builder types ─────────────────────────────────────────────────
 
@@ -53,18 +142,20 @@ type SpecSection = { name: string; fields: SpecField[] };
 
 function specsToSections(specs: any): SpecSection[] {
   if (!specs || typeof specs !== "object") return [];
-  return Object.entries(specs).map(([name, val]) => {
-    if (val && typeof val === "object" && !Array.isArray(val)) {
-      return {
-        name,
-        fields: Object.entries(val as Record<string, any>).map(([k, v]) => ({
-          key: k,
-          value: String(v ?? ""),
-        })),
-      };
-    }
-    return { name, fields: [{ key: "value", value: String(val ?? "") }] };
-  });
+  return Object.entries(specs)
+    // Skip keys managed by the wargame section
+    .filter(([name]) => !["wargame", "buildStatus", "paintStatus"].includes(name))
+    .map(([name, val]) => {
+      if (val && typeof val === "object" && !Array.isArray(val)) {
+        return {
+          name,
+          fields: Object.entries(val as Record<string, any>).map(([k, v]) => ({
+            key: k, value: String(v ?? ""),
+          })),
+        };
+      }
+      return { name, fields: [{ key: "value", value: String(val ?? "") }] };
+    });
 }
 
 function sectionsToJson(sections: SpecSection[]): string {
@@ -88,24 +179,25 @@ function sectionsToJson(sections: SpecSection[]): string {
 
 function draftFromItem(item: DbItem): EditDraft {
   return {
-    name:                    item.name              ?? "",
-    category:                item.category          ?? "",
-    type:                    item.type              ?? "",
-    brand:                   item.brand             ?? "",
-    model:                   item.model             ?? "",
-    quantity:                item.quantity          ?? 1,
-    location:                item.location          ?? "",
+    name:                    item.name               ?? "",
+    category:                item.category           ?? "",
+    type:                    item.type               ?? "",
+    brand:                   item.brand              ?? "",
+    model:                   item.model              ?? "",
+    quantity:                item.quantity           ?? 1,
+    location:                item.location           ?? "",
     tags:                    (item.tags || []).join(", "),
-    notes:                   item.notes             ?? "",
-    purchase_date:           item.purchase?.date    ?? "",
-    purchase_price:          item.purchase?.price   ?? "",
+    notes:                   item.notes              ?? "",
+    purchase_date:           item.purchase?.date     ?? "",
+    purchase_price:          item.purchase?.price    ?? "",
     purchase_currency:       item.purchase?.currency ?? "SEK",
-    purchase_store:          item.purchase?.store   ?? "",
+    purchase_store:          item.purchase?.store    ?? "",
     purchase_orderRef:       item.purchase?.orderRef ?? "",
     purchase_orderId:        item.purchase?.orderId  ?? "",
     purchase_orderId_manual: !!(item.purchase?.orderId),
     specs_json:              JSON.stringify(item.specs ?? {}, null, 2),
-  };
+    ...wgFromItem(item),
+  } as EditDraft;
 }
 
 function emptyDraft(): EditDraft {
@@ -116,7 +208,8 @@ function emptyDraft(): EditDraft {
     purchase_store: "", purchase_orderRef: "", purchase_orderId: "",
     purchase_orderId_manual: false,
     specs_json: "{}",
-  };
+    ...emptyWg(),
+  } as EditDraft;
 }
 
 function autoOrderId(store: string, date: string, ref: string): string {
@@ -150,44 +243,32 @@ function SpecBuilder({
   onChange: (s: SpecSection[]) => void;
 }) {
   function updateSection(i: number, patch: Partial<SpecSection>) {
-    const next = sections.map((s, idx) => idx === i ? { ...s, ...patch } : s);
-    onChange(next);
+    onChange(sections.map((s, idx) => idx === i ? { ...s, ...patch } : s));
   }
-
   function removeSection(i: number) {
     onChange(sections.filter((_, idx) => idx !== i));
   }
-
   function addSection() {
     onChange([...sections, { name: "", fields: [{ key: "", value: "" }] }]);
   }
-
   function updateField(si: number, fi: number, patch: Partial<SpecField>) {
-    const next = sections.map((s, idx) => {
+    onChange(sections.map((s, idx) => {
       if (idx !== si) return s;
-      return {
-        ...s,
-        fields: s.fields.map((f, fIdx) => fIdx === fi ? { ...f, ...patch } : f),
-      };
-    });
-    onChange(next);
+      return { ...s, fields: s.fields.map((f, fIdx) => fIdx === fi ? { ...f, ...patch } : f) };
+    }));
   }
-
   function addField(si: number) {
-    const next = sections.map((s, idx) => {
+    onChange(sections.map((s, idx) => {
       if (idx !== si) return s;
       return { ...s, fields: [...s.fields, { key: "", value: "" }] };
-    });
-    onChange(next);
+    }));
   }
-
   function removeField(si: number, fi: number) {
-    const next = sections.map((s, idx) => {
+    onChange(sections.map((s, idx) => {
       if (idx !== si) return s;
       const fields = s.fields.filter((_, fIdx) => fIdx !== fi);
       return { ...s, fields: fields.length ? fields : [{ key: "", value: "" }] };
-    });
-    onChange(next);
+    }));
   }
 
   return (
@@ -201,45 +282,110 @@ function SpecBuilder({
               placeholder="Section name (e.g. CPU, Display)"
               onChange={(e) => updateSection(si, { name: e.target.value })}
             />
-            <button className={m.iconBtn} onClick={() => removeSection(si)} title="Remove section">
-              ✕
-            </button>
+            <button className={m.iconBtn} onClick={() => removeSection(si)} title="Remove section">✕</button>
           </div>
-
           <div className={m.specSectionBody}>
             {sec.fields.map((f, fi) => (
               <div key={fi} className={m.specFieldRow}>
-                <input
-                  className={m.specInput}
-                  value={f.key}
-                  placeholder="Key"
-                  onChange={(e) => updateField(si, fi, { key: e.target.value })}
-                />
-                <input
-                  className={m.specInput}
-                  value={f.value}
-                  placeholder="Value"
-                  onChange={(e) => updateField(si, fi, { value: e.target.value })}
-                />
-                <button
-                  className={m.iconBtn}
-                  onClick={() => removeField(si, fi)}
-                  title="Remove field"
-                >
-                  ✕
-                </button>
+                <input className={m.specInput} value={f.key} placeholder="Key"
+                  onChange={(e) => updateField(si, fi, { key: e.target.value })} />
+                <input className={m.specInput} value={f.value} placeholder="Value"
+                  onChange={(e) => updateField(si, fi, { value: e.target.value })} />
+                <button className={m.iconBtn} onClick={() => removeField(si, fi)} title="Remove field">✕</button>
               </div>
             ))}
-            <button className={m.addFieldBtn} onClick={() => addField(si)}>
-              + Add field
-            </button>
+            <button className={m.addFieldBtn} onClick={() => addField(si)}>+ Add field</button>
           </div>
         </div>
       ))}
+      <button className={m.addSectionBtn} onClick={addSection}>+ Add section</button>
+    </div>
+  );
+}
 
-      <button className={m.addSectionBtn} onClick={addSection}>
-        + Add section
-      </button>
+// ── Wargame read summary ───────────────────────────────────────────────
+
+const BUILD_STATUS_COLORS: Record<string, string> = {
+  boxed:          "#94a3b8",
+  partiallyBuilt: "#fb923c",
+  assembled:      "#60a5fa",
+  primed:         "#c084fc",
+};
+
+const PAINT_STATUS_COLORS: Record<string, string> = {
+  unpainted: "#94a3b8",
+  wip:       "#fb923c",
+  finished:  "#4ade80",
+  mixed:     "#c084fc",
+};
+
+function WargameSummary({ specs }: { specs: any }) {
+  if (!specs) return null;
+  const wg    = specs.wargame || {};
+  const build = specs.buildStatus || "";
+  const paint = specs.paintStatus || "";
+
+  const rows: Array<[string, string]> = ([
+    ["System",      wg.system],
+    ["Faction",     wg.faction],
+    ["Sub-faction", wg.subfaction],
+    ["Unit type",   wg.unitType],
+    ["Base size",   wg.baseSize],
+    ["Scale",       wg.scale],
+    ["Storage",     wg.storage],
+    ["Priority",    wg.priority],
+    ["Points",      wg.points],
+    ["Rules ref",   wg.rules],
+  ] as Array<[string, string]>).filter(([, v]) => v);
+
+  if (!rows.length && !build && !paint) return null;
+
+  return (
+    <div style={{ border: "1px solid rgba(0,0,0,0.09)", borderRadius: 12, overflow: "hidden", marginBottom: "1rem" }}>
+      {/* Header with status badges */}
+      <div style={{
+        padding: "0.55rem 0.85rem",
+        background: "rgba(0,0,0,0.03)",
+        borderBottom: "1px solid rgba(0,0,0,0.07)",
+        fontWeight: 700, fontSize: "0.85rem",
+        textTransform: "uppercase", letterSpacing: "0.05em", opacity: 0.7,
+        display: "flex", alignItems: "center", gap: "0.75rem",
+      }}>
+        <span>⚔️ Wargame</span>
+        {build && (
+          <span style={{
+            fontSize: "0.75rem", padding: "0.15rem 0.55rem", borderRadius: 999,
+            background: BUILD_STATUS_COLORS[build] ?? "rgba(0,0,0,0.12)",
+            color: "#fff", fontWeight: 700, textTransform: "none", letterSpacing: 0,
+          }}>
+            🧩 {build}
+          </span>
+        )}
+        {paint && (
+          <span style={{
+            fontSize: "0.75rem", padding: "0.15rem 0.55rem", borderRadius: 999,
+            background: PAINT_STATUS_COLORS[paint] ?? "rgba(0,0,0,0.12)",
+            color: "#fff", fontWeight: 700, textTransform: "none", letterSpacing: 0,
+          }}>
+            🎨 {paint}
+          </span>
+        )}
+      </div>
+
+      {/* Fields grid */}
+      {!!rows.length && (
+        <div style={{
+          padding: "0.75rem 0.85rem",
+          display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.3rem 1.5rem",
+        }}>
+          {rows.map(([label, value]) => (
+            <div key={label} style={{ display: "flex", gap: "0.5rem", fontSize: "0.92rem" }}>
+              <span style={{ opacity: 0.55, fontWeight: 600, whiteSpace: "nowrap" }}>{label}:</span>
+              <span>{value}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -270,15 +416,24 @@ export function ItemModal({
   const uploadTriggerRef = useRef<HTMLInputElement>(null);
 
   const open = !!item || isCreating || isCloning;
-
   const dlId = useId();
 
-  // Derived suggestion lists
+  // Derived suggestion lists — general
   const suggestCategories = uniqSorted(allItems, (i) => i.category);
   const suggestTypes       = uniqSorted(allItems, (i) => i.type);
   const suggestLocations   = uniqSorted(allItems, (i) => i.location);
   const suggestBrands      = uniqSorted(allItems, (i) => i.brand);
   const suggestStores      = uniqSorted(allItems, (i) => i.purchase?.store ?? null);
+
+  // Derived suggestion lists — wargame
+  const suggestSystems       = wargameSuggest(allItems, "system");
+  const suggestFactions      = wargameSuggest(allItems, "faction");
+  const suggestSubfactions   = wargameSuggest(allItems, "subfaction");
+  const suggestUnitTypes     = wargameSuggest(allItems, "unitType");
+  const suggestBaseSizes     = wargameSuggest(allItems, "baseSize");
+  const suggestScales        = wargameSuggest(allItems, "scale");
+  const suggestBuildStatuses = wargameStatusSuggest(allItems, "buildStatus");
+  const suggestPaintStatuses = wargameStatusSuggest(allItems, "paintStatus");
 
   // Sync draft when item identity or isCreating changes
   useEffect(() => {
@@ -302,8 +457,7 @@ export function ItemModal({
     setIsEditing(false);
     setIsCloning(false);
     setSaveError(null);
-    const d = draftFromItem(item);
-    setDraft(d);
+    setDraft(draftFromItem(item));
     setSpecSections(specsToSections(item.specs));
     setSpecsMode("builder");
   }, [item?.id, isCreating]);
@@ -311,15 +465,10 @@ export function ItemModal({
   // Auto-compose orderId unless manually overridden
   useEffect(() => {
     if (draft.purchase_orderId_manual) return;
-    const auto = autoOrderId(
-      draft.purchase_store,
-      draft.purchase_date,
-      draft.purchase_orderRef
-    );
+    const auto = autoOrderId(draft.purchase_store, draft.purchase_date, draft.purchase_orderRef);
     if (auto) setDraft((d) => ({ ...d, purchase_orderId: auto }));
   }, [draft.purchase_store, draft.purchase_date, draft.purchase_orderRef, draft.purchase_orderId_manual]);
 
-  // Sync specs JSON <-> sections when switching modes
   function switchToJson() {
     setDraft((d) => ({ ...d, specs_json: sectionsToJson(specSections) }));
     setSpecsMode("json");
@@ -327,8 +476,7 @@ export function ItemModal({
 
   function switchToBuilder() {
     try {
-      const parsed = JSON.parse(draft.specs_json || "{}");
-      setSpecSections(specsToSections(parsed));
+      setSpecSections(specsToSections(JSON.parse(draft.specs_json || "{}")));
       setSpecsMode("builder");
     } catch {
       alert("Fix JSON errors before switching to builder.");
@@ -383,23 +531,23 @@ export function ItemModal({
       }
     }
 
+    // Merge wargame structured fields on top
+    specsObj = mergeWargameIntoSpecs(specsObj, draft);
+
     const tagsArr = String(draft.tags || "")
-      .split(",")
-      .map((t) => t.trim())
-      .filter(Boolean);
+      .split(",").map((t) => t.trim()).filter(Boolean);
 
     return {
       ...(id ? { id } : {}),
-      name:     draft.name || (id ?? ""),
-      category: draft.category  || null,
-      type:     draft.type      || null,
-      brand:    draft.brand     || null,
-      model:    draft.model     || null,
+      name:     draft.name     || (id ?? ""),
+      category: draft.category || null,
+      type:     draft.type     || null,
+      brand:    draft.brand    || null,
+      model:    draft.model    || null,
       quantity: Number(draft.quantity) || 1,
-      location: draft.location  || null,
+      location: draft.location || null,
       tags:     tagsArr,
-      notes:    draft.notes     || null,
-      // When cloning, don't inherit the original item's purchase base
+      notes:    draft.notes    || null,
       purchase: buildPurchase(isCloning ? {} : item?.purchase),
       specs:    specsObj,
     };
@@ -409,65 +557,50 @@ export function ItemModal({
 
   async function handleCreate() {
     if (!session?.user?.id) return;
-    setSaving(true);
-    setSaveError(null);
+    setSaving(true); setSaveError(null);
     try {
       const id = (newId || slugifyId(draft.name)).trim();
       if (!id) throw new Error("ID is required (enter a name or an id).");
       if (allItems.some((x) => x.id === id))
         throw new Error(`An item with id "${id}" already exists.`);
-
-      const payload = {
+      const { error } = await supabase.from("inventory_items").insert({
         ...buildPayload(id),
-        user_id:          session.user.id,
-        images:           [],
-        purchase_history: [],
-      };
-
-      const { error } = await supabase.from("inventory_items").insert(payload);
+        user_id: session.user.id, images: [], purchase_history: [],
+      });
       if (error) throw new Error(error.message);
       setIsCloning(false);
       onSaved();
       onNavigate(id);
     } catch (e: any) {
       setSaveError(e?.message || String(e));
-    } finally {
-      setSaving(false);
-    }
+    } finally { setSaving(false); }
   }
 
   async function handleSave() {
     if (!item) return;
-    setSaving(true);
-    setSaveError(null);
+    setSaving(true); setSaveError(null);
     try {
       const { error } = await supabase
-        .from("inventory_items")
-        .update(buildPayload())
-        .eq("id", item.id);
+        .from("inventory_items").update(buildPayload()).eq("id", item.id);
       if (error) throw new Error(error.message);
       setIsEditing(false);
       onSaved();
     } catch (e: any) {
       setSaveError(e?.message || String(e));
-    } finally {
-      setSaving(false);
-    }
+    } finally { setSaving(false); }
   }
 
   async function handleDelete() {
     if (!item) return;
     if (!confirm("Delete this item? This cannot be undone.")) return;
-    const { error } = await supabase
-      .from("inventory_items").delete().eq("id", item.id);
+    const { error } = await supabase.from("inventory_items").delete().eq("id", item.id);
     if (error) { alert(error.message); return; }
     onDeleted();
   }
 
   async function handleDeleteLink(linkId: string) {
     if (!confirm("Delete link?")) return;
-    const { error } = await supabase
-      .from("inventory_item_links").delete().eq("id", linkId);
+    const { error } = await supabase.from("inventory_item_links").delete().eq("id", linkId);
     if (error) { alert(error.message); return; }
     onSaved();
   }
@@ -479,176 +612,119 @@ export function ItemModal({
   // ── Edit form ────────────────────────────────────────────────────────
 
   function renderEditForm() {
-    const autoId = autoOrderId(
-      draft.purchase_store,
-      draft.purchase_date,
-      draft.purchase_orderRef
-    );
+    const autoId      = autoOrderId(draft.purchase_store, draft.purchase_date, draft.purchase_orderRef);
+    const showWargame = isWargame(draft.category);
 
     return (
       <div>
-        {/* Datalists */}
+        {/* Datalists — general */}
         <DL id={`${dlId}-cat`}   options={suggestCategories} />
         <DL id={`${dlId}-type`}  options={suggestTypes} />
         <DL id={`${dlId}-loc`}   options={suggestLocations} />
         <DL id={`${dlId}-brand`} options={suggestBrands} />
         <DL id={`${dlId}-store`} options={suggestStores} />
 
-        {/* Details section */}
+        {/* Datalists — wargame */}
+        <DL id={`${dlId}-wg-system`}     options={suggestSystems} />
+        <DL id={`${dlId}-wg-faction`}    options={suggestFactions} />
+        <DL id={`${dlId}-wg-subfaction`} options={suggestSubfactions} />
+        <DL id={`${dlId}-wg-unitType`}   options={suggestUnitTypes} />
+        <DL id={`${dlId}-wg-baseSize`}   options={suggestBaseSizes} />
+        <DL id={`${dlId}-wg-scale`}      options={suggestScales} />
+        <DL id={`${dlId}-wg-build`}      options={suggestBuildStatuses} />
+        <DL id={`${dlId}-wg-paint`}      options={suggestPaintStatuses} />
+
+        {/* ── Details ── */}
         <div className={m.section}>
           <div className={m.sectionHeader}>Details</div>
           <div className={m.sectionBody}>
             <div className={m.fieldRow4}>
               <label>
                 <div className={m.fieldLabel}>Name *</div>
-                <input
-                  className={styles.invInput}
-                  value={draft.name}
-                  onChange={(e) => set({ name: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} value={draft.name}
+                  onChange={(e) => set({ name: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Category</div>
-                <input
-                  className={styles.invInput}
-                  list={`${dlId}-cat`}
-                  value={draft.category}
-                  onChange={(e) => set({ category: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} list={`${dlId}-cat`} value={draft.category}
+                  onChange={(e) => set({ category: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Type</div>
-                <input
-                  className={styles.invInput}
-                  list={`${dlId}-type`}
-                  value={draft.type}
-                  onChange={(e) => set({ type: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} list={`${dlId}-type`} value={draft.type}
+                  onChange={(e) => set({ type: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Location</div>
-                <input
-                  className={styles.invInput}
-                  list={`${dlId}-loc`}
-                  value={draft.location}
-                  onChange={(e) => set({ location: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} list={`${dlId}-loc`} value={draft.location}
+                  onChange={(e) => set({ location: e.target.value })} style={{ width: "100%" }} />
               </label>
             </div>
 
             <div className={m.fieldRow4}>
               <label>
                 <div className={m.fieldLabel}>Brand</div>
-                <input
-                  className={styles.invInput}
-                  list={`${dlId}-brand`}
-                  value={draft.brand}
-                  onChange={(e) => set({ brand: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} list={`${dlId}-brand`} value={draft.brand}
+                  onChange={(e) => set({ brand: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Model</div>
-                <input
-                  className={styles.invInput}
-                  value={draft.model}
-                  onChange={(e) => set({ model: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} value={draft.model}
+                  onChange={(e) => set({ model: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Quantity</div>
-                <input
-                  className={styles.invInput}
-                  type="number"
-                  value={draft.quantity}
-                  onChange={(e) => set({ quantity: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} type="number" value={draft.quantity}
+                  onChange={(e) => set({ quantity: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Tags (comma separated)</div>
-                <input
-                  className={styles.invInput}
-                  value={draft.tags}
-                  onChange={(e) => set({ tags: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} value={draft.tags}
+                  onChange={(e) => set({ tags: e.target.value })} style={{ width: "100%" }} />
               </label>
             </div>
 
             <label>
               <div className={m.fieldLabel}>Notes</div>
-              <textarea
-                className={styles.invInput}
-                style={{ minHeight: 70, width: "100%" }}
-                value={draft.notes}
-                onChange={(e) => set({ notes: e.target.value })}
-              />
+              <textarea className={styles.invInput} style={{ minHeight: 70, width: "100%" }}
+                value={draft.notes} onChange={(e) => set({ notes: e.target.value })} />
             </label>
           </div>
         </div>
 
-        {/* Purchase section */}
+        {/* ── Purchase ── */}
         <div className={m.section}>
           <div className={m.sectionHeader}>Purchase</div>
           <div className={m.sectionBody}>
             <div className={m.fieldRow4}>
               <label>
                 <div className={m.fieldLabel}>Date</div>
-                <input
-                  className={styles.invInput}
-                  type="date"
-                  value={draft.purchase_date}
-                  onChange={(e) => set({ purchase_date: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} type="date" value={draft.purchase_date}
+                  onChange={(e) => set({ purchase_date: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Price</div>
-                <input
-                  className={styles.invInput}
-                  value={draft.purchase_price}
-                  onChange={(e) => set({ purchase_price: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} value={draft.purchase_price}
+                  onChange={(e) => set({ purchase_price: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Currency</div>
-                <input
-                  className={styles.invInput}
-                  value={draft.purchase_currency}
-                  onChange={(e) => set({ purchase_currency: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} value={draft.purchase_currency}
+                  onChange={(e) => set({ purchase_currency: e.target.value })} style={{ width: "100%" }} />
               </label>
               <label>
                 <div className={m.fieldLabel}>Store</div>
-                <input
-                  className={styles.invInput}
-                  list={`${dlId}-store`}
-                  value={draft.purchase_store}
-                  onChange={(e) => set({ purchase_store: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} list={`${dlId}-store`} value={draft.purchase_store}
+                  onChange={(e) => set({ purchase_store: e.target.value })} style={{ width: "100%" }} />
               </label>
             </div>
 
             <div className={m.fieldRow}>
               <label>
                 <div className={m.fieldLabel}>Order ref</div>
-                <input
-                  className={styles.invInput}
-                  value={draft.purchase_orderRef}
-                  onChange={(e) => set({ purchase_orderRef: e.target.value })}
-                  style={{ width: "100%" }}
-                />
+                <input className={styles.invInput} value={draft.purchase_orderRef}
+                  onChange={(e) => set({ purchase_orderRef: e.target.value })} style={{ width: "100%" }} />
               </label>
-
               <label>
                 <div className={m.fieldLabel}>
                   OrderId
@@ -657,31 +733,13 @@ export function ItemModal({
                   )}
                 </div>
                 <div className={m.orderIdRow}>
-                  <input
-                    className={styles.invInput}
-                    value={draft.purchase_orderId}
-                    onChange={(e) =>
-                      set({
-                        purchase_orderId: e.target.value,
-                        purchase_orderId_manual: true,
-                      })
-                    }
-                    style={{ width: "100%" }}
-                  />
+                  <input className={styles.invInput} value={draft.purchase_orderId}
+                    onChange={(e) => set({ purchase_orderId: e.target.value, purchase_orderId_manual: true })}
+                    style={{ width: "100%" }} />
                   {draft.purchase_orderId_manual && (
-                    <button
-                      className={styles.invBtn}
-                      style={{ whiteSpace: "nowrap" }}
-                      onClick={() =>
-                        set({
-                          purchase_orderId: autoId || "",
-                          purchase_orderId_manual: false,
-                        })
-                      }
-                      title="Reset to auto"
-                    >
-                      ↺ Auto
-                    </button>
+                    <button className={styles.invBtn} style={{ whiteSpace: "nowrap" }}
+                      onClick={() => set({ purchase_orderId: autoId || "", purchase_orderId_manual: false })}
+                      title="Reset to auto">↺ Auto</button>
                   )}
                 </div>
               </label>
@@ -689,44 +747,122 @@ export function ItemModal({
           </div>
         </div>
 
-        {/* Specs section */}
+        {/* ── Wargame (only when category = "Wargame") ── */}
+        {showWargame && (
+          <div className={m.section}>
+            <div className={m.sectionHeader}>⚔️ Wargame</div>
+            <div className={m.sectionBody}>
+
+              {/* Row 1: System, Faction, Sub-faction, Unit type */}
+              <div className={m.fieldRow4}>
+                <label>
+                  <div className={m.fieldLabel}>System</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-system`} value={draft.wg_system}
+                    onChange={(e) => set({ wg_system: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. Age of Sigmar" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Faction</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-faction`} value={draft.wg_faction}
+                    onChange={(e) => set({ wg_faction: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. Skaven" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Sub-faction</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-subfaction`} value={draft.wg_subfaction}
+                    onChange={(e) => set({ wg_subfaction: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. Verminus" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Unit type</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-unitType`} value={draft.wg_unitType}
+                    onChange={(e) => set({ wg_unitType: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. Infantry" />
+                </label>
+              </div>
+
+              {/* Row 2: Base size, Scale, Points, Rules ref */}
+              <div className={m.fieldRow4}>
+                <label>
+                  <div className={m.fieldLabel}>Base size</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-baseSize`} value={draft.wg_baseSize}
+                    onChange={(e) => set({ wg_baseSize: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. 25mm" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Scale</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-scale`} value={draft.wg_scale}
+                    onChange={(e) => set({ wg_scale: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. 28mm heroic" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Points cost</div>
+                  <input className={styles.invInput} type="number" value={draft.wg_points}
+                    onChange={(e) => set({ wg_points: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. 120" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Rules reference</div>
+                  <input className={styles.invInput} value={draft.wg_rules}
+                    onChange={(e) => set({ wg_rules: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. Battletome p.42" />
+                </label>
+              </div>
+
+              {/* Row 3: Build status, Paint status, Storage, Priority */}
+              <div className={m.fieldRow4}>
+                <label>
+                  <div className={m.fieldLabel}>Build status</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-build`} value={draft.wg_buildStatus}
+                    onChange={(e) => set({ wg_buildStatus: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. assembled" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Paint status</div>
+                  <input className={styles.invInput} list={`${dlId}-wg-paint`} value={draft.wg_paintStatus}
+                    onChange={(e) => set({ wg_paintStatus: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. wip" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Storage location</div>
+                  <input className={styles.invInput} value={draft.wg_storage}
+                    onChange={(e) => set({ wg_storage: e.target.value })} style={{ width: "100%" }}
+                    placeholder="e.g. Box A, Shelf 2" />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Priority</div>
+                  <select className={styles.invSelect} value={draft.wg_priority}
+                    onChange={(e) => set({ wg_priority: e.target.value })} style={{ width: "100%" }}>
+                    <option value="">—</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </label>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* ── Specs (free-form) ── */}
         <div className={m.section}>
           <div className={m.sectionHeader}>
             <span>Specs</span>
             <div className={m.specsToolbar}>
-              <button
-                className={`${m.specsModeBtn} ${specsMode === "builder" ? m.specsModeActive : ""}`}
-                onClick={switchToBuilder}
-              >
-                ⊞ Builder
-              </button>
-              <button
-                className={`${m.specsModeBtn} ${specsMode === "json" ? m.specsModeActive : ""}`}
-                onClick={switchToJson}
-              >
-                {"{ }"} JSON
-              </button>
+              <button className={`${m.specsModeBtn} ${specsMode === "builder" ? m.specsModeActive : ""}`}
+                onClick={switchToBuilder}>⊞ Builder</button>
+              <button className={`${m.specsModeBtn} ${specsMode === "json" ? m.specsModeActive : ""}`}
+                onClick={switchToJson}>{"{ }"} JSON</button>
             </div>
           </div>
-
           <div className={m.sectionBody}>
             {specsMode === "builder" ? (
-              <SpecBuilder
-                sections={specSections}
-                onChange={setSpecSections}
-              />
+              <SpecBuilder sections={specSections} onChange={setSpecSections} />
             ) : (
-              <textarea
-                className={styles.invInput}
-                style={{
-                  minHeight: 240,
-                  width: "100%",
-                  fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-                  fontSize: "0.85rem",
-                }}
-                value={draft.specs_json}
-                onChange={(e) => set({ specs_json: e.target.value })}
-              />
+              <textarea className={styles.invInput}
+                style={{ minHeight: 240, width: "100%", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace", fontSize: "0.85rem" }}
+                value={draft.specs_json} onChange={(e) => set({ specs_json: e.target.value })} />
             )}
           </div>
         </div>
@@ -738,7 +874,8 @@ export function ItemModal({
 
   function renderReadView() {
     if (!item) return null;
-    const money = fmtMoney(item.purchase);
+    const money             = fmtMoney(item.purchase);
+    const showWargameSummary = isWargame(item.category || "");
 
     return (
       <>
@@ -749,6 +886,9 @@ export function ItemModal({
           session={session}
           compact
         />
+
+        {/* Wargame summary card — only for wargame items */}
+        {showWargameSummary && <WargameSummary specs={item.specs} />}
 
         <div className={styles.detailGrid}>
           <div>
@@ -773,15 +913,10 @@ export function ItemModal({
                   <button
                     onClick={() => onOpenOrder(item.purchase.orderId)}
                     style={{
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      cursor: "pointer",
-                      color: "inherit",
-                      textDecoration: "underline",
-                      textDecorationStyle: "dotted",
-                      font: "inherit",
-                      opacity: 0.8,
+                      background: "none", border: "none", padding: 0,
+                      cursor: "pointer", color: "inherit",
+                      textDecoration: "underline", textDecorationStyle: "dotted",
+                      font: "inherit", opacity: 0.8,
                     }}
                   >
                     {safeText(item.purchase.orderId)}
@@ -814,21 +949,15 @@ export function ItemModal({
                   {list.map((l) => (
                     <div key={l.id} className={styles.setupItemRow} style={{ padding: "0.55rem" }}>
                       <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
-                        <div
-                          role="button" tabIndex={0} style={{ cursor: "pointer" }}
+                        <div role="button" tabIndex={0} style={{ cursor: "pointer" }}
                           onClick={() => onNavigate(l.to_item_id)}
-                          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onNavigate(l.to_item_id); }}
-                        >
+                          onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onNavigate(l.to_item_id); }}>
                           <div style={{ fontWeight: 800 }}>{itemLabel(l.to_item_id)}</div>
                           {l.note && <div className={styles.muted}>{l.note}</div>}
                         </div>
-                        <button
-                          className={styles.invBtn}
+                        <button className={styles.invBtn}
                           style={{ padding: "0.35rem 0.6rem", height: "fit-content" }}
-                          onClick={() => handleDeleteLink(l.id)}
-                        >
-                          Remove
-                        </button>
+                          onClick={() => handleDeleteLink(l.id)}>Remove</button>
                       </div>
                     </div>
                   ))}
@@ -845,13 +974,11 @@ export function ItemModal({
             <div className={styles.muted} style={{ fontWeight: 800, marginBottom: 6 }}>Linked from</div>
             <div style={{ display: "grid", gap: 6 }}>
               {links.incoming.map((l) => (
-                <div
-                  key={l.id} className={styles.setupItemRow}
+                <div key={l.id} className={styles.setupItemRow}
                   style={{ padding: "0.55rem", cursor: "pointer" }}
                   role="button" tabIndex={0}
                   onClick={() => onNavigate(l.from_item_id)}
-                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onNavigate(l.from_item_id); }}
-                >
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onNavigate(l.from_item_id); }}>
                   <div style={{ fontWeight: 800 }}>{itemLabel(l.from_item_id)}</div>
                   <div className={styles.muted}>{l.relation_type}</div>
                 </div>
@@ -871,56 +998,37 @@ export function ItemModal({
     <Modal open={open} onClose={onClose}>
       {open && (
         <div>
-          {/* Title */}
           <h2 style={{ marginTop: 0 }}>
-            {isCreating
-              ? "Add new item"
-              : isCloning
-              ? `Clone — ${item!.name}`
-              : item!.name}
+            {isCreating ? "Add new item" : isCloning ? `Clone — ${item!.name}` : item!.name}
           </h2>
 
-          {/* Subtitle (read mode only) */}
           {!isCreating && !isCloning && (
             <p className={styles.muted} style={{ marginTop: "0.25rem" }}>
               {[item!.brand, item!.model].filter(Boolean).map(safeText).join(" • ")}
             </p>
           )}
 
-          {/* ID input (create + clone mode) */}
           {(isCreating || isCloning) && (
             <div style={{ display: "grid", gap: "0.35rem", margin: "0.5rem 0 0.75rem" }}>
               <div className={styles.muted}>ID (slug)</div>
-              <input
-                className={styles.invInput}
-                value={newId}
+              <input className={styles.invInput} value={newId}
                 placeholder="auto from name (or type your own)"
-                onChange={(e) => setNewId(slugifyId(e.target.value))}
-              />
+                onChange={(e) => setNewId(slugifyId(e.target.value))} />
               <div className={styles.muted} style={{ fontSize: "0.9rem" }}>
                 Suggested: <b>{slugifyId(draft.name) || "—"}</b>
               </div>
             </div>
           )}
 
-          {/* Action buttons */}
           <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", margin: "0.75rem 0" }}>
             {isCreating || isCloning ? (
               <>
                 <button className={styles.invBtn} onClick={handleCreate} disabled={saving}>
                   {saving ? "Creating…" : "Create"}
                 </button>
-                <button
-                  className={styles.invBtn}
-                  onClick={() => {
-                    setIsCloning(false);
-                    setSaveError(null);
-                    if (isCreating) onClose();
-                  }}
-                  disabled={saving}
-                >
-                  Cancel
-                </button>
+                <button className={styles.invBtn}
+                  onClick={() => { setIsCloning(false); setSaveError(null); if (isCreating) onClose(); }}
+                  disabled={saving}>Cancel</button>
               </>
             ) : (
               <>
@@ -932,22 +1040,11 @@ export function ItemModal({
                     {saving ? "Saving…" : "Save"}
                   </button>
                 )}
-                <button className={styles.invBtn} onClick={handleDelete} disabled={saving}>
-                  🗑 Delete
-                </button>
-                <button className={styles.invBtn} onClick={onOpenLinkModal}>
-                  + Link item
-                </button>
-                <button
-                  className={styles.invBtn}
-                  onClick={() => uploadTriggerRef.current?.click()}
-                  title="Upload images"
-                >
-                  🖼 Add image
-                </button>
-                <button className={styles.invBtn} onClick={handleClone}>
-                  ⧉ Clone item
-                </button>
+                <button className={styles.invBtn} onClick={handleDelete} disabled={saving}>🗑 Delete</button>
+                <button className={styles.invBtn} onClick={onOpenLinkModal}>+ Link item</button>
+                <button className={styles.invBtn} onClick={() => uploadTriggerRef.current?.click()}
+                  title="Upload images">🖼 Add image</button>
+                <button className={styles.invBtn} onClick={handleClone}>⧉ Clone item</button>
                 <ImageUploadTrigger
                   itemId={item!.id}
                   images={item?.images || []}
@@ -958,9 +1055,7 @@ export function ItemModal({
               </>
             )}
             {saveError && (
-              <span style={{ color: "crimson", alignSelf: "center" }}>
-                Error: {saveError}
-              </span>
+              <span style={{ color: "crimson", alignSelf: "center" }}>Error: {saveError}</span>
             )}
           </div>
 
