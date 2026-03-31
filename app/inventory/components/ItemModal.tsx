@@ -44,7 +44,6 @@ type EditDraft = {
   purchase_orderId: string;
   purchase_orderId_manual: boolean;
   specs_json: string;
-  // Wargame fields — stored in specs.wargame.* and specs.buildStatus / specs.paintStatus
   wg_system: string;
   wg_faction: string;
   wg_subfaction: string;
@@ -58,6 +57,38 @@ type EditDraft = {
   wg_points: string;
   wg_rules: string;
 };
+
+// ── Collapsible section ────────────────────────────────────────────────
+
+function CollapsibleSection({
+  title,
+  defaultOpen = true,
+  children,
+}: {
+  title: React.ReactNode;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <div className={m.section}>
+      <div
+        className={`${m.sectionHeader} ${!open ? m.sectionHeaderCollapsed : ""}`}
+        onClick={() => setOpen((v) => !v)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setOpen((v) => !v); }}
+      >
+        <span>{title}</span>
+        <span className={`${m.sectionChevron} ${!open ? m.sectionChevronCollapsed : ""}`}>▼</span>
+      </div>
+      <div className={open ? m.sectionBody : m.sectionBodyHidden}>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 // ── Wargame helpers ────────────────────────────────────────────────────
 
@@ -127,8 +158,6 @@ function mergeWargameIntoSpecs(specsObj: any, draft: EditDraft): any {
 
   const next = { ...specsObj };
   if (Object.keys(wg).length) next.wargame = wg;
-
-  // buildStatus / paintStatus stay top-level for filter compatibility
   if (draft.wg_buildStatus) next.buildStatus = draft.wg_buildStatus;
   if (draft.wg_paintStatus) next.paintStatus = draft.wg_paintStatus;
 
@@ -143,7 +172,6 @@ type SpecSection = { name: string; fields: SpecField[] };
 function specsToSections(specs: any): SpecSection[] {
   if (!specs || typeof specs !== "object") return [];
   return Object.entries(specs)
-    // Skip keys managed by the wargame section
     .filter(([name]) => !["wargame", "buildStatus", "paintStatus"].includes(name))
     .map(([name, val]) => {
       if (val && typeof val === "object" && !Array.isArray(val)) {
@@ -342,11 +370,10 @@ function WargameSummary({ specs }: { specs: any }) {
 
   return (
     <div style={{ border: "1px solid rgba(0,0,0,0.09)", borderRadius: 12, overflow: "hidden", marginBottom: "1rem" }}>
-      {/* Header with status badges */}
       <div style={{
         padding: "0.55rem 0.85rem",
         background: "rgba(0,0,0,0.03)",
-        borderBottom: "1px solid rgba(0,0,0,0.07)",
+        borderBottom: rows.length ? "1px solid rgba(0,0,0,0.07)" : "none",
         fontWeight: 700, fontSize: "0.85rem",
         textTransform: "uppercase", letterSpacing: "0.05em", opacity: 0.7,
         display: "flex", alignItems: "center", gap: "0.75rem",
@@ -357,22 +384,16 @@ function WargameSummary({ specs }: { specs: any }) {
             fontSize: "0.75rem", padding: "0.15rem 0.55rem", borderRadius: 999,
             background: BUILD_STATUS_COLORS[build] ?? "rgba(0,0,0,0.12)",
             color: "#fff", fontWeight: 700, textTransform: "none", letterSpacing: 0,
-          }}>
-            🧩 {build}
-          </span>
+          }}>🧩 {build}</span>
         )}
         {paint && (
           <span style={{
             fontSize: "0.75rem", padding: "0.15rem 0.55rem", borderRadius: 999,
             background: PAINT_STATUS_COLORS[paint] ?? "rgba(0,0,0,0.12)",
             color: "#fff", fontWeight: 700, textTransform: "none", letterSpacing: 0,
-          }}>
-            🎨 {paint}
-          </span>
+          }}>🎨 {paint}</span>
         )}
       </div>
-
-      {/* Fields grid */}
       {!!rows.length && (
         <div style={{
           padding: "0.75rem 0.85rem",
@@ -405,14 +426,15 @@ export function ItemModal({
   onOpenOrder,
   session,
 }: Props) {
-  const [isCloning,    setIsCloning]    = useState(false);
-  const [isEditing,    setIsEditing]    = useState(false);
-  const [draft,        setDraft]        = useState<EditDraft>(emptyDraft);
-  const [newId,        setNewId]        = useState("");
-  const [saving,       setSaving]       = useState(false);
-  const [saveError,    setSaveError]    = useState<string | null>(null);
-  const [specsMode,    setSpecsMode]    = useState<"builder" | "json">("builder");
-  const [specSections, setSpecSections] = useState<SpecSection[]>([]);
+  const [isCloning,     setIsCloning]     = useState(false);
+  const [isEditing,     setIsEditing]     = useState(false);
+  const [draft,         setDraft]         = useState<EditDraft>(emptyDraft);
+  const [newId,         setNewId]         = useState("");
+  const [saving,        setSaving]        = useState(false);
+  const [saveError,     setSaveError]     = useState<string | null>(null);
+  const [specsMode,     setSpecsMode]     = useState<"builder" | "json">("builder");
+  const [specSections,  setSpecSections]  = useState<SpecSection[]>([]);
+  const [notesExpanded, setNotesExpanded] = useState(false);
   const uploadTriggerRef = useRef<HTMLInputElement>(null);
 
   const open = !!item || isCreating || isCloning;
@@ -445,6 +467,7 @@ export function ItemModal({
       setSaveError(null);
       setSpecsMode("builder");
       setSpecSections([]);
+      setNotesExpanded(false);
       return;
     }
     if (!item) {
@@ -452,11 +475,13 @@ export function ItemModal({
       setIsCloning(false);
       setDraft(emptyDraft());
       setSaveError(null);
+      setNotesExpanded(false);
       return;
     }
     setIsEditing(false);
     setIsCloning(false);
     setSaveError(null);
+    setNotesExpanded(false);
     setDraft(draftFromItem(item));
     setSpecSections(specsToSections(item.specs));
     setSpecsMode("builder");
@@ -498,6 +523,7 @@ export function ItemModal({
     setIsCloning(true);
     setIsEditing(false);
     setSaveError(null);
+    setNotesExpanded(false);
   }
 
   // ── Payload builders ─────────────────────────────────────────────────
@@ -531,7 +557,6 @@ export function ItemModal({
       }
     }
 
-    // Merge wargame structured fields on top
     specsObj = mergeWargameIntoSpecs(specsObj, draft);
 
     const tagsArr = String(draft.tags || "")
@@ -634,238 +659,229 @@ export function ItemModal({
         <DL id={`${dlId}-wg-build`}      options={suggestBuildStatuses} />
         <DL id={`${dlId}-wg-paint`}      options={suggestPaintStatuses} />
 
-        {/* ── Details ── */}
-        <div className={m.section}>
-          <div className={m.sectionHeader}>Details</div>
-          <div className={m.sectionBody}>
-            <div className={m.fieldRow4}>
-              <label>
-                <div className={m.fieldLabel}>Name *</div>
-                <input className={styles.invInput} value={draft.name}
-                  onChange={(e) => set({ name: e.target.value })} style={{ width: "100%" }} />
-              </label>
-              <label>
-                <div className={m.fieldLabel}>Category</div>
-                <input className={styles.invInput} list={`${dlId}-cat`} value={draft.category}
-                  onChange={(e) => set({ category: e.target.value })} style={{ width: "100%" }} />
-              </label>
-              <label>
-                <div className={m.fieldLabel}>Type</div>
-                <input className={styles.invInput} list={`${dlId}-type`} value={draft.type}
-                  onChange={(e) => set({ type: e.target.value })} style={{ width: "100%" }} />
-              </label>
-              <label>
-                <div className={m.fieldLabel}>Location</div>
-                <input className={styles.invInput} list={`${dlId}-loc`} value={draft.location}
-                  onChange={(e) => set({ location: e.target.value })} style={{ width: "100%" }} />
-              </label>
-            </div>
-
-            <div className={m.fieldRow4}>
-              <label>
-                <div className={m.fieldLabel}>Brand</div>
-                <input className={styles.invInput} list={`${dlId}-brand`} value={draft.brand}
-                  onChange={(e) => set({ brand: e.target.value })} style={{ width: "100%" }} />
-              </label>
-              <label>
-                <div className={m.fieldLabel}>Model</div>
-                <input className={styles.invInput} value={draft.model}
-                  onChange={(e) => set({ model: e.target.value })} style={{ width: "100%" }} />
-              </label>
-              <label>
-                <div className={m.fieldLabel}>Quantity</div>
-                <input className={styles.invInput} type="number" value={draft.quantity}
-                  onChange={(e) => set({ quantity: e.target.value })} style={{ width: "100%" }} />
-              </label>
-              <label>
-                <div className={m.fieldLabel}>Tags (comma separated)</div>
-                <input className={styles.invInput} value={draft.tags}
-                  onChange={(e) => set({ tags: e.target.value })} style={{ width: "100%" }} />
-              </label>
-            </div>
-
+        {/* ── Details (open by default) ── */}
+        <CollapsibleSection title="Details" defaultOpen={true}>
+          <div className={m.fieldRow4}>
             <label>
-              <div className={m.fieldLabel}>Notes</div>
-              <textarea className={styles.invInput} style={{ minHeight: 70, width: "100%" }}
-                value={draft.notes} onChange={(e) => set({ notes: e.target.value })} />
+              <div className={m.fieldLabel}>Name *</div>
+              <input className={styles.invInput} value={draft.name}
+                onChange={(e) => set({ name: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Category</div>
+              <input className={styles.invInput} list={`${dlId}-cat`} value={draft.category}
+                onChange={(e) => set({ category: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Type</div>
+              <input className={styles.invInput} list={`${dlId}-type`} value={draft.type}
+                onChange={(e) => set({ type: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Location</div>
+              <input className={styles.invInput} list={`${dlId}-loc`} value={draft.location}
+                onChange={(e) => set({ location: e.target.value })} style={{ width: "100%" }} />
             </label>
           </div>
-        </div>
 
-        {/* ── Purchase ── */}
-        <div className={m.section}>
-          <div className={m.sectionHeader}>Purchase</div>
-          <div className={m.sectionBody}>
+          <div className={m.fieldRow4}>
+            <label>
+              <div className={m.fieldLabel}>Brand</div>
+              <input className={styles.invInput} list={`${dlId}-brand`} value={draft.brand}
+                onChange={(e) => set({ brand: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Model</div>
+              <input className={styles.invInput} value={draft.model}
+                onChange={(e) => set({ model: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Quantity</div>
+              <input className={styles.invInput} type="number" value={draft.quantity}
+                onChange={(e) => set({ quantity: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Tags (comma separated)</div>
+              <input className={styles.invInput} value={draft.tags}
+                onChange={(e) => set({ tags: e.target.value })} style={{ width: "100%" }} />
+            </label>
+          </div>
+
+          <label>
+            <div className={m.fieldLabel}>Notes</div>
+            <textarea
+              className={`${styles.invInput} ${m.notesTextarea} ${notesExpanded ? m.notesTextareaExpanded : ""}`}
+              value={draft.notes}
+              onChange={(e) => set({ notes: e.target.value })}
+            />
+            <button
+              type="button"
+              className={m.notesExpandBtn}
+              onClick={() => setNotesExpanded((v) => !v)}
+            >
+              {notesExpanded ? "▲ Collapse notes" : "▼ Expand notes"}
+            </button>
+          </label>
+        </CollapsibleSection>
+
+        {/* ── Purchase (open by default) ── */}
+        <CollapsibleSection title="Purchase" defaultOpen={true}>
+          <div className={m.fieldRow4}>
+            <label>
+              <div className={m.fieldLabel}>Date</div>
+              <input className={styles.invInput} type="date" value={draft.purchase_date}
+                onChange={(e) => set({ purchase_date: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Price</div>
+              <input className={styles.invInput} value={draft.purchase_price}
+                onChange={(e) => set({ purchase_price: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Currency</div>
+              <input className={styles.invInput} value={draft.purchase_currency}
+                onChange={(e) => set({ purchase_currency: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>Store</div>
+              <input className={styles.invInput} list={`${dlId}-store`} value={draft.purchase_store}
+                onChange={(e) => set({ purchase_store: e.target.value })} style={{ width: "100%" }} />
+            </label>
+          </div>
+
+          <div className={m.fieldRow}>
+            <label>
+              <div className={m.fieldLabel}>Order ref</div>
+              <input className={styles.invInput} value={draft.purchase_orderRef}
+                onChange={(e) => set({ purchase_orderRef: e.target.value })} style={{ width: "100%" }} />
+            </label>
+            <label>
+              <div className={m.fieldLabel}>
+                OrderId
+                {!draft.purchase_orderId_manual && autoId && (
+                  <span className={m.orderIdAuto}> · auto</span>
+                )}
+              </div>
+              <div className={m.orderIdRow}>
+                <input className={styles.invInput} value={draft.purchase_orderId}
+                  onChange={(e) => set({ purchase_orderId: e.target.value, purchase_orderId_manual: true })}
+                  style={{ width: "100%" }} />
+                {draft.purchase_orderId_manual && (
+                  <button className={styles.invBtn} style={{ whiteSpace: "nowrap" }}
+                    onClick={() => set({ purchase_orderId: autoId || "", purchase_orderId_manual: false })}
+                    title="Reset to auto">↺ Auto</button>
+                )}
+              </div>
+            </label>
+          </div>
+        </CollapsibleSection>
+
+        {/* ── Wargame (open by default, only shown when category = Wargame) ── */}
+        {showWargame && (
+          <CollapsibleSection title="⚔️ Wargame" defaultOpen={true}>
             <div className={m.fieldRow4}>
               <label>
-                <div className={m.fieldLabel}>Date</div>
-                <input className={styles.invInput} type="date" value={draft.purchase_date}
-                  onChange={(e) => set({ purchase_date: e.target.value })} style={{ width: "100%" }} />
+                <div className={m.fieldLabel}>System</div>
+                <input className={styles.invInput} list={`${dlId}-wg-system`} value={draft.wg_system}
+                  onChange={(e) => set({ wg_system: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. Age of Sigmar" />
               </label>
               <label>
-                <div className={m.fieldLabel}>Price</div>
-                <input className={styles.invInput} value={draft.purchase_price}
-                  onChange={(e) => set({ purchase_price: e.target.value })} style={{ width: "100%" }} />
+                <div className={m.fieldLabel}>Faction</div>
+                <input className={styles.invInput} list={`${dlId}-wg-faction`} value={draft.wg_faction}
+                  onChange={(e) => set({ wg_faction: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. Skaven" />
               </label>
               <label>
-                <div className={m.fieldLabel}>Currency</div>
-                <input className={styles.invInput} value={draft.purchase_currency}
-                  onChange={(e) => set({ purchase_currency: e.target.value })} style={{ width: "100%" }} />
+                <div className={m.fieldLabel}>Sub-faction</div>
+                <input className={styles.invInput} list={`${dlId}-wg-subfaction`} value={draft.wg_subfaction}
+                  onChange={(e) => set({ wg_subfaction: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. Verminus" />
               </label>
               <label>
-                <div className={m.fieldLabel}>Store</div>
-                <input className={styles.invInput} list={`${dlId}-store`} value={draft.purchase_store}
-                  onChange={(e) => set({ purchase_store: e.target.value })} style={{ width: "100%" }} />
+                <div className={m.fieldLabel}>Unit type</div>
+                <input className={styles.invInput} list={`${dlId}-wg-unitType`} value={draft.wg_unitType}
+                  onChange={(e) => set({ wg_unitType: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. Infantry" />
               </label>
             </div>
 
-            <div className={m.fieldRow}>
+            <div className={m.fieldRow4}>
               <label>
-                <div className={m.fieldLabel}>Order ref</div>
-                <input className={styles.invInput} value={draft.purchase_orderRef}
-                  onChange={(e) => set({ purchase_orderRef: e.target.value })} style={{ width: "100%" }} />
+                <div className={m.fieldLabel}>Base size</div>
+                <input className={styles.invInput} list={`${dlId}-wg-baseSize`} value={draft.wg_baseSize}
+                  onChange={(e) => set({ wg_baseSize: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. 25mm" />
               </label>
               <label>
-                <div className={m.fieldLabel}>
-                  OrderId
-                  {!draft.purchase_orderId_manual && autoId && (
-                    <span className={m.orderIdAuto}> · auto</span>
-                  )}
-                </div>
-                <div className={m.orderIdRow}>
-                  <input className={styles.invInput} value={draft.purchase_orderId}
-                    onChange={(e) => set({ purchase_orderId: e.target.value, purchase_orderId_manual: true })}
-                    style={{ width: "100%" }} />
-                  {draft.purchase_orderId_manual && (
-                    <button className={styles.invBtn} style={{ whiteSpace: "nowrap" }}
-                      onClick={() => set({ purchase_orderId: autoId || "", purchase_orderId_manual: false })}
-                      title="Reset to auto">↺ Auto</button>
-                  )}
-                </div>
+                <div className={m.fieldLabel}>Scale</div>
+                <input className={styles.invInput} list={`${dlId}-wg-scale`} value={draft.wg_scale}
+                  onChange={(e) => set({ wg_scale: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. 28mm heroic" />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Points cost</div>
+                <input className={styles.invInput} type="number" value={draft.wg_points}
+                  onChange={(e) => set({ wg_points: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. 120" />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Rules reference</div>
+                <input className={styles.invInput} value={draft.wg_rules}
+                  onChange={(e) => set({ wg_rules: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. Battletome p.42" />
               </label>
             </div>
-          </div>
-        </div>
 
-        {/* ── Wargame (only when category = "Wargame") ── */}
-        {showWargame && (
-          <div className={m.section}>
-            <div className={m.sectionHeader}>⚔️ Wargame</div>
-            <div className={m.sectionBody}>
-
-              {/* Row 1: System, Faction, Sub-faction, Unit type */}
-              <div className={m.fieldRow4}>
-                <label>
-                  <div className={m.fieldLabel}>System</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-system`} value={draft.wg_system}
-                    onChange={(e) => set({ wg_system: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. Age of Sigmar" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Faction</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-faction`} value={draft.wg_faction}
-                    onChange={(e) => set({ wg_faction: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. Skaven" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Sub-faction</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-subfaction`} value={draft.wg_subfaction}
-                    onChange={(e) => set({ wg_subfaction: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. Verminus" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Unit type</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-unitType`} value={draft.wg_unitType}
-                    onChange={(e) => set({ wg_unitType: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. Infantry" />
-                </label>
-              </div>
-
-              {/* Row 2: Base size, Scale, Points, Rules ref */}
-              <div className={m.fieldRow4}>
-                <label>
-                  <div className={m.fieldLabel}>Base size</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-baseSize`} value={draft.wg_baseSize}
-                    onChange={(e) => set({ wg_baseSize: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. 25mm" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Scale</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-scale`} value={draft.wg_scale}
-                    onChange={(e) => set({ wg_scale: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. 28mm heroic" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Points cost</div>
-                  <input className={styles.invInput} type="number" value={draft.wg_points}
-                    onChange={(e) => set({ wg_points: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. 120" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Rules reference</div>
-                  <input className={styles.invInput} value={draft.wg_rules}
-                    onChange={(e) => set({ wg_rules: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. Battletome p.42" />
-                </label>
-              </div>
-
-              {/* Row 3: Build status, Paint status, Storage, Priority */}
-              <div className={m.fieldRow4}>
-                <label>
-                  <div className={m.fieldLabel}>Build status</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-build`} value={draft.wg_buildStatus}
-                    onChange={(e) => set({ wg_buildStatus: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. assembled" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Paint status</div>
-                  <input className={styles.invInput} list={`${dlId}-wg-paint`} value={draft.wg_paintStatus}
-                    onChange={(e) => set({ wg_paintStatus: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. wip" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Storage location</div>
-                  <input className={styles.invInput} value={draft.wg_storage}
-                    onChange={(e) => set({ wg_storage: e.target.value })} style={{ width: "100%" }}
-                    placeholder="e.g. Box A, Shelf 2" />
-                </label>
-                <label>
-                  <div className={m.fieldLabel}>Priority</div>
-                  <select className={styles.invSelect} value={draft.wg_priority}
-                    onChange={(e) => set({ wg_priority: e.target.value })} style={{ width: "100%" }}>
-                    <option value="">—</option>
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
-                  </select>
-                </label>
-              </div>
-
+            <div className={m.fieldRow4}>
+              <label>
+                <div className={m.fieldLabel}>Build status</div>
+                <input className={styles.invInput} list={`${dlId}-wg-build`} value={draft.wg_buildStatus}
+                  onChange={(e) => set({ wg_buildStatus: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. assembled" />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Paint status</div>
+                <input className={styles.invInput} list={`${dlId}-wg-paint`} value={draft.wg_paintStatus}
+                  onChange={(e) => set({ wg_paintStatus: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. wip" />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Storage location</div>
+                <input className={styles.invInput} value={draft.wg_storage}
+                  onChange={(e) => set({ wg_storage: e.target.value })} style={{ width: "100%" }}
+                  placeholder="e.g. Box A, Shelf 2" />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Priority</div>
+                <select className={styles.invSelect} value={draft.wg_priority}
+                  onChange={(e) => set({ wg_priority: e.target.value })} style={{ width: "100%" }}>
+                  <option value="">—</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </label>
             </div>
-          </div>
+          </CollapsibleSection>
         )}
 
-        {/* ── Specs (free-form) ── */}
-        <div className={m.section}>
-          <div className={m.sectionHeader}>
-            <span>Specs</span>
-            <div className={m.specsToolbar}>
-              <button className={`${m.specsModeBtn} ${specsMode === "builder" ? m.specsModeActive : ""}`}
-                onClick={switchToBuilder}>⊞ Builder</button>
-              <button className={`${m.specsModeBtn} ${specsMode === "json" ? m.specsModeActive : ""}`}
-                onClick={switchToJson}>{"{ }"} JSON</button>
-            </div>
+        {/* ── Specs (collapsed by default — most complex) ── */}
+        <CollapsibleSection title="Specs" defaultOpen={false}>
+          <div className={m.specsToolbar}>
+            <button className={`${m.specsModeBtn} ${specsMode === "builder" ? m.specsModeActive : ""}`}
+              onClick={switchToBuilder}>⊞ Builder</button>
+            <button className={`${m.specsModeBtn} ${specsMode === "json" ? m.specsModeActive : ""}`}
+              onClick={switchToJson}>{"{ }"} JSON</button>
           </div>
-          <div className={m.sectionBody}>
-            {specsMode === "builder" ? (
-              <SpecBuilder sections={specSections} onChange={setSpecSections} />
-            ) : (
-              <textarea className={styles.invInput}
-                style={{ minHeight: 240, width: "100%", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace", fontSize: "0.85rem" }}
-                value={draft.specs_json} onChange={(e) => set({ specs_json: e.target.value })} />
-            )}
-          </div>
-        </div>
+          {specsMode === "builder" ? (
+            <SpecBuilder sections={specSections} onChange={setSpecSections} />
+          ) : (
+            <textarea className={styles.invInput}
+              style={{ minHeight: 240, width: "100%", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace", fontSize: "0.85rem" }}
+              value={draft.specs_json} onChange={(e) => set({ specs_json: e.target.value })} />
+          )}
+        </CollapsibleSection>
       </div>
     );
   }
@@ -874,7 +890,7 @@ export function ItemModal({
 
   function renderReadView() {
     if (!item) return null;
-    const money             = fmtMoney(item.purchase);
+    const money              = fmtMoney(item.purchase);
     const showWargameSummary = isWargame(item.category || "");
 
     return (
@@ -887,7 +903,6 @@ export function ItemModal({
           compact
         />
 
-        {/* Wargame summary card — only for wargame items */}
         {showWargameSummary && <WargameSummary specs={item.specs} />}
 
         <div className={styles.detailGrid}>
@@ -931,7 +946,13 @@ export function ItemModal({
           <p className={styles.muted}>Tags: {item.tags.map((t) => `#${t}`).join(" ")}</p>
         )}
 
-        {item.notes && <><h3>Notes</h3><p>{item.notes}</p></>}
+        {/* Notes — pre-wrap preserves paragraphs and line breaks */}
+        {item.notes && (
+          <>
+            <h3>Notes</h3>
+            <p className={m.notesReadView}>{item.notes}</p>
+          </>
+        )}
 
         <h3>Relationships</h3>
 
