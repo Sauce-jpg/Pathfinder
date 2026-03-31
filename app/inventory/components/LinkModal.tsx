@@ -21,6 +21,7 @@ const RELATION_TYPES = [
   "painted_with",
   "replaces",
   "compatible_with",
+  "originates_from",
 ];
 
 export function LinkModal({ open, sourceItem, allItems, onClose, onSaved, session }: Props) {
