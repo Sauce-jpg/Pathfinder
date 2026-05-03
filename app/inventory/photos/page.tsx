@@ -136,15 +136,35 @@ export default function PhotosPage() {
       {/* Header */}
       <div className={styles.header}>
         <div className={styles.headerLeft}>
-          <h1>📷 Photos</h1>
-          <p>Photos linked to your inventory items.</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.25rem" }}>
+            <h1 style={{ margin: 0 }}>📷 Photos</h1>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <p style={{ margin: 0, opacity: 0.6, fontSize: "0.95rem" }}>
+              Photos linked to your inventory items.
+            </p>
+            <Link
+              href="/"
+              style={{ fontSize: "0.82rem", opacity: 0.5, textDecoration: "none", whiteSpace: "nowrap" }}
+            >
+              ← Hub
+            </Link>
+          </div>
         </div>
         <div style={{ display: "flex", gap: "0.65rem", alignItems: "center" }}>
           <Link
             href="/inventory"
-            style={{ fontSize: "0.88rem", opacity: 0.6, textDecoration: "none" }}
+            style={{
+              fontSize: "0.88rem",
+              padding: "0.35rem 0.75rem",
+              borderRadius: "999px",
+              background: "rgba(0,0,0,0.06)",
+              textDecoration: "none",
+              color: "inherit",
+              fontWeight: 600,
+            }}
           >
-            ← Back to Inventory
+            ← Inventory
           </Link>
           <button
             className={invStyles.invBtn}
