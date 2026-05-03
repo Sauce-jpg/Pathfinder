@@ -320,7 +320,11 @@ export function ChildCreatorModal({
                       type="number"
                       value={row.overridePrice}
                       onChange={(e) => setRow(idx, { overridePrice: e.target.value })}
-                      placeholder="Leave blank to inherit"
+                      placeholder={
+                        parent.purchase?.price != null
+                          ? `From parent: ${parent.purchase.price} ${parent.purchase.currency ?? ""}`.trim()
+                          : "Leave blank to inherit"
+                      }
                       style={{ width: "100%" }}
                     />
                   </label>
