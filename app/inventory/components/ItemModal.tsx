@@ -1129,6 +1129,7 @@ export function ItemModal({
   // ── Render ───────────────────────────────────────────────────────────
 
   return (
+    <>
     <Modal open={open} onClose={onClose}>
       {open && (
         <div>
