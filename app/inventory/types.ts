@@ -14,6 +14,7 @@ export type DbItem = {
   purchase: any;
   specs: any;
   purchase_history: any;
+  parent_id: string | null;
 };
 
 export type DbItemLink = {
