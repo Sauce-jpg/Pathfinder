@@ -9,6 +9,8 @@ import { Modal } from "./Modal";
 import { Specs } from "./Specs";
 import { supabase } from "../../../lib/supabaseClient";
 import { ImageManager, ImageUploadTrigger } from "./ImageManager";
+import { DbItem, DbItemLink, DbPhoto } from "../types";
+import { PhotoStrip } from "./PhotoStrip";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -17,6 +19,8 @@ type Props = {
   isCreating: boolean;
   links: { outgoing: DbItemLink[]; incoming: DbItemLink[] };
   allItems: DbItem[];
+  photos: DbPhoto[];
+  onPhotosChanged: () => void;
   onClose: () => void;
   onSaved: () => void;
   onDeleted: () => void;
