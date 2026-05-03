@@ -1197,7 +1197,7 @@ export function ItemModal({
         </div>
       )}
     </Modal>
-    
+
     <ChildCreatorModal
       open={childCreatorOpen}
       parent={item}
@@ -1206,5 +1206,6 @@ export function ItemModal({
       onSaved={() => { setChildCreatorOpen(false); onSaved(); }}
       session={session}
     />
+    </>
   );
 }
