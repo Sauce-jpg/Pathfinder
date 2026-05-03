@@ -25,7 +25,10 @@ export function PhotoStrip({
   const [selectedPhoto, setSelectedPhoto] = useState<DbPhoto | null>(null);
 
   // Only photos that include this item
-  const linked = photos.filter((p) => (p.item_ids || []).includes(itemId));
+  const linked = photos.filter((p) =>
+    (p.item_ids || []).includes(itemId) ||
+    (p.pins || []).some((pin) => pin.item_id === itemId)
+  );
 
   if (!linked.length) return null;
 
