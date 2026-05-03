@@ -175,18 +175,36 @@ export default function InventoryPage() {
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem" }}>
           <div>
-            <h1 style={{ margin: 0 }}>📦 Inventory</h1>
-            <p className={styles.muted} style={{ marginTop: "0.35rem" }}>
-              Track items + curated "Setups" + auto Orders.
-            </p>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.25rem" }}>
+              <h1 style={{ margin: 0 }}>📦 Inventory</h1>
+              <Link
+                href="/inventory/photos"
+                style={{
+                  fontSize: "0.88rem",
+                  padding: "0.35rem 0.75rem",
+                  borderRadius: "999px",
+                  background: "rgba(0,0,0,0.06)",
+                  textDecoration: "none",
+                  color: "inherit",
+                  fontWeight: 600,
+                }}
+              >
+                📷 Photos
+              </Link>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+              <p className={styles.muted} style={{ margin: 0 }}>
+                Track items + curated "Setups" + auto Orders.
+              </p>
+              <Link
+                href="/"
+                style={{ fontSize: "0.82rem", opacity: 0.5, textDecoration: "none", whiteSpace: "nowrap" }}
+              >
+                ← Hub
+              </Link>
+            </div>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
-            <Link
-              href="/inventory/photos"
-              style={{ fontSize: "0.88rem", opacity: 0.7, textDecoration: "none" }}
-            >
-              📷 Photos
-            </Link>
             <span className={styles.muted}>
               Logged in as <b>{session.user.email}</b>
             </span>
