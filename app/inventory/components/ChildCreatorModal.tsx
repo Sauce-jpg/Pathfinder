@@ -139,6 +139,7 @@ export function ChildCreatorModal({
             store:    parent.purchase?.store    ?? null,
             orderRef: parent.purchase?.orderRef ?? null,
             orderId:  parent.purchase?.orderId  ?? null,
+            inherited: row.overridePrice === "",
           },
           specs: {
             buildStatus: row.buildStatus || undefined,
