@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./inventory.module.css";
 
 import {
-  DbItem, DbItemLink, DbSetup, DbSetupItem, Tab,
+  DbItem, DbItemLink, DbSetup, DbSetupItem, DbPhoto, Tab,
 } from "./types";
 import { getOrderId, parseDate } from "./helpers";
 
@@ -28,6 +29,7 @@ export default function InventoryPage() {
   const [links,      setLinks]      = useState<DbItemLink[]>([]);
   const [setups,     setSetups]     = useState<DbSetup[]>([]);
   const [setupItems, setSetupItems] = useState<DbSetupItem[]>([]);
+  const [photos,     setPhotos]     = useState<DbPhoto[]>([]);
 
   // ── Modal state ─────────────────────────────────────────────────────
   const [modalItemId,    setModalItemId]    = useState<string | null>(null);
@@ -65,11 +67,12 @@ export default function InventoryPage() {
     setLoading(true);
     setLoadError(null);
 
-    const [itemsRes, setupsRes, joinRes, linksRes] = await Promise.all([
+    const [itemsRes, setupsRes, joinRes, linksRes, photosRes] = await Promise.all([
       supabase.from("inventory_items").select("*").order("name", { ascending: true }),
       supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
       supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
       supabase.from("inventory_item_links").select("*").order("created_at", { ascending: false }),
+      supabase.from("inventory_photos").select("*").order("date_taken", { ascending: false, nullsFirst: false }),
     ]);
 
     if (itemsRes.error)  setLoadError(itemsRes.error.message);
@@ -81,6 +84,7 @@ export default function InventoryPage() {
     setSetups    ((setupsRes.data || []) as DbSetup[]);
     setSetupItems((joinRes.data   || []) as DbSetupItem[]);
     setLinks     ((linksRes.data  || []) as DbItemLink[]);
+    setPhotos    ((photosRes.data || []) as DbPhoto[]);
 
     setLoading(false);
   }
@@ -139,8 +143,6 @@ export default function InventoryPage() {
   );
 
   // ── Handlers ────────────────────────────────────────────────────────
-
-  // Called from ItemModal when user clicks a clickable OrderId
   function handleOpenOrderFromItem(orderId: string) {
     setModalItemId(null);
     setIsCreating(false);
@@ -154,24 +156,10 @@ export default function InventoryPage() {
         <h1>📦 Inventory</h1>
         <p>Sign in to sync across devices.</p>
         <div style={{ display: "flex", gap: "0.75rem", marginTop: "2rem", justifyContent: "center" }}>
-          <a
-            href="/auth/login"
-            style={{
-              padding: "0.75rem 1.5rem", background: "#0070f3",
-              color: "white", textDecoration: "none",
-              borderRadius: "8px", fontWeight: 600,
-            }}
-          >
+          <a href="/auth/login" style={{ padding: "0.75rem 1.5rem", background: "#0070f3", color: "white", textDecoration: "none", borderRadius: "8px", fontWeight: 600 }}>
             Sign In
           </a>
-          <a
-            href="/auth/signup"
-            style={{
-              padding: "0.75rem 1.5rem", background: "#10b981",
-              color: "white", textDecoration: "none",
-              borderRadius: "8px", fontWeight: 600,
-            }}
-          >
+          <a href="/auth/signup" style={{ padding: "0.75rem 1.5rem", background: "#10b981", color: "white", textDecoration: "none", borderRadius: "8px", fontWeight: 600 }}>
             Create Account
           </a>
         </div>
@@ -185,10 +173,7 @@ export default function InventoryPage() {
 
       {/* Header */}
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem" }}>
-        <div style={{
-          display: "flex", justifyContent: "space-between",
-          alignItems: "center", gap: "1rem",
-        }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem" }}>
           <div>
             <h1 style={{ margin: 0 }}>📦 Inventory</h1>
             <p className={styles.muted} style={{ marginTop: "0.35rem" }}>
@@ -196,6 +181,12 @@ export default function InventoryPage() {
             </p>
           </div>
           <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
+            <Link
+              href="/inventory/photos"
+              style={{ fontSize: "0.88rem", opacity: 0.7, textDecoration: "none" }}
+            >
+              📷 Photos
+            </Link>
             <span className={styles.muted}>
               Logged in as <b>{session.user.email}</b>
             </span>
@@ -262,12 +253,14 @@ export default function InventoryPage() {
         isCreating={isCreating}
         links={modalLinks}
         allItems={items}
+        photos={photos}
         onClose={() => { setModalItemId(null); setIsCreating(false); }}
         onSaved={loadAll}
         onDeleted={() => { setModalItemId(null); loadAll(); }}
         onNavigate={setModalItemId}
         onOpenLinkModal={() => setLinkModalOpen(true)}
         onOpenOrder={handleOpenOrderFromItem}
+        onPhotosChanged={loadAll}
         session={session}
       />
 
