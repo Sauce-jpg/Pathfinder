@@ -1039,8 +1039,8 @@ export function ItemModal({
           );
         })()}
 
-        {/* Contains (parent items) */}
-        {(() => {
+        {/* Contains (parent items — wargame only) */}
+        {(item.category ?? "").trim().toLowerCase() === "wargame" && (() => {
           const children = allItems.filter((x) => x.parent_id === item.id);
           if (!children.length && !isEditing) return (
             <div style={{ marginTop: "1rem" }}>
