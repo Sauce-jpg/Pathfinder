@@ -53,6 +53,7 @@ export type DbPhoto = {
   description: string | null;
   tags: string[];
   item_ids: string[];
+  pins: Array<{ item_id: string; x: number; y: number }>;
   created_at: string;
   updated_at: string;
 };
