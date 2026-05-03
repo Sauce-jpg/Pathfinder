@@ -3,7 +3,6 @@
 import { useEffect, useState, useId, useRef } from "react";
 import styles from "../inventory.module.css";
 import m from "./ItemModal.module.css";
-import { DbItem, DbItemLink } from "../types";
 import { fmtMoney, safeText, slugifyId } from "../helpers";
 import { Modal } from "./Modal";
 import { Specs } from "./Specs";
@@ -422,12 +421,14 @@ export function ItemModal({
   isCreating,
   links,
   allItems,
+  photos,
   onClose,
   onSaved,
   onDeleted,
   onNavigate,
   onOpenLinkModal,
   onOpenOrder,
+  onPhotosChanged,
   session,
 }: Props) {
   const [isCloning,     setIsCloning]     = useState(false);
@@ -1013,6 +1014,15 @@ export function ItemModal({
         )}
 
         <Specs specs={item.specs} />
+
+        <PhotoStrip
+          itemId={item.id}
+          photos={photos}
+          allItems={allItems}
+          onPhotoSaved={async () => onPhotosChanged()}
+          onPhotoDeleted={onPhotosChanged}
+          session={session}
+        />
       </>
     );
   }
