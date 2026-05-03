@@ -926,7 +926,16 @@ export function ItemModal({
             <h3>Purchase</h3>
             <ul className={styles.detailList}>
               {item.purchase?.date     && <li><b>Date:</b> {safeText(item.purchase.date)}</li>}
-              {money                   && <li><b>Price:</b> {money}</li>}
+              {money && (
+                <li>
+                  <b>Price:</b> {money}
+                  {item.purchase?.inherited && (
+                    <span className={styles.muted} style={{ fontSize: "0.82rem", marginLeft: "0.4rem" }}>
+                      (inherited from parent — not counted separately)
+                    </span>
+                  )}
+                </li>
+              )}
               {item.purchase?.store    && <li><b>Store:</b> {safeText(item.purchase.store)}</li>}
               {item.purchase?.orderRef && <li><b>Order ref:</b> {safeText(item.purchase.orderRef)}</li>}
               {item.purchase?.orderId && (
