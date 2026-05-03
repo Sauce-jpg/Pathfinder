@@ -35,6 +35,7 @@ export function slugifyId(input: string): string {
 }
 
 export function itemSearchText(item: DbItem): string {
+  const wg = item.specs?.wargame || {};
   return [
     item.name,
     item.brand,
@@ -43,6 +44,19 @@ export function itemSearchText(item: DbItem): string {
     item.type,
     item.location,
     ...(item.tags || []),
+    item.notes,
+    // Wargame fields
+    wg.system,
+    wg.faction,
+    wg.subfaction,
+    wg.unitType,
+    wg.buildStatus,
+    wg.paintStatus,
+    wg.storage,
+    wg.rules,
+    // Top-level spec fields (build/paint status stored here for filter compat)
+    item.specs?.buildStatus,
+    item.specs?.paintStatus,
   ]
     .map(safeText)
     .join(" ")
