@@ -10,6 +10,7 @@ import { supabase } from "../../../lib/supabaseClient";
 import { ImageManager, ImageUploadTrigger } from "./ImageManager";
 import { DbItem, DbItemLink, DbPhoto } from "../types";
 import { PhotoStrip } from "./PhotoStrip";
+import { ChildCreatorModal } from "./ChildCreatorModal";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -440,6 +441,7 @@ export function ItemModal({
   const [specsMode,     setSpecsMode]     = useState<"builder" | "json">("builder");
   const [specSections,  setSpecSections]  = useState<SpecSection[]>([]);
   const [notesExpanded, setNotesExpanded] = useState(false);
+  const [childCreatorOpen, setChildCreatorOpen] = useState(false);
   const uploadTriggerRef = useRef<HTMLInputElement>(null);
 
   const open = !!item || isCreating || isCloning;
@@ -1013,6 +1015,103 @@ export function ItemModal({
           </div>
         )}
 
+        {/* Part of (child items) */}
+        {item.parent_id && (() => {
+          const parent = allItems.find((x) => x.id === item.parent_id);
+          if (!parent) return null;
+          return (
+            <div style={{ marginTop: "1rem" }}>
+              <h3 style={{ marginBottom: "0.4rem" }}>Part of</h3>
+              <div
+                className={styles.setupItemRow}
+                style={{ padding: "0.6rem 0.85rem", cursor: "pointer" }}
+                role="button"
+                tabIndex={0}
+                onClick={() => onNavigate(parent.id)}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onNavigate(parent.id); }}
+              >
+                <div style={{ fontWeight: 800 }}>{parent.name}</div>
+                <div className={styles.muted} style={{ fontSize: "0.88rem" }}>
+                  {[parent.category, parent.brand].filter(Boolean).join(" · ")}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* Contains (parent items) */}
+        {(() => {
+          const children = allItems.filter((x) => x.parent_id === item.id);
+          if (!children.length && !isEditing) return (
+            <div style={{ marginTop: "1rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+                <h3 style={{ margin: 0 }}>Contains</h3>
+                <button
+                  className={styles.invBtn}
+                  style={{ fontSize: "0.82rem", padding: "0.25rem 0.65rem" }}
+                  onClick={() => setChildCreatorOpen(true)}
+                >
+                  + Add units
+                </button>
+              </div>
+              <p className={styles.muted} style={{ fontSize: "0.88rem" }}>
+                No child items yet.
+              </p>
+            </div>
+          );
+          if (!children.length) return null;
+          return (
+            <div style={{ marginTop: "1rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>
+                <h3 style={{ margin: 0 }}>Contains</h3>
+                <button
+                  className={styles.invBtn}
+                  style={{ fontSize: "0.82rem", padding: "0.25rem 0.65rem" }}
+                  onClick={() => setChildCreatorOpen(true)}
+                >
+                  + Add units
+                </button>
+              </div>
+              <div style={{ display: "grid", gap: "0.4rem" }}>
+                {children.map((child) => {
+                  const build = child.specs?.buildStatus || "";
+                  const paint = child.specs?.paintStatus || "";
+                  return (
+                    <div
+                      key={child.id}
+                      className={styles.setupItemRow}
+                      style={{ padding: "0.6rem 0.85rem", cursor: "pointer" }}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => onNavigate(child.id)}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onNavigate(child.id); }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+                        <span style={{ fontWeight: 700 }}>{child.name}</span>
+                        {child.quantity > 1 && (
+                          <span className={styles.badge}>x{child.quantity}</span>
+                        )}
+                        {child.specs?.wargame?.faction && (
+                          <span className={styles.badge}>{child.specs.wargame.faction}</span>
+                        )}
+                        {child.specs?.wargame?.unitType && (
+                          <span className={styles.badge}>{child.specs.wargame.unitType}</span>
+                        )}
+                        {build && (
+                          <span className={styles.badge}>🧩 {build}</span>
+                        )}
+                        {paint && (
+                          <span className={styles.badge}>🎨 {paint}</span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+
         <Specs specs={item.specs} />
 
         <PhotoStrip
@@ -1098,5 +1197,14 @@ export function ItemModal({
         </div>
       )}
     </Modal>
+    
+    <ChildCreatorModal
+      open={childCreatorOpen}
+      parent={item}
+      allItems={allItems}
+      onClose={() => setChildCreatorOpen(false)}
+      onSaved={() => { setChildCreatorOpen(false); onSaved(); }}
+      session={session}
+    />
   );
 }
