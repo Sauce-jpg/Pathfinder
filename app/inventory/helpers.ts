@@ -36,6 +36,7 @@ export function slugifyId(input: string): string {
 
 export function itemSearchText(item: DbItem): string {
   const wg = item.specs?.wargame || {};
+  const bk = item.specs?.book    || {};
   return [
     item.name,
     item.brand,
@@ -57,6 +58,16 @@ export function itemSearchText(item: DbItem): string {
     // Top-level spec fields (build/paint status stored here for filter compat)
     item.specs?.buildStatus,
     item.specs?.paintStatus,
+    // Book fields
+    bk.authors,
+    bk.publisher,
+    bk.year,
+    bk.language,
+    bk.isbn,
+    bk.genre,
+    bk.series,
+    bk.format,
+    bk.readStatus,
   ]
     .map(safeText)
     .join(" ")
