@@ -60,6 +60,18 @@ type EditDraft = {
   wg_priority: string;
   wg_points: string;
   wg_rules: string;
+  // Book fields
+  bk_authors: string;
+  bk_publisher: string;
+  bk_year: string;
+  bk_language: string;
+  bk_isbn: string;
+  bk_genre: string;
+  bk_format: string;
+  bk_series: string;
+  bk_seriesNum: string;
+  bk_readStatus: string;
+  bk_rating: string;
 };
 
 // ── Collapsible section ────────────────────────────────────────────────
@@ -168,6 +180,69 @@ function mergeWargameIntoSpecs(specsObj: any, draft: EditDraft): any {
   return next;
 }
 
+
+// ── Book helpers ───────────────────────────────────────────────────────
+
+function isBook(category: string) {
+  return ["book", "books"].includes(category.trim().toLowerCase());
+}
+
+function bookSuggest(allItems: DbItem[], field: string): string[] {
+  const vals = allItems
+    .filter((i) => isBook(i.category || ""))
+    .map((i) => i.specs?.book?.[field] ?? "")
+    .filter(Boolean) as string[];
+  return [...new Set(vals)].sort((a, b) => a.localeCompare(b));
+}
+
+function bkFromItem(item: DbItem): Partial<EditDraft> {
+  const bk = item.specs?.book || {};
+  return {
+    bk_authors:    bk.authors    ?? "",
+    bk_publisher:  bk.publisher  ?? "",
+    bk_year:       bk.year       ?? "",
+    bk_language:   bk.language   ?? "",
+    bk_isbn:       bk.isbn       ?? "",
+    bk_genre:      bk.genre      ?? "",
+    bk_format:     bk.format     ?? "",
+    bk_series:     bk.series     ?? "",
+    bk_seriesNum:  bk.seriesNum  ?? "",
+    bk_readStatus: bk.readStatus ?? "",
+    bk_rating:     bk.rating     ?? "",
+  };
+}
+
+function emptyBk(): Partial<EditDraft> {
+  return {
+    bk_authors: "", bk_publisher: "", bk_year: "", bk_language: "",
+    bk_isbn: "", bk_genre: "", bk_format: "", bk_series: "",
+    bk_seriesNum: "", bk_readStatus: "", bk_rating: "",
+  };
+}
+
+function mergeBookIntoSpecs(specsObj: any, draft: EditDraft): any {
+  if (!isBook(draft.category)) return specsObj;
+
+  const bk: Record<string, any> = {};
+  if (draft.bk_authors)    bk.authors    = draft.bk_authors;
+  if (draft.bk_publisher)  bk.publisher  = draft.bk_publisher;
+  if (draft.bk_year)       bk.year       = draft.bk_year;
+  if (draft.bk_language)   bk.language   = draft.bk_language;
+  if (draft.bk_isbn)       bk.isbn       = draft.bk_isbn;
+  if (draft.bk_genre)      bk.genre      = draft.bk_genre;
+  if (draft.bk_format)     bk.format     = draft.bk_format;
+  if (draft.bk_series)     bk.series     = draft.bk_series;
+  if (draft.bk_seriesNum)  bk.seriesNum  = draft.bk_seriesNum;
+  if (draft.bk_readStatus) bk.readStatus = draft.bk_readStatus;
+  if (draft.bk_rating)     bk.rating     = draft.bk_rating;
+
+  const next = { ...specsObj };
+  if (Object.keys(bk).length) next.book = bk;
+  return next;
+}
+
+
+
 // ── Spec builder types ─────────────────────────────────────────────────
 
 type SpecField = { key: string; value: string };
@@ -229,6 +304,7 @@ function draftFromItem(item: DbItem): EditDraft {
     purchase_orderId_manual: !!(item.purchase?.orderId),
     specs_json:              JSON.stringify(item.specs ?? {}, null, 2),
     ...wgFromItem(item),
+    ...bkFromItem(item),
   } as EditDraft;
 }
 
@@ -241,6 +317,7 @@ function emptyDraft(): EditDraft {
     purchase_orderId_manual: false,
     specs_json: "{}",
     ...emptyWg(),
+    ...emptyBk(),
   } as EditDraft;
 }
 
@@ -415,6 +492,94 @@ function WargameSummary({ specs }: { specs: any }) {
   );
 }
 
+
+
+const READ_STATUS_COLORS: Record<string, string> = {
+  Unread:  "#94a3b8",
+  Reading: "#fb923c",
+  Read:    "#4ade80",
+  DNF:     "#f87171",
+};
+
+function BookSummary({ specs }: { specs: any }) {
+  if (!specs) return null;
+  const bk = specs.book || {};
+
+  const rows: Array<[string, string]> = ([
+    ["Author(s)",   bk.authors],
+    ["Publisher",   bk.publisher],
+    ["Year",        bk.year],
+    ["Language",    bk.language],
+    ["Genre",       bk.genre],
+    ["Series",      bk.series ? `${bk.series}${bk.seriesNum ? ` #${bk.seriesNum}` : ""}` : ""],
+    ["Format",      bk.format],
+    ["ISBN",        bk.isbn],
+  ] as Array<[string, string]>).filter(([, v]) => v);
+
+  const readStatus = bk.readStatus || "";
+  const rating     = bk.rating ? Number(bk.rating) : 0;
+
+  if (!rows.length && !readStatus && !rating) return null;
+
+  return (
+    <div style={{
+      border: "1px solid rgba(0,0,0,0.09)",
+      borderRadius: 12, overflow: "hidden",
+      marginBottom: "1rem",
+    }}>
+      {/* Header */}
+      <div style={{
+        padding: "0.55rem 0.85rem",
+        background: "rgba(0,0,0,0.03)",
+        borderBottom: rows.length ? "1px solid rgba(0,0,0,0.07)" : "none",
+        fontWeight: 700, fontSize: "0.85rem",
+        textTransform: "uppercase", letterSpacing: "0.05em", opacity: 0.7,
+        display: "flex", alignItems: "center", gap: "0.75rem",
+      }}>
+        <span>📚 Book</span>
+        {readStatus && (
+          <span style={{
+            fontSize: "0.75rem", padding: "0.15rem 0.55rem",
+            borderRadius: 999,
+            background: READ_STATUS_COLORS[readStatus] ?? "rgba(0,0,0,0.12)",
+            color: "#fff", fontWeight: 700,
+            textTransform: "none", letterSpacing: 0,
+          }}>
+            {readStatus}
+          </span>
+        )}
+        {!!rating && (
+          <span style={{ fontSize: "0.85rem", letterSpacing: "0.05em" }}>
+            {"⭐".repeat(rating)}
+          </span>
+        )}
+      </div>
+
+      {/* Fields grid */}
+      {!!rows.length && (
+        <div style={{
+          padding: "0.75rem 0.85rem",
+          display: "grid", gridTemplateColumns: "1fr 1fr",
+          gap: "0.3rem 1.5rem",
+        }}>
+          {rows.map(([label, value]) => (
+            <div key={label} style={{ display: "flex", gap: "0.5rem", fontSize: "0.92rem" }}>
+              <span style={{ opacity: 0.55, fontWeight: 600, whiteSpace: "nowrap" }}>
+                {label}:
+              </span>
+              <span>{value}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+
+
+
 // ── Main component ─────────────────────────────────────────────────────
 
 export function ItemModal({
@@ -463,6 +628,13 @@ export function ItemModal({
   const suggestScales        = wargameSuggest(allItems, "scale");
   const suggestBuildStatuses = wargameStatusSuggest(allItems, "buildStatus");
   const suggestPaintStatuses = wargameStatusSuggest(allItems, "paintStatus");
+
+  // Derived suggestion lists — book
+  const suggestAuthors    = bookSuggest(allItems, "authors");
+  const suggestPublishers = bookSuggest(allItems, "publisher");
+  const suggestLanguages  = bookSuggest(allItems, "language");
+  const suggestGenres     = bookSuggest(allItems, "genre");
+  const suggestSeries     = bookSuggest(allItems, "series");
 
   // Sync draft when item identity or isCreating changes
   useEffect(() => {
@@ -565,6 +737,7 @@ export function ItemModal({
     }
 
     specsObj = mergeWargameIntoSpecs(specsObj, draft);
+    specsObj = mergeBookIntoSpecs(specsObj, draft);
 
     const tagsArr = String(draft.tags || "")
       .split(",").map((t) => t.trim()).filter(Boolean);
@@ -665,6 +838,13 @@ export function ItemModal({
         <DL id={`${dlId}-wg-scale`}      options={suggestScales} />
         <DL id={`${dlId}-wg-build`}      options={suggestBuildStatuses} />
         <DL id={`${dlId}-wg-paint`}      options={suggestPaintStatuses} />
+
+        {/* Datalists — book */}
+        <DL id={`${dlId}-bk-authors`}   options={suggestAuthors} />
+        <DL id={`${dlId}-bk-publisher`} options={suggestPublishers} />
+        <DL id={`${dlId}-bk-language`}  options={suggestLanguages} />
+        <DL id={`${dlId}-bk-genre`}     options={suggestGenres} />
+        <DL id={`${dlId}-bk-series`}    options={suggestSeries} />
 
         {/* ── Details (open by default) ── */}
         <CollapsibleSection title="Details" defaultOpen={true}>
@@ -873,6 +1053,125 @@ export function ItemModal({
           </CollapsibleSection>
         )}
 
+        {/* ── Book (only when category = Book/Books) ── */}
+        {isBook(draft.category) && (
+          <CollapsibleSection title="📚 Book" defaultOpen={true}>
+            {/* Row 1: Authors, Publisher, Year, Language */}
+            <div className={m.fieldRow4}>
+              <label>
+                <div className={m.fieldLabel}>Author(s)</div>
+                <input className={styles.invInput} list={`${dlId}-bk-authors`}
+                  value={draft.bk_authors}
+                  onChange={(e) => set({ bk_authors: e.target.value })}
+                  placeholder="e.g. Brandon Sanderson"
+                  style={{ width: "100%" }} />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Publisher</div>
+                <input className={styles.invInput} list={`${dlId}-bk-publisher`}
+                  value={draft.bk_publisher}
+                  onChange={(e) => set({ bk_publisher: e.target.value })}
+                  style={{ width: "100%" }} />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Published year</div>
+                <input className={styles.invInput} type="number"
+                  value={draft.bk_year}
+                  onChange={(e) => set({ bk_year: e.target.value })}
+                  placeholder="e.g. 2010"
+                  style={{ width: "100%" }} />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Language</div>
+                <input className={styles.invInput} list={`${dlId}-bk-language`}
+                  value={draft.bk_language}
+                  onChange={(e) => set({ bk_language: e.target.value })}
+                  placeholder="e.g. English"
+                  style={{ width: "100%" }} />
+              </label>
+            </div>
+
+            {/* Row 2: Series, Series number, Genre, Format */}
+            <div className={m.fieldRow4}>
+              <label>
+                <div className={m.fieldLabel}>Series</div>
+                <input className={styles.invInput} list={`${dlId}-bk-series`}
+                  value={draft.bk_series}
+                  onChange={(e) => set({ bk_series: e.target.value })}
+                  placeholder="e.g. The Stormlight Archive"
+                  style={{ width: "100%" }} />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Series number</div>
+                <input className={styles.invInput} type="number"
+                  value={draft.bk_seriesNum}
+                  onChange={(e) => set({ bk_seriesNum: e.target.value })}
+                  placeholder="e.g. 3"
+                  style={{ width: "100%" }} />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Genre</div>
+                <input className={styles.invInput} list={`${dlId}-bk-genre`}
+                  value={draft.bk_genre}
+                  onChange={(e) => set({ bk_genre: e.target.value })}
+                  placeholder="e.g. Fantasy"
+                  style={{ width: "100%" }} />
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Format</div>
+                <select className={styles.invSelect} value={draft.bk_format}
+                  onChange={(e) => set({ bk_format: e.target.value })}
+                  style={{ width: "100%" }}>
+                  <option value="">—</option>
+                  <option value="Hardcover">Hardcover</option>
+                  <option value="Paperback">Paperback</option>
+                  <option value="E-book">E-book</option>
+                  <option value="Audiobook">Audiobook</option>
+                  <option value="Graphic novel">Graphic novel</option>
+                </select>
+              </label>
+            </div>
+
+            {/* Row 3: Read status, Rating, ISBN */}
+            <div className={m.fieldRow4}>
+              <label>
+                <div className={m.fieldLabel}>Read status</div>
+                <select className={styles.invSelect} value={draft.bk_readStatus}
+                  onChange={(e) => set({ bk_readStatus: e.target.value })}
+                  style={{ width: "100%" }}>
+                  <option value="">—</option>
+                  <option value="Unread">Unread</option>
+                  <option value="Reading">Reading</option>
+                  <option value="Read">Read</option>
+                  <option value="DNF">DNF</option>
+                </select>
+              </label>
+              <label>
+                <div className={m.fieldLabel}>Rating</div>
+                <select className={styles.invSelect} value={draft.bk_rating}
+                  onChange={(e) => set({ bk_rating: e.target.value })}
+                  style={{ width: "100%" }}>
+                  <option value="">—</option>
+                  <option value="1">⭐ 1</option>
+                  <option value="2">⭐⭐ 2</option>
+                  <option value="3">⭐⭐⭐ 3</option>
+                  <option value="4">⭐⭐⭐⭐ 4</option>
+                  <option value="5">⭐⭐⭐⭐⭐ 5</option>
+                </select>
+              </label>
+              <label>
+                <div className={m.fieldLabel}>ISBN</div>
+                <input className={styles.invInput}
+                  value={draft.bk_isbn}
+                  onChange={(e) => set({ bk_isbn: e.target.value })}
+                  placeholder="e.g. 978-0-7653-2637-9"
+                  style={{ width: "100%" }} />
+              </label>
+              <div /> {/* spacer */}
+            </div>
+          </CollapsibleSection>
+        )}
+
         {/* ── Specs (collapsed by default — most complex) ── */}
         <CollapsibleSection title="Specs" defaultOpen={false}>
           <div className={m.specsToolbar}>
@@ -911,6 +1210,7 @@ export function ItemModal({
         />
 
         {showWargameSummary && <WargameSummary specs={item.specs} />}
+        {isBook(item.category || "") && <BookSummary specs={item.specs} />}
 
         <div className={styles.detailGrid}>
           <div>
