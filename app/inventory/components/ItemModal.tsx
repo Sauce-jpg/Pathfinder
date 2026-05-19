@@ -72,6 +72,8 @@ type EditDraft = {
   bk_seriesNum: string;
   bk_readStatus: string;
   bk_rating: string;
+  bk_pages:   string;
+  bk_weight:  string;
 };
 
 // ── Collapsible section ────────────────────────────────────────────────
@@ -209,6 +211,8 @@ function bkFromItem(item: DbItem): Partial<EditDraft> {
     bk_seriesNum:  bk.seriesNum  ?? "",
     bk_readStatus: bk.readStatus ?? "",
     bk_rating:     bk.rating     ?? "",
+    bk_pages:      bk.pages      ?? "",
+    bk_weight:     bk.weight     ?? "",
   };
 }
 
@@ -217,6 +221,7 @@ function emptyBk(): Partial<EditDraft> {
     bk_authors: "", bk_publisher: "", bk_year: "", bk_language: "",
     bk_isbn: "", bk_genre: "", bk_format: "", bk_series: "",
     bk_seriesNum: "", bk_readStatus: "", bk_rating: "",
+    bk_pages: "", bk_weight: "",
   };
 }
 
@@ -235,6 +240,8 @@ function mergeBookIntoSpecs(specsObj: any, draft: EditDraft): any {
   if (draft.bk_seriesNum)  bk.seriesNum  = draft.bk_seriesNum;
   if (draft.bk_readStatus) bk.readStatus = draft.bk_readStatus;
   if (draft.bk_rating)     bk.rating     = draft.bk_rating;
+  if (draft.bk_pages)      bk.pages      = draft.bk_pages;
+  if (draft.bk_weight)     bk.weight     = draft.bk_weight;
 
   const next = { ...specsObj };
   if (Object.keys(bk).length) next.book = bk;
@@ -513,6 +520,8 @@ function BookSummary({ specs }: { specs: any }) {
     ["Genre",       bk.genre],
     ["Series",      bk.series ? `${bk.series}${bk.seriesNum ? ` #${bk.seriesNum}` : ""}` : ""],
     ["Format",      bk.format],
+    ["Pages",       bk.pages  ? String(bk.pages)  : ""],
+    ["Weight",      bk.weight ? String(bk.weight) : ""],
     ["ISBN",        bk.isbn],
   ] as Array<[string, string]>).filter(([, v]) => v);
 
@@ -813,6 +822,126 @@ export function ItemModal({
   function itemLabel(id: string) {
     return allItems.find((x) => x.id === id)?.name ?? id;
   }
+
+
+
+
+
+  // ── ISBN lookup ──────────────────────────────────────────────────────
+
+  type IsbnField = {
+    key: keyof EditDraft;
+    label: string;
+    value: string;
+  };
+
+  const [isbnLooking,  setIsbnLooking]  = useState(false);
+  const [isbnError,    setIsbnError]    = useState<string | null>(null);
+  const [isbnResults,  setIsbnResults]  = useState<IsbnField[] | null>(null);
+  const [isbnApply,    setIsbnApply]    = useState<Record<string, boolean>>({});
+
+  async function handleIsbnLookup() {
+    if (!draft) return;
+    const isbn = draft.bk_isbn.trim().replace(/[-\s]/g, "");
+    if (!isbn) { setIsbnError("Enter an ISBN first."); return; }
+
+    setIsbnLooking(true);
+    setIsbnError(null);
+    setIsbnResults(null);
+
+    try {
+      const res = await fetch(
+        `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`
+      );
+      const json = await res.json();
+      const data = json[`ISBN:${isbn}`];
+
+      if (!data) {
+        setIsbnError("ISBN not found in Open Library.");
+        return;
+      }
+
+      // Map API response to our fields
+      const candidates: IsbnField[] = [];
+
+      const title = data.title || "";
+      if (title) candidates.push({ key: "name", label: "Title", value: title });
+
+      const authors = (data.authors || []).map((a: any) => a.name).join(", ");
+      if (authors) candidates.push({ key: "bk_authors", label: "Author(s)", value: authors });
+
+      const publisher = (data.publishers || []).map((p: any) => p.name).join(", ");
+      if (publisher) candidates.push({ key: "bk_publisher", label: "Publisher", value: publisher });
+
+      const year = data.publish_date
+        ? String(data.publish_date).match(/\d{4}/)?.[0] ?? data.publish_date
+        : "";
+      if (year) candidates.push({ key: "bk_year", label: "Published year", value: year });
+
+      const language = (data.languages || [])
+        .map((l: any) => {
+          const code = l.key?.replace("/languages/", "") ?? "";
+          const map: Record<string, string> = {
+            eng: "English", swe: "Swedish", ger: "German",
+            fre: "French", spa: "Spanish", nor: "Norwegian",
+            dan: "Danish", fin: "Finnish",
+          };
+          return map[code] || code;
+        })
+        .join(", ");
+      if (language) candidates.push({ key: "bk_language", label: "Language", value: language });
+
+      const pages = data.number_of_pages ? String(data.number_of_pages) : "";
+      if (pages) candidates.push({ key: "bk_pages", label: "Pages", value: pages });
+
+      const weight = data.weight || "";
+      if (weight) candidates.push({ key: "bk_weight", label: "Weight", value: weight });
+
+      const subjects = (data.subjects || []).map((s: any) => s.name || s).slice(0, 3).join(", ");
+      if (subjects) candidates.push({ key: "bk_genre", label: "Genre / Subjects", value: subjects });
+
+      const series = (data.series || []).join(", ");
+      if (series) candidates.push({ key: "bk_series", label: "Series", value: series });
+
+      if (!candidates.length) {
+        setIsbnError("ISBN found but no usable data returned.");
+        return;
+      }
+
+      // Default: check fields that are currently empty in draft
+      const defaults: Record<string, boolean> = {};
+      for (const c of candidates) {
+        const current = String((draft as any)[c.key] ?? "").trim();
+        defaults[c.key] = current === "";
+      }
+
+      setIsbnResults(candidates);
+      setIsbnApply(defaults);
+    } catch (e: any) {
+      setIsbnError("Lookup failed — check your connection.");
+    } finally {
+      setIsbnLooking(false);
+    }
+  }
+
+  function applyIsbnResults() {
+    if (!isbnResults) return;
+    const patch: Partial<EditDraft> = {};
+    for (const field of isbnResults) {
+      if (isbnApply[field.key]) {
+        (patch as any)[field.key] = field.value;
+      }
+    }
+    set(patch);
+    setIsbnResults(null);
+    setIsbnApply({});
+    setIsbnError(null);
+  }
+
+
+
+
+  
 
   // ── Edit form ────────────────────────────────────────────────────────
 
@@ -1159,15 +1288,144 @@ export function ItemModal({
                   <option value="5">⭐⭐⭐⭐⭐ 5</option>
                 </select>
               </label>
-              <label>
+              <label style={{ gridColumn: "span 2" }}>
                 <div className={m.fieldLabel}>ISBN</div>
-                <input className={styles.invInput}
-                  value={draft.bk_isbn}
-                  onChange={(e) => set({ bk_isbn: e.target.value })}
-                  placeholder="e.g. 978-0-7653-2637-9"
+                <div style={{ display: "flex", gap: "0.5rem" }}>
+                  <input className={styles.invInput}
+                    value={draft.bk_isbn}
+                    onChange={(e) => {
+                      set({ bk_isbn: e.target.value });
+                      setIsbnResults(null);
+                      setIsbnError(null);
+                    }}
+                    placeholder="e.g. 978-0-7653-2637-9"
+                    style={{ flex: 1 }}
+                    onKeyDown={(e) => { if (e.key === "Enter") handleIsbnLookup(); }}
+                  />
+                  <button
+                    className={styles.invBtn}
+                    onClick={handleIsbnLookup}
+                    disabled={isbnLooking || !draft.bk_isbn.trim()}
+                    style={{ whiteSpace: "nowrap" }}
+                  >
+                    {isbnLooking ? "Looking…" : "🔍 Lookup"}
+                  </button>
+                </div>
+
+                {/* Error */}
+                {isbnError && (
+                  <div style={{ color: "crimson", fontSize: "0.82rem", marginTop: "0.35rem" }}>
+                    {isbnError}
+                  </div>
+                )}
+
+                {/* Results panel */}
+                {isbnResults && (
+                  <div style={{
+                    marginTop: "0.65rem",
+                    border: "1px solid rgba(0,0,0,0.1)",
+                    borderRadius: 10,
+                    overflow: "hidden",
+                  }}>
+                    <div style={{
+                      padding: "0.5rem 0.75rem",
+                      background: "rgba(0,0,0,0.03)",
+                      borderBottom: "1px solid rgba(0,0,0,0.07)",
+                      fontWeight: 700, fontSize: "0.82rem",
+                      display: "flex", justifyContent: "space-between",
+                      alignItems: "center",
+                    }}>
+                      <span>Found on Open Library — select fields to apply</span>
+                      <div style={{ display: "flex", gap: "0.4rem" }}>
+                        <button
+                          className={styles.invBtn}
+                          style={{ fontSize: "0.78rem", padding: "0.2rem 0.55rem" }}
+                          onClick={() => {
+                            const all: Record<string, boolean> = {};
+                            isbnResults.forEach((f) => { all[f.key] = true; });
+                            setIsbnApply(all);
+                          }}
+                        >All</button>
+                        <button
+                          className={styles.invBtn}
+                          style={{ fontSize: "0.78rem", padding: "0.2rem 0.55rem" }}
+                          onClick={() => {
+                            const none: Record<string, boolean> = {};
+                            isbnResults.forEach((f) => { none[f.key] = false; });
+                            setIsbnApply(none);
+                          }}
+                        >None</button>
+                      </div>
+                    </div>
+
+                    <div style={{ padding: "0.5rem 0.75rem", display: "grid", gap: "0.3rem" }}>
+                      {isbnResults.map((field) => {
+                        const current = String((draft as any)[field.key] ?? "").trim();
+                        const hasExisting = current !== "" && current !== field.value;
+                        return (
+                          <label
+                            key={field.key}
+                            style={{
+                              display: "flex", gap: "0.6rem",
+                              alignItems: "flex-start", padding: "0.25rem 0",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={!!isbnApply[field.key]}
+                              onChange={(e) =>
+                                setIsbnApply((prev) => ({ ...prev, [field.key]: e.target.checked }))
+                              }
+                              style={{ marginTop: 2, flexShrink: 0 }}
+                            />
+                            <div style={{ fontSize: "0.88rem" }}>
+                              <span style={{ fontWeight: 600, opacity: 0.6 }}>{field.label}: </span>
+                              <span>{field.value}</span>
+                              {hasExisting && (
+                                <span style={{ opacity: 0.45, fontSize: "0.78rem", marginLeft: "0.4rem" }}>
+                                  (replaces: {current})
+                                </span>
+                              )}
+                            </div>
+                          </label>
+                        );
+                      })}
+                    </div>
+
+                    <div style={{ padding: "0.5rem 0.75rem", borderTop: "1px solid rgba(0,0,0,0.07)", display: "flex", gap: "0.5rem" }}>
+                      <button className={styles.invBtn} onClick={applyIsbnResults}>
+                        Apply selected
+                      </button>
+                      <button
+                        className={styles.invBtn}
+                        onClick={() => { setIsbnResults(null); setIsbnError(null); }}
+                      >
+                        Dismiss
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </label>
+            </div>
+          {/* Row 4: Pages, Weight */}
+            <div className={m.fieldRow}>
+              <label>
+                <div className={m.fieldLabel}>Pages</div>
+                <input className={styles.invInput} type="number"
+                  value={draft.bk_pages}
+                  onChange={(e) => set({ bk_pages: e.target.value })}
+                  placeholder="e.g. 383"
                   style={{ width: "100%" }} />
               </label>
-              <div /> {/* spacer */}
+              <label>
+                <div className={m.fieldLabel}>Weight</div>
+                <input className={styles.invInput}
+                  value={draft.bk_weight}
+                  onChange={(e) => set({ bk_weight: e.target.value })}
+                  placeholder="e.g. 420g"
+                  style={{ width: "100%" }} />
+              </label>
             </div>
           </CollapsibleSection>
         )}
