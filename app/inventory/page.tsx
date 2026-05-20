@@ -6,7 +6,7 @@ import { supabase } from "../../lib/supabaseClient";
 import styles from "./inventory.module.css";
 
 import {
-  DbItem, DbItemLink, DbSetup, DbSetupItem, DbPhoto, Tab,
+  DbItem, DbItemLink, DbSetup, DbSetupItem, DbPhoto, DbOrderMeta, Tab,
 } from "./types";
 import { getOrderId, parseDate } from "./helpers";
 
@@ -19,17 +19,18 @@ import { LinkModal }     from "./components/LinkModal";
 import { OrderModal }    from "./components/OrderModal";
 
 export default function InventoryPage() {
-  const [session,    setSession]    = useState<any>(null);
-  const [tab,        setTab]        = useState<Tab>("inventory");
-  const [loading,    setLoading]    = useState(false);
-  const [loadError,  setLoadError]  = useState<string | null>(null);
+  const [session,     setSession]     = useState<any>(null);
+  const [tab,         setTab]         = useState<Tab>("inventory");
+  const [loading,     setLoading]     = useState(false);
+  const [loadError,   setLoadError]   = useState<string | null>(null);
 
   // ── Raw data ────────────────────────────────────────────────────────
-  const [items,      setItems]      = useState<DbItem[]>([]);
-  const [links,      setLinks]      = useState<DbItemLink[]>([]);
-  const [setups,     setSetups]     = useState<DbSetup[]>([]);
-  const [setupItems, setSetupItems] = useState<DbSetupItem[]>([]);
-  const [photos,     setPhotos]     = useState<DbPhoto[]>([]);
+  const [items,       setItems]       = useState<DbItem[]>([]);
+  const [links,       setLinks]       = useState<DbItemLink[]>([]);
+  const [setups,      setSetups]      = useState<DbSetup[]>([]);
+  const [setupItems,  setSetupItems]  = useState<DbSetupItem[]>([]);
+  const [photos,      setPhotos]      = useState<DbPhoto[]>([]);
+  const [orderMetas,  setOrderMetas]  = useState<DbOrderMeta[]>([]);
 
   // ── Modal state ─────────────────────────────────────────────────────
   const [modalItemId,    setModalItemId]    = useState<string | null>(null);
@@ -67,24 +68,27 @@ export default function InventoryPage() {
     setLoading(true);
     setLoadError(null);
 
-    const [itemsRes, setupsRes, joinRes, linksRes, photosRes] = await Promise.all([
-      supabase.from("inventory_items").select("*").order("name", { ascending: true }),
-      supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
-      supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
-      supabase.from("inventory_item_links").select("*").order("created_at", { ascending: false }),
-      supabase.from("inventory_photos").select("*").order("date_taken", { ascending: false, nullsFirst: false }),
-    ]);
+    const [itemsRes, setupsRes, joinRes, linksRes, photosRes, orderMetasRes] =
+      await Promise.all([
+        supabase.from("inventory_items").select("*").order("name", { ascending: true }),
+        supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
+        supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
+        supabase.from("inventory_item_links").select("*").order("created_at", { ascending: false }),
+        supabase.from("inventory_photos").select("*").order("date_taken", { ascending: false, nullsFirst: false }),
+        supabase.from("inventory_orders").select("*"),
+      ]);
 
     if (itemsRes.error)  setLoadError(itemsRes.error.message);
     if (setupsRes.error) setLoadError(setupsRes.error.message);
     if (joinRes.error)   setLoadError(joinRes.error.message);
     if (linksRes.error)  setLoadError(linksRes.error.message);
 
-    setItems     ((itemsRes.data  || []) as DbItem[]);
-    setSetups    ((setupsRes.data || []) as DbSetup[]);
-    setSetupItems((joinRes.data   || []) as DbSetupItem[]);
-    setLinks     ((linksRes.data  || []) as DbItemLink[]);
-    setPhotos    ((photosRes.data || []) as DbPhoto[]);
+    setItems      ((itemsRes.data      || []) as DbItem[]);
+    setSetups     ((setupsRes.data     || []) as DbSetup[]);
+    setSetupItems ((joinRes.data       || []) as DbSetupItem[]);
+    setLinks      ((linksRes.data      || []) as DbItemLink[]);
+    setPhotos     ((photosRes.data     || []) as DbPhoto[]);
+    setOrderMetas ((orderMetasRes.data || []) as DbOrderMeta[]);
 
     setLoading(false);
   }
@@ -118,7 +122,7 @@ export default function InventoryPage() {
         const purchase = first?.purchase || {};
         const total    = its.reduce((sum, x) => {
           const n = Number(x.purchase?.price);
-          return sum + (Number.isFinite(n) ? n : 0);
+          return sum + (Number.isFinite(n) && !x.purchase?.inherited ? n : 0);
         }, 0);
         return {
           orderId,
@@ -140,6 +144,11 @@ export default function InventoryPage() {
   const modalOrder = useMemo(
     () => (modalOrderId ? orders.find((o) => o.orderId === modalOrderId) ?? null : null),
     [orders, modalOrderId]
+  );
+
+  const modalOrderMeta = useMemo(
+    () => (modalOrderId ? orderMetas.find((m) => m.order_id === modalOrderId) ?? null : null),
+    [orderMetas, modalOrderId]
   );
 
   // ── Handlers ────────────────────────────────────────────────────────
@@ -180,13 +189,9 @@ export default function InventoryPage() {
               <Link
                 href="/inventory/photos"
                 style={{
-                  fontSize: "0.88rem",
-                  padding: "0.35rem 0.75rem",
-                  borderRadius: "999px",
-                  background: "rgba(0,0,0,0.06)",
-                  textDecoration: "none",
-                  color: "inherit",
-                  fontWeight: 600,
+                  fontSize: "0.88rem", padding: "0.35rem 0.75rem",
+                  borderRadius: "999px", background: "rgba(0,0,0,0.06)",
+                  textDecoration: "none", color: "inherit", fontWeight: 600,
                 }}
               >
                 📷 Photos
@@ -302,12 +307,15 @@ export default function InventoryPage() {
 
       <OrderModal
         order={modalOrder}
+        orderMeta={modalOrderMeta}
         onClose={() => setModalOrderId(null)}
         onFilterByOrder={(oid) => {
           setActiveOrderId(oid);
           setTab("inventory");
         }}
         onSelectItem={setModalItemId}
+        onMetaSaved={loadAll}
+        session={session}
       />
 
     </main>
