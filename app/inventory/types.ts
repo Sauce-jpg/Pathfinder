@@ -106,6 +106,17 @@ export type ColumnDef = {
   defaultWidth?: number;
 };
 
+
+export type DbOrderMeta = {
+  order_id:    string;
+  user_id:     string;
+  extra_costs: Array<{ label: string; amount: number; currency: string }>;
+  documents:   string[];
+  notes:       string | null;
+  created_at:  string;
+  updated_at:  string;
+};
+
 export const ALL_COLUMNS: ColumnDef[] = [
   { key: "name",         label: "Name",          defaultWidth: 220 },
   { key: "brand_model",  label: "Brand / Model",  defaultWidth: 180 },
