@@ -489,7 +489,7 @@ export function OrderModal({
                     )}
 
                     {/* Filename + link */}
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}><a
                       
                         href={url}
                         target="_blank"
