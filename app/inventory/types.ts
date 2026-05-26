@@ -1,3 +1,32 @@
+export type ItemStatus =
+  | "owned"
+  | "wishlist"
+  | "on_order"
+  | "lent_out"
+  | "gifted"
+  | "sold"
+  | "consumed"
+  | "discarded";
+
+export const STATUS_OPTIONS: Array<{ value: ItemStatus; label: string; color: string }> = [
+  { value: "owned",     label: "Owned",           color: ""        },
+  { value: "wishlist",  label: "Wishlist",         color: "#3b82f6" },
+  { value: "on_order",  label: "On order",         color: "#8b5cf6" },
+  { value: "lent_out",  label: "Lent out",         color: "#f59e0b" },
+  { value: "gifted",    label: "Gifted",           color: "#ec4899" },
+  { value: "sold",      label: "Sold",             color: "#f97316" },
+  { value: "consumed",  label: "Consumed",         color: "#6b7280" },
+  { value: "discarded", label: "Discarded",        color: "#ef4444" },
+];
+
+export function statusLabel(s: string): string {
+  return STATUS_OPTIONS.find((o) => o.value === s)?.label ?? s;
+}
+
+export function statusColor(s: string): string {
+  return STATUS_OPTIONS.find((o) => o.value === s)?.color ?? "";
+}
+
 export type DbItem = {
   id: string;
   user_id: string;
@@ -15,6 +44,7 @@ export type DbItem = {
   specs: any;
   purchase_history: any;
   parent_id: string | null;
+  status: ItemStatus;
 };
 
 export type DbItemLink = {
@@ -59,6 +89,16 @@ export type DbPhoto = {
   updated_at: string;
 };
 
+export type DbOrderMeta = {
+  order_id:    string;
+  user_id:     string;
+  extra_costs: Array<{ label: string; amount: number; currency: string }>;
+  documents:   string[];
+  notes:       string | null;
+  created_at:  string;
+  updated_at:  string;
+};
+
 export type Tab = "inventory" | "setups" | "orders";
 
 export type SortKey =
@@ -76,6 +116,8 @@ export type Filters = {
   buildStatus: string;
   paintStatus: string;
   sort: SortKey;
+  status: string;
+  showNonOwned: boolean;
 };
 
 export const DEFAULT_FILTERS: Filters = {
@@ -85,6 +127,8 @@ export const DEFAULT_FILTERS: Filters = {
   buildStatus: "",
   paintStatus: "",
   sort: "name-asc",
+  status: "",
+  showNonOwned: false,
 };
 
 export type ColumnKey =
@@ -98,23 +142,13 @@ export type ColumnKey =
   | "tags"
   | "quantity"
   | "build_status"
-  | "paint_status";
+  | "paint_status"
+  | "status";
 
 export type ColumnDef = {
   key: ColumnKey;
   label: string;
   defaultWidth?: number;
-};
-
-
-export type DbOrderMeta = {
-  order_id:    string;
-  user_id:     string;
-  extra_costs: Array<{ label: string; amount: number; currency: string }>;
-  documents:   string[];
-  notes:       string | null;
-  created_at:  string;
-  updated_at:  string;
 };
 
 export const ALL_COLUMNS: ColumnDef[] = [
@@ -129,6 +163,7 @@ export const ALL_COLUMNS: ColumnDef[] = [
   { key: "quantity",     label: "Qty",            defaultWidth:  70 },
   { key: "build_status", label: "Build",          defaultWidth: 110 },
   { key: "paint_status", label: "Paint",          defaultWidth: 110 },
+  { key: "status",       label: "Status",         defaultWidth: 110 },
 ];
 
 export const CATEGORY_COLUMN_PRESETS: Record<string, ColumnKey[]> = {
