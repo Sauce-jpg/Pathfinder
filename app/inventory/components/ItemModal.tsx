@@ -75,6 +75,19 @@ type EditDraft = {
   bk_pages:   string;
   bk_weight:  string;
   status:     string;
+  // Status meta fields
+  sm_receiver:  string;
+  sm_giftDate:  string;
+  sm_soldTo:    string;
+  sm_salePrice: string;
+  sm_saleDate:  string;
+  sm_lentTo:    string;
+  sm_lentDate:  string;
+  sm_returnDate: string;
+  sm_reason:    string;
+  sm_date:      string;
+  sm_orderRef:  string;
+  sm_deliveryDate: string;
 };
 
 // ── Collapsible section ────────────────────────────────────────────────
@@ -226,6 +239,72 @@ function emptyBk(): Partial<EditDraft> {
   };
 }
 
+function smFromItem(item: DbItem): Partial<EditDraft> {
+  const sm = item.status_meta || {};
+  return {
+    sm_receiver:     sm.receiver     ?? "",
+    sm_giftDate:     sm.giftDate     ?? "",
+    sm_soldTo:       sm.soldTo       ?? "",
+    sm_salePrice:    sm.salePrice    != null ? String(sm.salePrice) : "",
+    sm_saleDate:     sm.saleDate     ?? "",
+    sm_lentTo:       sm.lentTo       ?? "",
+    sm_lentDate:     sm.lentDate     ?? "",
+    sm_returnDate:   sm.returnDate   ?? "",
+    sm_reason:       sm.reason       ?? "",
+    sm_date:         sm.date         ?? "",
+    sm_orderRef:     sm.orderRef     ?? "",
+    sm_deliveryDate: sm.deliveryDate ?? "",
+  };
+}
+
+function emptySm(): Partial<EditDraft> {
+  return {
+    sm_receiver: "", sm_giftDate: "", sm_soldTo: "", sm_salePrice: "",
+    sm_saleDate: "", sm_lentTo: "", sm_lentDate: "", sm_returnDate: "",
+    sm_reason: "", sm_date: "", sm_orderRef: "", sm_deliveryDate: "",
+  };
+}
+
+function buildStatusMeta(draft: EditDraft): Record<string, any> | null {
+  const status = draft.status;
+  switch (status) {
+    case "gifted":
+      return {
+        receiver: draft.sm_receiver  || null,
+        giftDate: draft.sm_giftDate  || null,
+      };
+    case "sold":
+      return {
+        soldTo:    draft.sm_soldTo    || null,
+        salePrice: draft.sm_salePrice !== "" ? Number(draft.sm_salePrice) : null,
+        saleDate:  draft.sm_saleDate  || null,
+      };
+    case "lent_out":
+      return {
+        lentTo:      draft.sm_lentTo      || null,
+        lentDate:    draft.sm_lentDate    || null,
+        returnDate:  draft.sm_returnDate  || null,
+      };
+    case "discarded":
+      return {
+        reason: draft.sm_reason || null,
+        date:   draft.sm_date   || null,
+      };
+    case "consumed":
+      return {
+        date: draft.sm_date || null,
+      };
+    case "on_order":
+      return {
+        orderRef:     draft.sm_orderRef     || null,
+        deliveryDate: draft.sm_deliveryDate || null,
+      };
+    default:
+      return null;
+  }
+}
+
+
 function mergeBookIntoSpecs(specsObj: any, draft: EditDraft): any {
   if (!isBook(draft.category)) return specsObj;
 
@@ -314,6 +393,7 @@ function draftFromItem(item: DbItem): EditDraft {
     ...wgFromItem(item),
     ...bkFromItem(item),
     status: item.status ?? "owned",
+    ...smFromItem(item),
   } as EditDraft;
 }
 
@@ -328,6 +408,7 @@ function emptyDraft(): EditDraft {
     ...emptyWg(),
     ...emptyBk(),
     status: "owned",
+    ...emptySm(),
   } as EditDraft;
 }
 
@@ -766,6 +847,7 @@ export function ItemModal({
       tags:     tagsArr,
       notes:    draft.notes    || null,
       status:   draft.status   || "owned",
+      status_meta: buildStatusMeta(draft) ?? {},
       purchase: buildPurchase(isCloning ? {} : item?.purchase),
       specs:    specsObj,
     };
@@ -1046,7 +1128,8 @@ export function ItemModal({
 
         {/* ── Status (open by default) ── */}
         <CollapsibleSection title="Status" defaultOpen={true}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.65rem" }}>
+          {/* Status + contextual fields */}
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "0.65rem" }}>
               <label>
                 <div className={m.fieldLabel}>Status</div>
                 <select
@@ -1060,6 +1143,101 @@ export function ItemModal({
                   ))}
                 </select>
               </label>
+
+              {/* Gifted */}
+              {draft.status === "gifted" && (<>
+                <label>
+                  <div className={m.fieldLabel}>Receiver</div>
+                  <input className={styles.invInput} value={draft.sm_receiver}
+                    onChange={(e) => set({ sm_receiver: e.target.value })}
+                    placeholder="e.g. Niklas" style={{ width: "100%" }} />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Gift date</div>
+                  <input className={styles.invInput} type="date" value={draft.sm_giftDate}
+                    onChange={(e) => set({ sm_giftDate: e.target.value })} style={{ width: "100%" }} />
+                </label>
+              </>)}
+
+              {/* Sold */}
+              {draft.status === "sold" && (<>
+                <label>
+                  <div className={m.fieldLabel}>Sold to</div>
+                  <input className={styles.invInput} value={draft.sm_soldTo}
+                    onChange={(e) => set({ sm_soldTo: e.target.value })}
+                    placeholder="Optional" style={{ width: "100%" }} />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Sale price</div>
+                  <input className={styles.invInput} type="number" value={draft.sm_salePrice}
+                    onChange={(e) => set({ sm_salePrice: e.target.value })}
+                    placeholder="e.g. 500" style={{ width: "100%" }} />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Sale date</div>
+                  <input className={styles.invInput} type="date" value={draft.sm_saleDate}
+                    onChange={(e) => set({ sm_saleDate: e.target.value })} style={{ width: "100%" }} />
+                </label>
+              </>)}
+
+              {/* Lent out */}
+              {draft.status === "lent_out" && (<>
+                <label>
+                  <div className={m.fieldLabel}>Lent to</div>
+                  <input className={styles.invInput} value={draft.sm_lentTo}
+                    onChange={(e) => set({ sm_lentTo: e.target.value })}
+                    placeholder="e.g. Alex" style={{ width: "100%" }} />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Lent date</div>
+                  <input className={styles.invInput} type="date" value={draft.sm_lentDate}
+                    onChange={(e) => set({ sm_lentDate: e.target.value })} style={{ width: "100%" }} />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Expected return</div>
+                  <input className={styles.invInput} type="date" value={draft.sm_returnDate}
+                    onChange={(e) => set({ sm_returnDate: e.target.value })} style={{ width: "100%" }} />
+                </label>
+              </>)}
+
+              {/* Discarded */}
+              {draft.status === "discarded" && (<>
+                <label>
+                  <div className={m.fieldLabel}>Reason</div>
+                  <input className={styles.invInput} value={draft.sm_reason}
+                    onChange={(e) => set({ sm_reason: e.target.value })}
+                    placeholder="e.g. Broken" style={{ width: "100%" }} />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Discarded date</div>
+                  <input className={styles.invInput} type="date" value={draft.sm_date}
+                    onChange={(e) => set({ sm_date: e.target.value })} style={{ width: "100%" }} />
+                </label>
+              </>)}
+
+              {/* Consumed */}
+              {draft.status === "consumed" && (
+                <label>
+                  <div className={m.fieldLabel}>Date consumed</div>
+                  <input className={styles.invInput} type="date" value={draft.sm_date}
+                    onChange={(e) => set({ sm_date: e.target.value })} style={{ width: "100%" }} />
+                </label>
+              )}
+
+              {/* On order */}
+              {draft.status === "on_order" && (<>
+                <label>
+                  <div className={m.fieldLabel}>Order reference</div>
+                  <input className={styles.invInput} value={draft.sm_orderRef}
+                    onChange={(e) => set({ sm_orderRef: e.target.value })}
+                    placeholder="e.g. #12345" style={{ width: "100%" }} />
+                </label>
+                <label>
+                  <div className={m.fieldLabel}>Expected delivery</div>
+                  <input className={styles.invInput} type="date" value={draft.sm_deliveryDate}
+                    onChange={(e) => set({ sm_deliveryDate: e.target.value })} style={{ width: "100%" }} />
+                </label>
+              </>)}
             </div>
         </CollapsibleSection>
 
@@ -1490,32 +1668,82 @@ export function ItemModal({
           compact
         />
 
-        {/* Status banner — only for non-owned */}
-        {(item.status ?? "owned") !== "owned" && (
-          <div style={{
-            background: statusColor(item.status),
-            color: "#fff",
-            borderRadius: 10,
-            padding: "0.6rem 1rem",
-            marginBottom: "0.85rem",
-            fontWeight: 700,
-            fontSize: "0.92rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}>
-            <span style={{ fontSize: "1.1rem" }}>
-              {item.status === "wishlist"  ? "🔖" :
-               item.status === "on_order"  ? "📦" :
-               item.status === "lent_out"  ? "🤝" :
-               item.status === "gifted"    ? "🎁" :
-               item.status === "sold"      ? "💸" :
-               item.status === "consumed"  ? "✅" :
-               item.status === "discarded" ? "🗑" : ""}
-            </span>
-            <span>{statusLabel(item.status)}</span>
-          </div>
-        )}
+        {/* Status banner + meta — only for non-owned */}
+        {(item.status ?? "owned") !== "owned" && (() => {
+          const sm = item.status_meta || {};
+          const metaRows: Array<[string, string]> = [];
+
+          if (item.status === "gifted") {
+            if (sm.receiver) metaRows.push(["Receiver", sm.receiver]);
+            if (sm.giftDate) metaRows.push(["Gift date", sm.giftDate]);
+          } else if (item.status === "sold") {
+            if (sm.soldTo)    metaRows.push(["Sold to",    sm.soldTo]);
+            if (sm.salePrice != null) metaRows.push(["Sale price", `${sm.salePrice} ${item.purchase?.currency ?? ""}`]);
+            if (sm.saleDate)  metaRows.push(["Sale date",  sm.saleDate]);
+          } else if (item.status === "lent_out") {
+            if (sm.lentTo)     metaRows.push(["Lent to",         sm.lentTo]);
+            if (sm.lentDate)   metaRows.push(["Lent date",       sm.lentDate]);
+            if (sm.returnDate) metaRows.push(["Expected return", sm.returnDate]);
+          } else if (item.status === "discarded") {
+            if (sm.reason) metaRows.push(["Reason", sm.reason]);
+            if (sm.date)   metaRows.push(["Date",   sm.date]);
+          } else if (item.status === "consumed") {
+            if (sm.date) metaRows.push(["Date consumed", sm.date]);
+          } else if (item.status === "on_order") {
+            if (sm.orderRef)     metaRows.push(["Order ref",          sm.orderRef]);
+            if (sm.deliveryDate) metaRows.push(["Expected delivery",  sm.deliveryDate]);
+          }
+
+          return (
+            <div style={{
+              background: statusColor(item.status),
+              borderRadius: 10,
+              marginBottom: "0.85rem",
+              overflow: "hidden",
+            }}>
+              {/* Banner header */}
+              <div style={{
+                padding: "0.6rem 1rem",
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: "0.92rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+              }}>
+                <span style={{ fontSize: "1.1rem" }}>
+                  {item.status === "wishlist"  ? "🔖" :
+                   item.status === "on_order"  ? "📦" :
+                   item.status === "lent_out"  ? "🤝" :
+                   item.status === "gifted"    ? "🎁" :
+                   item.status === "sold"      ? "💸" :
+                   item.status === "consumed"  ? "✅" :
+                   item.status === "discarded" ? "🗑" : ""}
+                </span>
+                <span>{statusLabel(item.status)}</span>
+              </div>
+              {/* Meta rows */}
+              {!!metaRows.length && (
+                <div style={{
+                  background: "rgba(0,0,0,0.15)",
+                  padding: "0.5rem 1rem 0.65rem",
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0.25rem 1rem",
+                }}>
+                  {metaRows.map(([label, value]) => (
+                    <div key={label} style={{ display: "flex", gap: "0.4rem", color: "#fff", fontSize: "0.88rem" }}>
+                      <span style={{ opacity: 0.7, whiteSpace: "nowrap" }}>{label}:</span>
+                      <span style={{ fontWeight: 600 }}>{value}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })()}
+
+        {showWargameSummary && <WargameSummary specs={item.specs} />}
 
         {showWargameSummary && <WargameSummary specs={item.specs} />}
         {isBook(item.category || "") && <BookSummary specs={item.specs} />}
