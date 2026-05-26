@@ -45,6 +45,7 @@ export type DbItem = {
   purchase_history: any;
   parent_id: string | null;
   status: ItemStatus;
+  status_meta: any;
 };
 
 export type DbItemLink = {
