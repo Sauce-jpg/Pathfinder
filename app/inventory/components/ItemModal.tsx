@@ -8,7 +8,7 @@ import { Modal } from "./Modal";
 import { Specs } from "./Specs";
 import { supabase } from "../../../lib/supabaseClient";
 import { ImageManager, ImageUploadTrigger } from "./ImageManager";
-import { DbItem, DbItemLink, DbPhoto } from "../types";
+import { DbItem, DbItemLink, DbPhoto, ItemStatus, STATUS_OPTIONS, statusLabel, statusColor } from "../types";
 import { PhotoStrip } from "./PhotoStrip";
 import { ChildCreatorModal } from "./ChildCreatorModal";
 
@@ -74,6 +74,7 @@ type EditDraft = {
   bk_rating: string;
   bk_pages:   string;
   bk_weight:  string;
+  status:     string;
 };
 
 // ── Collapsible section ────────────────────────────────────────────────
@@ -312,6 +313,7 @@ function draftFromItem(item: DbItem): EditDraft {
     specs_json:              JSON.stringify(item.specs ?? {}, null, 2),
     ...wgFromItem(item),
     ...bkFromItem(item),
+    status: item.status ?? "owned",
   } as EditDraft;
 }
 
@@ -325,6 +327,7 @@ function emptyDraft(): EditDraft {
     specs_json: "{}",
     ...emptyWg(),
     ...emptyBk(),
+    status: "owned",
   } as EditDraft;
 }
 
@@ -762,6 +765,7 @@ export function ItemModal({
       location: draft.location || null,
       tags:     tagsArr,
       notes:    draft.notes    || null,
+      status:   draft.status   || "owned",
       purchase: buildPurchase(isCloning ? {} : item?.purchase),
       specs:    specsObj,
     };
@@ -1038,6 +1042,25 @@ export function ItemModal({
               {notesExpanded ? "▲ Collapse notes" : "▼ Expand notes"}
             </button>
           </label>
+        </CollapsibleSection>
+
+        {/* ── Status (open by default) ── */}
+        <CollapsibleSection title="Purchase" defaultOpen={true}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.65rem" }}>
+              <label>
+                <div className={m.fieldLabel}>Status</div>
+                <select
+                  className={styles.invSelect}
+                  value={draft.status}
+                  onChange={(e) => set({ status: e.target.value })}
+                  style={{ width: "100%" }}
+                >
+                  {STATUS_OPTIONS.map((o) => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+              </label>
+            </div>
         </CollapsibleSection>
 
         {/* ── Purchase (open by default) ── */}
@@ -1466,6 +1489,33 @@ export function ItemModal({
           session={session}
           compact
         />
+
+        {/* Status banner — only for non-owned */}
+        {(item.status ?? "owned") !== "owned" && (
+          <div style={{
+            background: statusColor(item.status),
+            color: "#fff",
+            borderRadius: 10,
+            padding: "0.6rem 1rem",
+            marginBottom: "0.85rem",
+            fontWeight: 700,
+            fontSize: "0.92rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}>
+            <span style={{ fontSize: "1.1rem" }}>
+              {item.status === "wishlist"  ? "🔖" :
+               item.status === "on_order"  ? "📦" :
+               item.status === "lent_out"  ? "🤝" :
+               item.status === "gifted"    ? "🎁" :
+               item.status === "sold"      ? "💸" :
+               item.status === "consumed"  ? "✅" :
+               item.status === "discarded" ? "🗑" : ""}
+            </span>
+            <span>{statusLabel(item.status)}</span>
+          </div>
+        )}
 
         {showWargameSummary && <WargameSummary specs={item.specs} />}
         {isBook(item.category || "") && <BookSummary specs={item.specs} />}
