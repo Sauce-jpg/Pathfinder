@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "../inventory.module.css";
-import { DEFAULT_FILTERS, Filters } from "../types";
+import { DEFAULT_FILTERS, Filters, STATUS_OPTIONS } from "../types";
 import { getViews, setViews } from "../helpers";
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
   activeOrderId: string;
   onClearOrder: () => void;
   filteredCount: number;
+  hiddenNonOwnedCount: number;
   savedViews: Record<string, Partial<Filters>>;
   onSavedViewsChange: (v: Record<string, Partial<Filters>>) => void;
 };
@@ -24,6 +25,7 @@ export function FilterBar({
   activeOrderId,
   onClearOrder,
   filteredCount,
+  hiddenNonOwnedCount,
   savedViews,
   onSavedViewsChange,
 }: Props) {
@@ -37,12 +39,14 @@ export function FilterBar({
     if (!view) return;
     onChange({
       ...filters,
-      q:           view.q           ?? filters.q,
-      category:    view.category    ?? filters.category,
-      location:    view.location    ?? filters.location,
-      buildStatus: view.buildStatus ?? filters.buildStatus,
-      paintStatus: view.paintStatus ?? filters.paintStatus,
-      sort:        view.sort        ?? filters.sort,
+      q:            view.q            ?? filters.q,
+      category:     view.category     ?? filters.category,
+      location:     view.location     ?? filters.location,
+      buildStatus:  view.buildStatus  ?? filters.buildStatus,
+      paintStatus:  view.paintStatus  ?? filters.paintStatus,
+      sort:         view.sort         ?? filters.sort,
+      status:       view.status       ?? filters.status,
+      showNonOwned: view.showNonOwned ?? filters.showNonOwned,
     });
   }
 
@@ -129,6 +133,17 @@ export function FilterBar({
 
         <select
           className={styles.invSelect}
+          value={filters.status}
+          onChange={(e) => set({ status: e.target.value })}
+        >
+          <option value="">Status: All</option>
+          {STATUS_OPTIONS.map((o) => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </select>
+
+        <select
+          className={styles.invSelect}
           value={filters.sort}
           onChange={(e) =>
             set({ sort: e.target.value as Filters["sort"] })
@@ -142,7 +157,6 @@ export function FilterBar({
           <option value="price-asc">Sort: Price (low → high)</option>
         </select>
 
-        {/* Saved views */}
         <select
           className={styles.invSelect}
           value=""
@@ -175,12 +189,27 @@ export function FilterBar({
         <span>
           {filteredCount} item{filteredCount === 1 ? "" : "s"}
           {activeOrderId ? ` • Order: ${activeOrderId}` : ""}
+          {hiddenNonOwnedCount > 0 && !filters.showNonOwned && (
+            <span style={{ opacity: 0.55, marginLeft: "0.5rem" }}>
+              · {hiddenNonOwnedCount} non-owned hidden
+            </span>
+          )}
         </span>
-        {activeOrderId && (
-          <button className={styles.invBtn} onClick={onClearOrder}>
-            Clear order filter
-          </button>
-        )}
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          {hiddenNonOwnedCount > 0 && (
+            <button
+              className={styles.invBtn}
+              onClick={() => set({ showNonOwned: !filters.showNonOwned })}
+            >
+              {filters.showNonOwned ? "Hide non-owned" : `Show non-owned (${hiddenNonOwnedCount})`}
+            </button>
+          )}
+          {activeOrderId && (
+            <button className={styles.invBtn} onClick={onClearOrder}>
+              Clear order filter
+            </button>
+          )}
+        </div>
       </div>
     </>
   );
