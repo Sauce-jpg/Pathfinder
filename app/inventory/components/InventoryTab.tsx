@@ -27,9 +27,9 @@ export function InventoryTab({
   onSelectItem,
   loadError,
 }: Props) {
-  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
-  const [page, setPage] = useState(1);
-  const [viewMode, setViewMode] = useState<ViewMode>("card");
+  const [filters,    setFilters]    = useState<Filters>(DEFAULT_FILTERS);
+  const [page,       setPage]       = useState(1);
+  const [viewMode,   setViewMode]   = useState<ViewMode>("card");
   const [savedViews, setSavedViews] = useState<Record<string, Partial<Filters>>>({});
 
   const categories = useMemo(
@@ -41,6 +41,12 @@ export function InventoryTab({
     [items]
   );
 
+  // Count non-owned items that would be hidden
+  const hiddenNonOwnedCount = useMemo(
+    () => items.filter((i) => (i.status ?? "owned") !== "owned").length,
+    [items]
+  );
+
   const filtered = useMemo(() => {
     const q        = filters.q.trim().toLowerCase();
     const category = filters.category;
@@ -48,8 +54,14 @@ export function InventoryTab({
     const build    = filters.buildStatus;
     const paint    = filters.paintStatus;
     const sort     = filters.sort;
+    const status   = filters.status;
 
     let list = [...items];
+
+    // Hide non-owned by default unless toggled or filtering by status
+    if (!filters.showNonOwned && !status) {
+      list = list.filter((it) => (it.status ?? "owned") === "owned");
+    }
 
     if (activeOrderId)
       list = list.filter((it) => getOrderId(it) === activeOrderId);
@@ -59,6 +71,8 @@ export function InventoryTab({
       list = list.filter((it) => (it.category || "") === category);
     if (location)
       list = list.filter((it) => (it.location || "") === location);
+    if (status)
+      list = list.filter((it) => (it.status ?? "owned") === status);
     if (build)
       list = list.filter(
         (it) => it.type === "miniatures" && (it.specs?.buildStatus || "") === build
@@ -83,15 +97,9 @@ export function InventoryTab({
           return (da?.getTime() || 0) - (db?.getTime() || 0);
         }
         case "price-desc":
-          return (
-            (Number(b.purchase?.price) || 0) -
-            (Number(a.purchase?.price) || 0)
-          );
+          return (Number(b.purchase?.price) || 0) - (Number(a.purchase?.price) || 0);
         case "price-asc":
-          return (
-            (Number(a.purchase?.price) || 0) -
-            (Number(b.purchase?.price) || 0)
-          );
+          return (Number(a.purchase?.price) || 0) - (Number(b.purchase?.price) || 0);
         case "name-asc":
         default:
           return safeText(a.name).localeCompare(safeText(b.name));
@@ -121,6 +129,7 @@ export function InventoryTab({
     const rows = filtered.map((it) => ({
       id:          it.id,
       name:        it.name,
+      status:      it.status      ?? "owned",
       category:    it.category    || "",
       type:        it.type        || "",
       quantity:    it.quantity    ?? 1,
@@ -167,26 +176,19 @@ export function InventoryTab({
         categories={categories}
         locations={locations}
         activeOrderId={activeOrderId}
-        onClearOrder={() => {
-          onClearOrder();
-          setPage(1);
-        }}
+        onClearOrder={() => { onClearOrder(); setPage(1); }}
         filteredCount={filtered.length}
+        hiddenNonOwnedCount={hiddenNonOwnedCount}
         savedViews={savedViews}
         onSavedViewsChange={setSavedViews}
       />
 
       {/* View toggle + CSV export */}
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: "0 auto 0.75rem",
-          padding: "0 1rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
-      >
+      <div style={{
+        maxWidth: 1100, margin: "0 auto 0.75rem",
+        padding: "0 1rem",
+        display: "flex", alignItems: "center", gap: "0.5rem",
+      }}>
         <button
           className={`${styles.invBtn} ${viewMode === "card" ? styles.invTabActive : ""}`}
           onClick={() => setViewMode("card")}
@@ -201,7 +203,6 @@ export function InventoryTab({
         >
           ☰ Table
         </button>
-
         <div style={{ marginLeft: "auto" }}>
           <button className={styles.invBtn} onClick={handleCsvExport}>
             ⬇ Export CSV
@@ -210,14 +211,7 @@ export function InventoryTab({
       </div>
 
       {loadError && (
-        <div
-          style={{
-            maxWidth: 1100,
-            margin: "0 auto",
-            padding: "0 1rem 1rem",
-            color: "crimson",
-          }}
-        >
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1rem 1rem", color: "crimson" }}>
           Error: {loadError}
         </div>
       )}
