@@ -62,15 +62,39 @@ export default function InventoryPage() {
     window.location.href = "/auth/login";
   }
 
+
+  async function fetchAllItems(): Promise<DbItem[]> {
+  const allRows: DbItem[] = [];
+  const batchSize = 1000;
+  let from = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from("inventory_items")
+      .select("*")
+      .order("name", { ascending: true })
+      .range(from, from + batchSize - 1);
+
+    if (error) throw new Error(error.message);
+    if (!data || data.length === 0) break;
+
+    allRows.push(...(data as DbItem[]));
+
+    if (data.length < batchSize) break;
+    from += batchSize;
+  }
+
+  return allRows;
+}
+
   // ── Data loading ────────────────────────────────────────────────────
   async function loadAll() {
     if (!session?.user?.id) return;
     setLoading(true);
     setLoadError(null);
 
-    const [itemsRes, setupsRes, joinRes, linksRes, photosRes, orderMetasRes] =
+    const [setupsRes, joinRes, linksRes, photosRes, orderMetasRes] =
       await Promise.all([
-        supabase.from("inventory_items").select("*").order("name", { ascending: true }).range(0, 99999),
         supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
         supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
         supabase.from("inventory_item_links").select("*").order("created_at", { ascending: false }),
@@ -78,12 +102,11 @@ export default function InventoryPage() {
         supabase.from("inventory_orders").select("*"),
       ]);
 
-    if (itemsRes.error)  setLoadError(itemsRes.error.message);
     if (setupsRes.error) setLoadError(setupsRes.error.message);
     if (joinRes.error)   setLoadError(joinRes.error.message);
     if (linksRes.error)  setLoadError(linksRes.error.message);
 
-    setItems      ((itemsRes.data      || []) as DbItem[]);
+    setItems      (fetchedItems);
     setSetups     ((setupsRes.data     || []) as DbSetup[]);
     setSetupItems ((joinRes.data       || []) as DbSetupItem[]);
     setLinks      ((linksRes.data      || []) as DbItemLink[]);
