@@ -70,7 +70,7 @@ export default function InventoryPage() {
 
     const [itemsRes, setupsRes, joinRes, linksRes, photosRes, orderMetasRes] =
       await Promise.all([
-        supabase.from("inventory_items").select("*").order("name", { ascending: true }),
+        supabase.from("inventory_items").select("*").order("name", { ascending: true }).range(0, 99999),
         supabase.from("inventory_setups").select("*").order("name", { ascending: true }),
         supabase.from("inventory_setup_items").select("*").order("position", { ascending: true }),
         supabase.from("inventory_item_links").select("*").order("created_at", { ascending: false }),
