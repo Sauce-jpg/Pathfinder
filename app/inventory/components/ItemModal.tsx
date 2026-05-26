@@ -1045,7 +1045,7 @@ export function ItemModal({
         </CollapsibleSection>
 
         {/* ── Status (open by default) ── */}
-        <CollapsibleSection title="Purchase" defaultOpen={true}>
+        <CollapsibleSection title="Status" defaultOpen={true}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.65rem" }}>
               <label>
                 <div className={m.fieldLabel}>Status</div>
