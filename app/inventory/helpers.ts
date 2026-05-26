@@ -14,10 +14,15 @@ export function parseDate(d?: string | null): Date | null {
 
 export function fmtMoney(purchase: any): string {
   if (!purchase || purchase.price == null) return "";
-  const cur = purchase.currency || "";
+  const cur   = purchase.currency || "";
   const price = Number(purchase.price);
   if (Number.isNaN(price)) return "";
-  return `${price.toLocaleString()} ${cur}`.trim();
+  // Preserve decimals: show up to 2 decimal places, but omit trailing zeros
+  const formatted = price.toLocaleString(undefined, {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  });
+  return `${formatted} ${cur}`.trim();
 }
 
 export function uniq(arr: string[]): string[] {
@@ -44,6 +49,7 @@ export function itemSearchText(item: DbItem): string {
     item.category,
     item.type,
     item.location,
+    item.status,
     ...(item.tags || []),
     item.notes,
     // Wargame fields
@@ -55,7 +61,6 @@ export function itemSearchText(item: DbItem): string {
     wg.paintStatus,
     wg.storage,
     wg.rules,
-    // Top-level spec fields (build/paint status stored here for filter compat)
     item.specs?.buildStatus,
     item.specs?.paintStatus,
     // Book fields
@@ -97,8 +102,6 @@ export function setViews(v: Record<string, Partial<Filters>>): void {
   localStorage.setItem("inventoryViews", JSON.stringify(v));
 }
 
-// Returns the appropriate column set for the current category filter.
-// User overrides (stored in localStorage) are merged on top.
 export function resolveColumns(activeCategory: string): ColumnKey[] {
   const preset =
     CATEGORY_COLUMN_PRESETS[activeCategory] ??
@@ -117,7 +120,7 @@ export function resolveColumns(activeCategory: string): ColumnKey[] {
 
 export function saveColumnOverride(activeCategory: string, cols: ColumnKey[]): void {
   try {
-    const saved = localStorage.getItem("inventoryColumnOverrides");
+    const saved    = localStorage.getItem("inventoryColumnOverrides");
     const overrides = saved ? JSON.parse(saved) : {};
     overrides[activeCategory || "default"] = cols;
     localStorage.setItem("inventoryColumnOverrides", JSON.stringify(overrides));
