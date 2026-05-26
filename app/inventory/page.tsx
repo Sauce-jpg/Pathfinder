@@ -106,6 +106,13 @@ export default function InventoryPage() {
     if (joinRes.error)   setLoadError(joinRes.error.message);
     if (linksRes.error)  setLoadError(linksRes.error.message);
 
+    let fetchedItems: DbItem[] = [];
+    try {
+      fetchedItems = await fetchAllItems();
+    } catch (e: any) {
+      setLoadError(e?.message || "Failed to load items");
+    }
+
     setItems      (fetchedItems);
     setSetups     ((setupsRes.data     || []) as DbSetup[]);
     setSetupItems ((joinRes.data       || []) as DbSetupItem[]);
