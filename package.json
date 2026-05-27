@@ -18,10 +18,12 @@
     "react-dom": "19.0.0",
     "@supabase/supabase-js": "^2.49.0",
     "@supabase/ssr": "^0.6.1"
+    "mailparser": "^3.7.1",
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "typescript": "^5.0.0"
+    "@types/mailparser": "^3.4.4",
   }
 }
