@@ -195,7 +195,8 @@ export function DocumentList({ documents, canDelete = true, onDelete }: Props) {
                 )}
 
                 {/* Download */}
-                
+
+                <a
                   href={doc.file_url}
                   download={doc.filename}
                   target="_blank"
@@ -275,7 +276,8 @@ export function DocumentList({ documents, canDelete = true, onDelete }: Props) {
             <span style={{ color: "#fff", fontWeight: 600, flex: 1, fontSize: "0.92rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {preview.doc.metadata?.subject ?? preview.doc.filename}
             </span>
-            
+
+            <a
               href={preview.doc.file_url}
               download={preview.doc.filename}
               target="_blank"
