@@ -5,6 +5,7 @@ import { supabase } from "../../../lib/supabaseClient";
 import { DbItem, DbOrderMeta } from "../types";
 import { Modal } from "./Modal";
 import styles from "../inventory.module.css";
+import { DocumentManager } from "./DocumentManager";
 
 type Order = {
   orderId:  string;
@@ -434,137 +435,14 @@ export function OrderModal({
             </div>
           )}
 
-          {/* Documents section */}
-          <div style={{
-            border: "1px solid rgba(0,0,0,0.08)",
-            borderRadius: 12,
-            overflow: "hidden",
-            marginBottom: "0.85rem",
-          }}>
-            <div style={{
-              padding: "0.5rem 0.85rem",
-              background: "rgba(0,0,0,0.03)",
-              borderBottom: documents.length ? "1px solid rgba(0,0,0,0.07)" : "none",
-              fontWeight: 700, fontSize: "0.82rem",
-              textTransform: "uppercase", letterSpacing: "0.05em", opacity: 0.7,
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-            }}>
-              <span>Documents</span>
-              <span style={{ opacity: 0.6, fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>
-                {documents.length} file{documents.length === 1 ? "" : "s"}
-              </span>
-            </div>
+          {/* Documents */}
+          <DocumentManager
+            entityType="order"
+            entityId={order.orderId}
+            session={session}
+          />
 
-            {/* Document list */}
-            {!!documents.length && (
-              <div style={{ padding: "0.65rem 0.85rem", display: "grid", gap: "0.5rem" }}>
-                {documents.map((url) => (
-                  <div key={url} style={{
-                    display: "flex", alignItems: "center", gap: "0.65rem",
-                    padding: "0.5rem 0.65rem",
-                    border: "1px solid rgba(0,0,0,0.08)",
-                    borderRadius: 10,
-                  }}>
-                    {/* Thumbnail or icon */}
-                    {isImage(url) ? (
-                      <img
-                        src={url}
-                        alt=""
-                        style={{
-                          width: 48, height: 48, objectFit: "cover",
-                          borderRadius: 6, flexShrink: 0, cursor: "zoom-in",
-                        }}
-                        onClick={() => setLightboxUrl(url)}
-                      />
-                    ) : (
-                      <div style={{
-                        width: 48, height: 48, borderRadius: 6,
-                        background: "rgba(0,0,0,0.05)",
-                        display: "flex", alignItems: "center",
-                        justifyContent: "center", fontSize: "1.4rem",
-                        flexShrink: 0,
-                      }}>
-                        {isPdf(url) ? "📄" : "📎"}
-                      </div>
-                    )}
-
-                    {/* Filename + link */}
-                    <div style={{ flex: 1, minWidth: 0 }}><a
-                      
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          fontSize: "0.88rem", fontWeight: 600,
-                          color: "inherit", wordBreak: "break-all",
-                        }}
-                      >
-                        {fileLabel(url)}
-                      </a>
-                    </div>
-
-                    {/* Delete */}
-                    <button
-                      className={styles.invBtn}
-                      style={{ padding: "0.3rem 0.6rem", flexShrink: 0 }}
-                      onClick={() => handleDeleteDocument(url)}
-                      disabled={deletingDoc === url}
-                    >
-                      {deletingDoc === url ? "…" : "✕"}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Upload area */}
-            <div style={{ padding: "0.65rem 0.85rem" }}>
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.txt,.csv"
-                style={{ display: "none" }}
-                onChange={(e) => handleUploadFiles(e.target.files)}
-              />
-              <div
-                style={{
-                  border: "2px dashed rgba(0,0,0,0.13)",
-                  borderRadius: 10,
-                  padding: "1rem",
-                  textAlign: "center",
-                  cursor: uploading ? "wait" : "pointer",
-                  opacity: uploading ? 0.6 : 1,
-                  transition: "border-color 0.15s, background 0.15s",
-                }}
-                onClick={() => !uploading && fileInputRef.current?.click()}
-                onDrop={(e) => { e.preventDefault(); handleUploadFiles(e.dataTransfer.files); }}
-                onDragOver={(e) => e.preventDefault()}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(0,0,0,0.02)")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-              >
-                {uploading ? (
-                  <span style={{ fontSize: "0.88rem", opacity: 0.6 }}>Uploading…</span>
-                ) : (
-                  <>
-                    <div style={{ fontSize: "1.3rem", opacity: 0.3, marginBottom: "0.25rem" }}>📎</div>
-                    <div style={{ fontSize: "0.88rem", fontWeight: 600, opacity: 0.55 }}>
-                      Drop files here or click to upload
-                    </div>
-                    <div style={{ fontSize: "0.76rem", opacity: 0.38, marginTop: "0.2rem" }}>
-                      Images, PDFs, Word, Excel · max 20 MB
-                    </div>
-                  </>
-                )}
-              </div>
-              {uploadError && (
-                <p style={{ color: "crimson", fontSize: "0.82rem", margin: "0.35rem 0 0" }}>
-                  {uploadError}
-                </p>
-              )}
-            </div>
-          </div>
-
+          
           {/* Items list */}
           <h3 style={{ marginBottom: "0.5rem" }}>Items</h3>
           <div className={styles.setupItems}>
