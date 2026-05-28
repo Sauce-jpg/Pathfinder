@@ -11,6 +11,7 @@ import { ImageManager, ImageUploadTrigger } from "./ImageManager";
 import { DbItem, DbItemLink, DbPhoto, ItemStatus, STATUS_OPTIONS, statusLabel, statusColor } from "../types";
 import { PhotoStrip } from "./PhotoStrip";
 import { ChildCreatorModal } from "./ChildCreatorModal";
+import { DocumentManager } from "./DocumentManager";
 
 // ── Types ──────────────────────────────────────────────────────────────
 
@@ -1965,6 +1966,12 @@ export function ItemModal({
           allItems={allItems}
           onPhotoSaved={async () => onPhotosChanged()}
           onPhotoDeleted={onPhotosChanged}
+          session={session}
+        />
+
+        <DocumentManager
+          entityType="item"
+          entityId={item.id}
           session={session}
         />
       </>
