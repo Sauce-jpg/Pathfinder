@@ -64,10 +64,10 @@ const links = [
     badge: "New",
   },
   {
-    href: "/other/index.html",
-    emoji: "🧭",
-    title: "Other",
-    desc: "Miscellaneous links & tools",
+    href: "/bookmarks",
+    emoji: "🔖",
+    title: "Bookmarks",
+    desc: "Saved links, tools & resources — importable from any browser",
     hue: 300,
   },
   {
