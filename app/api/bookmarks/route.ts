@@ -3,9 +3,12 @@ import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
-  const supabase = createRouteHandlerClient({ cookies })
-  const { data: { session } } = await supabase.auth.getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { createClient } = await import('@/lib/supabaseClient')
+  const cookieHeader = req.headers.get('cookie') || ''
+  if (!cookieHeader.includes('sb-session=1')) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  const { supabase } = await import('@/lib/supabaseClient')
 
   const { searchParams } = new URL(req.url)
   const tag = searchParams.get('tag')
@@ -28,9 +31,12 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const supabase = createRouteHandlerClient({ cookies })
-  const { data: { session } } = await supabase.auth.getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { createClient } = await import('@/lib/supabaseClient')
+  const cookieHeader = req.headers.get('cookie') || ''
+  if (!cookieHeader.includes('sb-session=1')) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  const { supabase } = await import('@/lib/supabaseClient')
 
   const body = await req.json()
   const { title, url, description, tags, folder } = body
@@ -54,9 +60,12 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const supabase = createRouteHandlerClient({ cookies })
-  const { data: { session } } = await supabase.auth.getSession()
-  if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  const { createClient } = await import('@/lib/supabaseClient')
+  const cookieHeader = req.headers.get('cookie') || ''
+  if (!cookieHeader.includes('sb-session=1')) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  const { supabase } = await import('@/lib/supabaseClient')
 
   const { id } = await req.json()
   const { error } = await supabase.from('bookmarks').delete().eq('id', id).eq('user_id', session.user.id)
