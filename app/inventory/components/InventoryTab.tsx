@@ -60,7 +60,7 @@ export function InventoryTab({
 
     // Hide non-owned by default unless toggled or filtering by status
     if (!filters.showNonOwned && !status) {
-      list = list.filter((it) => ["owned", "partners"].includes(it.status ?? "owned"));
+      list = list.filter((it) => ["owned", "household"].includes(it.status ?? "owned"));
     }
 
     if (activeOrderId)
