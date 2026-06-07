@@ -89,6 +89,7 @@ type EditDraft = {
   sm_date:      string;
   sm_orderRef:  string;
   sm_deliveryDate: string;
+  sm_owner:        string;
 };
 
 // ── Collapsible section ────────────────────────────────────────────────
@@ -255,6 +256,7 @@ function smFromItem(item: DbItem): Partial<EditDraft> {
     sm_date:         sm.date         ?? "",
     sm_orderRef:     sm.orderRef     ?? "",
     sm_deliveryDate: sm.deliveryDate ?? "",
+    sm_owner:        sm.owner        ?? "",
   };
 }
 
@@ -262,7 +264,7 @@ function emptySm(): Partial<EditDraft> {
   return {
     sm_receiver: "", sm_giftDate: "", sm_soldTo: "", sm_salePrice: "",
     sm_saleDate: "", sm_lentTo: "", sm_lentDate: "", sm_returnDate: "",
-    sm_reason: "", sm_date: "", sm_orderRef: "", sm_deliveryDate: "",
+    sm_reason: "", sm_date: "", sm_orderRef: "", sm_deliveryDate: "", sm_owner: "",
   };
 }
 
@@ -294,6 +296,10 @@ function buildStatusMeta(draft: EditDraft): Record<string, any> | null {
     case "consumed":
       return {
         date: draft.sm_date || null,
+      };
+    case "household":
+      return {
+        owner: draft.sm_owner || null,
       };
     case "on_order":
       return {
@@ -1145,6 +1151,17 @@ export function ItemModal({
                 </select>
               </label>
 
+              {/* Household */}
+              {draft.status === "household" && (
+                <label>
+                  <div className={m.fieldLabel}>Whose is it?</div>
+                  <input className={styles.invInput} value={draft.sm_owner}
+                    onChange={(e) => set({ sm_owner: e.target.value })}
+                    placeholder="e.g. Sara, Dad, Emma"
+                    style={{ width: "100%" }} />
+                </label>
+              )}
+
               {/* Gifted */}
               {draft.status === "gifted" && (<>
                 <label>
@@ -1674,6 +1691,10 @@ export function ItemModal({
           const sm = item.status_meta || {};
           const metaRows: Array<[string, string]> = [];
 
+          if (item.status === "household") {
+            if (sm.owner) metaRows.push(["Owner", sm.owner]);
+          } else
+
           if (item.status === "gifted") {
             if (sm.receiver) metaRows.push(["Receiver", sm.receiver]);
             if (sm.giftDate) metaRows.push(["Gift date", sm.giftDate]);
@@ -1713,7 +1734,8 @@ export function ItemModal({
                 gap: "0.5rem",
               }}>
                 <span style={{ fontSize: "1.1rem" }}>
-                  {item.status === "wishlist"  ? "🔖" :
+                  {item.status === "household" ? "👥" :
+                   item.status === "wishlist"  ? "🔖" :
                    item.status === "on_order"  ? "📦" :
                    item.status === "lent_out"  ? "🤝" :
                    item.status === "gifted"    ? "🎁" :
@@ -1721,7 +1743,11 @@ export function ItemModal({
                    item.status === "consumed"  ? "✅" :
                    item.status === "discarded" ? "🗑" : ""}
                 </span>
-                <span>{statusLabel(item.status)}</span>
+                <span>
+                  {item.status === "household" && item.status_meta?.owner
+                    ? `${item.status_meta.owner}'s`
+                    : statusLabel(item.status)}
+                </span>
               </div>
               {/* Meta rows */}
               {!!metaRows.length && (
