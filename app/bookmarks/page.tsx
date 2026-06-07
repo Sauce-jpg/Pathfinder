@@ -19,7 +19,6 @@ const EMPTY_FORM = { title: '', url: '', description: '', tags: '', folder: '' }
 
 export default function BookmarksPage() {
   const router = useRouter()
-  const supabase = createClientComponentClient()
 
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
   const [loading, setLoading] = useState(true)
@@ -36,11 +35,10 @@ export default function BookmarksPage() {
   const [importing, setImporting] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
 
-  // Auth check
+  // Auth check via cookie (Next.js 15 compatible)
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) router.push('/auth/login')
-    })
+    const hasSession = document.cookie.includes('sb-session=1')
+    if (!hasSession) router.push('/auth/login')
   }, [])
 
   const fetchBookmarks = useCallback(async () => {
