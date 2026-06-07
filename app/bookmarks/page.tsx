@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { supabase } from '@/lib/supabaseClient'
 
 interface Bookmark {
   id: string
@@ -20,6 +20,7 @@ const EMPTY_FORM = { title: '', url: '', description: '', tags: '', folder: '' }
 export default function BookmarksPage() {
   const router = useRouter()
 
+  const [userId, setUserId] = useState<string | null>(null)
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -35,63 +36,70 @@ export default function BookmarksPage() {
   const [importing, setImporting] = useState(false)
   const [editingId, setEditingId] = useState<string | null>(null)
 
-  // Auth check via cookie (Next.js 15 compatible)
+  // Auth check
   useEffect(() => {
     const hasSession = document.cookie.includes('sb-session=1')
-    if (!hasSession) router.push('/auth/login')
+    if (!hasSession) { router.push('/auth/login'); return }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) { router.push('/auth/login'); return }
+      setUserId(session.user.id)
+    })
   }, [])
 
   const fetchBookmarks = useCallback(async () => {
+    if (!userId) return
     setLoading(true)
-    const params = new URLSearchParams()
-    if (search) params.set('q', search)
-    if (activeTag) params.set('tag', activeTag)
-    if (activeFolder) params.set('folder', activeFolder)
-    const res = await fetch(`/api/bookmarks?${params.toString()}`)
-    const data = await res.json()
-    setBookmarks(Array.isArray(data) ? data : [])
+
+    let query = supabase
+      .from('bookmarks')
+      .select('*')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: false })
+
+    if (activeTag) query = query.contains('tags', [activeTag])
+    if (activeFolder) query = query.eq('folder', activeFolder)
+    if (search) query = query.or(`title.ilike.%${search}%,url.ilike.%${search}%,description.ilike.%${search}%`)
+
+    const { data, error } = await query
+    if (!error) setBookmarks(data ?? [])
     setLoading(false)
-  }, [search, activeTag, activeFolder])
+  }, [userId, search, activeTag, activeFolder])
 
   useEffect(() => {
     fetchBookmarks()
   }, [fetchBookmarks])
 
-  // Derived filter options
   const allTags = Array.from(new Set(bookmarks.flatMap(b => b.tags))).sort()
   const allFolders = Array.from(new Set(bookmarks.map(b => b.folder).filter(Boolean))) as string[]
 
+  function getFavicon(url: string) {
+    try { return `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=32` }
+    catch { return null }
+  }
+
   async function handleSave() {
     setFormError('')
-    if (!form.title.trim() || !form.url.trim()) {
-      setFormError('Title and URL are required.')
-      return
-    }
+    if (!form.title.trim() || !form.url.trim()) { setFormError('Title and URL are required.'); return }
     try { new URL(form.url) } catch { setFormError('Enter a valid URL (include https://).'); return }
-
+    if (!userId) return
     setSaving(true)
+
     const payload = {
+      user_id: userId,
       title: form.title.trim(),
       url: form.url.trim(),
       description: form.description.trim() || null,
       tags: form.tags.split(',').map(t => t.trim()).filter(Boolean),
       folder: form.folder.trim() || null,
+      favicon_url: getFavicon(form.url.trim()),
     }
 
     if (editingId) {
-      const res = await fetch('/api/bookmarks', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: editingId, ...payload }),
-      })
-      if (!res.ok) { setFormError('Failed to update.'); setSaving(false); return }
+      const { error } = await supabase.from('bookmarks').update(payload).eq('id', editingId).eq('user_id', userId)
+      if (error) { setFormError('Failed to update.'); setSaving(false); return }
     } else {
-      const res = await fetch('/api/bookmarks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      if (!res.ok) { setFormError('Failed to save. URL may already exist.'); setSaving(false); return }
+      const { error } = await supabase.from('bookmarks').insert(payload)
+      if (error) { setFormError('Failed to save. URL may already exist.'); setSaving(false); return }
     }
 
     setSaving(false)
@@ -102,13 +110,7 @@ export default function BookmarksPage() {
   }
 
   function openEdit(b: Bookmark) {
-    setForm({
-      title: b.title,
-      url: b.url,
-      description: b.description || '',
-      tags: b.tags.join(', '),
-      folder: b.folder || '',
-    })
+    setForm({ title: b.title, url: b.url, description: b.description || '', tags: b.tags.join(', '), folder: b.folder || '' })
     setEditingId(b.id)
     setFormError('')
     setShowAddModal(true)
@@ -116,37 +118,71 @@ export default function BookmarksPage() {
 
   async function handleDelete(id: string) {
     if (!confirm('Delete this bookmark?')) return
-    await fetch('/api/bookmarks', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id }),
-    })
+    await supabase.from('bookmarks').delete().eq('id', id).eq('user_id', userId!)
     fetchBookmarks()
   }
 
-  async function handleImport() {
-    if (!importFile) return
-    setImporting(true)
-    setImportResult(null)
-    const fd = new FormData()
-    fd.append('file', importFile)
-    const res = await fetch('/api/bookmarks/import', { method: 'POST', body: fd })
-    const data = await res.json()
-    if (res.ok) {
-      setImportResult(`✓ Imported ${data.imported} new bookmarks (${data.total} found in file).`)
-      fetchBookmarks()
-    } else {
-      setImportResult(`Error: ${data.error}`)
+  function parseBookmarkHTML(html: string): { title: string; url: string; folder: string | null }[] {
+    const results: { title: string; url: string; folder: string | null }[] = []
+    const sections = html.split(/<h3[^>]*>/i)
+
+    // First section — no folder
+    const firstLinks = sections[0].matchAll(/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/gi)
+    for (const m of firstLinks) {
+      if (m[1].startsWith('http')) results.push({ url: m[1], title: m[2].trim(), folder: null })
     }
-    setImporting(false)
+
+    for (let i = 1; i < sections.length; i++) {
+      const folderMatch = sections[i].match(/^([^<]+)<\/h3>/i)
+      const folder = folderMatch ? folderMatch[1].trim() : null
+      const links = sections[i].matchAll(/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/gi)
+      for (const m of links) {
+        if (m[1].startsWith('http')) results.push({ url: m[1], title: m[2].trim(), folder })
+      }
+    }
+    return results
   }
 
-  const filtered = bookmarks // server already filters, this is just for display
+  async function handleImport() {
+    if (!importFile || !userId) return
+    setImporting(true)
+    setImportResult(null)
+
+    const html = await importFile.text()
+    const parsed = parseBookmarkHTML(html)
+
+    if (parsed.length === 0) { setImportResult('No bookmarks found in file.'); setImporting(false); return }
+
+    const rows = parsed.map(b => ({
+      user_id: userId,
+      title: b.title,
+      url: b.url,
+      folder: b.folder,
+      tags: [] as string[],
+      favicon_url: getFavicon(b.url),
+    }))
+
+    // Insert in batches of 50, skip duplicates
+    let imported = 0
+    for (let i = 0; i < rows.length; i += 50) {
+      const batch = rows.slice(i, i + 50)
+      const { data, error } = await supabase
+        .from('bookmarks')
+        .upsert(batch, { onConflict: 'user_id,url', ignoreDuplicates: true })
+        .select()
+      if (!error) imported += data?.length ?? 0
+    }
+
+    setImportResult(`✓ Imported ${imported} new bookmarks (${parsed.length} found in file).`)
+    setImporting(false)
+    fetchBookmarks()
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#e8e8e8', fontFamily: 'DM Sans, sans-serif', padding: '2rem' }}>
-      {/* Header */}
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+
+        {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <h1 style={{ fontSize: '2rem', fontWeight: 700, margin: 0, fontFamily: 'Playfair Display, serif' }}>Bookmarks</h1>
@@ -188,11 +224,11 @@ export default function BookmarksPage() {
         {/* Grid */}
         {loading ? (
           <p style={{ color: '#666', textAlign: 'center', marginTop: '4rem' }}>Loading...</p>
-        ) : filtered.length === 0 ? (
+        ) : bookmarks.length === 0 ? (
           <p style={{ color: '#666', textAlign: 'center', marginTop: '4rem' }}>No bookmarks yet. Add one or import from your browser.</p>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1rem' }}>
-            {filtered.map(b => (
+            {bookmarks.map(b => (
               <div key={b.id} style={{ background: '#1a1a1a', border: '1px solid #2a2a2a', borderRadius: 10, padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', transition: 'border-color 0.15s' }}
                 onMouseEnter={e => (e.currentTarget.style.borderColor = '#444')}
                 onMouseLeave={e => (e.currentTarget.style.borderColor = '#2a2a2a')}>
@@ -275,48 +311,39 @@ export default function BookmarksPage() {
   )
 }
 
-// Style helpers
 function btnStyle(variant: 'primary' | 'secondary') {
   return {
-    padding: '0.5rem 1.1rem',
-    borderRadius: 7,
+    padding: '0.5rem 1.1rem', borderRadius: 7,
     border: variant === 'secondary' ? '1px solid #333' : 'none',
     background: variant === 'primary' ? '#7c3aed' : 'transparent',
-    color: '#e8e8e8',
-    cursor: 'pointer',
-    fontSize: '0.9rem',
-    fontWeight: 500,
+    color: '#e8e8e8', cursor: 'pointer', fontSize: '0.9rem', fontWeight: 500,
   } as React.CSSProperties
 }
 
 function chipStyle(active: boolean) {
   return {
-    padding: '0.3rem 0.85rem',
-    borderRadius: 20,
+    padding: '0.3rem 0.85rem', borderRadius: 20,
     border: `1px solid ${active ? '#7c3aed' : '#333'}`,
     background: active ? '#7c3aed22' : 'transparent',
-    color: active ? '#a78bfa' : '#888',
-    cursor: 'pointer',
-    fontSize: '0.82rem',
+    color: active ? '#a78bfa' : '#888', cursor: 'pointer', fontSize: '0.82rem',
   } as React.CSSProperties
 }
 
 function tagChipStyle(active: boolean) {
   return {
-    padding: '0.25rem 0.7rem',
-    borderRadius: 20,
+    padding: '0.25rem 0.7rem', borderRadius: 20,
     border: `1px solid ${active ? '#a78bfa' : '#2a2a2a'}`,
     background: active ? '#a78bfa22' : '#1a1a1a',
-    color: active ? '#a78bfa' : '#666',
-    cursor: 'pointer',
-    fontSize: '0.78rem',
+    color: active ? '#a78bfa' : '#666', cursor: 'pointer', fontSize: '0.78rem',
   } as React.CSSProperties
 }
 
 const overlayStyle: React.CSSProperties = {
-  position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50,
+  position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)',
+  display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50,
 }
 
 const modalStyle: React.CSSProperties = {
-  background: '#1a1a1a', border: '1px solid #2a2a2a', borderRadius: 12, padding: '1.75rem', width: '100%', maxWidth: 480,
+  background: '#1a1a1a', border: '1px solid #2a2a2a',
+  borderRadius: 12, padding: '1.75rem', width: '100%', maxWidth: 480,
 }
