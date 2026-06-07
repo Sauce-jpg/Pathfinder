@@ -184,6 +184,53 @@ export default function BookmarksPage() {
     fetchBookmarks()
   }
 
+  function handleExport() {
+  const folderMap = new Map<string, Bookmark[]>()
+  const noFolder: Bookmark[] = []
+
+  bookmarks.forEach(b => {
+    if (b.folder) {
+      if (!folderMap.has(b.folder)) folderMap.set(b.folder, [])
+      folderMap.get(b.folder)!.push(b)
+    } else {
+      noFolder.push(b)
+    }
+  })
+
+  const bookmarkEntry = (b: Bookmark) =>
+    `        <DT><A HREF="${b.url}" ADD_DATE="${Math.floor(new Date(b.created_at).getTime() / 1000)}">${b.title}</A>`
+
+  let html = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<!-- This is an automatically generated file.
+     It will be read and overwritten.
+     DO NOT EDIT! -->
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>Bookmarks</TITLE>
+<H1>Bookmarks</H1>
+<DL><p>
+`
+
+  // Bookmarks without a folder
+  noFolder.forEach(b => { html += bookmarkEntry(b) + '\n' })
+
+  // Folders
+  folderMap.forEach((items, folder) => {
+    html += `    <DT><H3>${folder}</H3>\n    <DL><p>\n`
+    items.forEach(b => { html += bookmarkEntry(b) + '\n' })
+    html += `    </DL><p>\n`
+  })
+
+  html += `</DL>`
+
+  const blob = new Blob([html], { type: 'text/html' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'bookmarks.html'
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
   const inputStyle = {
     width: '100%', padding: '0.6rem 0.75rem', borderRadius: 6,
     border: `1px solid ${border}`, background: surface2,
@@ -221,6 +268,10 @@ export default function BookmarksPage() {
           {bookmarks.length} saved links
         </p>
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <button className="bm-btn" onClick={handleExport}
+            style={{ padding: '0.5rem 1.1rem', borderRadius: 7, border: `1px solid ${border}`, background: surface2, color: text2, cursor: 'pointer', fontSize: '0.9rem', fontFamily: "'DM Mono', monospace", letterSpacing: '0.06em' }}>
+            Export
+          </button>
           <button className="bm-btn" onClick={() => { setShowImportModal(true); setImportResult(null) }}
             style={{ padding: '0.5rem 1.1rem', borderRadius: 7, border: `1px solid ${border}`, background: surface2, color: text2, cursor: 'pointer', fontSize: '0.9rem', fontFamily: "'DM Mono', monospace", letterSpacing: '0.06em' }}>
             Import
