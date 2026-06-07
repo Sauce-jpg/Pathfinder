@@ -1,6 +1,6 @@
 export type ItemStatus =
   | "owned"
-  | "partners"
+  | "household"
   | "wishlist"
   | "on_order"
   | "lent_out"
@@ -11,7 +11,7 @@ export type ItemStatus =
 
 export const STATUS_OPTIONS: Array<{ value: ItemStatus; label: string; color: string }> = [
   { value: "owned",     label: "Owned",           color: ""        },
-  { value: "partners",  label: "Partner's",        color: "#06b6d4" },
+  { value: "household",  label: "Household",        color: "#06b6d4" },
   { value: "wishlist",  label: "Wishlist",         color: "#3b82f6" },
   { value: "on_order",  label: "On order",         color: "#8b5cf6" },
   { value: "lent_out",  label: "Lent out",         color: "#f59e0b" },
