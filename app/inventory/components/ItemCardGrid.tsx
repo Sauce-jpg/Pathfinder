@@ -65,7 +65,9 @@ export function ItemCardGrid({
                   letterSpacing: "0.04em",
                   textTransform: "uppercase",
                 }}>
-                  {statusLabel(itemStatus)}
+                  {itemStatus === "household" && it.status_meta?.owner
+                    ? `${it.status_meta.owner}'s`
+                    : statusLabel(itemStatus)}
                 </div>
               )}
 
