@@ -1,8 +1,8 @@
 /* app/lists/components/TodoList.module.css */
 
 .list {
-  background: var(--background, #fff);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -14,14 +14,14 @@
   align-items: center;
   gap: 8px;
   padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .collapseBtn {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 14px;
   padding: 2px;
   line-height: 1;
@@ -29,13 +29,13 @@
   transition: color 0.1s;
 }
 
-.collapseBtn:hover { color: var(--foreground); }
+.collapseBtn:hover { color: #1a1714; }
 
 .listTitle {
   flex: 1;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: #1a1714;
   margin: 0;
   cursor: default;
 }
@@ -47,17 +47,17 @@
   font-size: 0.95rem;
   font-weight: 600;
   padding: 2px 6px;
-  border: 1px solid var(--foreground-muted, #9ca3af);
+  border: 1px solid #b0a89c;
   border-radius: 5px;
-  background: var(--background, #fff);
-  color: var(--foreground);
+  background: #ffffff;
+  color: #1a1714;
 }
 
 .titleInput:focus { outline: none; }
 
 .progress {
   font-size: 0.78rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
@@ -65,7 +65,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 15px;
   padding: 3px 5px;
   border-radius: 5px;
@@ -84,7 +84,7 @@
 
 .progressFill {
   height: 100%;
-  background: var(--foreground);
+  background: #1a1714;
   transition: width 0.3s ease;
 }
 
@@ -99,7 +99,7 @@
 .emptyHint {
   padding: 0.5rem 1rem;
   font-size: 0.83rem;
-  color: var(--foreground-subtle, #d1d5db);
+  color: rgba(0,0,0,0.08);
 }
 
 /* ── Add row ──────────────────────────────────────────────── */
@@ -108,30 +108,30 @@
   display: flex;
   gap: 6px;
   padding: 0.6rem 1rem;
-  border-top: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
 .addInput {
   flex: 1;
   padding: 0.4rem 0.6rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 7px;
-  background: var(--background, #fff);
-  color: var(--foreground);
+  background: #ffffff;
+  color: #1a1714;
   font-size: 0.875rem;
 }
 
 .addInput:focus {
   outline: none;
-  border-color: var(--foreground-muted, #9ca3af);
+  border-color: #b0a89c;
 }
 
 .addBtn {
   padding: 0.4rem 0.65rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 7px;
   background: transparent;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   cursor: pointer;
   font-size: 16px;
   line-height: 1;
@@ -139,8 +139,8 @@
 }
 
 .addBtn:hover:not(:disabled) {
-  background: var(--background-subtle, #f3f4f6);
-  color: var(--foreground);
+  background: #f4f1eb;
+  color: #1a1714;
 }
 
 .addBtn:disabled { opacity: 0.4; cursor: default; }
