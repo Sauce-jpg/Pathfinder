@@ -46,6 +46,15 @@ export default function ListsPage() {
 
   const [loading, setLoading] = useState(true)
 
+  // Ensure session is loaded into the shared client on mount
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        window.location.href = '/auth/login'
+      }
+    })
+  }, [])
+
   // ── Data fetching ────────────────────────────────────────────────────────
 
   const fetchAll = useCallback(async () => {
