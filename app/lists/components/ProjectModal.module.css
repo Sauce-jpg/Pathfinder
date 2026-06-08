@@ -1,0 +1,190 @@
+/* app/lists/components/ProjectModal.module.css */
+
+.linksSection {
+  border-top: 1px solid var(--foreground-subtle, #e5e7eb);
+  padding-top: 0.9rem;
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.linksSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--foreground-muted, #6b7280);
+  margin: 0 0 0.25rem;
+}
+
+.linksSectionTitle i {
+  font-size: 14px;
+}
+
+/* ── Existing links list ──────────────────────────────────── */
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  background: var(--background-subtle, #f9fafb);
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  font-size: 0.85rem;
+}
+
+.linkItem i:first-child {
+  font-size: 14px;
+  color: var(--foreground-muted, #9ca3af);
+  flex-shrink: 0;
+}
+
+.linkLabel {
+  flex: 1;
+  color: var(--foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.linkBranch {
+  font-size: 0.72rem;
+  color: var(--foreground-muted, #9ca3af);
+  flex-shrink: 0;
+}
+
+.removeLinkBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 13px;
+  padding: 2px;
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.1s;
+}
+
+.removeLinkBtn:hover {
+  color: #dc2626;
+}
+
+/* ── Link search ──────────────────────────────────────────── */
+
+.linkSearch {
+  display: flex;
+  gap: 5px;
+}
+
+.branchSelect {
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+
+.linkSearchInput {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+  font-size: 0.85rem;
+}
+
+.linkSearchInput:focus {
+  outline: none;
+  border-color: var(--foreground-muted, #9ca3af);
+}
+
+.searchBtn {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--foreground-muted, #6b7280);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  transition: color 0.1s, background 0.1s;
+}
+
+.searchBtn:hover {
+  background: var(--background-subtle, #f3f4f6);
+  color: var(--foreground);
+}
+
+/* ── Candidates ───────────────────────────────────────────── */
+
+.candidateList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.candidateBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.45rem 0.7rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.candidateBtn:last-child {
+  border-bottom: none;
+}
+
+.candidateBtn:hover {
+  background: var(--background-subtle, #f9fafb);
+}
+
+.candidateBtn i:first-child {
+  font-size: 14px;
+  color: var(--foreground-muted, #9ca3af);
+}
+
+/* ── Hint (create mode) ───────────────────────────────────── */
+
+.linkHint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--foreground-muted, #9ca3af);
+  margin: 0;
+  border-top: 1px solid var(--foreground-subtle, #e5e7eb);
+  padding-top: 0.75rem;
+}
+
+.linkHint i {
+  font-size: 14px;
+  flex-shrink: 0;
+}
