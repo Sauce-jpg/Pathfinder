@@ -123,20 +123,30 @@ export default function ListsPage() {
         />
       )}
 
+      {/* Back to hub */}
+      <div className={styles.backBar}>
+        <a href="/" className={styles.backLink}>
+          <i className="ti ti-arrow-left" aria-hidden="true" />
+          Daniel's Hub
+        </a>
+      </div>
+
       {/* Page header */}
       <div className={styles.header}>
         <h1 className={styles.title}>Lists</h1>
-        <button
-          className={styles.newButton}
-          onClick={() => {
-            if (tab === 'projects') { setEditingProject(null); setShowProjectModal(true) }
-            if (tab === 'notes')    { setEditingNote(null);    setShowNoteModal(true) }
-          }}
-          aria-label="Create new item"
-        >
-          <i className="ti ti-plus" aria-hidden="true" />
-          New {TABS.find(t => t.id === tab)?.label.replace(/s$/, '')}
-        </button>
+        {(tab === 'projects' || tab === 'notes') && (
+          <button
+            className={styles.newButton}
+            onClick={() => {
+              if (tab === 'projects') { setEditingProject(null); setShowProjectModal(true) }
+              if (tab === 'notes')    { setEditingNote(null);    setShowNoteModal(true) }
+            }}
+            aria-label="Create new item"
+          >
+            <i className="ti ti-plus" aria-hidden="true" />
+            New {TABS.find(t => t.id === tab)?.label.replace(/s$/, '')}
+          </button>
+        )}
       </div>
 
       {/* Tab bar */}
