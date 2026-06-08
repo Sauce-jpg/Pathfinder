@@ -5,12 +5,12 @@
   align-items: flex-start;
   gap: 8px;
   padding: 0.6rem 1rem;
-  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   transition: background 0.1s;
 }
 
 .item:last-child { border-bottom: none; }
-.item:hover { background: var(--background-subtle, #f9fafb); }
+.item:hover { background: #f4f1eb; }
 
 .bought { opacity: 0.55; }
 
@@ -18,10 +18,10 @@
 
 .compareToggle {
   background: none;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 5px;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 13px;
   padding: 3px 5px;
   line-height: 1;
@@ -31,9 +31,9 @@
 }
 
 .compareActive {
-  color: var(--foreground);
-  border-color: var(--foreground);
-  background: var(--background-subtle, #f3f4f6);
+  color: #1a1714;
+  border-color: #1a1714;
+  background: #f4f1eb;
 }
 
 /* ── Main content ─────────────────────────────────────────── */
@@ -63,7 +63,7 @@
 .title {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--foreground);
+  color: #1a1714;
   flex: 1;
   min-width: 0;
   white-space: nowrap;
@@ -81,12 +81,12 @@
 }
 
 .need  { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
-.want  { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+.want  { background: #fefce8; color: #854d0e; border-color: #fde68a; }
 .dream { background: #f5f3ff; color: #4c1d95; border-color: #ddd6fe; }
 
 .statusIcon {
   font-size: 14px;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
@@ -104,7 +104,7 @@
 .price {
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--foreground);
+  color: #1a1714;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -115,23 +115,23 @@
 
 .targetPrice {
   font-size: 0.78rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
 }
 
 .link {
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 14px;
   line-height: 1;
   transition: color 0.1s;
 }
 
-.link:hover { color: var(--foreground); }
+.link:hover { color: #1a1714; }
 
 /* ── Notes ────────────────────────────────────────────────── */
 
 .notes {
   font-size: 0.8rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   margin: 0;
   line-height: 1.4;
 }
@@ -166,7 +166,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 15px;
   padding: 3px 5px;
   border-radius: 5px;
@@ -175,6 +175,6 @@
 }
 
 .iconBtn:hover {
-  color: var(--foreground);
-  background: var(--background-subtle, #f3f4f6);
+  color: #1a1714;
+  background: #f4f1eb;
 }
