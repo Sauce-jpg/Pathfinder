@@ -67,7 +67,6 @@ const links = [
     title: "Game Night",
     desc: "Find games your whole crew owns on Steam & let fate pick",
     hue: 160,
-    featured: true,
   },
   {
     href: "/bookmarks",
