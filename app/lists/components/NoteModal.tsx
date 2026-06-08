@@ -38,6 +38,12 @@ export default function NoteModal({ note, projects, onClose, onSave, supabase }:
       .map(t => t.trim())
       .filter(Boolean)
 
+    // Get session — works with both auth-helpers and plain createClient
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) { setError('Not logged in — please refresh the page'); setSaving(false); return }
+
+    const user = session.user
+
     const payload = {
       title: title.trim(),
       body: body.trim() || null,
@@ -47,7 +53,7 @@ export default function NoteModal({ note, projects, onClose, onSave, supabase }:
 
     const { error: dbError } = note
       ? await supabase.from('notes').update(payload).eq('id', note.id)
-      : await supabase.from('notes').insert(payload)
+      : await supabase.from('notes').insert({ ...payload, user_id: user.id })
 
     setSaving(false)
     if (dbError) { setError(dbError.message); return }
