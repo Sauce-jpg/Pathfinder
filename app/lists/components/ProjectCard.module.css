@@ -1,8 +1,8 @@
 /* app/lists/components/ProjectCard.module.css */
 
 .card {
-  background: var(--background, #fff);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   padding: 1rem 1.1rem;
   display: flex;
@@ -13,7 +13,7 @@
 }
 
 .card:hover {
-  border-color: var(--foreground-muted, #9ca3af);
+  border-color: #b0a89c;
 }
 
 /* ── Top row ──────────────────────────────────────────────── */
@@ -45,15 +45,15 @@
 }
 
 .completed {
-  background: #eff6ff;
-  color: #1e40af;
-  border-color: #bfdbfe;
+  background: #fefce8;
+  color: #854d0e;
+  border-color: #fde68a;
 }
 
 .archived {
-  background: #f9fafb;
-  color: #6b7280;
-  border-color: #e5e7eb;
+  background: #f4f1eb;
+  color: #b0a89c;
+  border-color: rgba(0,0,0,0.08);
 }
 
 .actions {
@@ -65,7 +65,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 15px;
   padding: 3px 5px;
   border-radius: 5px;
@@ -74,8 +74,8 @@
 }
 
 .iconBtn:hover {
-  color: var(--foreground);
-  background: var(--background-subtle, #f3f4f6);
+  color: #1a1714;
+  background: #f4f1eb;
 }
 
 /* ── Content ──────────────────────────────────────────────── */
@@ -83,14 +83,14 @@
 .title {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: #1a1714;
   margin: 0;
   line-height: 1.4;
 }
 
 .description {
   font-size: 0.85rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   margin: 0;
   line-height: 1.5;
   display: -webkit-box;
@@ -113,7 +113,7 @@
   align-items: center;
   gap: 4px;
   font-size: 0.78rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
 }
 
 .count i {
@@ -124,6 +124,6 @@
 
 .date {
   font-size: 0.75rem;
-  color: var(--foreground-subtle, #d1d5db);
+  color: rgba(0,0,0,0.08);
   margin-top: auto;
 }
