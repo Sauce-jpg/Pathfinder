@@ -1,0 +1,92 @@
+/* app/lists/components/NoteCard.module.css */
+
+.card {
+  background: var(--background, #fff);
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.15s;
+}
+
+.card:hover {
+  border-color: var(--foreground-muted, #9ca3af);
+}
+
+.pinned {
+  border-left: 3px solid var(--foreground);
+  border-radius: 0 10px 10px 0;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 15px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  line-height: 1;
+  transition: color 0.1s, background 0.1s;
+}
+
+.iconBtn:hover {
+  color: var(--foreground);
+  background: var(--background-subtle, #f3f4f6);
+}
+
+.iconBtnActive {
+  color: var(--foreground);
+}
+
+.body {
+  font-size: 0.85rem;
+  color: var(--foreground-muted, #6b7280);
+  line-height: 1.55;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: var(--background-subtle, #f3f4f6);
+  color: var(--foreground-muted, #6b7280);
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+}
+
+.date {
+  font-size: 0.75rem;
+  color: var(--foreground-subtle, #d1d5db);
+  margin-top: auto;
+}
