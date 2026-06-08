@@ -1,0 +1,234 @@
+/* app/lists/components/BacklogBoard.module.css */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+/* ── Column ───────────────────────────────────────────────── */
+
+.column {
+  background: var(--background-subtle, #f9fafb);
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.colHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: var(--background, #fff);
+}
+
+.colHeader i {
+  font-size: 15px;
+  color: var(--foreground-muted, #9ca3af);
+  flex-shrink: 0;
+}
+
+.colLabel {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.colCount {
+  font-size: 0.75rem;
+  color: var(--foreground-muted, #9ca3af);
+  background: var(--background-subtle, #f3f4f6);
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 100px;
+  padding: 0 6px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.addColBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 15px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.1s, background 0.1s;
+  flex-shrink: 0;
+}
+
+.addColBtn:hover {
+  color: var(--foreground);
+  background: var(--background-subtle, #f3f4f6);
+}
+
+/* ── Add form ─────────────────────────────────────────────── */
+
+.addForm {
+  padding: 0.6rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: var(--background, #fff);
+}
+
+.addInput {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 6px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+  font-size: 0.82rem;
+  box-sizing: border-box;
+}
+
+.addInput:focus {
+  outline: none;
+  border-color: var(--foreground-muted, #9ca3af);
+}
+
+.addFormActions {
+  display: flex;
+  gap: 5px;
+}
+
+.confirmAddBtn {
+  flex: 1;
+  padding: 0.3rem 0;
+  border-radius: 6px;
+  border: none;
+  background: var(--foreground);
+  color: var(--background, #fff);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.confirmAddBtn:disabled { opacity: 0.4; cursor: default; }
+
+.cancelAddBtn {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: transparent;
+  font-size: 0.8rem;
+  color: var(--foreground-muted, #6b7280);
+  cursor: pointer;
+}
+
+/* ── Item list ────────────────────────────────────────────── */
+
+.itemList {
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 60px;
+}
+
+.emptyCol {
+  font-size: 0.78rem;
+  color: var(--foreground-subtle, #d1d5db);
+  text-align: center;
+  padding: 0.75rem 0;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+
+.card {
+  background: var(--background, #fff);
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  padding: 0.55rem 0.7rem;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  user-select: none;
+}
+
+.card:hover {
+  border-color: var(--foreground-muted, #9ca3af);
+}
+
+.card:active { cursor: grabbing; }
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.cardTitle {
+  flex: 1;
+  font-size: 0.85rem;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 13px;
+  padding: 1px 3px;
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.1s, color 0.1s;
+}
+
+.card:hover .deleteBtn { opacity: 1; }
+.deleteBtn:hover { color: #dc2626; }
+
+.category {
+  font-size: 0.72rem;
+  color: var(--foreground-muted, #9ca3af);
+  background: var(--background-subtle, #f3f4f6);
+  border-radius: 4px;
+  padding: 1px 6px;
+  align-self: flex-start;
+}
+
+/* ── Move buttons ─────────────────────────────────────────── */
+
+.moveButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.card:hover .moveButtons { opacity: 1; }
+
+.moveBtn {
+  font-size: 0.68rem;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: transparent;
+  color: var(--foreground-muted, #6b7280);
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  white-space: nowrap;
+}
+
+.moveBtn:hover {
+  background: var(--background-subtle, #f3f4f6);
+  color: var(--foreground);
+}
