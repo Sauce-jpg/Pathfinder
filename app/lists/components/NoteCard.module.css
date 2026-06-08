@@ -1,8 +1,8 @@
 /* app/lists/components/NoteCard.module.css */
 
 .card {
-  background: var(--background, #fff);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   padding: 1rem 1.1rem;
   display: flex;
@@ -12,11 +12,11 @@
 }
 
 .card:hover {
-  border-color: var(--foreground-muted, #9ca3af);
+  border-color: #b0a89c;
 }
 
 .pinned {
-  border-left: 3px solid var(--foreground);
+  border-left: 3px solid #1a1714;
   border-radius: 0 10px 10px 0;
 }
 
@@ -30,7 +30,7 @@
 .cardTitle {
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: #1a1714;
   margin: 0;
   line-height: 1.4;
 }
@@ -45,7 +45,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 15px;
   padding: 3px 5px;
   border-radius: 5px;
@@ -54,17 +54,17 @@
 }
 
 .iconBtn:hover {
-  color: var(--foreground);
-  background: var(--background-subtle, #f3f4f6);
+  color: #1a1714;
+  background: #f4f1eb;
 }
 
 .iconBtnActive {
-  color: var(--foreground);
+  color: #1a1714;
 }
 
 .body {
   font-size: 0.85rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   line-height: 1.55;
   margin: 0;
   white-space: pre-wrap;
@@ -80,13 +80,13 @@
   font-size: 0.75rem;
   padding: 2px 8px;
   border-radius: 100px;
-  background: var(--background-subtle, #f3f4f6);
-  color: var(--foreground-muted, #6b7280);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #f4f1eb;
+  color: #6b6358;
+  border: 1px solid rgba(0,0,0,0.08);
 }
 
 .date {
   font-size: 0.75rem;
-  color: var(--foreground-subtle, #d1d5db);
+  color: rgba(0,0,0,0.08);
   margin-top: auto;
 }
