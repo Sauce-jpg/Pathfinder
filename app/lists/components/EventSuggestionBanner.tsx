@@ -5,7 +5,7 @@
 // User picks which ones to add to their timeline, then dismisses the rest.
 
 import { useState } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { supabase } from '@/lib/supabaseClient'
 import { HubEvent } from '../types'
 import styles from './EventSuggestionBanner.module.css'
 
@@ -22,7 +22,6 @@ const BRANCH_ICON: Record<string, string> = {
 }
 
 export default function EventSuggestionBanner({ events, onDismiss }: Props) {
-  const supabase = createClientComponentClient()
   const [selected, setSelected] = useState<Set<string>>(new Set(events.map(e => e.id)))
   const [saving, setSaving] = useState(false)
   const [expanded, setExpanded] = useState(true)
