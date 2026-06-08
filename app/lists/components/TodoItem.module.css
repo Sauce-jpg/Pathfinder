@@ -1,0 +1,140 @@
+/* app/lists/components/TodoItem.module.css */
+
+.item {
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.35rem 1rem;
+  transition: background 0.1s;
+}
+
+.row:hover {
+  background: var(--background-subtle, #f9fafb);
+}
+
+/* ── Checkbox ─────────────────────────────────────────────── */
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--foreground-muted, #9ca3af);
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--background, #fff);
+  transition: background 0.15s, border-color 0.15s;
+  padding: 0;
+}
+
+.checked {
+  background: var(--foreground);
+  border-color: var(--foreground);
+}
+
+/* ── Title ────────────────────────────────────────────────── */
+
+.title {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  line-height: 1.4;
+  cursor: default;
+}
+
+.done {
+  text-decoration: line-through;
+  color: var(--foreground-muted, #9ca3af);
+}
+
+.titleInput {
+  flex: 1;
+  font-size: 0.875rem;
+  padding: 1px 5px;
+  border: 1px solid var(--foreground-muted, #9ca3af);
+  border-radius: 4px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+}
+
+.titleInput:focus { outline: none; }
+
+/* ── Due date ─────────────────────────────────────────────── */
+
+.dueDate {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.75rem;
+  color: var(--foreground-muted, #9ca3af);
+  flex-shrink: 0;
+}
+
+.dueDate i { font-size: 12px; }
+
+/* ── Actions ──────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.row:hover .actions { opacity: 1; }
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 14px;
+  padding: 3px 4px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.1s, background 0.1s;
+}
+
+.iconBtn:hover {
+  color: var(--foreground);
+  background: var(--foreground-subtle, #e5e7eb);
+}
+
+/* ── Add child ────────────────────────────────────────────── */
+
+.addChildRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.25rem 1rem 0.25rem 0;
+}
+
+.addChildInput {
+  flex: 1;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 6px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+  font-size: 0.83rem;
+}
+
+.addChildInput:focus { outline: none; border-color: var(--foreground-muted, #9ca3af); }
+
+/* ── Children ─────────────────────────────────────────────── */
+
+.children {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 1.5px solid var(--foreground-subtle, #e5e7eb);
+  margin-left: 28px;
+}
