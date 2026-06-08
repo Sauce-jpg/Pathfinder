@@ -1,8 +1,8 @@
 /* app/lists/components/PurchaseList.module.css */
 
 .list {
-  background: var(--background, #fff);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -12,14 +12,14 @@
   align-items: center;
   gap: 8px;
   padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .collapseBtn {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 14px;
   padding: 2px;
   line-height: 1;
@@ -30,13 +30,13 @@
   flex: 1;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: #1a1714;
   margin: 0;
 }
 
 .tally {
   font-size: 0.78rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
@@ -45,26 +45,26 @@
   align-items: center;
   gap: 4px;
   padding: 0.3rem 0.7rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 6px;
   background: transparent;
   font-size: 0.8rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   cursor: pointer;
   flex-shrink: 0;
   transition: background 0.1s, color 0.1s;
 }
 
 .addItemBtn:hover {
-  background: var(--background-subtle, #f3f4f6);
-  color: var(--foreground);
+  background: #f4f1eb;
+  color: #1a1714;
 }
 
 .deleteBtn {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 15px;
   padding: 3px 5px;
   border-radius: 5px;
@@ -80,10 +80,10 @@
   align-items: center;
   gap: 8px;
   padding: 0.5rem 1rem;
-  background: var(--background-subtle, #f9fafb);
-  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #f4f1eb;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   font-size: 0.83rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
 }
 
 .compareViewBtn {
@@ -92,22 +92,22 @@
   gap: 4px;
   margin-left: auto;
   padding: 0.25rem 0.6rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 6px;
-  background: var(--background, #fff);
+  background: #ffffff;
   font-size: 0.8rem;
-  color: var(--foreground);
+  color: #1a1714;
   cursor: pointer;
   transition: background 0.1s;
 }
 
-.compareViewBtn:hover { background: var(--background-subtle, #f3f4f6); }
+.compareViewBtn:hover { background: #f4f1eb; }
 
 .clearCompareBtn {
   background: none;
   border: none;
   font-size: 0.8rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -122,5 +122,5 @@
 .empty {
   padding: 1rem;
   font-size: 0.85rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
 }
