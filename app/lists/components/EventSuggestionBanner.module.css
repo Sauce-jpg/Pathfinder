@@ -1,11 +1,11 @@
 /* app/lists/components/EventSuggestionBanner.module.css */
 
 .banner {
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   padding: 1rem 1.25rem;
   margin-bottom: 1.5rem;
-  background: var(--background-subtle, #f9fafb);
+  background: #f4f1eb;
 }
 
 .bannerHeader {
@@ -21,26 +21,26 @@
   gap: 8px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--foreground);
+  color: #1a1714;
 }
 
 .bannerTitle i {
   font-size: 16px;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
 }
 
 .collapseBtn {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   padding: 0;
   font-size: 16px;
   line-height: 1;
 }
 
 .collapseBtn:hover {
-  color: var(--foreground);
+  color: #1a1714;
 }
 
 /* ── Event list ───────────────────────────────────────────── */
@@ -69,32 +69,32 @@
 }
 
 .eventLabel:hover {
-  background: var(--background, #fff);
+  background: #ffffff;
 }
 
 .checkbox {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
-  accent-color: var(--foreground);
+  accent-color: #1a1714;
   cursor: pointer;
 }
 
 .branchIcon {
   font-size: 14px;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
 .eventTitle {
   flex: 1;
   font-size: 0.875rem;
-  color: var(--foreground);
+  color: #1a1714;
 }
 
 .eventDate {
   font-size: 0.78rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
@@ -112,9 +112,9 @@
   gap: 6px;
   padding: 0.4rem 0.85rem;
   border-radius: 7px;
-  border: 1px solid var(--foreground-subtle, #d1d5db);
-  background: var(--foreground);
-  color: var(--background, #fff);
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #1a1714;
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -137,7 +137,7 @@
   background: none;
   border: none;
   font-size: 0.85rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   cursor: pointer;
   padding: 0.4rem 0;
   text-decoration: underline;
@@ -145,7 +145,7 @@
 }
 
 .dismissBtn:hover {
-  color: var(--foreground);
+  color: #1a1714;
 }
 
 /* ── Collapsed state ──────────────────────────────────────── */
@@ -155,9 +155,9 @@
   align-items: center;
   gap: 7px;
   font-size: 0.85rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   background: none;
-  border: 1px dashed var(--foreground-subtle, #e5e7eb);
+  border: 1px dashed rgba(0,0,0,0.08);
   border-radius: 8px;
   padding: 0.5rem 0.875rem;
   cursor: pointer;
@@ -166,8 +166,8 @@
 }
 
 .collapsed:hover {
-  color: var(--foreground);
-  border-color: var(--foreground-muted, #9ca3af);
+  color: #1a1714;
+  border-color: #b0a89c;
 }
 
 .collapsed i {
