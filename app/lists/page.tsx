@@ -5,7 +5,7 @@
 // and an event suggestion banner when there are undismissed hub_events.
 
 import { useEffect, useState, useCallback } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { supabase } from '@/lib/supabaseClient'
 import styles from './lists.module.css'
 import {
   Project, Note, TodoList, PurchaseList, BacklogItem, HubEvent
@@ -30,7 +30,6 @@ const TABS: { id: Tab; label: string; icon: string }[] = [
 ]
 
 export default function ListsPage() {
-  const supabase = createClientComponentClient()
   const [tab, setTab] = useState<Tab>('projects')
 
   const [projects, setProjects]       = useState<Project[]>([])
