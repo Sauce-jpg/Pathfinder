@@ -55,13 +55,19 @@ const links = [
     hue: 260,
   },
   {
+    href: "/lists",
+    emoji: "📋",
+    title: "Lists",
+    desc: "Notes, to-dos, purchases & backlog — with project tracking",
+    hue: 95,
+  },
+  {
     href: "/steam",
     emoji: "🎮",
     title: "Game Night",
     desc: "Find games your whole crew owns on Steam & let fate pick",
     hue: 160,
     featured: true,
-    badge: "New",
   },
   {
     href: "/bookmarks",
