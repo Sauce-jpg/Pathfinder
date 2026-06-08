@@ -290,7 +290,7 @@ export default function HubPage() {
           const isSmall    = "small"    in link && link.small;
           const isFeatured = "featured" in link && link.featured;
           const isExternal = "external" in link && link.external;
-          const badge      = "badge"    in link ? link.badge : undefined;
+          const badge = "badge" in link ? (link as { badge: string }).badge : undefined;
 
           return (
             <a
