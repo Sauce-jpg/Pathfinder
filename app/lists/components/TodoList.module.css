@@ -1,0 +1,146 @@
+/* app/lists/components/TodoList.module.css */
+
+.list {
+  background: var(--background, #fff);
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+.listHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+}
+
+.collapseBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 14px;
+  padding: 2px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.1s;
+}
+
+.collapseBtn:hover { color: var(--foreground); }
+
+.listTitle {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+  cursor: default;
+}
+
+.listTitle:hover { text-decoration: underline; text-decoration-style: dotted; }
+
+.titleInput {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border: 1px solid var(--foreground-muted, #9ca3af);
+  border-radius: 5px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+}
+
+.titleInput:focus { outline: none; }
+
+.progress {
+  font-size: 0.78rem;
+  color: var(--foreground-muted, #9ca3af);
+  flex-shrink: 0;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 15px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  line-height: 1;
+  transition: color 0.1s;
+}
+
+.deleteBtn:hover { color: #dc2626; }
+
+/* ── Progress bar ─────────────────────────────────────────── */
+
+.progressBar {
+  height: 3px;
+  background: var(--foreground-subtle, #f3f4f6);
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--foreground);
+  transition: width 0.3s ease;
+}
+
+/* ── Items ────────────────────────────────────────────────── */
+
+.items {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+.emptyHint {
+  padding: 0.5rem 1rem;
+  font-size: 0.83rem;
+  color: var(--foreground-subtle, #d1d5db);
+}
+
+/* ── Add row ──────────────────────────────────────────────── */
+
+.addRow {
+  display: flex;
+  gap: 6px;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--foreground-subtle, #e5e7eb);
+}
+
+.addInput {
+  flex: 1;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+  font-size: 0.875rem;
+}
+
+.addInput:focus {
+  outline: none;
+  border-color: var(--foreground-muted, #9ca3af);
+}
+
+.addBtn {
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--foreground-muted, #6b7280);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: color 0.1s, background 0.1s;
+}
+
+.addBtn:hover:not(:disabled) {
+  background: var(--background-subtle, #f3f4f6);
+  color: var(--foreground);
+}
+
+.addBtn:disabled { opacity: 0.4; cursor: default; }
