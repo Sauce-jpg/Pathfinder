@@ -1,0 +1,128 @@
+/* app/lists/lists.module.css */
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.newButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--foreground-subtle, #d1d5db);
+  background: transparent;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.newButton:hover {
+  background: var(--background-subtle, #f3f4f6);
+  border-color: var(--foreground-muted, #9ca3af);
+}
+
+.newButton i {
+  font-size: 16px;
+}
+
+/* ── Tab bar ──────────────────────────────────────────────── */
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  margin-bottom: 1.75rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.6rem 1rem;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  color: var(--foreground-muted, #6b7280);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+  border-radius: 0;
+}
+
+.tab:hover {
+  color: var(--foreground);
+}
+
+.tab i {
+  font-size: 15px;
+}
+
+.tabActive {
+  color: var(--foreground);
+  font-weight: 500;
+  border-bottom-color: var(--foreground);
+}
+
+/* ── Content layouts ──────────────────────────────────────── */
+
+.content {
+  min-height: 300px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── States ───────────────────────────────────────────────── */
+
+.empty {
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 0.9rem;
+  grid-column: 1 / -1;
+  padding: 2rem 0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 0;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading i {
+  animation: spin 0.8s linear infinite;
+}
