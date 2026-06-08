@@ -10,8 +10,8 @@
 /* ── Column ───────────────────────────────────────────────── */
 
 .column {
-  background: var(--background-subtle, #f9fafb);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #f4f1eb;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -21,13 +21,13 @@
   align-items: center;
   gap: 6px;
   padding: 0.65rem 0.85rem;
-  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
-  background: var(--background, #fff);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  background: #ffffff;
 }
 
 .colHeader i {
   font-size: 15px;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
@@ -35,14 +35,14 @@
   flex: 1;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--foreground);
+  color: #1a1714;
 }
 
 .colCount {
   font-size: 0.75rem;
-  color: var(--foreground-muted, #9ca3af);
-  background: var(--background-subtle, #f3f4f6);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  color: #b0a89c;
+  background: #f4f1eb;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 100px;
   padding: 0 6px;
   min-width: 20px;
@@ -53,7 +53,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 15px;
   padding: 2px 4px;
   border-radius: 4px;
@@ -63,8 +63,8 @@
 }
 
 .addColBtn:hover {
-  color: var(--foreground);
-  background: var(--background-subtle, #f3f4f6);
+  color: #1a1714;
+  background: #f4f1eb;
 }
 
 /* ── Add form ─────────────────────────────────────────────── */
@@ -74,24 +74,24 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
-  background: var(--background, #fff);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  background: #ffffff;
 }
 
 .addInput {
   width: 100%;
   padding: 0.35rem 0.5rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 6px;
-  background: var(--background, #fff);
-  color: var(--foreground);
+  background: #ffffff;
+  color: #1a1714;
   font-size: 0.82rem;
   box-sizing: border-box;
 }
 
 .addInput:focus {
   outline: none;
-  border-color: var(--foreground-muted, #9ca3af);
+  border-color: #b0a89c;
 }
 
 .addFormActions {
@@ -104,8 +104,8 @@
   padding: 0.3rem 0;
   border-radius: 6px;
   border: none;
-  background: var(--foreground);
-  color: var(--background, #fff);
+  background: #1a1714;
+  color: #ffffff;
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
@@ -117,10 +117,10 @@
 .cancelAddBtn {
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   background: transparent;
   font-size: 0.8rem;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   cursor: pointer;
 }
 
@@ -138,7 +138,7 @@
 
 .emptyCol {
   font-size: 0.78rem;
-  color: var(--foreground-subtle, #d1d5db);
+  color: rgba(0,0,0,0.08);
   text-align: center;
   padding: 0.75rem 0;
 }
@@ -146,8 +146,8 @@
 /* ── Card ─────────────────────────────────────────────────── */
 
 .card {
-  background: var(--background, #fff);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 7px;
   padding: 0.55rem 0.7rem;
   cursor: grab;
@@ -159,7 +159,7 @@
 }
 
 .card:hover {
-  border-color: var(--foreground-muted, #9ca3af);
+  border-color: #b0a89c;
 }
 
 .card:active { cursor: grabbing; }
@@ -173,7 +173,7 @@
 .cardTitle {
   flex: 1;
   font-size: 0.85rem;
-  color: var(--foreground);
+  color: #1a1714;
   line-height: 1.4;
 }
 
@@ -181,7 +181,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 13px;
   padding: 1px 3px;
   border-radius: 4px;
@@ -196,8 +196,8 @@
 
 .category {
   font-size: 0.72rem;
-  color: var(--foreground-muted, #9ca3af);
-  background: var(--background-subtle, #f3f4f6);
+  color: #b0a89c;
+  background: #f4f1eb;
   border-radius: 4px;
   padding: 1px 6px;
   align-self: flex-start;
@@ -220,15 +220,15 @@
   font-size: 0.68rem;
   padding: 1px 6px;
   border-radius: 4px;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   background: transparent;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   cursor: pointer;
   transition: background 0.1s, color 0.1s;
   white-space: nowrap;
 }
 
 .moveBtn:hover {
-  background: var(--background-subtle, #f3f4f6);
-  color: var(--foreground);
+  background: #f4f1eb;
+  color: #1a1714;
 }
