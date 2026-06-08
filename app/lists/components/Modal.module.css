@@ -1,0 +1,153 @@
+/* app/lists/components/Modal.module.css */
+/* Shared styles used by NoteModal, ProjectModal, PurchaseItemModal, etc. */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.modal {
+  background: var(--background, #fff);
+  border-radius: 12px;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem 0.9rem;
+  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+}
+
+.modalTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin: 0;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground-muted, #9ca3af);
+  font-size: 18px;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.1s;
+}
+
+.closeBtn:hover { color: var(--foreground); }
+
+/* ── Body ─────────────────────────────────────────────────── */
+
+.modalBody {
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--foreground-muted, #6b7280);
+  margin-bottom: 2px;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+  font-size: 0.9rem;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--foreground-muted, #9ca3af);
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-radius: 7px;
+  background: var(--background, #fff);
+  color: var(--foreground);
+  font-size: 0.9rem;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.error {
+  font-size: 0.82rem;
+  color: #dc2626;
+  margin: 0;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid var(--foreground-subtle, #e5e7eb);
+}
+
+.cancelBtn {
+  padding: 0.45rem 1rem;
+  border-radius: 7px;
+  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: transparent;
+  font-size: 0.875rem;
+  color: var(--foreground-muted, #6b7280);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.cancelBtn:hover {
+  background: var(--background-subtle, #f3f4f6);
+}
+
+.saveBtn {
+  padding: 0.45rem 1.1rem;
+  border-radius: 7px;
+  border: none;
+  background: var(--foreground);
+  color: var(--background, #fff);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
