@@ -1,7 +1,7 @@
 /* app/lists/components/ProjectModal.module.css */
 
 .linksSection {
-  border-top: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-top: 1px solid rgba(0,0,0,0.08);
   padding-top: 0.9rem;
   margin-top: 0.4rem;
   display: flex;
@@ -15,7 +15,7 @@
   gap: 6px;
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   margin: 0 0 0.25rem;
 }
 
@@ -40,20 +40,20 @@
   gap: 7px;
   padding: 0.35rem 0.5rem;
   border-radius: 6px;
-  background: var(--background-subtle, #f9fafb);
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  background: #f4f1eb;
+  border: 1px solid rgba(0,0,0,0.08);
   font-size: 0.85rem;
 }
 
 .linkItem i:first-child {
   font-size: 14px;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
 .linkLabel {
   flex: 1;
-  color: var(--foreground);
+  color: #1a1714;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -61,7 +61,7 @@
 
 .linkBranch {
   font-size: 0.72rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   flex-shrink: 0;
 }
 
@@ -69,7 +69,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   font-size: 13px;
   padding: 2px;
   border-radius: 4px;
@@ -91,10 +91,10 @@
 
 .branchSelect {
   padding: 0.4rem 0.5rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 7px;
-  background: var(--background, #fff);
-  color: var(--foreground);
+  background: #ffffff;
+  color: #1a1714;
   font-size: 0.82rem;
   flex-shrink: 0;
 }
@@ -102,24 +102,24 @@
 .linkSearchInput {
   flex: 1;
   padding: 0.4rem 0.6rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 7px;
-  background: var(--background, #fff);
-  color: var(--foreground);
+  background: #ffffff;
+  color: #1a1714;
   font-size: 0.85rem;
 }
 
 .linkSearchInput:focus {
   outline: none;
-  border-color: var(--foreground-muted, #9ca3af);
+  border-color: #b0a89c;
 }
 
 .searchBtn {
   padding: 0.4rem 0.6rem;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 7px;
   background: transparent;
-  color: var(--foreground-muted, #6b7280);
+  color: #6b6358;
   cursor: pointer;
   font-size: 15px;
   line-height: 1;
@@ -127,8 +127,8 @@
 }
 
 .searchBtn:hover {
-  background: var(--background-subtle, #f3f4f6);
-  color: var(--foreground);
+  background: #f4f1eb;
+  color: #1a1714;
 }
 
 /* ── Candidates ───────────────────────────────────────────── */
@@ -137,7 +137,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  border: 1px solid var(--foreground-subtle, #e5e7eb);
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 7px;
   overflow: hidden;
 }
@@ -150,10 +150,10 @@
   padding: 0.45rem 0.7rem;
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   text-align: left;
   font-size: 0.85rem;
-  color: var(--foreground);
+  color: #1a1714;
   cursor: pointer;
   transition: background 0.1s;
 }
@@ -163,12 +163,12 @@
 }
 
 .candidateBtn:hover {
-  background: var(--background-subtle, #f9fafb);
+  background: #f4f1eb;
 }
 
 .candidateBtn i:first-child {
   font-size: 14px;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
 }
 
 /* ── Hint (create mode) ───────────────────────────────────── */
@@ -178,9 +178,9 @@
   align-items: center;
   gap: 6px;
   font-size: 0.8rem;
-  color: var(--foreground-muted, #9ca3af);
+  color: #b0a89c;
   margin: 0;
-  border-top: 1px solid var(--foreground-subtle, #e5e7eb);
+  border-top: 1px solid rgba(0,0,0,0.08);
   padding-top: 0.75rem;
 }
 
