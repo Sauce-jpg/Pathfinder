@@ -68,8 +68,9 @@ export default function ProjectModal({ project, onClose, onSave, supabase }: Pro
       .select(`id, ${cfg.labelCol}`)
       .ilike(cfg.labelCol, `%${linkSearch}%`)
       .limit(8)
+    const rows = (data ?? []) as unknown as Record<string, string>[]
     setCandidates(
-      (data ?? []).map((row: Record<string, string>) => ({
+      rows.map(row => ({
         branch: linkBranch,
         source_id: row.id,
         label: row[cfg.labelCol],
