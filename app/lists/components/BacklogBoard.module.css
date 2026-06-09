@@ -27,7 +27,7 @@
 
 .colHeader i {
   font-size: 15px;
-  color: #b0a89c;
+  color: #6b6358;
   flex-shrink: 0;
 }
 
@@ -40,7 +40,7 @@
 
 .colCount {
   font-size: 0.75rem;
-  color: #b0a89c;
+  color: #6b6358;
   background: #f4f1eb;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: 100px;
@@ -53,7 +53,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #b0a89c;
+  color: #6b6358;
   font-size: 15px;
   padding: 2px 4px;
   border-radius: 4px;
@@ -91,7 +91,7 @@
 
 .addInput:focus {
   outline: none;
-  border-color: #b0a89c;
+  border-color: #6b6358;
 }
 
 .addFormActions {
@@ -159,7 +159,7 @@
 }
 
 .card:hover {
-  border-color: #b0a89c;
+  border-color: #6b6358;
 }
 
 .card:active { cursor: grabbing; }
@@ -181,7 +181,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #b0a89c;
+  color: #6b6358;
   font-size: 13px;
   padding: 1px 3px;
   border-radius: 4px;
@@ -194,7 +194,7 @@
 
 .category {
   font-size: 0.72rem;
-  color: #b0a89c;
+  color: #6b6358;
   background: #f4f1eb;
   border-radius: 4px;
   padding: 1px 6px;
