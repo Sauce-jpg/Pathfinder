@@ -40,7 +40,7 @@ export default function NoteCard({ note, onEdit, onRefresh, supabase }: Props) {
           <button onClick={onEdit} aria-label="Edit note" className={styles.iconBtn}>
             <i className="ti ti-edit" aria-hidden="true" />
           </button>
-          <button onClick={handleDelete} aria-label="Delete note" className={styles.iconBtn}>
+          <button onClick={handleDelete} aria-label="Delete note" className={`${styles.iconBtn} ${styles.iconBtnDanger}`}>
             <i className="ti ti-trash" aria-hidden="true" />
           </button>
         </div>
