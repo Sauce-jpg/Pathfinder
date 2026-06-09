@@ -13,7 +13,7 @@
 }
 
 .card:hover {
-  border-color: #b0a89c;
+  border-color: #6b6358;
 }
 
 /* ── Top row ──────────────────────────────────────────────── */
@@ -52,7 +52,7 @@
 
 .archived {
   background: #f4f1eb;
-  color: #b0a89c;
+  color: #6b6358;
   border-color: rgba(0,0,0,0.08);
 }
 
@@ -114,7 +114,7 @@
   align-items: center;
   gap: 4px;
   font-size: 0.78rem;
-  color: #b0a89c;
+  color: #6b6358;
 }
 
 .count i {
