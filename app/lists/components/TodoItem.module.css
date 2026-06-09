@@ -52,7 +52,7 @@
 
 .done {
   text-decoration: line-through;
-  color: #b0a89c;
+  color: #6b6358;
 }
 
 .titleInput {
@@ -74,7 +74,7 @@
   align-items: center;
   gap: 3px;
   font-size: 0.75rem;
-  color: #b0a89c;
+  color: #6b6358;
   flex-shrink: 0;
 }
 
@@ -93,7 +93,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #b0a89c;
+  color: #6b6358;
   font-size: 14px;
   padding: 3px 4px;
   border-radius: 4px;
@@ -125,7 +125,7 @@
   font-size: 0.83rem;
 }
 
-.addChildInput:focus { outline: none; border-color: #b0a89c; }
+.addChildInput:focus { outline: none; border-color: #6b6358; }
 
 /* ── Children ─────────────────────────────────────────────── */
 
