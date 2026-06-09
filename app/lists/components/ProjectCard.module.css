@@ -58,17 +58,17 @@
 
 .actions {
   display: flex;
-  gap: 2px;
+  gap: 4px;
 }
 
 .iconBtn {
   background: none;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
-  color: #b0a89c;
-  font-size: 15px;
-  padding: 3px 5px;
-  border-radius: 5px;
+  color: #6b6358;
+  font-size: 17px;
+  padding: 6px 8px;
+  border-radius: 6px;
   line-height: 1;
   transition: color 0.1s, background 0.1s;
 }
@@ -76,6 +76,7 @@
 .iconBtn:hover {
   color: #1a1714;
   background: #f4f1eb;
+  border-color: rgba(0,0,0,0.1);
 }
 
 /* ── Content ──────────────────────────────────────────────── */
@@ -126,4 +127,10 @@
   font-size: 0.75rem;
   color: rgba(0,0,0,0.08);
   margin-top: auto;
+}
+
+.iconBtnDanger:hover {
+  color: #dc2626 !important;
+  background: #fef2f2 !important;
+  border-color: #fecaca !important;
 }
