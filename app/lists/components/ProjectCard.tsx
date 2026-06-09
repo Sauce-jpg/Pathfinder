@@ -51,7 +51,7 @@ export default function ProjectCard({ project, onEdit, onRefresh, supabase }: Pr
           >
             <i className={`ti ${project.status === 'archived' ? 'ti-archive-off' : 'ti-archive'}`} aria-hidden="true" />
           </button>
-          <button onClick={handleDelete} aria-label="Delete project" className={styles.iconBtn}>
+          <button onClick={handleDelete} aria-label="Delete project" className={`${styles.iconBtn} ${styles.iconBtnDanger}`}>
             <i className="ti ti-trash" aria-hidden="true" />
           </button>
         </div>
