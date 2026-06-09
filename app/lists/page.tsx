@@ -18,6 +18,7 @@ import NoteModal from './components/NoteModal'
 import TodoListView from './components/TodoList'
 import PurchaseListView from './components/PurchaseList'
 import BacklogBoard from './components/BacklogBoard'
+import SimpleCreateModal from './components/SimpleCreateModal'
 
 type Tab = 'projects' | 'notes' | 'todos' | 'purchases' | 'backlog'
 
@@ -41,6 +42,9 @@ export default function ListsPage() {
 
   const [showProjectModal, setShowProjectModal] = useState(false)
   const [showNoteModal, setShowNoteModal]       = useState(false)
+  const [showTodoModal, setShowTodoModal]       = useState(false)
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+  const [showBacklogModal, setShowBacklogModal] = useState(false)
   const [editingProject, setEditingProject]     = useState<Project | null>(null)
   const [editingNote, setEditingNote]           = useState<Note | null>(null)
 
@@ -142,19 +146,20 @@ export default function ListsPage() {
       {/* Page header */}
       <div className={styles.header}>
         <h1 className={styles.title}>Lists</h1>
-        {(tab === 'projects' || tab === 'notes') && (
-          <button
-            className={styles.newButton}
-            onClick={() => {
-              if (tab === 'projects') { setEditingProject(null); setShowProjectModal(true) }
-              if (tab === 'notes')    { setEditingNote(null);    setShowNoteModal(true) }
-            }}
-            aria-label="Create new item"
-          >
-            <i className="ti ti-plus" aria-hidden="true" />
-            New {TABS.find(t => t.id === tab)?.label.replace(/s$/, '')}
-          </button>
-        )}
+        <button
+          className={styles.newButton}
+          onClick={() => {
+            if (tab === 'projects')  { setEditingProject(null); setShowProjectModal(true) }
+            if (tab === 'notes')     { setEditingNote(null);    setShowNoteModal(true) }
+            if (tab === 'todos')     { setShowTodoModal(true) }
+            if (tab === 'purchases') { setShowPurchaseModal(true) }
+            if (tab === 'backlog')   { setShowBacklogModal(true) }
+          }}
+          aria-label="Create new item"
+        >
+          <i className="ti ti-plus" aria-hidden="true" />
+          New {TABS.find(t => t.id === tab)?.label.replace(/s$/, '')}
+        </button>
       </div>
 
       {/* Tab bar */}
@@ -275,6 +280,51 @@ export default function ListsPage() {
           onClose={() => setShowNoteModal(false)}
           onSave={() => { setShowNoteModal(false); fetchAll() }}
           supabase={supabase}
+        />
+      )}
+
+      {showTodoModal && (
+        <SimpleCreateModal
+          title="New to-do list"
+          placeholder="e.g. Website tasks"
+          onClose={() => setShowTodoModal(false)}
+          onSave={async (title) => {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (!session) return
+            await supabase.from('todo_lists').insert({ title, user_id: session.user.id })
+            setShowTodoModal(false)
+            fetchAll()
+          }}
+        />
+      )}
+
+      {showPurchaseModal && (
+        <SimpleCreateModal
+          title="New purchase list"
+          placeholder="e.g. Gaming PC build"
+          onClose={() => setShowPurchaseModal(false)}
+          onSave={async (title) => {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (!session) return
+            await supabase.from('purchase_lists').insert({ title, user_id: session.user.id })
+            setShowPurchaseModal(false)
+            fetchAll()
+          }}
+        />
+      )}
+
+      {showBacklogModal && (
+        <SimpleCreateModal
+          title="New backlog item"
+          placeholder="e.g. Add dark mode"
+          onClose={() => setShowBacklogModal(false)}
+          onSave={async (title) => {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (!session) return
+            await supabase.from('backlog_items').insert({ title, user_id: session.user.id, status: 'backlog', sort_order: backlogItems.length })
+            setShowBacklogModal(false)
+            fetchAll()
+          }}
         />
       )}
     </div>
