@@ -41,6 +41,7 @@ export default function ListsPage() {
   const [editingNote, setEditingNote]             = useState<Note | null>(null)
 
   const [showArchived, setShowArchived] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
