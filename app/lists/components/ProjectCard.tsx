@@ -26,6 +26,11 @@ export default function ProjectCard({ project, onEdit, onRefresh, supabase }: Pr
     onRefresh()
   }
 
+  const handleBacklog = async () => {
+    await supabase.from('projects').update({ in_backlog: !project.in_backlog }).eq('id', project.id)
+    onRefresh()
+  }
+
   const handleDelete = async () => {
     if (!confirm(`Delete project "${project.title}"? This will not delete linked notes or tasks.`)) return
     await supabase.from('projects').delete().eq('id', project.id)
@@ -41,17 +46,17 @@ export default function ProjectCard({ project, onEdit, onRefresh, supabase }: Pr
           </span>
         </div>
         <div className={styles.actions}>
-          <button onClick={onEdit} aria-label="Edit project" className={styles.iconBtn}>
+          <button onClick={onEdit} aria-label="Edit project" title="Edit project" className={styles.iconBtn}>
             <i className="ti ti-edit" aria-hidden="true" />
           </button>
           <button
             onClick={handleArchive}
-            aria-label={project.status === 'archived' ? 'Unarchive project' : 'Archive project'}
+            aria-label={project.status === 'archived' ? 'Unarchive project' : 'Archive project'} title={project.status === 'archived' ? 'Unarchive project' : 'Archive project'}
             className={styles.iconBtn}
           >
             <i className={`ti ${project.status === 'archived' ? 'ti-archive-off' : 'ti-archive'}`} aria-hidden="true" />
           </button>
-          <button onClick={handleDelete} aria-label="Delete project" className={`${styles.iconBtn} ${styles.iconBtnDanger}`}>
+          <button onClick={handleDelete} aria-label="Delete project" title="Delete project" className={`${styles.iconBtn} ${styles.iconBtnDanger}`}>
             <i className="ti ti-trash" aria-hidden="true" />
           </button>
         </div>
@@ -89,6 +94,11 @@ export default function ProjectCard({ project, onEdit, onRefresh, supabase }: Pr
           </span>
         )}
       </div>
+
+      <a href={`/lists/projects/${project.id}`} className={styles.openLink}>
+        <i className="ti ti-arrow-right" aria-hidden="true" />
+        Open project
+      </a>
 
       <time className={styles.date} dateTime={project.created_at}>
         Created {new Date(project.created_at).toLocaleDateString('sv-SE')}
