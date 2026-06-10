@@ -144,3 +144,7 @@
 }
 
 .addBtn:disabled { opacity: 0.4; cursor: default; }
+
+.backlogActive {
+  color: #c8900a !important;
+}
