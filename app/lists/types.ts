@@ -8,6 +8,7 @@ export type Project = {
   title: string
   description: string | null
   status: ProjectStatus
+  in_backlog: boolean
   created_at: string
   updated_at: string
   // joined
@@ -25,6 +26,7 @@ export type Note = {
   body: string | null
   tags: string[]
   pinned: boolean
+  in_backlog: boolean
   created_at: string
   updated_at: string
 }
@@ -34,6 +36,7 @@ export type TodoList = {
   user_id: string
   project_id: string | null
   title: string
+  in_backlog: boolean
   created_at: string
   updated_at: string
   // joined
@@ -58,6 +61,7 @@ export type PurchaseList = {
   user_id: string
   project_id: string | null
   title: string
+  in_backlog: boolean
   created_at: string
   updated_at: string
   // joined
