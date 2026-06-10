@@ -5,18 +5,19 @@
 
 import { useState } from 'react'
 import { SupabaseClient } from '@supabase/supabase-js'
-import { TodoList as TodoListType, TodoItem as TodoItemType } from '../types'
+import { TodoList as TodoListType, TodoItem as TodoItemType, Project } from '../types'
 import TodoItem from './TodoItem'
 import styles from './TodoList.module.css'
 import { emitEvent } from '@/lib/emitEvent'
 
 type Props = {
   list: TodoListType
+  projects: Project[]
   onRefresh: () => void
   supabase: SupabaseClient
 }
 
-export default function TodoList({ list, onRefresh, supabase }: Props) {
+export default function TodoList({ list, projects, onRefresh, supabase }: Props) {
   const [newItemTitle, setNewItemTitle] = useState('')
   const [adding, setAdding]             = useState(false)
   const [collapsed, setCollapsed]       = useState(false)
@@ -58,6 +59,11 @@ export default function TodoList({ list, onRefresh, supabase }: Props) {
         suggest_timeline: false,
       })
     }
+    onRefresh()
+  }
+
+  const handleBacklog = async () => {
+    await supabase.from('todo_lists').update({ in_backlog: !list.in_backlog }).eq('id', list.id)
     onRefresh()
   }
 
@@ -107,8 +113,17 @@ export default function TodoList({ list, onRefresh, supabase }: Props) {
         </span>
 
         <button
+          onClick={handleBacklog}
+          aria-label={list.in_backlog ? 'Remove from backlog' : 'Add to backlog'}
+          title={list.in_backlog ? 'Remove from backlog' : 'Add to backlog'}
+          className={`${styles.collapseBtn} ${list.in_backlog ? styles.backlogActive : ''}`}
+        >
+          <i className="ti ti-stack-2" aria-hidden="true" />
+        </button>
+        <button
           onClick={handleDeleteList}
           aria-label="Delete list"
+          title="Delete list"
           className={styles.deleteBtn}
         >
           <i className="ti ti-trash" aria-hidden="true" />
