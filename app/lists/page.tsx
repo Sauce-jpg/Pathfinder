@@ -40,7 +40,7 @@ export default function ListsPage() {
   const [editingProject, setEditingProject]       = useState<Project | null>(null)
   const [editingNote, setEditingNote]             = useState<Note | null>(null)
 
-  const [loading, setLoading] = useState(true)
+  const [showArchived, setShowArchived] = useState(false)
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -57,7 +57,7 @@ export default function ListsPage() {
       { data: purchaseData },
       { data: eventsData },
     ] = await Promise.all([
-      supabase.from('projects').select('*').eq('status', 'active').order('created_at', { ascending: false }),
+      supabase.from('projects').select('*').order('created_at', { ascending: false }),
       supabase.from('notes').select('*').order('pinned', { ascending: false }).order('updated_at', { ascending: false }),
       supabase.from('todo_lists').select('*, items:todo_items(*)').order('created_at', { ascending: false }),
       supabase.from('purchase_lists').select('*, items:purchase_items(*)').order('created_at', { ascending: false }),
@@ -145,20 +145,35 @@ export default function ListsPage() {
         ) : (
           <>
             {tab === 'projects' && (
-              <div className={styles.grid}>
-                {projects.length === 0 && (
-                  <p className={styles.empty}>No projects yet.</p>
-                )}
-                {projects.map(p => (
-                  <ProjectCard
-                    key={p.id}
-                    project={p}
-                    onEdit={() => { setEditingProject(p); setShowProjectModal(true) }}
-                    onRefresh={fetchAll}
-                    supabase={supabase}
-                  />
-                ))}
-              </div>
+              <>
+                <div className={styles.tabToolbar}>
+                  <button
+                    className={`${styles.filterBtn} ${showArchived ? styles.filterBtnActive : ''}`}
+                    onClick={() => setShowArchived(a => !a)}
+                  >
+                    <i className="ti ti-archive" aria-hidden="true" />
+                    {showArchived ? 'Hide archived' : 'Show archived'}
+                  </button>
+                </div>
+                <div className={styles.grid}>
+                  {projects.filter(p => showArchived ? p.status === 'archived' : p.status !== 'archived').length === 0 && (
+                    <p className={styles.empty}>
+                      {showArchived ? 'No archived projects.' : 'No projects yet.'}
+                    </p>
+                  )}
+                  {projects
+                    .filter(p => showArchived ? p.status === 'archived' : p.status !== 'archived')
+                    .map(p => (
+                      <ProjectCard
+                        key={p.id}
+                        project={p}
+                        onEdit={() => { setEditingProject(p); setShowProjectModal(true) }}
+                        onRefresh={fetchAll}
+                        supabase={supabase}
+                      />
+                    ))}
+                </div>
+              </>
             )}
 
             {tab === 'notes' && (
