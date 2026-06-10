@@ -4,7 +4,7 @@
 
 import { useState } from 'react'
 import { SupabaseClient } from '@supabase/supabase-js'
-import { PurchaseList as PurchaseListType, PurchaseItem as PurchaseItemType } from '../types'
+import { PurchaseList as PurchaseListType, PurchaseItem as PurchaseItemType, Project } from '../types'
 import PurchaseItem from './PurchaseItem'
 import PurchaseItemModal from './PurchaseItemModal'
 import styles from './PurchaseList.module.css'
@@ -12,11 +12,12 @@ import { emitEvent } from '@/lib/emitEvent'
 
 type Props = {
   list: PurchaseListType
+  projects: Project[]
   onRefresh: () => void
   supabase: SupabaseClient
 }
 
-export default function PurchaseList({ list, onRefresh, supabase }: Props) {
+export default function PurchaseList({ list, projects, onRefresh, supabase }: Props) {
   const [collapsed, setCollapsed]         = useState(false)
   const [showItemModal, setShowItemModal] = useState(false)
   const [editingItem, setEditingItem]     = useState<PurchaseItemType | null>(null)
@@ -24,6 +25,11 @@ export default function PurchaseList({ list, onRefresh, supabase }: Props) {
 
   const items = list.items ?? []
   const boughtCount = items.filter(i => i.status === 'bought').length
+
+  const handleBacklog = async () => {
+    await supabase.from('purchase_lists').update({ in_backlog: !list.in_backlog }).eq('id', list.id)
+    onRefresh()
+  }
 
   const handleDeleteList = async () => {
     if (!confirm(`Delete list "${list.title}" and all its items?`)) return
@@ -84,7 +90,15 @@ export default function PurchaseList({ list, onRefresh, supabase }: Props) {
           Add item
         </button>
 
-        <button onClick={handleDeleteList} aria-label="Delete list" className={styles.deleteBtn}>
+        <button
+          onClick={handleBacklog}
+          aria-label={list.in_backlog ? 'Remove from backlog' : 'Add to backlog'}
+          title={list.in_backlog ? 'Remove from backlog' : 'Add to backlog'}
+          className={`${styles.collapseBtn} ${list.in_backlog ? styles.backlogActive : ''}`}
+        >
+          <i className="ti ti-stack-2" aria-hidden="true" />
+        </button>
+        <button onClick={handleDeleteList} aria-label="Delete list" title="Delete list" className={styles.deleteBtn}>
           <i className="ti ti-trash" aria-hidden="true" />
         </button>
       </div>
