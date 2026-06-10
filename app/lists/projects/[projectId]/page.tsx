@@ -4,7 +4,7 @@
 // Shows everything belonging to a project in one place.
 
 import { useEffect, useState, useCallback } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 import { Project, Note, TodoList, PurchaseList, ProjectLink } from '../../types'
 import NoteCard from '../../components/NoteCard'
