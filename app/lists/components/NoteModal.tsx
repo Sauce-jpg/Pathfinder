@@ -10,16 +10,17 @@ import styles from './Modal.module.css'
 type Props = {
   note: Note | null       // null = create mode
   projects: Project[]
+  defaultProjectId?: string
   onClose: () => void
   onSave: () => void
   supabase: SupabaseClient
 }
 
-export default function NoteModal({ note, projects, onClose, onSave, supabase }: Props) {
+export default function NoteModal({ note, projects, defaultProjectId, onClose, onSave, supabase }: Props) {
   const [title, setTitle]         = useState(note?.title ?? '')
   const [body, setBody]           = useState(note?.body ?? '')
   const [tagInput, setTagInput]   = useState(note?.tags.join(', ') ?? '')
-  const [projectId, setProjectId] = useState(note?.project_id ?? '')
+  const [projectId, setProjectId] = useState(note?.project_id ?? defaultProjectId ?? '')
   const [saving, setSaving]       = useState(false)
   const [error, setError]         = useState('')
 
