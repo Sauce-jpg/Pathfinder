@@ -23,7 +23,6 @@ const BRANCH_ICON: Record<string, string> = {
 
 export default function ProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>()
-  const router = useRouter()
 
   const [project, setProject]       = useState<Project | null>(null)
   const [notes, setNotes]           = useState<Note[]>([])
