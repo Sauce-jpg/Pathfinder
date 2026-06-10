@@ -163,3 +163,13 @@
   .content { padding: 1.5rem 16px 3rem; }
   .tab     { padding: 0.65rem 0.65rem; font-size: 0.8rem; }
 }
+
+.tabBadge {
+  font-size: 0.65rem;
+  background: #c8900a;
+  color: #fff;
+  border-radius: 100px;
+  padding: 1px 6px;
+  margin-left: 2px;
+  font-family: 'DM Mono', monospace;
+}
