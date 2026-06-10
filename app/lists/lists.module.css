@@ -173,3 +173,37 @@
   margin-left: 2px;
   font-family: 'DM Mono', monospace;
 }
+
+.tabToolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 7px;
+  background: transparent;
+  font-size: 0.82rem;
+  color: #6b6358;
+  cursor: pointer;
+  font-family: 'Crimson Pro', Georgia, serif;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+
+.filterBtn:hover {
+  background: #f4f1eb;
+  color: #1a1714;
+}
+
+.filterBtnActive {
+  background: #f4f1eb;
+  color: #c8900a;
+  border-color: rgba(200, 144, 10, 0.3);
+}
+
+.filterBtn i { font-size: 14px; }
