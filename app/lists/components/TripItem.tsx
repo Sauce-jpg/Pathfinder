@@ -9,41 +9,44 @@ import styles from './TripItem.module.css'
 type Props = {
   item: TripItemType
   onEdit: () => void
-  onMarkDone: () => void
+  onStatusCycle: () => void
   onRefresh: () => void
   supabase: SupabaseClient
 }
 
 const TRAVEL_ICONS: Record<string, string> = {
-  walk:   'ti-walk',
-  bike:   'ti-bike',
-  bus:    'ti-bus',
-  train:  'ti-train',
-  car:    'ti-car',
-  ferry:  'ti-sailboat',
-  flight: 'ti-plane',
+  walk: 'ti-walk', bike: 'ti-bike', bus: 'ti-bus',
+  train: 'ti-train', car: 'ti-car', ferry: 'ti-sailboat', flight: 'ti-plane',
 }
 
-const STATUS_CONFIG = {
-  considering: { label: 'Considering', cls: 'considering' },
-  decided:     { label: 'Decided',     cls: 'decided'     },
-  done:        { label: 'Visited',     cls: 'done'        },
+const STATUS_CYCLE: Record<string, { next: string; label: string; cls: string; btnLabel: string; btnIcon: string }> = {
+  considering: { next: 'decided',     label: 'Considering', cls: 'considering', btnLabel: 'Mark decided',  btnIcon: 'ti-thumb-up'   },
+  decided:     { next: 'done',        label: 'Decided',     cls: 'decided',     btnLabel: 'Mark visited',  btnIcon: 'ti-check'      },
+  done:        { next: 'considering', label: 'Visited',     cls: 'done',        btnLabel: 'Undo visited',  btnIcon: 'ti-rotate-ccw' },
 }
 
 const PRIORITY_DOT: Record<string, string> = {
-  low:    '#b0a89c',
-  medium: '#c8900a',
-  high:   '#dc2626',
+  low: '#b0a89c', medium: '#c8900a', high: '#dc2626',
 }
 
-export default function TripItem({ item, onEdit, onMarkDone, onRefresh, supabase }: Props) {
+export default function TripItem({ item, onEdit, onStatusCycle, onRefresh, supabase }: Props) {
   const handleDelete = async () => {
     if (!confirm(`Remove "${item.name}"?`)) return
     await supabase.from('trip_items').delete().eq('id', item.id)
     onRefresh()
   }
 
-  const cfg = STATUS_CONFIG[item.status]
+  const cfg = STATUS_CYCLE[item.status]
+
+  // Total cost across all cost entries
+  const costs = item.costs ?? []
+  const totalCost = costs.reduce((sum, c) => sum + (c.amount ?? 0), 0)
+
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString('sv-SE')
+
+  const formatDateTime = (iso: string) =>
+    new Date(iso).toLocaleString('sv-SE', { dateStyle: 'short', timeStyle: 'short' })
 
   return (
     <li className={`${styles.item} ${item.status === 'done' ? styles.done : ''}`}>
@@ -60,26 +63,33 @@ export default function TripItem({ item, onEdit, onMarkDone, onRefresh, supabase
           <span className={`${styles.statusBadge} ${styles[cfg.cls]}`}>{cfg.label}</span>
 
           <div className={styles.actions}>
-            {item.status !== 'done' && (
-              <button
-                className={styles.doneBtn}
-                onClick={onMarkDone}
-                title="Mark as visited"
-                aria-label="Mark as visited"
-              >
-                <i className="ti ti-check" aria-hidden="true" />
-              </button>
-            )}
-            <button onClick={onEdit} title="Edit" aria-label="Edit destination" className={styles.iconBtn}>
+            <button
+              className={`${styles.cycleBtn} ${item.status === 'done' ? styles.cycleBtnUndo : ''}`}
+              onClick={onStatusCycle}
+              title={cfg.btnLabel}
+              aria-label={cfg.btnLabel}
+            >
+              <i className={`ti ${cfg.btnIcon}`} aria-hidden="true" />
+              {cfg.btnLabel}
+            </button>
+            <button onClick={onEdit} title="Edit" aria-label="Edit" className={styles.iconBtn}>
               <i className="ti ti-edit" aria-hidden="true" />
             </button>
-            <button onClick={handleDelete} title="Delete" aria-label="Delete destination" className={`${styles.iconBtn} ${styles.iconBtnDanger}`}>
+            <button onClick={handleDelete} title="Delete" aria-label="Delete" className={`${styles.iconBtn} ${styles.iconBtnDanger}`}>
               <i className="ti ti-trash" aria-hidden="true" />
             </button>
           </div>
         </div>
 
-        {/* Location row */}
+        {/* Visited date */}
+        {item.status === 'done' && item.visited_at && (
+          <div className={styles.visitedDate}>
+            <i className="ti ti-calendar-check" aria-hidden="true" />
+            Visited {formatDate(item.visited_at)}
+          </div>
+        )}
+
+        {/* Location */}
         {item.location && (
           <div className={styles.locationRow}>
             <i className="ti ti-map-pin" aria-hidden="true" />
@@ -118,13 +128,6 @@ export default function TripItem({ item, onEdit, onMarkDone, onRefresh, supabase
             </span>
           )}
 
-          {item.cost_estimate != null && (
-            <span className={styles.metaBadge}>
-              <i className="ti ti-currency-krona" aria-hidden="true" />
-              {item.cost_estimate.toLocaleString('sv-SE')} SEK
-            </span>
-          )}
-
           {item.url && (
             <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.metaLink}>
               <i className="ti ti-external-link" aria-hidden="true" />
@@ -133,7 +136,28 @@ export default function TripItem({ item, onEdit, onMarkDone, onRefresh, supabase
           )}
         </div>
 
-        {/* Expandable details */}
+        {/* Costs breakdown */}
+        {costs.length > 0 && (
+          <details className={styles.details}>
+            <summary className={styles.detailsSummary}>
+              <i className="ti ti-receipt" aria-hidden="true" />
+              Costs
+              <span className={styles.costTotal}>
+                {totalCost.toLocaleString('sv-SE')} SEK total
+              </span>
+            </summary>
+            <ul className={styles.costList}>
+              {costs.map((c, i) => (
+                <li key={i} className={styles.costRow}>
+                  <span className={styles.costLabel}>{c.label}</span>
+                  <span className={styles.costAmount}>{c.amount.toLocaleString('sv-SE')} SEK</span>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+
+        {/* What to bring */}
         {item.what_to_bring && (
           <details className={styles.details}>
             <summary className={styles.detailsSummary}>
@@ -144,6 +168,7 @@ export default function TripItem({ item, onEdit, onMarkDone, onRefresh, supabase
           </details>
         )}
 
+        {/* Notes */}
         {item.notes && (
           <details className={styles.details}>
             <summary className={styles.detailsSummary}>
@@ -153,6 +178,14 @@ export default function TripItem({ item, onEdit, onMarkDone, onRefresh, supabase
             <p className={styles.detailsBody}>{item.notes}</p>
           </details>
         )}
+
+        {/* Timestamps */}
+        <div className={styles.timestamps}>
+          <span>Created {formatDate(item.created_at)}</span>
+          {item.updated_at !== item.created_at && (
+            <span>· Edited {formatDateTime(item.updated_at)}</span>
+          )}
+        </div>
       </div>
     </li>
   )
