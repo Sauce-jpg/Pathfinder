@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import styles from './lists.module.css'
-import { Project, Note, TodoList, PurchaseList, HubEvent } from './types'
+import { Project, Note, TodoList, PurchaseList, TripList, HubEvent } from './types'
 import EventSuggestionBanner from './components/EventSuggestionBanner'
 import ProjectCard from './components/ProjectCard'
 import ProjectModal from './components/ProjectModal'
@@ -12,15 +12,17 @@ import NoteModal from './components/NoteModal'
 import TodoListView from './components/TodoList'
 import PurchaseListView from './components/PurchaseList'
 import BacklogView from './components/BacklogView'
+import TripListView from './components/TripList'
 import SimpleCreateModal from './components/SimpleCreateModal'
 
-type Tab = 'projects' | 'notes' | 'todos' | 'purchases' | 'backlog'
+type Tab = 'projects' | 'notes' | 'todos' | 'purchases' | 'trips' | 'backlog'
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
   { id: 'projects',  label: 'Projects',  icon: 'ti-layout-grid' },
   { id: 'notes',     label: 'Notes',     icon: 'ti-notes' },
   { id: 'todos',     label: 'To-dos',    icon: 'ti-checkbox' },
   { id: 'purchases', label: 'Purchases', icon: 'ti-shopping-cart' },
+  { id: 'trips',     label: 'Trips',     icon: 'ti-map-pin' },
   { id: 'backlog',   label: 'Backlog',   icon: 'ti-stack-2' },
 ]
 
@@ -33,10 +35,13 @@ export default function ListsPage() {
   const [purchaseLists, setPurchaseLists] = useState<PurchaseList[]>([])
   const [events, setEvents]               = useState<HubEvent[]>([])
 
+  const [tripLists, setTripLists]         = useState<TripList[]>([])
+
   const [showProjectModal, setShowProjectModal]   = useState(false)
   const [showNoteModal, setShowNoteModal]         = useState(false)
   const [showTodoModal, setShowTodoModal]         = useState(false)
   const [showPurchaseModal, setShowPurchaseModal] = useState(false)
+  const [showTripModal, setShowTripModal]         = useState(false)
   const [editingProject, setEditingProject]       = useState<Project | null>(null)
   const [editingNote, setEditingNote]             = useState<Note | null>(null)
 
@@ -56,12 +61,14 @@ export default function ListsPage() {
       { data: notesData },
       { data: todoData },
       { data: purchaseData },
+      { data: tripData },
       { data: eventsData },
     ] = await Promise.all([
       supabase.from('projects').select('*').order('created_at', { ascending: false }),
       supabase.from('notes').select('*').order('pinned', { ascending: false }).order('updated_at', { ascending: false }),
       supabase.from('todo_lists').select('*, items:todo_items(*)').order('created_at', { ascending: false }),
       supabase.from('purchase_lists').select('*, items:purchase_items(*)').order('created_at', { ascending: false }),
+      supabase.from('trip_lists').select('*, items:trip_items(*)').order('created_at', { ascending: false }),
       supabase.from('hub_events').select('*').eq('dismissed', false).eq('suggest_timeline', true).order('created_at', { ascending: false }),
     ])
 
@@ -69,6 +76,7 @@ export default function ListsPage() {
     if (notesData)    setNotes(notesData)
     if (todoData)     setTodoLists(todoData)
     if (purchaseData) setPurchaseLists(purchaseData)
+    if (tripData)     setTripLists(tripData)
     if (eventsData)   setEvents(eventsData)
     setLoading(false)
   }, [])
@@ -85,7 +93,8 @@ export default function ListsPage() {
   const backlogNotes     = notes.filter(n => n.in_backlog)
   const backlogTodos     = todoLists.filter(t => t.in_backlog)
   const backlogPurchases = purchaseLists.filter(p => p.in_backlog)
-  const backlogCount     = backlogProjects.length + backlogNotes.length + backlogTodos.length + backlogPurchases.length
+  const backlogTrips     = tripLists.filter(t => t.in_backlog)
+  const backlogCount     = backlogProjects.length + backlogNotes.length + backlogTodos.length + backlogPurchases.length + backlogTrips.length
 
   return (
     <div className={styles.page}>
@@ -111,6 +120,7 @@ export default function ListsPage() {
               if (tab === 'notes')     { setEditingNote(null);    setShowNoteModal(true) }
               if (tab === 'todos')     setShowTodoModal(true)
               if (tab === 'purchases') setShowPurchaseModal(true)
+              if (tab === 'trips')     setShowTripModal(true)
             }}
             aria-label="Create new item"
           >
@@ -229,12 +239,30 @@ export default function ListsPage() {
               </div>
             )}
 
+            {tab === 'trips' && (
+              <div className={styles.stack}>
+                {tripLists.length === 0 && (
+                  <p className={styles.empty}>No trip lists yet.</p>
+                )}
+                {tripLists.map(list => (
+                  <TripListView
+                    key={list.id}
+                    list={list}
+                    projects={projects}
+                    onRefresh={fetchAll}
+                    supabase={supabase}
+                  />
+                ))}
+              </div>
+            )}
+
             {tab === 'backlog' && (
               <BacklogView
                 projects={backlogProjects}
                 notes={backlogNotes}
                 todoLists={backlogTodos}
                 purchaseLists={backlogPurchases}
+                tripLists={backlogTrips}
                 allProjects={projects}
                 onRefresh={fetchAll}
                 supabase={supabase}
@@ -290,6 +318,20 @@ export default function ListsPage() {
             if (!session) return
             await supabase.from('purchase_lists').insert({ title, user_id: session.user.id })
             setShowPurchaseModal(false)
+            fetchAll()
+          }}
+        />
+      )}
+      {showTripModal && (
+        <SimpleCreateModal
+          title="New trip list"
+          placeholder="e.g. Summer 2026"
+          onClose={() => setShowTripModal(false)}
+          onSave={async (title) => {
+            const { data: { session } } = await supabase.auth.getSession()
+            if (!session) return
+            await supabase.from('trip_lists').insert({ title, user_id: session.user.id })
+            setShowTripModal(false)
             fetchAll()
           }}
         />
