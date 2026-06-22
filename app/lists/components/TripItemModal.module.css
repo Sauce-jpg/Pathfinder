@@ -34,3 +34,108 @@
   border-color: rgba(200,144,10,0.4);
   font-weight: 500;
 }
+
+/* ── Costs section ────────────────────────────────────────── */
+
+.costsSection {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.costsHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.costsHeader label {
+  margin: 0;
+}
+
+.costTotal {
+  font-size: 0.78rem;
+  color: #c8900a;
+  font-family: 'DM Mono', monospace;
+}
+
+.addCostBtn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.78rem;
+  color: #6b6358;
+  cursor: pointer;
+  font-family: 'Crimson Pro', Georgia, serif;
+  transition: background 0.1s;
+}
+
+.addCostBtn:hover { background: #f4f1eb; }
+.addCostBtn i { font-size: 12px; }
+
+.costRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.costLabel {
+  flex: 2 !important;
+}
+
+.costAmount {
+  flex: 1 !important;
+  min-width: 0;
+}
+
+.costCurrency {
+  font-size: 0.78rem;
+  color: #b0a89c;
+  flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+}
+
+.removeCostBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #b0a89c;
+  font-size: 14px;
+  padding: 3px;
+  border-radius: 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.1s;
+}
+
+.removeCostBtn:hover { color: #dc2626; }
+
+.costsEmpty {
+  font-size: 0.8rem;
+  color: #b0a89c;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ── Timestamps ───────────────────────────────────────────── */
+
+.timestamps {
+  font-size: 0.75rem;
+  color: #b0a89c;
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 0.6rem;
+  margin-top: 0.25rem;
+}
