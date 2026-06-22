@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from 'react'
 import { SupabaseClient } from '@supabase/supabase-js'
-import { TripItem, TripStatus, TripPriority, TRAVEL_OPTIONS } from '../types'
+import { TripItem, TripStatus, TripPriority, TRAVEL_OPTIONS, CostEntry } from '../types'
 import styles from './Modal.module.css'
 import tripStyles from './TripItemModal.module.css'
 
@@ -23,7 +23,7 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
   const [mapsUrl, setMapsUrl]         = useState(item?.maps_url ?? '')
   const [travelOptions, setTravelOptions] = useState<string[]>(item?.travel_options ?? [])
   const [whatToBring, setWhatToBring] = useState(item?.what_to_bring ?? '')
-  const [costEstimate, setCostEstimate] = useState(item?.cost_estimate?.toString() ?? '')
+  const [costs, setCosts]             = useState<CostEntry[]>(item?.costs ?? [])
   const [duration, setDuration]       = useState(item?.duration ?? '')
   const [status, setStatus]           = useState<TripStatus>(item?.status ?? 'considering')
   const [priority, setPriority]       = useState<TripPriority>(item?.priority ?? 'medium')
@@ -41,6 +41,17 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
       prev.includes(opt) ? prev.filter(o => o !== opt) : [...prev, opt]
     )
 
+  const addCostRow = () =>
+    setCosts(prev => [...prev, { label: '', amount: 0 }])
+
+  const updateCost = (i: number, field: 'label' | 'amount', value: string) =>
+    setCosts(prev => prev.map((c, idx) =>
+      idx === i ? { ...c, [field]: field === 'amount' ? parseFloat(value) || 0 : value } : c
+    ))
+
+  const removeCost = (i: number) =>
+    setCosts(prev => prev.filter((_, idx) => idx !== i))
+
   const handleSave = async () => {
     if (!name.trim()) { setError('Name is required'); return }
     setSaving(true)
@@ -53,7 +64,7 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
       maps_url:       mapsUrl.trim() || null,
       travel_options: travelOptions,
       what_to_bring:  whatToBring.trim() || null,
-      cost_estimate:  costEstimate ? parseFloat(costEstimate) : null,
+      costs:          costs.filter(c => c.label.trim()),
       duration:       duration.trim() || null,
       status,
       priority,
@@ -79,6 +90,8 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
     walk: 'ti-walk', bike: 'ti-bike', bus: 'ti-bus',
     train: 'ti-train', car: 'ti-car', ferry: 'ti-sailboat', flight: 'ti-plane',
   }
+
+  const totalCost = costs.reduce((sum, c) => sum + (c.amount || 0), 0)
 
   return (
     <div className={styles.overlay} onClick={e => { if (e.target === e.currentTarget) onClose() }}>
@@ -158,20 +171,8 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
             ))}
           </div>
 
-          {/* Cost + Duration */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-            <div>
-              <label className={styles.label} htmlFor="trip-cost">Est. cost (SEK)</label>
-              <input
-                id="trip-cost"
-                className={styles.input}
-                value={costEstimate}
-                onChange={e => setCostEstimate(e.target.value)}
-                placeholder="500"
-                type="number"
-                min="0"
-              />
-            </div>
+          {/* Duration + Status + Priority */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem' }}>
             <div>
               <label className={styles.label} htmlFor="trip-duration">Duration</label>
               <input
@@ -179,13 +180,9 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
                 className={styles.input}
                 value={duration}
                 onChange={e => setDuration(e.target.value)}
-                placeholder="Half day, full day, 3 days..."
+                placeholder="Half day, 3 days..."
               />
             </div>
-          </div>
-
-          {/* Status + Priority */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
             <div>
               <label className={styles.label} htmlFor="trip-status">Status</label>
               <select
@@ -212,6 +209,56 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
                 <option value="high">High</option>
               </select>
             </div>
+          </div>
+
+          {/* Costs breakdown */}
+          <div className={tripStyles.costsSection}>
+            <div className={tripStyles.costsHeader}>
+              <label className={styles.label}>Costs</label>
+              {totalCost > 0 && (
+                <span className={tripStyles.costTotal}>
+                  {totalCost.toLocaleString('sv-SE')} SEK total
+                </span>
+              )}
+              <button
+                type="button"
+                className={tripStyles.addCostBtn}
+                onClick={addCostRow}
+              >
+                <i className="ti ti-plus" aria-hidden="true" />
+                Add cost
+              </button>
+            </div>
+            {costs.map((c, i) => (
+              <div key={i} className={tripStyles.costRow}>
+                <input
+                  className={`${styles.input} ${tripStyles.costLabel}`}
+                  value={c.label}
+                  onChange={e => updateCost(i, 'label', e.target.value)}
+                  placeholder="e.g. Entry fee, Food, Travel..."
+                />
+                <input
+                  className={`${styles.input} ${tripStyles.costAmount}`}
+                  value={c.amount || ''}
+                  onChange={e => updateCost(i, 'amount', e.target.value)}
+                  placeholder="0"
+                  type="number"
+                  min="0"
+                />
+                <span className={tripStyles.costCurrency}>SEK</span>
+                <button
+                  type="button"
+                  className={tripStyles.removeCostBtn}
+                  onClick={() => removeCost(i)}
+                  aria-label="Remove cost"
+                >
+                  <i className="ti ti-x" aria-hidden="true" />
+                </button>
+              </div>
+            ))}
+            {costs.length === 0 && (
+              <p className={tripStyles.costsEmpty}>No costs added yet.</p>
+            )}
           </div>
 
           {/* Link */}
@@ -246,6 +293,16 @@ export default function TripItemModal({ item, listId, onClose, onSave, supabase 
             placeholder="Opening hours, booking needed, tips..."
             rows={2}
           />
+
+          {/* Timestamps (edit mode only) */}
+          {item && (
+            <div className={tripStyles.timestamps}>
+              <span>Created {new Date(item.created_at).toLocaleDateString('sv-SE')}</span>
+              {item.updated_at !== item.created_at && (
+                <span>· Last edited {new Date(item.updated_at).toLocaleString('sv-SE', { dateStyle: 'short', timeStyle: 'short' })}</span>
+              )}
+            </div>
+          )}
 
           {error && <p className={styles.error}>{error}</p>}
         </div>
