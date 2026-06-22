@@ -55,7 +55,7 @@ export default function BacklogView({
     )
   }
 
-  const sections: { type: SourceType; table: string; items: (Project | Note | TodoList | PurchaseList)[] }[] = [
+  const sections: { type: SourceType; table: string; items: (Project | Note | TodoList | PurchaseList | TripList)[] }[] = [
     { type: 'project',  table: 'projects',       items: projects },
     { type: 'note',     table: 'notes',          items: notes },
     { type: 'todo',     table: 'todo_lists',     items: todoLists },
