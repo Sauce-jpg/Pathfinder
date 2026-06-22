@@ -1,0 +1,136 @@
+/* app/lists/components/TripList.module.css */
+
+.list {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.listHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.collapseBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b6358;
+  font-size: 14px;
+  padding: 2px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.1s;
+}
+
+.collapseBtn:hover { color: #1a1714; }
+
+.headerMain {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.listTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1714;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.travelSummary {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.travelPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.72rem;
+  color: #6b6358;
+  background: #f4f1eb;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 100px;
+  padding: 2px 7px;
+}
+
+.travelPill i { font-size: 12px; }
+
+.tally {
+  font-size: 0.78rem;
+  color: #6b6358;
+  flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+}
+
+.addItemBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.8rem;
+  color: #6b6358;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: 'Crimson Pro', Georgia, serif;
+  transition: background 0.1s, color 0.1s;
+}
+
+.addItemBtn:hover {
+  background: #f4f1eb;
+  color: #1a1714;
+}
+
+.iconBtn {
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: #6b6358;
+  font-size: 16px;
+  padding: 5px 7px;
+  border-radius: 6px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.1s, background 0.1s, border-color 0.1s;
+}
+
+.iconBtn:hover {
+  color: #1a1714;
+  background: #f4f1eb;
+  border-color: rgba(0,0,0,0.1);
+}
+
+.iconBtnActive { color: #c8900a; }
+
+.iconBtnDanger:hover {
+  color: #dc2626;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.items {
+  list-style: none;
+  padding: 0.25rem 0;
+  margin: 0;
+}
+
+.empty {
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #b0a89c;
+  font-style: italic;
+}
