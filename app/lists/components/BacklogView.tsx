@@ -5,7 +5,7 @@
 // that have in_backlog = true. Grouped by type.
 
 import { SupabaseClient } from '@supabase/supabase-js'
-import { Project, Note, TodoList, PurchaseList } from '../types'
+import { Project, Note, TodoList, PurchaseList, TripList } from '../types'
 import styles from './BacklogView.module.css'
 
 type Props = {
@@ -13,6 +13,7 @@ type Props = {
   notes: Note[]
   todoLists: TodoList[]
   purchaseLists: PurchaseList[]
+  tripLists: TripList[]
   allProjects: Project[]
   onRefresh: () => void
   supabase: SupabaseClient
@@ -20,17 +21,18 @@ type Props = {
   onEditProject: (project: Project) => void
 }
 
-type SourceType = 'project' | 'note' | 'todo' | 'purchase'
+type SourceType = 'project' | 'note' | 'todo' | 'purchase' | 'trip'
 
 const TYPE_CONFIG: Record<SourceType, { label: string; icon: string; color: string }> = {
   project:  { label: 'Project',       icon: 'ti-layout-grid',   color: '#7c6fcd' },
   note:     { label: 'Note',          icon: 'ti-notes',         color: '#6b9fd4' },
   todo:     { label: 'To-do list',    icon: 'ti-checkbox',      color: '#5aac8a' },
   purchase: { label: 'Purchase list', icon: 'ti-shopping-cart', color: '#c8900a' },
+  trip:     { label: 'Trip list',      icon: 'ti-map-pin',       color: '#5aac8a' },
 }
 
 export default function BacklogView({
-  projects, notes, todoLists, purchaseLists,
+  projects, notes, todoLists, purchaseLists, tripLists,
   allProjects, onRefresh, supabase, onEditNote, onEditProject
 }: Props) {
 
@@ -39,7 +41,7 @@ export default function BacklogView({
     onRefresh()
   }
 
-  const total = projects.length + notes.length + todoLists.length + purchaseLists.length
+  const total = projects.length + notes.length + todoLists.length + purchaseLists.length + tripLists.length
 
   if (total === 0) {
     return (
@@ -58,6 +60,7 @@ export default function BacklogView({
     { type: 'note',     table: 'notes',          items: notes },
     { type: 'todo',     table: 'todo_lists',     items: todoLists },
     { type: 'purchase', table: 'purchase_lists', items: purchaseLists },
+    { type: 'trip',     table: 'trip_lists',     items: tripLists },
   ]
 
   return (
