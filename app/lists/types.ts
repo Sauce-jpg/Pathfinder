@@ -152,6 +152,11 @@ export type TripPriority = 'low' | 'medium' | 'high'
 export const TRAVEL_OPTIONS = ['walk', 'bike', 'bus', 'train', 'car', 'ferry', 'flight'] as const
 export type TravelOption = typeof TRAVEL_OPTIONS[number]
 
+export type CostEntry = {
+  label: string
+  amount: number
+}
+
 export type TripItem = {
   id: string
   list_id: string
@@ -161,12 +166,14 @@ export type TripItem = {
   maps_url: string | null
   travel_options: TravelOption[]
   what_to_bring: string | null
-  cost_estimate: number | null
+  costs: CostEntry[]
+  cost_estimate: number | null  // legacy, kept for backwards compat
   duration: string | null
   status: TripStatus
   priority: TripPriority
   url: string | null
   notes: string | null
+  visited_at: string | null
   created_at: string
   updated_at: string
 }
