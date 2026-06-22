@@ -46,15 +46,32 @@ export default function TripList({ list, projects, onRefresh, supabase }: Props)
     onRefresh()
   }
 
-  const handleMarkDone = async (item: TripItemType) => {
-    await supabase.from('trip_items').update({ status: 'done' }).eq('id', item.id)
-    await emitEvent(supabase, {
-      source_branch:    'lists',
-      event_type:       'trip_done',
-      title:            `Visited "${item.name}"${item.location ? ` in ${item.location}` : ''}`,
-      metadata:         { list_id: list.id, item_id: item.id, location: item.location },
-      suggest_timeline: true,
-    })
+  const STATUS_NEXT: Record<string, string> = {
+    considering: 'decided',
+    decided:     'done',
+    done:        'considering',
+  }
+
+  const handleStatusCycle = async (item: TripItemType) => {
+    const nextStatus = STATUS_NEXT[item.status]
+    const update: Record<string, unknown> = { status: nextStatus }
+
+    if (nextStatus === 'done') {
+      update.visited_at = new Date().toISOString()
+      await emitEvent(supabase, {
+        source_branch:    'lists',
+        event_type:       'trip_done',
+        title:            `Visited "${item.name}"${item.location ? ` in ${item.location}` : ''}`,
+        metadata:         { list_id: list.id, item_id: item.id, location: item.location },
+        suggest_timeline: true,
+      })
+    }
+
+    if (nextStatus === 'considering') {
+      update.visited_at = null
+    }
+
+    await supabase.from('trip_items').update(update).eq('id', item.id)
     onRefresh()
   }
 
@@ -132,7 +149,7 @@ export default function TripList({ list, projects, onRefresh, supabase }: Props)
                     key={item.id}
                     item={item}
                     onEdit={() => { setEditingItem(item); setShowItemModal(true) }}
-                    onMarkDone={() => handleMarkDone(item)}
+                    onStatusCycle={() => handleStatusCycle(item)}
                     onRefresh={onRefresh}
                     supabase={supabase}
                   />
