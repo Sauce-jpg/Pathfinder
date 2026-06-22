@@ -1,7 +1,5 @@
 'use client'
 
-// app/lists/components/TripItem.tsx
-
 import { SupabaseClient } from '@supabase/supabase-js'
 import { TripItem as TripItemType } from '../types'
 import styles from './TripItem.module.css'
@@ -9,7 +7,7 @@ import styles from './TripItem.module.css'
 type Props = {
   item: TripItemType
   onEdit: () => void
-  onStatusCycle: () => void
+  onStatusChange: (newStatus: string) => void
   onRefresh: () => void
   supabase: SupabaseClient
 }
@@ -19,37 +17,40 @@ const TRAVEL_ICONS: Record<string, string> = {
   train: 'ti-train', car: 'ti-car', ferry: 'ti-sailboat', flight: 'ti-plane',
 }
 
-const STATUS_CYCLE: Record<string, { next: string; label: string; cls: string; btnLabel: string; btnIcon: string }> = {
-  considering: { next: 'decided',     label: 'Considering', cls: 'considering', btnLabel: 'Mark decided',  btnIcon: 'ti-thumb-up'   },
-  decided:     { next: 'done',        label: 'Decided',     cls: 'decided',     btnLabel: 'Mark visited',  btnIcon: 'ti-check'      },
-  done:        { next: 'considering', label: 'Visited',     cls: 'done',        btnLabel: 'Undo visited',  btnIcon: 'ti-rotate-ccw' },
-}
-
 const PRIORITY_DOT: Record<string, string> = {
   low: '#b0a89c', medium: '#c8900a', high: '#dc2626',
 }
 
-export default function TripItem({ item, onEdit, onStatusCycle, onRefresh, supabase }: Props) {
+export default function TripItem({ item, onEdit, onStatusChange, onRefresh, supabase }: Props) {
   const handleDelete = async () => {
     if (!confirm(`Remove "${item.name}"?`)) return
     await supabase.from('trip_items').delete().eq('id', item.id)
     onRefresh()
   }
 
-  const cfg = STATUS_CYCLE[item.status]
-
-  // Total cost across all cost entries
   const costs = item.costs ?? []
-  const totalCost = costs.reduce((sum, c) => sum + (c.amount ?? 0), 0)
 
-  const formatDate = (iso: string) =>
-    new Date(iso).toLocaleDateString('sv-SE')
+  // Get min and max across all variants of all cost entries
+  const allAmounts = costs.flatMap(c => (c.variants ?? []).map(v => v.amount))
+  const minCost = allAmounts.length > 0 ? Math.min(...allAmounts) : null
+  const maxCost = allAmounts.length > 0 ? Math.max(...allAmounts) : null
+  const costRange = minCost !== null && maxCost !== null
+    ? minCost === maxCost
+      ? `${minCost.toLocaleString('sv-SE')} SEK`
+      : `${minCost.toLocaleString('sv-SE')}–${maxCost.toLocaleString('sv-SE')} SEK`
+    : null
 
+  const formatDate = (iso: string) => new Date(iso).toLocaleDateString('sv-SE')
   const formatDateTime = (iso: string) =>
     new Date(iso).toLocaleString('sv-SE', { dateStyle: 'short', timeStyle: 'short' })
 
+  // Highlight planned date if within 30 days
+  const isUpcoming = item.planned_date
+    ? (new Date(item.planned_date).getTime() - Date.now()) / 86400000 <= 30
+    : false
+
   return (
-    <li className={`${styles.item} ${item.status === 'done' ? styles.done : ''}`}>
+    <li className={`${styles.item} ${item.status === 'done' ? styles.itemDone : ''}`}>
       <div className={styles.main}>
 
         {/* Top row */}
@@ -60,18 +61,20 @@ export default function TripItem({ item, onEdit, onStatusCycle, onRefresh, supab
             title={`Priority: ${item.priority}`}
           />
           <span className={styles.name}>{item.name}</span>
-          <span className={`${styles.statusBadge} ${styles[cfg.cls]}`}>{cfg.label}</span>
+
+          {/* Inline status dropdown */}
+          <select
+            className={`${styles.statusSelect} ${styles[item.status]}`}
+            value={item.status}
+            onChange={e => onStatusChange(e.target.value)}
+            aria-label="Status"
+          >
+            <option value="considering">Considering</option>
+            <option value="decided">Decided</option>
+            <option value="done">Visited</option>
+          </select>
 
           <div className={styles.actions}>
-            <button
-              className={`${styles.cycleBtn} ${item.status === 'done' ? styles.cycleBtnUndo : ''}`}
-              onClick={onStatusCycle}
-              title={cfg.btnLabel}
-              aria-label={cfg.btnLabel}
-            >
-              <i className={`ti ${cfg.btnIcon}`} aria-hidden="true" />
-              {cfg.btnLabel}
-            </button>
             <button onClick={onEdit} title="Edit" aria-label="Edit" className={styles.iconBtn}>
               <i className="ti ti-edit" aria-hidden="true" />
             </button>
@@ -80,6 +83,15 @@ export default function TripItem({ item, onEdit, onStatusCycle, onRefresh, supab
             </button>
           </div>
         </div>
+
+        {/* Planned date */}
+        {item.planned_date && (
+          <div className={`${styles.plannedDate} ${isUpcoming ? styles.plannedDateUpcoming : ''}`}>
+            <i className="ti ti-calendar" aria-hidden="true" />
+            Planned: {formatDate(item.planned_date)}
+            {isUpcoming && <span className={styles.soonBadge}>Soon</span>}
+          </div>
+        )}
 
         {/* Visited date */}
         {item.status === 'done' && item.visited_at && (
@@ -120,14 +132,18 @@ export default function TripItem({ item, onEdit, onStatusCycle, onRefresh, supab
               ))}
             </div>
           )}
-
           {item.duration && (
             <span className={styles.metaBadge}>
               <i className="ti ti-clock" aria-hidden="true" />
               {item.duration}
             </span>
           )}
-
+          {costRange && (
+            <span className={styles.metaBadge}>
+              <i className="ti ti-receipt" aria-hidden="true" />
+              {costRange}
+            </span>
+          )}
           {item.url && (
             <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.metaLink}>
               <i className="ti ti-external-link" aria-hidden="true" />
@@ -141,19 +157,23 @@ export default function TripItem({ item, onEdit, onStatusCycle, onRefresh, supab
           <details className={styles.details}>
             <summary className={styles.detailsSummary}>
               <i className="ti ti-receipt" aria-hidden="true" />
-              Costs
-              <span className={styles.costTotal}>
-                {totalCost.toLocaleString('sv-SE')} SEK total
-              </span>
+              Cost breakdown
             </summary>
-            <ul className={styles.costList}>
+            <div className={styles.costBreakdown}>
               {costs.map((c, i) => (
-                <li key={i} className={styles.costRow}>
-                  <span className={styles.costLabel}>{c.label}</span>
-                  <span className={styles.costAmount}>{c.amount.toLocaleString('sv-SE')} SEK</span>
-                </li>
+                <div key={i} className={styles.costEntry}>
+                  <span className={styles.costEntryLabel}>{c.label}</span>
+                  <div className={styles.costVariants}>
+                    {(c.variants ?? []).map((v, j) => (
+                      <div key={j} className={styles.costVariantRow}>
+                        <span className={styles.variantName}>{v.name}</span>
+                        <span className={styles.variantAmount}>{v.amount.toLocaleString('sv-SE')} SEK</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               ))}
-            </ul>
+            </div>
           </details>
         )}
 
