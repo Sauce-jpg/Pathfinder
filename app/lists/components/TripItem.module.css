@@ -217,3 +217,96 @@
   line-height: 1.55;
   white-space: pre-wrap;
 }
+
+/* ── Status cycle button ──────────────────────────────────── */
+
+.cycleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.75rem;
+  color: #6b6358;
+  cursor: pointer;
+  font-family: 'Crimson Pro', Georgia, serif;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+}
+
+.cycleBtn:hover {
+  background: #f4f1eb;
+  color: #1a1714;
+}
+
+.cycleBtn i { font-size: 13px; }
+
+.cycleBtnUndo {
+  color: #b0a89c;
+  border-color: rgba(0,0,0,0.08);
+}
+
+.cycleBtnUndo:hover {
+  color: #6b6358;
+  background: #f4f1eb;
+}
+
+/* ── Visited date ─────────────────────────────────────────── */
+
+.visitedDate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: #166534;
+  font-family: 'DM Mono', monospace;
+}
+
+.visitedDate i { font-size: 13px; }
+
+/* ── Costs ────────────────────────────────────────────────── */
+
+.costTotal {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #c8900a;
+  font-family: 'DM Mono', monospace;
+}
+
+.costList {
+  list-style: none;
+  padding: 0.4rem 0 0 1.25rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.costRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #6b6358;
+}
+
+.costLabel { flex: 1; }
+
+.costAmount {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  color: #1a1714;
+}
+
+/* ── Timestamps ───────────────────────────────────────────── */
+
+.timestamps {
+  font-size: 0.72rem;
+  color: #b0a89c;
+  font-family: 'DM Mono', monospace;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
