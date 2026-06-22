@@ -133,3 +133,40 @@ export type EmitEventPayload = {
   metadata?: Record<string, unknown>
   suggest_timeline?: boolean
 }
+
+export type TripList = {
+  id: string
+  user_id: string
+  project_id: string | null
+  title: string
+  in_backlog: boolean
+  created_at: string
+  updated_at: string
+  // joined
+  items?: TripItem[]
+}
+
+export type TripStatus = 'considering' | 'decided' | 'done'
+export type TripPriority = 'low' | 'medium' | 'high'
+
+export const TRAVEL_OPTIONS = ['walk', 'bike', 'bus', 'train', 'car', 'ferry', 'flight'] as const
+export type TravelOption = typeof TRAVEL_OPTIONS[number]
+
+export type TripItem = {
+  id: string
+  list_id: string
+  name: string
+  description: string | null
+  location: string | null
+  maps_url: string | null
+  travel_options: TravelOption[]
+  what_to_bring: string | null
+  cost_estimate: number | null
+  duration: string | null
+  status: TripStatus
+  priority: TripPriority
+  url: string | null
+  notes: string | null
+  created_at: string
+  updated_at: string
+}
