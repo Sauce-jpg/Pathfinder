@@ -28,7 +28,13 @@ export default function TripItem({ item, onEdit, onStatusChange, onRefresh, supa
     onRefresh()
   }
 
-  const costs = item.costs ?? []
+  const costs = (item.costs ?? []).map((c: unknown) => {
+    const cost = c as Record<string, unknown>
+    if (typeof cost.amount === 'number') {
+      return { label: String(cost.label ?? ''), variants: [{ name: 'Standard', amount: cost.amount as number }] }
+    }
+    return { label: String(cost.label ?? ''), variants: Array.isArray(cost.variants) ? cost.variants as {name: string, amount: number}[] : [] }
+  })
 
   // Get min and max across all variants of all cost entries
   const allAmounts = costs.flatMap(c => (c.variants ?? []).map(v => v.amount))
