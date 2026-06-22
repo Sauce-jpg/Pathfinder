@@ -46,17 +46,10 @@ export default function TripList({ list, projects, onRefresh, supabase }: Props)
     onRefresh()
   }
 
-  const STATUS_NEXT: Record<string, string> = {
-    considering: 'decided',
-    decided:     'done',
-    done:        'considering',
-  }
+  const handleStatusChange = async (item: TripItemType, newStatus: string) => {
+    const update: Record<string, unknown> = { status: newStatus }
 
-  const handleStatusCycle = async (item: TripItemType) => {
-    const nextStatus = STATUS_NEXT[item.status]
-    const update: Record<string, unknown> = { status: nextStatus }
-
-    if (nextStatus === 'done') {
+    if (newStatus === 'done') {
       update.visited_at = new Date().toISOString()
       await emitEvent(supabase, {
         source_branch:    'lists',
@@ -67,7 +60,7 @@ export default function TripList({ list, projects, onRefresh, supabase }: Props)
       })
     }
 
-    if (nextStatus === 'considering') {
+    if (newStatus === 'considering') {
       update.visited_at = null
     }
 
@@ -149,7 +142,7 @@ export default function TripList({ list, projects, onRefresh, supabase }: Props)
                     key={item.id}
                     item={item}
                     onEdit={() => { setEditingItem(item); setShowItemModal(true) }}
-                    onStatusCycle={() => handleStatusCycle(item)}
+                    onStatusChange={(newStatus) => handleStatusChange(item, newStatus)}
                     onRefresh={onRefresh}
                     supabase={supabase}
                   />
