@@ -24,13 +24,30 @@ const TRAVEL_ICONS: Record<string, string> = {
 }
 
 export default function TripItemModal({ item, listId, onClose, onSave, supabase }: Props) {
+  const migrateCosts = (raw: unknown[]): CostEntry[] =>
+    raw.map((c: unknown) => {
+      const cost = c as Record<string, unknown>
+      // Old format: { label, amount } → convert to new format
+      if (typeof cost.amount === 'number') {
+        return {
+          label: String(cost.label ?? ''),
+          variants: [{ name: 'Standard', amount: cost.amount as number }],
+        }
+      }
+      // New format: { label, variants }
+      return {
+        label: String(cost.label ?? ''),
+        variants: Array.isArray(cost.variants) ? cost.variants as CostVariant[] : [],
+      }
+    })
+
   const [name, setName]               = useState(item?.name ?? '')
   const [description, setDescription] = useState(item?.description ?? '')
   const [location, setLocation]       = useState(item?.location ?? '')
   const [mapsUrl, setMapsUrl]         = useState(item?.maps_url ?? '')
   const [travelOptions, setTravelOptions] = useState<string[]>(item?.travel_options ?? [])
   const [whatToBring, setWhatToBring] = useState(item?.what_to_bring ?? '')
-  const [costs, setCosts]             = useState<CostEntry[]>(item?.costs ?? [])
+  const [costs, setCosts]             = useState<CostEntry[]>(migrateCosts(item?.costs ?? []))
   const [duration, setDuration]       = useState(item?.duration ?? '')
   const [plannedDate, setPlannedDate] = useState(item?.planned_date ?? '')
   const [status, setStatus]           = useState<TripStatus>(item?.status ?? 'considering')
