@@ -404,3 +404,138 @@
   justify-content: flex-end;
   margin-top: 0.5rem;
 }
+
+/* Relationship panel */
+
+.relHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.relForm {
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  background: var(--ra-bg);
+}
+
+.relPropsSection {
+  margin-top: 1.25rem;
+  border-top: 1px dashed var(--ra-border);
+  padding-top: 1rem;
+}
+
+.fieldsTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem;
+}
+
+.relFormActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.relFormActionsRight {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+
+.secondaryBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  color: var(--ra-text);
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.relGroup {
+  margin-top: 1rem;
+}
+
+.relGroupTitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+  margin: 0 0 0.5rem;
+}
+
+.relRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed var(--ra-border);
+}
+
+.relType {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ra-accent);
+  white-space: nowrap;
+}
+
+.relLink {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--ra-text);
+  text-decoration: none;
+}
+
+.relLink:hover {
+  color: var(--ra-accent);
+}
+
+.relStatus {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  color: var(--ra-muted);
+}
+
+.relProps {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted);
+}
+
+.relEditBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  margin-left: auto;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.relEditBtn:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
