@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../archive.module.css';
 import DynamicFields, { EntityOption } from '../DynamicFields';
+import RelationshipPanel from '../RelationshipPanel';
 import { EntityType } from '../../EntityTypeEditor';
 
 type World = {
@@ -170,8 +171,18 @@ export default function EntityPage() {
 
   async function deleteEntity() {
     if (!entity) return;
+    const { count } = await supabase
+      .from('ra_relationships')
+      .select('id', { count: 'exact', head: true })
+      .or(`source_id.eq.${entity.id},target_id.eq.${entity.id}`);
+    const relNote =
+      count && count > 0
+        ? ` This will also remove ${count} relationship${
+            count === 1 ? '' : 's'
+          }.`
+        : '';
     const ok = window.confirm(
-      `Delete "${entity.name}"? This cannot be undone.`
+      `Delete "${entity.name}"?${relNote} This cannot be undone.`
     );
     if (!ok) return;
     setSaving(true);
@@ -287,6 +298,13 @@ export default function EntityPage() {
           placeholder={`## History\n\n## Appearance\n\n## Notes`}
         />
       </section>
+
+      <RelationshipPanel
+        worldSlug={worldSlug}
+        worldId={world.id}
+        entityId={entity.id}
+        entityTypeId={entity.entity_type_id}
+      />
 
       <div className={styles.footerActions}>
         <button
