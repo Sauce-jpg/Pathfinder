@@ -4,9 +4,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
-import styles from '../archive.module.css';
-import DynamicFields, { EntityOption } from '../DynamicFields';
-import { EntityType } from '../../EntityTypeEditor';
+import styles from './archive.module.css';
+import { EntityType } from '../EntityTypeEditor';
 
 type World = {
   id: string;
@@ -15,39 +14,42 @@ type World = {
   appearance: { accent?: string };
 };
 
-type Entity = {
+type EntityRow = {
   id: string;
-  world_id: string;
   entity_type_id: string;
   name: string;
   slug: string;
-  data: Record<string, unknown>;
-  doc: string;
   status: string;
   updated_at: string;
 };
 
-const STATUSES = ['draft', 'published', 'archived'];
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
-export default function EntityPage() {
-  const params = useParams<{ world: string; entity: string }>();
-  const { world: worldSlug, entity: entitySlug } = params;
+export default function ArchivePage() {
+  const params = useParams<{ world: string }>();
+  const worldSlug = params.world;
   const router = useRouter();
 
   const [world, setWorld] = useState<World | null>(null);
-  const [entity, setEntity] = useState<Entity | null>(null);
-  const [entityType, setEntityType] = useState<EntityType | null>(null);
-  const [entityOptions, setEntityOptions] = useState<EntityOption[]>([]);
+  const [entityTypes, setEntityTypes] = useState<EntityType[]>([]);
+  const [entities, setEntities] = useState<EntityRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Editable state
-  const [name, setName] = useState('');
-  const [status, setStatus] = useState('draft');
-  const [data, setData] = useState<Record<string, unknown>>({});
-  const [doc, setDoc] = useState('');
+  const [typeFilter, setTypeFilter] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+
+  // Create form
+  const [showForm, setShowForm] = useState(false);
+  const [newTypeId, setNewTypeId] = useState('');
+  const [newName, setNewName] = useState('');
   const [saving, setSaving] = useState(false);
-  const [savedAt, setSavedAt] = useState<string | null>(null);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -66,48 +68,27 @@ export default function EntityPage() {
     }
     setWorld(w as World);
 
-    const { data: ent, error: eErr } = await supabase
-      .from('ra_entities')
-      .select('*')
-      .eq('world_id', w.id)
-      .eq('slug', entitySlug)
-      .single();
-
-    if (eErr || !ent) {
-      setError(eErr?.message ?? 'Entity not found.');
-      setLoading(false);
-      return;
-    }
-    const e = ent as Entity;
-    setEntity(e);
-    setName(e.name);
-    setStatus(e.status);
-    setData(e.data ?? {});
-    setDoc(e.doc ?? '');
-
-    const [typeRes, optsRes] = await Promise.all([
+    const [typesRes, entsRes] = await Promise.all([
       supabase
         .from('ra_entity_types')
         .select('*')
-        .eq('id', e.entity_type_id)
-        .single(),
+        .eq('world_id', w.id)
+        .order('sort_order', { ascending: true }),
       supabase
         .from('ra_entities')
-        .select('id, name')
+        .select('id, entity_type_id, name, slug, status, updated_at')
         .eq('world_id', w.id)
-        .neq('id', e.id)
         .order('name', { ascending: true }),
     ]);
 
-    if (typeRes.error) setError(typeRes.error.message);
-    else setEntityType(typeRes.data as EntityType);
+    if (typesRes.error) setError(typesRes.error.message);
+    else setEntityTypes((typesRes.data as EntityType[]) ?? []);
 
-    if (!optsRes.error) {
-      setEntityOptions((optsRes.data as EntityOption[]) ?? []);
-    }
+    if (entsRes.error) setError(entsRes.error.message);
+    else setEntities((entsRes.data as EntityRow[]) ?? []);
 
     setLoading(false);
-  }, [worldSlug, entitySlug]);
+  }, [worldSlug]);
 
   useEffect(() => {
     loadAll();
@@ -115,95 +96,59 @@ export default function EntityPage() {
 
   const accent = world?.appearance?.accent || '#c8900a';
 
-  function missingRequired(): string[] {
-    if (!entityType) return [];
-    return entityType.fields
-      .filter((f) => {
-        if (!f.required) return false;
-        const v = data[f.key];
-        if (v === undefined || v === null || v === '') return true;
-        if (Array.isArray(v) && v.length === 0) return true;
-        return false;
-      })
-      .map((f) => f.label);
-  }
+  const typeById = new Map(entityTypes.map((t) => [t.id, t]));
 
-  async function save() {
-    if (!entity) return;
-    if (!name.trim()) {
-      setError('Name is required.');
+  const visible = entities.filter((e) => {
+    if (typeFilter && e.entity_type_id !== typeFilter) return false;
+    if (search && !e.name.toLowerCase().includes(search.toLowerCase()))
+      return false;
+    return true;
+  });
+
+  async function createEntity() {
+    if (!newTypeId || !newName.trim()) {
+      setError('Pick an entity type and enter a name.');
       return;
     }
-    // Drafts may be incomplete; anything else must satisfy required fields.
-    if (status !== 'draft') {
-      const missing = missingRequired();
-      if (missing.length > 0) {
-        setError(
-          `Required fields missing for status "${status}": ${missing.join(
-            ', '
-          )}. Save as draft, or fill them in.`
-        );
-        return;
-      }
-    }
-
+    if (!world) return;
     setSaving(true);
     setError(null);
-    const { error } = await supabase
-      .from('ra_entities')
-      .update({
-        name: name.trim(),
-        status,
-        data,
-        doc,
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', entity.id);
+
+    const slug = slugify(newName);
+    const { error } = await supabase.from('ra_entities').insert({
+      world_id: world.id,
+      entity_type_id: newTypeId,
+      name: newName.trim(),
+      slug,
+      status: 'draft',
+    });
     setSaving(false);
 
     if (error) {
-      setError(error.message);
+      setError(
+        error.code === '23505'
+          ? `An entity with the slug "${slug}" already exists in this world.`
+          : error.message
+      );
       return;
     }
-    setSavedAt(new Date().toLocaleTimeString('sv-SE'));
-  }
-
-  async function deleteEntity() {
-    if (!entity) return;
-    const ok = window.confirm(
-      `Delete "${entity.name}"? This cannot be undone.`
-    );
-    if (!ok) return;
-    setSaving(true);
-    const { error } = await supabase
-      .from('ra_entities')
-      .delete()
-      .eq('id', entity.id);
-    setSaving(false);
-    if (error) {
-      setError(error.message);
-      return;
-    }
-    router.push(`/rpg-archive/${worldSlug}/archive`);
+    router.push(`/rpg-archive/${worldSlug}/archive/${slug}`);
   }
 
   if (loading) {
     return (
       <div className={styles.wrap}>
-        <p className={styles.muted}>Loading entity…</p>
+        <p className={styles.muted}>Loading archive…</p>
       </div>
     );
   }
 
-  if (!world || !entity || !entityType) {
+  if (!world) {
     return (
       <div className={styles.wrap}>
-        <div className={styles.error}>{error ?? 'Entity not found.'}</div>
-        <Link
-          href={`/rpg-archive/${worldSlug}/archive`}
-          className={styles.backLink}
-        >
-          ← Archive
+        <div className={styles.error}>{error ?? 'World not found.'}</div>
+        <Link href="/rpg-archive" className={styles.backLink}>
+          ← All Worlds
         </Link>
       </div>
     );
@@ -211,92 +156,146 @@ export default function EntityPage() {
 
   return (
     <div className={styles.wrap} style={{ ['--ra-accent' as string]: accent }}>
-      <Link
-        href={`/rpg-archive/${worldSlug}/archive`}
-        className={styles.backLink}
-      >
-        ← Archive
+      <Link href={`/rpg-archive/${worldSlug}`} className={styles.backLink}>
+        ← {world.name}
       </Link>
 
       <header className={styles.header}>
-        <div className={styles.entityHeader}>
-          <span
-            className={styles.entityTypeBadge}
-            style={{ color: entityType.color || accent }}
-          >
-            {entityType.icon ? `${entityType.icon} ` : ''}
-            {entityType.display_name}
-          </span>
-          <input
-            type="text"
-            className={styles.nameInput}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <span className={styles.mutedSmall}>/{entity.slug}</span>
+        <div>
+          <h1 className={styles.title}>Archive</h1>
+          <p className={styles.subtitle}>
+            The permanent knowledge of {world.name}.
+          </p>
         </div>
-        <div className={styles.headerActions}>
-          <select
-            className={styles.statusSelect}
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
-            {STATUSES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-          <button
-            className={styles.primaryBtn}
-            onClick={save}
-            disabled={saving}
-          >
-            {saving ? 'Saving…' : 'Save'}
-          </button>
-        </div>
+        <button
+          className={styles.primaryBtn}
+          onClick={() => setShowForm((v) => !v)}
+        >
+          {showForm ? 'Cancel' : '+ New Entity'}
+        </button>
       </header>
 
       {error && <div className={styles.error}>{error}</div>}
-      {savedAt && !error && (
-        <p className={styles.mutedSmall}>Saved at {savedAt}.</p>
+
+      {showForm && (
+        <section className={styles.formCard}>
+          <div className={styles.createRow}>
+            <label className={styles.dynField}>
+              <span>Entity Type</span>
+              <select
+                value={newTypeId}
+                onChange={(e) => setNewTypeId(e.target.value)}
+                autoFocus
+              >
+                <option value="">— choose —</option>
+                {entityTypes
+                  .filter((t) => t.enabled)
+                  .map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.icon ? `${t.icon} ` : ''}
+                      {t.display_name}
+                    </option>
+                  ))}
+              </select>
+            </label>
+            <label className={styles.dynField}>
+              <span>Name</span>
+              <input
+                type="text"
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
+                placeholder="Sunny"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') createEntity();
+                }}
+              />
+            </label>
+            <button
+              className={styles.primaryBtn}
+              onClick={createEntity}
+              disabled={saving}
+            >
+              {saving ? 'Creating…' : 'Create'}
+            </button>
+          </div>
+        </section>
       )}
 
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Structured Data</h2>
-        <DynamicFields
-          fields={entityType.fields}
-          data={data}
-          onChange={(key, value) =>
-            setData((prev) => ({ ...prev, [key]: value }))
-          }
-          entityOptions={entityOptions}
+      <div className={styles.toolbar}>
+        <div className={styles.pillRow}>
+          <button
+            className={`${styles.pill} ${
+              typeFilter === null ? styles.pillActive : ''
+            }`}
+            onClick={() => setTypeFilter(null)}
+          >
+            All ({entities.length})
+          </button>
+          {entityTypes.map((t) => {
+            const count = entities.filter(
+              (e) => e.entity_type_id === t.id
+            ).length;
+            return (
+              <button
+                key={t.id}
+                className={`${styles.pill} ${
+                  typeFilter === t.id ? styles.pillActive : ''
+                }`}
+                onClick={() =>
+                  setTypeFilter(typeFilter === t.id ? null : t.id)
+                }
+              >
+                {t.icon ? `${t.icon} ` : ''}
+                {t.display_name} ({count})
+              </button>
+            );
+          })}
+        </div>
+        <input
+          type="search"
+          className={styles.searchInput}
+          placeholder="Search by name…"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
-      </section>
-
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Documentation</h2>
-        <p className={styles.mutedSmall}>
-          Markdown — history, appearance, personality, tactics, trivia…
-        </p>
-        <textarea
-          className={styles.docArea}
-          rows={16}
-          value={doc}
-          onChange={(e) => setDoc(e.target.value)}
-          placeholder={`## History\n\n## Appearance\n\n## Notes`}
-        />
-      </section>
-
-      <div className={styles.footerActions}>
-        <button
-          className={styles.dangerBtn}
-          onClick={deleteEntity}
-          disabled={saving}
-        >
-          Delete Entity
-        </button>
       </div>
+
+      {visible.length === 0 ? (
+        <div className={styles.empty}>
+          <p>
+            {entities.length === 0
+              ? 'The Archive is empty.'
+              : 'Nothing matches the current filter.'}
+          </p>
+          {entities.length === 0 && (
+            <p className={styles.muted}>
+              Every person, place, and concept of {world.name} will live
+              here — created once, referenced everywhere.
+            </p>
+          )}
+        </div>
+      ) : (
+        <div className={styles.entityGrid}>
+          {visible.map((e) => {
+            const t = typeById.get(e.entity_type_id);
+            return (
+              <Link
+                key={e.id}
+                href={`/rpg-archive/${worldSlug}/archive/${e.slug}`}
+                className={styles.entityCard}
+                style={{ borderLeftColor: t?.color || accent }}
+              >
+                <span className={styles.entityIcon}>{t?.icon || '◆'}</span>
+                <span className={styles.entityName}>{e.name}</span>
+                <span className={styles.entityMeta}>
+                  {t?.display_name ?? 'Unknown type'}
+                  {e.status !== 'published' && ` · ${e.status}`}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
