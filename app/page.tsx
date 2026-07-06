@@ -83,6 +83,14 @@ const links = [
     hue: 185,
     external: true,
   },
+  {
+    href: "/rpg-archive",
+    emoji: "⏳",
+    title: "RPG Archive",
+    desc: "Worlds",
+    hue: 185,
+    external: true,
+  },
 ] as const;
 
 export default function HubPage() {
