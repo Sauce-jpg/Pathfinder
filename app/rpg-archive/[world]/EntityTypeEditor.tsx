@@ -3,28 +3,11 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './world.module.css';
-
-export type FieldType =
-  | 'short_text'
-  | 'long_text'
-  | 'markdown'
-  | 'number'
-  | 'decimal'
-  | 'boolean'
-  | 'date'
-  | 'dropdown'
-  | 'multiselect'
-  | 'entity_ref'
-  | 'asset_ref'
-  | 'url';
-
-export type FieldDef = {
-  key: string;
-  label: string;
-  type: FieldType;
-  required: boolean;
-  options?: string[]; // dropdown / multiselect only
-};
+import FieldBuilder, {
+  FieldDef,
+  keyify,
+  validateFields,
+} from './FieldBuilder';
 
 export type EntityType = {
   id: string;
@@ -38,29 +21,6 @@ export type EntityType = {
   enabled: boolean;
   sort_order: number;
 };
-
-const FIELD_TYPES: { value: FieldType; label: string }[] = [
-  { value: 'short_text', label: 'Short Text' },
-  { value: 'long_text', label: 'Long Text' },
-  { value: 'markdown', label: 'Markdown' },
-  { value: 'number', label: 'Number' },
-  { value: 'decimal', label: 'Decimal' },
-  { value: 'boolean', label: 'Boolean' },
-  { value: 'date', label: 'Date' },
-  { value: 'dropdown', label: 'Dropdown' },
-  { value: 'multiselect', label: 'Multi-select' },
-  { value: 'entity_ref', label: 'Entity Reference' },
-  { value: 'asset_ref', label: 'Asset Reference' },
-  { value: 'url', label: 'URL' },
-];
-
-function keyify(input: string): string {
-  return input
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '_')
-    .replace(/^_+|_+$/g, '');
-}
 
 type Props = {
   worldId: string;
@@ -95,55 +55,14 @@ export default function EntityTypeEditor({
     if (!nameTouched) setInternalName(keyify(value));
   }
 
-  function updateField(index: number, patch: Partial<FieldDef>) {
-    setFields((prev) =>
-      prev.map((f, i) => (i === index ? { ...f, ...patch } : f))
-    );
-  }
-
-  function addField() {
-    setFields((prev) => [
-      ...prev,
-      { key: '', label: '', type: 'short_text', required: false },
-    ]);
-  }
-
-  function removeField(index: number) {
-    setFields((prev) => prev.filter((_, i) => i !== index));
-  }
-
-  function moveField(index: number, direction: -1 | 1) {
-    setFields((prev) => {
-      const target = index + direction;
-      if (target < 0 || target >= prev.length) return prev;
-      const next = [...prev];
-      [next[index], next[target]] = [next[target], next[index]];
-      return next;
-    });
-  }
-
-  function validate(): string | null {
-    if (!displayName.trim()) return 'Display name is required.';
-    if (!internalName.trim()) return 'Internal name is required.';
-    const keys = new Set<string>();
-    for (const f of fields) {
-      if (!f.label.trim() || !f.key.trim())
-        return 'Every field needs a label and a key.';
-      if (keys.has(f.key)) return `Duplicate field key: "${f.key}".`;
-      keys.add(f.key);
-      if (
-        (f.type === 'dropdown' || f.type === 'multiselect') &&
-        (!f.options || f.options.length === 0)
-      )
-        return `Field "${f.label}" needs at least one option.`;
-    }
-    return null;
-  }
-
   async function save() {
-    const problem = validate();
-    if (problem) {
-      setError(problem);
+    if (!displayName.trim() || !internalName.trim()) {
+      setError('Display name and internal name are required.');
+      return;
+    }
+    const fieldProblem = validateFields(fields);
+    if (fieldProblem) {
+      setError(fieldProblem);
       return;
     }
     setSaving(true);
@@ -268,100 +187,12 @@ export default function EntityTypeEditor({
         </label>
       </div>
 
-      <div className={styles.fieldsSection}>
-        <div className={styles.fieldsHeader}>
-          <h4 className={styles.fieldsTitle}>Field Definitions</h4>
-          <button className={styles.secondaryBtn} onClick={addField}>
-            + Add Field
-          </button>
-        </div>
-
-        {fields.length === 0 && (
-          <p className={styles.muted}>
-            No structured fields yet. Fields make entities searchable,
-            sortable, and filterable — Level, Faction, Alignment…
-          </p>
-        )}
-
-        {fields.map((f, i) => (
-          <div key={i} className={styles.fieldRow}>
-            <input
-              type="text"
-              className={styles.fieldRowLabel}
-              value={f.label}
-              placeholder="Label"
-              onChange={(e) => {
-                const label = e.target.value;
-                updateField(i, {
-                  label,
-                  key: f.key === keyify(f.label) || f.key === ''
-                    ? keyify(label)
-                    : f.key,
-                });
-              }}
-            />
-            <input
-              type="text"
-              className={styles.fieldRowKey}
-              value={f.key}
-              placeholder="key"
-              onChange={(e) => updateField(i, { key: keyify(e.target.value) })}
-            />
-            <select
-              className={styles.fieldRowType}
-              value={f.type}
-              onChange={(e) =>
-                updateField(i, { type: e.target.value as FieldType })
-              }
-            >
-              {FIELD_TYPES.map((ft) => (
-                <option key={ft.value} value={ft.value}>
-                  {ft.label}
-                </option>
-              ))}
-            </select>
-            <label className={styles.fieldRowRequired}>
-              <input
-                type="checkbox"
-                checked={f.required}
-                onChange={(e) => updateField(i, { required: e.target.checked })}
-              />
-              req
-            </label>
-            <div className={styles.fieldRowActions}>
-              <button onClick={() => moveField(i, -1)} title="Move up">
-                ↑
-              </button>
-              <button onClick={() => moveField(i, 1)} title="Move down">
-                ↓
-              </button>
-              <button
-                onClick={() => removeField(i)}
-                title="Remove field"
-                className={styles.dangerIcon}
-              >
-                ✕
-              </button>
-            </div>
-            {(f.type === 'dropdown' || f.type === 'multiselect') && (
-              <input
-                type="text"
-                className={styles.fieldRowOptions}
-                value={(f.options ?? []).join(', ')}
-                placeholder="Options, comma, separated"
-                onChange={(e) =>
-                  updateField(i, {
-                    options: e.target.value
-                      .split(',')
-                      .map((s) => s.trim())
-                      .filter(Boolean),
-                  })
-                }
-              />
-            )}
-          </div>
-        ))}
-      </div>
+      <FieldBuilder
+        title="Field Definitions"
+        emptyHint="No structured fields yet. Fields make entities searchable, sortable, and filterable — Level, Faction, Alignment…"
+        fields={fields}
+        onChange={setFields}
+      />
 
       <div className={styles.editorActions}>
         {existing && (
@@ -377,7 +208,11 @@ export default function EntityTypeEditor({
           <button className={styles.secondaryBtn} onClick={onClose}>
             Cancel
           </button>
-          <button className={styles.primaryBtn} onClick={save} disabled={saving}>
+          <button
+            className={styles.primaryBtn}
+            onClick={save}
+            disabled={saving}
+          >
             {saving ? 'Saving…' : existing ? 'Save Changes' : 'Create'}
           </button>
         </div>
