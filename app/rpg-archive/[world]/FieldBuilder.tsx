@@ -1,0 +1,195 @@
+'use client';
+
+import styles from './world.module.css';
+
+export type FieldType =
+  | 'short_text'
+  | 'long_text'
+  | 'markdown'
+  | 'number'
+  | 'decimal'
+  | 'boolean'
+  | 'date'
+  | 'dropdown'
+  | 'multiselect'
+  | 'entity_ref'
+  | 'asset_ref'
+  | 'url';
+
+export type FieldDef = {
+  key: string;
+  label: string;
+  type: FieldType;
+  required: boolean;
+  options?: string[]; // dropdown / multiselect only
+};
+
+export const FIELD_TYPES: { value: FieldType; label: string }[] = [
+  { value: 'short_text', label: 'Short Text' },
+  { value: 'long_text', label: 'Long Text' },
+  { value: 'markdown', label: 'Markdown' },
+  { value: 'number', label: 'Number' },
+  { value: 'decimal', label: 'Decimal' },
+  { value: 'boolean', label: 'Boolean' },
+  { value: 'date', label: 'Date' },
+  { value: 'dropdown', label: 'Dropdown' },
+  { value: 'multiselect', label: 'Multi-select' },
+  { value: 'entity_ref', label: 'Entity Reference' },
+  { value: 'asset_ref', label: 'Asset Reference' },
+  { value: 'url', label: 'URL' },
+];
+
+export function keyify(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+}
+
+/** Returns an error message, or null if the field list is valid. */
+export function validateFields(fields: FieldDef[]): string | null {
+  const keys = new Set<string>();
+  for (const f of fields) {
+    if (!f.label.trim() || !f.key.trim())
+      return 'Every field needs a label and a key.';
+    if (keys.has(f.key)) return `Duplicate field key: "${f.key}".`;
+    keys.add(f.key);
+    if (
+      (f.type === 'dropdown' || f.type === 'multiselect') &&
+      (!f.options || f.options.length === 0)
+    )
+      return `Field "${f.label}" needs at least one option.`;
+  }
+  return null;
+}
+
+type Props = {
+  title: string;
+  emptyHint: string;
+  fields: FieldDef[];
+  onChange: (fields: FieldDef[]) => void;
+};
+
+export default function FieldBuilder({
+  title,
+  emptyHint,
+  fields,
+  onChange,
+}: Props) {
+  function updateField(index: number, patch: Partial<FieldDef>) {
+    onChange(fields.map((f, i) => (i === index ? { ...f, ...patch } : f)));
+  }
+
+  function addField() {
+    onChange([
+      ...fields,
+      { key: '', label: '', type: 'short_text', required: false },
+    ]);
+  }
+
+  function removeField(index: number) {
+    onChange(fields.filter((_, i) => i !== index));
+  }
+
+  function moveField(index: number, direction: -1 | 1) {
+    const target = index + direction;
+    if (target < 0 || target >= fields.length) return;
+    const next = [...fields];
+    [next[index], next[target]] = [next[target], next[index]];
+    onChange(next);
+  }
+
+  return (
+    <div className={styles.fieldsSection}>
+      <div className={styles.fieldsHeader}>
+        <h4 className={styles.fieldsTitle}>{title}</h4>
+        <button className={styles.secondaryBtn} onClick={addField}>
+          + Add Field
+        </button>
+      </div>
+
+      {fields.length === 0 && <p className={styles.muted}>{emptyHint}</p>}
+
+      {fields.map((f, i) => (
+        <div key={i} className={styles.fieldRow}>
+          <input
+            type="text"
+            className={styles.fieldRowLabel}
+            value={f.label}
+            placeholder="Label"
+            onChange={(e) => {
+              const label = e.target.value;
+              updateField(i, {
+                label,
+                key:
+                  f.key === keyify(f.label) || f.key === ''
+                    ? keyify(label)
+                    : f.key,
+              });
+            }}
+          />
+          <input
+            type="text"
+            className={styles.fieldRowKey}
+            value={f.key}
+            placeholder="key"
+            onChange={(e) => updateField(i, { key: keyify(e.target.value) })}
+          />
+          <select
+            className={styles.fieldRowType}
+            value={f.type}
+            onChange={(e) =>
+              updateField(i, { type: e.target.value as FieldType })
+            }
+          >
+            {FIELD_TYPES.map((ft) => (
+              <option key={ft.value} value={ft.value}>
+                {ft.label}
+              </option>
+            ))}
+          </select>
+          <label className={styles.fieldRowRequired}>
+            <input
+              type="checkbox"
+              checked={f.required}
+              onChange={(e) => updateField(i, { required: e.target.checked })}
+            />
+            req
+          </label>
+          <div className={styles.fieldRowActions}>
+            <button onClick={() => moveField(i, -1)} title="Move up">
+              ↑
+            </button>
+            <button onClick={() => moveField(i, 1)} title="Move down">
+              ↓
+            </button>
+            <button
+              onClick={() => removeField(i)}
+              title="Remove field"
+              className={styles.dangerIcon}
+            >
+              ✕
+            </button>
+          </div>
+          {(f.type === 'dropdown' || f.type === 'multiselect') && (
+            <input
+              type="text"
+              className={styles.fieldRowOptions}
+              value={(f.options ?? []).join(', ')}
+              placeholder="Options, comma, separated"
+              onChange={(e) =>
+                updateField(i, {
+                  options: e.target.value
+                    .split(',')
+                    .map((s) => s.trim())
+                    .filter(Boolean),
+                })
+              }
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
