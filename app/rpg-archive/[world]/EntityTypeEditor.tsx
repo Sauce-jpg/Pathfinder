@@ -102,7 +102,7 @@ export default function EntityTypeEditor({
   async function deleteType() {
     if (!existing) return;
     const ok = window.confirm(
-      `Delete the entity type "${existing.display_name}"? Any entities of this type will lose their definition. This cannot be undone.`
+      `Delete the entity type "${existing.display_name}"? This cannot be undone.`
     );
     if (!ok) return;
     setSaving(true);
@@ -112,7 +112,11 @@ export default function EntityTypeEditor({
       .eq('id', existing.id);
     setSaving(false);
     if (error) {
-      setError(error.message);
+      setError(
+        error.code === '23503'
+          ? `"${existing.display_name}" is in use by existing entities. Delete or retype those entities first.`
+          : error.message
+      );
       return;
     }
     onSaved();
