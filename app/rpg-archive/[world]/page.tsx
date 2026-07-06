@@ -116,7 +116,7 @@ export default function WorldPage() {
         ← All Worlds
       </Link>
 
-      <header className={styles.header}>
+      <header className={`${styles.header} ${styles.headerRow}`}>
         <div>
           <h1 className={styles.title}>{world.name}</h1>
           {world.ruleset?.system && (
@@ -126,6 +126,12 @@ export default function WorldPage() {
             <p className={styles.subtitle}>{world.description}</p>
           )}
         </div>
+        <Link
+          href={`/rpg-archive/${world.slug}/archive`}
+          className={styles.primaryBtn}
+        >
+          Open Archive →
+        </Link>
       </header>
 
       {error && <div className={styles.error}>{error}</div>}
