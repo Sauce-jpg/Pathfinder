@@ -1,0 +1,213 @@
+.wrap {
+  --ra-bg: #f7f4ef;
+  --ra-text: #1a1714;
+  --ra-accent: #c8900a;
+  --ra-muted: #7a726a;
+  --ra-border: #e4ddd2;
+  --ra-card: #fffdf9;
+  --ra-error-bg: #fbeaea;
+  --ra-error-text: #8a2b2b;
+
+  min-height: 100vh;
+  background: var(--ra-bg);
+  color: var(--ra-text);
+  padding: 3rem clamp(1rem, 4vw, 4rem);
+  font-family: 'Crimson Pro', Georgia, serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+  margin: 0 0 0.25rem;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: var(--ra-muted);
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0;
+}
+
+.primaryBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ra-accent);
+  color: #fffdf9;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.primaryBtn:hover {
+  opacity: 0.85;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.error {
+  background: var(--ra-error-bg);
+  color: var(--ra-error-text);
+  border: 1px solid #e5c4c4;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.formCard {
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.formTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  margin: 0 0 1rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+}
+
+.field input,
+.field textarea {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.colorInput {
+  height: 2.6rem;
+  padding: 0.2rem !important;
+  cursor: pointer;
+}
+
+.formActions {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-top: 4px solid var(--ra-accent);
+  border-radius: 10px;
+  padding: 1.4rem;
+  text-decoration: none;
+  color: var(--ra-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(26, 23, 20, 0.08);
+}
+
+.cardTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cardDesc {
+  color: var(--ra-muted);
+  font-size: 0.98rem;
+  margin: 0.25rem 0 0;
+  line-height: 1.45;
+}
+
+.cardMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ra-muted);
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.empty {
+  background: var(--ra-card);
+  border: 1px dashed var(--ra-border);
+  border-radius: 10px;
+  padding: 3rem 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.muted {
+  color: var(--ra-muted);
+}
