@@ -382,3 +382,66 @@
     justify-content: flex-end;
   }
 }
+
+/* Relationship type extras */
+
+.inverseName {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--ra-muted);
+}
+
+.pillSection {
+  margin-top: 1.5rem;
+}
+
+.pillLabel {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+  margin-bottom: 0.5rem;
+}
+
+.pillLabel em {
+  text-transform: none;
+  letter-spacing: normal;
+  font-style: italic;
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease,
+    background 0.15s ease;
+}
+
+.pill:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.pillActive {
+  background: var(--ra-accent);
+  border-color: var(--ra-accent);
+  color: #fffdf9;
+}
+
+.pillActive:hover {
+  color: #fffdf9;
+  opacity: 0.9;
+}
