@@ -445,3 +445,19 @@
   color: #fffdf9;
   opacity: 0.9;
 }
+
+/* World header row with Archive button */
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.headerRow a.primaryBtn,
+.headerRow .primaryBtn {
+  text-decoration: none;
+  display: inline-block;
+}
