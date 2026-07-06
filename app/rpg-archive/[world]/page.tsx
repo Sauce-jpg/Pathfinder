@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './world.module.css';
 import EntityTypeEditor, { EntityType } from './EntityTypeEditor';
+import RelationshipTypeEditor, {
+  RelationshipType,
+} from './RelationshipTypeEditor';
 
 type World = {
   id: string;
@@ -22,11 +25,17 @@ export default function WorldPage() {
 
   const [world, setWorld] = useState<World | null>(null);
   const [entityTypes, setEntityTypes] = useState<EntityType[]>([]);
+  const [relTypes, setRelTypes] = useState<RelationshipType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // null = editor closed, 'new' = creating, EntityType = editing
-  const [editing, setEditing] = useState<EntityType | 'new' | null>(null);
+  // null = editor closed, 'new' = creating, object = editing
+  const [editingEntity, setEditingEntity] = useState<EntityType | 'new' | null>(
+    null
+  );
+  const [editingRel, setEditingRel] = useState<
+    RelationshipType | 'new' | null
+  >(null);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -45,17 +54,25 @@ export default function WorldPage() {
     }
     setWorld(w as World);
 
-    const { data: types, error: tErr } = await supabase
-      .from('ra_entity_types')
-      .select('*')
-      .eq('world_id', w.id)
-      .order('sort_order', { ascending: true });
+    const [typesRes, relsRes] = await Promise.all([
+      supabase
+        .from('ra_entity_types')
+        .select('*')
+        .eq('world_id', w.id)
+        .order('sort_order', { ascending: true }),
+      supabase
+        .from('ra_relationship_types')
+        .select('*')
+        .eq('world_id', w.id)
+        .order('display_name', { ascending: true }),
+    ]);
 
-    if (tErr) {
-      setError(tErr.message);
-    } else {
-      setEntityTypes((types as EntityType[]) ?? []);
-    }
+    if (typesRes.error) setError(typesRes.error.message);
+    else setEntityTypes((typesRes.data as EntityType[]) ?? []);
+
+    if (relsRes.error) setError(relsRes.error.message);
+    else setRelTypes((relsRes.data as RelationshipType[]) ?? []);
+
     setLoading(false);
   }, [worldSlug]);
 
@@ -64,6 +81,15 @@ export default function WorldPage() {
   }, [loadAll]);
 
   const accent = world?.appearance?.accent || '#c8900a';
+
+  function typeNames(ids: string[]): string {
+    if (!ids || ids.length === 0) return 'Any';
+    return ids
+      .map(
+        (id) => entityTypes.find((t) => t.id === id)?.display_name ?? '?'
+      )
+      .join(', ');
+  }
 
   if (loading) {
     return (
@@ -115,13 +141,13 @@ export default function WorldPage() {
           </div>
           <button
             className={styles.primaryBtn}
-            onClick={() => setEditing('new')}
+            onClick={() => setEditingEntity('new')}
           >
             + New Entity Type
           </button>
         </div>
 
-        {entityTypes.length === 0 && editing === null && (
+        {entityTypes.length === 0 && editingEntity === null && (
           <div className={styles.empty}>
             <p>No entity types defined yet.</p>
             <p className={styles.muted}>
@@ -131,18 +157,18 @@ export default function WorldPage() {
           </div>
         )}
 
-        {editing !== null && (
+        {editingEntity !== null && (
           <EntityTypeEditor
             worldId={world.id}
-            existing={editing === 'new' ? null : editing}
+            existing={editingEntity === 'new' ? null : editingEntity}
             nextSortOrder={
               entityTypes.length > 0
                 ? Math.max(...entityTypes.map((t) => t.sort_order)) + 1
                 : 0
             }
-            onClose={() => setEditing(null)}
+            onClose={() => setEditingEntity(null)}
             onSaved={() => {
-              setEditing(null);
+              setEditingEntity(null);
               loadAll();
             }}
           />
@@ -154,7 +180,7 @@ export default function WorldPage() {
               key={t.id}
               className={styles.typeCard}
               style={{ borderLeftColor: t.color || accent }}
-              onClick={() => setEditing(t)}
+              onClick={() => setEditingEntity(t)}
             >
               <span className={styles.typeIcon}>{t.icon || '◆'}</span>
               <span className={styles.typeName}>{t.display_name}</span>
@@ -168,8 +194,73 @@ export default function WorldPage() {
       </section>
 
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Relationship Types</h2>
-        <p className={styles.muted}>Coming in the next step.</p>
+        <div className={styles.sectionHeader}>
+          <div>
+            <h2 className={styles.sectionTitle}>Relationship Types</h2>
+            <p className={styles.muted}>
+              The vocabulary used to connect knowledge — Member Of, Located
+              In, Corrupted By…
+            </p>
+          </div>
+          <button
+            className={styles.primaryBtn}
+            onClick={() => setEditingRel('new')}
+          >
+            + New Relationship Type
+          </button>
+        </div>
+
+        {relTypes.length === 0 && editingRel === null && (
+          <div className={styles.empty}>
+            <p>No relationship types defined yet.</p>
+            <p className={styles.muted}>
+              Relationships are first-class knowledge. Define the vocabulary
+              here; connect entities with it later.
+            </p>
+          </div>
+        )}
+
+        {editingRel !== null && (
+          <RelationshipTypeEditor
+            worldId={world.id}
+            entityTypes={entityTypes}
+            existing={editingRel === 'new' ? null : editingRel}
+            onClose={() => setEditingRel(null)}
+            onSaved={() => {
+              setEditingRel(null);
+              loadAll();
+            }}
+          />
+        )}
+
+        <div className={styles.typeGrid}>
+          {relTypes.map((r) => (
+            <button
+              key={r.id}
+              className={styles.typeCard}
+              style={{ borderLeftColor: r.color || accent }}
+              onClick={() => setEditingRel(r)}
+            >
+              <span className={styles.typeName}>
+                {r.display_name}
+                {r.inverse_name && (
+                  <span className={styles.inverseName}>
+                    {' '}
+                    ⇄ {r.inverse_name}
+                  </span>
+                )}
+              </span>
+              <span className={styles.typeMeta}>
+                {typeNames(r.allowed_source_types)} →{' '}
+                {typeNames(r.allowed_target_types)}
+              </span>
+              <span className={styles.typeMeta}>
+                {r.metadata_schema.length} propert
+                {r.metadata_schema.length === 1 ? 'y' : 'ies'}
+              </span>
+            </button>
+          ))}
+        </div>
       </section>
     </div>
   );
