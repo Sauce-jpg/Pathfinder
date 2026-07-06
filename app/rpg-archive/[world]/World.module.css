@@ -1,0 +1,384 @@
+.wrap {
+  --ra-bg: #f7f4ef;
+  --ra-text: #1a1714;
+  --ra-accent: #c8900a;
+  --ra-muted: #7a726a;
+  --ra-border: #e4ddd2;
+  --ra-card: #fffdf9;
+  --ra-error-bg: #fbeaea;
+  --ra-error-text: #8a2b2b;
+
+  min-height: 100vh;
+  background: var(--ra-bg);
+  color: var(--ra-text);
+  padding: 2.5rem clamp(1rem, 4vw, 4rem);
+  font-family: 'Crimson Pro', Georgia, serif;
+}
+
+.backLink {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ra-muted);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--ra-accent);
+}
+
+.header {
+  margin: 1rem 0 2.5rem;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-accent);
+}
+
+.subtitle {
+  color: var(--ra-muted);
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0;
+  max-width: 60ch;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.sectionTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem;
+}
+
+.primaryBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--ra-accent);
+  color: #fffdf9;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.primaryBtn:hover {
+  opacity: 0.85;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.secondaryBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  color: var(--ra-text);
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.dangerBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  color: var(--ra-error-text);
+  border: 1px solid #e5c4c4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dangerBtn:hover {
+  background: var(--ra-error-bg);
+}
+
+.error {
+  background: var(--ra-error-bg);
+  color: var(--ra-error-text);
+  border: 1px solid #e5c4c4;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.empty {
+  background: var(--ra-card);
+  border: 1px dashed var(--ra-border);
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.muted {
+  color: var(--ra-muted);
+  margin: 0;
+}
+
+/* Entity type cards */
+
+.typeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.typeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-left: 4px solid var(--ra-accent);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--ra-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.typeCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(26, 23, 20, 0.08);
+}
+
+.typeIcon {
+  font-size: 1.4rem;
+}
+
+.typeName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.typeMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ra-muted);
+}
+
+/* Editor */
+
+.editor {
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.editorTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  margin: 0 0 1.25rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+}
+
+.field input {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+}
+
+.field input:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.fieldWide {
+  grid-column: 1 / -1;
+}
+
+.colorInput {
+  height: 2.6rem;
+  padding: 0.2rem !important;
+  cursor: pointer;
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ra-muted);
+  align-self: end;
+  padding-bottom: 0.6rem;
+}
+
+/* Field definition builder */
+
+.fieldsSection {
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--ra-border);
+  padding-top: 1.25rem;
+}
+
+.fieldsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.fieldsTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr auto auto;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--ra-border);
+}
+
+.fieldRow input[type='text'],
+.fieldRow select {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+  min-width: 0;
+}
+
+.fieldRowKey {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 0.8rem !important;
+  color: var(--ra-muted);
+}
+
+.fieldRowRequired {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ra-muted);
+  white-space: nowrap;
+}
+
+.fieldRowActions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.fieldRowActions button {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.fieldRowActions button:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.dangerIcon:hover {
+  border-color: #e5c4c4 !important;
+  color: var(--ra-error-text) !important;
+  background: var(--ra-error-bg) !important;
+}
+
+.fieldRowOptions {
+  grid-column: 1 / -1;
+  font-family: 'DM Mono', monospace !important;
+  font-size: 0.8rem !important;
+}
+
+/* Editor footer */
+
+.editorActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.editorActionsRight {
+  display: flex;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .fieldRow {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fieldRowActions {
+    justify-content: flex-end;
+  }
+}
