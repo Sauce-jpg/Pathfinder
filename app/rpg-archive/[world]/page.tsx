@@ -126,12 +126,20 @@ export default function WorldPage() {
             <p className={styles.subtitle}>{world.description}</p>
           )}
         </div>
-        <Link
-          href={`/rpg-archive/${world.slug}/archive`}
-          className={styles.primaryBtn}
-        >
-          Open Archive →
-        </Link>
+        <div className={styles.headerBtns}>
+          <Link
+            href={`/rpg-archive/${world.slug}/archive`}
+            className={styles.primaryBtn}
+          >
+            Open Archive →
+          </Link>
+          <Link
+            href={`/rpg-archive/${world.slug}/assets`}
+            className={styles.secondaryBtn}
+          >
+            Asset Library
+          </Link>
+        </div>
       </header>
 
       {error && <div className={styles.error}>{error}</div>}
