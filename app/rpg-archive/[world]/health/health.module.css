@@ -1,0 +1,162 @@
+.wrap {
+  --ra-bg: #f7f4ef;
+  --ra-text: #1a1714;
+  --ra-accent: #c8900a;
+  --ra-muted: #7a726a;
+  --ra-border: #e4ddd2;
+  --ra-card: #fffdf9;
+  --ra-error-bg: #fbeaea;
+  --ra-error-text: #8a2b2b;
+
+  min-height: 100vh;
+  background: var(--ra-bg);
+  color: var(--ra-text);
+  padding: 2.5rem clamp(1rem, 4vw, 4rem);
+  font-family: 'Crimson Pro', Georgia, serif;
+  max-width: 900px;
+}
+
+.backLink {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ra-muted);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--ra-accent);
+}
+
+.header {
+  margin: 1rem 0 1.5rem;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: var(--ra-muted);
+  font-size: 1.05rem;
+  margin: 0.4rem 0 0;
+}
+
+.error {
+  background: var(--ra-error-bg);
+  color: var(--ra-error-text);
+  border: 1px solid #e5c4c4;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.muted {
+  color: var(--ra-muted);
+  margin: 0;
+}
+
+/* Statistics */
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.statValue {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  color: var(--ra-accent);
+}
+
+.statLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+}
+
+/* Healthy state */
+
+.healthy {
+  background: var(--ra-card);
+  border: 1px solid var(--ra-accent);
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  font-size: 1.15rem;
+}
+
+/* Issue groups */
+
+.group {
+  margin-bottom: 2rem;
+}
+
+.groupTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  margin: 0 0 0.25rem;
+}
+
+.groupTitleWarn {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  margin: 0 0 0.25rem;
+  color: var(--ra-error-text);
+}
+
+.hint {
+  color: var(--ra-muted);
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-left: 4px solid var(--ra-accent);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.4rem;
+  text-decoration: none;
+  color: var(--ra-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26, 23, 20, 0.08);
+}
+
+.rowName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.rowDetail {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted);
+}
