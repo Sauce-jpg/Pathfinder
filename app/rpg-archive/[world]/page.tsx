@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './world.module.css';
@@ -38,6 +38,7 @@ function slugifyName(input: string): string {
 export default function WorldPage() {
   const params = useParams<{ world: string }>();
   const worldSlug = params.world;
+  const router = useRouter();
 
   const [world, setWorld] = useState<World | null>(null);
   const [entityTypes, setEntityTypes] = useState<EntityType[]>([]);
@@ -51,6 +52,15 @@ export default function WorldPage() {
   const [campName, setCampName] = useState('');
   const [campDesc, setCampDesc] = useState('');
   const [campSaving, setCampSaving] = useState(false);
+
+  // World settings
+  const [showSettings, setShowSettings] = useState(false);
+  const [wName, setWName] = useState('');
+  const [wDesc, setWDesc] = useState('');
+  const [wSystem, setWSystem] = useState('');
+  const [wEdition, setWEdition] = useState('');
+  const [wAccent, setWAccent] = useState('#c8900a');
+  const [wSaving, setWSaving] = useState(false);
 
   // null = editor closed, 'new' = creating, object = editing
   const [editingEntity, setEditingEntity] = useState<EntityType | 'new' | null>(
@@ -142,6 +152,89 @@ export default function WorldPage() {
     loadAll();
   }
 
+  function openSettings() {
+    if (!world) return;
+    setWName(world.name);
+    setWDesc(world.description ?? '');
+    setWSystem(world.ruleset?.system ?? '');
+    setWEdition(world.ruleset?.edition ?? '');
+    setWAccent(world.appearance?.accent ?? '#c8900a');
+    setError(null);
+    setShowSettings(true);
+  }
+
+  async function saveWorld() {
+    if (!world) return;
+    if (!wName.trim()) {
+      setError('World name is required.');
+      return;
+    }
+    setWSaving(true);
+    setError(null);
+    const ruleset: Record<string, string> = {};
+    if (wSystem.trim()) ruleset.system = wSystem.trim();
+    if (wEdition.trim()) ruleset.edition = wEdition.trim();
+    const { error } = await supabase
+      .from('ra_worlds')
+      .update({
+        name: wName.trim(),
+        description: wDesc.trim() || null,
+        ruleset,
+        appearance: { ...world.appearance, accent: wAccent },
+        updated_at: new Date().toISOString(),
+      })
+      .eq('id', world.id);
+    setWSaving(false);
+    if (error) {
+      setError(error.message);
+      return;
+    }
+    setShowSettings(false);
+    loadAll();
+  }
+
+  async function deleteWorld() {
+    if (!world) return;
+    const typed = window.prompt(
+      `This permanently deletes "${world.name}" — its configuration, archive, relationships, assets, and campaigns. This cannot be undone.\n\nType the world name to confirm:`
+    );
+    if (typed === null) return;
+    if (typed !== world.name) {
+      setError('Name did not match. Nothing was deleted.');
+      return;
+    }
+    setWSaving(true);
+    setError(null);
+
+    // Best-effort cleanup of R2 files before the rows cascade away.
+    const { data: assetRows } = await supabase
+      .from('ra_assets')
+      .select('file_key')
+      .eq('world_id', world.id);
+    for (const row of assetRows ?? []) {
+      try {
+        await fetch('/api/rpg-archive/upload', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key: row.file_key }),
+        });
+      } catch {
+        // Row deletion proceeds regardless.
+      }
+    }
+
+    const { error } = await supabase
+      .from('ra_worlds')
+      .delete()
+      .eq('id', world.id);
+    setWSaving(false);
+    if (error) {
+      setError(error.message);
+      return;
+    }
+    router.push('/rpg-archive');
+  }
+
   function typeNames(ids: string[]): string {
     if (!ids || ids.length === 0) return 'Any';
     return ids
@@ -205,10 +298,92 @@ export default function WorldPage() {
           >
             Search
           </Link>
+          <button className={styles.secondaryBtn} onClick={openSettings}>
+            Settings
+          </button>
         </div>
       </header>
 
       {error && <div className={styles.error}>{error}</div>}
+
+      {showSettings && (
+        <section className={styles.editor}>
+          <h3 className={styles.editorTitle}>World Settings</h3>
+          <div className={styles.formGrid}>
+            <label className={styles.field}>
+              <span>Name</span>
+              <input
+                type="text"
+                value={wName}
+                onChange={(e) => setWName(e.target.value)}
+                autoFocus
+              />
+            </label>
+            <label className={styles.field}>
+              <span>Game System</span>
+              <input
+                type="text"
+                value={wSystem}
+                onChange={(e) => setWSystem(e.target.value)}
+                placeholder="Custom Homebrew"
+              />
+            </label>
+            <label className={styles.field}>
+              <span>Edition</span>
+              <input
+                type="text"
+                value={wEdition}
+                onChange={(e) => setWEdition(e.target.value)}
+                placeholder="1st Edition"
+              />
+            </label>
+            <label className={styles.field}>
+              <span>Accent Color</span>
+              <input
+                type="color"
+                value={wAccent}
+                onChange={(e) => setWAccent(e.target.value)}
+                className={styles.colorInput}
+              />
+            </label>
+            <label className={`${styles.field} ${styles.fieldWide}`}>
+              <span>Description</span>
+              <input
+                type="text"
+                value={wDesc}
+                onChange={(e) => setWDesc(e.target.value)}
+              />
+            </label>
+          </div>
+          <p className={styles.muted} style={{ marginTop: '0.75rem' }}>
+            The URL slug (/{world.slug}) stays fixed so links never break.
+          </p>
+          <div className={styles.editorActions}>
+            <button
+              className={styles.dangerBtn}
+              onClick={deleteWorld}
+              disabled={wSaving}
+            >
+              Delete World
+            </button>
+            <div className={styles.editorActionsRight}>
+              <button
+                className={styles.secondaryBtn}
+                onClick={() => setShowSettings(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className={styles.primaryBtn}
+                onClick={saveWorld}
+                disabled={wSaving}
+              >
+                {wSaving ? 'Saving…' : 'Save Settings'}
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
