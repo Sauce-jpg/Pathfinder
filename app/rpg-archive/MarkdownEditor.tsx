@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 import styles from './markdown.module.css';
 
 export function MarkdownView({ source }: { source: string }) {
@@ -11,7 +12,9 @@ export function MarkdownView({ source }: { source: string }) {
   }
   return (
     <div className={styles.md}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{source}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+        {source}
+      </ReactMarkdown>
     </div>
   );
 }
