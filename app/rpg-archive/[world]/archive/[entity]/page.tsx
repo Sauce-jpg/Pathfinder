@@ -8,6 +8,7 @@ import styles from '../archive.module.css';
 import DynamicFields, { EntityOption } from '../DynamicFields';
 import RelationshipPanel from '../RelationshipPanel';
 import AssetPanel, { LinkedAsset } from '../AssetPanel';
+import AppearancesPanel from '../AppearancesPanel';
 import { EntityType } from '../../EntityTypeEditor';
 
 type World = {
@@ -327,6 +328,8 @@ export default function EntityPage() {
         entityId={entity.id}
         onLoaded={setLinkedAssets}
       />
+
+      <AppearancesPanel entityId={entity.id} worldSlug={worldSlug} />
 
       <div className={styles.footerActions}>
         <button
