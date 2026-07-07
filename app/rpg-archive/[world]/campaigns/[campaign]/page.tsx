@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabaseClient';
 import styles from './campaign.module.css';
 import SessionEntities from './SessionEntities';
 import QuestsSection from './QuestsSection';
+import MarkdownEditor from '../../../MarkdownEditor';
 
 type World = {
   id: string;
@@ -305,16 +306,15 @@ export default function CampaignPage() {
                 />
               </label>
             </div>
-            <label className={styles.notesLabel}>
+            <div className={styles.notesLabel}>
               <span>Session Notes (markdown)</span>
-              <textarea
-                className={styles.docArea}
-                rows={14}
+              <MarkdownEditor
                 value={notes}
-                onChange={(e) => setNotes(e.target.value)}
+                onChange={setNotes}
+                rows={14}
                 placeholder={`## Recap\n\n## What Happened\n\n## Loot\n\n## Next Time`}
               />
-            </label>
+            </div>
             <SessionEntities
               worldId={world.id}
               worldSlug={worldSlug}
