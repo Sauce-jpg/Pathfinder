@@ -28,6 +28,7 @@ type Entity = {
   data: Record<string, unknown>;
   doc: string;
   status: string;
+  subtype: string | null;
   updated_at: string;
 };
 
@@ -48,6 +49,7 @@ export default function EntityPage() {
   // Editable state
   const [name, setName] = useState('');
   const [status, setStatus] = useState('draft');
+  const [subtype, setSubtype] = useState('');
   const [data, setData] = useState<Record<string, unknown>>({});
   const [doc, setDoc] = useState('');
   const [saving, setSaving] = useState(false);
@@ -87,6 +89,7 @@ export default function EntityPage() {
     setEntity(e);
     setName(e.name);
     setStatus(e.status);
+    setSubtype(e.subtype ?? '');
     setData(e.data ?? {});
     setDoc(e.doc ?? '');
 
@@ -98,7 +101,7 @@ export default function EntityPage() {
         .single(),
       supabase
         .from('ra_entities')
-        .select('id, name')
+        .select('id, name, entity_type_id')
         .eq('world_id', w.id)
         .neq('id', e.id)
         .neq('status', 'deleted')
@@ -160,6 +163,7 @@ export default function EntityPage() {
       .update({
         name: name.trim(),
         status,
+        subtype: subtype || null,
         data,
         doc,
         updated_at: new Date().toISOString(),
@@ -270,6 +274,20 @@ export default function EntityPage() {
           <span className={styles.mutedSmall}>/{entity.slug}</span>
         </div>
         <div className={styles.headerActions}>
+          {entityType.subtypes && entityType.subtypes.length > 0 && (
+            <select
+              className={styles.statusSelect}
+              value={subtype}
+              onChange={(e) => setSubtype(e.target.value)}
+            >
+              <option value="">— no subtype —</option>
+              {entityType.subtypes.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          )}
           <select
             className={styles.statusSelect}
             value={status}
