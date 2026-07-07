@@ -98,7 +98,10 @@ export default function ArchivePage() {
 
   const typeById = new Map(entityTypes.map((t) => [t.id, t]));
 
-  const visible = entities.filter((e) => {
+  const live = entities.filter((e) => e.status !== 'deleted');
+  const binCount = entities.length - live.length;
+
+  const visible = live.filter((e) => {
     if (typeFilter && e.entity_type_id !== typeFilter) return false;
     if (search && !e.name.toLowerCase().includes(search.toLowerCase()))
       return false;
@@ -229,10 +232,10 @@ export default function ArchivePage() {
             }`}
             onClick={() => setTypeFilter(null)}
           >
-            All ({entities.length})
+            All ({live.length})
           </button>
           {entityTypes.map((t) => {
-            const count = entities.filter(
+            const count = live.filter(
               (e) => e.entity_type_id === t.id
             ).length;
             return (
@@ -250,6 +253,12 @@ export default function ArchivePage() {
               </button>
             );
           })}
+          <Link
+            href={`/rpg-archive/${worldSlug}/recycle`}
+            className={styles.pill}
+          >
+            🗑 Bin ({binCount})
+          </Link>
         </div>
         <input
           type="search"
@@ -263,11 +272,11 @@ export default function ArchivePage() {
       {visible.length === 0 ? (
         <div className={styles.empty}>
           <p>
-            {entities.length === 0
+            {live.length === 0
               ? 'The Archive is empty.'
               : 'Nothing matches the current filter.'}
           </p>
-          {entities.length === 0 && (
+          {live.length === 0 && (
             <p className={styles.muted}>
               Every person, place, and concept of {world.name} will live
               here — created once, referenced everywhere.
