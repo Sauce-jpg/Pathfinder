@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
+import { importWorld, WorldBundle } from './worldTransfer';
 import styles from './rpgArchive.module.css';
 
 type World = {
@@ -38,6 +39,36 @@ export default function RpgArchivePage() {
   const [system, setSystem] = useState('');
   const [accent, setAccent] = useState('#c8900a');
   const [saving, setSaving] = useState(false);
+
+  // Import
+  const importInputRef = useRef<HTMLInputElement>(null);
+  const [importStatus, setImportStatus] = useState<string | null>(null);
+
+  async function handleImportFile(files: FileList | null) {
+    if (!files || files.length === 0) return;
+    setError(null);
+    try {
+      const text = await files[0].text();
+      const bundle = JSON.parse(text) as WorldBundle;
+      if (bundle.format !== 'rpg-archive-world') {
+        throw new Error('This file is not an RPG Archive world export.');
+      }
+      const name = window.prompt(
+        'Name for the imported world:',
+        `${bundle.world?.name ?? 'World'} (import)`
+      );
+      if (!name) return;
+      setImportStatus('Starting import…');
+      await importWorld(bundle, name.trim(), (msg) => setImportStatus(msg));
+      setImportStatus(null);
+      loadWorlds();
+    } catch (e) {
+      setImportStatus(null);
+      setError(e instanceof Error ? e.message : 'Import failed.');
+    } finally {
+      if (importInputRef.current) importInputRef.current.value = '';
+    }
+  }
 
   useEffect(() => {
     loadWorlds();
@@ -110,13 +141,33 @@ export default function RpgArchivePage() {
             Worlds, knowledge, and the campaigns that explore them.
           </p>
         </div>
-        <button
-          className={styles.primaryBtn}
-          onClick={() => setShowForm((v) => !v)}
-        >
-          {showForm ? 'Cancel' : '+ New World'}
-        </button>
+        <div className={styles.headerBtns}>
+          <button
+            className={styles.secondaryBtn}
+            onClick={() => importInputRef.current?.click()}
+            disabled={!!importStatus}
+          >
+            {importStatus ? 'Importing…' : 'Import World'}
+          </button>
+          <button
+            className={styles.primaryBtn}
+            onClick={() => setShowForm((v) => !v)}
+          >
+            {showForm ? 'Cancel' : '+ New World'}
+          </button>
+          <input
+            ref={importInputRef}
+            type="file"
+            accept="application/json,.json"
+            hidden
+            onChange={(e) => handleImportFile(e.target.files)}
+          />
+        </div>
       </header>
+
+      {importStatus && (
+        <p className={styles.importStatus}>{importStatus}</p>
+      )}
 
       {error && <div className={styles.error}>{error}</div>}
 
