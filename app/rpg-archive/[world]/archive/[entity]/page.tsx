@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabaseClient';
 import styles from '../archive.module.css';
 import DynamicFields, { EntityOption } from '../DynamicFields';
 import RelationshipPanel from '../RelationshipPanel';
+import AssetPanel, { LinkedAsset } from '../AssetPanel';
 import { EntityType } from '../../EntityTypeEditor';
 
 type World = {
@@ -49,6 +50,7 @@ export default function EntityPage() {
   const [doc, setDoc] = useState('');
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
+  const [linkedAssets, setLinkedAssets] = useState<LinkedAsset[]>([]);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -230,6 +232,20 @@ export default function EntityPage() {
       </Link>
 
       <header className={styles.header}>
+        {(() => {
+          const portrait =
+            linkedAssets.find(
+              (l) =>
+                l.asset.asset_type === 'image' &&
+                l.role?.toLowerCase() === 'portrait'
+            ) ?? linkedAssets.find((l) => l.asset.asset_type === 'image');
+          return portrait ? (
+            <div className={styles.portrait}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={portrait.asset.url} alt={name} />
+            </div>
+          ) : null;
+        })()}
         <div className={styles.entityHeader}>
           <span
             className={styles.entityTypeBadge}
@@ -304,6 +320,12 @@ export default function EntityPage() {
         worldId={world.id}
         entityId={entity.id}
         entityTypeId={entity.entity_type_id}
+      />
+
+      <AssetPanel
+        worldId={world.id}
+        entityId={entity.id}
+        onLoaded={setLinkedAssets}
       />
 
       <div className={styles.footerActions}>
