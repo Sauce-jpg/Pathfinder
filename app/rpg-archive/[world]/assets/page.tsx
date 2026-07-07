@@ -183,11 +183,27 @@ export default function AssetLibraryPage() {
 
   async function deleteAsset() {
     if (!selected) return;
+    const { count } = await supabase
+      .from('ra_entity_assets')
+      .select('id', { count: 'exact', head: true })
+      .eq('asset_id', selected.id);
+    const refNote =
+      count && count > 0
+        ? ` It is referenced by ${count} entit${
+            count === 1 ? 'y' : 'ies'
+          }; those references will be removed.`
+        : '';
     const ok = window.confirm(
-      `Delete "${selected.name}"? The file will be removed from storage. This cannot be undone.`
+      `Delete "${selected.name}"?${refNote} The file will be removed from storage. This cannot be undone.`
     );
     if (!ok) return;
     setSaving(true);
+
+    // Explicit cleanup of references before deleting the asset itself.
+    await supabase
+      .from('ra_entity_assets')
+      .delete()
+      .eq('asset_id', selected.id);
 
     // Remove the file from R2 first, then the row (explicit cleanup).
     try {
