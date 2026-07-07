@@ -21,6 +21,7 @@ type RelRow = {
   target_id: string;
   properties: Record<string, unknown>;
   status: string;
+  sort_order: number;
   relationship_type: RelationshipType;
   source: EntityRef;
   target: EntityRef;
@@ -68,7 +69,9 @@ export default function RelationshipPanel({
           '*, relationship_type:ra_relationship_types(*), source:ra_entities!source_id(id,name,slug,entity_type_id), target:ra_entities!target_id(id,name,slug,entity_type_id)'
         )
         .eq('world_id', worldId)
-        .or(`source_id.eq.${entityId},target_id.eq.${entityId}`),
+        .or(`source_id.eq.${entityId},target_id.eq.${entityId}`)
+        .order('sort_order', { ascending: true })
+        .order('created_at', { ascending: true }),
       supabase
         .from('ra_relationship_types')
         .select('*')
@@ -220,6 +223,28 @@ export default function RelationshipPanel({
     loadAll();
   }
 
+  async function moveRel(rel: RelRow, dir: -1 | 1) {
+    const group = rel.source_id === entityId ? outgoing : incoming;
+    const idx = group.findIndex((r) => r.id === rel.id);
+    const target = idx + dir;
+    if (idx < 0 || target < 0 || target >= group.length) return;
+    const reordered = [...group];
+    [reordered[idx], reordered[target]] = [reordered[target], reordered[idx]];
+    for (let i = 0; i < reordered.length; i++) {
+      if (reordered[i].sort_order !== i) {
+        const { error } = await supabase
+          .from('ra_relationships')
+          .update({ sort_order: i })
+          .eq('id', reordered[i].id);
+        if (error) {
+          setError(error.message);
+          return;
+        }
+      }
+    }
+    loadAll();
+  }
+
   function propsSummary(rel: RelRow): string {
     const entries = Object.entries(rel.properties ?? {}).filter(
       ([, v]) => v !== null && v !== undefined && v !== ''
@@ -251,13 +276,29 @@ export default function RelationshipPanel({
           <span className={styles.relStatus}>{rel.status}</span>
         )}
         {summary && <span className={styles.relProps}>{summary}</span>}
-        <button
-          className={styles.relEditBtn}
-          onClick={() => openEdit(rel)}
-          title="Edit relationship"
-        >
-          ✎
-        </button>
+        <span className={styles.relRowBtns}>
+          <button
+            className={styles.relEditBtn}
+            onClick={() => moveRel(rel, -1)}
+            title="Move up"
+          >
+            ↑
+          </button>
+          <button
+            className={styles.relEditBtn}
+            onClick={() => moveRel(rel, 1)}
+            title="Move down"
+          >
+            ↓
+          </button>
+          <button
+            className={styles.relEditBtn}
+            onClick={() => openEdit(rel)}
+            title="Edit relationship"
+          >
+            ✎
+          </button>
+        </span>
       </div>
     );
   }
