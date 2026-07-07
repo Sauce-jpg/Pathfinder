@@ -259,6 +259,12 @@ export default function ArchivePage() {
           >
             🗑 Bin ({binCount})
           </Link>
+          <Link
+            href={`/rpg-archive/${worldSlug}/health`}
+            className={styles.pill}
+          >
+            ♥ Health
+          </Link>
         </div>
         <input
           type="search"
