@@ -1,6 +1,7 @@
 'use client';
 
 import { FieldDef } from '../FieldBuilder';
+import MarkdownEditor from '../../MarkdownEditor';
 import styles from './archive.module.css';
 
 export type EntityOption = { id: string; name: string };
@@ -69,18 +70,17 @@ export default function DynamicFields({
 
           case 'markdown':
             return (
-              <label
+              <div
                 key={f.key}
                 className={`${styles.dynField} ${styles.dynWide}`}
               >
                 {label}
-                <textarea
-                  rows={6}
-                  className={styles.mono}
+                <MarkdownEditor
                   value={(value as string) ?? ''}
-                  onChange={(e) => onChange(f.key, e.target.value)}
+                  onChange={(v) => onChange(f.key, v)}
+                  rows={6}
                 />
-              </label>
+              </div>
             );
 
           case 'number':
