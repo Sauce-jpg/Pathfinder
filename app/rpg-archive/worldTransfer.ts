@@ -226,11 +226,11 @@ export async function importWorld(
       (bundle.entities ?? []).map((e) => {
         const data = { ...((e.data as Record<string, unknown>) ?? {}) };
         for (const f of fieldsByType.get(e.entity_type_id as string) ?? []) {
-          if (
-            (f.type === 'entity_ref' || f.type === 'asset_ref') &&
-            typeof data[f.key] === 'string'
-          ) {
-            data[f.key] = remap(data[f.key]);
+          if (f.type === 'entity_ref' || f.type === 'asset_ref') {
+            const v = data[f.key];
+            if (typeof v === 'string') data[f.key] = remap(v);
+            else if (Array.isArray(v))
+              data[f.key] = v.map((x) => remap(x));
           }
         }
         return {
@@ -259,11 +259,11 @@ export async function importWorld(
         for (const f of schemaByRelType.get(
           r.relationship_type_id as string
         ) ?? []) {
-          if (
-            (f.type === 'entity_ref' || f.type === 'asset_ref') &&
-            typeof properties[f.key] === 'string'
-          ) {
-            properties[f.key] = remap(properties[f.key]);
+          if (f.type === 'entity_ref' || f.type === 'asset_ref') {
+            const v = properties[f.key];
+            if (typeof v === 'string') properties[f.key] = remap(v);
+            else if (Array.isArray(v))
+              properties[f.key] = v.map((x) => remap(x));
           }
         }
         return {
