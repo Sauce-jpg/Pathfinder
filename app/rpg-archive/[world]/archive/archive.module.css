@@ -676,3 +676,22 @@
   color: var(--ra-error-text);
   background: var(--ra-error-bg);
 }
+
+a.pill {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.binBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: #f3ead6;
+  border: 1px solid var(--ra-accent);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.98rem;
+}
