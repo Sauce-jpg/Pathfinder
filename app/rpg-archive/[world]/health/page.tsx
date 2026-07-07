@@ -207,30 +207,38 @@ export default function ArchiveHealthPage() {
             detail: `required field "${f.label}" is empty`,
           });
         }
-        if (
-          f.type === 'entity_ref' &&
-          typeof v === 'string' &&
-          v &&
-          !liveIds.has(v)
-        ) {
-          brokenRefs.push({
-            key: `eref-${e.id}-${f.key}`,
-            entityName: e.name,
-            entitySlug: e.slug,
-            detail: `"${f.label}" points to a missing or recycled entity`,
+        if (f.type === 'entity_ref') {
+          const refs = Array.isArray(v)
+            ? (v as string[])
+            : typeof v === 'string' && v
+            ? [v]
+            : [];
+          refs.forEach((rv, ri) => {
+            if (!liveIds.has(rv)) {
+              brokenRefs.push({
+                key: `eref-${e.id}-${f.key}-${ri}`,
+                entityName: e.name,
+                entitySlug: e.slug,
+                detail: `"${f.label}" points to a missing or recycled entity`,
+              });
+            }
           });
         }
-        if (
-          f.type === 'asset_ref' &&
-          typeof v === 'string' &&
-          v &&
-          !assetIds.has(v)
-        ) {
-          brokenRefs.push({
-            key: `aref-${e.id}-${f.key}`,
-            entityName: e.name,
-            entitySlug: e.slug,
-            detail: `"${f.label}" points to a missing asset`,
+        if (f.type === 'asset_ref') {
+          const refs = Array.isArray(v)
+            ? (v as string[])
+            : typeof v === 'string' && v
+            ? [v]
+            : [];
+          refs.forEach((rv, ri) => {
+            if (!assetIds.has(rv)) {
+              brokenRefs.push({
+                key: `aref-${e.id}-${f.key}-${ri}`,
+                entityName: e.name,
+                entitySlug: e.slug,
+                detail: `"${f.label}" points to a missing asset`,
+              });
+            }
           });
         }
       }
