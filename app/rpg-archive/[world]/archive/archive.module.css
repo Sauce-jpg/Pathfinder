@@ -539,3 +539,140 @@
   border-color: var(--ra-accent);
   color: var(--ra-accent);
 }
+
+/* Entity portrait */
+
+.portrait {
+  width: 88px;
+  height: 88px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--ra-border);
+  background: var(--ra-card);
+  flex-shrink: 0;
+}
+
+.portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Asset panel */
+
+.assetPicker {
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  background: var(--ra-bg);
+}
+
+.assetPickerBar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.roleInput {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-text);
+  min-width: 220px;
+}
+
+.roleInput:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
+
+.assetPickerGrid,
+.linkedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.8rem;
+}
+
+.assetPickCard,
+.linkedCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: left;
+  font-family: inherit;
+  color: var(--ra-text);
+}
+
+.assetPickCard {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.assetPickCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(26, 23, 20, 0.08);
+}
+
+.assetThumb {
+  aspect-ratio: 1 / 1;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--ra-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.assetThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.assetPickName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.roleTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ra-accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.unlinkBtn {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 5px;
+  background: #fffdf9;
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.unlinkBtn:hover {
+  border-color: #e5c4c4;
+  color: var(--ra-error-text);
+  background: var(--ra-error-bg);
+}
