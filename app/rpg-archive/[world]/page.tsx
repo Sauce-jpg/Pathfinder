@@ -524,6 +524,7 @@ export default function WorldPage() {
         {editingEntity !== null && (
           <EntityTypeEditor
             worldId={world.id}
+            entityTypes={entityTypes}
             existing={editingEntity === 'new' ? null : editingEntity}
             nextSortOrder={
               entityTypes.length > 0
