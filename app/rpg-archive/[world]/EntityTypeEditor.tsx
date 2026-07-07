@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabaseClient';
 import styles from './world.module.css';
 import FieldBuilder, {
   FieldDef,
+  RefTypeOption,
   keyify,
   validateFields,
 } from './FieldBuilder';
@@ -18,6 +19,7 @@ export type EntityType = {
   icon: string | null;
   color: string | null;
   fields: FieldDef[];
+  subtypes: string[];
   enabled: boolean;
   sort_order: number;
 };
@@ -26,6 +28,7 @@ type Props = {
   worldId: string;
   existing: EntityType | null;
   nextSortOrder: number;
+  entityTypes?: RefTypeOption[];
   onClose: () => void;
   onSaved: () => void;
 };
@@ -34,6 +37,7 @@ export default function EntityTypeEditor({
   worldId,
   existing,
   nextSortOrder,
+  entityTypes,
   onClose,
   onSaved,
 }: Props) {
@@ -47,6 +51,8 @@ export default function EntityTypeEditor({
   const [color, setColor] = useState(existing?.color ?? '#c8900a');
   const [enabled, setEnabled] = useState(existing?.enabled ?? true);
   const [fields, setFields] = useState<FieldDef[]>(existing?.fields ?? []);
+  const [subtypes, setSubtypes] = useState<string[]>(existing?.subtypes ?? []);
+  const [subtypesDraft, setSubtypesDraft] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -77,6 +83,7 @@ export default function EntityTypeEditor({
       color,
       enabled,
       fields,
+      subtypes,
       sort_order: existing ? existing.sort_order : nextSortOrder,
       updated_at: new Date().toISOString(),
     };
@@ -189,10 +196,30 @@ export default function EntityTypeEditor({
           />
           <span>Enabled</span>
         </label>
+        <label className={`${styles.field} ${styles.fieldWide}`}>
+          <span>Subtypes (comma separated, optional)</span>
+          <input
+            type="text"
+            value={subtypesDraft ?? subtypes.join(', ')}
+            onChange={(e) => {
+              const raw = e.target.value;
+              setSubtypesDraft(raw);
+              setSubtypes(
+                raw
+                  .split(',')
+                  .map((s) => s.trim())
+                  .filter(Boolean)
+              );
+            }}
+            onBlur={() => setSubtypesDraft(null)}
+            placeholder="Villain, Ally, Neutral"
+          />
+        </label>
       </div>
 
       <FieldBuilder
         title="Field Definitions"
+        entityTypes={entityTypes}
         emptyHint="No structured fields yet. Fields make entities searchable, sortable, and filterable — Level, Faction, Alignment…"
         fields={fields}
         onChange={setFields}
