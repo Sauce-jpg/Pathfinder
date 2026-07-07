@@ -9,6 +9,7 @@ import DynamicFields, { EntityOption } from '../DynamicFields';
 import RelationshipPanel from '../RelationshipPanel';
 import AssetPanel, { LinkedAsset } from '../AssetPanel';
 import AppearancesPanel from '../AppearancesPanel';
+import MarkdownEditor from '../../../MarkdownEditor';
 import { EntityType } from '../../EntityTypeEditor';
 
 type World = {
@@ -307,11 +308,10 @@ export default function EntityPage() {
         <p className={styles.mutedSmall}>
           Markdown — history, appearance, personality, tactics, trivia…
         </p>
-        <textarea
-          className={styles.docArea}
-          rows={16}
+        <MarkdownEditor
           value={doc}
-          onChange={(e) => setDoc(e.target.value)}
+          onChange={setDoc}
+          rows={16}
           placeholder={`## History\n\n## Appearance\n\n## Notes`}
         />
       </section>
