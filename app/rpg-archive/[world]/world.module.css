@@ -472,3 +472,15 @@
   text-decoration: none;
   display: inline-block;
 }
+
+/* Campaign cards on the world page */
+
+a.typeCard {
+  text-decoration: none;
+}
+
+.campaignDesc {
+  font-size: 0.95rem;
+  color: var(--ra-muted);
+  line-height: 1.4;
+}
