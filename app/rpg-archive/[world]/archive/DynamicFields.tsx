@@ -4,7 +4,11 @@ import { FieldDef } from '../FieldBuilder';
 import MarkdownEditor from '../../MarkdownEditor';
 import styles from './archive.module.css';
 
-export type EntityOption = { id: string; name: string };
+export type EntityOption = {
+  id: string;
+  name: string;
+  entity_type_id: string;
+};
 
 type Props = {
   fields: FieldDef[];
@@ -177,7 +181,66 @@ export default function DynamicFields({
             );
           }
 
-          case 'entity_ref':
+          case 'entity_ref': {
+            const allowed =
+              f.refTypes && f.refTypes.length > 0
+                ? entityOptions.filter((o) =>
+                    f.refTypes!.includes(o.entity_type_id)
+                  )
+                : entityOptions;
+
+            if (f.multiple) {
+              const selected = Array.isArray(value) ? (value as string[]) : [];
+              const byId = new Map(entityOptions.map((o) => [o.id, o]));
+              return (
+                <div
+                  key={f.key}
+                  className={`${styles.dynField} ${styles.dynWide}`}
+                >
+                  {label}
+                  {selected.length > 0 && (
+                    <div className={styles.pillRow}>
+                      {selected.map((id) => (
+                        <span key={id} className={styles.refChip}>
+                          {byId.get(id)?.name ?? 'Unknown entity'}
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onChange(
+                                f.key,
+                                selected.filter((s) => s !== id)
+                              )
+                            }
+                            title="Remove"
+                          >
+                            ✕
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <select
+                    value=""
+                    onChange={(e) => {
+                      const id = e.target.value;
+                      if (id && !selected.includes(id)) {
+                        onChange(f.key, [...selected, id]);
+                      }
+                    }}
+                  >
+                    <option value="">— add entity —</option>
+                    {allowed
+                      .filter((o) => !selected.includes(o.id))
+                      .map((o) => (
+                        <option key={o.id} value={o.id}>
+                          {o.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+              );
+            }
+
             return (
               <label key={f.key} className={styles.dynField}>
                 {label}
@@ -186,7 +249,7 @@ export default function DynamicFields({
                   onChange={(e) => onChange(f.key, e.target.value || null)}
                 >
                   <option value="">— none —</option>
-                  {entityOptions.map((opt) => (
+                  {allowed.map((opt) => (
                     <option key={opt.id} value={opt.id}>
                       {opt.name}
                     </option>
@@ -194,6 +257,7 @@ export default function DynamicFields({
                 </select>
               </label>
             );
+          }
 
           case 'asset_ref':
             return (
