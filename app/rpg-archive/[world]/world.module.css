@@ -461,3 +461,14 @@
   text-decoration: none;
   display: inline-block;
 }
+
+.headerBtns {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.headerBtns a {
+  text-decoration: none;
+  display: inline-block;
+}
