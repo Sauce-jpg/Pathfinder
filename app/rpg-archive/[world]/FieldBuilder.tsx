@@ -23,6 +23,8 @@ export type FieldDef = {
   type: FieldType;
   required: boolean;
   options?: string[]; // dropdown / multiselect only
+  multiple?: boolean; // entity_ref only: allow selecting several entities
+  refTypes?: string[]; // entity_ref only: allowed entity type ids (empty = any)
 };
 
 export const FIELD_TYPES: { value: FieldType; label: string }[] = [
@@ -65,11 +67,18 @@ export function validateFields(fields: FieldDef[]): string | null {
   return null;
 }
 
+export type RefTypeOption = {
+  id: string;
+  display_name: string;
+  icon: string | null;
+};
+
 type Props = {
   title: string;
   emptyHint: string;
   fields: FieldDef[];
   onChange: (fields: FieldDef[]) => void;
+  entityTypes?: RefTypeOption[];
 };
 
 export default function FieldBuilder({
@@ -77,6 +86,7 @@ export default function FieldBuilder({
   emptyHint,
   fields,
   onChange,
+  entityTypes,
 }: Props) {
   // Raw text drafts for the options inputs, keyed by row index. Parsing on
   // every keystroke ate commas and spaces; the draft preserves exactly what
@@ -207,6 +217,44 @@ export default function FieldBuilder({
                 })
               }
             />
+          )}
+          {f.type === 'entity_ref' && (
+            <div className={styles.refConfigRow}>
+              <label className={styles.fieldRowRequired}>
+                <input
+                  type="checkbox"
+                  checked={!!f.multiple}
+                  onChange={(e) =>
+                    updateField(i, { multiple: e.target.checked })
+                  }
+                />
+                allow multiple
+              </label>
+              {(entityTypes ?? []).map((t) => {
+                const active = (f.refTypes ?? []).includes(t.id);
+                return (
+                  <button
+                    key={t.id}
+                    type="button"
+                    className={`${styles.pill} ${
+                      active ? styles.pillActive : ''
+                    }`}
+                    onClick={() => {
+                      const cur = f.refTypes ?? [];
+                      updateField(i, {
+                        refTypes: active
+                          ? cur.filter((x) => x !== t.id)
+                          : [...cur, t.id],
+                      });
+                    }}
+                  >
+                    {t.icon ? `${t.icon} ` : ''}
+                    {t.display_name}
+                  </button>
+                );
+              })}
+              <span className={styles.refHint}>none selected = any type</span>
+            </div>
           )}
         </div>
       ))}
