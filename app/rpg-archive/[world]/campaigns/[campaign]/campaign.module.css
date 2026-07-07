@@ -327,3 +327,155 @@
   justify-content: flex-end;
   margin-top: 1rem;
 }
+
+/* Session appearances */
+
+.appearances {
+  margin-top: 1.25rem;
+  border-top: 1px dashed var(--ra-border);
+  padding-top: 1rem;
+}
+
+.appearancesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.appearancesTitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+}
+
+.smallBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  background: transparent;
+  color: var(--ra-text);
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.smallBtn:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.mutedSmall {
+  color: var(--ra-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.entityChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.4rem 0.25rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+.chipLink {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--ra-text);
+  text-decoration: none;
+}
+
+.chipLink:hover {
+  color: var(--ra-accent);
+}
+
+.chipNote {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--ra-muted);
+}
+
+.chipRemove {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.chipRemove:hover {
+  background: var(--ra-error-bg);
+  color: var(--ra-error-text);
+}
+
+.pickerBox {
+  margin-top: 0.75rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  padding: 0.9rem;
+  background: var(--ra-bg);
+}
+
+.pickerBar {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.7rem;
+}
+
+.pickerSearch {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-text);
+  flex: 1;
+  min-width: 180px;
+}
+
+.pickerSearch:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
+
+.pickerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.pickerItem {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.9rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-text);
+  cursor: pointer;
+}
+
+.pickerItem:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
