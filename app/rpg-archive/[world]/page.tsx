@@ -199,6 +199,12 @@ export default function WorldPage() {
           >
             Asset Library
           </Link>
+          <Link
+            href={`/rpg-archive/${world.slug}/search`}
+            className={styles.secondaryBtn}
+          >
+            Search
+          </Link>
         </div>
       </header>
 
