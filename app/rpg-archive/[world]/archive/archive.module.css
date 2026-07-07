@@ -695,3 +695,13 @@ a.pill {
   margin-bottom: 1.25rem;
   font-size: 0.98rem;
 }
+
+.relRowBtns {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.relRowBtns .relEditBtn {
+  margin-left: 0;
+}
