@@ -298,6 +298,12 @@ export default function WorldPage() {
           >
             Search
           </Link>
+          <Link
+            href={`/rpg-archive/${world.slug}/graph`}
+            className={styles.secondaryBtn}
+          >
+            Graph
+          </Link>
           <button className={styles.secondaryBtn} onClick={openSettings}>
             Settings
           </button>
