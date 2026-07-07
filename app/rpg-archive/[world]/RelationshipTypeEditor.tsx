@@ -250,6 +250,7 @@ export default function RelationshipTypeEditor({
 
       <FieldBuilder
         title="Relationship Properties"
+        entityTypes={entityTypes}
         emptyHint="No properties yet. Properties belong to the relationship itself — Joined, Rank, Status…"
         fields={metaFields}
         onChange={setMetaFields}
