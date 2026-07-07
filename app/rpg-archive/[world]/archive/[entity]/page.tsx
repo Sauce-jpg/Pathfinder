@@ -101,6 +101,7 @@ export default function EntityPage() {
         .select('id, name')
         .eq('world_id', w.id)
         .neq('id', e.id)
+        .neq('status', 'deleted')
         .order('name', { ascending: true }),
     ]);
 
@@ -173,26 +174,13 @@ export default function EntityPage() {
     setSavedAt(new Date().toLocaleTimeString('sv-SE'));
   }
 
-  async function deleteEntity() {
+  async function moveToBin() {
     if (!entity) return;
-    const { count } = await supabase
-      .from('ra_relationships')
-      .select('id', { count: 'exact', head: true })
-      .or(`source_id.eq.${entity.id},target_id.eq.${entity.id}`);
-    const relNote =
-      count && count > 0
-        ? ` This will also remove ${count} relationship${
-            count === 1 ? '' : 's'
-          }.`
-        : '';
-    const ok = window.confirm(
-      `Delete "${entity.name}"?${relNote} This cannot be undone.`
-    );
-    if (!ok) return;
     setSaving(true);
+    setError(null);
     const { error } = await supabase
       .from('ra_entities')
-      .delete()
+      .update({ status: 'deleted', updated_at: new Date().toISOString() })
       .eq('id', entity.id);
     setSaving(false);
     if (error) {
@@ -200,6 +188,23 @@ export default function EntityPage() {
       return;
     }
     router.push(`/rpg-archive/${worldSlug}/archive`);
+  }
+
+  async function restoreFromBin() {
+    if (!entity) return;
+    setSaving(true);
+    setError(null);
+    const { error } = await supabase
+      .from('ra_entities')
+      .update({ status: 'draft', updated_at: new Date().toISOString() })
+      .eq('id', entity.id);
+    setSaving(false);
+    if (error) {
+      setError(error.message);
+      return;
+    }
+    setEntity({ ...entity, status: 'draft' });
+    setStatus('draft');
   }
 
   if (loading) {
@@ -287,6 +292,21 @@ export default function EntityPage() {
       </header>
 
       {error && <div className={styles.error}>{error}</div>}
+      {entity.status === 'deleted' && (
+        <div className={styles.binBanner}>
+          <span>
+            This entity is in the Recycle Bin. It is hidden from the Archive,
+            pickers, and search.
+          </span>
+          <button
+            className={styles.primaryBtn}
+            onClick={restoreFromBin}
+            disabled={saving}
+          >
+            Restore
+          </button>
+        </div>
+      )}
       {savedAt && !error && (
         <p className={styles.mutedSmall}>Saved at {savedAt}.</p>
       )}
@@ -332,13 +352,15 @@ export default function EntityPage() {
       <AppearancesPanel entityId={entity.id} worldSlug={worldSlug} />
 
       <div className={styles.footerActions}>
-        <button
-          className={styles.dangerBtn}
-          onClick={deleteEntity}
-          disabled={saving}
-        >
-          Delete Entity
-        </button>
+        {entity.status !== 'deleted' && (
+          <button
+            className={styles.dangerBtn}
+            onClick={moveToBin}
+            disabled={saving}
+          >
+            Move to Recycle Bin
+          </button>
+        )}
       </div>
     </div>
   );
