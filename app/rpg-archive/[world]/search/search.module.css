@@ -1,0 +1,187 @@
+.wrap {
+  --ra-bg: #f7f4ef;
+  --ra-text: #1a1714;
+  --ra-accent: #c8900a;
+  --ra-muted: #7a726a;
+  --ra-border: #e4ddd2;
+  --ra-card: #fffdf9;
+  --ra-error-bg: #fbeaea;
+  --ra-error-text: #8a2b2b;
+
+  min-height: 100vh;
+  background: var(--ra-bg);
+  color: var(--ra-text);
+  padding: 2.5rem clamp(1rem, 4vw, 4rem);
+  font-family: 'Crimson Pro', Georgia, serif;
+  max-width: 900px;
+}
+
+.backLink {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ra-muted);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--ra-accent);
+}
+
+.header {
+  margin: 1rem 0 1.5rem;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: var(--ra-muted);
+  font-size: 1.05rem;
+  margin: 0.4rem 0 0;
+}
+
+.searchBar {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.searchInput {
+  flex: 1;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.15rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-text);
+}
+
+.searchInput:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
+
+.primaryBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.4rem;
+  background: var(--ra-accent);
+  color: #fffdf9;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.primaryBtn:hover {
+  opacity: 0.85;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.error {
+  background: var(--ra-error-bg);
+  color: var(--ra-error-text);
+  border: 1px solid #e5c4c4;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.empty {
+  background: var(--ra-card);
+  border: 1px dashed var(--ra-border);
+  border-radius: 10px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.muted {
+  color: var(--ra-muted);
+  margin: 0;
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-muted);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.pill:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.pillActive {
+  background: var(--ra-accent);
+  border-color: var(--ra-accent);
+  color: #fffdf9;
+}
+
+.group {
+  margin-bottom: 1.75rem;
+}
+
+.groupTitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+  margin: 0 0 0.5rem;
+}
+
+.resultRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-left: 4px solid var(--ra-accent);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: var(--ra-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.resultRow:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(26, 23, 20, 0.08);
+}
+
+.resultName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+}
+
+.resultContext {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted);
+}
