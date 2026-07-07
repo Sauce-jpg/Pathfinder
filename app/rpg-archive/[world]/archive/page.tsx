@@ -20,6 +20,7 @@ type EntityRow = {
   name: string;
   slug: string;
   status: string;
+  subtype: string | null;
   updated_at: string;
 };
 
@@ -43,6 +44,7 @@ export default function ArchivePage() {
   const [error, setError] = useState<string | null>(null);
 
   const [typeFilter, setTypeFilter] = useState<string | null>(null);
+  const [subtypeFilter, setSubtypeFilter] = useState<string | null>(null);
   const [search, setSearch] = useState('');
 
   // Create form
@@ -76,7 +78,7 @@ export default function ArchivePage() {
         .order('sort_order', { ascending: true }),
       supabase
         .from('ra_entities')
-        .select('id, entity_type_id, name, slug, status, updated_at')
+        .select('id, entity_type_id, name, slug, status, subtype, updated_at')
         .eq('world_id', w.id)
         .order('name', { ascending: true }),
     ]);
@@ -103,6 +105,7 @@ export default function ArchivePage() {
 
   const visible = live.filter((e) => {
     if (typeFilter && e.entity_type_id !== typeFilter) return false;
+    if (subtypeFilter && e.subtype !== subtypeFilter) return false;
     if (search && !e.name.toLowerCase().includes(search.toLowerCase()))
       return false;
     return true;
@@ -230,7 +233,10 @@ export default function ArchivePage() {
             className={`${styles.pill} ${
               typeFilter === null ? styles.pillActive : ''
             }`}
-            onClick={() => setTypeFilter(null)}
+            onClick={() => {
+              setTypeFilter(null);
+              setSubtypeFilter(null);
+            }}
           >
             All ({live.length})
           </button>
@@ -244,9 +250,10 @@ export default function ArchivePage() {
                 className={`${styles.pill} ${
                   typeFilter === t.id ? styles.pillActive : ''
                 }`}
-                onClick={() =>
-                  setTypeFilter(typeFilter === t.id ? null : t.id)
-                }
+                onClick={() => {
+                  setSubtypeFilter(null);
+                  setTypeFilter(typeFilter === t.id ? null : t.id);
+                }}
               >
                 {t.icon ? `${t.icon} ` : ''}
                 {t.display_name} ({count})
@@ -274,6 +281,45 @@ export default function ArchivePage() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
+
+      {typeFilter &&
+        (() => {
+          const st = entityTypes.find((t) => t.id === typeFilter);
+          if (!st || !st.subtypes || st.subtypes.length === 0) return null;
+          return (
+            <div
+              className={styles.pillRow}
+              style={{ marginBottom: '1.25rem' }}
+            >
+              <button
+                className={`${styles.pill} ${
+                  subtypeFilter === null ? styles.pillActive : ''
+                }`}
+                onClick={() => setSubtypeFilter(null)}
+              >
+                All ({live.filter((e) => e.entity_type_id === typeFilter).length})
+              </button>
+              {st.subtypes.map((s) => {
+                const count = live.filter(
+                  (e) => e.entity_type_id === typeFilter && e.subtype === s
+                ).length;
+                return (
+                  <button
+                    key={s}
+                    className={`${styles.pill} ${
+                      subtypeFilter === s ? styles.pillActive : ''
+                    }`}
+                    onClick={() =>
+                      setSubtypeFilter(subtypeFilter === s ? null : s)
+                    }
+                  >
+                    {s} ({count})
+                  </button>
+                );
+              })}
+            </div>
+          );
+        })()}
 
       {visible.length === 0 ? (
         <div className={styles.empty}>
@@ -304,6 +350,7 @@ export default function ArchivePage() {
                 <span className={styles.entityName}>{e.name}</span>
                 <span className={styles.entityMeta}>
                   {t?.display_name ?? 'Unknown type'}
+                  {e.subtype && ` · ${e.subtype}`}
                   {e.status !== 'published' && ` · ${e.status}`}
                 </span>
               </Link>
