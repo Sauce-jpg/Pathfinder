@@ -484,3 +484,21 @@ a.typeCard {
   color: var(--ra-muted);
   line-height: 1.4;
 }
+
+/* Entity reference field configuration */
+
+.refConfigRow {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0 0.2rem;
+}
+
+.refHint {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--ra-muted);
+  font-style: italic;
+}
