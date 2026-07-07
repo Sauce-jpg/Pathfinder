@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
+import { exportWorld, downloadJson } from '../worldTransfer';
 import styles from './world.module.css';
 import EntityTypeEditor, { EntityType } from './EntityTypeEditor';
 import RelationshipTypeEditor, {
@@ -61,6 +62,20 @@ export default function WorldPage() {
   const [wEdition, setWEdition] = useState('');
   const [wAccent, setWAccent] = useState('#c8900a');
   const [wSaving, setWSaving] = useState(false);
+  const [wExporting, setWExporting] = useState(false);
+
+  async function exportThisWorld() {
+    if (!world) return;
+    setWExporting(true);
+    setError(null);
+    try {
+      const bundle = await exportWorld(world.id);
+      downloadJson(`${world.slug}-export.json`, bundle);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Export failed.');
+    }
+    setWExporting(false);
+  }
 
   // null = editor closed, 'new' = creating, object = editing
   const [editingEntity, setEditingEntity] = useState<EntityType | 'new' | null>(
@@ -371,6 +386,13 @@ export default function WorldPage() {
               disabled={wSaving}
             >
               Delete World
+            </button>
+            <button
+              className={styles.secondaryBtn}
+              onClick={exportThisWorld}
+              disabled={wExporting}
+            >
+              {wExporting ? 'Exporting…' : 'Export World (JSON)'}
             </button>
             <div className={styles.editorActionsRight}>
               <button
