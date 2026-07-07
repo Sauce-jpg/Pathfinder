@@ -79,6 +79,7 @@ export default function RelationshipPanel({
         .select('id, name, slug, entity_type_id')
         .eq('world_id', worldId)
         .neq('id', entityId)
+        .neq('status', 'deleted')
         .order('name', { ascending: true }),
     ]);
 
