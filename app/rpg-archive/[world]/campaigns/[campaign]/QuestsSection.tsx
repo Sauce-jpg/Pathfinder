@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './campaign.module.css';
 import QuestEntities from './QuestEntities';
+import MarkdownEditor from '../../../MarkdownEditor';
 
 type Quest = {
   id: string;
@@ -180,16 +181,15 @@ export default function QuestsSection({
               </select>
             </label>
           </div>
-          <label className={styles.notesLabel}>
+          <div className={styles.notesLabel}>
             <span>Details (markdown)</span>
-            <textarea
-              className={styles.docArea}
-              rows={8}
+            <MarkdownEditor
               value={details}
-              onChange={(e) => setDetails(e.target.value)}
+              onChange={setDetails}
+              rows={8}
               placeholder={`## Goal\n\n## Reward\n\n## Progress`}
             />
-          </label>
+          </div>
           <QuestEntities
             worldId={worldId}
             worldSlug={worldSlug}
