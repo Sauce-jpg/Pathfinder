@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import styles from './world.module.css';
 
 export type FieldType =
@@ -77,11 +78,19 @@ export default function FieldBuilder({
   fields,
   onChange,
 }: Props) {
+  // Raw text drafts for the options inputs, keyed by row index. Parsing on
+  // every keystroke ate commas and spaces; the draft preserves exactly what
+  // the user typed and is normalized on blur.
+  const [optionDrafts, setOptionDrafts] = useState<Record<number, string>>(
+    {}
+  );
+
   function updateField(index: number, patch: Partial<FieldDef>) {
     onChange(fields.map((f, i) => (i === index ? { ...f, ...patch } : f)));
   }
 
   function addField() {
+    setOptionDrafts({});
     onChange([
       ...fields,
       { key: '', label: '', type: 'short_text', required: false },
@@ -89,12 +98,14 @@ export default function FieldBuilder({
   }
 
   function removeField(index: number) {
+    setOptionDrafts({});
     onChange(fields.filter((_, i) => i !== index));
   }
 
   function moveField(index: number, direction: -1 | 1) {
     const target = index + direction;
     if (target < 0 || target >= fields.length) return;
+    setOptionDrafts({});
     const next = [...fields];
     [next[index], next[target]] = [next[target], next[index]];
     onChange(next);
@@ -176,14 +187,23 @@ export default function FieldBuilder({
             <input
               type="text"
               className={styles.fieldRowOptions}
-              value={(f.options ?? []).join(', ')}
+              value={optionDrafts[i] ?? (f.options ?? []).join(', ')}
               placeholder="Options, comma, separated"
-              onChange={(e) =>
+              onChange={(e) => {
+                const raw = e.target.value;
+                setOptionDrafts((d) => ({ ...d, [i]: raw }));
                 updateField(i, {
-                  options: e.target.value
+                  options: raw
                     .split(',')
                     .map((s) => s.trim())
                     .filter(Boolean),
+                });
+              }}
+              onBlur={() =>
+                setOptionDrafts((d) => {
+                  const next = { ...d };
+                  delete next[i];
+                  return next;
                 })
               }
             />
