@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './campaign.module.css';
 import SessionEntities from './SessionEntities';
+import QuestsSection from './QuestsSection';
 
 type World = {
   id: string;
@@ -385,6 +386,12 @@ export default function CampaignPage() {
           </div>
         )}
       </section>
+
+      <QuestsSection
+        worldId={world.id}
+        worldSlug={worldSlug}
+        campaignId={campaign.id}
+      />
 
       <div className={styles.footerActions}>
         <button className={styles.dangerBtn} onClick={deleteCampaign}>
