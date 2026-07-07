@@ -55,6 +55,7 @@ export default function SessionEntities({
       .from('ra_entities')
       .select('id, name, slug')
       .eq('world_id', worldId)
+      .neq('status', 'deleted')
       .order('name', { ascending: true });
     if (error) setError(error.message);
     else setEntities((data as EntityRow[]) ?? []);
