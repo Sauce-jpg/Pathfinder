@@ -735,3 +735,103 @@ a.pill {
   background: var(--ra-error-bg);
   color: var(--ra-error-text);
 }
+
+/* Reveal panel */
+
+.revealRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--ra-border);
+}
+
+.revealSubject {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+}
+
+.revealMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ra-muted);
+}
+
+.revokeBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  margin-left: auto;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.revokeBtn:hover {
+  border-color: #e5c4c4;
+  color: var(--ra-error-text);
+  background: var(--ra-error-bg);
+}
+
+.revealForm {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+
+.revealForm select,
+.revealForm input {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+  min-width: 150px;
+}
+
+.revealForm input {
+  flex: 1;
+}
+
+.smallRevealBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  padding: 0.45rem 1rem;
+  background: var(--ra-accent);
+  color: #fffdf9;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.smallRevealBtn:hover {
+  opacity: 0.85;
+}
+
+.smallRevealBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.revealCompact {
+  margin-top: 1.25rem;
+  border-top: 1px dashed var(--ra-border);
+  padding-top: 1rem;
+}
+
+.revealTitle {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ra-muted);
+  margin-bottom: 0.5rem;
+}
