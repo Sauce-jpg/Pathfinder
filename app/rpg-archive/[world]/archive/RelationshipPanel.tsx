@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './archive.module.css';
 import DynamicFields from './DynamicFields';
+import RevealPanel from './RevealPanel';
 import { RelationshipType } from '../RelationshipTypeEditor';
 
 type EntityRef = {
@@ -394,6 +395,15 @@ export default function RelationshipPanel({
                 wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
               />
             </div>
+          )}
+
+          {editingId && (
+            <RevealPanel
+              worldId={worldId}
+              targetType="relationship"
+              targetId={editingId}
+              compact
+            />
           )}
 
           <div className={styles.relFormActions}>
