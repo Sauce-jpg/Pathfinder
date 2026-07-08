@@ -6,14 +6,44 @@ import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 import styles from './markdown.module.css';
 
-export function MarkdownView({ source }: { source: string }) {
+function slugifyWiki(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Turns [[Entity Name]] and [[Entity Name|display text]] into markdown
+ * links. Slugs are derived from names with the same rule used at entity
+ * creation, so no lookup is needed.
+ */
+function applyWikiLinks(source: string, prefix: string): string {
+  return source.replace(
+    /\[\[([^\[\]|]+?)(?:\|([^\[\]]+?))?\]\]/g,
+    (_m, target: string, display?: string) =>
+      `[${(display ?? target).trim()}](${prefix}/${slugifyWiki(target)})`
+  );
+}
+
+export function MarkdownView({
+  source,
+  wikiPrefix,
+}: {
+  source: string;
+  wikiPrefix?: string;
+}) {
   if (!source.trim()) {
     return <p className={styles.emptyNote}>Nothing written yet.</p>;
   }
+  const processed = wikiPrefix
+    ? applyWikiLinks(source, wikiPrefix)
+    : source;
   return (
     <div className={styles.md}>
       <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
-        {source}
+        {processed}
       </ReactMarkdown>
     </div>
   );
@@ -24,6 +54,7 @@ type Props = {
   onChange: (value: string) => void;
   rows?: number;
   placeholder?: string;
+  wikiPrefix?: string;
 };
 
 export default function MarkdownEditor({
@@ -31,6 +62,7 @@ export default function MarkdownEditor({
   onChange,
   rows = 12,
   placeholder,
+  wikiPrefix,
 }: Props) {
   const [mode, setMode] = useState<'write' | 'preview'>(
     value.trim() ? 'preview' : 'write'
@@ -68,7 +100,7 @@ export default function MarkdownEditor({
         />
       ) : (
         <div className={styles.previewBox} style={{ minHeight: rows * 1.4 + 'em' }}>
-          <MarkdownView source={value} />
+          <MarkdownView source={value} wikiPrefix={wikiPrefix} />
         </div>
       )}
     </div>
