@@ -18,6 +18,8 @@ export type WorldBundle = {
   session_entities: Row[];
   quests: Row[];
   quest_entities: Row[];
+  events?: Row[];
+  event_entities?: Row[];
 };
 
 const PAGE = 1000;
@@ -57,6 +59,8 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     session_entities,
     quests,
     quest_entities,
+    events,
+    event_entities,
   ] = await Promise.all([
     fetchAll('ra_entity_types', worldId),
     fetchAll('ra_relationship_types', worldId),
@@ -69,6 +73,8 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     fetchAll('ra_session_entities', worldId),
     fetchAll('ra_quests', worldId),
     fetchAll('ra_quest_entities', worldId),
+    fetchAll('ra_events', worldId),
+    fetchAll('ra_event_entities', worldId),
   ]);
 
   return {
@@ -87,6 +93,8 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     session_entities,
     quests,
     quest_entities,
+    events,
+    event_entities,
   };
 }
 
@@ -159,6 +167,8 @@ export async function importWorld(
     bundle.session_entities,
     bundle.quests,
     bundle.quest_entities,
+    bundle.events ?? [],
+    bundle.event_entities ?? [],
   ];
   for (const rows of allRowSets) {
     for (const row of rows ?? []) map.set(row.id, crypto.randomUUID());
@@ -353,6 +363,29 @@ export async function importWorld(
         world_id: newWorldId,
         campaign_id: remap(r.campaign_id),
         quest_id: remap(r.quest_id),
+        entity_id: remap(r.entity_id),
+      })) as Row[],
+      onProgress
+    );
+
+    // Timeline events.
+    onProgress?.('Importing timeline…');
+    await chunkInsert(
+      'ra_events',
+      (bundle.events ?? []).map((ev) => ({
+        ...ev,
+        id: remap(ev.id),
+        world_id: newWorldId,
+      })) as Row[],
+      onProgress
+    );
+    await chunkInsert(
+      'ra_event_entities',
+      (bundle.event_entities ?? []).map((r) => ({
+        ...r,
+        id: remap(r.id),
+        world_id: newWorldId,
+        event_id: remap(r.event_id),
         entity_id: remap(r.entity_id),
       })) as Row[],
       onProgress
