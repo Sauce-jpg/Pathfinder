@@ -350,6 +350,12 @@ export default function WorldPage() {
           >
             Timeline
           </Link>
+          <Link
+            href={`/rpg-archive/${world.slug}/members`}
+            className={styles.secondaryBtn}
+          >
+            Members
+          </Link>
           <button className={styles.secondaryBtn} onClick={openSettings}>
             Settings
           </button>
