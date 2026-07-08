@@ -15,6 +15,7 @@ type Props = {
   data: Record<string, unknown>;
   onChange: (key: string, value: unknown) => void;
   entityOptions: EntityOption[];
+  wikiPrefix?: string;
 };
 
 export default function DynamicFields({
@@ -22,6 +23,7 @@ export default function DynamicFields({
   data,
   onChange,
   entityOptions,
+  wikiPrefix,
 }: Props) {
   if (fields.length === 0) {
     return (
@@ -83,6 +85,7 @@ export default function DynamicFields({
                   value={(value as string) ?? ''}
                   onChange={(v) => onChange(f.key, v)}
                   rows={6}
+                  wikiPrefix={wikiPrefix}
                 />
               </div>
             );
