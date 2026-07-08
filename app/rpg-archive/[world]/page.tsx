@@ -242,6 +242,8 @@ export default function WorldPage() {
     setError(null);
 
     // Best-effort cleanup of R2 files before the rows cascade away.
+    const { data: sessionData } = await supabase.auth.getSession();
+    const token = sessionData.session?.access_token;
     const { data: assetRows } = await supabase
       .from('ra_assets')
       .select('file_key')
@@ -250,7 +252,10 @@ export default function WorldPage() {
       try {
         await fetch('/api/rpg-archive/upload', {
           method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token ?? ''}`,
+          },
           body: JSON.stringify({ key: row.file_key }),
         });
       } catch {
