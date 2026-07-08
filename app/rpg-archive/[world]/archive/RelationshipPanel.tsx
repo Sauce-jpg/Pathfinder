@@ -391,6 +391,7 @@ export default function RelationshipPanel({
                   setProps((prev) => ({ ...prev, [key]: value }))
                 }
                 entityOptions={entities}
+                wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
               />
             </div>
           )}
