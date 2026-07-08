@@ -188,6 +188,7 @@ export default function QuestsSection({
               onChange={setDetails}
               rows={8}
               placeholder={`## Goal\n\n## Reward\n\n## Progress`}
+              wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
             />
           </div>
           <QuestEntities
