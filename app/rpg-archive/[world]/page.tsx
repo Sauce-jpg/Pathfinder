@@ -18,6 +18,7 @@ type World = {
   description: string | null;
   ruleset: { system?: string; edition?: string };
   appearance: { accent?: string };
+  player_visibility: string;
 };
 
 type Campaign = {
@@ -70,6 +71,7 @@ export default function WorldPage() {
   const [wSystem, setWSystem] = useState('');
   const [wEdition, setWEdition] = useState('');
   const [wAccent, setWAccent] = useState('#c8900a');
+  const [wVisibility, setWVisibility] = useState('hidden_by_default');
   const [wSaving, setWSaving] = useState(false);
   const [wExporting, setWExporting] = useState(false);
 
@@ -194,6 +196,7 @@ export default function WorldPage() {
     setWSystem(world.ruleset?.system ?? '');
     setWEdition(world.ruleset?.edition ?? '');
     setWAccent(world.appearance?.accent ?? '#c8900a');
+    setWVisibility(world.player_visibility ?? 'hidden_by_default');
     setError(null);
     setShowSettings(true);
   }
@@ -216,6 +219,7 @@ export default function WorldPage() {
         description: wDesc.trim() || null,
         ruleset,
         appearance: { ...world.appearance, accent: wAccent },
+        player_visibility: wVisibility,
         updated_at: new Date().toISOString(),
       })
       .eq('id', world.id);
@@ -411,6 +415,22 @@ export default function WorldPage() {
                 value={wDesc}
                 onChange={(e) => setWDesc(e.target.value)}
               />
+            </label>
+            <label className={styles.field}>
+              <span>Player Visibility</span>
+              <select
+                value={wVisibility}
+                onChange={(e) => setWVisibility(e.target.value)}
+                className={styles.visSelect}
+              >
+                <option value="hidden_by_default">
+                  Hidden by default (reveal piece by piece)
+                </option>
+                <option value="visible_by_default">
+                  Visible by default (hide exceptions)
+                </option>
+                <option value="gm_only">GM only (players see nothing)</option>
+              </select>
             </label>
           </div>
           <p className={styles.muted} style={{ marginTop: '0.75rem' }}>
