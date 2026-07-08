@@ -9,6 +9,7 @@ import DynamicFields, { EntityOption } from '../DynamicFields';
 import RelationshipPanel from '../RelationshipPanel';
 import AssetPanel, { LinkedAsset } from '../AssetPanel';
 import AppearancesPanel from '../AppearancesPanel';
+import RevealPanel from '../RevealPanel';
 import MarkdownEditor from '../../../MarkdownEditor';
 import { EntityType } from '../../EntityTypeEditor';
 
@@ -370,6 +371,12 @@ export default function EntityPage() {
       />
 
       <AppearancesPanel entityId={entity.id} worldSlug={worldSlug} />
+
+      <RevealPanel
+        worldId={world.id}
+        targetType="entity"
+        targetId={entity.id}
+      />
 
       <div className={styles.footerActions}>
         {entity.status !== 'deleted' && (
