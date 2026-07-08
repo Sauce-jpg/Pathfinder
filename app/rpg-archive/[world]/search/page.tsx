@@ -14,7 +14,7 @@ type World = {
 };
 
 type Result = {
-  kind: 'entity' | 'asset' | 'campaign' | 'session' | 'quest';
+  kind: 'entity' | 'asset' | 'campaign' | 'session' | 'quest' | 'event';
   id: string;
   name: string;
   slug: string | null;
@@ -28,6 +28,7 @@ const KIND_LABELS: Record<string, string> = {
   campaign: 'Campaigns',
   session: 'Sessions',
   quest: 'Quests',
+  event: 'Timeline Events',
 };
 
 const KIND_ORDER: Result['kind'][] = [
@@ -35,6 +36,7 @@ const KIND_ORDER: Result['kind'][] = [
   'campaign',
   'session',
   'quest',
+  'event',
   'asset',
 ];
 
@@ -100,6 +102,8 @@ export default function SearchPage() {
       case 'session':
       case 'quest':
         return `/rpg-archive/${worldSlug}/campaigns/${r.campaign_slug}`;
+      case 'event':
+        return `/rpg-archive/${worldSlug}/timeline`;
     }
   }
 
