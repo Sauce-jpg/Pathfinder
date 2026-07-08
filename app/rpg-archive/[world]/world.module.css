@@ -502,3 +502,45 @@ a.typeCard {
   color: var(--ra-muted);
   font-style: italic;
 }
+
+/* Continue Working strip */
+
+.recentRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.recentCard {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  text-decoration: none;
+  color: var(--ra-text);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.recentCard:hover {
+  border-color: var(--ra-accent);
+  transform: translateY(-1px);
+}
+
+.recentIcon {
+  font-size: 0.95rem;
+}
+
+.recentName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.98rem;
+}
+
+.recentMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ra-muted);
+}
