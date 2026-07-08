@@ -237,3 +237,77 @@
   background: #fff;
   color: var(--ra-text);
 }
+
+/* Player groups */
+
+.groupInput {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+  flex: 1;
+  min-width: 160px;
+}
+
+.groupInput:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
+
+.groupCard {
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  margin-top: 0.6rem;
+}
+
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.groupName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.memberChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--ra-bg);
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  padding: 0.2rem 0.35rem 0.2rem 0.75rem;
+  font-size: 0.92rem;
+}
+
+.memberChip button {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.memberChip button:hover {
+  background: var(--ra-error-bg);
+  color: var(--ra-error-text);
+}
