@@ -338,6 +338,7 @@ export default function EntityPage() {
             setData((prev) => ({ ...prev, [key]: value }))
           }
           entityOptions={entityOptions}
+          wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
         />
       </section>
 
@@ -351,6 +352,7 @@ export default function EntityPage() {
           onChange={setDoc}
           rows={16}
           placeholder={`## History\n\n## Appearance\n\n## Notes`}
+          wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
         />
       </section>
 
