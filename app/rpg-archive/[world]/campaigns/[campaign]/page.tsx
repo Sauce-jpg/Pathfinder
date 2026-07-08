@@ -313,6 +313,7 @@ export default function CampaignPage() {
                 onChange={setNotes}
                 rows={14}
                 placeholder={`## Recap\n\n## What Happened\n\n## Loot\n\n## Next Time`}
+                wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
               />
             </div>
             <SessionEntities
