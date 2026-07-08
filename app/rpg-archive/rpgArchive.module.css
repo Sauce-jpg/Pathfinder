@@ -245,3 +245,49 @@
   color: var(--ra-accent);
   margin: 0 0 1rem;
 }
+
+/* World invitations */
+
+.inviteSection {
+  background: var(--ra-card);
+  border: 1px solid var(--ra-accent);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.inviteTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.inviteRow {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--ra-border);
+}
+
+.inviteRow:last-child {
+  border-bottom: none;
+}
+
+.inviteName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+}
+
+.inviteMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted);
+}
+
+.inviteActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
