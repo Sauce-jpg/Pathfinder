@@ -110,12 +110,22 @@ export default function AssetLibraryPage() {
     if (!files || files.length === 0 || !world) return;
     setError(null);
 
+    const { data: sessionData } = await supabase.auth.getSession();
+    const token = sessionData.session?.access_token;
+    if (!token) {
+      setError('Not signed in — please sign in again.');
+      return;
+    }
+
     for (const file of Array.from(files)) {
       setUploading(file.name);
       try {
         const res = await fetch('/api/rpg-archive/upload', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
           body: JSON.stringify({
             filename: file.name,
             contentType: file.type || 'application/octet-stream',
@@ -207,9 +217,14 @@ export default function AssetLibraryPage() {
 
     // Remove the file from R2 first, then the row (explicit cleanup).
     try {
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData.session?.access_token;
       await fetch('/api/rpg-archive/upload', {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token ?? ''}`,
+        },
         body: JSON.stringify({ key: selected.file_key }),
       });
     } catch {
