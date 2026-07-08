@@ -1,0 +1,239 @@
+.wrap {
+  --ra-bg: #f7f4ef;
+  --ra-text: #1a1714;
+  --ra-accent: #c8900a;
+  --ra-muted: #7a726a;
+  --ra-border: #e4ddd2;
+  --ra-card: #fffdf9;
+  --ra-error-bg: #fbeaea;
+  --ra-error-text: #8a2b2b;
+
+  min-height: 100vh;
+  background: var(--ra-bg);
+  color: var(--ra-text);
+  padding: 2.5rem clamp(1rem, 4vw, 4rem);
+  font-family: 'Crimson Pro', Georgia, serif;
+  max-width: 800px;
+}
+
+.backLink {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ra-muted);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--ra-accent);
+}
+
+.header {
+  margin: 1rem 0 1.5rem;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.subtitle {
+  color: var(--ra-muted);
+  font-size: 1.05rem;
+  margin: 0.4rem 0 0;
+  max-width: 55ch;
+}
+
+.error {
+  background: var(--ra-error-bg);
+  color: var(--ra-error-text);
+  border: 1px solid #e5c4c4;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.info {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ra-accent);
+  margin: 0 0 1rem;
+}
+
+.muted {
+  color: var(--ra-muted);
+  margin: 0;
+}
+
+.mutedSmall {
+  color: var(--ra-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  margin: 0.5rem 0 0;
+}
+
+.inlineLink {
+  color: var(--ra-accent);
+}
+
+.card {
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.sectionTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.group {
+  margin-bottom: 1.75rem;
+}
+
+.addRow,
+.inviteRow {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.addRow input,
+.inviteRow select {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+  flex: 1;
+  min-width: 160px;
+}
+
+.addRow input:focus,
+.inviteRow select:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
+
+.primaryBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  padding: 0.55rem 1.1rem;
+  background: var(--ra-accent);
+  color: #fffdf9;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.primaryBtn:hover {
+  opacity: 0.85;
+}
+
+.primaryBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.secondaryBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  padding: 0.55rem 1.1rem;
+  background: transparent;
+  color: var(--ra-text);
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.dangerBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  padding: 0.55rem 1.1rem;
+  background: transparent;
+  color: var(--ra-error-text);
+  border: 1px solid #e5c4c4;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.dangerBtn:hover {
+  background: var(--ra-error-bg);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  background: var(--ra-card);
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.rowName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.rowMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted);
+}
+
+.rowActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.roleTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--ra-accent);
+  border-radius: 999px;
+  color: var(--ra-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statusTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  color: var(--ra-muted);
+}
+
+.statusAccepted {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.roleSelect {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+}
