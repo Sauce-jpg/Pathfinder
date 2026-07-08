@@ -4,6 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import { importWorld, WorldBundle } from './worldTransfer';
+
+type Invite = {
+  member_id: string;
+  world_id: string;
+  world_name: string;
+  role: string;
+  invited_by: string;
+};
 import styles from './rpgArchive.module.css';
 
 type World = {
@@ -43,6 +51,29 @@ export default function RpgArchivePage() {
   // Import
   const importInputRef = useRef<HTMLInputElement>(null);
   const [importStatus, setImportStatus] = useState<string | null>(null);
+  const [invites, setInvites] = useState<Invite[]>([]);
+
+  useEffect(() => {
+    loadInvites();
+  }, []);
+
+  async function loadInvites() {
+    const { data } = await supabase.rpc('ra_my_invites');
+    setInvites((data as Invite[]) ?? []);
+  }
+
+  async function respondInvite(inv: Invite, accept: boolean) {
+    const { error } = await supabase.rpc('ra_respond_invite', {
+      p_member_id: inv.member_id,
+      p_accept: accept,
+    });
+    if (error) {
+      setError(error.message);
+      return;
+    }
+    loadInvites();
+    loadWorlds();
+  }
 
   async function handleImportFile(files: FileList | null) {
     if (!files || files.length === 0) return;
@@ -142,6 +173,9 @@ export default function RpgArchivePage() {
           </p>
         </div>
         <div className={styles.headerBtns}>
+          <Link href="/rpg-archive/friends" className={styles.secondaryBtn}>
+            Friends
+          </Link>
           <button
             className={styles.secondaryBtn}
             onClick={() => importInputRef.current?.click()}
@@ -170,6 +204,34 @@ export default function RpgArchivePage() {
       )}
 
       {error && <div className={styles.error}>{error}</div>}
+
+      {invites.length > 0 && (
+        <section className={styles.inviteSection}>
+          <h2 className={styles.inviteTitle}>Invitations</h2>
+          {invites.map((inv) => (
+            <div key={inv.member_id} className={styles.inviteRow}>
+              <span className={styles.inviteName}>{inv.world_name}</span>
+              <span className={styles.inviteMeta}>
+                as {inv.role.replace('_', '-')} · from {inv.invited_by}
+              </span>
+              <div className={styles.inviteActions}>
+                <button
+                  className={styles.primaryBtn}
+                  onClick={() => respondInvite(inv, true)}
+                >
+                  Accept
+                </button>
+                <button
+                  className={styles.secondaryBtn}
+                  onClick={() => respondInvite(inv, false)}
+                >
+                  Decline
+                </button>
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
 
       {showForm && (
         <section className={styles.formCard}>
