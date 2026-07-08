@@ -319,6 +319,12 @@ export default function WorldPage() {
           >
             Graph
           </Link>
+          <Link
+            href={`/rpg-archive/${world.slug}/timeline`}
+            className={styles.secondaryBtn}
+          >
+            Timeline
+          </Link>
           <button className={styles.secondaryBtn} onClick={openSettings}>
             Settings
           </button>
