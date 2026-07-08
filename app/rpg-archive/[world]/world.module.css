@@ -544,3 +544,13 @@ a.typeCard {
   font-size: 0.65rem;
   color: var(--ra-muted);
 }
+
+.visSelect {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+}
