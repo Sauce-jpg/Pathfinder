@@ -32,6 +32,9 @@ type Friendship = {
 
 type UserName = { id: string; display_name: string; avatar_url: string | null };
 
+type Group = { id: string; name: string };
+type GroupMember = { id: string; group_id: string; user_id: string };
+
 const ROLES = ['co_gm', 'player', 'viewer'];
 
 export default function MembersPage() {
@@ -49,6 +52,10 @@ export default function MembersPage() {
   const [inviteId, setInviteId] = useState('');
   const [inviteRole, setInviteRole] = useState('player');
   const [saving, setSaving] = useState(false);
+
+  const [groups, setGroups] = useState<Group[]>([]);
+  const [groupMembers, setGroupMembers] = useState<GroupMember[]>([]);
+  const [newGroupName, setNewGroupName] = useState('');
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -71,7 +78,7 @@ export default function MembersPage() {
     }
     setWorld(w as World);
 
-    const [membersRes, friendsRes] = await Promise.all([
+    const [membersRes, friendsRes, groupsRes, gmRes] = await Promise.all([
       supabase
         .from('ra_world_members')
         .select('id, user_id, role, status, created_at, accepted_at')
@@ -84,7 +91,20 @@ export default function MembersPage() {
             .or(`user_id.eq.${uid},friend_id.eq.${uid}`)
             .eq('status', 'accepted')
         : Promise.resolve({ data: [], error: null }),
+      supabase
+        .from('ra_player_groups')
+        .select('id, name')
+        .eq('world_id', w.id)
+        .order('name', { ascending: true }),
+      supabase
+        .from('ra_player_group_members')
+        .select('id, group_id, user_id')
+        .eq('world_id', w.id),
     ]);
+
+    if (!groupsRes.error) setGroups((groupsRes.data as Group[]) ?? []);
+    if (!gmRes.error)
+      setGroupMembers((gmRes.data as GroupMember[]) ?? []);
 
     if (membersRes.error) setError(membersRes.error.message);
     const memberList = (membersRes.data as Member[]) ?? [];
@@ -162,6 +182,57 @@ export default function MembersPage() {
       .from('ra_world_members')
       .update({ status: 'removed' })
       .eq('id', m.id);
+    if (error) setError(error.message);
+    else loadAll();
+  }
+
+  async function createGroup() {
+    if (!world || !newGroupName.trim()) return;
+    const { error } = await supabase.from('ra_player_groups').insert({
+      world_id: world.id,
+      name: newGroupName.trim(),
+    });
+    if (error) {
+      setError(
+        error.code === '23505'
+          ? 'A group with that name already exists.'
+          : error.message
+      );
+      return;
+    }
+    setNewGroupName('');
+    loadAll();
+  }
+
+  async function deleteGroup(g: Group) {
+    const ok = window.confirm(
+      `Delete the group "${g.name}"? Reveals granted to it stop applying.`
+    );
+    if (!ok) return;
+    const { error } = await supabase
+      .from('ra_player_groups')
+      .delete()
+      .eq('id', g.id);
+    if (error) setError(error.message);
+    else loadAll();
+  }
+
+  async function addToGroup(g: Group, userId: string) {
+    if (!world || !userId) return;
+    const { error } = await supabase.from('ra_player_group_members').insert({
+      group_id: g.id,
+      world_id: world.id,
+      user_id: userId,
+    });
+    if (error) setError(error.message);
+    else loadAll();
+  }
+
+  async function removeFromGroup(gm: GroupMember) {
+    const { error } = await supabase
+      .from('ra_player_group_members')
+      .delete()
+      .eq('id', gm.id);
     if (error) setError(error.message);
     else loadAll();
   }
@@ -314,6 +385,89 @@ export default function MembersPage() {
             )}
           </div>
         ))}
+      </section>
+
+      <section className={styles.group}>
+        <h2 className={styles.sectionTitle}>Player Groups</h2>
+        <p className={styles.mutedSmall}>
+          Groups make reveals easier — reveal to "Party" instead of each
+          player individually.
+        </p>
+
+        <div className={styles.card} style={{ marginTop: '0.75rem' }}>
+          <div className={styles.inviteRow}>
+            <input
+              type="text"
+              className={styles.groupInput}
+              value={newGroupName}
+              onChange={(e) => setNewGroupName(e.target.value)}
+              placeholder="Party, Faction A, Spectators…"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') createGroup();
+              }}
+            />
+            <button
+              className={styles.primaryBtn}
+              onClick={createGroup}
+              disabled={!newGroupName.trim()}
+            >
+              Create Group
+            </button>
+          </div>
+        </div>
+
+        {groups.map((g) => {
+          const inGroup = groupMembers.filter((gm) => gm.group_id === g.id);
+          const inGroupIds = new Set(inGroup.map((gm) => gm.user_id));
+          const addable = members
+            .filter(
+              (m) => m.status === 'accepted' && !inGroupIds.has(m.user_id)
+            )
+            .map((m) => m.user_id);
+          return (
+            <div key={g.id} className={styles.groupCard}>
+              <div className={styles.groupHeader}>
+                <span className={styles.groupName}>{g.name}</span>
+                <button
+                  className={styles.dangerBtn}
+                  onClick={() => deleteGroup(g)}
+                >
+                  Delete
+                </button>
+              </div>
+              <div className={styles.chipRow}>
+                {inGroup.length === 0 && (
+                  <span className={styles.rowMeta}>no members yet</span>
+                )}
+                {inGroup.map((gm) => (
+                  <span key={gm.id} className={styles.memberChip}>
+                    {nameOf(gm.user_id)}
+                    <button
+                      onClick={() => removeFromGroup(gm)}
+                      title="Remove from group"
+                    >
+                      ✕
+                    </button>
+                  </span>
+                ))}
+                {addable.length > 0 && (
+                  <select
+                    className={styles.roleSelect}
+                    value=""
+                    onChange={(e) => addToGroup(g, e.target.value)}
+                  >
+                    <option value="">+ add member</option>
+                    {addable.map((id) => (
+                      <option key={id} value={id}>
+                        {nameOf(id)}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </section>
     </div>
   );
