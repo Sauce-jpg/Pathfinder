@@ -24,6 +24,17 @@ type QuestInvolvement = {
   campaign: { id: string; name: string; slug: string };
 };
 
+type EventInvolvement = {
+  id: string;
+  note: string | null;
+  event: {
+    id: string;
+    name: string;
+    date_label: string | null;
+    sort_value: number;
+  };
+};
+
 type Props = {
   entityId: string;
   worldSlug: string;
@@ -32,11 +43,12 @@ type Props = {
 export default function AppearancesPanel({ entityId, worldSlug }: Props) {
   const [sessions, setSessions] = useState<SessionAppearance[]>([]);
   const [quests, setQuests] = useState<QuestInvolvement[]>([]);
+  const [events, setEvents] = useState<EventInvolvement[]>([]);
   const [loading, setLoading] = useState(true);
 
   const load = useCallback(async () => {
     setLoading(true);
-    const [sessRes, questRes] = await Promise.all([
+    const [sessRes, questRes, eventRes] = await Promise.all([
       supabase
         .from('ra_session_entities')
         .select(
@@ -47,6 +59,12 @@ export default function AppearancesPanel({ entityId, worldSlug }: Props) {
         .from('ra_quest_entities')
         .select(
           'id, note, quest:ra_quests(id, name, status), campaign:ra_campaigns(id, name, slug)'
+        )
+        .eq('entity_id', entityId),
+      supabase
+        .from('ra_event_entities')
+        .select(
+          'id, note, event:ra_events(id, name, date_label, sort_value)'
         )
         .eq('entity_id', entityId),
     ]);
@@ -73,6 +91,12 @@ export default function AppearancesPanel({ entityId, worldSlug }: Props) {
       });
       setQuests(sorted);
     }
+    if (!eventRes.error) {
+      const sorted = (
+        (eventRes.data as unknown as EventInvolvement[]) ?? []
+      ).sort((a, b) => Number(a.event.sort_value) - Number(b.event.sort_value));
+      setEvents(sorted);
+    }
     setLoading(false);
   }, [entityId]);
 
@@ -80,7 +104,8 @@ export default function AppearancesPanel({ entityId, worldSlug }: Props) {
     load();
   }, [load]);
 
-  const empty = sessions.length === 0 && quests.length === 0;
+  const empty =
+    sessions.length === 0 && quests.length === 0 && events.length === 0;
 
   return (
     <section className={styles.section}>
@@ -89,11 +114,31 @@ export default function AppearancesPanel({ entityId, worldSlug }: Props) {
         <p className={styles.muted}>Loading appearances…</p>
       ) : empty ? (
         <p className={styles.muted}>
-          Not featured in any sessions or quests yet. Appearances are
-          recorded from within a campaign.
+          Not featured in any sessions, quests, or timeline events yet.
         </p>
       ) : (
         <>
+          {events.length > 0 && (
+            <div className={styles.relGroup}>
+              <h4 className={styles.relGroupTitle}>Timeline</h4>
+              {events.map((r) => (
+                <div key={r.id} className={styles.relRow}>
+                  {r.event.date_label && (
+                    <span className={styles.relType}>
+                      {r.event.date_label}
+                    </span>
+                  )}
+                  <Link
+                    href={`/rpg-archive/${worldSlug}/timeline`}
+                    className={styles.relLink}
+                  >
+                    {r.event.name}
+                  </Link>
+                  {r.note && <span className={styles.relProps}>{r.note}</span>}
+                </div>
+              ))}
+            </div>
+          )}
           {sessions.length > 0 && (
             <div className={styles.relGroup}>
               <h4 className={styles.relGroupTitle}>Sessions</h4>
