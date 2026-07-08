@@ -28,6 +28,14 @@ type Campaign = {
   status: string;
 };
 
+type RecentEntity = {
+  id: string;
+  name: string;
+  slug: string;
+  entity_type_id: string;
+  updated_at: string;
+};
+
 function slugifyName(input: string): string {
   return input
     .toLowerCase()
@@ -45,6 +53,7 @@ export default function WorldPage() {
   const [entityTypes, setEntityTypes] = useState<EntityType[]>([]);
   const [relTypes, setRelTypes] = useState<RelationshipType[]>([]);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
+  const [recent, setRecent] = useState<RecentEntity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -102,7 +111,7 @@ export default function WorldPage() {
     }
     setWorld(w as World);
 
-    const [typesRes, relsRes, campsRes] = await Promise.all([
+    const [typesRes, relsRes, campsRes, recentRes] = await Promise.all([
       supabase
         .from('ra_entity_types')
         .select('*')
@@ -118,6 +127,13 @@ export default function WorldPage() {
         .select('id, name, slug, description, status')
         .eq('world_id', w.id)
         .order('created_at', { ascending: true }),
+      supabase
+        .from('ra_entities')
+        .select('id, name, slug, entity_type_id, updated_at')
+        .eq('world_id', w.id)
+        .neq('status', 'deleted')
+        .order('updated_at', { ascending: false })
+        .limit(6),
     ]);
 
     if (typesRes.error) setError(typesRes.error.message);
@@ -128,6 +144,10 @@ export default function WorldPage() {
 
     if (campsRes.error) setError(campsRes.error.message);
     else setCampaigns((campsRes.data as Campaign[]) ?? []);
+
+    if (!recentRes.error) {
+      setRecent((recentRes.data as RecentEntity[]) ?? []);
+    }
 
     setLoading(false);
   }, [worldSlug]);
@@ -415,6 +435,32 @@ export default function WorldPage() {
                 {wSaving ? 'Saving…' : 'Save Settings'}
               </button>
             </div>
+          </div>
+        </section>
+      )}
+
+      {recent.length > 0 && (
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Continue Working</h2>
+          <div className={styles.recentRow}>
+            {recent.map((e) => {
+              const t = entityTypes.find(
+                (et) => et.id === e.entity_type_id
+              );
+              return (
+                <Link
+                  key={e.id}
+                  href={`/rpg-archive/${world.slug}/archive/${e.slug}`}
+                  className={styles.recentCard}
+                >
+                  <span className={styles.recentIcon}>{t?.icon || '◆'}</span>
+                  <span className={styles.recentName}>{e.name}</span>
+                  <span className={styles.recentMeta}>
+                    {new Date(e.updated_at).toLocaleDateString('sv-SE')}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </section>
       )}
