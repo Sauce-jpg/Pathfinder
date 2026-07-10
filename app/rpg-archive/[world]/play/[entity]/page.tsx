@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { Suspense, useCallback, useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../play.module.css';
@@ -56,9 +56,11 @@ type PlayerAsset = {
 
 type RefName = { id: string; name: string; slug: string };
 
-export default function PlayEntityPage() {
+function PlayEntityPageInner() {
   const params = useParams<{ world: string; entity: string }>();
   const { world: worldSlug, entity: entitySlug } = params;
+  const searchParams = useSearchParams();
+  const viewAs = searchParams.get('as');
 
   const [world, setWorld] = useState<World | null>(null);
   const [entity, setEntity] = useState<PlayerEntity | null>(null);
@@ -67,6 +69,7 @@ export default function PlayEntityPage() {
   const [refNames, setRefNames] = useState<Map<string, RefName>>(new Map());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [previewName, setPreviewName] = useState<string | null>(null);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -85,9 +88,18 @@ export default function PlayEntityPage() {
     }
     setWorld(w as World);
 
+    if (viewAs) {
+      const { data: nm } = await supabase.rpc('hub_user_names', {
+        p_ids: [viewAs],
+      });
+      setPreviewName(
+        ((nm as { display_name: string }[]) ?? [])[0]?.display_name ?? null
+      );
+    }
+
     const { data: entRows, error: eErr } = await supabase.rpc(
       'ra_player_get_entity',
-      { p_world_id: w.id, p_slug: entitySlug }
+      { p_world_id: w.id, p_slug: entitySlug, p_view_as: viewAs }
     );
 
     if (eErr) {
@@ -107,10 +119,12 @@ export default function PlayEntityPage() {
       supabase.rpc('ra_player_entity_relationships', {
         p_world_id: w.id,
         p_entity_id: e.id,
+        p_view_as: viewAs,
       }),
       supabase.rpc('ra_player_entity_assets', {
         p_world_id: w.id,
         p_entity_id: e.id,
+        p_view_as: viewAs,
       }),
     ]);
 
@@ -129,7 +143,7 @@ export default function PlayEntityPage() {
     if (refIds.length > 0) {
       const { data: resolved } = await supabase.rpc(
         'ra_player_resolve_entities',
-        { p_world_id: w.id, p_ids: refIds }
+        { p_world_id: w.id, p_ids: refIds, p_view_as: viewAs }
       );
       setRefNames(
         new Map(((resolved as RefName[]) ?? []).map((r) => [r.id, r]))
@@ -137,7 +151,7 @@ export default function PlayEntityPage() {
     }
 
     setLoading(false);
-  }, [worldSlug, entitySlug]);
+  }, [worldSlug, entitySlug, viewAs]);
 
   useEffect(() => {
     loadAll();
@@ -145,13 +159,30 @@ export default function PlayEntityPage() {
 
   const accent = world?.appearance?.accent || '#c8900a';
 
+  const previewBanner = viewAs ? (
+    <div className={styles.previewBanner}>
+      <span>
+        👁 Previewing as {previewName ?? 'player'} — this is exactly what
+        they see.
+      </span>
+      <Link
+        href={`/rpg-archive/${worldSlug}`}
+        className={styles.previewExit}
+      >
+        Exit preview
+      </Link>
+    </div>
+  ) : null;
+
   function refLink(id: string) {
     const r = refNames.get(id);
     if (!r) return <span key={id}>Unknown</span>;
     return (
       <Link
         key={id}
-        href={`/rpg-archive/${worldSlug}/play/${r.slug}`}
+        href={`/rpg-archive/${worldSlug}/play/${r.slug}${
+          viewAs ? `?as=${viewAs}` : ''
+        }`}
         className={styles.inlineLink}
       >
         {r.name}
@@ -208,6 +239,7 @@ export default function PlayEntityPage() {
   if (!world || !entity) {
     return (
       <div className={styles.wrap}>
+        {previewBanner}
         <div className={styles.empty}>
           <p>This knowledge has not been revealed to you.</p>
           <p className={styles.muted}>
@@ -216,7 +248,7 @@ export default function PlayEntityPage() {
         </div>
         <p style={{ marginTop: '1rem' }}>
           <Link
-            href={`/rpg-archive/${worldSlug}/play`}
+            href={`/rpg-archive/${worldSlug}/play${viewAs ? `?as=${viewAs}` : ''}`}
             className={styles.backLink}
           >
             ← Back to the archive
@@ -237,11 +269,13 @@ export default function PlayEntityPage() {
   return (
     <div className={styles.wrap} style={{ ['--ra-accent' as string]: accent }}>
       <Link
-        href={`/rpg-archive/${worldSlug}/play`}
+        href={`/rpg-archive/${worldSlug}/play${viewAs ? `?as=${viewAs}` : ''}`}
         className={styles.backLink}
       >
         ← {world.name}
       </Link>
+
+      {previewBanner}
 
       <header className={styles.entityHeader}>
         {portrait && (
@@ -308,7 +342,9 @@ export default function PlayEntityPage() {
               <div key={r.id} className={styles.relRow}>
                 <span className={styles.relType}>{label}</span>
                 <Link
-                  href={`/rpg-archive/${worldSlug}/play/${r.other_slug}`}
+                  href={`/rpg-archive/${worldSlug}/play/${r.other_slug}${
+                    viewAs ? `?as=${viewAs}` : ''
+                  }`}
                   className={styles.relLink}
                 >
                   {r.other_name}
@@ -351,5 +387,13 @@ export default function PlayEntityPage() {
         </section>
       )}
     </div>
+  );
+}
+
+export default function PlayEntityPage() {
+  return (
+    <Suspense fallback={<div />}>
+      <PlayEntityPageInner />
+    </Suspense>
   );
 }
