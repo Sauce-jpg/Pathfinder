@@ -376,6 +376,10 @@ export default function EntityPage() {
         worldId={world.id}
         targetType="entity"
         targetId={entity.id}
+        fields={(entityType?.fields ?? []).map((f) => ({
+          key: f.key,
+          label: f.label,
+        }))}
       />
 
       <div className={styles.footerActions}>
