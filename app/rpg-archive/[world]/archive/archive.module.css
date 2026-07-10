@@ -835,3 +835,13 @@ a.pill {
   color: var(--ra-muted);
   margin-bottom: 0.5rem;
 }
+
+.revealScope {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--ra-accent);
+  border-radius: 999px;
+  color: var(--ra-accent);
+  white-space: nowrap;
+}
