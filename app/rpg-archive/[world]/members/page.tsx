@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './members.module.css';
@@ -40,6 +40,7 @@ const ROLES = ['co_gm', 'player', 'viewer'];
 export default function MembersPage() {
   const params = useParams<{ world: string }>();
   const worldSlug = params.world;
+  const router = useRouter();
 
   const [myId, setMyId] = useState<string | null>(null);
   const [world, setWorld] = useState<World | null>(null);
@@ -365,6 +366,19 @@ export default function MembersPage() {
                   ))}
                 </select>
                 <div className={styles.rowActions}>
+                  {m.status === 'accepted' && (
+                    <button
+                      className={styles.secondaryBtn}
+                      title="See the world exactly as this member sees it"
+                      onClick={() =>
+                        router.push(
+                          `/rpg-archive/${worldSlug}/play?as=${m.user_id}`
+                        )
+                      }
+                    >
+                      Preview
+                    </button>
+                  )}
                   <button
                     className={styles.dangerBtn}
                     onClick={() => remove(m)}
