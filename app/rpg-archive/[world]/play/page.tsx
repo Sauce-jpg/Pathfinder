@@ -14,6 +14,12 @@ type World = {
   appearance: { accent?: string };
 };
 
+type PlayerChart = {
+  id: string;
+  name: string;
+  description: string | null;
+};
+
 type VisibleEntity = {
   id: string;
   name: string;
@@ -38,6 +44,7 @@ function PlayPageInner() {
   const [search, setSearch] = useState('');
   const [previewName, setPreviewName] = useState<string | null>(null);
   const [myRole, setMyRole] = useState<string | null>(null);
+  const [charts, setCharts] = useState<PlayerChart[]>([]);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -77,6 +84,12 @@ function PlayPageInner() {
 
     if (error) setError(error.message);
     else setEntities((data as VisibleEntity[]) ?? []);
+
+    const { data: chartRows } = await supabase.rpc('ra_player_list_charts', {
+      p_world_id: w.id,
+      p_view_as: viewAs,
+    });
+    setCharts((chartRows as PlayerChart[]) ?? []);
     setLoading(false);
   }, [worldSlug, viewAs]);
 
@@ -231,6 +244,29 @@ function PlayPageInner() {
             </Link>
           ))}
         </div>
+      )}
+
+      {charts.length > 0 && (
+        <section className={styles.section} style={{ marginTop: '1.5rem' }}>
+          <h2 className={styles.sectionTitle}>Charts</h2>
+          <div className={styles.entityGrid}>
+            {charts.map((c) => (
+              <Link
+                key={c.id}
+                href={`/rpg-archive/${worldSlug}/play/charts/${c.id}${
+                  viewAs ? `?as=${viewAs}` : ''
+                }`}
+                className={styles.entityCard}
+              >
+                <span className={styles.entityIcon}>📊</span>
+                <span className={styles.entityName}>{c.name}</span>
+                {c.description && (
+                  <span className={styles.entityMeta}>{c.description}</span>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );
