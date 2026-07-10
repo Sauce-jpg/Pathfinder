@@ -407,3 +407,14 @@
   gap: 0.6rem;
   margin-top: 0.9rem;
 }
+
+.maskedCell {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: var(--ra-muted);
+}
+
+.revealWrap {
+  margin-top: 1.25rem;
+}
