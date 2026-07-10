@@ -364,6 +364,12 @@ export default function WorldPage() {
             Timeline
           </Link>
           <Link
+            href={`/rpg-archive/${world.slug}/charts`}
+            className={styles.secondaryBtn}
+          >
+            Charts
+          </Link>
+          <Link
             href={`/rpg-archive/${world.slug}/members`}
             className={styles.secondaryBtn}
           >
