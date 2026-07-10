@@ -5,7 +5,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../play.module.css';
-import { MarkdownView } from '../../../../MarkdownEditor';
+import { MarkdownView } from '../../../MarkdownEditor';
 
 type World = {
   id: string;
