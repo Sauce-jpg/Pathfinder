@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { Suspense, useCallback, useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './play.module.css';
@@ -24,9 +24,11 @@ type VisibleEntity = {
   type_color: string | null;
 };
 
-export default function PlayPage() {
+function PlayPageInner() {
   const params = useParams<{ world: string }>();
   const worldSlug = params.world;
+  const searchParams = useSearchParams();
+  const viewAs = searchParams.get('as');
 
   const [world, setWorld] = useState<World | null>(null);
   const [entities, setEntities] = useState<VisibleEntity[]>([]);
@@ -34,6 +36,8 @@ export default function PlayPage() {
   const [error, setError] = useState<string | null>(null);
   const [typeFilter, setTypeFilter] = useState<string | null>(null);
   const [search, setSearch] = useState('');
+  const [previewName, setPreviewName] = useState<string | null>(null);
+  const [myRole, setMyRole] = useState<string | null>(null);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -52,14 +56,29 @@ export default function PlayPage() {
     }
     setWorld(w as World);
 
+    if (viewAs) {
+      const { data: nm } = await supabase.rpc('hub_user_names', {
+        p_ids: [viewAs],
+      });
+      setPreviewName(
+        ((nm as { display_name: string }[]) ?? [])[0]?.display_name ?? null
+      );
+    } else {
+      const { data: role } = await supabase.rpc('ra_my_world_role', {
+        p_world_id: w.id,
+      });
+      setMyRole((role as string) ?? null);
+    }
+
     const { data, error } = await supabase.rpc('ra_player_list_entities', {
       p_world_id: w.id,
+      p_view_as: viewAs,
     });
 
     if (error) setError(error.message);
     else setEntities((data as VisibleEntity[]) ?? []);
     setLoading(false);
-  }, [worldSlug]);
+  }, [worldSlug, viewAs]);
 
   useEffect(() => {
     loadAll();
@@ -102,6 +121,31 @@ export default function PlayPage() {
       <Link href="/rpg-archive" className={styles.backLink}>
         ← All Worlds
       </Link>
+
+      {viewAs && (
+        <div className={styles.previewBanner}>
+          <span>
+            👁 Previewing as {previewName ?? 'player'} — this is exactly what
+            they see.
+          </span>
+          <Link
+            href={`/rpg-archive/${worldSlug}`}
+            className={styles.previewExit}
+          >
+            Exit preview
+          </Link>
+        </div>
+      )}
+
+      {!viewAs && (myRole === 'owner' || myRole === 'co_gm') && (
+        <p className={styles.gmHint}>
+          You are a GM viewing the player area as yourself, so nothing is
+          revealed to you. To see through a player's eyes, use Preview on
+          the{' '}
+          <Link href={`/rpg-archive/${worldSlug}/members`}>Members</Link>{' '}
+          page.
+        </p>
+      )}
 
       <header className={styles.header}>
         <p className={styles.kicker}>Player Archive</p>
@@ -172,7 +216,9 @@ export default function PlayPage() {
           {visible.map((e) => (
             <Link
               key={e.id}
-              href={`/rpg-archive/${worldSlug}/play/${e.slug}`}
+              href={`/rpg-archive/${worldSlug}/play/${e.slug}${
+                viewAs ? `?as=${viewAs}` : ''
+              }`}
               className={styles.entityCard}
               style={{ borderLeftColor: e.type_color || accent }}
             >
@@ -187,5 +233,13 @@ export default function PlayPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function PlayPage() {
+  return (
+    <Suspense fallback={<div />}>
+      <PlayPageInner />
+    </Suspense>
   );
 }
