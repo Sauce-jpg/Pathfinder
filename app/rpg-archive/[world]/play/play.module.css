@@ -345,3 +345,45 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* GM preview */
+
+.previewBanner {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  background: #fff8e6;
+  border: 1px solid var(--ra-accent);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+}
+
+.previewExit {
+  margin-left: auto;
+  color: var(--ra-accent);
+  text-decoration: none;
+  border: 1px solid var(--ra-accent);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+  white-space: nowrap;
+}
+
+.previewExit:hover {
+  background: var(--ra-accent);
+  color: #fffdf9;
+}
+
+.gmHint {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ra-muted);
+  margin: 0.75rem 0;
+}
+
+.gmHint a {
+  color: var(--ra-accent);
+}
