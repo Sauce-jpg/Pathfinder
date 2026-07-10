@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../charts.module.css';
+import RevealPanel from '../../archive/RevealPanel';
 
 type World = {
   id: string;
@@ -332,6 +333,7 @@ export default function ChartDetailPage() {
       {error && <div className={styles.error}>{error}</div>}
 
       {!editing ? (
+        <>
         <div className={styles.tableScroll}>
           <table className={styles.chartTable}>
             <thead>
@@ -389,6 +391,14 @@ export default function ChartDetailPage() {
             </tbody>
           </table>
         </div>
+        <div className={styles.revealWrap}>
+          <RevealPanel
+            worldId={world.id}
+            targetType="chart"
+            targetId={chart.id}
+          />
+        </div>
+        </>
       ) : (
         <>
           <div className={styles.editHint}>
