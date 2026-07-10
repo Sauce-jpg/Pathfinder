@@ -19,7 +19,7 @@ type UserName = { id: string; display_name: string };
 
 type Props = {
   worldId: string;
-  targetType: 'entity' | 'relationship';
+  targetType: 'entity' | 'relationship' | 'chart';
   targetId: string;
   compact?: boolean;
   /** Field definitions of the entity's type — enables partial reveal. */
