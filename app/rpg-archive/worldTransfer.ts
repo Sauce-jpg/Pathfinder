@@ -20,6 +20,7 @@ export type WorldBundle = {
   quest_entities: Row[];
   events?: Row[];
   event_entities?: Row[];
+  charts?: Row[];
 };
 
 const PAGE = 1000;
@@ -61,6 +62,7 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     quest_entities,
     events,
     event_entities,
+    charts,
   ] = await Promise.all([
     fetchAll('ra_entity_types', worldId),
     fetchAll('ra_relationship_types', worldId),
@@ -75,6 +77,7 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     fetchAll('ra_quest_entities', worldId),
     fetchAll('ra_events', worldId),
     fetchAll('ra_event_entities', worldId),
+    fetchAll('ra_charts', worldId),
   ]);
 
   return {
@@ -95,6 +98,7 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     quest_entities,
     events,
     event_entities,
+    charts,
   };
 }
 
@@ -169,6 +173,7 @@ export async function importWorld(
     bundle.quest_entities,
     bundle.events ?? [],
     bundle.event_entities ?? [],
+    bundle.charts ?? [],
   ];
   for (const rows of allRowSets) {
     for (const row of rows ?? []) map.set(row.id, crypto.randomUUID());
@@ -387,6 +392,27 @@ export async function importWorld(
         world_id: newWorldId,
         event_id: remap(r.event_id),
         entity_id: remap(r.entity_id),
+      })) as Row[],
+      onProgress
+    );
+
+    // Charts (cell entity references remapped).
+    onProgress?.('Importing charts…');
+    await chunkInsert(
+      'ra_charts',
+      (bundle.charts ?? []).map((c) => ({
+        ...c,
+        id: remap(c.id),
+        world_id: newWorldId,
+        rows: (
+          (c.rows as { text?: string; entityId?: string }[][]) ?? []
+        ).map((row) =>
+          row.map((cell) =>
+            cell && cell.entityId
+              ? { ...cell, entityId: remap(cell.entityId) }
+              : cell
+          )
+        ),
       })) as Row[],
       onProgress
     );
