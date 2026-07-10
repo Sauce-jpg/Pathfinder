@@ -113,6 +113,15 @@ export default function WorldPage() {
     }
     setWorld(w as World);
 
+    // Players and viewers get the player-facing archive instead.
+    const { data: myRole } = await supabase.rpc('ra_my_world_role', {
+      p_world_id: w.id,
+    });
+    if (myRole === 'player' || myRole === 'viewer') {
+      router.replace(`/rpg-archive/${worldSlug}/play`);
+      return;
+    }
+
     const [typesRes, relsRes, campsRes, recentRes] = await Promise.all([
       supabase
         .from('ra_entity_types')
