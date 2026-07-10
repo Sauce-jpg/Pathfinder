@@ -8,6 +8,7 @@ type Reveal = {
   id: string;
   subject_type: string;
   subject_id: string | null;
+  field_key: string | null;
   note: string | null;
   revealed_at: string;
 };
@@ -21,6 +22,8 @@ type Props = {
   targetType: 'entity' | 'relationship';
   targetId: string;
   compact?: boolean;
+  /** Field definitions of the entity's type — enables partial reveal. */
+  fields?: { key: string; label: string }[];
 };
 
 export default function RevealPanel({
@@ -28,6 +31,7 @@ export default function RevealPanel({
   targetType,
   targetId,
   compact,
+  fields,
 }: Props) {
   const [reveals, setReveals] = useState<Reveal[]>([]);
   const [groups, setGroups] = useState<Group[]>([]);
@@ -36,6 +40,7 @@ export default function RevealPanel({
   const [error, setError] = useState<string | null>(null);
 
   const [subject, setSubject] = useState('');
+  const [scope, setScope] = useState('');
   const [note, setNote] = useState('');
   const [saving, setSaving] = useState(false);
 
@@ -44,11 +49,10 @@ export default function RevealPanel({
     const [revealsRes, groupsRes, membersRes] = await Promise.all([
       supabase
         .from('ra_reveals')
-        .select('id, subject_type, subject_id, note, revealed_at')
+        .select('id, subject_type, subject_id, field_key, note, revealed_at')
         .eq('world_id', worldId)
         .eq('target_type', targetType)
         .eq('target_id', targetId)
-        .is('field_key', null)
         .order('revealed_at', { ascending: true }),
       supabase
         .from('ra_player_groups')
@@ -89,6 +93,12 @@ export default function RevealPanel({
     loadAll();
   }, [loadAll]);
 
+  function scopeLabel(key: string | null): string | null {
+    if (!key) return null;
+    if (key === '__doc') return 'Documentation';
+    return fields?.find((f) => f.key === key)?.label ?? key;
+  }
+
   function subjectLabel(r: Reveal): string {
     if (r.subject_type === 'all_players') return 'All Players';
     if (r.subject_type === 'group') {
@@ -118,6 +128,7 @@ export default function RevealPanel({
       world_id: worldId,
       target_type: targetType,
       target_id: targetId,
+      field_key: scope || null,
       subject_type,
       subject_id,
       note: note.trim() || null,
@@ -132,6 +143,7 @@ export default function RevealPanel({
       return;
     }
     setSubject('');
+    setScope('');
     setNote('');
     loadAll();
   }
@@ -152,10 +164,16 @@ export default function RevealPanel({
       {reveals.length === 0 ? (
         <p className={styles.mutedSmall}>
           Not revealed — players cannot see this {targetType}.
+          {fields ? ' Reveal it whole, or one field at a time.' : ''}
         </p>
       ) : (
         reveals.map((r) => (
           <div key={r.id} className={styles.revealRow}>
+            {r.field_key && (
+              <span className={styles.revealScope}>
+                {scopeLabel(r.field_key)}
+              </span>
+            )}
             <span className={styles.revealSubject}>{subjectLabel(r)}</span>
             <span className={styles.revealMeta}>
               {new Date(r.revealed_at).toLocaleDateString('sv-SE')}
@@ -173,6 +191,17 @@ export default function RevealPanel({
       )}
 
       <div className={styles.revealForm}>
+        {fields && (
+          <select value={scope} onChange={(e) => setScope(e.target.value)}>
+            <option value="">Entire entity</option>
+            <option value="__doc">Documentation only</option>
+            {fields.map((f) => (
+              <option key={f.key} value={f.key}>
+                Field: {f.label}
+              </option>
+            ))}
+          </select>
+        )}
         <select value={subject} onChange={(e) => setSubject(e.target.value)}>
           <option value="">— reveal to —</option>
           <option value="all">All Players</option>
