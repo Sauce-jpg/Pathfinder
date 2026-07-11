@@ -21,6 +21,7 @@ export type WorldBundle = {
   events?: Row[];
   event_entities?: Row[];
   charts?: Row[];
+  entity_charts?: Row[];
 };
 
 const PAGE = 1000;
@@ -63,6 +64,7 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     events,
     event_entities,
     charts,
+    entity_charts,
   ] = await Promise.all([
     fetchAll('ra_entity_types', worldId),
     fetchAll('ra_relationship_types', worldId),
@@ -78,6 +80,7 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     fetchAll('ra_events', worldId),
     fetchAll('ra_event_entities', worldId),
     fetchAll('ra_charts', worldId),
+    fetchAll('ra_entity_charts', worldId),
   ]);
 
   return {
@@ -99,6 +102,7 @@ export async function exportWorld(worldId: string): Promise<WorldBundle> {
     events,
     event_entities,
     charts,
+    entity_charts,
   };
 }
 
@@ -174,6 +178,7 @@ export async function importWorld(
     bundle.events ?? [],
     bundle.event_entities ?? [],
     bundle.charts ?? [],
+    bundle.entity_charts ?? [],
   ];
   for (const rows of allRowSets) {
     for (const row of rows ?? []) map.set(row.id, crypto.randomUUID());
@@ -413,6 +418,17 @@ export async function importWorld(
               : cell
           )
         ),
+      })) as Row[],
+      onProgress
+    );
+    await chunkInsert(
+      'ra_entity_charts',
+      (bundle.entity_charts ?? []).map((r) => ({
+        ...r,
+        id: remap(r.id),
+        world_id: newWorldId,
+        entity_id: remap(r.entity_id),
+        chart_id: remap(r.chart_id),
       })) as Row[],
       onProgress
     );
