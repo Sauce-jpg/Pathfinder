@@ -9,6 +9,7 @@ import DynamicFields, { EntityOption } from '../DynamicFields';
 import RelationshipPanel from '../RelationshipPanel';
 import AssetPanel, { LinkedAsset } from '../AssetPanel';
 import AppearancesPanel from '../AppearancesPanel';
+import EntityChartsPanel from '../EntityChartsPanel';
 import RevealPanel from '../RevealPanel';
 import MarkdownEditor from '../../../MarkdownEditor';
 import { EntityType } from '../../EntityTypeEditor';
@@ -376,6 +377,12 @@ export default function EntityPage() {
         worldId={world.id}
         entityId={entity.id}
         onLoaded={setLinkedAssets}
+      />
+
+      <EntityChartsPanel
+        worldId={world.id}
+        worldSlug={worldSlug}
+        entityId={entity.id}
       />
 
       <AppearancesPanel entityId={entity.id} worldSlug={worldSlug} />
