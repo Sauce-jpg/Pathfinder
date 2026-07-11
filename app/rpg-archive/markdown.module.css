@@ -205,3 +205,42 @@
   max-width: 100%;
   border-radius: 8px;
 }
+
+/* Formatting help */
+
+.helpTab {
+  margin-left: auto;
+  min-width: 2.2rem;
+}
+
+.helpBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  border: 1px solid var(--md-border);
+  border-bottom: none;
+  background: var(--md-bg);
+  padding: 0.6rem 1rem;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.9rem;
+  color: var(--md-muted);
+}
+
+.helpBox code {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  background: #f0ece4;
+  padding: 0.08em 0.4em;
+  border-radius: 4px;
+  color: var(--md-text);
+}
+
+/* Slightly stronger heading presence */
+
+.md h1 {
+  font-size: 1.75rem;
+}
+
+.md h2 {
+  border-bottom-color: var(--ra-accent, #c8900a);
+}
