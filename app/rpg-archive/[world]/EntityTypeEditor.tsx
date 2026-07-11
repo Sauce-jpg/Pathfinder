@@ -22,6 +22,7 @@ export type EntityType = {
   subtypes: string[];
   enabled: boolean;
   sort_order: number;
+  doc_first: boolean;
 };
 
 type Props = {
@@ -50,6 +51,7 @@ export default function EntityTypeEditor({
   const [icon, setIcon] = useState(existing?.icon ?? '');
   const [color, setColor] = useState(existing?.color ?? '#c8900a');
   const [enabled, setEnabled] = useState(existing?.enabled ?? true);
+  const [docFirst, setDocFirst] = useState(existing?.doc_first ?? false);
   const [fields, setFields] = useState<FieldDef[]>(existing?.fields ?? []);
   const [subtypes, setSubtypes] = useState<string[]>(existing?.subtypes ?? []);
   const [subtypesDraft, setSubtypesDraft] = useState<string | null>(null);
@@ -82,6 +84,7 @@ export default function EntityTypeEditor({
       icon: icon.trim() || null,
       color,
       enabled,
+      doc_first: docFirst,
       fields,
       subtypes,
       sort_order: existing ? existing.sort_order : nextSortOrder,
@@ -195,6 +198,14 @@ export default function EntityTypeEditor({
             onChange={(e) => setEnabled(e.target.checked)}
           />
           <span>Enabled</span>
+        </label>
+        <label className={styles.checkboxField}>
+          <input
+            type="checkbox"
+            checked={docFirst}
+            onChange={(e) => setDocFirst(e.target.checked)}
+          />
+          <span>Documentation above structured data</span>
         </label>
         <label className={`${styles.field} ${styles.fieldWide}`}>
           <span>Subtypes (comma separated, optional)</span>
