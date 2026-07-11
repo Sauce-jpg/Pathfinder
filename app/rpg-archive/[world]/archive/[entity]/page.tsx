@@ -330,32 +330,40 @@ export default function EntityPage() {
         <p className={styles.mutedSmall}>Saved at {savedAt}.</p>
       )}
 
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Structured Data</h2>
-        <DynamicFields
-          fields={entityType.fields}
-          data={data}
-          onChange={(key, value) =>
-            setData((prev) => ({ ...prev, [key]: value }))
-          }
-          entityOptions={entityOptions}
-          wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
-        />
-      </section>
-
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Documentation</h2>
-        <p className={styles.mutedSmall}>
-          Markdown — history, appearance, personality, tactics, trivia…
-        </p>
-        <MarkdownEditor
-          value={doc}
-          onChange={setDoc}
-          rows={16}
-          placeholder={`## History\n\n## Appearance\n\n## Notes`}
-          wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
-        />
-      </section>
+      {(() => {
+        const dataSection = (
+          <section key="data" className={styles.section}>
+            <h2 className={styles.sectionTitle}>Structured Data</h2>
+            <DynamicFields
+              fields={entityType.fields}
+              data={data}
+              onChange={(key, value) =>
+                setData((prev) => ({ ...prev, [key]: value }))
+              }
+              entityOptions={entityOptions}
+              wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
+            />
+          </section>
+        );
+        const docSection = (
+          <section key="doc" className={styles.section}>
+            <h2 className={styles.sectionTitle}>Documentation</h2>
+            <p className={styles.mutedSmall}>
+              Markdown — history, appearance, personality, tactics, trivia…
+            </p>
+            <MarkdownEditor
+              value={doc}
+              onChange={setDoc}
+              rows={16}
+              placeholder={`## History\n\n## Appearance\n\n## Notes`}
+              wikiPrefix={`/rpg-archive/${worldSlug}/archive`}
+            />
+          </section>
+        );
+        return entityType.doc_first
+          ? [docSection, dataSection]
+          : [dataSection, docSection];
+      })()}
 
       <RelationshipPanel
         worldSlug={worldSlug}
