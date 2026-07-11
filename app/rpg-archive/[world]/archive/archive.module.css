@@ -845,3 +845,30 @@ a.pill {
   color: var(--ra-accent);
   white-space: nowrap;
 }
+
+/* Type picker & filter */
+
+.typePickerList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  max-height: 140px;
+  overflow-y: auto;
+}
+
+.typeSearchInput {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-text);
+  width: 140px;
+}
+
+.typeSearchInput:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
