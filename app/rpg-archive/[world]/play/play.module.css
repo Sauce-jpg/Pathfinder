@@ -387,3 +387,11 @@
 .gmHint a {
   color: var(--ra-accent);
 }
+
+.preWrap {
+  white-space: pre-wrap;
+}
+
+.fieldRowWide {
+  grid-column: 1 / -1;
+}
