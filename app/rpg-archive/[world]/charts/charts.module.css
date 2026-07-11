@@ -418,3 +418,15 @@
 .revealWrap {
   margin-top: 1.25rem;
 }
+
+.embedTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.embedDesc {
+  color: var(--ra-muted);
+  font-size: 0.95rem;
+  margin: 0.25rem 0 0;
+}
