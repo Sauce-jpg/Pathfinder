@@ -31,6 +31,7 @@ type PlayerEntity = {
   type_icon: string | null;
   type_color: string | null;
   fields: FieldDefLite[];
+  doc_first: boolean;
 };
 
 type PlayerRel = {
@@ -297,30 +298,34 @@ function PlayEntityPageInner() {
         </div>
       </header>
 
-      {filledFields.length > 0 && (
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Details</h2>
-          <div className={styles.fieldGrid}>
-            {filledFields.map((f) => (
-              <div key={f.key} className={styles.fieldRow}>
-                <span className={styles.fieldLabel}>{f.label}</span>
-                <span className={styles.fieldValue}>
-                  {renderValue(f, entity.data[f.key])}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {entity.doc?.trim() && (
-        <section className={styles.section}>
-          <MarkdownView
-            source={entity.doc}
-            wikiPrefix={`/rpg-archive/${worldSlug}/play`}
-          />
-        </section>
-      )}
+      {(() => {
+        const detailsSection = filledFields.length > 0 && (
+          <section key="details" className={styles.section}>
+            <h2 className={styles.sectionTitle}>Details</h2>
+            <div className={styles.fieldGrid}>
+              {filledFields.map((f) => (
+                <div key={f.key} className={styles.fieldRow}>
+                  <span className={styles.fieldLabel}>{f.label}</span>
+                  <span className={styles.fieldValue}>
+                    {renderValue(f, entity.data[f.key])}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+        const docSection = !!entity.doc?.trim() && (
+          <section key="doc" className={styles.section}>
+            <MarkdownView
+              source={entity.doc}
+              wikiPrefix={`/rpg-archive/${worldSlug}/play`}
+            />
+          </section>
+        );
+        return entity.doc_first
+          ? [docSection, detailsSection]
+          : [detailsSection, docSection];
+      })()}
 
       {(outgoing.length > 0 || incoming.length > 0) && (
         <section className={styles.section}>
