@@ -554,3 +554,20 @@ a.typeCard {
   background: #fff;
   color: var(--ra-text);
 }
+
+.typeSearchInput {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-text);
+  width: min(280px, 100%);
+  margin-bottom: 0.75rem;
+}
+
+.typeSearchInput:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
