@@ -50,6 +50,8 @@ export default function ArchivePage() {
   // Create form
   const [showForm, setShowForm] = useState(false);
   const [newTypeId, setNewTypeId] = useState('');
+  const [typePickerQuery, setTypePickerQuery] = useState('');
+  const [typeSearch, setTypeSearch] = useState('');
   const [newName, setNewName] = useState('');
   const [saving, setSaving] = useState(false);
 
@@ -99,6 +101,9 @@ export default function ArchivePage() {
   const accent = world?.appearance?.accent || '#c8900a';
 
   const typeById = new Map(entityTypes.map((t) => [t.id, t]));
+  const typesAlpha = [...entityTypes].sort((a, b) =>
+    a.display_name.localeCompare(b.display_name)
+  );
 
   const live = entities.filter((e) => e.status !== 'deleted');
   const binCount = entities.length - live.length;
@@ -188,21 +193,52 @@ export default function ArchivePage() {
           <div className={styles.createRow}>
             <label className={styles.dynField}>
               <span>Entity Type</span>
-              <select
-                value={newTypeId}
-                onChange={(e) => setNewTypeId(e.target.value)}
-                autoFocus
-              >
-                <option value="">— choose —</option>
-                {entityTypes
-                  .filter((t) => t.enabled)
-                  .map((t) => (
-                    <option key={t.id} value={t.id}>
-                      {t.icon ? `${t.icon} ` : ''}
-                      {t.display_name}
-                    </option>
-                  ))}
-              </select>
+              {newTypeId ? (
+                <button
+                  type="button"
+                  className={`${styles.pill} ${styles.pillActive}`}
+                  onClick={() => setNewTypeId('')}
+                  title="Change type"
+                >
+                  {typeById.get(newTypeId)?.icon
+                    ? `${typeById.get(newTypeId)?.icon} `
+                    : ''}
+                  {typeById.get(newTypeId)?.display_name} ✕
+                </button>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    value={typePickerQuery}
+                    onChange={(e) => setTypePickerQuery(e.target.value)}
+                    placeholder="Search types…"
+                    autoFocus
+                  />
+                  <div className={styles.typePickerList}>
+                    {typesAlpha
+                      .filter((t) => t.enabled)
+                      .filter((t) =>
+                        t.display_name
+                          .toLowerCase()
+                          .includes(typePickerQuery.toLowerCase())
+                      )
+                      .map((t) => (
+                        <button
+                          key={t.id}
+                          type="button"
+                          className={styles.pill}
+                          onClick={() => {
+                            setNewTypeId(t.id);
+                            setTypePickerQuery('');
+                          }}
+                        >
+                          {t.icon ? `${t.icon} ` : ''}
+                          {t.display_name}
+                        </button>
+                      ))}
+                  </div>
+                </>
+              )}
             </label>
             <label className={styles.dynField}>
               <span>Name</span>
@@ -240,7 +276,16 @@ export default function ArchivePage() {
           >
             All ({live.length})
           </button>
-          {entityTypes.map((t) => {
+          {typesAlpha
+            .filter(
+              (t) =>
+                !typeSearch ||
+                t.display_name
+                  .toLowerCase()
+                  .includes(typeSearch.toLowerCase()) ||
+                typeFilter === t.id
+            )
+            .map((t) => {
             const count = live.filter(
               (e) => e.entity_type_id === t.id
             ).length;
@@ -260,6 +305,15 @@ export default function ArchivePage() {
               </button>
             );
           })}
+          {entityTypes.length > 8 && (
+            <input
+              type="search"
+              className={styles.typeSearchInput}
+              placeholder="Filter types…"
+              value={typeSearch}
+              onChange={(e) => setTypeSearch(e.target.value)}
+            />
+          )}
           <Link
             href={`/rpg-archive/${worldSlug}/recycle`}
             className={styles.pill}
