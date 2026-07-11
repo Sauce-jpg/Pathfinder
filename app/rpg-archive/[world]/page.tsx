@@ -72,6 +72,7 @@ export default function WorldPage() {
   const [wEdition, setWEdition] = useState('');
   const [wAccent, setWAccent] = useState('#c8900a');
   const [wVisibility, setWVisibility] = useState('hidden_by_default');
+  const [typeSearch, setTypeSearch] = useState('');
   const [wSaving, setWSaving] = useState(false);
   const [wExporting, setWExporting] = useState(false);
 
@@ -643,8 +644,26 @@ export default function WorldPage() {
           />
         )}
 
+        {entityTypes.length > 8 && (
+          <input
+            type="search"
+            className={styles.typeSearchInput}
+            placeholder="Search entity types…"
+            value={typeSearch}
+            onChange={(e) => setTypeSearch(e.target.value)}
+          />
+        )}
         <div className={styles.typeGrid}>
-          {entityTypes.map((t) => (
+          {[...entityTypes]
+            .sort((a, b) => a.display_name.localeCompare(b.display_name))
+            .filter(
+              (t) =>
+                !typeSearch ||
+                t.display_name
+                  .toLowerCase()
+                  .includes(typeSearch.toLowerCase())
+            )
+            .map((t) => (
             <button
               key={t.id}
               className={styles.typeCard}
