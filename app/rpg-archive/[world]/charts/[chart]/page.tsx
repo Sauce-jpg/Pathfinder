@@ -222,13 +222,22 @@ export default function ChartDetailPage() {
 
   // ----- header group computation (adjacent equal groups merge) -----
 
+  // A group name covers its own column and every following column until
+  // the next group name. "-" explicitly ends a group.
   function groupSpans(): { label: string; span: number }[] {
     const spans: { label: string; span: number }[] = [];
+    let started = false;
     for (const col of columns) {
-      const g = col.group?.trim() || '';
-      const last = spans[spans.length - 1];
-      if (last && last.label === g) last.span += 1;
-      else spans.push({ label: g, span: 1 });
+      const raw = (col.group ?? '').trim();
+      if (raw !== '') {
+        spans.push({ label: raw === '-' ? '' : raw, span: 1 });
+        started = true;
+      } else if (spans.length === 0 || !started) {
+        if (spans.length === 0) spans.push({ label: '', span: 1 });
+        else spans[spans.length - 1].span += 1;
+      } else {
+        spans[spans.length - 1].span += 1;
+      }
     }
     return spans;
   }
@@ -402,8 +411,9 @@ export default function ChartDetailPage() {
       ) : (
         <>
           <div className={styles.editHint}>
-            Each cell is text or an entity link — use the ⛓ / T toggle.
-            Column groups with the same name merge into a spanning header.
+            Each cell is text or an entity link — use the ⛓ / T toggle. A
+            group name spans its column and every following column until the
+            next group name; type "-" as a group to end a span early.
           </div>
           <div className={styles.tableScroll}>
             <table className={styles.editTable}>
