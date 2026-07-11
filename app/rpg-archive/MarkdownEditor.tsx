@@ -67,6 +67,7 @@ export default function MarkdownEditor({
   const [mode, setMode] = useState<'write' | 'preview'>(
     value.trim() ? 'preview' : 'write'
   );
+  const [showHelp, setShowHelp] = useState(false);
 
   return (
     <div className={styles.editorWrap}>
@@ -89,7 +90,37 @@ export default function MarkdownEditor({
         >
           Preview
         </button>
+        <button
+          type="button"
+          className={`${styles.tab} ${styles.helpTab} ${
+            showHelp ? styles.tabActive : ''
+          }`}
+          onClick={() => setShowHelp((v) => !v)}
+          title="Formatting help"
+        >
+          ?
+        </button>
       </div>
+      {showHelp && (
+        <div className={styles.helpBox}>
+          <span>
+            <code>## Heading</code> · <code>### Smaller</code>
+          </span>
+          <span>
+            <code>**bold**</code> · <code>*italic*</code>
+          </span>
+          <span>
+            <code>[[Entity Name]]</code> links to that entity
+          </span>
+          <span>
+            <code>[[Entity Name|shown text]]</code> custom label
+          </span>
+          <span>
+            <code>- item</code> lists · <code>&gt; quote</code> ·{' '}
+            <code>---</code> divider
+          </span>
+        </div>
+      )}
       {mode === 'write' ? (
         <textarea
           className={styles.area}
