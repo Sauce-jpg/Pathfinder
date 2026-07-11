@@ -375,6 +375,12 @@ export default function WorldPage() {
           >
             Members
           </Link>
+          <Link
+            href={`/rpg-archive/${world.slug}/reveals`}
+            className={styles.secondaryBtn}
+          >
+            Reveals
+          </Link>
           <button className={styles.secondaryBtn} onClick={openSettings}>
             Settings
           </button>
