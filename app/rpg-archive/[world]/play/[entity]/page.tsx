@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../play.module.css';
 import { MarkdownView } from '../../../MarkdownEditor';
+import PlayerChartTable from '../PlayerChartTable';
 
 type World = {
   id: string;
@@ -68,6 +69,7 @@ function PlayEntityPageInner() {
   const [rels, setRels] = useState<PlayerRel[]>([]);
   const [assets, setAssets] = useState<PlayerAsset[]>([]);
   const [refNames, setRefNames] = useState<Map<string, RefName>>(new Map());
+  const [linkedCharts, setLinkedCharts] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [previewName, setPreviewName] = useState<string | null>(null);
@@ -116,7 +118,7 @@ function PlayEntityPageInner() {
     }
     setEntity(e);
 
-    const [relsRes, assetsRes] = await Promise.all([
+    const [relsRes, assetsRes, chartsRes] = await Promise.all([
       supabase.rpc('ra_player_entity_relationships', {
         p_world_id: w.id,
         p_entity_id: e.id,
@@ -127,11 +129,22 @@ function PlayEntityPageInner() {
         p_entity_id: e.id,
         p_view_as: viewAs,
       }),
+      supabase.rpc('ra_player_entity_charts', {
+        p_world_id: w.id,
+        p_entity_id: e.id,
+        p_view_as: viewAs,
+      }),
     ]);
 
     if (!relsRes.error) setRels((relsRes.data as PlayerRel[]) ?? []);
     if (!assetsRes.error)
       setAssets((assetsRes.data as PlayerAsset[]) ?? []);
+    if (!chartsRes.error)
+      setLinkedCharts(
+        (((chartsRes.data as { chart_id: string }[]) ?? []).map(
+          (r) => r.chart_id
+        ))
+      );
 
     // Resolve entity-reference field values to names (visible ones only).
     const refIds: string[] = [];
@@ -193,6 +206,17 @@ function PlayEntityPageInner() {
 
   function renderValue(f: FieldDefLite, v: unknown) {
     if (f.type === 'boolean') return v ? 'Yes' : 'No';
+    if (f.type === 'markdown' && typeof v === 'string') {
+      return (
+        <MarkdownView
+          source={v}
+          wikiPrefix={`/rpg-archive/${worldSlug}/play`}
+        />
+      );
+    }
+    if (f.type === 'long_text' && typeof v === 'string') {
+      return <span className={styles.preWrap}>{v}</span>;
+    }
     if (f.type === 'entity_ref') {
       if (typeof v === 'string') return refLink(v);
       if (Array.isArray(v)) {
@@ -304,7 +328,14 @@ function PlayEntityPageInner() {
             <h2 className={styles.sectionTitle}>Details</h2>
             <div className={styles.fieldGrid}>
               {filledFields.map((f) => (
-                <div key={f.key} className={styles.fieldRow}>
+                <div
+                  key={f.key}
+                  className={`${styles.fieldRow} ${
+                    f.type === 'markdown' || f.type === 'long_text'
+                      ? styles.fieldRowWide
+                      : ''
+                  }`}
+                >
                   <span className={styles.fieldLabel}>{f.label}</span>
                   <span className={styles.fieldValue}>
                     {renderValue(f, entity.data[f.key])}
@@ -326,6 +357,18 @@ function PlayEntityPageInner() {
           ? [docSection, detailsSection]
           : [detailsSection, docSection];
       })()}
+
+      {linkedCharts.map((cid) => (
+        <section key={cid} className={styles.section}>
+          <PlayerChartTable
+            worldId={world.id}
+            worldSlug={worldSlug}
+            chartId={cid}
+            viewAs={viewAs}
+            embed
+          />
+        </section>
+      ))}
 
       {(outgoing.length > 0 || incoming.length > 0) && (
         <section className={styles.section}>
