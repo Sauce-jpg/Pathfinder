@@ -416,3 +416,9 @@
   color: var(--ra-text);
   min-width: 200px;
 }
+
+.fieldRowSub {
+  margin-left: 1.25rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--ra-border);
+}
