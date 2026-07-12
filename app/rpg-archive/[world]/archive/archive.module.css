@@ -872,3 +872,71 @@ a.pill {
   outline: 2px solid var(--ra-accent);
   outline-offset: 1px;
 }
+
+/* Tags */
+
+.tagsInput {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-text);
+  min-width: 180px;
+}
+
+.tagsInput:focus {
+  outline: 2px solid var(--ra-accent);
+  outline-offset: 1px;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+}
+
+.tagChip {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: var(--ra-bg);
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.tagChip:hover {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.tagChipActive {
+  background: var(--ra-accent);
+  border-color: var(--ra-accent);
+  color: #fffdf9;
+}
+
+/* Tree mode */
+
+.treeControls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.treeControls select {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+  min-width: 200px;
+}
