@@ -174,6 +174,14 @@ export default function ArchiveHealthPage() {
     }
 
     const drafts: Issue[] = [];
+    const deadLinks: Issue[] = [];
+    const slugSet = new Set(live.map((e) => e.slug));
+    const slugifyWiki = (input: string) =>
+      input
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
     const missingRequired: Issue[] = [];
     const brokenRefs: Issue[] = [];
     const orphans: Issue[] = [];
@@ -264,6 +272,30 @@ export default function ArchiveHealthPage() {
 
     const unusedAssets = assets.filter((a) => !usedAssetIds.has(a.id));
 
+    // Dead wiki links: [[Name]] targets with no matching entity slug.
+    const wikiRe = /\[\[([^\[\]|]+?)(?:\|[^\[\]]*?)?\]\]/g;
+    for (const e of live) {
+      const texts: string[] = [e.doc ?? ''];
+      for (const val of Object.values(e.data ?? {})) {
+        if (typeof val === 'string') texts.push(val);
+      }
+      const seen = new Set<string>();
+      for (const text of texts) {
+        for (const m of text.matchAll(wikiRe)) {
+          const target = m[1].trim();
+          const slug = slugifyWiki(target);
+          if (!slug || slugSet.has(slug) || seen.has(slug)) continue;
+          seen.add(slug);
+          deadLinks.push({
+            key: `${e.id}-wiki-${slug}`,
+            entityName: e.name,
+            entitySlug: e.slug,
+            detail: `[[${target}]] → no entity "${slug}"`,
+          });
+        }
+      }
+    }
+
     return {
       live,
       binned,
@@ -272,6 +304,7 @@ export default function ArchiveHealthPage() {
       brokenRefs,
       orphans,
       noDoc,
+      deadLinks,
       unusedAssets,
       relCount: rels.length,
     };
@@ -297,7 +330,9 @@ export default function ArchiveHealthPage() {
   }
 
   const warningCount =
-    report.missingRequired.length + report.brokenRefs.length;
+    report.missingRequired.length +
+    report.brokenRefs.length +
+    report.deadLinks.length;
   const healthy =
     warningCount === 0 &&
     report.drafts.length === 0 &&
@@ -400,6 +435,12 @@ export default function ArchiveHealthPage() {
             report.missingRequired,
             true,
             'These entities have empty required fields, which will block publishing.'
+          )}
+          {issueSection(
+            'Dead Wiki Links',
+            report.deadLinks,
+            true,
+            'Markdown [[links]] pointing at names with no matching entity. Fix the spelling, or create the entity.'
           )}
           {issueSection(
             'Drafts',
