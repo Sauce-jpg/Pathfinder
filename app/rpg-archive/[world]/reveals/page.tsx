@@ -21,11 +21,14 @@ type EntityRow = {
   entity_type_id: string;
 };
 
+type FieldDefLite = { key: string; label: string };
+
 type EntityType = {
   id: string;
   display_name: string;
   icon: string | null;
   sort_order: number;
+  fields: FieldDefLite[];
 };
 
 type Group = { id: string; name: string };
@@ -35,16 +38,28 @@ type UserName = { id: string; display_name: string };
 type RevealRow = {
   id: string;
   target_id: string;
+  field_key: string | null;
   subject_type: string;
   subject_id: string | null;
+};
+
+type TemplateItem = {
+  target_type: string;
+  target_id: string;
+  field_key?: string | null;
 };
 
 type Template = {
   id: string;
   name: string;
   description: string | null;
-  items: { target_type: string; target_id: string; field_key?: string }[];
+  items: TemplateItem[];
 };
+
+/** entityId -> 'full' or a set of field keys ('__doc' = documentation). */
+type Selection = Map<string, 'full' | Set<string>>;
+
+type GrantItem = { target_id: string; field_key: string | null };
 
 export default function RevealsPage() {
   const params = useParams<{ world: string }>();
@@ -67,7 +82,8 @@ export default function RevealsPage() {
   const [note, setNote] = useState('');
   const [typeFilter, setTypeFilter] = useState<string | null>(null);
   const [search, setSearch] = useState('');
-  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [selected, setSelected] = useState<Selection>(new Map());
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [templateName, setTemplateName] = useState('');
   const [working, setWorking] = useState(false);
 
@@ -98,7 +114,7 @@ export default function RevealsPage() {
           .order('name', { ascending: true }),
         supabase
           .from('ra_entity_types')
-          .select('id, display_name, icon, sort_order')
+          .select('id, display_name, icon, sort_order, fields')
           .eq('world_id', w.id)
           .order('sort_order', { ascending: true }),
         supabase
@@ -114,10 +130,9 @@ export default function RevealsPage() {
           .in('role', ['player', 'viewer']),
         supabase
           .from('ra_reveals')
-          .select('id, target_id, subject_type, subject_id')
+          .select('id, target_id, field_key, subject_type, subject_id')
           .eq('world_id', w.id)
-          .eq('target_type', 'entity')
-          .is('field_key', null),
+          .eq('target_type', 'entity'),
         supabase
           .from('ra_reveal_templates')
           .select('id, name, description, items')
@@ -158,9 +173,12 @@ export default function RevealsPage() {
 
   // ----- subject helpers -----
 
-  function parseSubject(): { subject_type: string; subject_id: string | null } | null {
+  function parseSubject():
+    | { subject_type: string; subject_id: string | null }
+    | null {
     if (!subject) return null;
-    if (subject === 'all') return { subject_type: 'all_players', subject_id: null };
+    if (subject === 'all')
+      return { subject_type: 'all_players', subject_id: null };
     if (subject.startsWith('group:'))
       return { subject_type: 'group', subject_id: subject.slice(6) };
     if (subject.startsWith('user:'))
@@ -169,19 +187,83 @@ export default function RevealsPage() {
   }
 
   const parsed = parseSubject();
-  const revealedForSubject = new Set(
-    parsed
-      ? reveals
-          .filter(
-            (r) =>
-              r.subject_type === parsed.subject_type &&
-              (r.subject_id ?? null) === parsed.subject_id
-          )
-          .map((r) => r.target_id)
-      : []
+  const subjectReveals = parsed
+    ? reveals.filter(
+        (r) =>
+          r.subject_type === parsed.subject_type &&
+          (r.subject_id ?? null) === parsed.subject_id
+      )
+    : [];
+  const revealedKeys = new Set(
+    subjectReveals.map((r) => `${r.target_id}:${r.field_key ?? ''}`)
+  );
+  const fullRevealed = new Set(
+    subjectReveals.filter((r) => r.field_key === null).map((r) => r.target_id)
+  );
+  const partialRevealed = new Set(
+    subjectReveals.filter((r) => r.field_key !== null).map((r) => r.target_id)
   );
 
-  // ----- filters & selection -----
+  // ----- selection model -----
+
+  function rowState(id: string): 'none' | 'full' | 'partial' {
+    const entry = selected.get(id);
+    if (!entry) return 'none';
+    return entry === 'full' ? 'full' : 'partial';
+  }
+
+  function toggleRow(id: string) {
+    setSelected((prev) => {
+      const next = new Map(prev);
+      if (next.get(id) === 'full') next.delete(id);
+      else next.set(id, 'full');
+      return next;
+    });
+  }
+
+  function toggleField(id: string, key: string) {
+    setSelected((prev) => {
+      const next = new Map(prev);
+      const entry = next.get(id);
+      if (entry === 'full') return prev;
+      const set = new Set(entry ?? []);
+      if (set.has(key)) set.delete(key);
+      else set.add(key);
+      if (set.size === 0) next.delete(id);
+      else next.set(id, set);
+      return next;
+    });
+  }
+
+  function toggleExpand(id: string) {
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  function selectionToItems(sel: Selection): GrantItem[] {
+    const items: GrantItem[] = [];
+    for (const [id, entry] of sel) {
+      if (entry === 'full') items.push({ target_id: id, field_key: null });
+      else
+        for (const key of entry)
+          items.push({ target_id: id, field_key: key });
+    }
+    return items;
+  }
+
+  function selectAllVisible() {
+    setSelected((prev) => {
+      const next = new Map(prev);
+      visible.forEach((e) => next.set(e.id, 'full'));
+      return next;
+    });
+  }
+
+  // ----- filters -----
 
   const visible = entities.filter((e) => {
     if (typeFilter && e.entity_type_id !== typeFilter) return false;
@@ -190,47 +272,32 @@ export default function RevealsPage() {
     return true;
   });
 
-  function toggle(id: string) {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  }
-
-  function selectAllVisible() {
-    setSelected((prev) => {
-      const next = new Set(prev);
-      visible.forEach((e) => next.add(e.id));
-      return next;
-    });
-  }
-
   // ----- bulk actions -----
 
-  async function revealSelected(ids?: string[]) {
-    const targets = ids ?? Array.from(selected);
+  async function grantItems(items: GrantItem[]) {
     const sub = parseSubject();
-    if (!world || !sub || targets.length === 0) {
-      setError('Pick a subject and at least one entity.');
+    if (!world || !sub || items.length === 0) {
+      setError('Pick a subject and at least one entity or section.');
       return;
     }
     setWorking(true);
     setError(null);
     setInfo(null);
 
-    const missing = targets.filter((id) => !revealedForSubject.has(id));
+    const missing = items.filter(
+      (i) => !revealedKeys.has(`${i.target_id}:${i.field_key ?? ''}`)
+    );
     if (missing.length === 0) {
       setInfo('Everything selected is already revealed to that subject.');
       setWorking(false);
       return;
     }
 
-    const rows = missing.map((id) => ({
+    const rows = missing.map((i) => ({
       world_id: world.id,
       target_type: 'entity',
-      target_id: id,
+      target_id: i.target_id,
+      field_key: i.field_key,
       subject_type: sub.subject_type,
       subject_id: sub.subject_id,
       note: note.trim() || null,
@@ -243,9 +310,9 @@ export default function RevealsPage() {
       return;
     }
     setInfo(
-      `Revealed ${missing.length} ${
-        missing.length === 1 ? 'entity' : 'entities'
-      } (${targets.length - missing.length} already revealed).`
+      `Granted ${missing.length} reveal${missing.length === 1 ? '' : 's'} (${
+        items.length - missing.length
+      } already existed).`
     );
     setNote('');
     loadAll();
@@ -254,21 +321,23 @@ export default function RevealsPage() {
   async function revokeSelected() {
     const sub = parseSubject();
     if (!world || !sub || selected.size === 0) {
-      setError('Pick a subject and at least one entity.');
+      setError('Pick a subject and at least one entity or section.');
       return;
     }
     setWorking(true);
     setError(null);
     setInfo(null);
 
-    const ids = reveals
-      .filter(
-        (r) =>
-          selected.has(r.target_id) &&
-          r.subject_type === sub.subject_type &&
-          (r.subject_id ?? null) === sub.subject_id
-      )
-      .map((r) => r.id);
+    const ids: string[] = [];
+    for (const [entityId, entry] of selected) {
+      for (const r of subjectReveals) {
+        if (r.target_id !== entityId) continue;
+        // Full selection = clean slate: full + all field grants go.
+        if (entry === 'full') ids.push(r.id);
+        else if (r.field_key !== null && entry.has(r.field_key))
+          ids.push(r.id);
+      }
+    }
 
     if (ids.length === 0) {
       setInfo('Nothing selected is revealed to that subject.');
@@ -293,14 +362,15 @@ export default function RevealsPage() {
 
   async function saveTemplate() {
     if (!world || !templateName.trim() || selected.size === 0) {
-      setError('Name the template and select at least one entity.');
+      setError('Name the template and select at least one entity or section.');
       return;
     }
     setWorking(true);
     setError(null);
-    const items = Array.from(selected).map((id) => ({
+    const items = selectionToItems(selected).map((i) => ({
       target_type: 'entity',
-      target_id: id,
+      target_id: i.target_id,
+      field_key: i.field_key,
     }));
     const { error } = await supabase.from('ra_reveal_templates').insert({
       world_id: world.id,
@@ -312,24 +382,43 @@ export default function RevealsPage() {
       setError(error.message);
       return;
     }
-    setInfo(`Template "${templateName.trim()}" saved (${items.length} items).`);
+    setInfo(
+      `Template "${templateName.trim()}" saved (${items.length} items).`
+    );
     setTemplateName('');
     loadAll();
   }
 
   async function applyTemplate(t: Template) {
-    const ids = (t.items ?? [])
-      .filter((i) => i.target_type === 'entity' && !i.field_key)
-      .map((i) => i.target_id);
-    await revealSelected(ids);
+    const items: GrantItem[] = (t.items ?? [])
+      .filter((i) => i.target_type === 'entity')
+      .map((i) => ({
+        target_id: i.target_id,
+        field_key: i.field_key ?? null,
+      }));
+    await grantItems(items);
   }
 
   function loadTemplateSelection(t: Template) {
-    setSelected(
+    const next: Selection = new Map();
+    for (const i of t.items ?? []) {
+      if (i.target_type !== 'entity') continue;
+      if (!i.field_key) {
+        next.set(i.target_id, 'full');
+      } else if (next.get(i.target_id) !== 'full') {
+        const set = new Set(
+          (next.get(i.target_id) as Set<string>) ?? []
+        );
+        set.add(i.field_key);
+        next.set(i.target_id, set);
+      }
+    }
+    setSelected(next);
+    setExpanded(
       new Set(
-        (t.items ?? [])
-          .filter((i) => i.target_type === 'entity')
-          .map((i) => i.target_id)
+        Array.from(next.entries())
+          .filter(([, v]) => v !== 'full')
+          .map(([k]) => k)
       )
     );
     setInfo(`Loaded selection from "${t.name}".`);
@@ -344,6 +433,16 @@ export default function RevealsPage() {
       .eq('id', t.id);
     if (error) setError(error.message);
     else loadAll();
+  }
+
+  function templateSummary(t: Template): string {
+    const items = t.items ?? [];
+    const full = items.filter((i) => !i.field_key).length;
+    const partial = items.length - full;
+    const parts: string[] = [];
+    if (full > 0) parts.push(`${full} full`);
+    if (partial > 0) parts.push(`${partial} sections`);
+    return parts.join(' · ') || 'empty';
   }
 
   if (loading) {
@@ -365,6 +464,8 @@ export default function RevealsPage() {
     );
   }
 
+  const selectedCount = selected.size;
+
   return (
     <div className={styles.wrap} style={{ ['--ra-accent' as string]: accent }}>
       <Link href={`/rpg-archive/${worldSlug}`} className={styles.backLink}>
@@ -374,8 +475,8 @@ export default function RevealsPage() {
       <header className={styles.header}>
         <h1 className={styles.title}>Reveals</h1>
         <p className={styles.subtitle}>
-          Bulk-manage what players can see — and save selections as templates
-          for onboarding new players.
+          Bulk-manage what players can see. Expand a row (▸) to reveal only
+          individual sections of an entity.
         </p>
       </header>
 
@@ -405,15 +506,15 @@ export default function RevealsPage() {
         />
         <button
           className={styles.primaryBtn}
-          onClick={() => revealSelected()}
-          disabled={working || !subject || selected.size === 0}
+          onClick={() => grantItems(selectionToItems(selected))}
+          disabled={working || !subject || selectedCount === 0}
         >
-          Reveal Selected ({selected.size})
+          Reveal Selected ({selectedCount})
         </button>
         <button
           className={styles.dangerBtn}
           onClick={revokeSelected}
-          disabled={working || !subject || selected.size === 0}
+          disabled={working || !subject || selectedCount === 0}
         >
           Revoke Selected
         </button>
@@ -462,7 +563,7 @@ export default function RevealsPage() {
         </button>
         <button
           className={styles.smallBtn}
-          onClick={() => setSelected(new Set())}
+          onClick={() => setSelected(new Map())}
         >
           Clear
         </button>
@@ -474,33 +575,95 @@ export default function RevealsPage() {
         ) : (
           visible.map((e) => {
             const t = typeById.get(e.entity_type_id);
-            const isRevealed = revealedForSubject.has(e.id);
+            const state = rowState(e.id);
+            const entry = selected.get(e.id);
+            const partialSet =
+              entry && entry !== 'full' ? entry : new Set<string>();
+            const isExpanded = expanded.has(e.id);
+            const sections: FieldDefLite[] = [
+              { key: '__doc', label: 'Documentation' },
+              ...(t?.fields ?? []),
+            ];
             return (
-              <label key={e.id} className={styles.row}>
-                <input
-                  type="checkbox"
-                  checked={selected.has(e.id)}
-                  onChange={() => toggle(e.id)}
-                />
-                <span className={styles.rowIcon}>{t?.icon || '◆'}</span>
-                <Link
-                  href={`/rpg-archive/${worldSlug}/archive/${e.slug}`}
-                  className={styles.rowName}
-                >
-                  {e.name}
-                </Link>
-                <span className={styles.rowType}>
-                  {t?.display_name ?? 'Entity'}
-                </span>
-                {e.status !== 'published' && (
-                  <span className={styles.draftTag}>
-                    {e.status} — invisible to players
+              <div key={e.id} className={styles.rowBlock}>
+                <div className={styles.row}>
+                  <input
+                    type="checkbox"
+                    checked={state === 'full'}
+                    ref={(el) => {
+                      if (el) el.indeterminate = state === 'partial';
+                    }}
+                    onChange={() => toggleRow(e.id)}
+                  />
+                  <button
+                    className={styles.expandBtn}
+                    onClick={() => toggleExpand(e.id)}
+                    title="Pick individual sections"
+                  >
+                    {isExpanded ? '▾' : '▸'}
+                  </button>
+                  <span className={styles.rowIcon}>{t?.icon || '◆'}</span>
+                  <Link
+                    href={`/rpg-archive/${worldSlug}/archive/${e.slug}`}
+                    className={styles.rowName}
+                  >
+                    {e.name}
+                  </Link>
+                  <span className={styles.rowType}>
+                    {t?.display_name ?? 'Entity'}
                   </span>
+                  {state === 'partial' && (
+                    <span className={styles.partialTag}>
+                      {partialSet.size} section
+                      {partialSet.size === 1 ? '' : 's'} picked
+                    </span>
+                  )}
+                  {e.status !== 'published' && (
+                    <span className={styles.draftTag}>
+                      {e.status} — invisible to players
+                    </span>
+                  )}
+                  {subject && fullRevealed.has(e.id) && (
+                    <span className={styles.revealedTag}>revealed</span>
+                  )}
+                  {subject &&
+                    !fullRevealed.has(e.id) &&
+                    partialRevealed.has(e.id) && (
+                      <span className={styles.partialRevealedTag}>
+                        partially revealed
+                      </span>
+                    )}
+                </div>
+                {isExpanded && (
+                  <div className={styles.subPanel}>
+                    {state === 'full' && (
+                      <p className={styles.subHint}>
+                        Entire entity selected — uncheck the row to pick
+                        individual sections.
+                      </p>
+                    )}
+                    {sections.map((s) => (
+                      <label key={s.key} className={styles.subItem}>
+                        <input
+                          type="checkbox"
+                          checked={
+                            state === 'full' || partialSet.has(s.key)
+                          }
+                          disabled={state === 'full'}
+                          onChange={() => toggleField(e.id, s.key)}
+                        />
+                        <span>{s.label}</span>
+                        {subject &&
+                          revealedKeys.has(`${e.id}:${s.key}`) && (
+                            <span className={styles.subRevealed}>
+                              ✓ revealed
+                            </span>
+                          )}
+                      </label>
+                    ))}
+                  </div>
                 )}
-                {subject && isRevealed && (
-                  <span className={styles.revealedTag}>revealed</span>
-                )}
-              </label>
+              </div>
             );
           })
         )}
@@ -509,8 +672,8 @@ export default function RevealsPage() {
       <section className={styles.templates}>
         <h2 className={styles.sectionTitle}>Reveal Templates</h2>
         <p className={styles.mutedSmall}>
-          Save the current selection as a named set — then apply it to any
-          player, group, or everyone in one click.
+          Save the current selection — full entities and individual sections
+          alike — as a named set, then apply it to any subject in one click.
         </p>
         <div className={styles.templateCreate}>
           <input
@@ -522,23 +685,25 @@ export default function RevealsPage() {
           <button
             className={styles.secondaryBtn}
             onClick={saveTemplate}
-            disabled={working || !templateName.trim() || selected.size === 0}
+            disabled={working || !templateName.trim() || selectedCount === 0}
           >
-            Save Selection as Template ({selected.size})
+            Save Selection as Template ({selectedCount})
           </button>
         </div>
         {templates.map((t) => (
           <div key={t.id} className={styles.templateRow}>
             <span className={styles.templateName}>{t.name}</span>
-            <span className={styles.templateMeta}>
-              {(t.items ?? []).length} items
-            </span>
+            <span className={styles.templateMeta}>{templateSummary(t)}</span>
             <div className={styles.templateBtns}>
               <button
                 className={styles.primaryBtn}
                 onClick={() => applyTemplate(t)}
                 disabled={working || !subject}
-                title={subject ? 'Reveal all items to the subject' : 'Pick a subject first'}
+                title={
+                  subject
+                    ? 'Grant all items to the subject'
+                    : 'Pick a subject first'
+                }
               >
                 Apply
               </button>
