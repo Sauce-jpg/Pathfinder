@@ -395,3 +395,24 @@
 .fieldRowWide {
   grid-column: 1 / -1;
 }
+
+/* Tree mode */
+
+.treeControls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.treeControls select {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ra-text);
+  min-width: 200px;
+}
