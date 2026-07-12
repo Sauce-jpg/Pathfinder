@@ -940,3 +940,9 @@ a.pill {
   color: var(--ra-text);
   min-width: 200px;
 }
+
+.dynFieldSub {
+  margin-left: 1.25rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--ra-border);
+}
