@@ -1,108 +1,89 @@
-'use client';
+.tree {
+  background: var(--ra-card, #fffdf9);
+  border: 1px solid var(--ra-border, #e4ddd2);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  font-family: 'Crimson Pro', Georgia, serif;
+}
 
-import Link from 'next/link';
-import styles from './tree.module.css';
+.emptyNote {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ra-muted, #7a726a);
+  margin: 0;
+  padding: 0.5rem 0;
+}
 
-export type TreeNodeData = {
-  id: string;
-  label: string;
-  icon?: string | null;
-  href: string;
-  meta?: string;
-};
+.branch {
+  margin: 0;
+}
 
-type Edge = { parent: string; child: string };
+.summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.25rem 0;
+}
 
-type Props = {
-  nodes: TreeNodeData[];
-  edges: Edge[];
-};
+.summary::-webkit-details-marker {
+  display: none;
+}
 
-const MAX_DEPTH = 12;
+.summary::before {
+  content: '▸';
+  display: inline-block;
+  width: 1.1rem;
+  font-size: 0.75rem;
+  color: var(--ra-accent, #c8900a);
+  transition: transform 0.15s ease;
+}
 
-export default function TreeView({ nodes, edges }: Props) {
-  const nodeById = new Map(nodes.map((n) => [n.id, n]));
-  const childrenMap = new Map<string, string[]>();
-  const hasParent = new Set<string>();
-  const connected = new Set<string>();
+.branch[open] > .summary::before {
+  transform: rotate(90deg);
+}
 
-  for (const e of edges) {
-    if (!nodeById.has(e.parent) || !nodeById.has(e.child)) continue;
-    connected.add(e.parent);
-    connected.add(e.child);
-    hasParent.add(e.child);
-    childrenMap.set(e.parent, [
-      ...(childrenMap.get(e.parent) ?? []),
-      e.child,
-    ]);
-  }
+.leaf {
+  padding: 0.25rem 0 0.25rem 1.1rem;
+}
 
-  const byLabel = (a: string, b: string) =>
-    (nodeById.get(a)?.label ?? '').localeCompare(nodeById.get(b)?.label ?? '');
+.children {
+  margin-left: 0.5rem;
+  padding-left: 0.9rem;
+  border-left: 1px dashed var(--ra-border, #e4ddd2);
+}
 
-  let roots = nodes
-    .filter((n) => connected.has(n.id) && !hasParent.has(n.id))
-    .map((n) => n.id)
-    .sort(byLabel);
+.nodeRow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
 
-  // Pure-cycle fallback: nothing lacks a parent, so start anywhere.
-  if (roots.length === 0 && connected.size > 0) {
-    roots = [Array.from(connected).sort(byLabel)[0]];
-  }
+.nodeIcon {
+  font-size: 0.95rem;
+}
 
-  if (connected.size === 0) {
-    return (
-      <p className={styles.emptyNote}>
-        No connections of this relationship type yet.
-      </p>
-    );
-  }
+.nodeLink {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.02rem;
+  color: var(--ra-text, #1a1714);
+  text-decoration: none;
+}
 
-  function renderNode(id: string, depth: number, path: Set<string>) {
-    const node = nodeById.get(id);
-    if (!node) return null;
+.nodeLink:hover {
+  color: var(--ra-accent, #c8900a);
+}
 
-    const kids = (childrenMap.get(id) ?? [])
-      .filter((k) => !path.has(k))
-      .sort(byLabel);
+.nodeMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ra-muted, #7a726a);
+}
 
-    const row = (
-      <span className={styles.nodeRow}>
-        <span className={styles.nodeIcon}>{node.icon || '◆'}</span>
-        <Link href={node.href} className={styles.nodeLink}>
-          {node.label}
-        </Link>
-        {node.meta && <span className={styles.nodeMeta}>{node.meta}</span>}
-        {kids.length > 0 && (
-          <span className={styles.nodeCount}>{kids.length}</span>
-        )}
-      </span>
-    );
-
-    if (kids.length === 0 || depth >= MAX_DEPTH) {
-      return (
-        <div key={id} className={styles.leaf}>
-          {row}
-        </div>
-      );
-    }
-
-    const nextPath = new Set(path);
-    nextPath.add(id);
-
-    return (
-      <details key={id} className={styles.branch} open={depth < 2}>
-        <summary className={styles.summary}>{row}</summary>
-        <div className={styles.children}>
-          {kids.map((k) => renderNode(k, depth + 1, nextPath))}
-        </div>
-      </details>
-    );
-  }
-
-  return (
-    <div className={styles.tree}>
-      {roots.map((r) => renderNode(r, 0, new Set()))}
-    </div>
-  );
+.nodeCount {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid var(--ra-border, #e4ddd2);
+  border-radius: 999px;
+  color: var(--ra-muted, #7a726a);
 }
