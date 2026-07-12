@@ -10,6 +10,7 @@ import RelationshipPanel from '../RelationshipPanel';
 import AssetPanel, { LinkedAsset } from '../AssetPanel';
 import AppearancesPanel from '../AppearancesPanel';
 import EntityChartsPanel from '../EntityChartsPanel';
+import ContentsBox from '../../../ContentsBox';
 import RevealPanel from '../RevealPanel';
 import MarkdownEditor from '../../../MarkdownEditor';
 import { EntityType } from '../../EntityTypeEditor';
@@ -349,6 +350,8 @@ export default function EntityPage() {
       {savedAt && !error && (
         <p className={styles.mutedSmall}>Saved at {savedAt}.</p>
       )}
+
+      <ContentsBox fields={entityType.fields} />
 
       {(() => {
         const dataSection = (
