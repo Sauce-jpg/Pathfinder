@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './archive.module.css';
+import TreeView from '../../TreeView';
 import { EntityType } from '../EntityTypeEditor';
 
 type World = {
@@ -22,7 +23,10 @@ type EntityRow = {
   status: string;
   subtype: string | null;
   updated_at: string;
+  tags: string[] | null;
 };
+
+type RelTypeLite = { id: string; display_name: string };
 
 function slugify(input: string): string {
   return input
@@ -52,6 +56,14 @@ export default function ArchivePage() {
   const [newTypeId, setNewTypeId] = useState('');
   const [typePickerQuery, setTypePickerQuery] = useState('');
   const [typeSearch, setTypeSearch] = useState('');
+  const [tagFilter, setTagFilter] = useState<string | null>(null);
+  const [mode, setMode] = useState<'grid' | 'tree'>('grid');
+  const [relTypes, setRelTypes] = useState<RelTypeLite[]>([]);
+  const [treeTypeId, setTreeTypeId] = useState('');
+  const [treeEdges, setTreeEdges] = useState<
+    { source_id: string; target_id: string }[]
+  >([]);
+  const [flip, setFlip] = useState(false);
   const [newName, setNewName] = useState('');
   const [saving, setSaving] = useState(false);
 
@@ -72,7 +84,7 @@ export default function ArchivePage() {
     }
     setWorld(w as World);
 
-    const [typesRes, entsRes] = await Promise.all([
+    const [typesRes, entsRes, relTypesRes] = await Promise.all([
       supabase
         .from('ra_entity_types')
         .select('*')
@@ -80,10 +92,18 @@ export default function ArchivePage() {
         .order('sort_order', { ascending: true }),
       supabase
         .from('ra_entities')
-        .select('id, entity_type_id, name, slug, status, subtype, updated_at')
+        .select('id, entity_type_id, name, slug, status, subtype, updated_at, tags')
         .eq('world_id', w.id)
         .order('name', { ascending: true }),
+      supabase
+        .from('ra_relationship_types')
+        .select('id, display_name')
+        .eq('world_id', w.id)
+        .order('display_name', { ascending: true }),
     ]);
+
+    if (!relTypesRes.error)
+      setRelTypes((relTypesRes.data as RelTypeLite[]) ?? []);
 
     if (typesRes.error) setError(typesRes.error.message);
     else setEntityTypes((typesRes.data as EntityType[]) ?? []);
@@ -98,6 +118,23 @@ export default function ArchivePage() {
     loadAll();
   }, [loadAll]);
 
+  useEffect(() => {
+    if (!world || !treeTypeId) {
+      setTreeEdges([]);
+      return;
+    }
+    supabase
+      .from('ra_relationships')
+      .select('source_id, target_id')
+      .eq('world_id', world.id)
+      .eq('relationship_type_id', treeTypeId)
+      .then(({ data }) => {
+        setTreeEdges(
+          (data as { source_id: string; target_id: string }[]) ?? []
+        );
+      });
+  }, [world, treeTypeId]);
+
   const accent = world?.appearance?.accent || '#c8900a';
 
   const typeById = new Map(entityTypes.map((t) => [t.id, t]));
@@ -111,8 +148,15 @@ export default function ArchivePage() {
   const visible = live.filter((e) => {
     if (typeFilter && e.entity_type_id !== typeFilter) return false;
     if (subtypeFilter && e.subtype !== subtypeFilter) return false;
-    if (search && !e.name.toLowerCase().includes(search.toLowerCase()))
+    if (
+      search &&
+      !e.name.toLowerCase().includes(search.toLowerCase()) &&
+      !(e.tags ?? []).some((tag) =>
+        tag.toLowerCase().includes(search.toLowerCase())
+      )
+    )
       return false;
+    if (tagFilter && !(e.tags ?? []).includes(tagFilter)) return false;
     return true;
   });
 
@@ -314,6 +358,15 @@ export default function ArchivePage() {
               onChange={(e) => setTypeSearch(e.target.value)}
             />
           )}
+          {tagFilter && (
+            <button
+              className={`${styles.pill} ${styles.pillActive}`}
+              onClick={() => setTagFilter(null)}
+              title="Clear tag filter"
+            >
+              #{tagFilter} ✕
+            </button>
+          )}
           <Link
             href={`/rpg-archive/${worldSlug}/recycle`}
             className={styles.pill}
@@ -326,6 +379,14 @@ export default function ArchivePage() {
           >
             ♥ Health
           </Link>
+          <button
+            className={`${styles.pill} ${
+              mode === 'tree' ? styles.pillActive : ''
+            }`}
+            onClick={() => setMode(mode === 'tree' ? 'grid' : 'tree')}
+          >
+            🌳 Tree
+          </button>
         </div>
         <input
           type="search"
@@ -375,7 +436,54 @@ export default function ArchivePage() {
           );
         })()}
 
-      {visible.length === 0 ? (
+      {mode === 'tree' ? (
+        <>
+          <div className={styles.treeControls}>
+            <select
+              value={treeTypeId}
+              onChange={(e) => setTreeTypeId(e.target.value)}
+            >
+              <option value="">— relationship type —</option>
+              {relTypes.map((rt) => (
+                <option key={rt.id} value={rt.id}>
+                  {rt.display_name}
+                </option>
+              ))}
+            </select>
+            <button
+              className={styles.pill}
+              onClick={() => setFlip((f) => !f)}
+              title="Swap which side of the relationship is the parent"
+            >
+              ⇅ Flip parent/child
+            </button>
+          </div>
+          {treeTypeId ? (
+            <TreeView
+              nodes={live.map((e) => {
+                const t = typeById.get(e.entity_type_id);
+                return {
+                  id: e.id,
+                  label: e.name,
+                  icon: t?.icon,
+                  href: `/rpg-archive/${worldSlug}/archive/${e.slug}`,
+                  meta: t?.display_name,
+                };
+              })}
+              edges={treeEdges.map((r) =>
+                flip
+                  ? { parent: r.source_id, child: r.target_id }
+                  : { parent: r.target_id, child: r.source_id }
+              )}
+            />
+          ) : (
+            <p className={styles.muted}>
+              Pick a relationship type to build the tree — e.g. Located In
+              for a places hierarchy, Parent Of for a family tree.
+            </p>
+          )}
+        </>
+      ) : visible.length === 0 ? (
         <div className={styles.empty}>
           <p>
             {live.length === 0
@@ -407,6 +515,25 @@ export default function ArchivePage() {
                   {e.subtype && ` · ${e.subtype}`}
                   {e.status !== 'published' && ` · ${e.status}`}
                 </span>
+                {(e.tags ?? []).length > 0 && (
+                  <span className={styles.tagRow}>
+                    {(e.tags ?? []).map((tag) => (
+                      <button
+                        key={tag}
+                        className={`${styles.tagChip} ${
+                          tagFilter === tag ? styles.tagChipActive : ''
+                        }`}
+                        onClick={(ev) => {
+                          ev.preventDefault();
+                          setTagFilter(tagFilter === tag ? null : tag);
+                        }}
+                        title="Filter by tag"
+                      >
+                        #{tag}
+                      </button>
+                    ))}
+                  </span>
+                )}
               </Link>
             );
           })}
