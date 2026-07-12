@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabaseClient';
 import styles from '../play.module.css';
 import { MarkdownView } from '../../../MarkdownEditor';
 import PlayerChartTable from '../PlayerChartTable';
+import ContentsBox, { orderWithChildren } from '../../../ContentsBox';
 
 type World = {
   id: string;
@@ -19,6 +20,7 @@ type FieldDefLite = {
   key: string;
   label: string;
   type: string;
+  parent?: string;
 };
 
 type PlayerEntity = {
@@ -283,13 +285,15 @@ function PlayEntityPageInner() {
     );
   }
 
-  const filledFields = (entity.fields ?? []).filter((f) => {
-    const v = entity.data?.[f.key];
-    if (v === undefined || v === null || v === '') return false;
-    if (Array.isArray(v) && v.length === 0) return false;
-    if (f.type === 'asset_ref') return false;
-    return true;
-  });
+  const filledFields = orderWithChildren(
+    (entity.fields ?? []).filter((f) => {
+      const v = entity.data?.[f.key];
+      if (v === undefined || v === null || v === '') return false;
+      if (Array.isArray(v) && v.length === 0) return false;
+      if (f.type === 'asset_ref') return false;
+      return true;
+    })
+  );
 
   return (
     <div className={styles.wrap} style={{ ['--ra-accent' as string]: accent }}>
@@ -322,6 +326,11 @@ function PlayEntityPageInner() {
         </div>
       </header>
 
+      <ContentsBox
+        fields={entity.fields ?? []}
+        presentKeys={filledFields.map((f) => f.key)}
+      />
+
       {(() => {
         const detailsSection = filledFields.length > 0 && (
           <section key="details" className={styles.section}>
@@ -330,11 +339,12 @@ function PlayEntityPageInner() {
               {filledFields.map((f) => (
                 <div
                   key={f.key}
+                  id={`field-${f.key}`}
                   className={`${styles.fieldRow} ${
                     f.type === 'markdown' || f.type === 'long_text'
                       ? styles.fieldRowWide
                       : ''
-                  }`}
+                  } ${f.parent ? styles.fieldRowSub : ''}`}
                 >
                   <span className={styles.fieldLabel}>{f.label}</span>
                   <span className={styles.fieldValue}>
