@@ -11,6 +11,7 @@ import AssetPanel, { LinkedAsset } from '../AssetPanel';
 import AppearancesPanel from '../AppearancesPanel';
 import EntityChartsPanel from '../EntityChartsPanel';
 import ContentsBox from '../../../ContentsBox';
+import VersionsPanel from '../VersionsPanel';
 import RevealPanel from '../RevealPanel';
 import MarkdownEditor from '../../../MarkdownEditor';
 import { EntityType } from '../../EntityTypeEditor';
@@ -418,6 +419,8 @@ export default function EntityPage() {
           label: f.label,
         }))}
       />
+
+      <VersionsPanel entityId={entity.id} onRestored={loadAll} />
 
       <div className={styles.footerActions}>
         {entity.status !== 'deleted' && (
