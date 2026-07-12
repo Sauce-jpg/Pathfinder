@@ -31,6 +31,7 @@ type Entity = {
   doc: string;
   status: string;
   subtype: string | null;
+  tags: string[] | null;
   updated_at: string;
 };
 
@@ -52,6 +53,7 @@ export default function EntityPage() {
   const [name, setName] = useState('');
   const [status, setStatus] = useState('draft');
   const [subtype, setSubtype] = useState('');
+  const [tagsInput, setTagsInput] = useState('');
   const [data, setData] = useState<Record<string, unknown>>({});
   const [doc, setDoc] = useState('');
   const [saving, setSaving] = useState(false);
@@ -92,6 +94,7 @@ export default function EntityPage() {
     setName(e.name);
     setStatus(e.status);
     setSubtype(e.subtype ?? '');
+    setTagsInput((e.tags ?? []).join(', '));
     setData(e.data ?? {});
     setDoc(e.doc ?? '');
 
@@ -166,6 +169,14 @@ export default function EntityPage() {
         name: name.trim(),
         status,
         subtype: subtype || null,
+        tags: Array.from(
+          new Set(
+            tagsInput
+              .split(',')
+              .map((t) => t.trim())
+              .filter(Boolean)
+          )
+        ),
         data,
         doc,
         updated_at: new Date().toISOString(),
@@ -276,6 +287,14 @@ export default function EntityPage() {
           <span className={styles.mutedSmall}>/{entity.slug}</span>
         </div>
         <div className={styles.headerActions}>
+          <input
+            type="text"
+            className={styles.tagsInput}
+            value={tagsInput}
+            onChange={(e) => setTagsInput(e.target.value)}
+            placeholder="tags, comma, separated"
+            title="Tags — searchable, shown on archive cards"
+          />
           {entityType.subtypes && entityType.subtypes.length > 0 && (
             <select
               className={styles.statusSelect}
