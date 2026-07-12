@@ -5,7 +5,7 @@ import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from '../play.module.css';
-import { MarkdownView } from '../../../MarkdownEditor';
+import MarkdownEditor, { MarkdownView } from '../../../MarkdownEditor';
 import PlayerChartTable from '../PlayerChartTable';
 import ContentsBox, { orderWithChildren } from '../../../ContentsBox';
 
@@ -72,6 +72,9 @@ function PlayEntityPageInner() {
   const [assets, setAssets] = useState<PlayerAsset[]>([]);
   const [refNames, setRefNames] = useState<Map<string, RefName>>(new Map());
   const [linkedCharts, setLinkedCharts] = useState<string[]>([]);
+  const [noteBody, setNoteBody] = useState('');
+  const [noteSaving, setNoteSaving] = useState(false);
+  const [noteStatus, setNoteStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [previewName, setPreviewName] = useState<string | null>(null);
@@ -148,6 +151,16 @@ function PlayEntityPageInner() {
         ))
       );
 
+    // Private notes are the viewer's own — never loaded in GM preview.
+    if (!viewAs) {
+      const { data: noteRow } = await supabase
+        .from('ra_player_notes')
+        .select('body')
+        .eq('entity_id', e.id)
+        .maybeSingle();
+      setNoteBody((noteRow as { body: string } | null)?.body ?? '');
+    }
+
     // Resolve entity-reference field values to names (visible ones only).
     const refIds: string[] = [];
     for (const f of e.fields ?? []) {
@@ -172,6 +185,23 @@ function PlayEntityPageInner() {
   useEffect(() => {
     loadAll();
   }, [loadAll]);
+
+  async function saveNote() {
+    if (!world || !entity) return;
+    setNoteSaving(true);
+    setNoteStatus(null);
+    const { error } = await supabase.from('ra_player_notes').upsert(
+      {
+        world_id: world.id,
+        entity_id: entity.id,
+        body: noteBody,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'entity_id,user_id' }
+    );
+    setNoteSaving(false);
+    setNoteStatus(error ? error.message : 'Saved.');
+  }
 
   const accent = world?.appearance?.accent || '#c8900a';
 
@@ -441,6 +471,38 @@ function PlayEntityPageInner() {
                 {a.role && <span className={styles.fieldLabel}>{a.role}</span>}
               </a>
             ))}
+          </div>
+        </section>
+      )}
+      {viewAs ? (
+        <p className={styles.notePreviewHint}>
+          📓 Players can keep private notes here — hidden in preview, even
+          from the GM.
+        </p>
+      ) : (
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>📓 My Notes</h2>
+          <p className={styles.noteHint}>
+            Private — only you can read these. Not even the GM.
+          </p>
+          <MarkdownEditor
+            value={noteBody}
+            onChange={setNoteBody}
+            rows={6}
+            placeholder={`Met in session 3.\nDo not trust — see [[...]]`}
+            wikiPrefix={`/rpg-archive/${worldSlug}/play`}
+          />
+          <div className={styles.noteActions}>
+            {noteStatus && (
+              <span className={styles.noteStatus}>{noteStatus}</span>
+            )}
+            <button
+              className={styles.noteSaveBtn}
+              onClick={saveNote}
+              disabled={noteSaving}
+            >
+              {noteSaving ? 'Saving…' : 'Save Notes'}
+            </button>
           </div>
         </section>
       )}
