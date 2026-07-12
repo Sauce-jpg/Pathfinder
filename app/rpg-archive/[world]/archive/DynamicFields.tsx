@@ -1,6 +1,7 @@
 'use client';
 
 import { FieldDef } from '../FieldBuilder';
+import { orderWithChildren } from '../../ContentsBox';
 import MarkdownEditor from '../../MarkdownEditor';
 import styles from './archive.module.css';
 
@@ -36,7 +37,7 @@ export default function DynamicFields({
 
   return (
     <div className={styles.dynGrid}>
-      {fields.map((f) => {
+      {orderWithChildren(fields).map((f) => {
         const value = data[f.key];
         const label = (
           <span>
@@ -78,7 +79,10 @@ export default function DynamicFields({
             return (
               <div
                 key={f.key}
-                className={`${styles.dynField} ${styles.dynWide}`}
+                id={`field-${f.key}`}
+                className={`${styles.dynField} ${styles.dynWide} ${
+                  f.parent ? styles.dynFieldSub : ''
+                }`}
               >
                 {label}
                 <MarkdownEditor
