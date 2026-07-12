@@ -25,6 +25,7 @@ export type FieldDef = {
   options?: string[]; // dropdown / multiselect only
   multiple?: boolean; // entity_ref only: allow selecting several entities
   refTypes?: string[]; // entity_ref only: allowed entity type ids (empty = any)
+  parent?: string; // markdown only: key of the chapter this is a sub-section of
 };
 
 export const FIELD_TYPES: { value: FieldType; label: string }[] = [
@@ -217,6 +218,35 @@ export default function FieldBuilder({
                 })
               }
             />
+          )}
+          {f.type === 'markdown' && (
+            <div className={styles.refConfigRow}>
+              <label className={styles.subOfLabel}>
+                <span>Sub-section of</span>
+                <select
+                  value={f.parent ?? ''}
+                  onChange={(e) =>
+                    updateField(i, {
+                      parent: e.target.value || undefined,
+                    })
+                  }
+                >
+                  <option value="">— none (top-level chapter) —</option>
+                  {fields
+                    .filter(
+                      (o) =>
+                        o.type === 'markdown' &&
+                        o.key !== f.key &&
+                        !o.parent
+                    )
+                    .map((o) => (
+                      <option key={o.key} value={o.key}>
+                        {o.label || o.key}
+                      </option>
+                    ))}
+                </select>
+              </label>
+            </div>
           )}
           {f.type === 'entity_ref' && (
             <div className={styles.refConfigRow}>
