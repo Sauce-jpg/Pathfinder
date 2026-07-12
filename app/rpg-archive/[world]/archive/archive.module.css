@@ -946,3 +946,96 @@ a.pill {
   padding-left: 1rem;
   border-left: 2px solid var(--ra-border);
 }
+
+/* Version history */
+
+.versionBlock {
+  border-bottom: 1px dashed var(--ra-border);
+}
+
+.versionBlock:last-child {
+  border-bottom: none;
+}
+
+.versionRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  padding: 0.45rem 0;
+}
+
+.versionDate {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-accent);
+  white-space: nowrap;
+}
+
+.versionName {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+}
+
+.versionMeta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--ra-muted);
+}
+
+.versionBtns {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+.smallVersionBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--ra-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ra-muted);
+  cursor: pointer;
+}
+
+.smallVersionBtn:hover:not(:disabled) {
+  border-color: var(--ra-accent);
+  color: var(--ra-accent);
+}
+
+.smallVersionBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.versionDetail {
+  background: var(--ra-bg);
+  border: 1px solid var(--ra-border);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  margin: 0.3rem 0 0.8rem;
+}
+
+.versionData {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.4rem 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.versionDataRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.95rem;
+}
+
+.versionDataKey {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ra-muted);
+}
