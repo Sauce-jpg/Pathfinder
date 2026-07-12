@@ -1,0 +1,73 @@
+.toc {
+  display: inline-block;
+  min-width: 240px;
+  max-width: 100%;
+  background: var(--ra-card, #fffdf9);
+  border: 1px solid var(--ra-border, #e4ddd2);
+  border-radius: 10px;
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 1.25rem;
+  font-family: 'Crimson Pro', Georgia, serif;
+}
+
+.tocHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.tocTitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.tocToggle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  border: none;
+  background: transparent;
+  color: var(--ra-accent, #c8900a);
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0;
+}
+
+.tocToggle:hover {
+  text-decoration: underline;
+}
+
+.tocList,
+.tocSubList {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.tocList > li {
+  margin: 0.2rem 0;
+}
+
+.tocSubList {
+  margin: 0.15rem 0 0.15rem 1.4rem;
+}
+
+.tocLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: var(--ra-text, #1a1714);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.tocLink:hover {
+  color: var(--ra-accent, #c8900a);
+}
+
+.tocNum {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted, #7a726a);
+  min-width: 1.6rem;
+}
