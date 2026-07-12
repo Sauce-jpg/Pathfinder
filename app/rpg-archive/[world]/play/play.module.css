@@ -422,3 +422,53 @@
   padding-left: 1rem;
   border-left: 2px solid var(--ra-border);
 }
+
+/* Player notes */
+
+.noteHint {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted);
+  margin: 0 0 0.75rem;
+}
+
+.notePreviewHint {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-muted);
+  margin: 0.5rem 0;
+}
+
+.noteActions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  justify-content: flex-end;
+  margin-top: 0.75rem;
+}
+
+.noteStatus {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ra-accent);
+}
+
+.noteSaveBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+  padding: 0.5rem 1.2rem;
+  background: var(--ra-accent);
+  color: #fffdf9;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.noteSaveBtn:hover {
+  opacity: 0.85;
+}
+
+.noteSaveBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
