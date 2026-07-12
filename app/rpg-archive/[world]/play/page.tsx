@@ -5,6 +5,7 @@ import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import styles from './play.module.css';
+import TreeView from '../../TreeView';
 
 type World = {
   id: string;
@@ -45,6 +46,15 @@ function PlayPageInner() {
   const [previewName, setPreviewName] = useState<string | null>(null);
   const [myRole, setMyRole] = useState<string | null>(null);
   const [charts, setCharts] = useState<PlayerChart[]>([]);
+  const [mode, setMode] = useState<'grid' | 'tree'>('grid');
+  const [treeTypes, setTreeTypes] = useState<
+    { id: string; display_name: string }[]
+  >([]);
+  const [treeTypeId, setTreeTypeId] = useState('');
+  const [treeEdges, setTreeEdges] = useState<
+    { source_id: string; target_id: string }[]
+  >([]);
+  const [flip, setFlip] = useState(false);
 
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -90,12 +100,38 @@ function PlayPageInner() {
       p_view_as: viewAs,
     });
     setCharts((chartRows as PlayerChart[]) ?? []);
+
+    const { data: treeTypeRows } = await supabase.rpc(
+      'ra_player_tree_types',
+      { p_world_id: w.id, p_view_as: viewAs }
+    );
+    setTreeTypes(
+      (treeTypeRows as { id: string; display_name: string }[]) ?? []
+    );
     setLoading(false);
   }, [worldSlug, viewAs]);
 
   useEffect(() => {
     loadAll();
   }, [loadAll]);
+
+  useEffect(() => {
+    if (!world || !treeTypeId) {
+      setTreeEdges([]);
+      return;
+    }
+    supabase
+      .rpc('ra_player_tree_edges', {
+        p_world_id: world.id,
+        p_rel_type_id: treeTypeId,
+        p_view_as: viewAs,
+      })
+      .then(({ data }) =>
+        setTreeEdges(
+          (data as { source_id: string; target_id: string }[]) ?? []
+        )
+      );
+  }, [world, treeTypeId, viewAs]);
 
   const accent = world?.appearance?.accent || '#c8900a';
 
@@ -199,6 +235,14 @@ function PlayPageInner() {
                 </button>
               );
             })}
+            <button
+              className={`${styles.pill} ${
+                mode === 'tree' ? styles.pillActive : ''
+              }`}
+              onClick={() => setMode(mode === 'tree' ? 'grid' : 'tree')}
+            >
+              🌳 Tree
+            </button>
           </div>
           <input
             type="search"
@@ -210,7 +254,55 @@ function PlayPageInner() {
         </div>
       )}
 
-      {visible.length === 0 ? (
+      {mode === 'tree' ? (
+        <>
+          <div className={styles.treeControls}>
+            <select
+              value={treeTypeId}
+              onChange={(e) => setTreeTypeId(e.target.value)}
+            >
+              <option value="">— relationship type —</option>
+              {treeTypes.map((rt) => (
+                <option key={rt.id} value={rt.id}>
+                  {rt.display_name}
+                </option>
+              ))}
+            </select>
+            <button
+              className={styles.pill}
+              onClick={() => setFlip((f) => !f)}
+            >
+              ⇅ Flip parent/child
+            </button>
+          </div>
+          {treeTypeId ? (
+            <TreeView
+              nodes={entities.map((e) => ({
+                id: e.id,
+                label: e.name,
+                icon: e.type_icon,
+                href: `/rpg-archive/${worldSlug}/play/${e.slug}${
+                  viewAs ? `?as=${viewAs}` : ''
+                }`,
+                meta: e.type_name,
+              }))}
+              edges={treeEdges.map((r) =>
+                flip
+                  ? { parent: r.source_id, child: r.target_id }
+                  : { parent: r.target_id, child: r.source_id }
+              )}
+            />
+          ) : treeTypes.length === 0 ? (
+            <p className={styles.muted}>
+              No connections have been revealed to you yet.
+            </p>
+          ) : (
+            <p className={styles.muted}>
+              Pick a relationship type to build the tree.
+            </p>
+          )}
+        </>
+      ) : visible.length === 0 ? (
         <div className={styles.empty}>
           <p>
             {entities.length === 0
